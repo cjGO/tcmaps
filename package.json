@@ -1,0 +1,21 @@
+{
+  "name": "rate-maps",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "prepare:maps": "node scripts/prepare-maps.mjs",
+    "predev": "node scripts/prepare-maps.mjs --if-present",
+    "prebuild": "node scripts/prepare-maps.mjs --if-present"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4",
+    "vite": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

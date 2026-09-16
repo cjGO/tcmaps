@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "headers": [{ "source": "/maps/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }]
+}
