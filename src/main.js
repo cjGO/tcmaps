@@ -1,6 +1,65 @@
 import './style.css';
 import maps from '../lib/maps.json';
 const $ = id => document.getElementById(id);
+const rotationImages = Object.entries(import.meta.glob('../current_rotation/*.[pP][nN][gG]', {
+  eager: true, query: '?url', import: 'default',
+})).map(([path, image]) => ({ filename: path.split('/').pop(), image }))
+  .sort((a, b) => a.filename.localeCompare(b.filename, undefined, { numeric: true }));
+let rotationIndex = 0, activeTab = 'rotation';
+function renderRotation() {
+  const entry = rotationImages[rotationIndex];
+  $('rotation-previous').disabled = $('rotation-next').disabled = rotationImages.length < 2;
+  $('rotation-count').textContent = `${entry ? rotationIndex + 1 : 0} / ${rotationImages.length}`;
+  $('rotation-full-image').hidden = !entry;
+  if (!entry) {
+    $('rotation-filename').textContent = 'No rotation images';
+    $('rotation-state').textContent = 'No PNG images are available in the current rotation.';
+    return;
+  }
+  $('rotation-filename').textContent = entry.filename;
+  $('rotation-full-image').href = entry.image;
+  $('rotation-state').hidden = false;
+  $('rotation-state').textContent = 'Loading map…';
+  $('rotation-image').style.opacity = '0';
+  $('rotation-image').alt = entry.filename;
+  $('rotation-image').src = entry.image;
+}
+function moveRotation(delta) {
+  if (!rotationImages.length) return;
+  rotationIndex = (rotationIndex + delta + rotationImages.length) % rotationImages.length;
+  renderRotation();
+}
+function selectTab(name) {
+  activeTab = name;
+  for (const tab of ['rotation', 'review']) {
+    $(tab + '-tab').setAttribute('aria-selected', String(tab === name));
+    $(tab + '-tab').tabIndex = tab === name ? 0 : -1;
+    $(tab + '-panel').hidden = tab !== name;
+  }
+  $('collection-summary').textContent = name === 'rotation' ? `${rotationImages.length} rotation images` : `${maps.length} maps to review`;
+}
+for (const name of ['rotation', 'review']) {
+  $(name + '-tab').addEventListener('click', () => selectTab(name));
+  $(name + '-tab').addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const next = event.key === 'Home' ? 'rotation' : event.key === 'End' ? 'review' : name === 'rotation' ? 'review' : 'rotation';
+    selectTab(next);
+    $(next + '-tab').focus();
+  });
+}
+$('view-keep-list').addEventListener('click', () => selectTab('review'));
+$('rotation-previous').addEventListener('click', () => moveRotation(-1));
+$('rotation-next').addEventListener('click', () => moveRotation(1));
+$('rotation-image').addEventListener('load', () => {
+  $('rotation-state').hidden = true;
+  $('rotation-image').style.opacity = '1';
+});
+$('rotation-image').addEventListener('error', () => {
+  $('rotation-state').hidden = false;
+  $('rotation-state').textContent = 'Map image could not load. Try refreshing the page.';
+});
 const storageKey = 'maproom.keep-list.v1';
 const pairKey = (map, spawn) => `${map}/${spawn}`;
 let mapIndex = 0, spawnIndex = 0, kept = new Set(), storageProblem = '';
@@ -97,8 +156,18 @@ $('next').addEventListener('click', () => moveMap(1));
 document.addEventListener('keydown', event => {
   if (event.target.matches('input, textarea, select, [contenteditable="true"]') || event.altKey || event.ctrlKey || event.metaKey) return;
   if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+  if (activeTab === 'rotation') {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      moveRotation(event.key === 'ArrowLeft' ? -1 : 1);
+    }
+    return;
+  }
   event.preventDefault();
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') moveMap(event.key === 'ArrowLeft' ? -1 : 1);
   else { spawnIndex = (spawnIndex + (event.key === 'ArrowUp' ? -1 : 1) + currentMap().spawns.length) % currentMap().spawns.length; render(); }
 });
 render(); message('Keep the setups you like, then copy your list to share.');
+
+renderRotation();
+selectTab('rotation');

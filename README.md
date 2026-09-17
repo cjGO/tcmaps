@@ -2,6 +2,12 @@
 
 Browse 200 maps with four spawn setups each, keep your favorites, and copy a plain-text list to send in a message. No accounts, database, API, or environment variables needed.
 
+## Collections
+
+The default **Current rotation** tab cycles through PNGs in `current_rotation`, sorted by filename in numeric order. The exact original PNG filename appears above each image; names embedded in the image are not used. Use the previous/next buttons or left/right arrow keys. These PNGs are included directly in the build, so commit this folder when deploying and rebuild after changing it.
+
+The **Review maps** tab contains the map/spawn browser and saved keep list. Switching tabs preserves your position in both collections.
+
 ## Run
 
 Requires Node.js 20.19+ (or 22.12+).

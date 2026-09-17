@@ -3,8 +3,23 @@
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#101b1d"/><meta name="description" content="Browse maps, compare spawn locations, and share your keep list."/><title>Maproom — Keep your favorite maps</title></head>
 <body>
 <div class="app">
-  <header><a class="brand" href="/" aria-label="Maproom home"><span class="brand-icon">◈</span> MAPROOM <span class="brand-tag">COMMUNITY REVIEW</span></a><a class="export" href="#keep-list">View your keep list ↓</a></header>
+  <header><a class="brand" href="/" aria-label="Maproom home"><span class="brand-icon">◈</span> MAPROOM <span class="brand-tag">COMMUNITY REVIEW</span></a><a id="view-keep-list" class="export" href="#keep-list">View your keep list ↓</a></header>
   <main>
+    <div class="page-tabs" role="tablist" aria-label="Map collections">
+      <button id="rotation-tab" role="tab" aria-selected="true" aria-controls="rotation-panel">Current rotation</button>
+      <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
+    </div>
+    <section id="rotation-panel" role="tabpanel" aria-labelledby="rotation-tab">
+      <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>
+      <div class="intro"><div><p class="eyebrow">CURRENT ROTATION</p><h1>Maps in rotation.</h1><p class="subtitle">Use the filename shown below to identify each map. Names inside the images may differ.</p></div></div>
+      <section class="viewer" aria-label="Current rotation viewer">
+        <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation image">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation image">→</button></div></div>
+        <div class="image-stage rotation-stage"><img id="rotation-image" alt=""/><span id="rotation-state" role="status">Loading map…</span><a id="rotation-full-image" target="_blank" rel="noopener" aria-label="Open original rotation PNG in a new tab">↗ Full size</a></div>
+      </section>
+      <p class="rotation-hint">Use ← → or the buttons to cycle through the images.</p>
+    </section>
+    <section id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden>
+      <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>
     <section class="intro"><div><p class="eyebrow">A BETTER MAP STARTS WITH YOUR TAKE</p><h1>Explore. Compare. Keep.</h1><p class="subtitle">Pick the maps and spawn setups you want to keep. Copy your list and send it.</p></div></section>
     <div class="workspace">
       <section class="viewer" aria-label="Map viewer">
@@ -19,8 +34,9 @@
         <section class="instructions"><p class="eyebrow">THE QUICK GUIDE</p><ol><li><strong>Look around.</strong> Use <kbd>←</kbd> <kbd>→</kbd> for maps and <kbd>↑</kbd> <kbd>↓</kbd> for spawn setups, or click the controls.</li><li><strong>Keep your favorites.</strong> Click Keep to add the current map and spawn setup. Click Remove to undo.</li></ol><p>When you’re done, click <strong>Copy list</strong> and paste it into a message. You can also select and copy the text yourself.</p><p class="privacy-note">Your list is saved in this browser on this device. Nothing is sent automatically. Clearing browser data removes it. Copy and send your list when finished.</p></section>
       </aside>
     </div>
+    </section>
   </main>
-  <footer><span>MAPROOM <span class="footer-dot">/</span> A little feedback. Better battlegrounds.</span><span>200 maps · 4 ways to start</span></footer>
+  <footer><span>MAPROOM <span class="footer-dot">/</span> A little feedback. Better battlegrounds.</span><span id="collection-summary"></span></footer>
 </div>
 <script type="module" src="/src/main.js"></script>
 </body>
