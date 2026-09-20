@@ -1,65 +1,75 @@
 import './style.css';
 import maps from '../lib/maps.json';
 const $ = id => document.getElementById(id);
-const rotationImages = Object.entries(import.meta.glob('../current_rotation/*.[pP][nN][gG]', {
-  eager: true, query: '?url', import: 'default',
-})).map(([path, image]) => ({ filename: path.split('/').pop(), image }))
+const imageEntries = images => Object.entries(images)
+  .map(([path, image]) => ({ filename: path.split('/').pop(), image }))
   .sort((a, b) => a.filename.localeCompare(b.filename, undefined, { numeric: true }));
-let rotationIndex = 0, activeTab = 'rotation';
-function renderRotation() {
-  const entry = rotationImages[rotationIndex];
-  $('rotation-previous').disabled = $('rotation-next').disabled = rotationImages.length < 2;
-  $('rotation-count').textContent = `${entry ? rotationIndex + 1 : 0} / ${rotationImages.length}`;
-  $('rotation-full-image').hidden = !entry;
+const collections = {
+  rotation: { images: imageEntries(import.meta.glob('../current_rotation/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
+  good: { images: imageEntries(import.meta.glob('../goodmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
+  bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
+};
+const tabs = ['rotation', 'review', 'good', 'bad'];
+let activeTab = 'rotation';
+function renderCollection(name) {
+  const { images, index } = collections[name];
+  const entry = images[index];
+  const el = suffix => $(name + '-' + suffix);
+  el('previous').disabled = el('next').disabled = images.length < 2;
+  el('count').textContent = `${entry ? index + 1 : 0} / ${images.length}`;
+  el('full-image').hidden = el('image').hidden = !entry;
+  el('state').hidden = false;
   if (!entry) {
-    $('rotation-filename').textContent = 'No rotation images';
-    $('rotation-state').textContent = 'No PNG images are available in the current rotation.';
+    el('filename').textContent = 'No map images';
+    el('state').textContent = 'No PNG images are available in this collection.';
     return;
   }
-  $('rotation-filename').textContent = entry.filename;
-  $('rotation-full-image').href = entry.image;
-  $('rotation-state').hidden = false;
-  $('rotation-state').textContent = 'Loading map…';
-  $('rotation-image').style.opacity = '0';
-  $('rotation-image').alt = entry.filename;
-  $('rotation-image').src = entry.image;
+  el('filename').textContent = entry.filename;
+  el('full-image').href = entry.image;
+  el('state').textContent = 'Loading map…';
+  el('image').style.opacity = '0';
+  el('image').alt = entry.filename;
+  el('image').src = entry.image;
 }
-function moveRotation(delta) {
-  if (!rotationImages.length) return;
-  rotationIndex = (rotationIndex + delta + rotationImages.length) % rotationImages.length;
-  renderRotation();
+function moveCollection(name, delta) {
+  const collection = collections[name];
+  if (!collection.images.length) return;
+  collection.index = (collection.index + delta + collection.images.length) % collection.images.length;
+  renderCollection(name);
 }
 function selectTab(name) {
   activeTab = name;
-  for (const tab of ['rotation', 'review']) {
+  for (const tab of tabs) {
     $(tab + '-tab').setAttribute('aria-selected', String(tab === name));
     $(tab + '-tab').tabIndex = tab === name ? 0 : -1;
     $(tab + '-panel').hidden = tab !== name;
   }
-  $('collection-summary').textContent = name === 'rotation' ? `${rotationImages.length} rotation images` : `${maps.length} maps to review`;
+  $('collection-summary').textContent = name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
 }
-for (const name of ['rotation', 'review']) {
+for (const name of tabs) {
   $(name + '-tab').addEventListener('click', () => selectTab(name));
   $(name + '-tab').addEventListener('keydown', event => {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
     event.stopPropagation();
-    const next = event.key === 'Home' ? 'rotation' : event.key === 'End' ? 'review' : name === 'rotation' ? 'review' : 'rotation';
+    const next = event.key === 'Home' ? tabs[0] : event.key === 'End' ? tabs.at(-1) : tabs[(tabs.indexOf(name) + (event.key === 'ArrowLeft' ? -1 : 1) + tabs.length) % tabs.length];
     selectTab(next);
     $(next + '-tab').focus();
   });
 }
 $('view-keep-list').addEventListener('click', () => selectTab('review'));
-$('rotation-previous').addEventListener('click', () => moveRotation(-1));
-$('rotation-next').addEventListener('click', () => moveRotation(1));
-$('rotation-image').addEventListener('load', () => {
-  $('rotation-state').hidden = true;
-  $('rotation-image').style.opacity = '1';
-});
-$('rotation-image').addEventListener('error', () => {
-  $('rotation-state').hidden = false;
-  $('rotation-state').textContent = 'Map image could not load. Try refreshing the page.';
-});
+for (const name of Object.keys(collections)) {
+  $(name + '-previous').addEventListener('click', () => moveCollection(name, -1));
+  $(name + '-next').addEventListener('click', () => moveCollection(name, 1));
+  $(name + '-image').addEventListener('load', () => {
+    $(name + '-state').hidden = true;
+    $(name + '-image').style.opacity = '1';
+  });
+  $(name + '-image').addEventListener('error', () => {
+    $(name + '-state').hidden = false;
+    $(name + '-state').textContent = 'Map image could not load. Try refreshing the page.';
+  });
+}
 const storageKey = 'maproom.keep-list.v1';
 const pairKey = (map, spawn) => `${map}/${spawn}`;
 let mapIndex = 0, spawnIndex = 0, kept = new Set(), storageProblem = '';
@@ -156,10 +166,10 @@ $('next').addEventListener('click', () => moveMap(1));
 document.addEventListener('keydown', event => {
   if (event.target.matches('input, textarea, select, [contenteditable="true"]') || event.altKey || event.ctrlKey || event.metaKey) return;
   if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
-  if (activeTab === 'rotation') {
+  if (collections[activeTab]) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
-      moveRotation(event.key === 'ArrowLeft' ? -1 : 1);
+      moveCollection(activeTab, event.key === 'ArrowLeft' ? -1 : 1);
     }
     return;
   }
@@ -169,5 +179,5 @@ document.addEventListener('keydown', event => {
 });
 render(); message('Keep the setups you like, then copy your list to share.');
 
-renderRotation();
+Object.keys(collections).forEach(renderCollection);
 selectTab('rotation');
