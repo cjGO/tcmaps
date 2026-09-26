@@ -8,8 +8,10 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "prepare:maps": "node scripts/prepare-maps.mjs",
-    "predev": "node scripts/prepare-maps.mjs --if-present",
-    "prebuild": "node scripts/prepare-maps.mjs --if-present"
+    "predev": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check",
+    "prebuild": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check",
+    "prepare:editor": "node scripts/prepare-editor.mjs",
+    "test": "node --test map_editor/tests/coordinates.test.js"
   },
   "devDependencies": {
     "sharp": "^0.35.4",

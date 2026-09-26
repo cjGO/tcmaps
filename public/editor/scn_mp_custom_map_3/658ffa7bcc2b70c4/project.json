@@ -1,0 +1,2863 @@
+{
+  "version": 1,
+  "source": {
+    "scene_id": "scn_mp_custom_map_3",
+    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/good_maps/scn_mp_custom_map_3.sco",
+    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/good_maps/scn_mp_custom_map_3.txt",
+    "sco_sha256": "2aa21c5ab2370dee445f57bc394ffd8e8443c6a4dd7bc735acad12128d3bc4e7",
+    "recipe_file_sha256": "0633b30c4240efb5cfd23cf8f5f37100990990016060ff7d4ff12d0efbf681a4",
+    "recipe_sha256": "0633b30c4240efb5cfd23cf8f5f37100990990016060ff7d4ff12d0efbf681a4",
+    "terrain_code": "0x000000033282478a000fffff0adc364c36179813767eaaab"
+  },
+  "bounds": {
+    "x_min_m": 24.0,
+    "y_min_m": 24.0,
+    "x_max_m": 999.0,
+    "y_max_m": 999.0
+  },
+  "calibration": {
+    "width_px": 2400,
+    "height_px": 2400,
+    "plot_rect": {
+      "left": 0.06861144444444445,
+      "top": 0.09014312549297943,
+      "width": 0.7984172403144074,
+      "height": 0.7984172403144075
+    },
+    "x_limits": [
+      -0.375,
+      1023.375
+    ],
+    "y_limits": [
+      -0.375,
+      1023.375
+    ]
+  },
+  "assets": [
+    {
+      "name": "spr_mm_tree_aspen1",
+      "prop_id": 514,
+      "object_name": "mm_tree_aspen1",
+      "group": "Trees",
+      "label": "mm tree aspen1",
+      "mesh": "mm_aspen1",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen2",
+      "prop_id": 515,
+      "object_name": "mm_tree_aspen2",
+      "group": "Trees",
+      "label": "mm tree aspen2",
+      "mesh": "mm_aspen2",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen3",
+      "prop_id": 516,
+      "object_name": "mm_tree_aspen3",
+      "group": "Trees",
+      "label": "mm tree aspen3",
+      "mesh": "mm_aspen3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen4",
+      "prop_id": 517,
+      "object_name": "mm_tree_aspen4",
+      "group": "Trees",
+      "label": "mm tree aspen4",
+      "mesh": "mm_aspen4",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen5",
+      "prop_id": 518,
+      "object_name": "mm_tree_aspen5",
+      "group": "Trees",
+      "label": "mm tree aspen5",
+      "mesh": "mm_aspen5",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen6",
+      "prop_id": 519,
+      "object_name": "mm_tree_aspen6",
+      "group": "Trees",
+      "label": "mm tree aspen6",
+      "mesh": "mm_aspen6",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen7",
+      "prop_id": 520,
+      "object_name": "mm_tree_aspen7",
+      "group": "Trees",
+      "label": "mm tree aspen7",
+      "mesh": "mm_aspen7",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen8",
+      "prop_id": 521,
+      "object_name": "mm_tree_aspen8",
+      "group": "Trees",
+      "label": "mm tree aspen8",
+      "mesh": "mm_aspen8",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen9",
+      "prop_id": 522,
+      "object_name": "mm_tree_aspen9",
+      "group": "Trees",
+      "label": "mm tree aspen9",
+      "mesh": "mm_aspen9",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen10",
+      "prop_id": 523,
+      "object_name": "mm_tree_aspen10",
+      "group": "Trees",
+      "label": "mm tree aspen10",
+      "mesh": "mm_aspen10",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen11",
+      "prop_id": 524,
+      "object_name": "mm_tree_aspen11",
+      "group": "Trees",
+      "label": "mm tree aspen11",
+      "mesh": "mm_aspen11",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen12",
+      "prop_id": 525,
+      "object_name": "mm_tree_aspen12",
+      "group": "Trees",
+      "label": "mm tree aspen12",
+      "mesh": "mm_aspen12",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen13",
+      "prop_id": 526,
+      "object_name": "mm_tree_aspen13",
+      "group": "Trees",
+      "label": "mm tree aspen13",
+      "mesh": "mm_aspen13",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen14",
+      "prop_id": 527,
+      "object_name": "mm_tree_aspen14",
+      "group": "Trees",
+      "label": "mm tree aspen14",
+      "mesh": "mm_aspen14",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_aspen15",
+      "prop_id": 528,
+      "object_name": "mm_tree_aspen15",
+      "group": "Trees",
+      "label": "mm tree aspen15",
+      "mesh": "mm_aspen15",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine1",
+      "prop_id": 529,
+      "object_name": "mm_tree_pine1",
+      "group": "Trees",
+      "label": "mm tree pine1",
+      "mesh": "mm_pine1",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine2",
+      "prop_id": 530,
+      "object_name": "mm_tree_pine2",
+      "group": "Trees",
+      "label": "mm tree pine2",
+      "mesh": "mm_pine2",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine3",
+      "prop_id": 531,
+      "object_name": "mm_tree_pine3",
+      "group": "Trees",
+      "label": "mm tree pine3",
+      "mesh": "mm_pine3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine4",
+      "prop_id": 532,
+      "object_name": "mm_tree_pine4",
+      "group": "Trees",
+      "label": "mm tree pine4",
+      "mesh": "mm_pine4",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine5",
+      "prop_id": 533,
+      "object_name": "mm_tree_pine5",
+      "group": "Trees",
+      "label": "mm tree pine5",
+      "mesh": "mm_pine5",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine6",
+      "prop_id": 534,
+      "object_name": "mm_tree_pine6",
+      "group": "Trees",
+      "label": "mm tree pine6",
+      "mesh": "mm_pine6",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine7",
+      "prop_id": 535,
+      "object_name": "mm_tree_pine7",
+      "group": "Trees",
+      "label": "mm tree pine7",
+      "mesh": "mm_pine7",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine_snowy1",
+      "prop_id": 536,
+      "object_name": "mm_tree_pine_snowy1",
+      "group": "Trees",
+      "label": "mm tree pine snowy1",
+      "mesh": "mm_pine1s",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine_snowy2",
+      "prop_id": 537,
+      "object_name": "mm_tree_pine_snowy2",
+      "group": "Trees",
+      "label": "mm tree pine snowy2",
+      "mesh": "mm_pine2s",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine_snowy3",
+      "prop_id": 538,
+      "object_name": "mm_tree_pine_snowy3",
+      "group": "Trees",
+      "label": "mm tree pine snowy3",
+      "mesh": "mm_pine3s",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine_snowy4",
+      "prop_id": 539,
+      "object_name": "mm_tree_pine_snowy4",
+      "group": "Trees",
+      "label": "mm tree pine snowy4",
+      "mesh": "mm_pine4s",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine_snowy5",
+      "prop_id": 540,
+      "object_name": "mm_tree_pine_snowy5",
+      "group": "Trees",
+      "label": "mm tree pine snowy5",
+      "mesh": "mm_pine5s",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine_snowy6",
+      "prop_id": 541,
+      "object_name": "mm_tree_pine_snowy6",
+      "group": "Trees",
+      "label": "mm tree pine snowy6",
+      "mesh": "mm_pine6s",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_pine_snowy7",
+      "prop_id": 542,
+      "object_name": "mm_tree_pine_snowy7",
+      "group": "Trees",
+      "label": "mm tree pine snowy7",
+      "mesh": "mm_pine7s",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_northern1",
+      "prop_id": 543,
+      "object_name": "mm_tree_northern1",
+      "group": "Trees",
+      "label": "mm tree northern1",
+      "mesh": "mm_northern_tree1",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_northern2",
+      "prop_id": 544,
+      "object_name": "mm_tree_northern2",
+      "group": "Trees",
+      "label": "mm tree northern2",
+      "mesh": "mm_northern_tree2",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_northern3",
+      "prop_id": 545,
+      "object_name": "mm_tree_northern3",
+      "group": "Trees",
+      "label": "mm tree northern3",
+      "mesh": "mm_northern_tree3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_northern4",
+      "prop_id": 546,
+      "object_name": "mm_tree_northern4",
+      "group": "Trees",
+      "label": "mm tree northern4",
+      "mesh": "mm_northern_tree4",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_northern5",
+      "prop_id": 547,
+      "object_name": "mm_tree_northern5",
+      "group": "Trees",
+      "label": "mm tree northern5",
+      "mesh": "mm_pine_3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_northern6",
+      "prop_id": 548,
+      "object_name": "mm_tree_northern6",
+      "group": "Trees",
+      "label": "mm tree northern6",
+      "mesh": "mm_pine_4",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_northern7",
+      "prop_id": 549,
+      "object_name": "mm_tree_northern7",
+      "group": "Trees",
+      "label": "mm tree northern7",
+      "mesh": "mm_pine_5",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_autumn1",
+      "prop_id": 550,
+      "object_name": "mm_tree_autumn1",
+      "group": "Trees",
+      "label": "mm tree autumn1",
+      "mesh": "mm_autumn_tree",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_autumn2",
+      "prop_id": 551,
+      "object_name": "mm_tree_autumn2",
+      "group": "Trees",
+      "label": "mm tree autumn2",
+      "mesh": "mm_autumn_tree1",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_autumn3",
+      "prop_id": 552,
+      "object_name": "mm_tree_autumn3",
+      "group": "Trees",
+      "label": "mm tree autumn3",
+      "mesh": "mm_autumn_tree2",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_autumn4",
+      "prop_id": 553,
+      "object_name": "mm_tree_autumn4",
+      "group": "Trees",
+      "label": "mm tree autumn4",
+      "mesh": "mm_autumn_tree3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_autumn5",
+      "prop_id": 554,
+      "object_name": "mm_tree_autumn5",
+      "group": "Trees",
+      "label": "mm tree autumn5",
+      "mesh": "mm_autumn_tree4",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter1",
+      "prop_id": 555,
+      "object_name": "mm_tree_winter1",
+      "group": "Trees",
+      "label": "mm tree winter1",
+      "mesh": "mm_winter_tree",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter2",
+      "prop_id": 556,
+      "object_name": "mm_tree_winter2",
+      "group": "Trees",
+      "label": "mm tree winter2",
+      "mesh": "mm_winter_tree1",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter3",
+      "prop_id": 557,
+      "object_name": "mm_tree_winter3",
+      "group": "Trees",
+      "label": "mm tree winter3",
+      "mesh": "mm_winter_tree2",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter4",
+      "prop_id": 558,
+      "object_name": "mm_tree_winter4",
+      "group": "Trees",
+      "label": "mm tree winter4",
+      "mesh": "mm_winter_tree3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter5",
+      "prop_id": 559,
+      "object_name": "mm_tree_winter5",
+      "group": "Trees",
+      "label": "mm tree winter5",
+      "mesh": "mm_winter_tree4",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter6",
+      "prop_id": 560,
+      "object_name": "mm_tree_winter6",
+      "group": "Trees",
+      "label": "mm tree winter6",
+      "mesh": "mm_winter_tree5",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter7",
+      "prop_id": 561,
+      "object_name": "mm_tree_winter7",
+      "group": "Trees",
+      "label": "mm tree winter7",
+      "mesh": "mm_winter_tree6",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter8",
+      "prop_id": 562,
+      "object_name": "mm_tree_winter8",
+      "group": "Trees",
+      "label": "mm tree winter8",
+      "mesh": "mm_winter_tree7",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter9",
+      "prop_id": 563,
+      "object_name": "mm_tree_winter9",
+      "group": "Trees",
+      "label": "mm tree winter9",
+      "mesh": "mm_winter_tree8",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter10",
+      "prop_id": 564,
+      "object_name": "mm_tree_winter10",
+      "group": "Trees",
+      "label": "mm tree winter10",
+      "mesh": "mm_winter_tree9",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter11",
+      "prop_id": 565,
+      "object_name": "mm_tree_winter11",
+      "group": "Trees",
+      "label": "mm tree winter11",
+      "mesh": "mm_winter_tree10",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter12",
+      "prop_id": 566,
+      "object_name": "mm_tree_winter12",
+      "group": "Trees",
+      "label": "mm tree winter12",
+      "mesh": "mm_winter_tree11",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter13",
+      "prop_id": 567,
+      "object_name": "mm_tree_winter13",
+      "group": "Trees",
+      "label": "mm tree winter13",
+      "mesh": "mm_winter_tree12",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter14",
+      "prop_id": 568,
+      "object_name": "mm_tree_winter14",
+      "group": "Trees",
+      "label": "mm tree winter14",
+      "mesh": "mm_winter_tree13",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter15",
+      "prop_id": 569,
+      "object_name": "mm_tree_winter15",
+      "group": "Trees",
+      "label": "mm tree winter15",
+      "mesh": "mm_winter_tree14",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_winter16",
+      "prop_id": 570,
+      "object_name": "mm_tree_winter16",
+      "group": "Trees",
+      "label": "mm tree winter16",
+      "mesh": "mm_winter_tree15",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_big1",
+      "prop_id": 571,
+      "object_name": "mm_tree_big1",
+      "group": "Trees",
+      "label": "mm tree big1",
+      "mesh": "big_tree_mm",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_big2",
+      "prop_id": 572,
+      "object_name": "mm_tree_big2",
+      "group": "Trees",
+      "label": "mm tree big2",
+      "mesh": "big_tree_mm1",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_big3",
+      "prop_id": 573,
+      "object_name": "mm_tree_big3",
+      "group": "Trees",
+      "label": "mm tree big3",
+      "mesh": "big_tree_mm2",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_big4",
+      "prop_id": 574,
+      "object_name": "mm_tree_big4",
+      "group": "Trees",
+      "label": "mm tree big4",
+      "mesh": "big_tree_mm3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation1",
+      "prop_id": 575,
+      "object_name": "mm_tree_vegetation1",
+      "group": "Trees",
+      "label": "mm tree vegetation1",
+      "mesh": "mm_vegetation_tree1",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2",
+      "prop_id": 576,
+      "object_name": "mm_tree_vegetation2",
+      "group": "Trees",
+      "label": "mm tree vegetation2",
+      "mesh": "mm_vegetation_tree2",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3",
+      "prop_id": 577,
+      "object_name": "mm_tree_vegetation3",
+      "group": "Trees",
+      "label": "mm tree vegetation3",
+      "mesh": "mm_vegetation_tree3",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation4",
+      "prop_id": 578,
+      "object_name": "mm_tree_vegetation4",
+      "group": "Trees",
+      "label": "mm tree vegetation4",
+      "mesh": "mm_vegetation_tree4",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation5",
+      "prop_id": 579,
+      "object_name": "mm_tree_vegetation5",
+      "group": "Trees",
+      "label": "mm tree vegetation5",
+      "mesh": "mm_vegetation_tree5",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation6",
+      "prop_id": 580,
+      "object_name": "mm_tree_vegetation6",
+      "group": "Trees",
+      "label": "mm tree vegetation6",
+      "mesh": "mm_vegetation_tree6",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7",
+      "prop_id": 581,
+      "object_name": "mm_tree_vegetation7",
+      "group": "Trees",
+      "label": "mm tree vegetation7",
+      "mesh": "mm_vegetation_tree7",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8",
+      "prop_id": 582,
+      "object_name": "mm_tree_vegetation8",
+      "group": "Trees",
+      "label": "mm tree vegetation8",
+      "mesh": "mm_vegetation_tree8",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9",
+      "prop_id": 583,
+      "object_name": "mm_tree_vegetation9",
+      "group": "Trees",
+      "label": "mm tree vegetation9",
+      "mesh": "mm_vegetation_tree9",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10",
+      "prop_id": 584,
+      "object_name": "mm_tree_vegetation10",
+      "group": "Trees",
+      "label": "mm tree vegetation10",
+      "mesh": "mm_vegetation_tree10",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11",
+      "prop_id": 585,
+      "object_name": "mm_tree_vegetation11",
+      "group": "Trees",
+      "label": "mm tree vegetation11",
+      "mesh": "mm_vegetation_tree11",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation12",
+      "prop_id": 586,
+      "object_name": "mm_tree_vegetation12",
+      "group": "Trees",
+      "label": "mm tree vegetation12",
+      "mesh": "mm_vegetation_tree12",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation14",
+      "prop_id": 587,
+      "object_name": "mm_tree_vegetation14",
+      "group": "Trees",
+      "label": "mm tree vegetation14",
+      "mesh": "mm_vegetation_tree14",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation15",
+      "prop_id": 588,
+      "object_name": "mm_tree_vegetation15",
+      "group": "Trees",
+      "label": "mm tree vegetation15",
+      "mesh": "mm_vegetation_tree15",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_1",
+      "prop_id": 589,
+      "object_name": "mm_tree_vegetation2_1",
+      "group": "Trees",
+      "label": "mm tree vegetation2 1",
+      "mesh": "mm_vegetation_tree21",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_2",
+      "prop_id": 590,
+      "object_name": "mm_tree_vegetation2_2",
+      "group": "Trees",
+      "label": "mm tree vegetation2 2",
+      "mesh": "mm_vegetation_tree22",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_3",
+      "prop_id": 591,
+      "object_name": "mm_tree_vegetation2_3",
+      "group": "Trees",
+      "label": "mm tree vegetation2 3",
+      "mesh": "mm_vegetation_tree23",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_4",
+      "prop_id": 592,
+      "object_name": "mm_tree_vegetation2_4",
+      "group": "Trees",
+      "label": "mm tree vegetation2 4",
+      "mesh": "mm_vegetation_tree24",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_5",
+      "prop_id": 593,
+      "object_name": "mm_tree_vegetation2_5",
+      "group": "Trees",
+      "label": "mm tree vegetation2 5",
+      "mesh": "mm_vegetation_tree25",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_6",
+      "prop_id": 594,
+      "object_name": "mm_tree_vegetation2_6",
+      "group": "Trees",
+      "label": "mm tree vegetation2 6",
+      "mesh": "mm_vegetation_tree26",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_7",
+      "prop_id": 595,
+      "object_name": "mm_tree_vegetation2_7",
+      "group": "Trees",
+      "label": "mm tree vegetation2 7",
+      "mesh": "mm_vegetation_tree27",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_8",
+      "prop_id": 596,
+      "object_name": "mm_tree_vegetation2_8",
+      "group": "Trees",
+      "label": "mm tree vegetation2 8",
+      "mesh": "mm_vegetation_tree28",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_9",
+      "prop_id": 597,
+      "object_name": "mm_tree_vegetation2_9",
+      "group": "Trees",
+      "label": "mm tree vegetation2 9",
+      "mesh": "mm_vegetation_tree29",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_10",
+      "prop_id": 598,
+      "object_name": "mm_tree_vegetation2_10",
+      "group": "Trees",
+      "label": "mm tree vegetation2 10",
+      "mesh": "mm_vegetation_tree210",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_11",
+      "prop_id": 599,
+      "object_name": "mm_tree_vegetation2_11",
+      "group": "Trees",
+      "label": "mm tree vegetation2 11",
+      "mesh": "mm_vegetation_tree211",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_12",
+      "prop_id": 600,
+      "object_name": "mm_tree_vegetation2_12",
+      "group": "Trees",
+      "label": "mm tree vegetation2 12",
+      "mesh": "mm_vegetation_tree212",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_14",
+      "prop_id": 601,
+      "object_name": "mm_tree_vegetation2_14",
+      "group": "Trees",
+      "label": "mm tree vegetation2 14",
+      "mesh": "mm_vegetation_tree214",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation2_15",
+      "prop_id": 602,
+      "object_name": "mm_tree_vegetation2_15",
+      "group": "Trees",
+      "label": "mm tree vegetation2 15",
+      "mesh": "mm_vegetation_tree215",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_1",
+      "prop_id": 603,
+      "object_name": "mm_tree_vegetation3_1",
+      "group": "Trees",
+      "label": "mm tree vegetation3 1",
+      "mesh": "mm_vegetation_tree31",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_2",
+      "prop_id": 604,
+      "object_name": "mm_tree_vegetation3_2",
+      "group": "Trees",
+      "label": "mm tree vegetation3 2",
+      "mesh": "mm_vegetation_tree32",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_3",
+      "prop_id": 605,
+      "object_name": "mm_tree_vegetation3_3",
+      "group": "Trees",
+      "label": "mm tree vegetation3 3",
+      "mesh": "mm_vegetation_tree33",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_4",
+      "prop_id": 606,
+      "object_name": "mm_tree_vegetation3_4",
+      "group": "Trees",
+      "label": "mm tree vegetation3 4",
+      "mesh": "mm_vegetation_tree34",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_5",
+      "prop_id": 607,
+      "object_name": "mm_tree_vegetation3_5",
+      "group": "Trees",
+      "label": "mm tree vegetation3 5",
+      "mesh": "mm_vegetation_tree35",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_6",
+      "prop_id": 608,
+      "object_name": "mm_tree_vegetation3_6",
+      "group": "Trees",
+      "label": "mm tree vegetation3 6",
+      "mesh": "mm_vegetation_tree36",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_7",
+      "prop_id": 609,
+      "object_name": "mm_tree_vegetation3_7",
+      "group": "Trees",
+      "label": "mm tree vegetation3 7",
+      "mesh": "mm_vegetation_tree37",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_8",
+      "prop_id": 610,
+      "object_name": "mm_tree_vegetation3_8",
+      "group": "Trees",
+      "label": "mm tree vegetation3 8",
+      "mesh": "mm_vegetation_tree38",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_9",
+      "prop_id": 611,
+      "object_name": "mm_tree_vegetation3_9",
+      "group": "Trees",
+      "label": "mm tree vegetation3 9",
+      "mesh": "mm_vegetation_tree39",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_10",
+      "prop_id": 612,
+      "object_name": "mm_tree_vegetation3_10",
+      "group": "Trees",
+      "label": "mm tree vegetation3 10",
+      "mesh": "mm_vegetation_tree310",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_11",
+      "prop_id": 613,
+      "object_name": "mm_tree_vegetation3_11",
+      "group": "Trees",
+      "label": "mm tree vegetation3 11",
+      "mesh": "mm_vegetation_tree311",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_12",
+      "prop_id": 614,
+      "object_name": "mm_tree_vegetation3_12",
+      "group": "Trees",
+      "label": "mm tree vegetation3 12",
+      "mesh": "mm_vegetation_tree312",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_14",
+      "prop_id": 615,
+      "object_name": "mm_tree_vegetation3_14",
+      "group": "Trees",
+      "label": "mm tree vegetation3 14",
+      "mesh": "mm_vegetation_tree314",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation3_15",
+      "prop_id": 616,
+      "object_name": "mm_tree_vegetation3_15",
+      "group": "Trees",
+      "label": "mm tree vegetation3 15",
+      "mesh": "mm_vegetation_tree315",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_1",
+      "prop_id": 617,
+      "object_name": "mm_tree_vegetation7_1",
+      "group": "Trees",
+      "label": "mm tree vegetation7 1",
+      "mesh": "mm_vegetation_tree71",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_2",
+      "prop_id": 618,
+      "object_name": "mm_tree_vegetation7_2",
+      "group": "Trees",
+      "label": "mm tree vegetation7 2",
+      "mesh": "mm_vegetation_tree72",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_3",
+      "prop_id": 619,
+      "object_name": "mm_tree_vegetation7_3",
+      "group": "Trees",
+      "label": "mm tree vegetation7 3",
+      "mesh": "mm_vegetation_tree73",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_4",
+      "prop_id": 620,
+      "object_name": "mm_tree_vegetation7_4",
+      "group": "Trees",
+      "label": "mm tree vegetation7 4",
+      "mesh": "mm_vegetation_tree74",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_5",
+      "prop_id": 621,
+      "object_name": "mm_tree_vegetation7_5",
+      "group": "Trees",
+      "label": "mm tree vegetation7 5",
+      "mesh": "mm_vegetation_tree75",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_6",
+      "prop_id": 622,
+      "object_name": "mm_tree_vegetation7_6",
+      "group": "Trees",
+      "label": "mm tree vegetation7 6",
+      "mesh": "mm_vegetation_tree76",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_7",
+      "prop_id": 623,
+      "object_name": "mm_tree_vegetation7_7",
+      "group": "Trees",
+      "label": "mm tree vegetation7 7",
+      "mesh": "mm_vegetation_tree77",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_8",
+      "prop_id": 624,
+      "object_name": "mm_tree_vegetation7_8",
+      "group": "Trees",
+      "label": "mm tree vegetation7 8",
+      "mesh": "mm_vegetation_tree78",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_9",
+      "prop_id": 625,
+      "object_name": "mm_tree_vegetation7_9",
+      "group": "Trees",
+      "label": "mm tree vegetation7 9",
+      "mesh": "mm_vegetation_tree79",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_10",
+      "prop_id": 626,
+      "object_name": "mm_tree_vegetation7_10",
+      "group": "Trees",
+      "label": "mm tree vegetation7 10",
+      "mesh": "mm_vegetation_tree710",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_11",
+      "prop_id": 627,
+      "object_name": "mm_tree_vegetation7_11",
+      "group": "Trees",
+      "label": "mm tree vegetation7 11",
+      "mesh": "mm_vegetation_tree711",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_12",
+      "prop_id": 628,
+      "object_name": "mm_tree_vegetation7_12",
+      "group": "Trees",
+      "label": "mm tree vegetation7 12",
+      "mesh": "mm_vegetation_tree712",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_14",
+      "prop_id": 629,
+      "object_name": "mm_tree_vegetation7_14",
+      "group": "Trees",
+      "label": "mm tree vegetation7 14",
+      "mesh": "mm_vegetation_tree714",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation7_15",
+      "prop_id": 630,
+      "object_name": "mm_tree_vegetation7_15",
+      "group": "Trees",
+      "label": "mm tree vegetation7 15",
+      "mesh": "mm_vegetation_tree715",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_1",
+      "prop_id": 631,
+      "object_name": "mm_tree_vegetation8_1",
+      "group": "Trees",
+      "label": "mm tree vegetation8 1",
+      "mesh": "mm_vegetation_tree81",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_2",
+      "prop_id": 632,
+      "object_name": "mm_tree_vegetation8_2",
+      "group": "Trees",
+      "label": "mm tree vegetation8 2",
+      "mesh": "mm_vegetation_tree82",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_3",
+      "prop_id": 633,
+      "object_name": "mm_tree_vegetation8_3",
+      "group": "Trees",
+      "label": "mm tree vegetation8 3",
+      "mesh": "mm_vegetation_tree83",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_4",
+      "prop_id": 634,
+      "object_name": "mm_tree_vegetation8_4",
+      "group": "Trees",
+      "label": "mm tree vegetation8 4",
+      "mesh": "mm_vegetation_tree84",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_5",
+      "prop_id": 635,
+      "object_name": "mm_tree_vegetation8_5",
+      "group": "Trees",
+      "label": "mm tree vegetation8 5",
+      "mesh": "mm_vegetation_tree85",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_6",
+      "prop_id": 636,
+      "object_name": "mm_tree_vegetation8_6",
+      "group": "Trees",
+      "label": "mm tree vegetation8 6",
+      "mesh": "mm_vegetation_tree86",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_7",
+      "prop_id": 637,
+      "object_name": "mm_tree_vegetation8_7",
+      "group": "Trees",
+      "label": "mm tree vegetation8 7",
+      "mesh": "mm_vegetation_tree87",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_8",
+      "prop_id": 638,
+      "object_name": "mm_tree_vegetation8_8",
+      "group": "Trees",
+      "label": "mm tree vegetation8 8",
+      "mesh": "mm_vegetation_tree88",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_9",
+      "prop_id": 639,
+      "object_name": "mm_tree_vegetation8_9",
+      "group": "Trees",
+      "label": "mm tree vegetation8 9",
+      "mesh": "mm_vegetation_tree89",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_10",
+      "prop_id": 640,
+      "object_name": "mm_tree_vegetation8_10",
+      "group": "Trees",
+      "label": "mm tree vegetation8 10",
+      "mesh": "mm_vegetation_tree810",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_11",
+      "prop_id": 641,
+      "object_name": "mm_tree_vegetation8_11",
+      "group": "Trees",
+      "label": "mm tree vegetation8 11",
+      "mesh": "mm_vegetation_tree811",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_12",
+      "prop_id": 642,
+      "object_name": "mm_tree_vegetation8_12",
+      "group": "Trees",
+      "label": "mm tree vegetation8 12",
+      "mesh": "mm_vegetation_tree812",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_14",
+      "prop_id": 643,
+      "object_name": "mm_tree_vegetation8_14",
+      "group": "Trees",
+      "label": "mm tree vegetation8 14",
+      "mesh": "mm_vegetation_tree814",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation8_15",
+      "prop_id": 644,
+      "object_name": "mm_tree_vegetation8_15",
+      "group": "Trees",
+      "label": "mm tree vegetation8 15",
+      "mesh": "mm_vegetation_tree815",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_1",
+      "prop_id": 645,
+      "object_name": "mm_tree_vegetation9_1",
+      "group": "Trees",
+      "label": "mm tree vegetation9 1",
+      "mesh": "mm_vegetation_tree91",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_2",
+      "prop_id": 646,
+      "object_name": "mm_tree_vegetation9_2",
+      "group": "Trees",
+      "label": "mm tree vegetation9 2",
+      "mesh": "mm_vegetation_tree92",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_3",
+      "prop_id": 647,
+      "object_name": "mm_tree_vegetation9_3",
+      "group": "Trees",
+      "label": "mm tree vegetation9 3",
+      "mesh": "mm_vegetation_tree93",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_4",
+      "prop_id": 648,
+      "object_name": "mm_tree_vegetation9_4",
+      "group": "Trees",
+      "label": "mm tree vegetation9 4",
+      "mesh": "mm_vegetation_tree94",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_5",
+      "prop_id": 649,
+      "object_name": "mm_tree_vegetation9_5",
+      "group": "Trees",
+      "label": "mm tree vegetation9 5",
+      "mesh": "mm_vegetation_tree95",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_6",
+      "prop_id": 650,
+      "object_name": "mm_tree_vegetation9_6",
+      "group": "Trees",
+      "label": "mm tree vegetation9 6",
+      "mesh": "mm_vegetation_tree96",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_7",
+      "prop_id": 651,
+      "object_name": "mm_tree_vegetation9_7",
+      "group": "Trees",
+      "label": "mm tree vegetation9 7",
+      "mesh": "mm_vegetation_tree97",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_8",
+      "prop_id": 652,
+      "object_name": "mm_tree_vegetation9_8",
+      "group": "Trees",
+      "label": "mm tree vegetation9 8",
+      "mesh": "mm_vegetation_tree98",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_9",
+      "prop_id": 653,
+      "object_name": "mm_tree_vegetation9_9",
+      "group": "Trees",
+      "label": "mm tree vegetation9 9",
+      "mesh": "mm_vegetation_tree99",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_10",
+      "prop_id": 654,
+      "object_name": "mm_tree_vegetation9_10",
+      "group": "Trees",
+      "label": "mm tree vegetation9 10",
+      "mesh": "mm_vegetation_tree910",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_11",
+      "prop_id": 655,
+      "object_name": "mm_tree_vegetation9_11",
+      "group": "Trees",
+      "label": "mm tree vegetation9 11",
+      "mesh": "mm_vegetation_tree911",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_12",
+      "prop_id": 656,
+      "object_name": "mm_tree_vegetation9_12",
+      "group": "Trees",
+      "label": "mm tree vegetation9 12",
+      "mesh": "mm_vegetation_tree912",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_14",
+      "prop_id": 657,
+      "object_name": "mm_tree_vegetation9_14",
+      "group": "Trees",
+      "label": "mm tree vegetation9 14",
+      "mesh": "mm_vegetation_tree914",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation9_15",
+      "prop_id": 658,
+      "object_name": "mm_tree_vegetation9_15",
+      "group": "Trees",
+      "label": "mm tree vegetation9 15",
+      "mesh": "mm_vegetation_tree915",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_1",
+      "prop_id": 659,
+      "object_name": "mm_tree_vegetation10_1",
+      "group": "Trees",
+      "label": "mm tree vegetation10 1",
+      "mesh": "mm_vegetation_tree101",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_2",
+      "prop_id": 660,
+      "object_name": "mm_tree_vegetation10_2",
+      "group": "Trees",
+      "label": "mm tree vegetation10 2",
+      "mesh": "mm_vegetation_tree102",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_3",
+      "prop_id": 661,
+      "object_name": "mm_tree_vegetation10_3",
+      "group": "Trees",
+      "label": "mm tree vegetation10 3",
+      "mesh": "mm_vegetation_tree103",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_4",
+      "prop_id": 662,
+      "object_name": "mm_tree_vegetation10_4",
+      "group": "Trees",
+      "label": "mm tree vegetation10 4",
+      "mesh": "mm_vegetation_tree104",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_5",
+      "prop_id": 663,
+      "object_name": "mm_tree_vegetation10_5",
+      "group": "Trees",
+      "label": "mm tree vegetation10 5",
+      "mesh": "mm_vegetation_tree104",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_6",
+      "prop_id": 664,
+      "object_name": "mm_tree_vegetation10_6",
+      "group": "Trees",
+      "label": "mm tree vegetation10 6",
+      "mesh": "mm_vegetation_tree106",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_7",
+      "prop_id": 665,
+      "object_name": "mm_tree_vegetation10_7",
+      "group": "Trees",
+      "label": "mm tree vegetation10 7",
+      "mesh": "mm_vegetation_tree107",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_8",
+      "prop_id": 666,
+      "object_name": "mm_tree_vegetation10_8",
+      "group": "Trees",
+      "label": "mm tree vegetation10 8",
+      "mesh": "mm_vegetation_tree108",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_9",
+      "prop_id": 667,
+      "object_name": "mm_tree_vegetation10_9",
+      "group": "Trees",
+      "label": "mm tree vegetation10 9",
+      "mesh": "mm_vegetation_tree109",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_10",
+      "prop_id": 668,
+      "object_name": "mm_tree_vegetation10_10",
+      "group": "Trees",
+      "label": "mm tree vegetation10 10",
+      "mesh": "mm_vegetation_tree1010",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_11",
+      "prop_id": 669,
+      "object_name": "mm_tree_vegetation10_11",
+      "group": "Trees",
+      "label": "mm tree vegetation10 11",
+      "mesh": "mm_vegetation_tree1011",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_12",
+      "prop_id": 670,
+      "object_name": "mm_tree_vegetation10_12",
+      "group": "Trees",
+      "label": "mm tree vegetation10 12",
+      "mesh": "mm_vegetation_tree1012",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_14",
+      "prop_id": 671,
+      "object_name": "mm_tree_vegetation10_14",
+      "group": "Trees",
+      "label": "mm tree vegetation10 14",
+      "mesh": "mm_vegetation_tree1014",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation10_15",
+      "prop_id": 672,
+      "object_name": "mm_tree_vegetation10_15",
+      "group": "Trees",
+      "label": "mm tree vegetation10 15",
+      "mesh": "mm_vegetation_tree1015",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_1",
+      "prop_id": 673,
+      "object_name": "mm_tree_vegetation11_1",
+      "group": "Trees",
+      "label": "mm tree vegetation11 1",
+      "mesh": "mm_vegetation_tree111",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_2",
+      "prop_id": 674,
+      "object_name": "mm_tree_vegetation11_2",
+      "group": "Trees",
+      "label": "mm tree vegetation11 2",
+      "mesh": "mm_vegetation_tree112",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_3",
+      "prop_id": 675,
+      "object_name": "mm_tree_vegetation11_3",
+      "group": "Trees",
+      "label": "mm tree vegetation11 3",
+      "mesh": "mm_vegetation_tree113",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_4",
+      "prop_id": 676,
+      "object_name": "mm_tree_vegetation11_4",
+      "group": "Trees",
+      "label": "mm tree vegetation11 4",
+      "mesh": "mm_vegetation_tree114",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_5",
+      "prop_id": 677,
+      "object_name": "mm_tree_vegetation11_5",
+      "group": "Trees",
+      "label": "mm tree vegetation11 5",
+      "mesh": "mm_vegetation_tree114",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_6",
+      "prop_id": 678,
+      "object_name": "mm_tree_vegetation11_6",
+      "group": "Trees",
+      "label": "mm tree vegetation11 6",
+      "mesh": "mm_vegetation_tree116",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_7",
+      "prop_id": 679,
+      "object_name": "mm_tree_vegetation11_7",
+      "group": "Trees",
+      "label": "mm tree vegetation11 7",
+      "mesh": "mm_vegetation_tree117",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_8",
+      "prop_id": 680,
+      "object_name": "mm_tree_vegetation11_8",
+      "group": "Trees",
+      "label": "mm tree vegetation11 8",
+      "mesh": "mm_vegetation_tree118",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_9",
+      "prop_id": 681,
+      "object_name": "mm_tree_vegetation11_9",
+      "group": "Trees",
+      "label": "mm tree vegetation11 9",
+      "mesh": "mm_vegetation_tree119",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_10",
+      "prop_id": 682,
+      "object_name": "mm_tree_vegetation11_10",
+      "group": "Trees",
+      "label": "mm tree vegetation11 10",
+      "mesh": "mm_vegetation_tree1110",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_11",
+      "prop_id": 683,
+      "object_name": "mm_tree_vegetation11_11",
+      "group": "Trees",
+      "label": "mm tree vegetation11 11",
+      "mesh": "mm_vegetation_tree1111",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_12",
+      "prop_id": 684,
+      "object_name": "mm_tree_vegetation11_12",
+      "group": "Trees",
+      "label": "mm tree vegetation11 12",
+      "mesh": "mm_vegetation_tree1112",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_14",
+      "prop_id": 685,
+      "object_name": "mm_tree_vegetation11_14",
+      "group": "Trees",
+      "label": "mm tree vegetation11 14",
+      "mesh": "mm_vegetation_tree1114",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_vegetation11_15",
+      "prop_id": 686,
+      "object_name": "mm_tree_vegetation11_15",
+      "group": "Trees",
+      "label": "mm tree vegetation11 15",
+      "mesh": "mm_vegetation_tree1115",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_palm1",
+      "prop_id": 687,
+      "object_name": "mm_tree_palm1",
+      "group": "Trees",
+      "label": "mm tree palm1",
+      "mesh": "palmb_7",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_palm2",
+      "prop_id": 688,
+      "object_name": "mm_tree_palm2",
+      "group": "Trees",
+      "label": "mm tree palm2",
+      "mesh": "palmb_8",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_palm3",
+      "prop_id": 689,
+      "object_name": "mm_tree_palm3",
+      "group": "Trees",
+      "label": "mm tree palm3",
+      "mesh": "palmb_9",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_palm4",
+      "prop_id": 690,
+      "object_name": "mm_tree_palm4",
+      "group": "Trees",
+      "label": "mm tree palm4",
+      "mesh": "palmb_10",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_palm5",
+      "prop_id": 691,
+      "object_name": "mm_tree_palm5",
+      "group": "Trees",
+      "label": "mm tree palm5",
+      "mesh": "palmb_11",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_mm_tree_palm6",
+      "prop_id": 692,
+      "object_name": "mm_tree_palm6",
+      "group": "Trees",
+      "label": "mm tree palm6",
+      "mesh": "palmb_12",
+      "collision": true,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_new_3",
+      "prop_id": 730,
+      "object_name": "flora_bush_new_3",
+      "group": "Shrubs",
+      "label": "flora bush new 3",
+      "mesh": "bush_new_b",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers1a",
+      "prop_id": 731,
+      "object_name": "flora_flowers1a",
+      "group": "Other vegetation",
+      "label": "flora flowers1a",
+      "mesh": "grass_bush_amm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers1b",
+      "prop_id": 732,
+      "object_name": "flora_flowers1b",
+      "group": "Other vegetation",
+      "label": "flora flowers1b",
+      "mesh": "grass_bush_bmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowersa",
+      "prop_id": 733,
+      "object_name": "flora_flowersa",
+      "group": "Other vegetation",
+      "label": "flora flowersa",
+      "mesh": "grass_bush_cmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowersb",
+      "prop_id": 734,
+      "object_name": "flora_flowersb",
+      "group": "Other vegetation",
+      "label": "flora flowersb",
+      "mesh": "grass_bush_c2mm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowersc",
+      "prop_id": 735,
+      "object_name": "flora_flowersc",
+      "group": "Other vegetation",
+      "label": "flora flowersc",
+      "mesh": "grass_bush_c3mm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowersd",
+      "prop_id": 736,
+      "object_name": "flora_flowersd",
+      "group": "Other vegetation",
+      "label": "flora flowersd",
+      "mesh": "grass_bush_dmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2a",
+      "prop_id": 737,
+      "object_name": "flora_flowers2a",
+      "group": "Other vegetation",
+      "label": "flora flowers2a",
+      "mesh": "grass_bush_emm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2b",
+      "prop_id": 738,
+      "object_name": "flora_flowers2b",
+      "group": "Other vegetation",
+      "label": "flora flowers2b",
+      "mesh": "grass_bush_fmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2c",
+      "prop_id": 739,
+      "object_name": "flora_flowers2c",
+      "group": "Other vegetation",
+      "label": "flora flowers2c",
+      "mesh": "grass_bush_gmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2d",
+      "prop_id": 740,
+      "object_name": "flora_flowers2d",
+      "group": "Other vegetation",
+      "label": "flora flowers2d",
+      "mesh": "grass_bush_hmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2e",
+      "prop_id": 741,
+      "object_name": "flora_flowers2e",
+      "group": "Other vegetation",
+      "label": "flora flowers2e",
+      "mesh": "grass_bush_imm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2f",
+      "prop_id": 742,
+      "object_name": "flora_flowers2f",
+      "group": "Other vegetation",
+      "label": "flora flowers2f",
+      "mesh": "grass_bush_jmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2g",
+      "prop_id": 743,
+      "object_name": "flora_flowers2g",
+      "group": "Other vegetation",
+      "label": "flora flowers2g",
+      "mesh": "grass_bush_kmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2h",
+      "prop_id": 744,
+      "object_name": "flora_flowers2h",
+      "group": "Other vegetation",
+      "label": "flora flowers2h",
+      "mesh": "grass_bush_lmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flowers2i",
+      "prop_id": 745,
+      "object_name": "flora_flowers2i",
+      "group": "Other vegetation",
+      "label": "flora flowers2i",
+      "mesh": "grass_bush_mmm",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_mushrooms",
+      "prop_id": 746,
+      "object_name": "flora_mushrooms",
+      "group": "Other vegetation",
+      "label": "flora mushrooms",
+      "mesh": "mm_mushrooms2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_greena",
+      "prop_id": 747,
+      "object_name": "flora_bush_greena",
+      "group": "Shrubs",
+      "label": "flora bush greena",
+      "mesh": "mm_bush",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_greenb",
+      "prop_id": 748,
+      "object_name": "flora_bush_greenb",
+      "group": "Shrubs",
+      "label": "flora bush greenb",
+      "mesh": "mm_bush2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_greenc",
+      "prop_id": 749,
+      "object_name": "flora_bush_greenc",
+      "group": "Shrubs",
+      "label": "flora bush greenc",
+      "mesh": "mm_bush3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_greend",
+      "prop_id": 750,
+      "object_name": "flora_bush_greend",
+      "group": "Shrubs",
+      "label": "flora bush greend",
+      "mesh": "mm_bush4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_greene",
+      "prop_id": 751,
+      "object_name": "flora_bush_greene",
+      "group": "Shrubs",
+      "label": "flora bush greene",
+      "mesh": "mm_bush5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_greenf",
+      "prop_id": 752,
+      "object_name": "flora_bush_greenf",
+      "group": "Shrubs",
+      "label": "flora bush greenf",
+      "mesh": "mm_bush6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_greeng",
+      "prop_id": 753,
+      "object_name": "flora_bush_greeng",
+      "group": "Shrubs",
+      "label": "flora bush greeng",
+      "mesh": "mm_bush7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_orangea",
+      "prop_id": 754,
+      "object_name": "flora_bush_orangea",
+      "group": "Shrubs",
+      "label": "flora bush orangea",
+      "mesh": "mm_bush_new",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_orangeb",
+      "prop_id": 755,
+      "object_name": "flora_bush_orangeb",
+      "group": "Shrubs",
+      "label": "flora bush orangeb",
+      "mesh": "mm_bush_new2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_orangec",
+      "prop_id": 756,
+      "object_name": "flora_bush_orangec",
+      "group": "Shrubs",
+      "label": "flora bush orangec",
+      "mesh": "mm_bush_new3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_oranged",
+      "prop_id": 757,
+      "object_name": "flora_bush_oranged",
+      "group": "Shrubs",
+      "label": "flora bush oranged",
+      "mesh": "mm_bush_new4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_orangee",
+      "prop_id": 758,
+      "object_name": "flora_bush_orangee",
+      "group": "Shrubs",
+      "label": "flora bush orangee",
+      "mesh": "mm_bush_new5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_orangef",
+      "prop_id": 759,
+      "object_name": "flora_bush_orangef",
+      "group": "Shrubs",
+      "label": "flora bush orangef",
+      "mesh": "mm_bush_new6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_orangeg",
+      "prop_id": 760,
+      "object_name": "flora_bush_orangeg",
+      "group": "Shrubs",
+      "label": "flora bush orangeg",
+      "mesh": "mm_bush_new7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_giant_busha",
+      "prop_id": 761,
+      "object_name": "flora_giant_busha",
+      "group": "Shrubs",
+      "label": "flora giant busha",
+      "mesh": "mm_giant_bush",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_giant_bushb",
+      "prop_id": 762,
+      "object_name": "flora_giant_bushb",
+      "group": "Shrubs",
+      "label": "flora giant bushb",
+      "mesh": "mm_giant_bush2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_giant_bushc",
+      "prop_id": 763,
+      "object_name": "flora_giant_bushc",
+      "group": "Shrubs",
+      "label": "flora giant bushc",
+      "mesh": "mm_giant_bush3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_giant_bushd",
+      "prop_id": 764,
+      "object_name": "flora_giant_bushd",
+      "group": "Shrubs",
+      "label": "flora giant bushd",
+      "mesh": "mm_giant_bush4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_giant_bushe",
+      "prop_id": 765,
+      "object_name": "flora_giant_bushe",
+      "group": "Shrubs",
+      "label": "flora giant bushe",
+      "mesh": "mm_giant_bush5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_giant_bushf",
+      "prop_id": 766,
+      "object_name": "flora_giant_bushf",
+      "group": "Shrubs",
+      "label": "flora giant bushf",
+      "mesh": "mm_giant_bush6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_giant_bushg",
+      "prop_id": 767,
+      "object_name": "flora_giant_bushg",
+      "group": "Shrubs",
+      "label": "flora giant bushg",
+      "mesh": "mm_giant_bush7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_busha",
+      "prop_id": 768,
+      "object_name": "flora_old_busha",
+      "group": "Shrubs",
+      "label": "flora old busha",
+      "mesh": "mm_giant_bush_new",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bushb",
+      "prop_id": 769,
+      "object_name": "flora_old_bushb",
+      "group": "Shrubs",
+      "label": "flora old bushb",
+      "mesh": "mm_giant_bush_new2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bushc",
+      "prop_id": 770,
+      "object_name": "flora_old_bushc",
+      "group": "Shrubs",
+      "label": "flora old bushc",
+      "mesh": "mm_giant_bush_new3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bushd",
+      "prop_id": 771,
+      "object_name": "flora_old_bushd",
+      "group": "Shrubs",
+      "label": "flora old bushd",
+      "mesh": "mm_giant_bush_new4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bushe",
+      "prop_id": 772,
+      "object_name": "flora_old_bushe",
+      "group": "Shrubs",
+      "label": "flora old bushe",
+      "mesh": "mm_giant_bush_new5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bushf",
+      "prop_id": 773,
+      "object_name": "flora_old_bushf",
+      "group": "Shrubs",
+      "label": "flora old bushf",
+      "mesh": "mm_giant_bush_new6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bushg",
+      "prop_id": 774,
+      "object_name": "flora_old_bushg",
+      "group": "Shrubs",
+      "label": "flora old bushg",
+      "mesh": "mm_giant_bush_new7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bush1a",
+      "prop_id": 775,
+      "object_name": "flora_old_bush1a",
+      "group": "Shrubs",
+      "label": "flora old bush1a",
+      "mesh": "mm_old_bush",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bush1b",
+      "prop_id": 776,
+      "object_name": "flora_old_bush1b",
+      "group": "Shrubs",
+      "label": "flora old bush1b",
+      "mesh": "mm_old_bush2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bush1c",
+      "prop_id": 777,
+      "object_name": "flora_old_bush1c",
+      "group": "Shrubs",
+      "label": "flora old bush1c",
+      "mesh": "mm_old_bush3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bush1d",
+      "prop_id": 778,
+      "object_name": "flora_old_bush1d",
+      "group": "Shrubs",
+      "label": "flora old bush1d",
+      "mesh": "mm_old_bush4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bush1e",
+      "prop_id": 779,
+      "object_name": "flora_old_bush1e",
+      "group": "Shrubs",
+      "label": "flora old bush1e",
+      "mesh": "mm_old_bush5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bush1f",
+      "prop_id": 780,
+      "object_name": "flora_old_bush1f",
+      "group": "Shrubs",
+      "label": "flora old bush1f",
+      "mesh": "mm_old_bush6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_old_bush1g",
+      "prop_id": 781,
+      "object_name": "flora_old_bush1g",
+      "group": "Shrubs",
+      "label": "flora old bush1g",
+      "mesh": "mm_old_bush7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_busha",
+      "prop_id": 782,
+      "object_name": "flora_flower_busha",
+      "group": "Shrubs",
+      "label": "flora flower busha",
+      "mesh": "bush_flower",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushb",
+      "prop_id": 783,
+      "object_name": "flora_flower_bushb",
+      "group": "Shrubs",
+      "label": "flora flower bushb",
+      "mesh": "bush_flower2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushc",
+      "prop_id": 784,
+      "object_name": "flora_flower_bushc",
+      "group": "Shrubs",
+      "label": "flora flower bushc",
+      "mesh": "bush_flower3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushd",
+      "prop_id": 785,
+      "object_name": "flora_flower_bushd",
+      "group": "Shrubs",
+      "label": "flora flower bushd",
+      "mesh": "bush_flower4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushe",
+      "prop_id": 786,
+      "object_name": "flora_flower_bushe",
+      "group": "Shrubs",
+      "label": "flora flower bushe",
+      "mesh": "bush_flower5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushf",
+      "prop_id": 787,
+      "object_name": "flora_flower_bushf",
+      "group": "Shrubs",
+      "label": "flora flower bushf",
+      "mesh": "bush_flower6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushg",
+      "prop_id": 788,
+      "object_name": "flora_flower_bushg",
+      "group": "Shrubs",
+      "label": "flora flower bushg",
+      "mesh": "bush_flower7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushh",
+      "prop_id": 789,
+      "object_name": "flora_flower_bushh",
+      "group": "Shrubs",
+      "label": "flora flower bushh",
+      "mesh": "bush_flower8",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushi",
+      "prop_id": 790,
+      "object_name": "flora_flower_bushi",
+      "group": "Shrubs",
+      "label": "flora flower bushi",
+      "mesh": "bush_flower9",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushk",
+      "prop_id": 791,
+      "object_name": "flora_flower_bushk",
+      "group": "Shrubs",
+      "label": "flora flower bushk",
+      "mesh": "bush_flower11",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushl",
+      "prop_id": 792,
+      "object_name": "flora_flower_bushl",
+      "group": "Shrubs",
+      "label": "flora flower bushl",
+      "mesh": "bush_flower12",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushm",
+      "prop_id": 793,
+      "object_name": "flora_flower_bushm",
+      "group": "Shrubs",
+      "label": "flora flower bushm",
+      "mesh": "bush_flower13",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushn",
+      "prop_id": 794,
+      "object_name": "flora_flower_bushn",
+      "group": "Shrubs",
+      "label": "flora flower bushn",
+      "mesh": "bush_flower14",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_busho",
+      "prop_id": 795,
+      "object_name": "flora_flower_busho",
+      "group": "Shrubs",
+      "label": "flora flower busho",
+      "mesh": "bush_flower15",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushp",
+      "prop_id": 796,
+      "object_name": "flora_flower_bushp",
+      "group": "Shrubs",
+      "label": "flora flower bushp",
+      "mesh": "bush_flower16",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushq",
+      "prop_id": 797,
+      "object_name": "flora_flower_bushq",
+      "group": "Shrubs",
+      "label": "flora flower bushq",
+      "mesh": "bush_flower17",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushr",
+      "prop_id": 798,
+      "object_name": "flora_flower_bushr",
+      "group": "Shrubs",
+      "label": "flora flower bushr",
+      "mesh": "bush_flower18",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_bushs",
+      "prop_id": 799,
+      "object_name": "flora_flower_bushs",
+      "group": "Shrubs",
+      "label": "flora flower bushs",
+      "mesh": "bush_flower19",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_flower_busht",
+      "prop_id": 800,
+      "object_name": "flora_flower_busht",
+      "group": "Shrubs",
+      "label": "flora flower busht",
+      "mesh": "bush_flower20",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_green_newa",
+      "prop_id": 801,
+      "object_name": "flora_bush_green_newa",
+      "group": "Shrubs",
+      "label": "flora bush green newa",
+      "mesh": "bush_new_green1",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_green_newb",
+      "prop_id": 802,
+      "object_name": "flora_bush_green_newb",
+      "group": "Shrubs",
+      "label": "flora bush green newb",
+      "mesh": "bush_new_green2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_green_newc",
+      "prop_id": 803,
+      "object_name": "flora_bush_green_newc",
+      "group": "Shrubs",
+      "label": "flora bush green newc",
+      "mesh": "bush_new_green3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_green_newd",
+      "prop_id": 804,
+      "object_name": "flora_bush_green_newd",
+      "group": "Shrubs",
+      "label": "flora bush green newd",
+      "mesh": "bush_new_green4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_green_newe",
+      "prop_id": 805,
+      "object_name": "flora_bush_green_newe",
+      "group": "Shrubs",
+      "label": "flora bush green newe",
+      "mesh": "bush_new_green5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_green_newf",
+      "prop_id": 806,
+      "object_name": "flora_bush_green_newf",
+      "group": "Shrubs",
+      "label": "flora bush green newf",
+      "mesh": "bush_new_green6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_green_newg",
+      "prop_id": 807,
+      "object_name": "flora_bush_green_newg",
+      "group": "Shrubs",
+      "label": "flora bush green newg",
+      "mesh": "bush_new_green7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_wintera",
+      "prop_id": 808,
+      "object_name": "flora_bush_wintera",
+      "group": "Shrubs",
+      "label": "flora bush wintera",
+      "mesh": "mm_bush_winter",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winterb",
+      "prop_id": 809,
+      "object_name": "flora_bush_winterb",
+      "group": "Shrubs",
+      "label": "flora bush winterb",
+      "mesh": "mm_bush_winter2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winterc",
+      "prop_id": 810,
+      "object_name": "flora_bush_winterc",
+      "group": "Shrubs",
+      "label": "flora bush winterc",
+      "mesh": "mm_bush_winter3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winterd",
+      "prop_id": 811,
+      "object_name": "flora_bush_winterd",
+      "group": "Shrubs",
+      "label": "flora bush winterd",
+      "mesh": "mm_bush_winter4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_wintere",
+      "prop_id": 812,
+      "object_name": "flora_bush_wintere",
+      "group": "Shrubs",
+      "label": "flora bush wintere",
+      "mesh": "mm_bush_winter5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winterf",
+      "prop_id": 813,
+      "object_name": "flora_bush_winterf",
+      "group": "Shrubs",
+      "label": "flora bush winterf",
+      "mesh": "mm_bush_winter6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winterg",
+      "prop_id": 814,
+      "object_name": "flora_bush_winterg",
+      "group": "Shrubs",
+      "label": "flora bush winterg",
+      "mesh": "mm_bush_winter7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winterh",
+      "prop_id": 815,
+      "object_name": "flora_bush_winterh",
+      "group": "Shrubs",
+      "label": "flora bush winterh",
+      "mesh": "mm_bush_winter8",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winteri",
+      "prop_id": 816,
+      "object_name": "flora_bush_winteri",
+      "group": "Shrubs",
+      "label": "flora bush winteri",
+      "mesh": "mm_bush_winter9",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winterj",
+      "prop_id": 817,
+      "object_name": "flora_bush_winterj",
+      "group": "Shrubs",
+      "label": "flora bush winterj",
+      "mesh": "mm_bush_winter10",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winter2a",
+      "prop_id": 818,
+      "object_name": "flora_bush_winter2a",
+      "group": "Shrubs",
+      "label": "flora bush winter2a",
+      "mesh": "mm_bush_winter14",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winter2b",
+      "prop_id": 819,
+      "object_name": "flora_bush_winter2b",
+      "group": "Shrubs",
+      "label": "flora bush winter2b",
+      "mesh": "mm_bush_winter15",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winter2c",
+      "prop_id": 820,
+      "object_name": "flora_bush_winter2c",
+      "group": "Shrubs",
+      "label": "flora bush winter2c",
+      "mesh": "mm_bush_winter16",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_bush_winter2d",
+      "prop_id": 821,
+      "object_name": "flora_bush_winter2d",
+      "group": "Shrubs",
+      "label": "flora bush winter2d",
+      "mesh": "mm_bush_winter17",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_roses",
+      "prop_id": 822,
+      "object_name": "flora_roses",
+      "group": "Other vegetation",
+      "label": "flora roses",
+      "mesh": "roses",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_buddy_planta",
+      "prop_id": 823,
+      "object_name": "flora_buddy_planta",
+      "group": "Other vegetation",
+      "label": "flora buddy planta",
+      "mesh": "buddy_plant",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_buddy_plantb",
+      "prop_id": 824,
+      "object_name": "flora_buddy_plantb",
+      "group": "Other vegetation",
+      "label": "flora buddy plantb",
+      "mesh": "buddy_plant_b",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_cattail1",
+      "prop_id": 825,
+      "object_name": "flora_cattail1",
+      "group": "Other vegetation",
+      "label": "flora cattail1",
+      "mesh": "cattail1",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_cattail2",
+      "prop_id": 826,
+      "object_name": "flora_cattail2",
+      "group": "Other vegetation",
+      "label": "flora cattail2",
+      "mesh": "cattail2",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_cattail3",
+      "prop_id": 827,
+      "object_name": "flora_cattail3",
+      "group": "Other vegetation",
+      "label": "flora cattail3",
+      "mesh": "cattail3",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_cattail4",
+      "prop_id": 828,
+      "object_name": "flora_cattail4",
+      "group": "Other vegetation",
+      "label": "flora cattail4",
+      "mesh": "cattail4",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_cattail5",
+      "prop_id": 829,
+      "object_name": "flora_cattail5",
+      "group": "Other vegetation",
+      "label": "flora cattail5",
+      "mesh": "cattail5",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_cattail6",
+      "prop_id": 830,
+      "object_name": "flora_cattail6",
+      "group": "Other vegetation",
+      "label": "flora cattail6",
+      "mesh": "cattail6",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_cattail7",
+      "prop_id": 831,
+      "object_name": "flora_cattail7",
+      "group": "Other vegetation",
+      "label": "flora cattail7",
+      "mesh": "cattail7",
+      "collision": false,
+      "ground_offset_m": 0.0
+    },
+    {
+      "name": "spr_flora_lilly1",
+      "prop_id": 832,
+      "object_name": "flora_lilly1",
+      "group": "Other vegetation",
+      "label": "flora lilly1",
+      "mesh": "lilly1",
+      "collision": false,
+      "ground_offset_m": 0.0
+    }
+  ],
+  "asset_catalogue_sha256": "bcd153b1402007264a2e610c74b894ce307edf3fb9d91209feb9268243890fe0",
+  "flora_catalogue_sha256": "87e4ef457cd7c0a47fc001eb2177223f997b6d011fc5e6a9ec435ac9691d62b5",
+  "height_data_sha256": "1ecf15f17b47abba8441d9c0bfa66e0e15f360bd48a1861f6f852dd27bdf4976",
+  "height_provenance": "direct source checksums",
+  "ground_offsets": "uncalibrated; zero metres"
+}

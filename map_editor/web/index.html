@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vegetation map editor</title><style>/* EDITOR_STYLE */</style></head>
+<body>
+<header><div><span class="eyebrow">WARBAND / MAP EDITOR</span><h1>Customize your map</h1>
+<p id="scene-name"></p></div><div class="file-actions"><button id="import">Open loadout</button>
+<button id="export" class="primary">Save map loadout JSON</button><input id="file" type="file" accept=".json,application/json" hidden></div></header>
+<main>
+<aside>
+<details open><summary>Biome &amp; weather</summary>
+<label for="biome">Biome</label><select id="biome">
+<option value="source">Keep source biome</option><option value="steppe">Steppe</option><option value="plains">Plains</option><option value="snow">Snow</option><option value="desert">Desert</option><option value="plains_forest">Plains forest</option><option value="snow_forest">Snow forest</option><option value="desert_forest">Desert forest</option></select>
+<label for="fog">Fog level</label><select id="fog"><option value="source">Keep source fog</option><option value="low">Low (600 m)</option><option value="medium">Medium (450 m)</option><option value="dense">Dense (300 m)</option></select>
+<label for="precipitation">Rain / snow</label><select id="precipitation"><option value="source">Keep source precipitation</option><option value="clear">Clear</option><option value="rain">Rain</option><option value="snow">Snow</option></select>
+<label for="precipitation_intensity">Precipitation intensity (1–25)</label><input id="precipitation_intensity" type="number" min="1" max="25" step="1" value="10">
+<label for="thunder">Thunder</label><select id="thunder"><option value="source">Keep source thunder</option><option value="off">Off</option><option value="thunder">Thunder only</option><option value="lightning">Thunder &amp; lightning</option></select>
+<label for="thunder_frequency">Thunder frequency (1–100)</label><input id="thunder_frequency" type="number" min="1" max="100" step="1" value="50">
+<p class="hint">This heatmap shows the source terrain. Changing biome can affect terrain heights and procedural vegetation; build creates a freshly measured preview. Time of day, clouds and wind retain their source settings.</p>
+</details><hr>
+<h2>Vegetation</h2>
+<label for="search">Search assets</label><input id="search" type="search" placeholder="Pine, aspen, giant bush…">
+<label for="asset">Asset</label><select id="asset" size="9" aria-label="Vegetation asset"></select>
+<p id="asset-info" class="hint"></p>
+<div class="pair"><div><label for="yaw">Yaw (degrees)</label><input id="yaw" type="number" min="0" max="359.999" step="1" value="0"></div>
+<div><label for="scale">Scale</label><input id="scale" type="number" min="0.1" max="10" step="0.1" value="1"></div></div>
+<p class="hint">Upright placement. Ground height is measured when you build.</p>
+<hr><h2>Selected point</h2><p id="selection">No point selected</p>
+<div class="pair"><div><label for="x">X (m)</label><input id="x" type="number" step="0.001" disabled></div>
+<div><label for="y">Y (m)</label><input id="y" type="number" step="0.001" disabled></div></div>
+<button id="delete" disabled>Delete selected</button>
+<label for="point-list">Placed objects</label><select id="point-list" size="5" aria-label="Placed objects"></select>
+<p class="hint">Only your additions are shown. Existing trees and obstacles are not visible on this heatmap.</p>
+</aside>
+<section class="workspace" aria-label="Map workspace">
+<div class="toolbar"><div class="modes"><button id="place" aria-pressed="true">Place</button><button id="select" aria-pressed="false">Select / drag</button></div>
+<button id="undo" disabled>Undo</button><button id="redo" disabled>Redo</button>
+<label for="zoom">Zoom</label><select id="zoom"><option value="1">Fit</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select>
+<span id="count">0 objects</span></div>
+<div id="viewport"><div id="stage"><img id="heatmap" src="data:image/png;base64,__HEATMAP__" alt="Terrain elevation heatmap with team spawn markers">
+<svg id="overlay" xmlns="http://www.w3.org/2000/svg" aria-label="Click the terrain to place vegetation" role="img"></svg></div></div>
+<div class="statusbar"><span id="status" role="status" aria-live="polite">Choose an asset, then click inside the map border.</span><span id="coordinates">X — · Y —</span></div>
+<p class="instructions">Click a marker to select it; drag to move. Save the JSON, then run the Python build command described in the README. Ctrl/Cmd+Z undoes; Ctrl/Cmd+Shift+Z redoes.</p>
+</section>
+</main>
+<script id="project-data" type="application/json">__EDITOR_DATA__</script>
+<script>/* EDITOR_CORE */</script><script>/* EDITOR_APP */</script>
+</body></html>

@@ -1,5 +1,6 @@
 import './style.css';
 import maps from '../lib/maps.json';
+import { setupEditor } from './editor.js';
 const $ = id => document.getElementById(id);
 const imageEntries = images => Object.entries(images)
   .map(([path, image]) => ({ filename: path.split('/').pop(), image }))
@@ -9,7 +10,10 @@ const collections = {
   good: { images: imageEntries(import.meta.glob('../goodmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
   bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
 };
-const tabs = ['rotation', 'review', 'good', 'bad'];
+const tabs = ['rotation', 'review', 'good', 'bad', 'editor'];
+const editor = setupEditor(selectTab);
+$('good-edit').addEventListener('click', () => editor.edit(collections.good.images[collections.good.index]?.filename));
+$('good-edit').disabled = !collections.good.images.length;
 let activeTab = 'rotation';
 function renderCollection(name) {
   const { images, index } = collections[name];
@@ -44,7 +48,8 @@ function selectTab(name) {
     $(tab + '-tab').tabIndex = tab === name ? 0 : -1;
     $(tab + '-panel').hidden = tab !== name;
   }
-  $('collection-summary').textContent = name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  if (name === 'editor') editor.show();
+  $('collection-summary').textContent = name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
 }
 for (const name of tabs) {
   $(name + '-tab').addEventListener('click', () => selectTab(name));
@@ -173,6 +178,7 @@ document.addEventListener('keydown', event => {
     }
     return;
   }
+  if (activeTab !== 'review') return;
   event.preventDefault();
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') moveMap(event.key === 'ArrowLeft' ? -1 : 1);
   else { spawnIndex = (spawnIndex + (event.key === 'ArrowUp' ? -1 : 1) + currentMap().spawns.length) % currentMap().spawns.length; render(); }

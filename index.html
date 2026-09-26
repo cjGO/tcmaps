@@ -10,6 +10,7 @@
       <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
       <button id="good-tab" role="tab" aria-selected="false" aria-controls="good-panel" tabindex="-1">GOOD MAPS</button>
       <button id="bad-tab" role="tab" aria-selected="false" aria-controls="bad-panel" tabindex="-1">BAD MAPS</button>
+      <button id="editor-tab" role="tab" aria-selected="false" aria-controls="editor-panel" tabindex="-1">Map editor</button>
     </div>
     <section id="rotation-panel" class="collection-panel" role="tabpanel" aria-labelledby="rotation-tab">
       <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>
@@ -43,7 +44,7 @@
       <div class="intro"><div><p class="eyebrow">GOOD MAPS</p><h1>GOOD MAPS</h1><p class="subtitle">These were maps voted good/fun by the community.</p></div></div>
       <p class="keyboard-guide"><span><kbd>←</kbd> <kbd>→</kbd></span> <strong>Use the left and right arrow keys to cycle through maps.</strong> <span>Or click the arrow buttons below.</span></p>
       <section class="viewer" aria-label="Good maps viewer">
-        <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="good-filename" aria-live="polite"></h2></div><div class="map-controls"><span id="good-count"></span><button id="good-previous" class="arrow" aria-label="Previous good image">←</button><button id="good-next" class="arrow" aria-label="Next good image">→</button></div></div>
+        <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="good-filename" aria-live="polite"></h2></div><div class="map-controls"><button id="good-edit" class="keep-button">Edit this map</button><span id="good-count"></span><button id="good-previous" class="arrow" aria-label="Previous good image">←</button><button id="good-next" class="arrow" aria-label="Next good image">→</button></div></div>
         <div class="image-stage rotation-stage"><img id="good-image" alt=""/><span id="good-state" role="status">Loading map…</span><a id="good-full-image" target="_blank" rel="noopener" aria-label="Open original good PNG in a new tab">↗ Full size</a></div>
       </section>
     </section>
@@ -55,6 +56,14 @@
         <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="bad-filename" aria-live="polite"></h2></div><div class="map-controls"><span id="bad-count"></span><button id="bad-previous" class="arrow" aria-label="Previous bad image">←</button><button id="bad-next" class="arrow" aria-label="Next bad image">→</button></div></div>
         <div class="image-stage rotation-stage"><img id="bad-image" alt=""/><span id="bad-state" role="status">Loading map…</span><a id="bad-full-image" target="_blank" rel="noopener" aria-label="Open original bad PNG in a new tab">↗ Full size</a></div>
       </section>
+    </section>
+    <section id="editor-panel" role="tabpanel" aria-labelledby="editor-tab" hidden>
+      <div class="intro"><div><p class="eyebrow">GOOD MAPS / MAP EDITOR</p><h1>Make the map your own.</h1><p class="subtitle">Choose a GOODMAPS map, add vegetation, and set its biome and weather. Save the JSON file and send it to the map organizer.</p></div></div>
+      <div class="editor-picker"><label for="editor-map">Map to edit</label><select id="editor-map"></select></div>
+      <p class="editor-note">Your edits stay here while you switch maps or tabs. Download each map’s JSON before closing or refreshing the page. Use Open loadout to resume a saved file. Nothing is sent automatically.</p>
+      <p id="editor-state" role="status" aria-live="polite">Choose a map to start editing.</p>
+      <button id="editor-retry" class="keep-button" hidden>Retry loading</button>
+      <div id="editor-workspace"></div>
     </section>
   </main>
   <footer><span>MAPROOM <span class="footer-dot">/</span> A little feedback. Better battlegrounds.</span><span id="collection-summary"></span></footer>
