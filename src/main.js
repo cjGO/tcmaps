@@ -12,6 +12,9 @@ const collections = {
   bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
 };
 const [roundStatsHeaders, ...roundStatsRows] = roundStatsCsv.trim().split(/\r?\n/).map(line => line.split(','));
+const roundStatsColumns = roundStatsHeaders.map((header, index) => ({ header, index })).filter(column => column.header !== 'timestamp_utc');
+const roundResultIndex = roundStatsHeaders.indexOf('result');
+const roundDurationIndex = roundStatsHeaders.indexOf('duration_seconds');
 const roundStatsByMap = new Map();
 for (const row of roundStatsRows) {
   if (!row[0]) continue;
@@ -22,10 +25,15 @@ function renderRoundStats(filename) {
   $('rotation-round-stats').hidden = !filename;
   const mapName = filename?.replace(/^scn_/, '').replace(/\.png$/i, '');
   const rows = roundStatsByMap.get(mapName) || [];
+  const team1Wins = rows.filter(row => row[roundResultIndex] === 'team1').length;
+  const durations = rows.map(row => row[roundDurationIndex]?.trim()).filter(value => value !== undefined && value !== '').map(Number).filter(value => Number.isFinite(value) && value >= 0);
+  $('rotation-team1-average').textContent = rows.length ? `${(team1Wins / rows.length * 100).toFixed(1)}%` : '—';
+  const averageSeconds = durations.length ? Math.round(durations.reduce((sum, value) => sum + value, 0) / durations.length) : null;
+  $('rotation-duration-average').textContent = averageSeconds === null ? '—' : `${Math.floor(averageSeconds / 60)}m ${averageSeconds % 60}s`;
   $('rotation-round-caption').textContent = `Round stats · ${mapName || ''}`;
   $('rotation-round-rows').replaceChildren(...rows.map(row => {
     const tr = document.createElement('tr');
-    for (let index = 0; index < roundStatsHeaders.length; index++) {
+    for (const { index } of roundStatsColumns) {
       const td = document.createElement('td');
       td.textContent = row[index] || '—';
       tr.append(td);

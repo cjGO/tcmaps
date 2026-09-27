@@ -21,10 +21,14 @@
         <div class="image-stage rotation-stage"><img id="rotation-image" alt=""/><span id="rotation-state" role="status">Loading map…</span><a id="rotation-full-image" target="_blank" rel="noopener" aria-label="Open original rotation PNG in a new tab">↗ Full size</a></div>
       </section>
       <section id="rotation-round-stats" class="round-stats" aria-label="Round statistics">
+        <div class="round-stats-summary" aria-live="polite">
+          <div><span>Team 1 win %</span><strong id="rotation-team1-average">—</strong></div>
+          <div><span>Average duration</span><strong id="rotation-duration-average">—</strong></div>
+        </div>
         <div class="round-stats-scroll" tabindex="0" role="region" aria-label="Round statistics table">
           <table id="rotation-round-table">
             <caption id="rotation-round-caption">Round stats</caption>
-            <thead><tr><th scope="col">Map name</th><th scope="col">Round</th><th scope="col">Result</th><th scope="col">Remaining time (s)</th><th scope="col">Duration (s)</th><th scope="col">Player count</th><th scope="col">Timestamp (UTC)</th></tr></thead>
+            <thead><tr><th scope="col">Map name</th><th scope="col">Round</th><th scope="col">Result</th><th scope="col">Remaining time (s)</th><th scope="col">Duration (s)</th><th scope="col">Player count</th></tr></thead>
             <tbody id="rotation-round-rows"></tbody>
           </table>
         </div>

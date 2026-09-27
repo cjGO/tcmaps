@@ -28,6 +28,10 @@
 @media(max-width:700px){#good-panel .map-controls{flex-wrap:wrap}.map-editor-frame{height:1780px}#editor-panel .intro{padding-bottom:20px}}
 
 .round-stats{margin-top:20px;padding:20px;background:#fff;border:1px solid #dce1d7;border-radius:12px}
+.round-stats-summary{display:flex;flex-wrap:wrap;gap:20px 40px;margin-bottom:20px}
+.round-stats-summary>div{display:flex;flex-direction:column;gap:6px}
+.round-stats-summary span{font-size:13px;color:#738078}
+.round-stats-summary strong{font-family:'Space Grotesk',sans-serif;font-size:24px}
 .round-stats-scroll{overflow-x:auto}
 .round-stats table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}
 .round-stats caption{text-align:left;font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;padding-bottom:14px}
