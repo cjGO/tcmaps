@@ -87,7 +87,13 @@ export function setupEditor(selectTab) {
   });
   return {
     count: editorMaps.length,
+    canEdit: filename => editorMaps.some(map => map.filename === filename),
     show: () => { if (!current) open(); },
-    edit: filename => { open(editorMaps.find(map => map.filename === filename)?.id); selectTab('editor'); },
+    edit: filename => {
+      const map = editorMaps.find(map => map.filename === filename);
+      if (!map) return;
+      open(map.id);
+      selectTab('editor');
+    },
   };
 }

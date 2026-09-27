@@ -10,7 +10,7 @@ The **Review maps** tab contains the map/spawn browser and saved keep list. Swit
 
 ## Run
 
-Requires Node.js 20.19+ (or 22.12+).
+Requires Node.js 24.x.
 
 ```sh
 cd rate_maps
@@ -59,11 +59,11 @@ npm run preview
 
 ## Map editor
 
-**GOOD MAPS → Edit this map** opens that map in the **Map editor** tab. The map selector includes every GOODMAPS map. The original editor supports vegetation placement and dragging, asset search, yaw/scale and coordinate editing, zoom, delete, undo/redo, biome and weather settings, and JSON import/export. Switching maps or website tabs retains each editing session until the page closes or reloads.
+**GOOD MAPS → Edit this map** opens that map in the **Map editor** tab. The map selector includes GOODMAPS maps with published editor projects. Maps awaiting preparation remain browsable with an “Editor unavailable” button. The original editor supports vegetation placement and dragging, asset search, yaw/scale and coordinate editing, zoom, delete, undo/redo, biome and weather settings, and JSON import/export. Switching maps or website tabs retains each editing session until the page closes or reloads.
 
 Users click **Save map loadout JSON** and send the downloaded `.placements.json` file to the map organizer. Nothing is uploaded automatically. **Open loadout** restores a saved file for the same map; files from a different map/source version are rejected. Download before leaving; unsaved edits trigger the editor's browser warning. The JSON retains the original version-2 schema and exact source identity for the Python build tool.
 
-All 21 current GOODMAPS have measured, calibrated editor projects. Published project metadata and heatmaps live in `public/editor`, indexed by `lib/editor-maps.json`. These files must be committed along with the website. Deployment needs no Python, game installation, or backend. The editor code is reused directly from `map_editor/web`, isolated in an embedded document so the website's styles and shortcuts do not interfere.
+Prepared GOODMAPS have measured, calibrated editor projects. Published project metadata and heatmaps live in `public/editor`, indexed by `lib/editor-maps.json`. These files must be committed along with the website. Deployment needs no Python, game installation, or backend. The editor code is reused directly from `map_editor/web`, isolated in an embedded document so the website's styles and shortcuts do not interfere.
 
 ### Updating editor maps (maintainer)
 
@@ -76,7 +76,7 @@ npm run prepare:editor
 npm run build
 ```
 
-The preparation script verifies GOODMAPS images against the module's `custom_maps/random_maps/good_maps` archive and measures terrain in an isolated engine process. It writes original-source snapshots, measurements, calibrated images and full projects under `map_editor/projects/goodmaps/<scene-id>`. Keep a backup of these ignored project directories: they are needed to build users' submitted JSON. Publishing copies only the browser metadata and heatmaps. Build/dev checks reject missing or stale published assets when GOODMAPS changes.
+The preparation script verifies GOODMAPS images against the module's `custom_maps/random_maps/good_maps` archive and measures terrain in an isolated engine process. It writes original-source snapshots, measurements, calibrated images and full projects under `map_editor/projects/goodmaps/<scene-id>`. Keep a backup of these ignored project directories: they are needed to build users' submitted JSON. Publishing copies only the browser metadata and heatmaps. Build/dev checks reject missing or stale assets for published projects and projects whose GOODMAPS image was removed. Newly added GOODMAPS without a published project produce a warning and remain browsable without editing.
 
 To build a user's submission, run the original module's `map_editor/editor.py` from the module directory and pass the absolute website project path:
 

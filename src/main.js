@@ -38,12 +38,16 @@ function renderRoundStats(filename) {
 const tabs = ['rotation', 'review', 'good', 'bad', 'editor'];
 const editor = setupEditor(selectTab);
 $('good-edit').addEventListener('click', () => editor.edit(collections.good.images[collections.good.index]?.filename));
-$('good-edit').disabled = !collections.good.images.length;
 let activeTab = 'rotation';
 function renderCollection(name) {
   const { images, index } = collections[name];
   const entry = images[index];
   if (name === 'rotation') renderRoundStats(entry?.filename);
+  if (name === 'good') {
+    const available = editor.canEdit(entry?.filename);
+    $('good-edit').disabled = !available;
+    $('good-edit').textContent = available ? 'Edit this map' : 'Editor unavailable';
+  }
   const el = suffix => $(name + '-' + suffix);
   el('previous').disabled = el('next').disabled = images.length < 2;
   el('count').textContent = `${entry ? index + 1 : 0} / ${images.length}`;

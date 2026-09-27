@@ -10,7 +10,10 @@ const check = process.argv.includes('--check');
 const manifestPath = path.join(root, 'lib/editor-maps.json');
 if (check) {
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
-  if (JSON.stringify(manifest.map(m => m.filename)) !== JSON.stringify(filenames)) throw new Error('GOODMAPS changed. Prepare and publish matching editor projects (see README).');
+  const unpublished = filenames.filter(filename => !manifest.some(map => map.filename === filename));
+  if (unpublished.length) console.warn(`Editor unavailable for ${unpublished.join(', ')}. Prepare and publish projects to enable editing (see README).`);
+  const removed = manifest.filter(map => !filenames.includes(map.filename));
+  if (removed.length) throw new Error(`Published editor maps are no longer in GOODMAPS: ${removed.map(map => map.filename).join(', ')}. Run npm run prepare:editor.`);
   for (const map of manifest) {
     if (hash(await readFile(path.join(root, 'goodmaps', map.filename))) !== map.imageSha256) throw new Error(`GOODMAPS image changed: ${map.filename}. Prepare its editor again.`);
     for (const [key, expected] of [['project', map.projectSha256], ['heatmap', map.heatmapSha256]]) {
