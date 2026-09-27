@@ -20,6 +20,16 @@
         <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation image">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation image">→</button></div></div>
         <div class="image-stage rotation-stage"><img id="rotation-image" alt=""/><span id="rotation-state" role="status">Loading map…</span><a id="rotation-full-image" target="_blank" rel="noopener" aria-label="Open original rotation PNG in a new tab">↗ Full size</a></div>
       </section>
+      <section id="rotation-round-stats" class="round-stats" aria-label="Round statistics">
+        <div class="round-stats-scroll" tabindex="0" role="region" aria-label="Round statistics table">
+          <table id="rotation-round-table">
+            <caption id="rotation-round-caption">Round stats</caption>
+            <thead><tr><th scope="col">Map name</th><th scope="col">Round</th><th scope="col">Result</th><th scope="col">Remaining time (s)</th><th scope="col">Duration (s)</th><th scope="col">Player count</th><th scope="col">Timestamp (UTC)</th></tr></thead>
+            <tbody id="rotation-round-rows"></tbody>
+          </table>
+        </div>
+        <p id="rotation-round-empty" hidden>No rounds recorded for this map.</p>
+      </section>
     </section>
     <section id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden>
       <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>

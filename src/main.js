@@ -1,5 +1,6 @@
 import './style.css';
 import maps from '../lib/maps.json';
+import roundStatsCsv from '../map_round_stats.csv?raw';
 import { setupEditor } from './editor.js';
 const $ = id => document.getElementById(id);
 const imageEntries = images => Object.entries(images)
@@ -10,6 +11,30 @@ const collections = {
   good: { images: imageEntries(import.meta.glob('../goodmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
   bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
 };
+const [roundStatsHeaders, ...roundStatsRows] = roundStatsCsv.trim().split(/\r?\n/).map(line => line.split(','));
+const roundStatsByMap = new Map();
+for (const row of roundStatsRows) {
+  if (!row[0]) continue;
+  if (!roundStatsByMap.has(row[0])) roundStatsByMap.set(row[0], []);
+  roundStatsByMap.get(row[0]).push(row);
+}
+function renderRoundStats(filename) {
+  $('rotation-round-stats').hidden = !filename;
+  const mapName = filename?.replace(/^scn_/, '').replace(/\.png$/i, '');
+  const rows = roundStatsByMap.get(mapName) || [];
+  $('rotation-round-caption').textContent = `Round stats · ${mapName || ''}`;
+  $('rotation-round-rows').replaceChildren(...rows.map(row => {
+    const tr = document.createElement('tr');
+    for (let index = 0; index < roundStatsHeaders.length; index++) {
+      const td = document.createElement('td');
+      td.textContent = row[index] || '—';
+      tr.append(td);
+    }
+    return tr;
+  }));
+  $('rotation-round-table').hidden = !rows.length;
+  $('rotation-round-empty').hidden = rows.length > 0;
+}
 const tabs = ['rotation', 'review', 'good', 'bad', 'editor'];
 const editor = setupEditor(selectTab);
 $('good-edit').addEventListener('click', () => editor.edit(collections.good.images[collections.good.index]?.filename));
@@ -18,6 +43,7 @@ let activeTab = 'rotation';
 function renderCollection(name) {
   const { images, index } = collections[name];
   const entry = images[index];
+  if (name === 'rotation') renderRoundStats(entry?.filename);
   const el = suffix => $(name + '-' + suffix);
   el('previous').disabled = el('next').disabled = images.length < 2;
   el('count').textContent = `${entry ? index + 1 : 0} / ${images.length}`;
