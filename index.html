@@ -79,6 +79,12 @@
           <label>Session<select id="population-session"><option value="all">All sessions · real elapsed time</option></select></label>
           <label>Time range<select id="population-range"><option value="0">All time</option><option value="24">Last 24 hours</option><option value="168">Last 7 days</option><option value="720">Last 30 days</option></select></label>
           <label>Plot<select id="population-style"><option value="line">Line + points</option><option value="scatter">Points only</option></select></label>
+          <label class="population-color-toggle"><input id="population-duration-color" type="checkbox"> Color points by round duration</label>
+        </div>
+        <div id="population-duration-legend" class="population-duration-legend" hidden aria-label="Round duration color scale">
+          <span>Round duration</span><div class="duration-color-scale"><div class="duration-color-ramp" aria-hidden="true"></div><div class="duration-color-labels"><span>0 min · short</span><span id="population-duration-max"></span></div></div>
+          <span><span class="duration-unknown-swatch" aria-hidden="true"></span> Duration unavailable</span>
+          <span class="population-note">Same color scale across all sessions and time ranges.</span>
         </div>
         <p id="population-summary" class="population-summary"></p>
         <div id="population-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable population plot"><svg id="population-chart" viewBox="0 0 1000 430" role="img" aria-label="Server population versus UTC time"></svg></div>

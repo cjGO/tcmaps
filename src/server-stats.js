@@ -1,4 +1,10 @@
 const GAP = 30 * 60 * 1000;
+export function durationColor(seconds, maximum) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '#8a9588';
+  const fraction = maximum > 0 ? Math.min(1, seconds / maximum) : 0;
+  const start = [37, 99, 235], end = [234, 88, 12];
+  return `rgb(${start.map((value, index) => Math.round(value + (end[index] - value) * fraction)).join(', ')})`;
+}
 export function durationSamples(headers, rows) {
   const column = name => headers.indexOf(name);
   const numeric = value => value?.trim() ? Number(value) : NaN;
@@ -7,7 +13,11 @@ export function durationSamples(headers, rows) {
 }
 export function populationSamples(headers, rows) {
   const column = name => headers.indexOf(name);
-  return rows.map(row => ({ time: Date.parse(row[column('timestamp_utc')]), players: row[column('player_count')]?.trim() === '' ? NaN : Number(row[column('player_count')]), map: row[column('map_name')], round: row[column('round')] }))
+  return rows.map(row => {
+    const value = row[column('duration_seconds')]?.trim();
+    const seconds = value ? Number(value) : NaN;
+    return { time: Date.parse(row[column('timestamp_utc')]), players: row[column('player_count')]?.trim() === '' ? NaN : Number(row[column('player_count')]), seconds: Number.isFinite(seconds) && seconds >= 0 ? seconds : null, map: row[column('map_name')], round: row[column('round')] };
+  })
     .filter(point => Number.isFinite(point.time) && Number.isInteger(point.players) && point.players >= 0)
     .sort((a, b) => a.time - b.time);
 }
@@ -23,6 +33,8 @@ export function setupServerStats(headers, rows) {
   const $ = id => document.getElementById(id);
   const points = populationSamples(headers, rows);
   const sessions = populationSessions(points);
+  const durationMaximum = Math.max(0, ...points.map(point => point.seconds ?? 0));
+  $('population-duration-max').textContent = `${(durationMaximum / 60).toFixed(1)} min · long`;
   const date = time => new Date(time).toLocaleString(undefined, { timeZone: 'UTC', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   const svg = $('population-chart');
   const make = (tag, attrs = {}, text = '') => {
@@ -76,6 +88,8 @@ export function setupServerStats(headers, rows) {
     svg.replaceChildren(make('title', {}, 'Server population over time'), make('desc', {}, 'Round-end samples. Long gaps have no connecting line; missing samples do not confirm zero players.'));
     $('population-empty').hidden = visible.length > 0;
     $('population-chart-wrap').hidden = !visible.length;
+    const colorByDuration = $('population-duration-color').checked;
+    $('population-duration-legend').hidden = !colorByDuration || !visible.length;
     if (!visible.length) return;
     const start = visible[0].time - (visible.length === 1 ? 60000 : 0);
     const end = visible.at(-1).time + (visible.length === 1 ? 60000 : 0);
@@ -100,8 +114,10 @@ export function setupServerStats(headers, rows) {
     for (const group of groups) {
       if ($('population-style').value === 'line') svg.append(make('polyline', { points: group.map(point => `${x(point.time)},${y(point.players)}`).join(' '), class: 'population-line' }));
       for (const point of group) {
-        const label = `${date(point.time)} UTC · ${point.players} players · ${point.map} · round ${point.round}`;
+        const duration = point.seconds === null ? 'duration unavailable' : `${point.seconds}s (${(point.seconds / 60).toFixed(2)} min)`;
+        const label = `${date(point.time)} UTC · ${point.players} players · ${duration} · ${point.map} · round ${point.round}`;
         const dot = make('circle', { cx: x(point.time), cy: y(point.players), r: 4, class: 'population-dot', tabindex: 0, 'aria-label': label });
+        if (colorByDuration) dot.style.setProperty('--point-color', durationColor(point.seconds, durationMaximum));
         dot.append(make('title', {}, label));
         dot.addEventListener('pointerenter', () => $('population-detail').textContent = label);
         dot.addEventListener('focus', () => $('population-detail').textContent = label);
@@ -112,7 +128,7 @@ export function setupServerStats(headers, rows) {
     $('population-summary').textContent = `Peak: ${Math.max(...visible.map(point => point.players))} players · ${visible.length} samples · ${date(visible[0].time)} – ${date(visible.at(-1).time)} UTC`;
     $('population-detail').textContent = 'Hover, tap, or focus a point for its time, population, and map.';
   }
-  for (const id of ['population-session', 'population-range', 'population-style']) $(id).addEventListener('change', render);
+  for (const id of ['population-session', 'population-range', 'population-style', 'population-duration-color']) $(id).addEventListener('change', render);
   render();
   return { count: points.length };
 }

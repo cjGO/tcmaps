@@ -1,7 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { populationSamples, populationSessions, durationSamples } from '../src/server-stats.js';
+import { populationSamples, populationSessions, durationSamples, durationColor } from '../src/server-stats.js';
 const headers = ['map_name', 'round', 'player_count', 'timestamp_utc'];
+test('duration gradient distinguishes short, middle, long and unavailable durations', () => {
+  assert.equal(durationColor(0, 120), 'rgb(37, 99, 235)');
+  assert.equal(durationColor(60, 120), 'rgb(136, 94, 124)');
+  assert.equal(durationColor(120, 120), 'rgb(234, 88, 12)');
+  assert.equal(durationColor(null, 120), '#8a9588');
+  assert.equal(durationColor(0, 0), 'rgb(37, 99, 235)');
+});
+test('population samples retain points with missing durations without coloring them as zero', () => {
+  const columns = [...headers, 'duration_seconds'];
+  const points = populationSamples(columns, ['0', '120', '', '-1', 'invalid'].map((duration, index) => ['map', String(index), '2', '2026-10-01T12:00:00Z', duration]));
+  assert.deepEqual(points.map(point => point.seconds), [0, 120, null, null, null]);
+});
 test('duration samples include untimestamped rounds and zero values, excluding invalid or missing counts/durations', () => {
   const columns = ['map_name', 'round', 'player_count', 'duration_seconds'];
   const points = durationSamples(columns, [

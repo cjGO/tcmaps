@@ -8,7 +8,7 @@ The default **Current rotation** tab cycles through PNGs in `current_rotation`, 
 
 The **Review maps** tab contains the map/spawn browser and saved keep list. Switching tabs preserves your position in both collections.
 
-The **Server stats** tab plots timestamped round-end player counts against UTC time, with line/scatter modes, time ranges, and a session selector. Zero counts stay on the baseline. Gaps over 30 minutes are shaded and break the line; missing rounds are not treated as confirmed zero population. Rows without valid timestamps are omitted. A second scatterplot shows player count on the X axis and round duration in minutes on the Y axis, with point details in seconds. It includes all valid rounds, even without timestamps, independently of the population filters. Update `map_round_stats.csv` and rebuild to refresh the data.
+The **Server stats** tab plots timestamped round-end player counts against UTC time, with line/scatter modes, time ranges, and a session selector. An optional “Color points by round duration” toggle applies a blue-to-orange gradient with a legend and a fixed scale across sessions; missing durations appear gray. Zero counts stay on the baseline. Gaps over 30 minutes are shaded and break the line; missing rounds are not treated as confirmed zero population. Rows without valid timestamps are omitted. A second scatterplot shows player count on the X axis and round duration in minutes on the Y axis, with point details in seconds. It includes all valid rounds, even without timestamps, independently of the population filters. Update `map_round_stats.csv` and rebuild to refresh the data.
 
 ## Run
 
