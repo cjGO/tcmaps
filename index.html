@@ -10,6 +10,7 @@
       <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
       <button id="good-tab" role="tab" aria-selected="false" aria-controls="good-panel" tabindex="-1">GOOD MAPS</button>
       <button id="bad-tab" role="tab" aria-selected="false" aria-controls="bad-panel" tabindex="-1">BAD MAPS</button>
+      <button id="server-tab" role="tab" aria-selected="false" aria-controls="server-panel" tabindex="-1">Server stats</button>
       <button id="editor-tab" role="tab" aria-selected="false" aria-controls="editor-panel" tabindex="-1">Map editor</button>
     </div>
     <section id="rotation-panel" class="collection-panel" role="tabpanel" aria-labelledby="rotation-tab">
@@ -69,6 +70,22 @@
       <section class="viewer" aria-label="Bad maps viewer">
         <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="bad-filename" aria-live="polite"></h2></div><div class="map-controls"><span id="bad-count"></span><button id="bad-previous" class="arrow" aria-label="Previous bad image">←</button><button id="bad-next" class="arrow" aria-label="Next bad image">→</button></div></div>
         <div class="image-stage rotation-stage"><img id="bad-image" alt=""/><span id="bad-state" role="status">Loading map…</span><a id="bad-full-image" target="_blank" rel="noopener" aria-label="Open original bad PNG in a new tab">↗ Full size</a></div>
+      </section>
+    </section>
+    <section id="server-panel" role="tabpanel" aria-labelledby="server-tab" hidden>
+      <div class="intro"><div><p class="eyebrow">SERVER STATS</p><h1>Population over time.</h1><p class="subtitle">See when players gather. Choose a session to explore activity between long quiet periods.</p></div></div>
+      <section class="population-card" aria-label="Server population chart">
+        <div class="population-controls">
+          <label>Session<select id="population-session"><option value="all">All sessions · real elapsed time</option></select></label>
+          <label>Time range<select id="population-range"><option value="0">All time</option><option value="24">Last 24 hours</option><option value="168">Last 7 days</option><option value="720">Last 30 days</option></select></label>
+          <label>Plot<select id="population-style"><option value="line">Line + points</option><option value="scatter">Points only</option></select></label>
+        </div>
+        <p id="population-summary" class="population-summary"></p>
+        <div id="population-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable population plot"><svg id="population-chart" viewBox="0 0 1000 430" role="img" aria-label="Server population versus UTC time"></svg></div>
+        <p id="population-empty" hidden>No timestamped population samples available for this selection.</p>
+        <p id="population-detail" role="status" aria-live="polite"></p>
+        <p class="population-note">Counts are recorded at round end. Zero-player samples appear on the baseline. Shaded gaps over 30 minutes break the line: they may include empty-server periods, but missing records do not confirm zero players. Sessions separate at these gaps. Time ranges end at the latest sample in the selected session.</p>
+        <p id="population-coverage" class="population-note"></p>
       </section>
     </section>
     <section id="editor-panel" role="tabpanel" aria-labelledby="editor-tab" hidden>

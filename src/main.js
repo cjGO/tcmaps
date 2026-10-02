@@ -1,6 +1,7 @@
 import './style.css';
 import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
+import { setupServerStats } from './server-stats.js';
 import { setupEditor } from './editor.js';
 const $ = id => document.getElementById(id);
 const imageEntries = images => Object.entries(images)
@@ -43,7 +44,8 @@ function renderRoundStats(filename) {
   $('rotation-round-table').hidden = !rows.length;
   $('rotation-round-empty').hidden = rows.length > 0;
 }
-const tabs = ['rotation', 'review', 'good', 'bad', 'editor'];
+const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
+const tabs = ['rotation', 'review', 'good', 'bad', 'server', 'editor'];
 const editor = setupEditor(selectTab);
 $('good-edit').addEventListener('click', () => editor.edit(collections.good.images[collections.good.index]?.filename));
 let activeTab = 'rotation';
@@ -87,7 +89,7 @@ function selectTab(name) {
     $(tab + '-panel').hidden = tab !== name;
   }
   if (name === 'editor') editor.show();
-  $('collection-summary').textContent = name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
 }
 for (const name of tabs) {
   $(name + '-tab').addEventListener('click', () => selectTab(name));
