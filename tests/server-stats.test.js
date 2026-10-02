@@ -1,7 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { populationSamples, populationSessions } from '../src/server-stats.js';
+import { populationSamples, populationSessions, durationSamples } from '../src/server-stats.js';
 const headers = ['map_name', 'round', 'player_count', 'timestamp_utc'];
+test('duration samples include untimestamped rounds and zero values, excluding invalid or missing counts/durations', () => {
+  const columns = ['map_name', 'round', 'player_count', 'duration_seconds'];
+  const points = durationSamples(columns, [
+    ['map', '1', '5', '120'], ['map', '2', '0', '0'],
+    ['map', '3', '', '120'], ['map', '4', '2', ''],
+    ['map', '5', '-1', '120'], ['map', '6', '2', '-10'],
+    ['map', '7', '2.5', '120'], ['map', '8', '2', 'invalid'],
+  ]);
+  assert.deepEqual(points.map(({ players, seconds }) => [players, seconds]), [[5, 120], [0, 0]]);
+  assert.deepEqual(durationSamples([], [['map']]), []);
+});
 test('preserves zero counts, sorts timestamps and excludes missing or invalid data', () => {
   const points = populationSamples(headers, [
     ['map', '1', '3', '2026-10-01T12:00:00Z'],

@@ -87,6 +87,14 @@
         <p class="population-note">Counts are recorded at round end. Zero-player samples appear on the baseline. Shaded gaps over 30 minutes break the line: they may include empty-server periods, but missing records do not confirm zero players. Sessions separate at these gaps. Time ranges end at the latest sample in the selected session.</p>
         <p id="population-coverage" class="population-note"></p>
       </section>
+      <section class="population-card duration-card" aria-labelledby="duration-title">
+        <h2 id="duration-title">Player count &amp; round duration</h2>
+        <p class="population-note">Each point represents a round. Includes all recorded rounds with valid counts and durations, including those without timestamps. This plot is independent of the time and session filters above. Overlapping points appear darker.</p>
+        <p id="duration-summary" class="population-summary"></p>
+        <div id="duration-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable round duration scatterplot"><svg id="duration-chart" viewBox="0 0 1000 430" role="img" aria-label="Player count on the X axis and round duration in minutes on the Y axis"></svg></div>
+        <p id="duration-empty" hidden>No rounds with valid player counts and durations available.</p>
+        <p id="duration-detail" role="status" aria-live="polite">Hover, tap, or focus a point for its player count, duration, and map.</p>
+      </section>
     </section>
     <section id="editor-panel" role="tabpanel" aria-labelledby="editor-tab" hidden>
       <div class="intro"><div><p class="eyebrow">GOOD MAPS / MAP EDITOR</p><h1>Make the map your own.</h1><p class="subtitle">Choose a GOODMAPS map, add vegetation, and set its biome and weather. Save the JSON file and send it to the map organizer.</p></div></div>

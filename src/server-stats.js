@@ -1,4 +1,10 @@
 const GAP = 30 * 60 * 1000;
+export function durationSamples(headers, rows) {
+  const column = name => headers.indexOf(name);
+  const numeric = value => value?.trim() ? Number(value) : NaN;
+  return rows.map(row => ({ players: numeric(row[column('player_count')]), seconds: numeric(row[column('duration_seconds')]), map: row[column('map_name')], round: row[column('round')] }))
+    .filter(point => Number.isInteger(point.players) && point.players >= 0 && Number.isFinite(point.seconds) && point.seconds >= 0);
+}
 export function populationSamples(headers, rows) {
   const column = name => headers.indexOf(name);
   return rows.map(row => ({ time: Date.parse(row[column('timestamp_utc')]), players: row[column('player_count')]?.trim() === '' ? NaN : Number(row[column('player_count')]), map: row[column('map_name')], round: row[column('round')] }))
@@ -25,6 +31,36 @@ export function setupServerStats(headers, rows) {
     node.textContent = text;
     return node;
   };
+  const durations = durationSamples(headers, rows);
+  const durationChart = $('duration-chart');
+  durationChart.append(make('title', {}, 'Round duration by player count'), make('desc', {}, 'Each point is a recorded round. Player count is on the horizontal axis and duration in minutes is on the vertical axis. Includes rounds without timestamps.'));
+  $('duration-empty').hidden = durations.length > 0;
+  $('duration-chart-wrap').hidden = !durations.length;
+  $('duration-summary').textContent = `${durations.length} rounds · ${rows.length - durations.length} rows without usable count/duration omitted`;
+  if (durations.length) {
+    const playerStep = Math.max(1, Math.ceil(Math.max(...durations.map(point => point.players)) / 10));
+    const playerMax = playerStep * 10;
+    const minuteStep = Math.max(1, Math.ceil(Math.max(...durations.map(point => point.seconds / 60)) / 5));
+    const minuteMax = minuteStep * 5;
+    const x = players => 70 + players / playerMax * 880;
+    const y = seconds => 350 - seconds / 60 / minuteMax * 300;
+    for (let i = 0; i <= 5; i++) {
+      const minutes = minuteStep * i;
+      durationChart.append(make('line', { x1: 70, x2: 950, y1: y(minutes * 60), y2: y(minutes * 60), class: 'population-grid' }), make('text', { x: 58, y: y(minutes * 60) + 4, 'text-anchor': 'end' }, minutes));
+    }
+    for (let i = 0; i <= 10; i++) {
+      const players = playerStep * i;
+      durationChart.append(make('text', { x: x(players), y: 375, 'text-anchor': 'middle' }, players));
+    }
+    durationChart.append(make('text', { x: 510, y: 408, 'text-anchor': 'middle' }, 'Player count'), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Round duration (minutes)'));
+    for (const point of durations) {
+      const label = `${point.players} players · ${point.seconds} seconds (${(point.seconds / 60).toFixed(2)} minutes) · ${point.map} · round ${point.round}`;
+      const dot = make('circle', { cx: x(point.players), cy: y(point.seconds), r: 4, class: 'population-dot duration-dot', tabindex: 0, 'aria-label': label });
+      dot.append(make('title', {}, label));
+      for (const event of ['pointerenter', 'focus', 'click']) dot.addEventListener(event, () => $('duration-detail').textContent = label);
+      durationChart.append(dot);
+    }
+  }
   sessions.forEach((session, index) => {
     const option = document.createElement('option');
     option.value = index;
