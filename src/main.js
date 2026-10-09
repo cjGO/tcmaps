@@ -14,7 +14,7 @@ const collections = {
   bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
 };
 const [roundStatsHeaders, ...roundStatsRows] = roundStatsCsv.trim().split(/\r?\n/).map(line => line.split(','));
-const roundStatsColumns = roundStatsHeaders.map((header, index) => ({ header, index })).filter(column => column.header !== 'timestamp_utc');
+const roundStatsColumns = ['result', 'duration_seconds', 'player_count'].map(header => ({ header, index: roundStatsHeaders.indexOf(header) }));
 const roundRanges = new Map();
 let rotationRange = [1, 30];
 // Reuse the statistics layout; Goodmaps keeps its per-map filters.
@@ -25,6 +25,13 @@ for (const element of [goodStats, ...goodStats.querySelectorAll('*')]) {
   }
 }
 $('good-panel').append(goodStats);
+for (const name of ['rotation', 'good']) {
+  const viewer = $(name + '-panel').querySelector('.viewer');
+  const workspace = document.createElement('div');
+  workspace.className = 'map-stats-workspace';
+  viewer.before(workspace);
+  workspace.append(viewer, $(name + '-round-stats'));
+}
 $('rotation-sort-controls').append($('rotation-player-slider').closest('.round-player-filter'));
 $('rotation-player-label').textContent = 'Player count · all rotation maps';
 const roundStatsByMap = new Map();
