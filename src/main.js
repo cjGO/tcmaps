@@ -1,6 +1,7 @@
 import './style.css';
 import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
+import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
 import { setupEditor } from './editor.js';
 const $ = id => document.getElementById(id);
@@ -14,11 +15,9 @@ const collections = {
 };
 const [roundStatsHeaders, ...roundStatsRows] = roundStatsCsv.trim().split(/\r?\n/).map(line => line.split(','));
 const roundStatsColumns = roundStatsHeaders.map((header, index) => ({ header, index })).filter(column => column.header !== 'timestamp_utc');
-const roundResultIndex = roundStatsHeaders.indexOf('result');
-const roundDurationIndex = roundStatsHeaders.indexOf('duration_seconds');
-const roundPlayerIndex = roundStatsHeaders.indexOf('player_count');
 const roundRanges = new Map();
-// Share the layout and each map's selected range across both collections.
+let rotationRange = [1, 30];
+// Reuse the statistics layout; Goodmaps keeps its per-map filters.
 const goodStats = $('rotation-round-stats').cloneNode(true);
 for (const element of [goodStats, ...goodStats.querySelectorAll('*')]) {
   for (const attribute of ['id', 'for', 'aria-labelledby']) {
@@ -26,6 +25,8 @@ for (const element of [goodStats, ...goodStats.querySelectorAll('*')]) {
   }
 }
 $('good-panel').append(goodStats);
+$('rotation-sort-controls').append($('rotation-player-slider').closest('.round-player-filter'));
+$('rotation-player-label').textContent = 'Player count · all rotation maps';
 const roundStatsByMap = new Map();
 for (const row of roundStatsRows) {
   if (!row[0]) continue;
@@ -37,7 +38,7 @@ function renderRoundStats(name, filename) {
   el('round-stats').hidden = !filename;
   const mapName = filename?.replace(/^scn_/, '').replace(/\.png$/i, '');
   const allRows = roundStatsByMap.get(mapName) || [];
-  const [min, max] = roundRanges.get(mapName) || [1, 30];
+  const [min, max] = name === 'rotation' ? rotationRange : roundRanges.get(mapName) || [1, 30];
   el('player-min').value = min;
   el('player-max').value = max;
   el('player-min').setAttribute('aria-valuetext', `${min} players, maximum ${max}`);
@@ -46,17 +47,13 @@ function renderRoundStats(name, filename) {
   el('player-slider').style.setProperty('--range-start', `${(min - 1) / 29 * 100}%`);
   el('player-slider').style.setProperty('--range-end', `${(max - 1) / 29 * 100}%`);
   el('player-min').style.zIndex = min === 30 ? '3' : '1';
-  const rows = allRows.filter(row => {
-    const players = Number(row[roundPlayerIndex]);
-    return Number.isInteger(players) && players >= min && players <= max;
-  });
-  el('game-count').textContent = rows.length;
+  const stats = summarizeRounds(roundStatsHeaders, allRows, min, max);
+  const { rows } = stats;
+  el('game-count').textContent = stats.games;
   el('round-empty').textContent = allRows.length ? 'No rounds match this player count range.' : 'No rounds recorded for this map.';
-  const team1Wins = rows.filter(row => row[roundResultIndex] === 'team1').length;
-  const durations = rows.map(row => row[roundDurationIndex]?.trim()).filter(value => value !== undefined && value !== '').map(Number).filter(value => Number.isFinite(value) && value >= 0);
-  el('round-note').textContent = `Each recorded round counts as one game. ${rows.length} of ${allRows.length} games match; average duration uses ${durations.length} games with valid durations.`;
-  el('team1-average').textContent = rows.length ? `${(team1Wins / rows.length * 100).toFixed(1)}%` : '—';
-  const averageSeconds = durations.length ? Math.round(durations.reduce((sum, value) => sum + value, 0) / durations.length) : null;
+  el('round-note').textContent = `Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
+  el('team1-average').textContent = stats.win === null ? '—' : `${stats.win.toFixed(1)}%`;
+  const averageSeconds = stats.duration === null ? null : Math.round(stats.duration);
   el('duration-average').textContent = averageSeconds === null ? '—' : `${Math.floor(averageSeconds / 60)}m ${averageSeconds % 60}s`;
   el('round-caption').textContent = `Round stats · ${mapName || ''}`;
   el('round-rows').replaceChildren(...rows.map(row => {
@@ -81,12 +78,31 @@ for (const name of ['rotation', 'good']) {
       let max = Number($(name + '-player-max').value);
       if (end === 'min') min = Math.min(min, max);
       else max = Math.max(min, max);
+      if (name === 'rotation') {
+        rotationRange = [min, max];
+        sortRotation(true);
+        return;
+      }
       roundRanges.set(mapName, [min, max]);
       for (const collection of ['rotation', 'good']) {
         renderRoundStats(collection, collections[collection].images[collections[collection].index]?.filename);
       }
     });
   }
+}
+function sortRotation(keepCurrent = false) {
+  const collection = collections.rotation;
+  const filename = collection.images[collection.index]?.filename;
+  const summaries = new Map(collection.images.map(entry => {
+    const mapName = entry.filename.replace(/^scn_/, '').replace(/\.png$/i, '');
+    return [entry.filename, summarizeRounds(roundStatsHeaders, roundStatsByMap.get(mapName) || [], ...rotationRange)];
+  }));
+  collection.images = orderMaps(collection.images, summaries, $('rotation-sort').value, $('rotation-sort-direction').value);
+  collection.index = keepCurrent ? Math.max(0, collection.images.findIndex(entry => entry.filename === filename)) : 0;
+  renderCollection('rotation');
+}
+for (const id of ['rotation-sort', 'rotation-sort-direction']) {
+  $(id).addEventListener('change', () => sortRotation());
 }
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
 const tabs = ['rotation', 'review', 'good', 'bad', 'server', 'editor'];

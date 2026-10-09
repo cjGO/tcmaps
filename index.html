@@ -17,6 +17,13 @@
       <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>
       <div class="intro"><div><p class="eyebrow">CURRENT ROTATION</p><h1>Maps in rotation.</h1><p class="subtitle">Use the filename shown below to identify each map. Names inside the images may differ.</p></div></div>
       <p class="keyboard-guide"><span><kbd>←</kbd> <kbd>→</kbd></span> <strong>Use the left and right arrow keys to cycle through maps.</strong> <span>Or click the arrow buttons below.</span></p>
+      <section class="rotation-order" aria-label="Order rotation maps">
+        <div id="rotation-sort-controls" class="rotation-sort-controls">
+          <label>Sort maps by<select id="rotation-sort"><option value="number">Map number</option><option value="games">Total games played</option><option value="duration">Average duration</option><option value="win">Team 1 win %</option></select></label>
+          <label>Order<select id="rotation-sort-direction"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+        </div>
+        <p>Player count filters the statistics and ordering for all rotation maps. Use the arrows to browse in the selected order. Maps without an average or win percentage appear last.</p>
+      </section>
       <section class="viewer" aria-label="Current rotation viewer">
         <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation image">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation image">→</button></div></div>
         <div class="image-stage rotation-stage"><img id="rotation-image" alt=""/><span id="rotation-state" role="status">Loading map…</span><a id="rotation-full-image" target="_blank" rel="noopener" aria-label="Open original rotation PNG in a new tab">↗ Full size</a></div>

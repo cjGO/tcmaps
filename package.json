@@ -11,7 +11,7 @@
     "predev": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check",
     "prebuild": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check",
     "prepare:editor": "node scripts/prepare-editor.mjs",
-    "test": "node --test map_editor/tests/coordinates.test.js tests/server-stats.test.js"
+    "test": "node --test map_editor/tests/coordinates.test.js tests/server-stats.test.js tests/map-stats.test.js"
   },
   "devDependencies": {
     "sharp": "^0.35.4",
