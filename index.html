@@ -22,10 +22,20 @@
         <div class="image-stage rotation-stage"><img id="rotation-image" alt=""/><span id="rotation-state" role="status">Loading map…</span><a id="rotation-full-image" target="_blank" rel="noopener" aria-label="Open original rotation PNG in a new tab">↗ Full size</a></div>
       </section>
       <section id="rotation-round-stats" class="round-stats" aria-label="Round statistics">
+        <div class="round-player-filter" role="group" aria-labelledby="rotation-player-label">
+          <div class="round-player-heading"><span id="rotation-player-label">Player count</span><output id="rotation-player-range" for="rotation-player-min rotation-player-max">1–30 players</output></div>
+          <div id="rotation-player-slider" class="round-player-slider">
+            <input id="rotation-player-min" type="range" min="1" max="30" value="1" step="1" aria-label="Minimum player count">
+            <input id="rotation-player-max" type="range" min="1" max="30" value="30" step="1" aria-label="Maximum player count">
+          </div>
+          <div class="round-player-limits"><span>1 player</span><span>30 players</span></div>
+        </div>
         <div class="round-stats-summary" aria-live="polite">
+          <div><span>Total games</span><strong id="rotation-game-count">0</strong></div>
           <div><span>Team 1 win %</span><strong id="rotation-team1-average">—</strong></div>
           <div><span>Average duration</span><strong id="rotation-duration-average">—</strong></div>
         </div>
+        <p id="rotation-round-note" class="round-stats-note"></p>
         <div class="round-stats-scroll" tabindex="0" role="region" aria-label="Round statistics table">
           <table id="rotation-round-table">
             <caption id="rotation-round-caption">Round stats</caption>

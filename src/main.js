@@ -16,23 +16,50 @@ const [roundStatsHeaders, ...roundStatsRows] = roundStatsCsv.trim().split(/\r?\n
 const roundStatsColumns = roundStatsHeaders.map((header, index) => ({ header, index })).filter(column => column.header !== 'timestamp_utc');
 const roundResultIndex = roundStatsHeaders.indexOf('result');
 const roundDurationIndex = roundStatsHeaders.indexOf('duration_seconds');
+const roundPlayerIndex = roundStatsHeaders.indexOf('player_count');
+const roundRanges = new Map();
+// Share the layout and each map's selected range across both collections.
+const goodStats = $('rotation-round-stats').cloneNode(true);
+for (const element of [goodStats, ...goodStats.querySelectorAll('*')]) {
+  for (const attribute of ['id', 'for', 'aria-labelledby']) {
+    if (element.hasAttribute(attribute)) element.setAttribute(attribute, element.getAttribute(attribute).replaceAll('rotation-', 'good-'));
+  }
+}
+$('good-panel').append(goodStats);
 const roundStatsByMap = new Map();
 for (const row of roundStatsRows) {
   if (!row[0]) continue;
   if (!roundStatsByMap.has(row[0])) roundStatsByMap.set(row[0], []);
   roundStatsByMap.get(row[0]).push(row);
 }
-function renderRoundStats(filename) {
-  $('rotation-round-stats').hidden = !filename;
+function renderRoundStats(name, filename) {
+  const el = suffix => $(name + '-' + suffix);
+  el('round-stats').hidden = !filename;
   const mapName = filename?.replace(/^scn_/, '').replace(/\.png$/i, '');
-  const rows = roundStatsByMap.get(mapName) || [];
+  const allRows = roundStatsByMap.get(mapName) || [];
+  const [min, max] = roundRanges.get(mapName) || [1, 30];
+  el('player-min').value = min;
+  el('player-max').value = max;
+  el('player-min').setAttribute('aria-valuetext', `${min} players, maximum ${max}`);
+  el('player-max').setAttribute('aria-valuetext', `${max} players, minimum ${min}`);
+  el('player-range').textContent = `${min}–${max} players`;
+  el('player-slider').style.setProperty('--range-start', `${(min - 1) / 29 * 100}%`);
+  el('player-slider').style.setProperty('--range-end', `${(max - 1) / 29 * 100}%`);
+  el('player-min').style.zIndex = min === 30 ? '3' : '1';
+  const rows = allRows.filter(row => {
+    const players = Number(row[roundPlayerIndex]);
+    return Number.isInteger(players) && players >= min && players <= max;
+  });
+  el('game-count').textContent = rows.length;
+  el('round-empty').textContent = allRows.length ? 'No rounds match this player count range.' : 'No rounds recorded for this map.';
   const team1Wins = rows.filter(row => row[roundResultIndex] === 'team1').length;
   const durations = rows.map(row => row[roundDurationIndex]?.trim()).filter(value => value !== undefined && value !== '').map(Number).filter(value => Number.isFinite(value) && value >= 0);
-  $('rotation-team1-average').textContent = rows.length ? `${(team1Wins / rows.length * 100).toFixed(1)}%` : '—';
+  el('round-note').textContent = `Each recorded round counts as one game. ${rows.length} of ${allRows.length} games match; average duration uses ${durations.length} games with valid durations.`;
+  el('team1-average').textContent = rows.length ? `${(team1Wins / rows.length * 100).toFixed(1)}%` : '—';
   const averageSeconds = durations.length ? Math.round(durations.reduce((sum, value) => sum + value, 0) / durations.length) : null;
-  $('rotation-duration-average').textContent = averageSeconds === null ? '—' : `${Math.floor(averageSeconds / 60)}m ${averageSeconds % 60}s`;
-  $('rotation-round-caption').textContent = `Round stats · ${mapName || ''}`;
-  $('rotation-round-rows').replaceChildren(...rows.map(row => {
+  el('duration-average').textContent = averageSeconds === null ? '—' : `${Math.floor(averageSeconds / 60)}m ${averageSeconds % 60}s`;
+  el('round-caption').textContent = `Round stats · ${mapName || ''}`;
+  el('round-rows').replaceChildren(...rows.map(row => {
     const tr = document.createElement('tr');
     for (const { index } of roundStatsColumns) {
       const td = document.createElement('td');
@@ -41,8 +68,25 @@ function renderRoundStats(filename) {
     }
     return tr;
   }));
-  $('rotation-round-table').hidden = !rows.length;
-  $('rotation-round-empty').hidden = rows.length > 0;
+  el('round-table').hidden = !rows.length;
+  el('round-empty').hidden = rows.length > 0;
+}
+for (const name of ['rotation', 'good']) {
+  for (const end of ['min', 'max']) {
+    $(name + '-player-' + end).addEventListener('input', () => {
+      const filename = collections[name].images[collections[name].index]?.filename;
+      if (!filename) return;
+      const mapName = filename.replace(/^scn_/, '').replace(/\.png$/i, '');
+      let min = Number($(name + '-player-min').value);
+      let max = Number($(name + '-player-max').value);
+      if (end === 'min') min = Math.min(min, max);
+      else max = Math.max(min, max);
+      roundRanges.set(mapName, [min, max]);
+      for (const collection of ['rotation', 'good']) {
+        renderRoundStats(collection, collections[collection].images[collections[collection].index]?.filename);
+      }
+    });
+  }
 }
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
 const tabs = ['rotation', 'review', 'good', 'bad', 'server', 'editor'];
@@ -52,7 +96,7 @@ let activeTab = 'rotation';
 function renderCollection(name) {
   const { images, index } = collections[name];
   const entry = images[index];
-  if (name === 'rotation') renderRoundStats(entry?.filename);
+  if (name === 'rotation' || name === 'good') renderRoundStats(name, entry?.filename);
   if (name === 'good') {
     const available = editor.canEdit(entry?.filename);
     $('good-edit').disabled = !available;
