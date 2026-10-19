@@ -1,9 +1,14 @@
 import './style.css';
+import { inject } from '@vercel/analytics';
+import mapNames from '../MAP_NAMES.md?raw';
+
 import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
 import { setupEditor } from './editor.js';
+inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
+
 const $ = id => document.getElementById(id);
 const imageEntries = images => Object.entries(images)
   .map(([path, image]) => ({ filename: path.split('/').pop(), image }))
@@ -13,6 +18,10 @@ const collections = {
   good: { images: imageEntries(import.meta.glob('../goodmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
   bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
 };
+const rotationImages = collections.rotation.images;
+const rotationPools = new Map([...mapNames.matchAll(/^\|\s*(tiny|small|medium)\s*\|\s*\d+\s*\|\s*(mp_custom_map_\d+)\s*\|/gm)]
+  .map(([, pool, slot]) => [`scn_${slot}.png`, pool]));
+let rotationPool = 'all';
 const [roundStatsHeaders, ...roundStatsRows] = roundStatsCsv.trim().split(/\r?\n/).map(line => line.split(','));
 const roundStatsColumns = ['result', 'duration_seconds', 'player_count'].map(header => ({ header, index: roundStatsHeaders.indexOf(header) }));
 const roundRanges = new Map();
@@ -100,17 +109,25 @@ for (const name of ['rotation', 'good']) {
 function sortRotation(keepCurrent = false) {
   const collection = collections.rotation;
   const filename = collection.images[collection.index]?.filename;
-  const summaries = new Map(collection.images.map(entry => {
+  const images = rotationImages.filter(entry => rotationPool === 'all' || rotationPools.get(entry.filename) === rotationPool);
+  const summaries = new Map(images.map(entry => {
     const mapName = entry.filename.replace(/^scn_/, '').replace(/\.png$/i, '');
     return [entry.filename, summarizeRounds(roundStatsHeaders, roundStatsByMap.get(mapName) || [], ...rotationRange)];
   }));
-  collection.images = orderMaps(collection.images, summaries, $('rotation-sort').value, $('rotation-sort-direction').value);
+  collection.images = orderMaps(images, summaries, $('rotation-sort').value, $('rotation-sort-direction').value);
   collection.index = keepCurrent ? Math.max(0, collection.images.findIndex(entry => entry.filename === filename)) : 0;
   renderCollection('rotation');
+  $('collection-summary').textContent = `${collection.images.length} rotation images`;
 }
 for (const id of ['rotation-sort', 'rotation-sort-direction']) {
   $(id).addEventListener('change', () => sortRotation());
 }
+document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
+  input.addEventListener('change', () => {
+    rotationPool = input.value;
+    sortRotation(true);
+  });
+});
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
 const tabs = ['rotation', 'review', 'good', 'bad', 'server', 'editor'];
 const editor = setupEditor(selectTab);

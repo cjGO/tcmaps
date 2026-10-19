@@ -21,8 +21,14 @@
         <div id="rotation-sort-controls" class="rotation-sort-controls">
           <label>Sort maps by<select id="rotation-sort"><option value="number">Map number</option><option value="games">Total games played</option><option value="duration">Average duration</option><option value="win">Team 1 win %</option></select></label>
           <label>Order<select id="rotation-sort-direction"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+          <fieldset class="rotation-size"><legend>Map size</legend><div>
+            <label><input type="radio" name="rotation-size" value="all" checked><span>ALL</span></label>
+            <label><input type="radio" name="rotation-size" value="tiny"><span>Tiny</span></label>
+            <label><input type="radio" name="rotation-size" value="small"><span>Small</span></label>
+            <label><input type="radio" name="rotation-size" value="medium"><span>Medium</span></label>
+          </div></fieldset>
         </div>
-        <p>Player count filters the statistics and ordering for all rotation maps. Use the arrows to browse in the selected order. Maps without an average or win percentage appear last.</p>
+        <p>Player count filters the statistics and ordering for all rotation maps. Use the arrows to browse the selected map size in the selected order. Maps without an average or win percentage appear last.</p>
       </section>
       <section class="viewer" aria-label="Current rotation viewer">
         <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation image">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation image">→</button></div></div>

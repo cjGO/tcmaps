@@ -74,3 +74,10 @@
 .map-stats-workspace .round-stats th{position:sticky;top:0;z-index:1}
 .map-stats-workspace .round-stats caption{font-size:16px;overflow-wrap:anywhere}
 @media(max-width:900px){.map-stats-workspace{grid-template-columns:minmax(0,1fr);height:auto}.map-stats-workspace .rotation-stage{flex:auto;aspect-ratio:1}.map-stats-workspace .round-stats-scroll{max-height:480px}}
+
+.rotation-size{border:0;padding:0;margin:0;min-width:0}
+.rotation-size legend{padding:0;margin-bottom:8px;font-size:13px;font-weight:600}
+.rotation-size>div{display:flex;gap:10px;min-height:44px;align-items:center;flex-wrap:wrap}
+.rotation-size label{display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer}
+.rotation-size input{margin:0;accent-color:#426b43}
+.rotation-size input:focus-visible{outline:3px solid #e6ad4c;outline-offset:3px}
