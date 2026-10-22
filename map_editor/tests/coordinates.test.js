@@ -44,8 +44,27 @@ test('v2 environment loadouts round trip while legacy files keep source settings
   const loadout=JSON.parse(JSON.stringify({...document,version:2,settings}));
   assert.deepEqual(C.validate(loadout,project),[point]);
   assert.deepEqual(C.validateSettings(loadout),settings);
+  const noFog=JSON.parse(JSON.stringify({...loadout,settings:{...settings,fog:'none'}}));
+  assert.deepEqual(C.validate(noFog,project),[point]);
+  assert.equal(C.validateSettings(noFog).fog,'none');
   for(const update of [{biome:'steppe_forest'},{fog:450},{precipitation:'hail'},{precipitation_intensity:true},{precipitation_intensity:0},{precipitation_intensity:26},{thunder:true},{thunder_frequency:101},{thunder_frequency:1.5},{extra:1}])
     assert.throws(()=>C.validate({...loadout,settings:{...settings,...update}},project));
   assert.throws(()=>C.validate({...document,settings},project));
   assert.throws(()=>C.validate({...loadout,settings:{}},project));
+});
+
+test('v3 spawn edits preserve source defaults, reject invalid positions, and keep legacy imports',()=>{
+  const p={...project,default_spawn_points:[{team:0,entry:0,x_m:100.1230001,y_m:200,z_m:5},{team:1,entry:32,x_m:700,y_m:400,z_m:6}]};
+  const doc={version:3,source:p.source,placements:[],settings:C.defaults,default_spawn_points:p.default_spawn_points,spawn_points:C.editableSpawns(p)};
+  assert.equal(C.validateSpawns(doc,p)[0].x_m,100.123);
+  assert.deepEqual(C.validate(doc,p),[]);
+  assert.deepEqual(C.validateSpawns({version:2},p),C.editableSpawns(p));
+  const moved=structuredClone(doc);moved.spawn_points[0].x_m=250.125;
+  assert.equal(C.validateSpawns(moved,p)[0].x_m,250.125);
+  assert.equal(p.default_spawn_points[0].x_m,100.1230001);
+  for(const update of [{x_m:-1},{x_m:900},{x_m:NaN},{x_m:1.2345},{entry:32},{team:1},{z_m:99}]) {
+    const bad=structuredClone(doc);Object.assign(bad.spawn_points[0],update);assert.throws(()=>C.validate(bad,p));
+  }
+  const bad=structuredClone(doc);bad.default_spawn_points[0].x_m=2;assert.throws(()=>C.validate(bad,p));
+  assert.throws(()=>C.validate({...doc,version:2},p));
 });

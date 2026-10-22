@@ -66,7 +66,7 @@ full grid in the selected biome and grounds additions there. Review the exported
 preview. Existing explicit spawn records are preserved; automatic spawns (flags
 1280) are remeasured and shown in that preview.
 
-New JSON uses **version 2**, retaining `source` and `placements` and adding this
+Version 2 introduced the following
 `settings` object (example):
 
 ```json
@@ -85,6 +85,22 @@ required, but are ignored while their effect is off or set to source. Keep the
 complete exported source identity and placement IDs when editing JSON by hand.
 Version-1 vegetation documents still load/build and retain source biome/weather.
 New fields in a version-1 document are rejected rather than silently ignored.
+
+### Team spawns (version 3)
+
+New browser loadouts use version 3, retaining the settings and vegetation fields.
+`default_spawn_points` stores the exact original XYZ/facing records for Team 1
+(internal team 0, entry 0) and Team 2 (internal team 1, entry 32).
+`spawn_points` stores editable team/entry and X/Y coordinates in metres, rounded
+to millimetres. The original stars remain visible; drag the numbered team circles
+or use the spawn coordinate inputs. Reset and undo/redo include spawn changes.
+Older version-1/2 documents restore the source spawn positions.
+
+Moved spawns receive exact-point engine ground measurements and face each other.
+Only entries 0/32 are replaced; automatic-entry recipes become explicit flags 256
+when spawn edits are requested. Unchanged spawn defaults retain their original
+binary records and facing. Original scenes remain preserved, and building writes
+a separate map copy with engine replay evidence.
 
 To update an existing standalone editor without changing its project or saved
 JSON, run this and reopen/reload `editor.html`:

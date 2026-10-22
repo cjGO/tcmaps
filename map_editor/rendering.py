@@ -41,6 +41,21 @@ def calibrated_heatmap(data, destination, placements=()):
 
 
 def editor_html(project, image_path):
+    # Embed thumbnails in offline editors; published web editors use shared URLs.
+    previews = EDITOR_ROOT.parent / 'public' / 'editor-assets'
+    manifest = EDITOR_ROOT.parent / 'lib' / 'editor-asset-previews.json'
+    if manifest.is_file():
+        catalogue = json.loads(manifest.read_text(encoding='utf-8'))['assets']
+        assets = []
+        for asset in project['assets']:
+            asset = dict(asset)
+            preview = catalogue.get(asset['name'])
+            if preview and preview['mesh'] == asset['mesh']:
+                path = previews / preview['image']
+                if path.is_file():
+                    asset['preview'] = 'data:image/webp;base64,' + base64.b64encode(path.read_bytes()).decode('ascii')
+            assets.append(asset)
+        project = dict(project, assets=assets)
     payload = json.dumps(project, allow_nan=False, separators=(',', ':')).replace('<', '\\u003c')
     root = EDITOR_ROOT / 'web'
     template = (root / 'index.html').read_text(encoding='utf-8')

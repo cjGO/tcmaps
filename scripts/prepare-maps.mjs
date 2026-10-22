@@ -17,7 +17,7 @@ try {
 await mkdir('public/maps', { recursive: true });
 const maps = new Map();
 const files = sourceFiles.filter(f => f.endsWith('.png')).sort();
-if (!files.length) throw new Error(`No PNG maps found in ${source}`);
+if (!files.length && !process.argv.includes('--if-present')) throw new Error(`No PNG maps found in ${source}`);
 async function prepare(file) {
   const match = file.match(/^(scn_test_\d+).*?__(\d+)_(.+)\.png$/);
   if (!match) throw new Error(`Unexpected filename: ${file}`);

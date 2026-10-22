@@ -194,7 +194,7 @@ def placement_document(source, placements=None, settings=None):
 
 
 def validate_placements(document, source, bounds, assets):
-    if not isinstance(document, dict) or type(document.get('version')) is not int or document['version'] not in (1, 2):
+    if not isinstance(document, dict) or type(document.get('version')) is not int or document['version'] not in (1, 2, 3):
         raise ValueError('Unsupported placement document version')
     from environment import validate_settings
     validate_settings(document)

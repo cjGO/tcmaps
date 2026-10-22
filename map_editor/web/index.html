@@ -11,16 +11,28 @@
 <details open><summary>Biome &amp; weather</summary>
 <label for="biome">Biome</label><select id="biome">
 <option value="source">Keep source biome</option><option value="steppe">Steppe</option><option value="plains">Plains</option><option value="snow">Snow</option><option value="desert">Desert</option><option value="plains_forest">Plains forest</option><option value="snow_forest">Snow forest</option><option value="desert_forest">Desert forest</option></select>
-<label for="fog">Fog level</label><select id="fog"><option value="source">Keep source fog</option><option value="low">Low (600 m)</option><option value="medium">Medium (450 m)</option><option value="dense">Dense (300 m)</option></select>
+<label for="fog">Fog level</label><select id="fog"><option value="source">Keep source fog</option><option value="none">No fog</option><option value="low">Low (600 m)</option><option value="medium">Medium (450 m)</option><option value="dense">Dense (300 m)</option></select>
 <label for="precipitation">Rain / snow</label><select id="precipitation"><option value="source">Keep source precipitation</option><option value="clear">Clear</option><option value="rain">Rain</option><option value="snow">Snow</option></select>
 <label for="precipitation_intensity">Precipitation intensity (1–25)</label><input id="precipitation_intensity" type="number" min="1" max="25" step="1" value="10">
 <label for="thunder">Thunder</label><select id="thunder"><option value="source">Keep source thunder</option><option value="off">Off</option><option value="thunder">Thunder only</option><option value="lightning">Thunder &amp; lightning</option></select>
 <label for="thunder_frequency">Thunder frequency (1–100)</label><input id="thunder_frequency" type="number" min="1" max="100" step="1" value="50">
 <p class="hint">This heatmap shows the source terrain. Changing biome can affect terrain heights and procedural vegetation; build creates a freshly measured preview. Time of day, clouds and wind retain their source settings.</p>
 </details><hr>
+<details open><summary>Team spawns</summary>
+<p class="hint">The blue/red stars mark the original defaults. Drag the numbered team circles to move the active spawns, or enter coordinates below. Both teams face each other when built.</p>
+<label for="spawn-team">Team / entry</label><select id="spawn-team"><option value="0">Team 1 · Entry 0</option><option value="1">Team 2 · Entry 32</option></select>
+<p id="spawn-default" class="hint"></p>
+<div class="pair"><div><label for="spawn-x">Spawn X (m)</label><input id="spawn-x" type="number" step="0.001"></div><div><label for="spawn-y">Spawn Y (m)</label><input id="spawn-y" type="number" step="0.001"></div></div>
+<button id="spawn-reset">Reset both spawns to defaults</button>
+</details><hr>
 <h2>Vegetation</h2>
 <label for="search">Search assets</label><input id="search" type="search" placeholder="Pine, aspen, giant bush…">
 <label for="asset">Asset</label><select id="asset" size="9" aria-label="Vegetation asset"></select>
+<figure id="asset-preview" aria-label="Selected asset preview">
+<div id="asset-preview-image" aria-live="polite"></div>
+<figcaption id="asset-preview-caption"></figcaption>
+<p class="hint preview-note">Preview fitted to frame; assets have different sizes.</p>
+</figure>
 <p id="asset-info" class="hint"></p>
 <div class="pair"><div><label for="yaw">Yaw (degrees)</label><input id="yaw" type="number" min="0" max="359.999" step="1" value="0"></div>
 <div><label for="scale">Scale</label><input id="scale" type="number" min="0.1" max="10" step="0.1" value="1"></div></div>

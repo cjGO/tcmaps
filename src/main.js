@@ -131,16 +131,16 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
 const tabs = ['rotation', 'review', 'good', 'bad', 'server', 'editor'];
 const editor = setupEditor(selectTab);
-$('good-edit').addEventListener('click', () => editor.edit(collections.good.images[collections.good.index]?.filename));
+$('rotation-edit').addEventListener('click', () => editor.edit(collections.rotation.images[collections.rotation.index]?.filename));
 let activeTab = 'rotation';
 function renderCollection(name) {
   const { images, index } = collections[name];
   const entry = images[index];
   if (name === 'rotation' || name === 'good') renderRoundStats(name, entry?.filename);
-  if (name === 'good') {
+  if (name === 'rotation') {
     const available = editor.canEdit(entry?.filename);
-    $('good-edit').disabled = !available;
-    $('good-edit').textContent = available ? 'Edit this map' : 'Editor unavailable';
+    $('rotation-edit').disabled = !available;
+    $('rotation-edit').textContent = available ? 'Edit this map' : 'Editor unavailable';
   }
   const el = suffix => $(name + '-' + suffix);
   el('previous').disabled = el('next').disabled = images.length < 2;
@@ -244,6 +244,19 @@ function updateList() {
   }));
 }
 function render() {
+  if (!maps.length) {
+    $('map-title').textContent = 'No review maps';
+    $('map-count').textContent = '0 / 0';
+    $('previous').disabled = $('next').disabled = $('keep').disabled = true;
+    $('map-image').hidden = $('full-image').hidden = true;
+    $('image-label').textContent = '';
+    $('image-state').hidden = false;
+    $('image-state').textContent = 'No maps are available for review.';
+    $('spawns').replaceChildren();
+    $('keep-context').textContent = 'No review maps available.';
+    updateList();
+    return;
+  }
   const map = currentMap(), spawn = currentSpawn();
   $('map-title').textContent = map.name;
   $('map-count').textContent = `${String(mapIndex + 1).padStart(3, '0')} / ${maps.length}`;
@@ -289,7 +302,7 @@ $('copy').addEventListener('click', async () => {
 });
 $('map-image').addEventListener('load', () => { $('image-state').hidden = true; $('map-image').style.opacity = '1'; });
 $('map-image').addEventListener('error', () => { $('image-state').hidden = false; $('image-state').textContent = 'Map image could not load. Try refreshing the page.'; });
-function moveMap(delta) { mapIndex = (mapIndex + delta + maps.length) % maps.length; spawnIndex %= currentMap().spawns.length; render(); }
+function moveMap(delta) { if (!maps.length) return; mapIndex = (mapIndex + delta + maps.length) % maps.length; spawnIndex %= currentMap().spawns.length; render(); }
 $('previous').addEventListener('click', () => moveMap(-1));
 $('next').addEventListener('click', () => moveMap(1));
 document.addEventListener('keydown', event => {
@@ -302,12 +315,12 @@ document.addEventListener('keydown', event => {
     }
     return;
   }
-  if (activeTab !== 'review') return;
+  if (activeTab !== 'review' || !maps.length) return;
   event.preventDefault();
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') moveMap(event.key === 'ArrowLeft' ? -1 : 1);
   else { spawnIndex = (spawnIndex + (event.key === 'ArrowUp' ? -1 : 1) + currentMap().spawns.length) % currentMap().spawns.length; render(); }
 });
-render(); message('Keep the setups you like, then copy your list to share.');
+render(); message(maps.length ? 'Keep the setups you like, then copy your list to share.' : 'No maps are available for review.');
 
 Object.keys(collections).forEach(renderCollection);
 selectTab('rotation');

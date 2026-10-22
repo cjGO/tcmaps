@@ -229,6 +229,29 @@ class EditorTests(unittest.TestCase):
         with patch('engine.run_engine_probe',return_value={self.source['scene_id']:{'ok':False}}),self.assertRaises(ValueError):
             engine.probe(self.source,self.recipe,logs,2,1,Path('unused'),[self.point])
 
+    def test_build_spawn_edits_measure_exact_heights_and_preserve_source(self):
+        from environment import DEFAULTS
+        from spawns import editable_spawns
+        from spawn_variants import read_entries
+        folder = editor.prepare(self.args())
+        defaults = core.read_json(folder/'height_data.json')['spawn_points']
+        points = editable_spawns(defaults); points[0].update(x_m=22.125, y_m=50)
+        doc = dict(version=3, source=self.source, placements=[self.point], settings=DEFAULTS,
+                   default_spawn_points=defaults, spawn_points=points)
+        submitted = folder/'submitted.json'; core.write_json(submitted,doc)
+        logs = self.root/'replay'; logs.mkdir()
+        (logs/'spawn_points.csv').write_text('0,0,22125,50000,8000\n1,32,85000,10000,9000\n')
+        args=argparse.Namespace(project=folder,placements=submitted,output=folder/'spawn_build',timeout=1,windows_python=Path('unused'))
+        with patch('editor.probe',return_value=(self.bounds,self.height['samples'],[12.125,8,9],logs)) as ground, \
+             patch('editor.replay_objects',return_value=(self.bounds,self.height['samples'],logs)):
+            out=editor.build(args)
+        self.assertEqual(ground.call_args.args[-1],[self.point]+points)
+        entries=read_entries((out/'scn_fixture.sco').read_bytes())
+        self.assertEqual([(p['x_m'],p['y_m'],p['z_m']) for p in entries],[(22.125,50,8),(85,10,9)])
+        self.assertEqual(core.read_json(out/'placements.json'),doc)
+        self.assertTrue(core.read_json(out/'manifest.json')['spawns_changed'])
+        self.assertEqual(self.sco.read_bytes(),self.original)
+
     def test_terrain_replay_mismatch(self):
         engine.verify_replay(self.height,self.bounds,self.height['samples'])
         changed=copy.deepcopy(self.height['samples']);changed[0]['height_m']=5

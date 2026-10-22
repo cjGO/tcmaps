@@ -1,0 +1,1191 @@
+{
+  "version": 1,
+  "description": "Static textured game models at default scale; fitted to preview.",
+  "inputs": {
+    "Resource/materials.brf": "b9163b95fc04eaa5083ec3bb018dce4b9b2477037918731435ffe89269b8c795",
+    "Resource/mmmaterials.brf": "e08a386cc97b7b2ef9af432bd4ea169e4ec4a4e5808dcfa165432ea08bc28493",
+    "Resource/mm_confederate_materials.brf": "8d35da7bb0c34c7226c2a5f41c59acbb62d110444682d93f031c1f3b74ecac93",
+    "Resource/tree_meshes.brf": "7793deea870e902a793aab263f6401dea73aecd732d4fab4e5d54e2d74c67b25",
+    "Resource/town_houses_d.brf": "060f5231ceaaf28e298fd9b427f64eec4d377648148983bc61900932998131b5",
+    "Resource/tree_f.brf": "1f892621f2bca7abe22906e832e903af2450f76095979b912d0bc05425b248e5",
+    "Resource/mmplants.brf": "3a17376de6e45fd8d7cf07e672b5c7a618282bd17aaf2932a5e679ddf7de6394",
+    "Resource/terrain_borders.brf": "9f87c1e27c5d124e0b6bb8f2997543ac4037506eeab8be418a9045d47be2a5fe",
+    "Resource/mm_confederate_uniforms.brf": "77c57d2e54657620f12e3e807637a05e7eaa183bb30613c5797aeadade0ec417",
+    "Textures/mm_big_bark.dds": "06df19e884b2f63f6165c202c6c050c9813dccf293248ba18aef3b0a3b39b2f2",
+    "Textures/mm_bush1_1.dds": "a97bae8712fde749c2b6a2284bc477aa9f2e799ce1f50935d9bbfb40b9a9d8ad",
+    "Textures/mm_bush19.dds": "ff5e44d1f9886b6c4b98e246666f90883400a74e12688a31abe731f926fe4999",
+    "Textures/mm_spruce1.dds": "62dcc26a25997b74b4b14da40b108ea9ea73f7b6d5f5f8590f62bdca8fcf9040",
+    "Textures/mm_bush6_2.dds": "9baeb7620ecc5cbb6deb1efee1c506ab3fac302c97ca1085d17918e75decb69a",
+    "Textures/mm_bush20.dds": "da600f36d567e420fdff50a28d6ce946d4c259a165ebf87dddaad895cefe2d17",
+    "game/Textures/bushes.dds": "26dd81ab73046700113048af1bc3eeca8c42259c3113f98ad6e3e9c7e03ad1e6",
+    "Textures/mm_bush11.dds": "a9386cc928af0ddfafd596ed79d3289cbff9fa2ac0dbe0d2a3d4273cf31f0163",
+    "Textures/mm_bush14.dds": "e8324c95d939a20cd2c93617bb283ef928a2b87dbaf3701e9ff35d14863d5b17",
+    "Textures/mm_bush16.dds": "b70ca19b371ff842a17db8981a81b1f35f55deb82eee720db0587da668fc329d",
+    "Textures/mm_bush17.dds": "ab46fdcaa5c197435812ca40dccda2f9b2173ea947ec19cd9ea8e986ffb9ce5c",
+    "Textures/mm_bush12.dds": "1394099d9a894d2c61f092b67d32c2ba14b42c9db2a96a2b78dde9d0bea722ec",
+    "Textures/mm_bush18.dds": "d7db14db0b004479c33a0c0623a8868c10bd3daf57148875412f3d1a04da133e",
+    "Textures/mm_bush13.dds": "dcbbe481f6c9b4f67ea010caf115d11a2ab24bd1e96b06666c238888b443b3f0",
+    "Textures/bush_b.dds": "6cf258e4b21ae04701ec1c3a5531e4565363173ca14592f01d84e41260139f37",
+    "Textures/mm_bush15.dds": "0fc077ff3c9df2d3a030b8c320a68feceb231be94bf0f65148a03bd41d63bf61",
+    "Textures/cattail_color.dds": "8e5d6b49d0990642b970e57bc217d83f5926ec637376e261d1345477edce3985",
+    "Textures/leafplant3_color.dds": "531f6c919318479cc091bc51b50a2c7aec1582ac0670cb423fe501aaea75818e",
+    "Textures/flowerplant2_color.dds": "d9689e6a0cefb7aa9e7b651303db97ff487cafaa0d2cf4f91b434e27ea211967",
+    "Textures/flowers_mm.dds": "bcc7fd700b3a80291afeb32f087aa81ea7e365628b4ccb7fc3a894556f499c34",
+    "Textures/flower1_mm.dds": "e0e2c4b4302593b01bf58d8115ec681c78f19826c14aa340f8bbafda5e51e5e7",
+    "Textures/flower_mm.dds": "0a0f66a7c3ae4aa7e4f1ef9f60d36b44c9d208cbf050c38d83f5699b188885e7",
+    "Textures/lillymass_color.dds": "9750ad9d8cfef304c63438b484a9e63c8ad6cb4d8fe7a5f4e7cf1863c1c4f5ff",
+    "Textures/mm_bark6.dds": "56c5368dcc2ed70430949e9d6a036df6a6c7e0c03fc9f2ed6047519892099f8e",
+    "Textures/mm_bark2.dds": "1e095951932ae7c06822005c02a18b59df6d11e3e0e77c59fdf2c242ab612a7c",
+    "Textures/mm_bark1.dds": "d9e5c176b2b1afedadd2a4e48ce82ac7074e30d5a17ee669cdfef4f9c650ddc2",
+    "Textures/mm_bark_new2.dds": "b58dbd112efcdf1c3f94c4092fe5a706589f49ff8d63b0e4da9126bf34d92eb7",
+    "Textures/mm_bark_new.dds": "046de496eb640a437840f2625f26e8dffe154973ec4c5a0e9962e0a8bcc00acb",
+    "Textures/mm_bush4.dds": "63aa43a21a91c76936495d13a04d9bd759671f98a978a0a3140a355e75df5402",
+    "Textures/mm_bush7.dds": "b6c5e3712be88891efc66f34f7f5ef8cdbad822b612d645baf829650fee31d60",
+    "Textures/mm_bush1_11.dds": "960dac5a0cf23fa323d207ded1d9817d32231986eba0d39d336fb7bad03a4478",
+    "Textures/mm_bush8.dds": "7651ad769280defc3f89983deb8b0255292141cfeea17bc828d6073b5f5c1da8",
+    "Textures/mm_bush9.dds": "ce897de952ed07b836a26bf008cceb60921b1fc257f3bfdbac2dec0e38d19177",
+    "Textures/mushroom.dds": "d75edb62fdabdd2671a649853752420572852326c053d2c82db4fc9950a49686",
+    "Textures/mm_bark7.dds": "eba25ccff3c597fe078cefa41369f157a69cf16da655a02d624f278d89d03314",
+    "Textures/mm_bush6_1.dds": "de90121982e8ee49dde58f29f61355681b1ddb894c2b666b298b735cc2d70fc1",
+    "Textures/mm_bush10.dds": "b384374c459e6fafbfe30956d6f4079032b9148faf9daacf181c0d857483fd50",
+    "Textures/oim_leafs.dds": "b37510e0d85cb9f0a9f5138f9454f8ad59540e418cf79662812ad88a44e75c8b",
+    "Textures/mm_spruce22.dds": "5159c0a86f4c53cd8f4df70936361c89a756897d7da0dec52b9ae89de1383ed2",
+    "Textures/mm_northern_tree.dds": "66866017dedc0ad69f1346f18d083d2d8f921bf629b4fdddd1124beb41ea1d5b",
+    "Textures/mm_bush3.dds": "01dce4ed5a0db141a06acac0eaa148a600386009122b3ada606a06507b61a968",
+    "Textures/mm_bush26.dds": "1c8947532d5cf73ea6f1c017b0dc0230c7f98fcd6f4af842706a60dfc56cfbba",
+    "Textures/mm_northern_tree1.dds": "e0aa96883fd7180535c8661658e772df86998a76ca499cee5d2bc96edd68cdc0",
+    "Textures/mm_bush22.dds": "d52fe0f5e00c5c90fed3d34710c2f3a80cd80300fec8be2dedb9cce31ec50187",
+    "Textures/Palmwood3DF.dds": "a889c4fdf0ba93439b0405949a32f526fdc15fa4173a7373d3d3d7f0c2b27be4",
+    "Textures/palmleaf.dds": "12f90a526288f63f4816479716dba46571d85e640e813ff5027f099ec531a2c4"
+  },
+  "assets": {
+    "spr_mm_tree_big1": {
+      "mesh": "big_tree_mm",
+      "image": "big_tree_mm.webp"
+    },
+    "spr_mm_tree_big2": {
+      "mesh": "big_tree_mm1",
+      "image": "big_tree_mm1.webp"
+    },
+    "spr_mm_tree_big3": {
+      "mesh": "big_tree_mm2",
+      "image": "big_tree_mm2.webp"
+    },
+    "spr_mm_tree_big4": {
+      "mesh": "big_tree_mm3",
+      "image": "big_tree_mm3.webp"
+    },
+    "spr_flora_buddy_planta": {
+      "mesh": "buddy_plant",
+      "image": "buddy_plant.webp"
+    },
+    "spr_flora_buddy_plantb": {
+      "mesh": "buddy_plant_b",
+      "image": "buddy_plant_b.webp"
+    },
+    "spr_flora_flower_busha": {
+      "mesh": "bush_flower",
+      "image": "bush_flower.webp"
+    },
+    "spr_flora_flower_bushk": {
+      "mesh": "bush_flower11",
+      "image": "bush_flower11.webp"
+    },
+    "spr_flora_flower_bushl": {
+      "mesh": "bush_flower12",
+      "image": "bush_flower12.webp"
+    },
+    "spr_flora_flower_bushm": {
+      "mesh": "bush_flower13",
+      "image": "bush_flower13.webp"
+    },
+    "spr_flora_flower_bushn": {
+      "mesh": "bush_flower14",
+      "image": "bush_flower14.webp"
+    },
+    "spr_flora_flower_busho": {
+      "mesh": "bush_flower15",
+      "image": "bush_flower15.webp"
+    },
+    "spr_flora_flower_bushp": {
+      "mesh": "bush_flower16",
+      "image": "bush_flower16.webp"
+    },
+    "spr_flora_flower_bushq": {
+      "mesh": "bush_flower17",
+      "image": "bush_flower17.webp"
+    },
+    "spr_flora_flower_bushr": {
+      "mesh": "bush_flower18",
+      "image": "bush_flower18.webp"
+    },
+    "spr_flora_flower_bushs": {
+      "mesh": "bush_flower19",
+      "image": "bush_flower19.webp"
+    },
+    "spr_flora_flower_bushb": {
+      "mesh": "bush_flower2",
+      "image": "bush_flower2.webp"
+    },
+    "spr_flora_flower_busht": {
+      "mesh": "bush_flower20",
+      "image": "bush_flower20.webp"
+    },
+    "spr_flora_flower_bushc": {
+      "mesh": "bush_flower3",
+      "image": "bush_flower3.webp"
+    },
+    "spr_flora_flower_bushd": {
+      "mesh": "bush_flower4",
+      "image": "bush_flower4.webp"
+    },
+    "spr_flora_flower_bushe": {
+      "mesh": "bush_flower5",
+      "image": "bush_flower5.webp"
+    },
+    "spr_flora_flower_bushf": {
+      "mesh": "bush_flower6",
+      "image": "bush_flower6.webp"
+    },
+    "spr_flora_flower_bushg": {
+      "mesh": "bush_flower7",
+      "image": "bush_flower7.webp"
+    },
+    "spr_flora_flower_bushh": {
+      "mesh": "bush_flower8",
+      "image": "bush_flower8.webp"
+    },
+    "spr_flora_flower_bushi": {
+      "mesh": "bush_flower9",
+      "image": "bush_flower9.webp"
+    },
+    "spr_flora_bush_new_3": {
+      "mesh": "bush_new_b",
+      "image": "bush_new_b.webp"
+    },
+    "spr_flora_bush_green_newa": {
+      "mesh": "bush_new_green1",
+      "image": "bush_new_green1.webp"
+    },
+    "spr_flora_bush_green_newb": {
+      "mesh": "bush_new_green2",
+      "image": "bush_new_green2.webp"
+    },
+    "spr_flora_bush_green_newc": {
+      "mesh": "bush_new_green3",
+      "image": "bush_new_green3.webp"
+    },
+    "spr_flora_bush_green_newd": {
+      "mesh": "bush_new_green4",
+      "image": "bush_new_green4.webp"
+    },
+    "spr_flora_bush_green_newe": {
+      "mesh": "bush_new_green5",
+      "image": "bush_new_green5.webp"
+    },
+    "spr_flora_bush_green_newf": {
+      "mesh": "bush_new_green6",
+      "image": "bush_new_green6.webp"
+    },
+    "spr_flora_bush_green_newg": {
+      "mesh": "bush_new_green7",
+      "image": "bush_new_green7.webp"
+    },
+    "spr_flora_cattail1": {
+      "mesh": "cattail1",
+      "image": "cattail1.webp"
+    },
+    "spr_flora_cattail2": {
+      "mesh": "cattail2",
+      "image": "cattail2.webp"
+    },
+    "spr_flora_cattail3": {
+      "mesh": "cattail3",
+      "image": "cattail3.webp"
+    },
+    "spr_flora_cattail4": {
+      "mesh": "cattail4",
+      "image": "cattail4.webp"
+    },
+    "spr_flora_cattail5": {
+      "mesh": "cattail5",
+      "image": "cattail5.webp"
+    },
+    "spr_flora_cattail6": {
+      "mesh": "cattail6",
+      "image": "cattail6.webp"
+    },
+    "spr_flora_cattail7": {
+      "mesh": "cattail7",
+      "image": "cattail7.webp"
+    },
+    "spr_flora_flowers1a": {
+      "mesh": "grass_bush_amm",
+      "image": "grass_bush_amm.webp"
+    },
+    "spr_flora_flowers1b": {
+      "mesh": "grass_bush_bmm",
+      "image": "grass_bush_bmm.webp"
+    },
+    "spr_flora_flowersb": {
+      "mesh": "grass_bush_c2mm",
+      "image": "grass_bush_c2mm.webp"
+    },
+    "spr_flora_flowersc": {
+      "mesh": "grass_bush_c3mm",
+      "image": "grass_bush_c3mm.webp"
+    },
+    "spr_flora_flowersa": {
+      "mesh": "grass_bush_cmm",
+      "image": "grass_bush_cmm.webp"
+    },
+    "spr_flora_flowersd": {
+      "mesh": "grass_bush_dmm",
+      "image": "grass_bush_dmm.webp"
+    },
+    "spr_flora_flowers2a": {
+      "mesh": "grass_bush_emm",
+      "image": "grass_bush_emm.webp"
+    },
+    "spr_flora_flowers2b": {
+      "mesh": "grass_bush_fmm",
+      "image": "grass_bush_fmm.webp"
+    },
+    "spr_flora_flowers2c": {
+      "mesh": "grass_bush_gmm",
+      "image": "grass_bush_gmm.webp"
+    },
+    "spr_flora_flowers2d": {
+      "mesh": "grass_bush_hmm",
+      "image": "grass_bush_hmm.webp"
+    },
+    "spr_flora_flowers2e": {
+      "mesh": "grass_bush_imm",
+      "image": "grass_bush_imm.webp"
+    },
+    "spr_flora_flowers2f": {
+      "mesh": "grass_bush_jmm",
+      "image": "grass_bush_jmm.webp"
+    },
+    "spr_flora_flowers2g": {
+      "mesh": "grass_bush_kmm",
+      "image": "grass_bush_kmm.webp"
+    },
+    "spr_flora_flowers2h": {
+      "mesh": "grass_bush_lmm",
+      "image": "grass_bush_lmm.webp"
+    },
+    "spr_flora_flowers2i": {
+      "mesh": "grass_bush_mmm",
+      "image": "grass_bush_mmm.webp"
+    },
+    "spr_flora_lilly1": {
+      "mesh": "lilly1",
+      "image": "lilly1.webp"
+    },
+    "spr_mm_tree_aspen1": {
+      "mesh": "mm_aspen1",
+      "image": "mm_aspen1.webp"
+    },
+    "spr_mm_tree_aspen10": {
+      "mesh": "mm_aspen10",
+      "image": "mm_aspen10.webp"
+    },
+    "spr_mm_tree_aspen11": {
+      "mesh": "mm_aspen11",
+      "image": "mm_aspen11.webp"
+    },
+    "spr_mm_tree_aspen12": {
+      "mesh": "mm_aspen12",
+      "image": "mm_aspen12.webp"
+    },
+    "spr_mm_tree_aspen13": {
+      "mesh": "mm_aspen13",
+      "image": "mm_aspen13.webp"
+    },
+    "spr_mm_tree_aspen14": {
+      "mesh": "mm_aspen14",
+      "image": "mm_aspen14.webp"
+    },
+    "spr_mm_tree_aspen15": {
+      "mesh": "mm_aspen15",
+      "image": "mm_aspen15.webp"
+    },
+    "spr_mm_tree_aspen2": {
+      "mesh": "mm_aspen2",
+      "image": "mm_aspen2.webp"
+    },
+    "spr_mm_tree_aspen3": {
+      "mesh": "mm_aspen3",
+      "image": "mm_aspen3.webp"
+    },
+    "spr_mm_tree_aspen4": {
+      "mesh": "mm_aspen4",
+      "image": "mm_aspen4.webp"
+    },
+    "spr_mm_tree_aspen5": {
+      "mesh": "mm_aspen5",
+      "image": "mm_aspen5.webp"
+    },
+    "spr_mm_tree_aspen6": {
+      "mesh": "mm_aspen6",
+      "image": "mm_aspen6.webp"
+    },
+    "spr_mm_tree_aspen7": {
+      "mesh": "mm_aspen7",
+      "image": "mm_aspen7.webp"
+    },
+    "spr_mm_tree_aspen8": {
+      "mesh": "mm_aspen8",
+      "image": "mm_aspen8.webp"
+    },
+    "spr_mm_tree_aspen9": {
+      "mesh": "mm_aspen9",
+      "image": "mm_aspen9.webp"
+    },
+    "spr_mm_tree_autumn1": {
+      "mesh": "mm_autumn_tree",
+      "image": "mm_autumn_tree.webp"
+    },
+    "spr_mm_tree_autumn2": {
+      "mesh": "mm_autumn_tree1",
+      "image": "mm_autumn_tree1.webp"
+    },
+    "spr_mm_tree_autumn3": {
+      "mesh": "mm_autumn_tree2",
+      "image": "mm_autumn_tree2.webp"
+    },
+    "spr_mm_tree_autumn4": {
+      "mesh": "mm_autumn_tree3",
+      "image": "mm_autumn_tree3.webp"
+    },
+    "spr_mm_tree_autumn5": {
+      "mesh": "mm_autumn_tree4",
+      "image": "mm_autumn_tree4.webp"
+    },
+    "spr_flora_bush_greena": {
+      "mesh": "mm_bush",
+      "image": "mm_bush.webp"
+    },
+    "spr_flora_bush_greenb": {
+      "mesh": "mm_bush2",
+      "image": "mm_bush2.webp"
+    },
+    "spr_flora_bush_greenc": {
+      "mesh": "mm_bush3",
+      "image": "mm_bush3.webp"
+    },
+    "spr_flora_bush_greend": {
+      "mesh": "mm_bush4",
+      "image": "mm_bush4.webp"
+    },
+    "spr_flora_bush_greene": {
+      "mesh": "mm_bush5",
+      "image": "mm_bush5.webp"
+    },
+    "spr_flora_bush_greenf": {
+      "mesh": "mm_bush6",
+      "image": "mm_bush6.webp"
+    },
+    "spr_flora_bush_greeng": {
+      "mesh": "mm_bush7",
+      "image": "mm_bush7.webp"
+    },
+    "spr_flora_bush_orangea": {
+      "mesh": "mm_bush_new",
+      "image": "mm_bush_new.webp"
+    },
+    "spr_flora_bush_orangeb": {
+      "mesh": "mm_bush_new2",
+      "image": "mm_bush_new2.webp"
+    },
+    "spr_flora_bush_orangec": {
+      "mesh": "mm_bush_new3",
+      "image": "mm_bush_new3.webp"
+    },
+    "spr_flora_bush_oranged": {
+      "mesh": "mm_bush_new4",
+      "image": "mm_bush_new4.webp"
+    },
+    "spr_flora_bush_orangee": {
+      "mesh": "mm_bush_new5",
+      "image": "mm_bush_new5.webp"
+    },
+    "spr_flora_bush_orangef": {
+      "mesh": "mm_bush_new6",
+      "image": "mm_bush_new6.webp"
+    },
+    "spr_flora_bush_orangeg": {
+      "mesh": "mm_bush_new7",
+      "image": "mm_bush_new7.webp"
+    },
+    "spr_flora_bush_wintera": {
+      "mesh": "mm_bush_winter",
+      "image": "mm_bush_winter.webp"
+    },
+    "spr_flora_bush_winterj": {
+      "mesh": "mm_bush_winter10",
+      "image": "mm_bush_winter10.webp"
+    },
+    "spr_flora_bush_winter2a": {
+      "mesh": "mm_bush_winter14",
+      "image": "mm_bush_winter14.webp"
+    },
+    "spr_flora_bush_winter2b": {
+      "mesh": "mm_bush_winter15",
+      "image": "mm_bush_winter15.webp"
+    },
+    "spr_flora_bush_winter2c": {
+      "mesh": "mm_bush_winter16",
+      "image": "mm_bush_winter16.webp"
+    },
+    "spr_flora_bush_winter2d": {
+      "mesh": "mm_bush_winter17",
+      "image": "mm_bush_winter17.webp"
+    },
+    "spr_flora_bush_winterb": {
+      "mesh": "mm_bush_winter2",
+      "image": "mm_bush_winter2.webp"
+    },
+    "spr_flora_bush_winterc": {
+      "mesh": "mm_bush_winter3",
+      "image": "mm_bush_winter3.webp"
+    },
+    "spr_flora_bush_winterd": {
+      "mesh": "mm_bush_winter4",
+      "image": "mm_bush_winter4.webp"
+    },
+    "spr_flora_bush_wintere": {
+      "mesh": "mm_bush_winter5",
+      "image": "mm_bush_winter5.webp"
+    },
+    "spr_flora_bush_winterf": {
+      "mesh": "mm_bush_winter6",
+      "image": "mm_bush_winter6.webp"
+    },
+    "spr_flora_bush_winterg": {
+      "mesh": "mm_bush_winter7",
+      "image": "mm_bush_winter7.webp"
+    },
+    "spr_flora_bush_winterh": {
+      "mesh": "mm_bush_winter8",
+      "image": "mm_bush_winter8.webp"
+    },
+    "spr_flora_bush_winteri": {
+      "mesh": "mm_bush_winter9",
+      "image": "mm_bush_winter9.webp"
+    },
+    "spr_flora_giant_busha": {
+      "mesh": "mm_giant_bush",
+      "image": "mm_giant_bush.webp"
+    },
+    "spr_flora_giant_bushb": {
+      "mesh": "mm_giant_bush2",
+      "image": "mm_giant_bush2.webp"
+    },
+    "spr_flora_giant_bushc": {
+      "mesh": "mm_giant_bush3",
+      "image": "mm_giant_bush3.webp"
+    },
+    "spr_flora_giant_bushd": {
+      "mesh": "mm_giant_bush4",
+      "image": "mm_giant_bush4.webp"
+    },
+    "spr_flora_giant_bushe": {
+      "mesh": "mm_giant_bush5",
+      "image": "mm_giant_bush5.webp"
+    },
+    "spr_flora_giant_bushf": {
+      "mesh": "mm_giant_bush6",
+      "image": "mm_giant_bush6.webp"
+    },
+    "spr_flora_giant_bushg": {
+      "mesh": "mm_giant_bush7",
+      "image": "mm_giant_bush7.webp"
+    },
+    "spr_flora_old_busha": {
+      "mesh": "mm_giant_bush_new",
+      "image": "mm_giant_bush_new.webp"
+    },
+    "spr_flora_old_bushb": {
+      "mesh": "mm_giant_bush_new2",
+      "image": "mm_giant_bush_new2.webp"
+    },
+    "spr_flora_old_bushc": {
+      "mesh": "mm_giant_bush_new3",
+      "image": "mm_giant_bush_new3.webp"
+    },
+    "spr_flora_old_bushd": {
+      "mesh": "mm_giant_bush_new4",
+      "image": "mm_giant_bush_new4.webp"
+    },
+    "spr_flora_old_bushe": {
+      "mesh": "mm_giant_bush_new5",
+      "image": "mm_giant_bush_new5.webp"
+    },
+    "spr_flora_old_bushf": {
+      "mesh": "mm_giant_bush_new6",
+      "image": "mm_giant_bush_new6.webp"
+    },
+    "spr_flora_old_bushg": {
+      "mesh": "mm_giant_bush_new7",
+      "image": "mm_giant_bush_new7.webp"
+    },
+    "spr_flora_mushrooms": {
+      "mesh": "mm_mushrooms2",
+      "image": "mm_mushrooms2.webp"
+    },
+    "spr_mm_tree_northern1": {
+      "mesh": "mm_northern_tree1",
+      "image": "mm_northern_tree1.webp"
+    },
+    "spr_mm_tree_northern2": {
+      "mesh": "mm_northern_tree2",
+      "image": "mm_northern_tree2.webp"
+    },
+    "spr_mm_tree_northern3": {
+      "mesh": "mm_northern_tree3",
+      "image": "mm_northern_tree3.webp"
+    },
+    "spr_mm_tree_northern4": {
+      "mesh": "mm_northern_tree4",
+      "image": "mm_northern_tree4.webp"
+    },
+    "spr_flora_old_bush1a": {
+      "mesh": "mm_old_bush",
+      "image": "mm_old_bush.webp"
+    },
+    "spr_flora_old_bush1b": {
+      "mesh": "mm_old_bush2",
+      "image": "mm_old_bush2.webp"
+    },
+    "spr_flora_old_bush1c": {
+      "mesh": "mm_old_bush3",
+      "image": "mm_old_bush3.webp"
+    },
+    "spr_flora_old_bush1d": {
+      "mesh": "mm_old_bush4",
+      "image": "mm_old_bush4.webp"
+    },
+    "spr_flora_old_bush1e": {
+      "mesh": "mm_old_bush5",
+      "image": "mm_old_bush5.webp"
+    },
+    "spr_flora_old_bush1f": {
+      "mesh": "mm_old_bush6",
+      "image": "mm_old_bush6.webp"
+    },
+    "spr_flora_old_bush1g": {
+      "mesh": "mm_old_bush7",
+      "image": "mm_old_bush7.webp"
+    },
+    "spr_mm_tree_pine1": {
+      "mesh": "mm_pine1",
+      "image": "mm_pine1.webp"
+    },
+    "spr_mm_tree_pine_snowy1": {
+      "mesh": "mm_pine1s",
+      "image": "mm_pine1s.webp"
+    },
+    "spr_mm_tree_pine2": {
+      "mesh": "mm_pine2",
+      "image": "mm_pine2.webp"
+    },
+    "spr_mm_tree_pine_snowy2": {
+      "mesh": "mm_pine2s",
+      "image": "mm_pine2s.webp"
+    },
+    "spr_mm_tree_pine3": {
+      "mesh": "mm_pine3",
+      "image": "mm_pine3.webp"
+    },
+    "spr_mm_tree_pine_snowy3": {
+      "mesh": "mm_pine3s",
+      "image": "mm_pine3s.webp"
+    },
+    "spr_mm_tree_pine4": {
+      "mesh": "mm_pine4",
+      "image": "mm_pine4.webp"
+    },
+    "spr_mm_tree_pine_snowy4": {
+      "mesh": "mm_pine4s",
+      "image": "mm_pine4s.webp"
+    },
+    "spr_mm_tree_pine5": {
+      "mesh": "mm_pine5",
+      "image": "mm_pine5.webp"
+    },
+    "spr_mm_tree_pine_snowy5": {
+      "mesh": "mm_pine5s",
+      "image": "mm_pine5s.webp"
+    },
+    "spr_mm_tree_pine6": {
+      "mesh": "mm_pine6",
+      "image": "mm_pine6.webp"
+    },
+    "spr_mm_tree_pine_snowy6": {
+      "mesh": "mm_pine6s",
+      "image": "mm_pine6s.webp"
+    },
+    "spr_mm_tree_pine7": {
+      "mesh": "mm_pine7",
+      "image": "mm_pine7.webp"
+    },
+    "spr_mm_tree_pine_snowy7": {
+      "mesh": "mm_pine7s",
+      "image": "mm_pine7s.webp"
+    },
+    "spr_mm_tree_northern5": {
+      "mesh": "mm_pine_3",
+      "image": "mm_pine_3.webp"
+    },
+    "spr_mm_tree_northern6": {
+      "mesh": "mm_pine_4",
+      "image": "mm_pine_4.webp"
+    },
+    "spr_mm_tree_northern7": {
+      "mesh": "mm_pine_5",
+      "image": "mm_pine_5.webp"
+    },
+    "spr_mm_tree_vegetation1": {
+      "mesh": "mm_vegetation_tree1",
+      "image": "mm_vegetation_tree1.webp"
+    },
+    "spr_mm_tree_vegetation10": {
+      "mesh": "mm_vegetation_tree10",
+      "image": "mm_vegetation_tree10.webp"
+    },
+    "spr_mm_tree_vegetation10_1": {
+      "mesh": "mm_vegetation_tree101",
+      "image": "mm_vegetation_tree101.webp"
+    },
+    "spr_mm_tree_vegetation10_10": {
+      "mesh": "mm_vegetation_tree1010",
+      "image": "mm_vegetation_tree1010.webp"
+    },
+    "spr_mm_tree_vegetation10_11": {
+      "mesh": "mm_vegetation_tree1011",
+      "image": "mm_vegetation_tree1011.webp"
+    },
+    "spr_mm_tree_vegetation10_12": {
+      "mesh": "mm_vegetation_tree1012",
+      "image": "mm_vegetation_tree1012.webp"
+    },
+    "spr_mm_tree_vegetation10_14": {
+      "mesh": "mm_vegetation_tree1014",
+      "image": "mm_vegetation_tree1014.webp"
+    },
+    "spr_mm_tree_vegetation10_15": {
+      "mesh": "mm_vegetation_tree1015",
+      "image": "mm_vegetation_tree1015.webp"
+    },
+    "spr_mm_tree_vegetation10_2": {
+      "mesh": "mm_vegetation_tree102",
+      "image": "mm_vegetation_tree102.webp"
+    },
+    "spr_mm_tree_vegetation10_3": {
+      "mesh": "mm_vegetation_tree103",
+      "image": "mm_vegetation_tree103.webp"
+    },
+    "spr_mm_tree_vegetation10_4": {
+      "mesh": "mm_vegetation_tree104",
+      "image": "mm_vegetation_tree104.webp"
+    },
+    "spr_mm_tree_vegetation10_5": {
+      "mesh": "mm_vegetation_tree104",
+      "image": "mm_vegetation_tree104.webp"
+    },
+    "spr_mm_tree_vegetation10_6": {
+      "mesh": "mm_vegetation_tree106",
+      "image": "mm_vegetation_tree106.webp"
+    },
+    "spr_mm_tree_vegetation10_7": {
+      "mesh": "mm_vegetation_tree107",
+      "image": "mm_vegetation_tree107.webp"
+    },
+    "spr_mm_tree_vegetation10_8": {
+      "mesh": "mm_vegetation_tree108",
+      "image": "mm_vegetation_tree108.webp"
+    },
+    "spr_mm_tree_vegetation10_9": {
+      "mesh": "mm_vegetation_tree109",
+      "image": "mm_vegetation_tree109.webp"
+    },
+    "spr_mm_tree_vegetation11": {
+      "mesh": "mm_vegetation_tree11",
+      "image": "mm_vegetation_tree11.webp"
+    },
+    "spr_mm_tree_vegetation11_1": {
+      "mesh": "mm_vegetation_tree111",
+      "image": "mm_vegetation_tree111.webp"
+    },
+    "spr_mm_tree_vegetation11_10": {
+      "mesh": "mm_vegetation_tree1110",
+      "image": "mm_vegetation_tree1110.webp"
+    },
+    "spr_mm_tree_vegetation11_11": {
+      "mesh": "mm_vegetation_tree1111",
+      "image": "mm_vegetation_tree1111.webp"
+    },
+    "spr_mm_tree_vegetation11_12": {
+      "mesh": "mm_vegetation_tree1112",
+      "image": "mm_vegetation_tree1112.webp"
+    },
+    "spr_mm_tree_vegetation11_14": {
+      "mesh": "mm_vegetation_tree1114",
+      "image": "mm_vegetation_tree1114.webp"
+    },
+    "spr_mm_tree_vegetation11_15": {
+      "mesh": "mm_vegetation_tree1115",
+      "image": "mm_vegetation_tree1115.webp"
+    },
+    "spr_mm_tree_vegetation11_2": {
+      "mesh": "mm_vegetation_tree112",
+      "image": "mm_vegetation_tree112.webp"
+    },
+    "spr_mm_tree_vegetation11_3": {
+      "mesh": "mm_vegetation_tree113",
+      "image": "mm_vegetation_tree113.webp"
+    },
+    "spr_mm_tree_vegetation11_4": {
+      "mesh": "mm_vegetation_tree114",
+      "image": "mm_vegetation_tree114.webp"
+    },
+    "spr_mm_tree_vegetation11_5": {
+      "mesh": "mm_vegetation_tree114",
+      "image": "mm_vegetation_tree114.webp"
+    },
+    "spr_mm_tree_vegetation11_6": {
+      "mesh": "mm_vegetation_tree116",
+      "image": "mm_vegetation_tree116.webp"
+    },
+    "spr_mm_tree_vegetation11_7": {
+      "mesh": "mm_vegetation_tree117",
+      "image": "mm_vegetation_tree117.webp"
+    },
+    "spr_mm_tree_vegetation11_8": {
+      "mesh": "mm_vegetation_tree118",
+      "image": "mm_vegetation_tree118.webp"
+    },
+    "spr_mm_tree_vegetation11_9": {
+      "mesh": "mm_vegetation_tree119",
+      "image": "mm_vegetation_tree119.webp"
+    },
+    "spr_mm_tree_vegetation12": {
+      "mesh": "mm_vegetation_tree12",
+      "image": "mm_vegetation_tree12.webp"
+    },
+    "spr_mm_tree_vegetation14": {
+      "mesh": "mm_vegetation_tree14",
+      "image": "mm_vegetation_tree14.webp"
+    },
+    "spr_mm_tree_vegetation15": {
+      "mesh": "mm_vegetation_tree15",
+      "image": "mm_vegetation_tree15.webp"
+    },
+    "spr_mm_tree_vegetation2": {
+      "mesh": "mm_vegetation_tree2",
+      "image": "mm_vegetation_tree2.webp"
+    },
+    "spr_mm_tree_vegetation2_1": {
+      "mesh": "mm_vegetation_tree21",
+      "image": "mm_vegetation_tree21.webp"
+    },
+    "spr_mm_tree_vegetation2_10": {
+      "mesh": "mm_vegetation_tree210",
+      "image": "mm_vegetation_tree210.webp"
+    },
+    "spr_mm_tree_vegetation2_11": {
+      "mesh": "mm_vegetation_tree211",
+      "image": "mm_vegetation_tree211.webp"
+    },
+    "spr_mm_tree_vegetation2_12": {
+      "mesh": "mm_vegetation_tree212",
+      "image": "mm_vegetation_tree212.webp"
+    },
+    "spr_mm_tree_vegetation2_14": {
+      "mesh": "mm_vegetation_tree214",
+      "image": "mm_vegetation_tree214.webp"
+    },
+    "spr_mm_tree_vegetation2_15": {
+      "mesh": "mm_vegetation_tree215",
+      "image": "mm_vegetation_tree215.webp"
+    },
+    "spr_mm_tree_vegetation2_2": {
+      "mesh": "mm_vegetation_tree22",
+      "image": "mm_vegetation_tree22.webp"
+    },
+    "spr_mm_tree_vegetation2_3": {
+      "mesh": "mm_vegetation_tree23",
+      "image": "mm_vegetation_tree23.webp"
+    },
+    "spr_mm_tree_vegetation2_4": {
+      "mesh": "mm_vegetation_tree24",
+      "image": "mm_vegetation_tree24.webp"
+    },
+    "spr_mm_tree_vegetation2_5": {
+      "mesh": "mm_vegetation_tree25",
+      "image": "mm_vegetation_tree25.webp"
+    },
+    "spr_mm_tree_vegetation2_6": {
+      "mesh": "mm_vegetation_tree26",
+      "image": "mm_vegetation_tree26.webp"
+    },
+    "spr_mm_tree_vegetation2_7": {
+      "mesh": "mm_vegetation_tree27",
+      "image": "mm_vegetation_tree27.webp"
+    },
+    "spr_mm_tree_vegetation2_8": {
+      "mesh": "mm_vegetation_tree28",
+      "image": "mm_vegetation_tree28.webp"
+    },
+    "spr_mm_tree_vegetation2_9": {
+      "mesh": "mm_vegetation_tree29",
+      "image": "mm_vegetation_tree29.webp"
+    },
+    "spr_mm_tree_vegetation3": {
+      "mesh": "mm_vegetation_tree3",
+      "image": "mm_vegetation_tree3.webp"
+    },
+    "spr_mm_tree_vegetation3_1": {
+      "mesh": "mm_vegetation_tree31",
+      "image": "mm_vegetation_tree31.webp"
+    },
+    "spr_mm_tree_vegetation3_10": {
+      "mesh": "mm_vegetation_tree310",
+      "image": "mm_vegetation_tree310.webp"
+    },
+    "spr_mm_tree_vegetation3_11": {
+      "mesh": "mm_vegetation_tree311",
+      "image": "mm_vegetation_tree311.webp"
+    },
+    "spr_mm_tree_vegetation3_12": {
+      "mesh": "mm_vegetation_tree312",
+      "image": "mm_vegetation_tree312.webp"
+    },
+    "spr_mm_tree_vegetation3_14": {
+      "mesh": "mm_vegetation_tree314",
+      "image": "mm_vegetation_tree314.webp"
+    },
+    "spr_mm_tree_vegetation3_15": {
+      "mesh": "mm_vegetation_tree315",
+      "image": "mm_vegetation_tree315.webp"
+    },
+    "spr_mm_tree_vegetation3_2": {
+      "mesh": "mm_vegetation_tree32",
+      "image": "mm_vegetation_tree32.webp"
+    },
+    "spr_mm_tree_vegetation3_3": {
+      "mesh": "mm_vegetation_tree33",
+      "image": "mm_vegetation_tree33.webp"
+    },
+    "spr_mm_tree_vegetation3_4": {
+      "mesh": "mm_vegetation_tree34",
+      "image": "mm_vegetation_tree34.webp"
+    },
+    "spr_mm_tree_vegetation3_5": {
+      "mesh": "mm_vegetation_tree35",
+      "image": "mm_vegetation_tree35.webp"
+    },
+    "spr_mm_tree_vegetation3_6": {
+      "mesh": "mm_vegetation_tree36",
+      "image": "mm_vegetation_tree36.webp"
+    },
+    "spr_mm_tree_vegetation3_7": {
+      "mesh": "mm_vegetation_tree37",
+      "image": "mm_vegetation_tree37.webp"
+    },
+    "spr_mm_tree_vegetation3_8": {
+      "mesh": "mm_vegetation_tree38",
+      "image": "mm_vegetation_tree38.webp"
+    },
+    "spr_mm_tree_vegetation3_9": {
+      "mesh": "mm_vegetation_tree39",
+      "image": "mm_vegetation_tree39.webp"
+    },
+    "spr_mm_tree_vegetation4": {
+      "mesh": "mm_vegetation_tree4",
+      "image": "mm_vegetation_tree4.webp"
+    },
+    "spr_mm_tree_vegetation5": {
+      "mesh": "mm_vegetation_tree5",
+      "image": "mm_vegetation_tree5.webp"
+    },
+    "spr_mm_tree_vegetation6": {
+      "mesh": "mm_vegetation_tree6",
+      "image": "mm_vegetation_tree6.webp"
+    },
+    "spr_mm_tree_vegetation7": {
+      "mesh": "mm_vegetation_tree7",
+      "image": "mm_vegetation_tree7.webp"
+    },
+    "spr_mm_tree_vegetation7_1": {
+      "mesh": "mm_vegetation_tree71",
+      "image": "mm_vegetation_tree71.webp"
+    },
+    "spr_mm_tree_vegetation7_10": {
+      "mesh": "mm_vegetation_tree710",
+      "image": "mm_vegetation_tree710.webp"
+    },
+    "spr_mm_tree_vegetation7_11": {
+      "mesh": "mm_vegetation_tree711",
+      "image": "mm_vegetation_tree711.webp"
+    },
+    "spr_mm_tree_vegetation7_12": {
+      "mesh": "mm_vegetation_tree712",
+      "image": "mm_vegetation_tree712.webp"
+    },
+    "spr_mm_tree_vegetation7_14": {
+      "mesh": "mm_vegetation_tree714",
+      "image": "mm_vegetation_tree714.webp"
+    },
+    "spr_mm_tree_vegetation7_15": {
+      "mesh": "mm_vegetation_tree715",
+      "image": "mm_vegetation_tree715.webp"
+    },
+    "spr_mm_tree_vegetation7_2": {
+      "mesh": "mm_vegetation_tree72",
+      "image": "mm_vegetation_tree72.webp"
+    },
+    "spr_mm_tree_vegetation7_3": {
+      "mesh": "mm_vegetation_tree73",
+      "image": "mm_vegetation_tree73.webp"
+    },
+    "spr_mm_tree_vegetation7_4": {
+      "mesh": "mm_vegetation_tree74",
+      "image": "mm_vegetation_tree74.webp"
+    },
+    "spr_mm_tree_vegetation7_5": {
+      "mesh": "mm_vegetation_tree75",
+      "image": "mm_vegetation_tree75.webp"
+    },
+    "spr_mm_tree_vegetation7_6": {
+      "mesh": "mm_vegetation_tree76",
+      "image": "mm_vegetation_tree76.webp"
+    },
+    "spr_mm_tree_vegetation7_7": {
+      "mesh": "mm_vegetation_tree77",
+      "image": "mm_vegetation_tree77.webp"
+    },
+    "spr_mm_tree_vegetation7_8": {
+      "mesh": "mm_vegetation_tree78",
+      "image": "mm_vegetation_tree78.webp"
+    },
+    "spr_mm_tree_vegetation7_9": {
+      "mesh": "mm_vegetation_tree79",
+      "image": "mm_vegetation_tree79.webp"
+    },
+    "spr_mm_tree_vegetation8": {
+      "mesh": "mm_vegetation_tree8",
+      "image": "mm_vegetation_tree8.webp"
+    },
+    "spr_mm_tree_vegetation8_1": {
+      "mesh": "mm_vegetation_tree81",
+      "image": "mm_vegetation_tree81.webp"
+    },
+    "spr_mm_tree_vegetation8_10": {
+      "mesh": "mm_vegetation_tree810",
+      "image": "mm_vegetation_tree810.webp"
+    },
+    "spr_mm_tree_vegetation8_11": {
+      "mesh": "mm_vegetation_tree811",
+      "image": "mm_vegetation_tree811.webp"
+    },
+    "spr_mm_tree_vegetation8_12": {
+      "mesh": "mm_vegetation_tree812",
+      "image": "mm_vegetation_tree812.webp"
+    },
+    "spr_mm_tree_vegetation8_14": {
+      "mesh": "mm_vegetation_tree814",
+      "image": "mm_vegetation_tree814.webp"
+    },
+    "spr_mm_tree_vegetation8_15": {
+      "mesh": "mm_vegetation_tree815",
+      "image": "mm_vegetation_tree815.webp"
+    },
+    "spr_mm_tree_vegetation8_2": {
+      "mesh": "mm_vegetation_tree82",
+      "image": "mm_vegetation_tree82.webp"
+    },
+    "spr_mm_tree_vegetation8_3": {
+      "mesh": "mm_vegetation_tree83",
+      "image": "mm_vegetation_tree83.webp"
+    },
+    "spr_mm_tree_vegetation8_4": {
+      "mesh": "mm_vegetation_tree84",
+      "image": "mm_vegetation_tree84.webp"
+    },
+    "spr_mm_tree_vegetation8_5": {
+      "mesh": "mm_vegetation_tree85",
+      "image": "mm_vegetation_tree85.webp"
+    },
+    "spr_mm_tree_vegetation8_6": {
+      "mesh": "mm_vegetation_tree86",
+      "image": "mm_vegetation_tree86.webp"
+    },
+    "spr_mm_tree_vegetation8_7": {
+      "mesh": "mm_vegetation_tree87",
+      "image": "mm_vegetation_tree87.webp"
+    },
+    "spr_mm_tree_vegetation8_8": {
+      "mesh": "mm_vegetation_tree88",
+      "image": "mm_vegetation_tree88.webp"
+    },
+    "spr_mm_tree_vegetation8_9": {
+      "mesh": "mm_vegetation_tree89",
+      "image": "mm_vegetation_tree89.webp"
+    },
+    "spr_mm_tree_vegetation9": {
+      "mesh": "mm_vegetation_tree9",
+      "image": "mm_vegetation_tree9.webp"
+    },
+    "spr_mm_tree_vegetation9_1": {
+      "mesh": "mm_vegetation_tree91",
+      "image": "mm_vegetation_tree91.webp"
+    },
+    "spr_mm_tree_vegetation9_10": {
+      "mesh": "mm_vegetation_tree910",
+      "image": "mm_vegetation_tree910.webp"
+    },
+    "spr_mm_tree_vegetation9_11": {
+      "mesh": "mm_vegetation_tree911",
+      "image": "mm_vegetation_tree911.webp"
+    },
+    "spr_mm_tree_vegetation9_12": {
+      "mesh": "mm_vegetation_tree912",
+      "image": "mm_vegetation_tree912.webp"
+    },
+    "spr_mm_tree_vegetation9_14": {
+      "mesh": "mm_vegetation_tree914",
+      "image": "mm_vegetation_tree914.webp"
+    },
+    "spr_mm_tree_vegetation9_15": {
+      "mesh": "mm_vegetation_tree915",
+      "image": "mm_vegetation_tree915.webp"
+    },
+    "spr_mm_tree_vegetation9_2": {
+      "mesh": "mm_vegetation_tree92",
+      "image": "mm_vegetation_tree92.webp"
+    },
+    "spr_mm_tree_vegetation9_3": {
+      "mesh": "mm_vegetation_tree93",
+      "image": "mm_vegetation_tree93.webp"
+    },
+    "spr_mm_tree_vegetation9_4": {
+      "mesh": "mm_vegetation_tree94",
+      "image": "mm_vegetation_tree94.webp"
+    },
+    "spr_mm_tree_vegetation9_5": {
+      "mesh": "mm_vegetation_tree95",
+      "image": "mm_vegetation_tree95.webp"
+    },
+    "spr_mm_tree_vegetation9_6": {
+      "mesh": "mm_vegetation_tree96",
+      "image": "mm_vegetation_tree96.webp"
+    },
+    "spr_mm_tree_vegetation9_7": {
+      "mesh": "mm_vegetation_tree97",
+      "image": "mm_vegetation_tree97.webp"
+    },
+    "spr_mm_tree_vegetation9_8": {
+      "mesh": "mm_vegetation_tree98",
+      "image": "mm_vegetation_tree98.webp"
+    },
+    "spr_mm_tree_vegetation9_9": {
+      "mesh": "mm_vegetation_tree99",
+      "image": "mm_vegetation_tree99.webp"
+    },
+    "spr_mm_tree_winter1": {
+      "mesh": "mm_winter_tree",
+      "image": "mm_winter_tree.webp"
+    },
+    "spr_mm_tree_winter2": {
+      "mesh": "mm_winter_tree1",
+      "image": "mm_winter_tree1.webp"
+    },
+    "spr_mm_tree_winter11": {
+      "mesh": "mm_winter_tree10",
+      "image": "mm_winter_tree10.webp"
+    },
+    "spr_mm_tree_winter12": {
+      "mesh": "mm_winter_tree11",
+      "image": "mm_winter_tree11.webp"
+    },
+    "spr_mm_tree_winter13": {
+      "mesh": "mm_winter_tree12",
+      "image": "mm_winter_tree12.webp"
+    },
+    "spr_mm_tree_winter14": {
+      "mesh": "mm_winter_tree13",
+      "image": "mm_winter_tree13.webp"
+    },
+    "spr_mm_tree_winter15": {
+      "mesh": "mm_winter_tree14",
+      "image": "mm_winter_tree14.webp"
+    },
+    "spr_mm_tree_winter16": {
+      "mesh": "mm_winter_tree15",
+      "image": "mm_winter_tree15.webp"
+    },
+    "spr_mm_tree_winter3": {
+      "mesh": "mm_winter_tree2",
+      "image": "mm_winter_tree2.webp"
+    },
+    "spr_mm_tree_winter4": {
+      "mesh": "mm_winter_tree3",
+      "image": "mm_winter_tree3.webp"
+    },
+    "spr_mm_tree_winter5": {
+      "mesh": "mm_winter_tree4",
+      "image": "mm_winter_tree4.webp"
+    },
+    "spr_mm_tree_winter6": {
+      "mesh": "mm_winter_tree5",
+      "image": "mm_winter_tree5.webp"
+    },
+    "spr_mm_tree_winter7": {
+      "mesh": "mm_winter_tree6",
+      "image": "mm_winter_tree6.webp"
+    },
+    "spr_mm_tree_winter8": {
+      "mesh": "mm_winter_tree7",
+      "image": "mm_winter_tree7.webp"
+    },
+    "spr_mm_tree_winter9": {
+      "mesh": "mm_winter_tree8",
+      "image": "mm_winter_tree8.webp"
+    },
+    "spr_mm_tree_winter10": {
+      "mesh": "mm_winter_tree9",
+      "image": "mm_winter_tree9.webp"
+    },
+    "spr_mm_tree_palm4": {
+      "mesh": "palmb_10",
+      "image": "palmb_10.webp"
+    },
+    "spr_mm_tree_palm5": {
+      "mesh": "palmb_11",
+      "image": "palmb_11.webp"
+    },
+    "spr_mm_tree_palm6": {
+      "mesh": "palmb_12",
+      "image": "palmb_12.webp"
+    },
+    "spr_mm_tree_palm1": {
+      "mesh": "palmb_7",
+      "image": "palmb_7.webp"
+    },
+    "spr_mm_tree_palm2": {
+      "mesh": "palmb_8",
+      "image": "palmb_8.webp"
+    },
+    "spr_mm_tree_palm3": {
+      "mesh": "palmb_9",
+      "image": "palmb_9.webp"
+    },
+    "spr_flora_roses": {
+      "mesh": "roses",
+      "image": "roses.webp"
+    }
+  }
+}

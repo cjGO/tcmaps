@@ -9,14 +9,15 @@ from weatherize_selected_rotation import BIOME_MASK, SAVED_BIOME_CYCLE
 BIOMES = {name: (region, outer) for name, region, outer in SAVED_BIOME_CYCLE
           if name != 'steppe_forest'}
 BIOMES['steppe'] = (2, 'outer_terrain_steppe')
-FOG = {'low': 600, 'medium': 450, 'dense': 300}
+# An explicit zero-distance prop overrides source fog and desert/thunder defaults.
+FOG = {'none': 0, 'low': 600, 'medium': 450, 'dense': 300}
 DEFAULTS = dict(biome='source', fog='source', precipitation='source',
                 precipitation_intensity=10, thunder='source', thunder_frequency=50)
 
 
 def validate_settings(document):
     version = document.get('version')
-    if type(version) is not int or version not in (1, 2):
+    if type(version) is not int or version not in (1, 2, 3):
         raise ValueError('Unsupported placement document version')
     if version == 1:
         if 'settings' in document:

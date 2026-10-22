@@ -14,6 +14,8 @@ from engine import probe, replay_objects, verify_replay
 from environment import DEFAULTS, apply_environment, validate_settings
 from helpers import EDITOR_ROOT, MODULE_ROOT, checksum, parse_spawns, read_entries
 from rendering import calibrated_heatmap, editor_html
+from spawns import editable_spawns, validate_spawns
+from spawn_variants import replace_spawns
 
 
 def timestamp():
@@ -62,6 +64,7 @@ def prepare(args):
     calibration = calibrated_heatmap(data, folder / 'heatmap.png')
     verify_source(source)
     project = dict(version=1, source=source, bounds=data['bounds'], calibration=calibration,
+                   default_spawn_points=data['spawn_points'],
                    assets=assets, asset_catalogue_sha256=checksum(MODULE_ROOT / 'scene_props.txt'),
                    flora_catalogue_sha256=checksum(MODULE_ROOT / 'Data/flora_kinds.txt'),
                    height_data_sha256=checksum(folder / 'height_data.json'),
@@ -91,6 +94,9 @@ def load_project(folder):
         raise ValueError('Module flora definitions changed; prepare a new project')
     data = read_json(folder / 'height_data.json')
     validate_height_data(data)
+    if project.get('default_spawn_points', data['spawn_points']) != data['spawn_points']:
+        raise ValueError('Project spawn defaults differ from verified measurements')
+    project.setdefault('default_spawn_points', data['spawn_points'])
     if data['bounds'] != project['bounds'] or data['terrain_code'] != project['source']['terrain_code']:
         raise ValueError('Project terrain metadata mismatch')
     assets = asset_catalogue(MODULE_ROOT / 'scene_props.txt')
@@ -105,6 +111,9 @@ def build(args):
     document = read_json(args.placements)
     placements = validate_placements(document, project['source'], data['bounds'], assets)
     settings = validate_settings(document)
+    defaults = data['spawn_points']
+    spawn_points = validate_spawns(document, defaults, data['bounds'])
+    spawns_changed = spawn_points != editable_spawns(defaults)
     flora_sha256 = checksum(MODULE_ROOT / 'Data/flora_kinds.txt')
     assets = native_flora_assets(assets, MODULE_ROOT / 'Data/flora_kinds.txt')
     output = new_directory(args.output or folder / 'builds' / timestamp())
@@ -123,7 +132,10 @@ def build(args):
     probe_source['sco_path'] = str(probe_input)
     grid_size = data['grid_size'] if biome_changed else 2
     bounds, samples, heights, ground_logs = probe(probe_source, recipe, output / 'ground_probe', grid_size,
-                                                args.timeout, args.windows_python, placements)
+                                                args.timeout, args.windows_python, placements + (spawn_points if spawns_changed else []))
+    placement_heights = heights[:len(placements)]
+    spawn_heights = heights[len(placements):]
+    heights = placement_heights
     if biome_changed:
         if bounds != data['bounds']:
             raise ValueError('Biome change altered map bounds')
@@ -134,6 +146,16 @@ def build(args):
         validate_height_data(data)
     else:
         verify_replay(data, bounds, samples)
+    if spawns_changed:
+        if len(spawn_heights) != 2:
+            raise ValueError('Missing exact spawn ground heights')
+        resolved_spawns = [dict(p, z_m=z) for p, z in zip(spawn_points, spawn_heights)]
+        base = replace_spawns(base, resolved_spawns)
+        lines = recipe.splitlines()
+        fields = lines[0].split(); fields[2] = '256'
+        lines[0] = ' '.join(fields)
+        recipe = '\n'.join(lines) + '\n'
+        data = dict(data, spawn_points=resolved_spawns)
     edited = append_vegetation(base, placements, heights, assets)
     name = project['source']['scene_id']
     sco = stage / (name + '.sco')
@@ -153,12 +175,16 @@ def build(args):
     verify_source(project['source'])
     if checksum(MODULE_ROOT / 'Data/flora_kinds.txt') != flora_sha256:
         raise ValueError('Flora definitions changed during build')
-    write_json(stage / 'placements.json', placement_document(project['source'], placements, settings))
+    saved_document = placement_document(project['source'], placements, settings)
+    if document['version'] == 3:
+        saved_document.update(version=3, default_spawn_points=defaults, spawn_points=spawn_points)
+    write_json(stage / 'placements.json', saved_document)
     write_json(stage / 'height_data.json', dict(data, source_sco_sha256=digest(edited),
                                                source_recipe_sha256=digest(recipe.encode('ascii'))))
     calibrated_heatmap(data, stage / 'preview.png', placements)
     write_json(stage / 'manifest.json', dict(
         version=1, source=project['source'], placement_count=len(placements),
+        default_spawn_points=defaults, spawn_points=data['spawn_points'], spawns_changed=spawns_changed,
         settings=settings, output_terrain_code=terrain_code, output_outer_terrain=recipe.splitlines()[3].strip(),
         weather_overrides=weather, terrain_remeasured=biome_changed,
         vegetation_encoding='native_flora_v1', flora_catalogue_sha256=flora_sha256,

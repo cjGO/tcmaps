@@ -4,14 +4,16 @@
   const C = MapCoordinates, $ = id => document.getElementById(id);
   const svg = $('overlay'), NS = 'http://www.w3.org/2000/svg';
   const assets = new Map(project.assets.map(a=>[a.name,a]));
+  let previewRequest = 0;
   let points = [], selected = null, mode = 'place', dirty = false, drag = null;
   let settings = {...C.defaults};
+  let spawns = C.editableSpawns(project);
   const undo = [], redo = [];
-  const snapshot = () => JSON.stringify({points,settings});
-  const documentData = () => ({version:2, source:project.source, placements:points, settings});
+  const snapshot = () => JSON.stringify({points,settings,spawns});
+  const documentData = () => ({version:3, source:project.source, placements:points, settings, default_spawn_points:project.default_spawn_points, spawn_points:spawns});
   function status(message, error=false) { $('status').textContent=message; $('status').classList.toggle('error',error); }
   function remember(before=snapshot()) { undo.push(before); if(undo.length>100) undo.shift(); redo.length=0; dirty=true; }
-  function restore(value) { const state=JSON.parse(value); points=state.points; settings=state.settings; }
+  function restore(value) { const state=JSON.parse(value); points=state.points; settings=state.settings; spawns=state.spawns; }
   function settingsControls() {
     for(const [key,value] of Object.entries(settings)) $(key).value=value;
     $('precipitation_intensity').disabled=!['rain','snow'].includes(settings.precipitation);
@@ -39,6 +41,16 @@
   function assetInfo() {
     const a=assets.get($('asset').value);
     $('asset-info').textContent=a ? `${a.group} · ${a.collision?'Collision mesh defined':'No collision mesh'} · Origin offset 0 m (unverified)` : 'No matching assets.';
+    const token=++previewRequest, container=$('asset-preview-image');
+    $('asset-preview-caption').textContent=a ? a.label : 'No asset selected';
+    container.textContent=a ? (a.preview ? 'Loading preview…' : 'Preview unavailable for this asset.') : 'No matching assets.';
+    if(!a?.preview) return;
+    const image=new Image();
+    image.alt=`${a.label} — textured model preview`;
+    image.width=320; image.height=320;
+    image.onload=()=>{if(token===previewRequest) container.replaceChildren(image);};
+    image.onerror=()=>{if(token===previewRequest) container.textContent='Preview unavailable for this asset.';};
+    image.src=a.preview;
   }
   function choose(id) {
     selected=id;
@@ -57,6 +69,15 @@
   function draw() {
     svg.replaceChildren();
     const c=project.calibration, factor=c.width_px/(svg.getBoundingClientRect().width||c.width_px);
+    for(const p of spawns) {
+      const {u,v}=C.worldToImage(p.x_m,p.y_m,c), x=u*c.width_px, y=v*c.height_px;
+      const group=element('g',{'data-spawn':p.team,class:'spawn-point'});
+      group.appendChild(element('circle',{cx:x,cy:y,r:11*factor,fill:p.team===0?'#004bba':'#b51629',stroke:'white','stroke-width':2*factor}));
+      const label=element('text',{x,y:y+4*factor,'text-anchor':'middle','font-size':12*factor,fill:'white','pointer-events':'none'});
+      label.textContent=String(p.team+1); group.appendChild(label);
+      const title=element('title',{}); title.textContent=`Team ${p.team+1} · Entry ${p.entry}: ${p.x_m}, ${p.y_m} m (drag to edit)`; group.appendChild(title);
+      svg.appendChild(group);
+    }
     for(const [i,p] of points.entries()) {
       const {u,v}=C.worldToImage(p.x_m,p.y_m,c), x=u*c.width_px, y=v*c.height_px;
       const group=element('g',{'data-id':p.id,class:'point'});
@@ -72,6 +93,9 @@
   }
   function render() {
     draw(); settingsControls();
+    const team=Number($('spawn-team').value), spawn=spawns[team], original=project.default_spawn_points?.[team];
+    $('spawn-x').value=spawn?.x_m ?? ''; $('spawn-y').value=spawn?.y_m ?? '';
+    $('spawn-default').textContent=original ? `Original: X ${original.x_m.toFixed(3)} · Y ${original.y_m.toFixed(3)} · Z ${original.z_m.toFixed(3)} m` : 'Spawn defaults unavailable.';
     const p=current();
     $('selection').textContent=p ? `${points.indexOf(p)+1}. ${assets.get(p.asset).label}` : 'No point selected';
     for(const axis of ['x','y']) { $(axis).disabled=!p; $(axis).value=p?p[axis+'_m']:''; }
@@ -88,6 +112,13 @@
   }
   svg.addEventListener('pointerdown', event=>{
     if(event.button!==0) return;
+    const spawnMarker=event.target.closest('[data-spawn]');
+    if(spawnMarker) {
+      const team=Number(spawnMarker.getAttribute('data-spawn'));
+      $('spawn-team').value=team; choose(null);
+      drag={team,before:snapshot(),pointer:event.pointerId};
+      svg.setPointerCapture(event.pointerId); event.preventDefault(); return;
+    }
     const marker=event.target.closest('[data-id]');
     if(marker) {
       choose(marker.getAttribute('data-id'));
@@ -106,7 +137,12 @@
     const point=pointAt(event);
     $('coordinates').textContent=`X ${point.x_m.toFixed(3)} · Y ${point.y_m.toFixed(3)} m`;
     if(!drag || event.pointerId!==drag.pointer) return;
-    if(C.inside(point.x_m,point.y_m,project.bounds)) { Object.assign(current(),point); draw(); $('x').value=point.x_m; $('y').value=point.y_m; }
+    if(C.inside(point.x_m,point.y_m,project.bounds)) {
+      if(drag.team!==undefined) {
+        const candidate=spawns.map(p=>p.team===drag.team?{...p,...point}:p);
+        try { C.validateSpawns({...documentData(),spawn_points:candidate},project); spawns=candidate; render(); } catch(error) {status(error.message,true);}
+      } else { Object.assign(current(),point); draw(); $('x').value=point.x_m; $('y').value=point.y_m; }
+    }
   });
   function finishDrag(event) {
     if(!drag || event.pointerId!==drag.pointer) return;
@@ -122,6 +158,13 @@
       remember(); settings=candidate; render(); status('Map settings updated. Save your loadout to include them in the build.');
     } catch(error) { settingsControls(); status(error.message,true); }
   });
+  $('spawn-team').addEventListener('change',render);
+  for(const axis of ['x','y']) $('spawn-'+axis).addEventListener('change',()=>{
+    const team=Number($('spawn-team').value), candidate=spawns.map(p=>p.team===team?{...p,[axis+'_m']:Number($('spawn-'+axis).value)}:p);
+    try { C.validateSpawns({...documentData(),spawn_points:candidate},project); remember(); spawns=candidate; render(); status('Team spawn updated. Save your loadout JSON to keep it.'); }
+    catch(error) {render(); status(error.message,true);}
+  });
+  $('spawn-reset').addEventListener('click',()=>{remember(); spawns=C.editableSpawns(project); render(); status('Both team spawns reset to the original defaults.');});
   $('search').addEventListener('input',assetOptions);
   $('asset').addEventListener('change',()=>{assetInfo(); if(current()) changeSelected({asset:$('asset').value});});
   for(const [id,key] of [['yaw','yaw_deg'],['scale','scale'],['x','x_m'],['y','y_m']])
@@ -146,7 +189,7 @@
       const blob=new Blob([JSON.stringify(documentData(),null,2)+'\n'],{type:'application/json'});
       const url=URL.createObjectURL(blob), link=document.createElement('a');
       link.href=url; link.download=project.source.scene_id+'.placements.json'; link.click();
-      setTimeout(()=>URL.revokeObjectURL(url),1000); dirty=false; status('Map loadout downloaded. Build applies vegetation, biome and weather settings.');
+      setTimeout(()=>URL.revokeObjectURL(url),1000); dirty=false; status('Map loadout downloaded. Build applies vegetation, biome, weather and team spawn settings.');
     } catch(error) {status(error.message,true);}
   });
   $('import').addEventListener('click',()=>$('file').click());
@@ -156,7 +199,7 @@
       if(file.size>10*1024*1024) throw new Error('Placement file is too large.');
       const document=JSON.parse(await file.text());
       const imported=C.validate(document,project), importedSettings=C.validateSettings(document);
-      remember(); points=imported; settings=importedSettings; choose(null); status('Loadout loaded. Undo restores your previous points and map settings.');
+      remember(); points=imported; settings=importedSettings; spawns=C.validateSpawns(document,project); choose(null); status('Loadout loaded. Undo restores your previous points, spawns and map settings.');
     } catch(error) {status(error.message,true);} finally {$('file').value='';}
   });
   document.addEventListener('keydown',event=>{

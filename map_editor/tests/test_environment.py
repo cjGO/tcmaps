@@ -36,7 +36,7 @@ class EnvironmentTests(unittest.TestCase):
                        dict(thunder=True),dict(thunder_frequency=0),dict(thunder_frequency=101),dict(thunder_frequency=1.5),dict(extra=1)]:
             with self.subTest(update=update),self.assertRaises(ValueError):
                 validate_settings(dict(doc,settings=dict(settings,**update)))
-        for bad in [dict(legacy,settings=settings),dict(doc,settings={}),dict(doc,version=3),dict(doc,version=True)]:
+        for bad in [dict(legacy,settings=settings),dict(doc,settings={}),dict(doc,version=4),dict(doc,version=True)]:
             with self.assertRaises(ValueError):validate_settings(bad)
 
     def test_keep_source_is_byte_identical(self):
@@ -44,7 +44,9 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual((sco,recipe,weather),(self.original,self.recipe,[]))
 
     def test_fog_levels_replace_duplicates_and_preserve_all_other_records(self):
-        for level,distance in [('low',600),('medium',450),('dense',300)]:
+        for level,distance in [('none',0),('low',600),('medium',450),('dense',300)]:
+            settings=dict(DEFAULTS,fog=level)
+            self.assertEqual(validate_settings(placement_document({},[],settings)),settings)
             sco,recipe,weather=self.apply(fog=level)
             objects,tail=split_objects(sco)
             self.assertEqual([r for k,p,r in objects if p!=506], [r for k,p,r in split_objects(self.original)[0] if p!=506])

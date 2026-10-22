@@ -1,4 +1,5 @@
 import editorMaps from '../lib/editor-maps.json';
+import assetPreviews from '../lib/editor-asset-previews.json';
 import template from '../map_editor/web/index.html?raw';
 import styles from '../map_editor/web/style.css?raw';
 import coordinates from '../map_editor/web/coordinates.js?raw';
@@ -14,7 +15,7 @@ export function setupEditor(selectTab) {
 
   async function open(id = current || editorMaps[0]?.id) {
     const map = editorMaps.find(map => map.id === id);
-    if (!map) { $('editor-state').textContent = 'No GOODMAPS are available to edit.'; return; }
+    if (!map) { $('editor-state').textContent = 'No registered rotation maps are available to edit.'; return; }
     current = id;
     $('editor-map').value = id;
     const token = ++request;
@@ -35,6 +36,10 @@ export function setupEditor(selectTab) {
       if (!response.ok) throw new Error('Project could not load');
       const project = await response.json();
       if (token !== request) return;
+      for (const asset of project.assets) {
+        const preview = assetPreviews.assets[asset.name];
+        if (preview?.mesh === asset.mesh) asset.preview = url('editor-assets/' + preview.image);
+      }
       const frame = document.createElement('iframe');
       frame.className = 'map-editor-frame';
       frame.title = 'Map editor — ' + map.filename;
