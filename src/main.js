@@ -7,6 +7,7 @@ import roundStatsCsv from '../map_round_stats.csv?raw';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
 import { setupEditor } from './editor.js';
+import { setupTopology } from './rotation-topology.js';
 inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
 const $ = id => document.getElementById(id);
@@ -131,6 +132,7 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
 const tabs = ['rotation', 'review', 'good', 'bad', 'server', 'editor'];
 const editor = setupEditor(selectTab);
+const topology = setupTopology();
 $('rotation-edit').addEventListener('click', () => editor.edit(collections.rotation.images[collections.rotation.index]?.filename));
 let activeTab = 'rotation';
 function renderCollection(name) {
@@ -158,6 +160,7 @@ function renderCollection(name) {
   el('image').style.opacity = '0';
   el('image').alt = entry.filename;
   el('image').src = entry.image;
+  if (name === 'rotation') topology.setMap(entry);
 }
 function moveCollection(name, delta) {
   const collection = collections[name];
@@ -167,11 +170,13 @@ function moveCollection(name, delta) {
 }
 function selectTab(name) {
   activeTab = name;
+  topology.setVisible(name === 'rotation');
   for (const tab of tabs) {
     $(tab + '-tab').setAttribute('aria-selected', String(tab === name));
     $(tab + '-tab').tabIndex = tab === name ? 0 : -1;
     $(tab + '-panel').hidden = tab !== name;
   }
+  editor.setVisible(name === 'editor');
   if (name === 'editor') editor.show();
   $('collection-summary').textContent = name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
 }

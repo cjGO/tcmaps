@@ -2,21 +2,219 @@
   "version": 1,
   "description": "Static textured game models at default scale; fitted to preview.",
   "inputs": {
-    "Resource/materials.brf": "b9163b95fc04eaa5083ec3bb018dce4b9b2477037918731435ffe89269b8c795",
-    "Resource/mmmaterials.brf": "e08a386cc97b7b2ef9af432bd4ea169e4ec4a4e5808dcfa165432ea08bc28493",
-    "Resource/mm_confederate_materials.brf": "8d35da7bb0c34c7226c2a5f41c59acbb62d110444682d93f031c1f3b74ecac93",
-    "Resource/tree_meshes.brf": "7793deea870e902a793aab263f6401dea73aecd732d4fab4e5d54e2d74c67b25",
-    "Resource/town_houses_d.brf": "060f5231ceaaf28e298fd9b427f64eec4d377648148983bc61900932998131b5",
-    "Resource/tree_f.brf": "1f892621f2bca7abe22906e832e903af2450f76095979b912d0bc05425b248e5",
-    "Resource/mmplants.brf": "3a17376de6e45fd8d7cf07e672b5c7a618282bd17aaf2932a5e679ddf7de6394",
-    "Resource/terrain_borders.brf": "9f87c1e27c5d124e0b6bb8f2997543ac4037506eeab8be418a9045d47be2a5fe",
-    "Resource/mm_confederate_uniforms.brf": "77c57d2e54657620f12e3e807637a05e7eaa183bb30613c5797aeadade0ec417",
-    "Textures/mm_big_bark.dds": "06df19e884b2f63f6165c202c6c050c9813dccf293248ba18aef3b0a3b39b2f2",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/module.ini": "9edee090257912cf74bb459cd40aae0aae835d00e4cd97886ac5012030408df2",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/textures_face_gen.brf": "831343c72f481a067eafa2dfeab79a93a8844da6c9b3495ed56348656e776078",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/shaders.brf": "1e2fc54e7322155cfca9ab34264f534cc4bbfd0311012302a00441d9dabc406f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_shaders.brf": "9144e0051dfe25d35099a43d8120655b161f583ae5be02c4ee517e658f5ece3b",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/textures.brf": "6b9b9bc9bf5e2fec07a24386d02ef4a6e2377bf88c09af9dd3342d513407a6ff",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmtextures.brf": "5c49a1c47e83584dc9a51db4d6e65415fd6a542a4ad4c4849a7b63c226df4e15",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_confederate_textures.brf": "30ca376190df73285c08872d146d0f8bd8c0d2ea292ff32fd879bb31f256c67f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/materials.brf": "b9163b95fc04eaa5083ec3bb018dce4b9b2477037918731435ffe89269b8c795",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmmaterials.brf": "e08a386cc97b7b2ef9af432bd4ea169e4ec4a4e5808dcfa165432ea08bc28493",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_confederate_materials.brf": "8d35da7bb0c34c7226c2a5f41c59acbb62d110444682d93f031c1f3b74ecac93",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/materials_face_gen.brf": "9d01be4e1e11006f481084907feb2147ee2bc1df0e55d9bb7f9fc7eec0504272",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/meshes_face_gen.brf": "337ba76c6f125a942b01c99d6f68d79e28f9d08aabdc487605a9f54466b53e95",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/helpers.brf": "ff273829dfa35fa088dcf5a8842dd52b7fd0032935186349dbeaf7276d68544a",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/particle_meshes.brf": "8c5fefbfe686bd10e5bbf6b083bba53495fc18f10546654e2473617d3bdba2d4",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/skeletons.brf": "c832e2314b9aeb4273fc0fc6b9bfee70bb2f977bc5c244a594f378721e79b4fa",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/tree_meshes.brf": "7793deea870e902a793aab263f6401dea73aecd732d4fab4e5d54e2d74c67b25",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/xtree_meshes.brf": "1e2fc54e7322155cfca9ab34264f534cc4bbfd0311012302a00441d9dabc406f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/grass_meshes.brf": "1ebc7d9d6260346fc3e407714c04773660d437a0f7fa3c345c950b206915b023",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/plant_meshes.brf": "aadbbb31beebb57cfbae3e1eb85ed09c209f8c6a004273d85c1da4e67c4ce173",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/body_meshes.brf": "2e5a0268e558040b2570949074171cd0fef50f41a20094a00e0d0dfd05682ce6",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/object_meshes.brf": "0c119376852ac60c072e194c980c46998f333787af3775010cf26462c8c4d55f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/object_bodies.brf": "05166b6f07661c4188424428c85ce4f3608c45d6931c49eb8188fbfbe6736c5e",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/goods_meshes.brf": "392ab87a28d6808baf6dbdc4f966891a7beb138ddce57139efe2d81766bbe472",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/arabian_castle.brf": "e58590d65ffc5789b87a79b257e8f20992c37d3484cb1d845604e8470a0a779e",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/food.brf": "6b7ad43a406b1d02361ea24e4649f79f0e14cf541798567a255a4d0d96fe071b",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/beards.brf": "be779ddcff74f8b3d7a57c6d2d8e35282971126a5348e7dfa050a36fee12a0e3",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/village_houses.brf": "913fff19b8a9c825c9984116f65ff4aaed4c968a547f172817eb6b52fe02ae7a",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/village_houses_a.brf": "a5ceba08f98651bafd1b8f902ed84f8e452097d4a8d0e39cda43aa344aaf19d2",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/interiors_a.brf": "a817bc010a4d3f2c06337a68906fe895483f22052842f93ba8692ab3bf14b8ac",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/interiors_c.brf": "d460fe8e0b743b26369ef76c8267cb5ec07b0818bddd25f33933dd3c9bd60015",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/arena.brf": "29930aaaf58558e9e12cb9abf90e3d47e1070fcf5c90f14e98017d34932beee9",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/castle_a.brf": "521b82ac750e1f70c8356b3ded6f68d18a3fef9eb790f1ec29caa516d9c09395",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/dungeon.brf": "f757d69ad581359126fe9bcd233b741a35c43ada59b96c9d51f113c22d125238",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/snowy_houses.brf": "401a289ded8ea333dfdf4139534b7104d8d442ce95f4f993fae745990606ca01",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/square_keep.brf": "a4e9eadcf266e1b17ce0890f4ba14878245291bf1d8798803d5b5388276aa381",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/xtree_meshes_b.brf": "a4a95619d7ab1f94b240239dc87732df0e5f3fbffb659abcc04387d76742984c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/user_interface_b.brf": "4301d8b0e7530dd1b60d4fbab7586d6053735cb065d233fa7cdb8dee4a560b19",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/user_interface_c.brf": "45e52b57ddf8dd180af4f4527cec61933af90bc283fb5bd9b848b4066d388a78",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/houses1.brf": "614f38f7f99a2d8c00aac593903dc6f2f5230ab0431998f9447f04919c2b9e61",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/wall_meshes1.brf": "83ffa3a7908a018c37e43c6ef7ac617c84ae0f8495e894bc30a645cc031e58ff",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/town_houses.brf": "3c12d5534d79cbfa76e7b98bf70ed40279932e59b2f8ec71a2a3ee8a8ff63489",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/doors.brf": "41097a856e9c0b81e89944ca53dda56fa5a2b609beb6246d1fbacfe153d7750c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/churches.brf": "4b69452f62aa5d04321a1b6220433c4aef45e800c0e6c31975020e537f565c7d",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/town_houses_b.brf": "0e91485d81b48a9ca5057afe051d4a7620761e82ead32dddd6d0a9c1f0ec7bc1",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/castle_c.brf": "9ffd1798cb3d5b54d70b5ea6d8d7f359b796385f58ffd707abe45a07dd83d98d",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/castle_e.brf": "9fe1fef8341a06c422b7567dfaab40d7561dd668bf410ed0f4c367ff2e97893e",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/castle_f.brf": "398093eef3e9505ae8f40f0388309aa45582f6fa50eb7f39837d33369d16e14a",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/castle_g.brf": "8f4a62145ccea7121be730c02f491a06cf1bba8c7b3e795fb95320547ea0cc07",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/castle_h.brf": "e7ea74d15e747409c047d9d64be472a6f8566911f700439a99e5ca4f25ab51fe",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/gatehouse.brf": "120daf6697b8071658dfe6177d409494ff8d2ed9ad596234df8cc4746f595c94",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/viking_houses.brf": "6c7cf8d479b35decc111bdf7464578779275d38b13414d1f8e4d89bc20341bfb",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/town_houses_c.brf": "7613dc8aa3fdb1221087c839c02adab568c116ec98f62ae7b583b535ac779b96",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/banners.brf": "918107938486536976cc6e82609a8b1df203c53953854c4a50ceffac6780bed9",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmparticles.brf": "2faa607678078ba7f49c6c98bbdeb07141f54d0aa468c603efbceb8085957422",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/particles_2.brf": "919c3b3ea353197916f6719a3a806b83cebb2d718d0ff7143640254cc11bf99f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/prisons.brf": "a5fb7e095e1df4b21b9dea939c46c30aa3a66e8bf545573db3ad6b4c17a7fa2f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/skyboxes.brf": "cb72cc9be5f3c41736f8ceae4e7183b2b540e448c443f07031df3dfe5bc3fe52",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/object_b.brf": "89008efca843184e5d3a874bee79d762e4ed728ab49dc59f36a280b7337e15c3",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/destroy.brf": "ca48e3f2d8927f80d8e6e9ff8b0f19022c6bd51980d205181dfcb259c06fbc6f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/grass_meshes_b.brf": "fee3fff97f92d635f744d1fe62cbe4f2da2c699ba97e3ef45835ff80661386c1",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/interiors_steppe.brf": "1aba195a89874c61dbaf191b7f8a11a02ad7cfd42cd5136b427ae5d0e8e21ff8",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/town_houses_d.brf": "060f5231ceaaf28e298fd9b427f64eec4d377648148983bc61900932998131b5",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/arabian_props.brf": "622daa17dba243702537db6c5ef0d29818f8559efda52a590101907bf796360c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/horse_skeleton.brf": "1d82317c9f2bb7dc27483983b41a77227387eeb706676f0f3deaa538baaf9bee",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_horse_mounted.brf": "db133492293b77a7e5ca01f939422a223dccf298754556f8f26d2b6269bc0012",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_man_walk.brf": "1627094a0e163dde550473fb921de53cd238fd3cb7bb432784f047f1cccb1572",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_death.brf": "d671ee5add2a8ead8e7fe1bb12ddf8d2494b460936643f8ae98746987bd52c45",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_human_mounted.brf": "ed05e6db432367d35854609a0d5c251a05c3e5c53842c66d0bc38597ba6fb0d4",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_man_cheer.brf": "1417b18e437c81190dc82f60bd1952fef60f2bd6ea5773cb1b76e835248f175b",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_stand_onhorse.brf": "0599c54dfc311a88f63a641aa5c736470851adaf0ef4277aa8182e193f7a811c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_strikes.brf": "3508c8d3ba34f4f7b4d80e6d5d25a175f81d068c83a02735656537a680163aa0",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_equip_arms.brf": "23447a59352a16db9b1c0f38e0b19117b6468bef49537acd4703567c99fcdbe5",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_run_p.brf": "8f6b32d35894da985d2d6bfd5d03aadbd3ae1be9c61cc4ae8b01263556c7518f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_strikes3.brf": "a87298fe9c4749b924d4db792c3111edf755034cafe7490814ea523c5d5eb28e",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_walk_sideways.brf": "dfbd27f826fab82abac2fcd2afc9b48948031b25e21ea991f1b8339c6447aa53",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_run_sideways.brf": "65bf8f0bcd24b17e5726ae1178e032b7a98a2f52856166563b92ad8283275a7c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_stand.brf": "e39d2b139e2eab690ad67c361bf1e7102e164e7fb350d676890aeae2f430dbc6",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_crouch_down.brf": "31cbaab9be6031f8e0587dfbd644ca974b3fe7220cf7e09a8927381efb9065da",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_low_walk.brf": "1115b93c388f68a29b2ff78b92c64685acbc65f826208014bc5f97a60dc3dcc8",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_turn_man.brf": "1547af71e5381a91f9bf8483140ead492dc404da0d9bc6b4aea7813ba1b4b0d9",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_lancer.brf": "a1f4f38cbd47aacb9b391a4c2b859d5005dfac5406d687e103c3b9dd7cf0168a",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_attacks.brf": "f7471afa81f6e834c4b81286cba48d612b6dd420f30685ece0d58f962e633f23",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_kicks.brf": "025177aceee6de3dcae80a642b6e5e991211b36f1f5f8d923323ff6e06326a9c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_walk_backward.brf": "a0fe778e7b4f4cd9ecd96ab837978c7a68d865e78f8bb29c66504b23e19c33dc",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_run_lookingsides.brf": "9c5cf7ee2e9b25109acfb637282e60edf06f131833cf69b2a1f0f4681aab44c5",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_defends.brf": "8df66ceb35740c81a8d588ed26087643a07fa325fb2b4c833966bfc5e25d09a7",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_walk_lookingsides.brf": "48f9571edebcc11da3db5fa008f080204a82f09dd4334755287c81d1f6bcc4a1",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ani_jump.brf": "81fa641ff1793e429245ae378db5e39fd58ba11656b9ea43a0a6e3e7310b2a48",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_jump.brf": "33c81ed21c4d509e2713b9c61b28d2300d4db7605cf99da1942912b834081a88",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_stances.brf": "aa1d4ce37177b920b7cb382da27e40b9d6239c41bc044d1cfbf5ed2a7b69872b",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_equip.brf": "8074a5ee4acbb329688a141d60d1aa1d3edd3005cf54b02f0b6c1354ff9857a0",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_strike.brf": "fc7bac43a749a386ca2415da15aa8503d2276df898631fb238f367b794a4cbd7",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_throws.brf": "e9b1156af969e08c9132bf107ec0be5bcc62d38d95f3f2e23ea545cccc2ba2df",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_fistswing.brf": "3166e9a949268663ea989844af82b632e04144615677891051354a3868c9e44e",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_defence.brf": "fc9d06795d0bd6773277ffb3230dcc290db5c23ec2a6ce9ceb33970582acedef",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_sideways.brf": "077c9b32a6655a3b0742893487df270d7ec252d353bfe6e99cf539ed5998fe6c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/uni_equip_musket.brf": "3527efc637db36501b748b9e21cae9df956131f9953700fa3ad66c3fa2ef83e3",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/rock.brf": "df762c2fa0f83ab8fd491305e16d9261bc1125d83a842376c5a9602da447f4bd",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/raw_materials.brf": "ee0c82a801b47b582b6580829811b1ce026e570d3d853751b69a54e0d71afee0",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ui_server_filter.brf": "9220b92a0682ad88128ae807ed4b5a1c1a4f3cedb6ba107468f6a64103c2acfc",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/ship.brf": "3dd453744084ab65488dcdab3c8718f9835389423d3bff0fb825f60e336ef8c4",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/arabian_houses.brf": "6046140fff7a1bd1a7affe3cc0868091a9bbb37caf11fa81a9c6dc014dd12430",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/tree_f.brf": "1f892621f2bca7abe22906e832e903af2450f76095979b912d0bc05425b248e5",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/arabian_village.brf": "a295170692f44c9b3bbcdd846820183717bf9ccb7c0c61fbc3854e53ee80c2c4",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/valleyProps.brf": "fd2dd5f0d8b4c7c9e7a1889d11a3f21e3245c92982cc299897ac8137c77d9c91",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/workshops.brf": "53c2644cdf28a3446d1d9fdf8c3b600dba1b27ec970eb955b93ec4afde4cc500",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/barrier_primitives.brf": "cc32492da877fe8e524f39102e9f1d274a527619e6be6d99d7d1c53de6cabfff",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/town_houses_e.brf": "a79f369c42d8b38947f25d0e1a49a2d84d60e3e9b632b55ddd0b5a96434904a9",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/wb_mp_objects_a.brf": "31d08cb61ae947e9306646e3116809c98505ef36be32bc37cd96a86edeb09b62",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmweapons.brf": "072cee248f537c8683071c197fd9f35777705b987c0fe7747055a370524a7959",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmuniforms.brf": "1620df1efb2a732cc84b42da9c90880e007d6b4bb3449c98583ff4115862c85e",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_french_uniforms.brf": "0d2c9e65aad2da6065b78f70fdd645994348be5534d7e8602066833c6810a3cf",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_french_hats.brf": "fb46dee3879a1fb2ddaa0ac2bac22b99229dcd860496d5100280a8b4797256f8",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_french_swords.brf": "6e52aaf44d864a59c2aaa8257187f6847b8c55efe311bdd802c5e05a40a00ddd",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_french_firearms.brf": "e7771fd4345a7f4b99735f633407e70a9ef9fb1703fb04ba021f3d1943532d1a",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_russian_uniforms.brf": "b9586c74d0a6cbf0645ab80f6335b9d465a6d43a98891691063e19861d904c69",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_russian_hats.brf": "81fdd6dc46975d8d842e1a5ee40ea31bb1fe6dbc176c6964a614ffd0e3d2d6b7",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_russian_swords.brf": "62e519c421914f79aa66b583dec4a1505266c5343472809cfe5cefa57ffdbe51",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_russian_firearms.brf": "fc7248eb2580d9f271a557483f55c991372b815dd7e2ccaa4dd3645e3b40a660",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_british_swords.brf": "73545537a650bb5f1b6468005ec0d42879b448c774bee4e5947a471a0c37c1eb",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_british_firearms.brf": "cff05f0b8933a4b854fec4e3bc0806c79e99941bb083cd84a4e151a681bbfe49",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_german_firearms.brf": "9d34139a4c1d1c2e9318d4498afa19383579ecd8fdaca9a5b07e9cc3bbfcb9fc",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_german_swords.brf": "9e0db29e59546b44616615a428ba81bd646e0a2d33e03c7b6082a645dff99c9a",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmprusuniforms.brf": "b06c48375ad9b62a8aaa9d838f217272c035f9709eca083f52a37600e78c10b7",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmprushats.brf": "6488907df3bbdb73a039c2d8354d271254bac008f77cd1e9ce50c0c909f1bcfd",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmaustrianuniforms.brf": "9a7338640e116a25d8e8bdef4f1250d44224cc29b37c86bc2a01d1fe7639575f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmaustrianhats.brf": "a144ece0275a998797e53fc14e766e80495d333c25359fc48b4c671af3d8cb5d",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmbrituniforms.brf": "4803cc996f4e73efd3827a3b14406cc615eaa7cb62c4d79119f0e0898e5d48a9",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmbrithats.brf": "88141907a4c85dafef70ddf7457a6c889c3c8426220d87904b099ea2af577d52",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_colours.brf": "fb47a8637531319873ae799458641ee4bbd25f38edd152f369a0ebca601e289f",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmanimations.brf": "5b912b44b4441c5b111ddd506c827531427521ba46a9a7d4b7466fb32f33e947",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/nw_custom_anim.brf": "71293be3c3ce3bd2fa418d8d9334308b71a4353d214527030a1d5882a10f2abc",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmsceneprops.brf": "5f23bf4ef23ebf2982b243ad8805b790360c75e2d1e7d302a924988401b2b3ac",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_cannons.brf": "3d89ff3af244791b5920ccfeb87499507fbce67c3b04a52fcadba400591c8851",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_cannon_items.brf": "65a6a9d77f26a46c9db5bfcdd86a2b65e7a1f9076c7a50eeb66d204d46180dae",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmhorses.brf": "660afbc34c14595854ee61f6ec6d30c3dc9fee0a84d6c0334c3078ffbdc3f7bb",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmplants.brf": "3a17376de6e45fd8d7cf07e672b5c7a618282bd17aaf2932a5e679ddf7de6394",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmspanishbuildings.brf": "08d6021da07ebf1b44aad45aa7e4b25df561d7c7fa3e5f0f40e86f742deb1258",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmczechbuildings.brf": "04f2b94c73671f6ece67c2467bbddf3ed2a5988ca3dbff1feed10de9b99dd746",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmwallprops.brf": "49a98cc457e1130011f6a3bc887201aead7c1e838e3b3feae5227f3c6335de41",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_waterloo.brf": "f11742b6d448801c13eaa0a4e4d0ea7479702796c751d36a0411a4340d394929",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmfurniture.brf": "350024bf77b3c92006bc0c7823377d4cf1b14ada83408474b7e8879eaebe576c",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/terrain_borders.brf": "9f87c1e27c5d124e0b6bb8f2997543ac4037506eeab8be418a9045d47be2a5fe",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_sapperbuildstuff.brf": "0b13669983af88ec1f92abde5e7c442f484f779f3bcd6a6a289d7f5dee6dc8bd",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmmills.brf": "8a05d077207a838cac2e41566ebcdcafd578169eea24a5f3af030a68638abf26",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_fortprops.brf": "218e77eecde385f4fc56e4667cc9982e2262d4680ba9d60b1d2912c0c452d883",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_spvillagehouse.brf": "baab1ed54f0b2f73b6338d2dee9cd12ff6b78bbebb4af222e1369507c5bc83d0",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_uiobjects.brf": "8d7c559dd024b670f5f6dbba039a4b997f98f8fcfa6682adc3a532bdcc50ccf2",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_oimprops.brf": "c90737a0d344b9f9fd0994127520adaecc85cc413f0cbb27ff5edea61b79271d",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mmwoodenwalls.brf": "ae2138ddc82594f1faded62489a4c8691d2f620fe7c7570b58f859c85e874498",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/frigate.brf": "6b6cb261e8e4619f1b8e41648811078197e85f455240eb9f4d89b68335a2f785",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/shipcrew.brf": "7221849b677f04b6113d66a6351a28c5bd3c789746ab2dc6c0b99cd7112681cc",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/mm_confederate_uniforms.brf": "77c57d2e54657620f12e3e807637a05e7eaa183bb30613c5797aeadade0ec417",
+    "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/Resource/training_and_nonmilitary.brf": "9bdfebe92876e63527ce74832db5b0af52a91ae8a039381c117145caf11776f8",
+    "Textures/sandstones2.dds": "47f1b61b36a2128fe044462a69a18f752f2084d0bc0fff3072a5f95bfaa1cf77",
+    "Textures/mm_stuco.dds": "fa90d9b3a0ddc86f6c3ff6bfd5dc36799d9a873acbdc36a0206ef228efd36a1d",
+    "Textures/BrickOldSharp0215_S.dds": "3d74d19d9ef95c06ec52e742cc01a22f41c490d7b16e56880cf41e98a902be40",
+    "game/Textures/planks_6.dds": "9a2f6cbb975be837c4df7551c8bfa290a0f1020f3fdecd437d44ab71e7a24895",
+    "Textures/RooftilesCeramicOld0087_2_S.dds": "8049c3dda2a82316ceb00cdedc9271fd1b1b4c5c4f36f864c83d434f0163e09e",
+    "game/Textures/roof_tiles.dds": "d5469efd4ebb5be7a74c152e25e905cfbaac6082d1fa5a8dc7f27114e3a12c0c",
+    "Textures/OrnamentBorder0079_2_S.dds": "e81150be94e8266bc8bd0276215f961acd2ecd484aaa5d14b505235b0ee54d9a",
+    "Textures/planks.dds": "18445735ccacbdd3c3aa6eab7ad12f75ab66acb1f10fef3f0b43d8ff4baef3a9",
+    "Textures/Cannon_additions.dds": "19da64f5bdcf3689ef86efa875cf24abab52e066aa53d00dfb2a40d38aebe111",
+    "game/Textures/planks_2.dds": "d2576e770c0d0d980d32dd648140253d29887fff365739d921915c9980ee6486",
+    "Textures/ground_earth.dds": "ab1c0e2c4f40e58ae3f8aa2d32ea5b0d678732acaa7343a677e1c120b4672f4b",
+    "game/Textures/objects.dds": "b987c8480ce3dc6b9388401362d1c83e9321836cf486b34d68e2b9361b5ebc73",
+    "game/Textures/stone_wall_10.dds": "12141e7e20d4b24778c26b368fa3740cd705395a5aabc15cc123f7e21da9febd",
+    "game/Textures/building_details_5.dds": "16738886213f5d8d9e90e5ec144b9f907be842f51ccff79de75d07c952a92f8a",
+    "Textures/stucco_7.dds": "2693e6211c91a539bad484342b00cf3faf55a25bd733381c0ca004f79df01f08",
+    "game/Textures/building_details_7.dds": "70660f785b154d60ec866b6f24b8289342d9e245ca54f31e68e5ccf311d4abf9",
+    "game/Textures/stone_wall_8b.dds": "de620a6a1ea9b8e723ffb32dcafa5309c05e06138f6f234f8dc800ac6b6a9b8f",
+    "game/Textures/stone_wall_2.dds": "6b0f1e16bb9091d71b809d16dc375d0f003d6ed2d39235f342dee757b87619e4",
+    "Textures/ground_path.dds": "64f0ae0375f10dbe0cc847ba2f36ea3b12676190e84bed46f32861ad193a6398",
+    "game/Textures/building_details_2.dds": "b88d4dac3f9b22c35a38af10dd516cd4aad6982f7210b8e81d9d7fcce5b5a58f",
+    "Textures/stucco_6.dds": "d1334e22f0c4f6fe3332e80c59f17068d1e88d7717288a992e45a35090bf3f53",
+    "game/Textures/planks_5.dds": "a9bf5c84677f06fc5986caf1ef3723df97a31518466e8336a4cd28ae66a482ef",
+    "game/Textures/building_details_6.dds": "6bb1598001d5270b4f2f9c1d27e46779a87bf696cc1fef5b134be5813516aacc",
+    "Textures/stucco_5.dds": "f8eb5d369260350038f25719a4e6ca81abd8fba1a1002fa8b9eead349a75d733",
+    "game/Textures/building_details_3.dds": "064e86bd3f8c8c88cdd3613fc8248758f3769d0fcf7d46501caedc45ef4500a1",
+    "game/Textures/building_details.dds": "f649ddeddef312a72e39f5bd87891cd29864db68b33cb47be08e2adbe90c5a7c",
+    "Textures/trunks.dds": "9b9dafa0c17eba74f3b58b3517d2ffb8f6decf85911efd208ae8ca90bd61ecd6",
+    "game/Textures/palm_tree.dds": "1560130fd033a072b70eeb1bfdd0429a517514ce2f706cf430dd995560db0cd8",
+    "game/Textures/sailing.dds": "2764a369ee7390a31fb422e9f9120afeaa4d35ff0040320bfbdc3e313711e302",
+    "game/Textures/sailing_c.dds": "27e26b09a88b453c285ac27b2d56851eac8a48a9b812913f2bef8be148b6e126",
+    "game/Textures/building_alpha.dds": "1d0a6792f30c87f1fae41e3706de7f46b8d7e861a49672c34cb09eb8d7f59c78",
+    "Textures/arc1.dds": "dfdccb03a6533911e55bf0614da7f37cdc5686086366313443c56830d9fcbf5a",
+    "Textures/arc4.dds": "3177d452db001467ca853315f24619d2f7a21ef253cae97a640e5004f7a20923",
+    "Textures/arc2.dds": "1deda2ab4af44e1ece113f856de15d099ef464e0f701b229bdd7bf6b6094279c",
+    "Textures/arc3.dds": "4b53cd0bd3b829c8b93c4ccf3de0fee6e565050fd0b61446871fd58b5f943af8",
+    "Textures/arc5.dds": "3b4ba7dd67e4aa279cfbe6de7ad6c41a8690355d2d6194c351edcd6f0b16ca73",
+    "Textures/roof_thatched.dds": "19f8cc189e3f0a1e85866a55ccbc3c0ba710e4aaad8b219a0a21808bc834669b",
+    "Textures/carpet_a.dds": "31396dba8bc4b368ae1f1bdb6e09f607ae015bb649a377abf6ac40ad88ca014c",
+    "game/Textures/tent.dds": "7369a8ac0064ca2ede06caf8d6c9f16240616a5e3f8230395f07b2ab1549bf3c",
+    "Textures/carpet_b.dds": "824b67e8c2e7c31a33d039e06ac366d8af4b129a5d56270d2a0af32a96f4af44",
+    "Textures/u_81.dds": "c54b8458bb0bc3518e86eb4439a02625dd1410cabc8a4b5cc9b21461ee261e80",
+    "Textures/banners_a.dds": "91adb8b3f22eda70f22b397786a82ad58222cd75577f4deda241effbf7dbc5c6",
+    "Textures/banners_b.dds": "2d21f455cf1a4421af2cee909c9f0885c493f05a0c641c3fa7d4c26de5a101df",
+    "Textures/mmdetails.dds": "da8a0d1766b1600edfc63a2b0cfe9aecaaabeb6b202b10a3d9cd1fdd6352b7e5",
+    "Textures/Wicker0009_3_S.dds": "0fd58c7467a95b62a23842ab83e2e8c87cb1dddf67cd912953cbf4e2150cac1d",
+    "game/Textures/raw_materials.dds": "a0c95711e97246cfd03e16712b1bc46a40fd759d4d515d75db35215561442c8a",
+    "game/Textures/stone_buildings.dds": "a933e3dce1bb0d437c5ded6af035c30b31f6e560b1b75c956a72a58f58aa8d17",
     "Textures/mm_bush1_1.dds": "a97bae8712fde749c2b6a2284bc477aa9f2e799ce1f50935d9bbfb40b9a9d8ad",
+    "Textures/mm_big_bark.dds": "06df19e884b2f63f6165c202c6c050c9813dccf293248ba18aef3b0a3b39b2f2",
     "Textures/mm_bush19.dds": "ff5e44d1f9886b6c4b98e246666f90883400a74e12688a31abe731f926fe4999",
-    "Textures/mm_spruce1.dds": "62dcc26a25997b74b4b14da40b108ea9ea73f7b6d5f5f8590f62bdca8fcf9040",
     "Textures/mm_bush6_2.dds": "9baeb7620ecc5cbb6deb1efee1c506ab3fac302c97ca1085d17918e75decb69a",
+    "Textures/mm_spruce1.dds": "62dcc26a25997b74b4b14da40b108ea9ea73f7b6d5f5f8590f62bdca8fcf9040",
     "Textures/mm_bush20.dds": "da600f36d567e420fdff50a28d6ce946d4c259a165ebf87dddaad895cefe2d17",
+    "Textures/wood_new.dds": "70e04b686657edf0b65f5d4c234a5b6549b499e12ea1473cea98b8c9008ea1e4",
+    "Textures/stone_wall_5.dds": "fcd31bea4347044cfb63883d1aa9266092a532bbe56fbd50b0742de86169bbf3",
+    "Textures/cannon.dds": "5a0c08fc9f3a41660c8f6280fa86124c4295842ae68f574ceddce2591517787d",
+    "Textures/stone_wall_9.dds": "ede3ce45cb956a04d1f8da319c98396340c38069e249a46486ec54b47e933ac9",
+    "game/Textures/wall3.dds": "479c028c38dbb3d5d7b05437ca730c3a0c11aacae6ce41955ba8036c6ecae5e0",
+    "game/Textures/planks_snowy.dds": "a44bca997f096a32d94d5c2b39e34123ba113580dcd4d259fad360bde3fadffa",
     "game/Textures/bushes.dds": "26dd81ab73046700113048af1bc3eeca8c42259c3113f98ad6e3e9c7e03ad1e6",
     "Textures/mm_bush11.dds": "a9386cc928af0ddfafd596ed79d3289cbff9fa2ac0dbe0d2a3d4273cf31f0163",
     "Textures/mm_bush14.dds": "e8324c95d939a20cd2c93617bb283ef928a2b87dbaf3701e9ff35d14863d5b17",
@@ -27,13 +225,46 @@
     "Textures/mm_bush13.dds": "dcbbe481f6c9b4f67ea010caf115d11a2ab24bd1e96b06666c238888b443b3f0",
     "Textures/bush_b.dds": "6cf258e4b21ae04701ec1c3a5531e4565363173ca14592f01d84e41260139f37",
     "Textures/mm_bush15.dds": "0fc077ff3c9df2d3a030b8c320a68feceb231be94bf0f65148a03bd41d63bf61",
+    "game/Textures/roof_plates_new.dds": "eb3eb26a696e1eb824cdd84b716912cef9a1f664e07faa433d17a832934f1800",
+    "game/Textures/carpet_c.dds": "c70e82214b3947d20805d9ec7cfddedf5a3e0a7d116435d24ba90affb602edab",
+    "game/Textures/building_1b_alpha.dds": "e3505893b750caabee7d5fbff97a005ad83273ba1c77e1e06fafba043a2e748b",
     "Textures/cattail_color.dds": "8e5d6b49d0990642b970e57bc217d83f5926ec637376e261d1345477edce3985",
     "Textures/leafplant3_color.dds": "531f6c919318479cc091bc51b50a2c7aec1582ac0670cb423fe501aaea75818e",
     "Textures/flowerplant2_color.dds": "d9689e6a0cefb7aa9e7b651303db97ff487cafaa0d2cf4f91b434e27ea211967",
+    "Textures/rock_b.dds": "fc3b1d7a9296c2c09aa86038e5d7390a25df64a6f14f1e5e90bd5eb0178927e3",
+    "Textures/snow.dds": "adc89907ccb8e9209d27d8e33918fb3dff8ba96646c1c1899f7f39e53e45508e",
+    "Textures/Metal_Rough.dds": "5a693c525b2ebe2c1896b30eb4a3758482670e5bd7ef37cdbf7b7e2f699db619",
+    "Textures/RooftilesSlate0045_3_S.DDS": "4f1d4c8cd9edd18e90c96169a254e7d1c795024a7e2db611fe7873efbbe73fd0",
+    "Textures/wood_new2.dds": "7786e7092013aa525c634b9c487c59a07af2e5d92826d02f1580392f1ef2b0c5",
+    "Textures/details_windows_polsc.dds": "1643738d9c269fc775bee01e21d031826511aa3d2df4dd610382ce8a9424ab1a",
+    "game/Textures/plant.dds": "b1447fae4d711d99f76b1dff02ead4b37fa37b2e6feab3a9dd248aa74881f5c5",
+    "game/Textures/building_details_4.dds": "703a1fa562e4c3317121f872e480c0538139f427313cc9de7921e2b496211750",
+    "game/Textures/stone_wall_8.dds": "25cb687a1a1fbbea704406352ec1b8b71b3b24c19752f2bcbdcc7e3bf7128f16",
+    "Textures/fort_stones.dds": "79f5eec7c92333e689e54e17beea845354320090d30c90934ac57183834a2df6",
+    "Textures/ground1.dds": "ae70aaca73afd28688955ad3c9abbf54cdf664568fa62e531429730ea3cdddf4",
+    "Textures/bricks12_color.dds": "b0a846217ae5e3d24e0116a76175e1bba74ed9d9b9481df9ec2af403b95b1024",
+    "Textures/RooftilesCeramicOld0019_2_S.dds": "c14aa85438383929550e67709ef0c2e685c8468524548eb5a84eb8238796ce69",
+    "Textures/fort_ground.dds": "a4ae420b555890452e56fd560db71b95441bad60d0bb8bc63ac2ff5bcdcf2eab",
+    "game/Textures/planks_4.dds": "fae9cc015fe14f21e9239a079b01176b9b1d7a6d5dd0caf76ed699b48b9b6817",
+    "Textures/fort_debris.dds": "d2abe59cc23d92b87c939f0a1a392d6e42b8877efb51cad5aba1aad4da4cce41",
+    "Textures/rope.dds": "1063aea36489f9d8ee5b7ffbdc0bcb53fe792a5ab511789afbe3178eabb81b18",
+    "Textures/deck.dds": "6ffbb8cb93f13179610c31dba0b78e8bbda2f7e005456c7f9ab48bc2fe1332f7",
+    "Textures/rope2.dds": "925376c8d43e12cdc0952fcc7aa46e67bd638912a567cd9fcc980e51eee5f538",
+    "Textures/sail_2.dds": "f1ff9da34fb06e2adc884452241b4f192254f88ea6e3d8e259d8b9edeeb8dc11",
+    "Textures/ship_body1.dds": "9d11940517efb54be1f35c3a1d59a5a18a830794b53187d25ebbd3a4a5640dc1",
+    "Textures/sail_1.dds": "7f8483963832cf7d77211d338535afc706932432ba085a06779e0b77b64d64f5",
+    "game/Textures/wall_snowy.dds": "42eafa49c742970e59ba41eb3c84aae2e7625aecab18929118f928b955bec4c6",
+    "game/Textures/glow.dds": "b0d318c4e15ca9b93ff0c5666bd8ae37795313950589eefa463b29dc7c28fe24",
     "Textures/flowers_mm.dds": "bcc7fd700b3a80291afeb32f087aa81ea7e365628b4ccb7fc3a894556f499c34",
     "Textures/flower1_mm.dds": "e0e2c4b4302593b01bf58d8115ec681c78f19826c14aa340f8bbafda5e51e5e7",
     "Textures/flower_mm.dds": "0a0f66a7c3ae4aa7e4f1ef9f60d36b44c9d208cbf050c38d83f5699b188885e7",
+    "Textures/rock_c.dds": "08cbda8a6652c5120adda5fb87112f0c912b758c40cd13572e3caf159630a545",
+    "Textures/greenscreen.dds": "75728cc016f4bfa8fabbc4b1b9965164d646ae4ed15a6e4831df3c70d744c79e",
+    "Textures/ice.dds": "299a6e29bdad333b0ae9ee23591086db23cdb35604c94be4af010de82fa3b4d4",
     "Textures/lillymass_color.dds": "9750ad9d8cfef304c63438b484a9e63c8ad6cb4d8fe7a5f4e7cf1863c1c4f5ff",
+    "Textures/u_8.dds": "19eed8a455258c785c700f1d4ec18defb37978f1900d40fa065ef5848c01c0a3",
+    "Textures/rushes.dds": "9c7ae1522d6342aaa9cd9b6c9208904c2726d2b56ee8a49d6534a49a13703957",
+    "game/Textures/archers_vest.dds": "0c41f4cedcb533d788fa47fa78d9d841e373edbf95171114f6f8bbcfde7d6f60",
     "Textures/mm_bark6.dds": "56c5368dcc2ed70430949e9d6a036df6a6c7e0c03fc9f2ed6047519892099f8e",
     "Textures/mm_bark2.dds": "1e095951932ae7c06822005c02a18b59df6d11e3e0e77c59fdf2c242ab612a7c",
     "Textures/mm_bark1.dds": "d9e5c176b2b1afedadd2a4e48ce82ac7074e30d5a17ee669cdfef4f9c650ddc2",
@@ -42,23 +273,661 @@
     "Textures/mm_bush4.dds": "63aa43a21a91c76936495d13a04d9bd759671f98a978a0a3140a355e75df5402",
     "Textures/mm_bush7.dds": "b6c5e3712be88891efc66f34f7f5ef8cdbad822b612d645baf829650fee31d60",
     "Textures/mm_bush1_11.dds": "960dac5a0cf23fa323d207ded1d9817d32231986eba0d39d336fb7bad03a4478",
+    "Textures/wood_new3.dds": "203dda0edb194ec2b05c8a454804f0e19f8dd725b4cdd459e7a30e8d0cec582f",
     "Textures/mm_bush8.dds": "7651ad769280defc3f89983deb8b0255292141cfeea17bc828d6073b5f5c1da8",
     "Textures/mm_bush9.dds": "ce897de952ed07b836a26bf008cceb60921b1fc257f3bfdbac2dec0e38d19177",
+    "game/Textures/desert.dds": "50bec615564c07520cfbd24f165bc92d215d7d06b11a7b33118e70e08ac467cb",
     "Textures/mushroom.dds": "d75edb62fdabdd2671a649853752420572852326c053d2c82db4fc9950a49686",
-    "Textures/mm_bark7.dds": "eba25ccff3c597fe078cefa41369f157a69cf16da655a02d624f278d89d03314",
     "Textures/mm_bush6_1.dds": "de90121982e8ee49dde58f29f61355681b1ddb894c2b666b298b735cc2d70fc1",
+    "Textures/mm_bark7.dds": "eba25ccff3c597fe078cefa41369f157a69cf16da655a02d624f278d89d03314",
     "Textures/mm_bush10.dds": "b384374c459e6fafbfe30956d6f4079032b9148faf9daacf181c0d857483fd50",
     "Textures/oim_leafs.dds": "b37510e0d85cb9f0a9f5138f9454f8ad59540e418cf79662812ad88a44e75c8b",
     "Textures/mm_spruce22.dds": "5159c0a86f4c53cd8f4df70936361c89a756897d7da0dec52b9ae89de1383ed2",
     "Textures/mm_northern_tree.dds": "66866017dedc0ad69f1346f18d083d2d8f921bf629b4fdddd1124beb41ea1d5b",
+    "Textures/tents.dds": "90b10786c91762f12c303016b6bedf79a059d752038c883c0ba9f915afbb41db",
+    "Textures/whitewoshing_yellow.dds": "067d758aa57b4e0ac51aff51b673eb17a5aa487758176f7fbc568f191dc55e44",
     "Textures/mm_bush3.dds": "01dce4ed5a0db141a06acac0eaa148a600386009122b3ada606a06507b61a968",
     "Textures/mm_bush26.dds": "1c8947532d5cf73ea6f1c017b0dc0230c7f98fcd6f4af842706a60dfc56cfbba",
     "Textures/mm_northern_tree1.dds": "e0aa96883fd7180535c8661658e772df86998a76ca499cee5d2bc96edd68cdc0",
     "Textures/mm_bush22.dds": "d52fe0f5e00c5c90fed3d34710c2f3a80cd80300fec8be2dedb9cce31ec50187",
+    "Textures/boat1.dds": "3412bd1771a0b8afe7c2d217cd840bc7f2e21dc116b7b9ffb7eeb485e956e1ab",
+    "Textures/boat2.dds": "578ef5a5454e5f87075477d7c7d13632681cbe4e94c9f8afaacc9b35fbf6ed6c",
+    "game/Textures/net.dds": "8842bf9111ab9695cf4f4b2c1c02362dc0f6b231c19342a5046a761756220402",
+    "Textures/details_windows.dds": "e4f55fc9f0d0a92a4d99143ae88d8c7bf3304c2ba005b19e5a22dacfc4cc1cff",
+    "Textures/logs.dds": "ecff692d571df83d16e333ece7a420310d08195e4c2a762e71db80e9472b4b97",
+    "Textures/palmleaf.dds": "12f90a526288f63f4816479716dba46571d85e640e813ff5027f099ec531a2c4",
     "Textures/Palmwood3DF.dds": "a889c4fdf0ba93439b0405949a32f526fdc15fa4173a7373d3d3d7f0c2b27be4",
-    "Textures/palmleaf.dds": "12f90a526288f63f4816479716dba46571d85e640e813ff5027f099ec531a2c4"
+    "game/Textures/stucco_4.dds": "b5e06aaecb99cb34c11dda577f3b3808149c1f8604b32aac447634e3747f2a33",
+    "Textures/player_chest.dds": "3386b1c14b416ba5024483ac365b5d746a0a96406c01172f55244dc6b96f7abb",
+    "Textures/plank_ship.dds": "8e89076f39af612048c4e8c418b9cdc27702406d51476fdf06f5055c0380b7fe",
+    "game/Textures/sailing_b.dds": "7ed7bb92cbfed56deb8bf05fc9c90b49d0fd007001e8fe9e3a658613b32e8ff9",
+    "game/Textures/trunks_snowy.dds": "5d504b025425192646d753328deaffbda38553b9050c23afcf369802273808ff",
+    "Textures/Material29.dds": "c709434be9d306996ac07eaee89f25cae70fcae0f19d2ecd9b7359e474a4e27b",
+    "Textures/mm_glass_trans.dds": "64f595076e714c33868dd1d625bc1f304854822ba8ba852cacf6b5d2ebd35b5d",
+    "Textures/whitewoshing_blue.dds": "55df042060e0148ef4038063088d7332539212c70c29255c2882e3e34b904a47",
+    "game/Textures/terrain_desert.dds": "f67b7f6893f96bf15e441c8d03663f0e6d03bf920eb42280a89a729bfa7e5d19",
+    "game/Textures/stone.dds": "455354ed2fca09e0d8f8884b8cc87fe48da6587c3be4c728ec0e6153f66d1474",
+    "Textures/target_plate.dds": "a1929415135d5aaf19e48650491854e77e2e6703ab3a49e2b055c265d982906e",
+    "Textures/DebrisStone0019_S.dds": "ef547293ea3ed8857e5765d4cba6ae11d3552003a231b39250d41132cfaa037c",
+    "Textures/thread.dds": "4acaf7d7c94f0c80496bc23134a7990a9f0ae45fc732ee8e6a3ab9092b9f552b"
   },
   "assets": {
+    "spr_mm_10housebuild": {
+      "mesh": "10housebuild",
+      "image": "10housebuild.webp"
+    },
+    "spr_mm_11_brick_housebuild": {
+      "mesh": "11_brick_housebuild",
+      "image": "11_brick_housebuild.webp"
+    },
+    "spr_mm_house_wall_11ddd": {
+      "mesh": "11dddwall",
+      "image": "11dddwall.webp"
+    },
+    "spr_mm_house_wall_11dd": {
+      "mesh": "11ddwall",
+      "image": "11ddwall.webp"
+    },
+    "spr_mm_house_wall_11d": {
+      "mesh": "11dwall",
+      "image": "11dwall.webp"
+    },
+    "spr_mm_11housebuild": {
+      "mesh": "11housebuild",
+      "image": "11housebuild.webp"
+    },
+    "spr_mm_house_wall_11": {
+      "mesh": "11wall",
+      "image": "11wall.webp"
+    },
+    "spr_mm_12housebuild": {
+      "mesh": "12housebuild",
+      "image": "12housebuild.webp"
+    },
+    "spr_mm_13housebuild": {
+      "mesh": "13housebuild",
+      "image": "13housebuild.webp"
+    },
+    "spr_mm_14housebuild": {
+      "mesh": "14housebuild",
+      "image": "14housebuild.webp"
+    },
+    "spr_mm_15housebuild": {
+      "mesh": "15housebuild",
+      "image": "15housebuild.webp"
+    },
+    "spr_mm_16housebuild": {
+      "mesh": "16housebuild",
+      "image": "16housebuild.webp"
+    },
+    "spr_mm_17housebuild": {
+      "mesh": "17housebuild",
+      "image": "17housebuild.webp"
+    },
+    "spr_mm_18housebuild": {
+      "mesh": "18housebuild",
+      "image": "18housebuild.webp"
+    },
+    "spr_mm_19housebuild": {
+      "mesh": "19housebuild",
+      "image": "19housebuild.webp"
+    },
+    "spr_mm_house_wall_1d": {
+      "mesh": "1dwall",
+      "image": "1dwall.webp"
+    },
+    "spr_mm_1housebuild": {
+      "mesh": "1housebuild",
+      "image": "1housebuild.webp"
+    },
+    "spr_mm_house_ornament1": {
+      "mesh": "1owall",
+      "image": "1owall.webp"
+    },
+    "spr_mm_house_wall_1": {
+      "mesh": "1wall",
+      "image": "1wall.webp"
+    },
+    "spr_mm_house_wall_1_sandstones2": {
+      "mesh": "1wall_sandstones2",
+      "image": "1wall_sandstones2.webp"
+    },
+    "spr_mm_20housebuild": {
+      "mesh": "20housebuild",
+      "image": "20housebuild.webp"
+    },
+    "spr_mm_house_wall_21ddd": {
+      "mesh": "21dddwall",
+      "image": "21dddwall.webp"
+    },
+    "spr_mm_house_wall_21dd": {
+      "mesh": "21ddwall",
+      "image": "21ddwall.webp"
+    },
+    "spr_mm_house_wall_21d": {
+      "mesh": "21dwall",
+      "image": "21dwall.webp"
+    },
+    "spr_mm_house_wall_21": {
+      "mesh": "21wall",
+      "image": "21wall.webp"
+    },
+    "spr_mm_house_wall_2ddd": {
+      "mesh": "2dddwall",
+      "image": "2dddwall.webp"
+    },
+    "spr_mm_house_wall_2dd": {
+      "mesh": "2ddwall",
+      "image": "2ddwall.webp"
+    },
+    "spr_mm_house_wall_2d": {
+      "mesh": "2dwall",
+      "image": "2dwall.webp"
+    },
+    "spr_mm_2housebuild": {
+      "mesh": "2housebuild",
+      "image": "2housebuild.webp"
+    },
+    "spr_mm_house_ornament2": {
+      "mesh": "2owall",
+      "image": "2owall.webp"
+    },
+    "spr_mm_house_wall_2": {
+      "mesh": "2wall",
+      "image": "2wall.webp"
+    },
+    "spr_mm_house_wall_31ddd": {
+      "mesh": "31dddwall",
+      "image": "31dddwall.webp"
+    },
+    "spr_mm_house_wall_31dd": {
+      "mesh": "31ddwall",
+      "image": "31ddwall.webp"
+    },
+    "spr_mm_house_wall_31d": {
+      "mesh": "31dwall",
+      "image": "31dwall.webp"
+    },
+    "spr_mm_house_wall_31": {
+      "mesh": "31wall",
+      "image": "31wall.webp"
+    },
+    "spr_mm_house_wall_3ddd": {
+      "mesh": "3dddwall",
+      "image": "3dddwall.webp"
+    },
+    "spr_mm_house_wall_3dd": {
+      "mesh": "3ddwall",
+      "image": "3ddwall.webp"
+    },
+    "spr_mm_house_wall_3d": {
+      "mesh": "3dwall",
+      "image": "3dwall.webp"
+    },
+    "spr_mm_3housebuild": {
+      "mesh": "3housebuild",
+      "image": "3housebuild.webp"
+    },
+    "spr_mm_house_wall_3": {
+      "mesh": "3wall",
+      "image": "3wall.webp"
+    },
+    "spr_mm_house_wall_41ddd": {
+      "mesh": "41dddwall",
+      "image": "41dddwall.webp"
+    },
+    "spr_mm_house_wall_41dd": {
+      "mesh": "41ddwall",
+      "image": "41ddwall.webp"
+    },
+    "spr_mm_house_wall_41d": {
+      "mesh": "41dwall",
+      "image": "41dwall.webp"
+    },
+    "spr_mm_house_wall_41": {
+      "mesh": "41wall",
+      "image": "41wall.webp"
+    },
+    "spr_mm_house_wall_4ddd": {
+      "mesh": "4dddwall",
+      "image": "4dddwall.webp"
+    },
+    "spr_mm_house_wall_4dd": {
+      "mesh": "4ddwall",
+      "image": "4ddwall.webp"
+    },
+    "spr_mm_house_wall_4d": {
+      "mesh": "4dwall",
+      "image": "4dwall.webp"
+    },
+    "spr_mm_4housebuild": {
+      "mesh": "4housebuild",
+      "image": "4housebuild.webp"
+    },
+    "spr_mm_house_wall_4": {
+      "mesh": "4wall",
+      "image": "4wall.webp"
+    },
+    "spr_mm_house_wall_51ddd": {
+      "mesh": "51dddwall",
+      "image": "51dddwall.webp"
+    },
+    "spr_mm_house_wall_51dd": {
+      "mesh": "51ddwall",
+      "image": "51ddwall.webp"
+    },
+    "spr_mm_house_wall_51d": {
+      "mesh": "51dwall",
+      "image": "51dwall.webp"
+    },
+    "spr_mm_house_wall_51": {
+      "mesh": "51wall",
+      "image": "51wall.webp"
+    },
+    "spr_mm_house_wall_5ddd": {
+      "mesh": "5dddwall",
+      "image": "5dddwall.webp"
+    },
+    "spr_mm_house_wall_5dd": {
+      "mesh": "5ddwall",
+      "image": "5ddwall.webp"
+    },
+    "spr_mm_house_wall_5d": {
+      "mesh": "5dwall",
+      "image": "5dwall.webp"
+    },
+    "spr_mm_5housebuild": {
+      "mesh": "5housebuild",
+      "image": "5housebuild.webp"
+    },
+    "spr_mm_house_wall_5": {
+      "mesh": "5wall",
+      "image": "5wall.webp"
+    },
+    "spr_mm_house_wall_61ddd": {
+      "mesh": "61dddwall",
+      "image": "61dddwall.webp"
+    },
+    "spr_mm_house_wall_61dd": {
+      "mesh": "61ddwall",
+      "image": "61ddwall.webp"
+    },
+    "spr_mm_house_wall_61d": {
+      "mesh": "61dwall",
+      "image": "61dwall.webp"
+    },
+    "spr_mm_house_wall_61": {
+      "mesh": "61wall",
+      "image": "61wall.webp"
+    },
+    "spr_mm_house_wall_6ddd": {
+      "mesh": "6dddwall",
+      "image": "6dddwall.webp"
+    },
+    "spr_mm_house_wall_6dd": {
+      "mesh": "6ddwall",
+      "image": "6ddwall.webp"
+    },
+    "spr_mm_house_wall_6d": {
+      "mesh": "6dwall",
+      "image": "6dwall.webp"
+    },
+    "spr_mm_6housebuild": {
+      "mesh": "6housebuild",
+      "image": "6housebuild.webp"
+    },
+    "spr_mm_house_wall_6": {
+      "mesh": "6wall",
+      "image": "6wall.webp"
+    },
+    "spr_mm_house_wall_71ddd": {
+      "mesh": "71dddwall",
+      "image": "71dddwall.webp"
+    },
+    "spr_mm_house_wall_71dd": {
+      "mesh": "71ddwall",
+      "image": "71ddwall.webp"
+    },
+    "spr_mm_house_wall_71d": {
+      "mesh": "71dwall",
+      "image": "71dwall.webp"
+    },
+    "spr_mm_house_wall_71": {
+      "mesh": "71wall",
+      "image": "71wall.webp"
+    },
+    "spr_mm_house_wall_7ddd": {
+      "mesh": "7dddwall",
+      "image": "7dddwall.webp"
+    },
+    "spr_mm_house_wall_7dd": {
+      "mesh": "7ddwall",
+      "image": "7ddwall.webp"
+    },
+    "spr_mm_house_wall_7d": {
+      "mesh": "7dwall",
+      "image": "7dwall.webp"
+    },
+    "spr_mm_7housebuild": {
+      "mesh": "7housebuild",
+      "image": "7housebuild.webp"
+    },
+    "spr_mm_house_wall_7": {
+      "mesh": "7wall",
+      "image": "7wall.webp"
+    },
+    "spr_mm_8housebuild": {
+      "mesh": "8housebuild",
+      "image": "8housebuild.webp"
+    },
+    "spr_mm_9housebuild": {
+      "mesh": "9housebuild",
+      "image": "9housebuild.webp"
+    },
+    "spr_mm_ammobox_cannon": {
+      "mesh": "ammobox_cannon",
+      "image": "ammobox_cannon.webp"
+    },
+    "spr_mm_ammobox_howitzer": {
+      "mesh": "ammobox_howitzer",
+      "image": "ammobox_howitzer.webp"
+    },
+    "spr_mm_ammunition_depot": {
+      "mesh": "ammunition_depot",
+      "image": "ammunition_depot.webp"
+    },
+    "spr_apple_a": {
+      "mesh": "apple_a",
+      "image": "apple_a.webp"
+    },
+    "spr_apple_b": {
+      "mesh": "apple_b",
+      "image": "apple_b.webp"
+    },
+    "spr_arabian_castle_house_a": {
+      "mesh": "arabian_castle_house_a",
+      "image": "arabian_castle_house_a.webp"
+    },
+    "spr_arabian_castle_house_b": {
+      "mesh": "arabian_castle_house_b",
+      "image": "arabian_castle_house_b.webp"
+    },
+    "spr_arabian_castle_stairs": {
+      "mesh": "arabian_castle_stairs",
+      "image": "arabian_castle_stairs.webp"
+    },
+    "spr_arabian_castle_stairs_b": {
+      "mesh": "arabian_castle_stairs_b",
+      "image": "arabian_castle_stairs_b.webp"
+    },
+    "spr_arabian_castle_stairs_c": {
+      "mesh": "arabian_castle_stairs_c",
+      "image": "arabian_castle_stairs_c.webp"
+    },
+    "spr_arabian_ground_a": {
+      "mesh": "arabian_ground_a",
+      "image": "arabian_ground_a.webp"
+    },
+    "spr_arabian_house_a": {
+      "mesh": "arabian_house_a",
+      "image": "arabian_house_a.webp"
+    },
+    "spr_arabian_house_a2": {
+      "mesh": "arabian_house_a2",
+      "image": "arabian_house_a2.webp"
+    },
+    "spr_arabian_house_b": {
+      "mesh": "arabian_house_b",
+      "image": "arabian_house_b.webp"
+    },
+    "spr_arabian_house_c": {
+      "mesh": "arabian_house_c",
+      "image": "arabian_house_c.webp"
+    },
+    "spr_arabian_house_d": {
+      "mesh": "arabian_house_d",
+      "image": "arabian_house_d.webp"
+    },
+    "spr_arabian_house_e": {
+      "mesh": "arabian_house_e",
+      "image": "arabian_house_e.webp"
+    },
+    "spr_arabian_house_f": {
+      "mesh": "arabian_house_f",
+      "image": "arabian_house_f.webp"
+    },
+    "spr_arabian_house_g": {
+      "mesh": "arabian_house_g",
+      "image": "arabian_house_g.webp"
+    },
+    "spr_arabian_house_h": {
+      "mesh": "arabian_house_h",
+      "image": "arabian_house_h.webp"
+    },
+    "spr_arabian_house_i": {
+      "mesh": "arabian_house_i",
+      "image": "arabian_house_i.webp"
+    },
+    "spr_arabian_lighthouse_a": {
+      "mesh": "arabian_lighthouse_a",
+      "image": "arabian_lighthouse_a.webp"
+    },
+    "spr_arabian_parterre_a": {
+      "mesh": "arabian_parterre_a",
+      "image": "arabian_parterre_a.webp"
+    },
+    "spr_arabian_passage_house_a": {
+      "mesh": "arabian_passage_house_a",
+      "image": "arabian_passage_house_a.webp"
+    },
+    "spr_arabian_ramp_a": {
+      "mesh": "arabian_ramp_a",
+      "image": "arabian_ramp_a.webp"
+    },
+    "spr_arabian_ramp_b": {
+      "mesh": "arabian_ramp_b",
+      "image": "arabian_ramp_b.webp"
+    },
+    "spr_arabian_stable": {
+      "mesh": "arabian_stable",
+      "image": "arabian_stable.webp"
+    },
+    "spr_arabian_tent": {
+      "mesh": "arabian_tent",
+      "image": "arabian_tent.webp"
+    },
+    "spr_arabian_tent_b": {
+      "mesh": "arabian_tent_b",
+      "image": "arabian_tent_b.webp"
+    },
+    "spr_arabian_village_house_a": {
+      "mesh": "arabian_village_house_a",
+      "image": "arabian_village_house_a.webp"
+    },
+    "spr_arabian_village_house_b": {
+      "mesh": "arabian_village_house_b",
+      "image": "arabian_village_house_b.webp"
+    },
+    "spr_arabian_village_house_c": {
+      "mesh": "arabian_village_house_c",
+      "image": "arabian_village_house_c.webp"
+    },
+    "spr_arabian_village_house_d": {
+      "mesh": "arabian_village_house_d",
+      "image": "arabian_village_house_d.webp"
+    },
+    "spr_arabian_village_hut": {
+      "mesh": "arabian_village_hut",
+      "image": "arabian_village_hut.webp"
+    },
+    "spr_arabian_village_stable": {
+      "mesh": "arabian_village_stable",
+      "image": "arabian_village_stable.webp"
+    },
+    "spr_arabian_village_stairs": {
+      "mesh": "arabian_village_stairs",
+      "image": "arabian_village_stairs.webp"
+    },
+    "spr_arabian_wall_a": {
+      "mesh": "arabian_wall_a",
+      "image": "arabian_wall_a.webp"
+    },
+    "spr_arabian_wall_b": {
+      "mesh": "arabian_wall_b",
+      "image": "arabian_wall_b.webp"
+    },
+    "spr_mm_arc": {
+      "mesh": "arc",
+      "image": "arc.webp"
+    },
+    "spr_arena_archery_target_a": {
+      "mesh": "arena_archery_target_a",
+      "image": "arena_archery_target_a.webp"
+    },
+    "spr_awning_a": {
+      "mesh": "awning_a",
+      "image": "awning_a.webp"
+    },
+    "spr_awning_b": {
+      "mesh": "awning_b",
+      "image": "awning_b.webp"
+    },
+    "spr_awning_c": {
+      "mesh": "awning_c",
+      "image": "awning_c.webp"
+    },
+    "spr_awning_d": {
+      "mesh": "awning_d",
+      "image": "awning_d.webp"
+    },
+    "spr_awning_long": {
+      "mesh": "awning_long",
+      "image": "awning_long.webp"
+    },
+    "spr_awning_long_b": {
+      "mesh": "awning_long_b",
+      "image": "awning_long_b.webp"
+    },
+    "spr_band_a": {
+      "mesh": "band_a",
+      "image": "band_a.webp"
+    },
+    "spr_mm_bank1": {
+      "mesh": "bank",
+      "image": "bank.webp"
+    },
+    "spr_banner_kingdom_d": {
+      "mesh": "banner1",
+      "image": "banner1.webp"
+    },
+    "spr_banner_kingdom_a": {
+      "mesh": "banner2",
+      "image": "banner2.webp"
+    },
+    "spr_banner_kingdom_c": {
+      "mesh": "banner3",
+      "image": "banner3.webp"
+    },
+    "spr_banner_kingdom_f": {
+      "mesh": "banner4",
+      "image": "banner4.webp"
+    },
+    "spr_banner_kingdom_b": {
+      "mesh": "banner5",
+      "image": "banner5.webp"
+    },
+    "spr_banner_kingdom_e": {
+      "mesh": "banner75",
+      "image": "banner75.webp"
+    },
+    "spr_banner_pole": {
+      "mesh": "banner_pole",
+      "image": "banner_pole.webp"
+    },
+    "spr_barrel": {
+      "mesh": "barrel",
+      "image": "barrel.webp"
+    },
+    "spr_tavern_barrel": {
+      "mesh": "barrel",
+      "image": "barrel.webp"
+    },
+    "spr_crate_explosive": {
+      "mesh": "barreltriangulated",
+      "image": "barreltriangulated.webp"
+    },
+    "spr_mm_french_barrel": {
+      "mesh": "barreltriangulated",
+      "image": "barreltriangulated.webp"
+    },
+    "spr_mm_brit_barrel": {
+      "mesh": "barreltriangulated_brit",
+      "image": "barreltriangulated_brit.webp"
+    },
+    "spr_mm_brit_barrel_explosive": {
+      "mesh": "barreltriangulated_brit",
+      "image": "barreltriangulated_brit.webp"
+    },
+    "spr_mm_prus_barrel_explosive": {
+      "mesh": "barreltriangulated_brit",
+      "image": "barreltriangulated_brit.webp"
+    },
+    "spr_basket_a": {
+      "mesh": "basket_a",
+      "image": "basket_a.webp"
+    },
+    "spr_basket_big_green": {
+      "mesh": "basket_big",
+      "image": "basket_big.webp"
+    },
+    "spr_basket_big": {
+      "mesh": "basket_large",
+      "image": "basket_large.webp"
+    },
+    "spr_basket": {
+      "mesh": "basket_small",
+      "image": "basket_small.webp"
+    },
+    "spr_bean": {
+      "mesh": "bean",
+      "image": "bean.webp"
+    },
+    "spr_mm_bed": {
+      "mesh": "bed",
+      "image": "bed.webp"
+    },
+    "spr_bed_a": {
+      "mesh": "bed_a",
+      "image": "bed_a.webp"
+    },
+    "spr_bed_b": {
+      "mesh": "bed_b",
+      "image": "bed_b.webp"
+    },
+    "spr_bed_c": {
+      "mesh": "bed_c",
+      "image": "bed_c.webp"
+    },
+    "spr_bed_d": {
+      "mesh": "bed_d",
+      "image": "bed_d.webp"
+    },
+    "spr_bed_e": {
+      "mesh": "bed_e",
+      "image": "bed_e.webp"
+    },
+    "spr_bed_f": {
+      "mesh": "bed_f",
+      "image": "bed_f.webp"
+    },
+    "spr_bench_tavern": {
+      "mesh": "bench_tavern",
+      "image": "bench_tavern.webp"
+    },
+    "spr_bench_tavern_b": {
+      "mesh": "bench_tavern_b",
+      "image": "bench_tavern_b.webp"
+    },
     "spr_mm_tree_big1": {
       "mesh": "big_tree_mm",
       "image": "big_tree_mm.webp"
@@ -74,6 +943,102 @@
     "spr_mm_tree_big4": {
       "mesh": "big_tree_mm3",
       "image": "big_tree_mm3.webp"
+    },
+    "spr_boat_destroy": {
+      "mesh": "boat_destroy",
+      "image": "boat_destroy.webp"
+    },
+    "spr_mm_bookcase": {
+      "mesh": "bookcase",
+      "image": "bookcase.webp"
+    },
+    "spr_bowl_a": {
+      "mesh": "bowl_a",
+      "image": "bowl_a.webp"
+    },
+    "spr_bowl": {
+      "mesh": "bowl_big",
+      "image": "bowl_big.webp"
+    },
+    "spr_bowl_small": {
+      "mesh": "bowl_small",
+      "image": "bowl_small.webp"
+    },
+    "spr_bowl_wood": {
+      "mesh": "bowl_wood",
+      "image": "bowl_wood.webp"
+    },
+    "spr_box_a": {
+      "mesh": "box_a",
+      "image": "box_a.webp"
+    },
+    "spr_box_a_dynamic": {
+      "mesh": "box_a",
+      "image": "box_a.webp"
+    },
+    "spr_bread_a": {
+      "mesh": "bread_a",
+      "image": "bread_a.webp"
+    },
+    "spr_bread_b": {
+      "mesh": "bread_b",
+      "image": "bread_b.webp"
+    },
+    "spr_bread_slice_a": {
+      "mesh": "bread_slice_a",
+      "image": "bread_slice_a.webp"
+    },
+    "spr_brewery_big_bucket": {
+      "mesh": "brewery_big_bucket",
+      "image": "brewery_big_bucket.webp"
+    },
+    "spr_brewery_bucket_platform_a": {
+      "mesh": "brewery_bucket_platform_a",
+      "image": "brewery_bucket_platform_a.webp"
+    },
+    "spr_brewery_bucket_platform_b": {
+      "mesh": "brewery_bucket_platform_b",
+      "image": "brewery_bucket_platform_b.webp"
+    },
+    "spr_brewery_pool": {
+      "mesh": "brewery_pool",
+      "image": "brewery_pool.webp"
+    },
+    "spr_bridge_b": {
+      "mesh": "bridge_b",
+      "image": "bridge_b.webp"
+    },
+    "spr_bridge_modular_a": {
+      "mesh": "bridge_modular_a",
+      "image": "bridge_modular_a.webp"
+    },
+    "spr_bridge_modular_b": {
+      "mesh": "bridge_modular_b",
+      "image": "bridge_modular_b.webp"
+    },
+    "spr_bridge_wooden": {
+      "mesh": "bridge_wooden",
+      "image": "bridge_wooden.webp"
+    },
+    "spr_bridge_wooden_snowy": {
+      "mesh": "bridge_wooden_snowy",
+      "image": "bridge_wooden_snowy.webp"
+    },
+    "spr_broom": {
+      "mesh": "broom",
+      "image": "broom.webp"
+    },
+    "spr_mm_fountain1": {
+      "mesh": "brunnen",
+      "image": "brunnen.webp"
+    },
+    "spr_bucket_a": {
+      "mesh": "bucket_a",
+      "image": "bucket_a.webp"
+    },
+    "spr_bucket_b": {
+      "mesh": "bucket_b",
+      "image": "bucket_b.webp"
     },
     "spr_flora_buddy_planta": {
       "mesh": "buddy_plant",
@@ -191,6 +1156,118 @@
       "mesh": "bush_new_green7",
       "image": "bush_new_green7.webp"
     },
+    "spr_cabbage": {
+      "mesh": "cabbage",
+      "image": "cabbage.webp"
+    },
+    "spr_cabbage_b": {
+      "mesh": "cabbage_b",
+      "image": "cabbage_b.webp"
+    },
+    "spr_mm_camaretsurmer": {
+      "mesh": "camaretsurmer",
+      "image": "camaretsurmer.webp"
+    },
+    "spr_mm_fireplace1": {
+      "mesh": "camin",
+      "image": "camin.webp"
+    },
+    "spr_mm_fireplace2": {
+      "mesh": "camin2",
+      "image": "camin2.webp"
+    },
+    "spr_carpet_a": {
+      "mesh": "carpet_a",
+      "image": "carpet_a.webp"
+    },
+    "spr_carpet_b": {
+      "mesh": "carpet_b",
+      "image": "carpet_b.webp"
+    },
+    "spr_carpet_c": {
+      "mesh": "carpet_c",
+      "image": "carpet_c.webp"
+    },
+    "spr_carpet_d": {
+      "mesh": "carpet_d",
+      "image": "carpet_d.webp"
+    },
+    "spr_carpet_e": {
+      "mesh": "carpet_e",
+      "image": "carpet_e.webp"
+    },
+    "spr_carpet_f": {
+      "mesh": "carpet_f",
+      "image": "carpet_f.webp"
+    },
+    "spr_carpet_with_pillows_a": {
+      "mesh": "carpet_with_pillows_a",
+      "image": "carpet_with_pillows_a.webp"
+    },
+    "spr_carpet_with_pillows_b": {
+      "mesh": "carpet_with_pillows_b",
+      "image": "carpet_with_pillows_b.webp"
+    },
+    "spr_cart": {
+      "mesh": "cart",
+      "image": "cart.webp"
+    },
+    "spr_castle_drawbridge_closed": {
+      "mesh": "castle_drawbridges_closed",
+      "image": "castle_drawbridges_closed.webp"
+    },
+    "spr_castle_drawbridge_open": {
+      "mesh": "castle_drawbridges_open",
+      "image": "castle_drawbridges_open.webp"
+    },
+    "spr_castle_e_stairs_a": {
+      "mesh": "castle_e_stairs_a",
+      "image": "castle_e_stairs_a.webp"
+    },
+    "spr_castle_f_doors_top_a": {
+      "mesh": "castle_f_doors_top_a",
+      "image": "castle_f_doors_top_a.webp"
+    },
+    "spr_castle_f_stairs_a": {
+      "mesh": "castle_f_stairs_a",
+      "image": "castle_f_stairs_a.webp"
+    },
+    "spr_castle_f_wall_stairs_a": {
+      "mesh": "castle_f_wall_stairs_a",
+      "image": "castle_f_wall_stairs_a.webp"
+    },
+    "spr_castle_f_wall_stairs_b": {
+      "mesh": "castle_f_wall_stairs_b",
+      "image": "castle_f_wall_stairs_b.webp"
+    },
+    "spr_castle_f_wall_way_a": {
+      "mesh": "castle_f_wall_way_a",
+      "image": "castle_f_wall_way_a.webp"
+    },
+    "spr_castle_f_wall_way_b": {
+      "mesh": "castle_f_wall_way_b",
+      "image": "castle_f_wall_way_b.webp"
+    },
+    "spr_castle_g_gate_house_door_a": {
+      "mesh": "castle_g_gate_house_door_a",
+      "image": "castle_g_gate_house_door_a.webp"
+    },
+    "spr_castle_g_gate_house_door_b": {
+      "mesh": "castle_g_gate_house_door_b",
+      "image": "castle_g_gate_house_door_b.webp"
+    },
+    "spr_castle_h_stairs_a": {
+      "mesh": "castle_h_stairs_a",
+      "image": "castle_h_stairs_a.webp"
+    },
+    "spr_castle_h_stairs_b": {
+      "mesh": "castle_h_stairs_b",
+      "image": "castle_h_stairs_b.webp"
+    },
+    "spr_castle_stairs_a": {
+      "mesh": "castle_stairs_a",
+      "image": "castle_stairs_a.webp"
+    },
     "spr_flora_cattail1": {
       "mesh": "cattail1",
       "image": "cattail1.webp"
@@ -218,6 +1295,874 @@
     "spr_flora_cattail7": {
       "mesh": "cattail7",
       "image": "cattail7.webp"
+    },
+    "spr_cauldron_a": {
+      "mesh": "cauldron_a",
+      "image": "cauldron_a.webp"
+    },
+    "spr_cave_entrance_1": {
+      "mesh": "cave_entrance_1",
+      "image": "cave_entrance_1.webp"
+    },
+    "spr_chain_10m": {
+      "mesh": "chain_10m",
+      "image": "chain_10m.webp"
+    },
+    "spr_chain_1m": {
+      "mesh": "chain_1m",
+      "image": "chain_1m.webp"
+    },
+    "spr_chain_2m": {
+      "mesh": "chain_2m",
+      "image": "chain_2m.webp"
+    },
+    "spr_chain_5m": {
+      "mesh": "chain_5m",
+      "image": "chain_5m.webp"
+    },
+    "spr_mm_chair1": {
+      "mesh": "chair1",
+      "image": "chair1.webp"
+    },
+    "spr_chair_castle_a": {
+      "mesh": "chair_castle_a",
+      "image": "chair_castle_a.webp"
+    },
+    "spr_chair_trestle": {
+      "mesh": "chair_trestle",
+      "image": "chair_trestle.webp"
+    },
+    "spr_chair_trunk_a": {
+      "mesh": "chair_trunk_a",
+      "image": "chair_trunk_a.webp"
+    },
+    "spr_chair_trunk_b": {
+      "mesh": "chair_trunk_b",
+      "image": "chair_trunk_b.webp"
+    },
+    "spr_chair_trunk_c": {
+      "mesh": "chair_trunk_c",
+      "image": "chair_trunk_c.webp"
+    },
+    "spr_chandelier_table": {
+      "mesh": "chandelier_table",
+      "image": "chandelier_table.webp"
+    },
+    "spr_chandelier_tavern": {
+      "mesh": "chandelier_tavern",
+      "image": "chandelier_tavern.webp"
+    },
+    "spr_cheese_a": {
+      "mesh": "cheese_a",
+      "image": "cheese_a.webp"
+    },
+    "spr_cheese_b": {
+      "mesh": "cheese_b",
+      "image": "cheese_b.webp"
+    },
+    "spr_cheese_slice_a": {
+      "mesh": "cheese_slice_a",
+      "image": "cheese_slice_a.webp"
+    },
+    "spr_container_chest_b": {
+      "mesh": "chest_b",
+      "image": "chest_b.webp"
+    },
+    "spr_chest_b": {
+      "mesh": "chest_b",
+      "image": "chest_b.webp"
+    },
+    "spr_container_chest_c": {
+      "mesh": "chest_c",
+      "image": "chest_c.webp"
+    },
+    "spr_chest_c": {
+      "mesh": "chest_c",
+      "image": "chest_c.webp"
+    },
+    "spr_chest_a": {
+      "mesh": "chest_gothic",
+      "image": "chest_gothic.webp"
+    },
+    "spr_chest_gothic": {
+      "mesh": "chest_gothic",
+      "image": "chest_gothic.webp"
+    },
+    "spr_chicken_roasted": {
+      "mesh": "chicken",
+      "image": "chicken.webp"
+    },
+    "spr_church_a": {
+      "mesh": "church_a",
+      "image": "church_a.webp"
+    },
+    "spr_mm_build_church_bell": {
+      "mesh": "church_bell",
+      "image": "church_bell.webp"
+    },
+    "spr_mm_build_church_bellmov": {
+      "mesh": "church_bellmov",
+      "image": "church_bellmov.webp"
+    },
+    "spr_mm_build_church1": {
+      "mesh": "church_building",
+      "image": "church_building.webp"
+    },
+    "spr_mm_build_church2": {
+      "mesh": "church_building1",
+      "image": "church_building1.webp"
+    },
+    "spr_mm_build_church_tower": {
+      "mesh": "church_tower",
+      "image": "church_tower.webp"
+    },
+    "spr_church_tower_a": {
+      "mesh": "church_tower_a",
+      "image": "church_tower_a.webp"
+    },
+    "spr_cloth_a": {
+      "mesh": "cloth_a",
+      "image": "cloth_a.webp"
+    },
+    "spr_cloth_b": {
+      "mesh": "cloth_b",
+      "image": "cloth_b.webp"
+    },
+    "spr_mm_coffin": {
+      "mesh": "coffin",
+      "image": "coffin.webp"
+    },
+    "spr_colander": {
+      "mesh": "colander",
+      "image": "colander.webp"
+    },
+    "spr_cooking_pole": {
+      "mesh": "cooking_pole",
+      "image": "cooking_pole.webp"
+    },
+    "spr_counter_tavern": {
+      "mesh": "counter_tavern",
+      "image": "counter_tavern.webp"
+    },
+    "spr_mm_crate1": {
+      "mesh": "crate1",
+      "image": "crate1.webp"
+    },
+    "spr_mm_crate2": {
+      "mesh": "crate2",
+      "image": "crate2.webp"
+    },
+    "spr_mm_crator_big": {
+      "mesh": "crator_big",
+      "image": "crator_big.webp"
+    },
+    "spr_mm_crator_big_medium": {
+      "mesh": "crator_big_medium",
+      "image": "crator_big_medium.webp"
+    },
+    "spr_mm_crator_explosion": {
+      "mesh": "crator_explosion",
+      "image": "crator_explosion.webp"
+    },
+    "spr_mm_crator_medium": {
+      "mesh": "crator_medium",
+      "image": "crator_medium.webp"
+    },
+    "spr_mm_crator_medium_small": {
+      "mesh": "crator_medium_small",
+      "image": "crator_medium_small.webp"
+    },
+    "spr_mm_crator_crator_medium_very_small": {
+      "mesh": "crator_medium_very_small",
+      "image": "crator_medium_very_small.webp"
+    },
+    "spr_mm_crator_small": {
+      "mesh": "crator_small",
+      "image": "crator_small.webp"
+    },
+    "spr_crude_fence_small": {
+      "mesh": "crude_fence_small",
+      "image": "crude_fence_small.webp"
+    },
+    "spr_crude_fence_small_b": {
+      "mesh": "crude_fence_small_b",
+      "image": "crude_fence_small_b.webp"
+    },
+    "spr_cup": {
+      "mesh": "cup",
+      "image": "cup.webp"
+    },
+    "spr_mm_cupboard1": {
+      "mesh": "cupboard1",
+      "image": "cupboard1.webp"
+    },
+    "spr_mm_cupboard2": {
+      "mesh": "cupboard2",
+      "image": "cupboard2.webp"
+    },
+    "spr_cupboard_a": {
+      "mesh": "cupboard_a",
+      "image": "cupboard_a.webp"
+    },
+    "spr_mm_sp_czech1": {
+      "mesh": "czech",
+      "image": "czech.webp"
+    },
+    "spr_mm_sp_czech2": {
+      "mesh": "czech1",
+      "image": "czech1.webp"
+    },
+    "spr_mm_sp_czech3": {
+      "mesh": "czech2",
+      "image": "czech2.webp"
+    },
+    "spr_mm_sp_czech4": {
+      "mesh": "czech3",
+      "image": "czech3.webp"
+    },
+    "spr_date_fruit_plane": {
+      "mesh": "date_fruit_plane",
+      "image": "date_fruit_plane.webp"
+    },
+    "spr_mm_watchtower": {
+      "mesh": "deploy_watchtower",
+      "image": "deploy_watchtower.webp"
+    },
+    "spr_mm_wall_stonesdesert1": {
+      "mesh": "desertBricks1",
+      "image": "desertBricks1.webp"
+    },
+    "spr_mm_wall_stonesdesert2": {
+      "mesh": "desertBricks2",
+      "image": "desertBricks2.webp"
+    },
+    "spr_mm_walldesert1": {
+      "mesh": "desertWall1",
+      "image": "desertWall1.webp"
+    },
+    "spr_mm_walldesert1d": {
+      "mesh": "desertWall1d",
+      "image": "desertWall1d.webp"
+    },
+    "spr_mm_walldesert1dd": {
+      "mesh": "desertWall1dd",
+      "image": "desertWall1dd.webp"
+    },
+    "spr_mm_walldesert2": {
+      "mesh": "desertWall1ddd",
+      "image": "desertWall1ddd.webp"
+    },
+    "spr_mm_walldesert82": {
+      "mesh": "desertWall82",
+      "image": "desertWall82.webp"
+    },
+    "spr_mm_walldesertgatedesert": {
+      "mesh": "desertWallGatehouse",
+      "image": "desertWallGatehouse.webp"
+    },
+    "spr_desert_field": {
+      "mesh": "desert_field",
+      "image": "desert_field.webp"
+    },
+    "spr_desert_plant_a": {
+      "mesh": "desert_plant_a",
+      "image": "desert_plant_a.webp"
+    },
+    "spr_destroy_a": {
+      "mesh": "destroy_a",
+      "image": "destroy_a.webp"
+    },
+    "spr_destroy_b": {
+      "mesh": "destroy_b",
+      "image": "destroy_b.webp"
+    },
+    "spr_destroy_bridge_a": {
+      "mesh": "destroy_bridge_a",
+      "image": "destroy_bridge_a.webp"
+    },
+    "spr_destroy_bridge_b": {
+      "mesh": "destroy_bridge_b",
+      "image": "destroy_bridge_b.webp"
+    },
+    "spr_destroy_castle_a": {
+      "mesh": "destroy_castle_a",
+      "image": "destroy_castle_a.webp"
+    },
+    "spr_destroy_castle_b": {
+      "mesh": "destroy_castle_b",
+      "image": "destroy_castle_b.webp"
+    },
+    "spr_destroy_castle_c": {
+      "mesh": "destroy_castle_c",
+      "image": "destroy_castle_c.webp"
+    },
+    "spr_destroy_castle_d": {
+      "mesh": "destroy_castle_d",
+      "image": "destroy_castle_d.webp"
+    },
+    "spr_destroy_heap": {
+      "mesh": "destroy_heap",
+      "image": "destroy_heap.webp"
+    },
+    "spr_destroy_house_a": {
+      "mesh": "destroy_house_a",
+      "image": "destroy_house_a.webp"
+    },
+    "spr_destroy_house_b": {
+      "mesh": "destroy_house_b",
+      "image": "destroy_house_b.webp"
+    },
+    "spr_destroy_house_c": {
+      "mesh": "destroy_house_c",
+      "image": "destroy_house_c.webp"
+    },
+    "spr_destroy_windmill": {
+      "mesh": "destroy_windmill",
+      "image": "destroy_windmill.webp"
+    },
+    "spr_dish_metal": {
+      "mesh": "dish_metal",
+      "image": "dish_metal.webp"
+    },
+    "spr_door_a": {
+      "mesh": "door_a",
+      "image": "door_a.webp"
+    },
+    "spr_door_b": {
+      "mesh": "door_b",
+      "image": "door_b.webp"
+    },
+    "spr_door_c": {
+      "mesh": "door_c",
+      "image": "door_c.webp"
+    },
+    "spr_door_d": {
+      "mesh": "door_d",
+      "image": "door_d.webp"
+    },
+    "spr_door_e_left": {
+      "mesh": "door_e_left",
+      "image": "door_e_left.webp"
+    },
+    "spr_door_e_right": {
+      "mesh": "door_e_right",
+      "image": "door_e_right.webp"
+    },
+    "spr_door_f_left": {
+      "mesh": "door_f_left",
+      "image": "door_f_left.webp"
+    },
+    "spr_door_f_right": {
+      "mesh": "door_f_right",
+      "image": "door_f_right.webp"
+    },
+    "spr_towngate_door_left": {
+      "mesh": "door_g_left",
+      "image": "door_g_left.webp"
+    },
+    "spr_door_h_left": {
+      "mesh": "door_g_left",
+      "image": "door_g_left.webp"
+    },
+    "spr_towngate_door_right": {
+      "mesh": "door_g_right",
+      "image": "door_g_right.webp"
+    },
+    "spr_door_h_right": {
+      "mesh": "door_g_right",
+      "image": "door_g_right.webp"
+    },
+    "spr_door_screen": {
+      "mesh": "door_screen",
+      "image": "door_screen.webp"
+    },
+    "spr_draw_bridge_a": {
+      "mesh": "draw_bridge_a",
+      "image": "draw_bridge_a.webp"
+    },
+    "spr_drawbridge": {
+      "mesh": "drawbridge",
+      "image": "drawbridge.webp"
+    },
+    "spr_dungeon_bed_a": {
+      "mesh": "dungeon_bed_a",
+      "image": "dungeon_bed_a.webp"
+    },
+    "spr_dungeon_bed_b": {
+      "mesh": "dungeon_bed_b",
+      "image": "dungeon_bed_b.webp"
+    },
+    "spr_dungeon_cell_c": {
+      "mesh": "dungeon_cell_c",
+      "image": "dungeon_cell_c.webp"
+    },
+    "spr_dungeon_door_cell_a": {
+      "mesh": "dungeon_door_cell_a",
+      "image": "dungeon_door_cell_a.webp"
+    },
+    "spr_dungeon_door_cell_b": {
+      "mesh": "dungeon_door_cell_b",
+      "image": "dungeon_door_cell_b.webp"
+    },
+    "spr_dungeon_door_entry_a": {
+      "mesh": "dungeon_door_entry_a",
+      "image": "dungeon_door_entry_a.webp"
+    },
+    "spr_dungeon_door_entry_b": {
+      "mesh": "dungeon_door_entry_b",
+      "image": "dungeon_door_entry_b.webp"
+    },
+    "spr_dungeon_door_entry_c": {
+      "mesh": "dungeon_door_entry_c",
+      "image": "dungeon_door_entry_c.webp"
+    },
+    "spr_dungeon_door_stairs_a": {
+      "mesh": "dungeon_door_stairs_a",
+      "image": "dungeon_door_stairs_a.webp"
+    },
+    "spr_dungeon_door_stairs_b": {
+      "mesh": "dungeon_door_stairs_b",
+      "image": "dungeon_door_stairs_b.webp"
+    },
+    "spr_earth_gate_a": {
+      "mesh": "earth_gate_a",
+      "image": "earth_gate_a.webp"
+    },
+    "spr_earth_gate_house_a": {
+      "mesh": "earth_gate_house_a",
+      "image": "earth_gate_house_a.webp"
+    },
+    "spr_earth_gate_house_b": {
+      "mesh": "earth_gate_house_b",
+      "image": "earth_gate_house_b.webp"
+    },
+    "spr_earth_house_a": {
+      "mesh": "earth_house_a",
+      "image": "earth_house_a.webp"
+    },
+    "spr_earth_house_b": {
+      "mesh": "earth_house_b",
+      "image": "earth_house_b.webp"
+    },
+    "spr_earth_house_c": {
+      "mesh": "earth_house_c",
+      "image": "earth_house_c.webp"
+    },
+    "spr_earth_house_d": {
+      "mesh": "earth_house_d",
+      "image": "earth_house_d.webp"
+    },
+    "spr_earth_stairs_a": {
+      "mesh": "earth_stairs_a",
+      "image": "earth_stairs_a.webp"
+    },
+    "spr_earth_stairs_b": {
+      "mesh": "earth_stairs_b",
+      "image": "earth_stairs_b.webp"
+    },
+    "spr_earth_stairs_c": {
+      "mesh": "earth_stairs_c",
+      "image": "earth_stairs_c.webp"
+    },
+    "spr_earth_tower_small_a": {
+      "mesh": "earth_tower_small_a",
+      "image": "earth_tower_small_a.webp"
+    },
+    "spr_earth_wall_a": {
+      "mesh": "earth_wall_a",
+      "image": "earth_wall_a.webp"
+    },
+    "spr_earth_wall_a2": {
+      "mesh": "earth_wall_a2",
+      "image": "earth_wall_a2.webp"
+    },
+    "spr_earth_wall_b": {
+      "mesh": "earth_wall_b",
+      "image": "earth_wall_b.webp"
+    },
+    "spr_earth_wall_b2": {
+      "mesh": "earth_wall_b2",
+      "image": "earth_wall_b2.webp"
+    },
+    "spr_mm_earthwork1": {
+      "mesh": "earthwork1",
+      "image": "earthwork1.webp"
+    },
+    "spr_end_table_a": {
+      "mesh": "end_table_a",
+      "image": "end_table_a.webp"
+    },
+    "spr_mm_oim_fortwall4": {
+      "mesh": "euro_fort_gate_house",
+      "image": "euro_fort_gate_house.webp"
+    },
+    "spr_mm_oim_fortwall3": {
+      "mesh": "euro_fort_stairs",
+      "image": "euro_fort_stairs.webp"
+    },
+    "spr_mm_oim_fortwall5": {
+      "mesh": "euro_fort_tower",
+      "image": "euro_fort_tower.webp"
+    },
+    "spr_mm_oim_fortwall6": {
+      "mesh": "euro_fort_tower_ugol",
+      "image": "euro_fort_tower_ugol.webp"
+    },
+    "spr_mm_oim_fortwall2": {
+      "mesh": "euro_fort_wall",
+      "image": "euro_fort_wall.webp"
+    },
+    "spr_mm_oim_fortwall1": {
+      "mesh": "euro_fort_wall_blasted",
+      "image": "euro_fort_wall_blasted.webp"
+    },
+    "spr_mm_oim_fortwall7": {
+      "mesh": "euro_fort_wall_corner",
+      "image": "euro_fort_wall_corner.webp"
+    },
+    "spr_mm_oim_fortwall9": {
+      "mesh": "euro_fort_wall_in",
+      "image": "euro_fort_wall_in.webp"
+    },
+    "spr_mm_oim_fortwall10": {
+      "mesh": "euro_fort_wall_in_half",
+      "image": "euro_fort_wall_in_half.webp"
+    },
+    "spr_ewer_a": {
+      "mesh": "ewer_a",
+      "image": "ewer_a.webp"
+    },
+    "spr_feeding_trough_a": {
+      "mesh": "feeding_trough_a",
+      "image": "feeding_trough_a.webp"
+    },
+    "spr_crude_fence": {
+      "mesh": "fence",
+      "image": "fence.webp"
+    },
+    "spr_obstacle_fence_1": {
+      "mesh": "fence",
+      "image": "fence.webp"
+    },
+    "spr_fireplace_a": {
+      "mesh": "fireplace_a",
+      "image": "fireplace_a.webp"
+    },
+    "spr_fireplace_b": {
+      "mesh": "fireplace_b",
+      "image": "fireplace_b.webp"
+    },
+    "spr_fireplace_c": {
+      "mesh": "fireplace_c",
+      "image": "fireplace_c.webp"
+    },
+    "spr_fireplace_d_interior": {
+      "mesh": "fireplace_d",
+      "image": "fireplace_d.webp"
+    },
+    "spr_fish_a": {
+      "mesh": "fish_a",
+      "image": "fish_a.webp"
+    },
+    "spr_fish_roasted_a": {
+      "mesh": "fish_roasted_a",
+      "image": "fish_roasted_a.webp"
+    },
+    "spr_stone_step_a": {
+      "mesh": "floor_stone_a",
+      "image": "floor_stone_a.webp"
+    },
+    "spr_mm_house_basic1": {
+      "mesh": "formen",
+      "image": "formen.webp"
+    },
+    "spr_mm_house_basic10": {
+      "mesh": "formen10",
+      "image": "formen10.webp"
+    },
+    "spr_mm_house_basic11": {
+      "mesh": "formen11",
+      "image": "formen11.webp"
+    },
+    "spr_mm_house_basic12": {
+      "mesh": "formen12",
+      "image": "formen12.webp"
+    },
+    "spr_mm_house_basic13": {
+      "mesh": "formen13",
+      "image": "formen13.webp"
+    },
+    "spr_mm_house_basic14": {
+      "mesh": "formen14",
+      "image": "formen14.webp"
+    },
+    "spr_mm_house_basic3": {
+      "mesh": "formen3",
+      "image": "formen3.webp"
+    },
+    "spr_mm_house_basic4": {
+      "mesh": "formen4",
+      "image": "formen4.webp"
+    },
+    "spr_mm_house_basic5": {
+      "mesh": "formen5",
+      "image": "formen5.webp"
+    },
+    "spr_mm_house_basic6": {
+      "mesh": "formen6",
+      "image": "formen6.webp"
+    },
+    "spr_mm_house_basic7": {
+      "mesh": "formen7",
+      "image": "formen7.webp"
+    },
+    "spr_mm_house_basic8": {
+      "mesh": "formen8",
+      "image": "formen8.webp"
+    },
+    "spr_mm_house_basic9": {
+      "mesh": "formen9",
+      "image": "formen9.webp"
+    },
+    "spr_fortnew": {
+      "mesh": "fortnew",
+      "image": "fortnew.webp"
+    },
+    "spr_fortnew1": {
+      "mesh": "fortnew1",
+      "image": "fortnew1.webp"
+    },
+    "spr_fortnew2": {
+      "mesh": "fortnew2",
+      "image": "fortnew2.webp"
+    },
+    "spr_fortnew3": {
+      "mesh": "fortnew3",
+      "image": "fortnew3.webp"
+    },
+    "spr_fortnew4": {
+      "mesh": "fortnew4",
+      "image": "fortnew4.webp"
+    },
+    "spr_fortnew5": {
+      "mesh": "fortnew5",
+      "image": "fortnew5.webp"
+    },
+    "spr_fortnew6": {
+      "mesh": "fortnew6",
+      "image": "fortnew6.webp"
+    },
+    "spr_fortnew7": {
+      "mesh": "fortnew7",
+      "image": "fortnew7.webp"
+    },
+    "spr_fortnew8": {
+      "mesh": "fortnew8",
+      "image": "fortnew8.webp"
+    },
+    "spr_fortnew9": {
+      "mesh": "fortnew9",
+      "image": "fortnew9.webp"
+    },
+    "spr_fortnew_1": {
+      "mesh": "fortnew_1",
+      "image": "fortnew_1.webp"
+    },
+    "spr_fortnew_110": {
+      "mesh": "fortnew_110",
+      "image": "fortnew_110.webp"
+    },
+    "spr_fortnew_111": {
+      "mesh": "fortnew_111",
+      "image": "fortnew_111.webp"
+    },
+    "spr_fortnew_12": {
+      "mesh": "fortnew_12",
+      "image": "fortnew_12.webp"
+    },
+    "spr_fortnew_13": {
+      "mesh": "fortnew_13",
+      "image": "fortnew_13.webp"
+    },
+    "spr_fortnew_14": {
+      "mesh": "fortnew_14",
+      "image": "fortnew_14.webp"
+    },
+    "spr_fortnew_15": {
+      "mesh": "fortnew_15",
+      "image": "fortnew_15.webp"
+    },
+    "spr_fortnew_16": {
+      "mesh": "fortnew_16",
+      "image": "fortnew_16.webp"
+    },
+    "spr_fortnew_17": {
+      "mesh": "fortnew_17",
+      "image": "fortnew_17.webp"
+    },
+    "spr_fortnew_18": {
+      "mesh": "fortnew_18",
+      "image": "fortnew_18.webp"
+    },
+    "spr_fortnew_19": {
+      "mesh": "fortnew_19",
+      "image": "fortnew_19.webp"
+    },
+    "spr_fortnew_2": {
+      "mesh": "fortnew_2",
+      "image": "fortnew_2.webp"
+    },
+    "spr_fortnew_21": {
+      "mesh": "fortnew_21",
+      "image": "fortnew_21.webp"
+    },
+    "spr_fortnew_22": {
+      "mesh": "fortnew_22",
+      "image": "fortnew_22.webp"
+    },
+    "spr_fortnew_23": {
+      "mesh": "fortnew_23",
+      "image": "fortnew_23.webp"
+    },
+    "spr_fortnew_24": {
+      "mesh": "fortnew_24",
+      "image": "fortnew_24.webp"
+    },
+    "spr_fortnew_25": {
+      "mesh": "fortnew_25",
+      "image": "fortnew_25.webp"
+    },
+    "spr_fortnew_26": {
+      "mesh": "fortnew_26",
+      "image": "fortnew_26.webp"
+    },
+    "spr_fortnew_27": {
+      "mesh": "fortnew_27",
+      "image": "fortnew_27.webp"
+    },
+    "spr_fortnew_28": {
+      "mesh": "fortnew_28",
+      "image": "fortnew_28.webp"
+    },
+    "spr_fortnew_29": {
+      "mesh": "fortnew_29",
+      "image": "fortnew_29.webp"
+    },
+    "spr_fortnew_3": {
+      "mesh": "fortnew_3",
+      "image": "fortnew_3.webp"
+    },
+    "spr_fortnew_31": {
+      "mesh": "fortnew_31",
+      "image": "fortnew_31.webp"
+    },
+    "spr_fortnew_32": {
+      "mesh": "fortnew_32",
+      "image": "fortnew_32.webp"
+    },
+    "spr_fortnew_33": {
+      "mesh": "fortnew_33",
+      "image": "fortnew_33.webp"
+    },
+    "spr_fortnew_34": {
+      "mesh": "fortnew_34",
+      "image": "fortnew_34.webp"
+    },
+    "spr_fortnew_35": {
+      "mesh": "fortnew_35",
+      "image": "fortnew_35.webp"
+    },
+    "spr_fortnew_36": {
+      "mesh": "fortnew_36",
+      "image": "fortnew_36.webp"
+    },
+    "spr_fortnew_37": {
+      "mesh": "fortnew_37",
+      "image": "fortnew_37.webp"
+    },
+    "spr_fortnew_38": {
+      "mesh": "fortnew_38",
+      "image": "fortnew_38.webp"
+    },
+    "spr_fortnew_39": {
+      "mesh": "fortnew_39",
+      "image": "fortnew_39.webp"
+    },
+    "spr_fortnew_4": {
+      "mesh": "fortnew_4",
+      "image": "fortnew_4.webp"
+    },
+    "spr_fortnew_41": {
+      "mesh": "fortnew_41",
+      "image": "fortnew_41.webp"
+    },
+    "spr_mm_frigate": {
+      "mesh": "frigate",
+      "image": "frigate.webp"
+    },
+    "spr_fry_pan_a": {
+      "mesh": "fry_pan_a",
+      "image": "fry_pan_a.webp"
+    },
+    "spr_full_stable_d": {
+      "mesh": "full_stable_d",
+      "image": "full_stable_d.webp"
+    },
+    "spr_mm_gabion": {
+      "mesh": "gabion",
+      "image": "gabion.webp"
+    },
+    "spr_mm_gabiondeploy": {
+      "mesh": "gabiondeploy",
+      "image": "gabiondeploy.webp"
+    },
+    "spr_garlic": {
+      "mesh": "garlic",
+      "image": "garlic.webp"
+    },
+    "spr_garlic_b": {
+      "mesh": "garlic_b",
+      "image": "garlic_b.webp"
+    },
+    "spr_gatehouse_door_left": {
+      "mesh": "gatehouse_door_left",
+      "image": "gatehouse_door_left.webp"
+    },
+    "spr_gatehouse_door_right": {
+      "mesh": "gatehouse_door_right",
+      "image": "gatehouse_door_right.webp"
+    },
+    "spr_glow_a": {
+      "mesh": "glow_a",
+      "image": "glow_a.webp"
+    },
+    "spr_glow_b": {
+      "mesh": "glow_b",
+      "image": "glow_b.webp"
+    },
+    "spr_gothic_chair": {
+      "mesh": "gothic_chair",
+      "image": "gothic_chair.webp"
+    },
+    "spr_gothic_stool": {
+      "mesh": "gothic_stool",
+      "image": "gothic_stool.webp"
+    },
+    "spr_gourd_spike": {
+      "mesh": "gourd_spike",
+      "image": "gourd_spike.webp"
+    },
+    "spr_grape_a": {
+      "mesh": "grape_a",
+      "image": "grape_a.webp"
+    },
+    "spr_grape_b": {
+      "mesh": "grape_b",
+      "image": "grape_b.webp"
+    },
+    "spr_grapes_plane": {
+      "mesh": "grapes_plane",
+      "image": "grapes_plane.webp"
     },
     "spr_flora_flowers1a": {
       "mesh": "grass_bush_amm",
@@ -279,9 +2224,273 @@
       "mesh": "grass_bush_mmm",
       "image": "grass_bush_mmm.webp"
     },
+    "spr_grate": {
+      "mesh": "grate",
+      "image": "grate.webp"
+    },
+    "spr_mm_grave1": {
+      "mesh": "grave1",
+      "image": "grave1.webp"
+    },
+    "spr_mm_grave2": {
+      "mesh": "grave2",
+      "image": "grave2.webp"
+    },
+    "spr_grave_a": {
+      "mesh": "grave_a",
+      "image": "grave_a.webp"
+    },
+    "spr_mm_great_redoubt1": {
+      "mesh": "greatredoubts",
+      "image": "greatredoubts.webp"
+    },
+    "spr_mm_great_redoubt2": {
+      "mesh": "greatredoubts1",
+      "image": "greatredoubts1.webp"
+    },
+    "spr_aagreenscreen": {
+      "mesh": "greenscreen",
+      "image": "greenscreen.webp"
+    },
+    "spr_mm_gunnest": {
+      "mesh": "gunnest",
+      "image": "gunnest.webp"
+    },
+    "spr_hanger": {
+      "mesh": "hanger",
+      "image": "hanger.webp"
+    },
+    "spr_harbour_a": {
+      "mesh": "harbour_a",
+      "image": "harbour_a.webp"
+    },
+    "spr_hook_a": {
+      "mesh": "hook_a",
+      "image": "hook_a.webp"
+    },
+    "spr_horse_mill": {
+      "mesh": "horse_mill",
+      "image": "horse_mill.webp"
+    },
+    "spr_horse_mill_collar": {
+      "mesh": "horse_mill_collar",
+      "image": "horse_mill_collar.webp"
+    },
+    "spr_panel_door_a": {
+      "mesh": "house_door_a",
+      "image": "house_door_a.webp"
+    },
+    "spr_panel_door_b": {
+      "mesh": "house_door_b",
+      "image": "house_door_b.webp"
+    },
+    "spr_house_roof_door": {
+      "mesh": "house_roof_door",
+      "image": "house_roof_door.webp"
+    },
+    "spr_mm_hugo1": {
+      "mesh": "hugo1",
+      "image": "hugo1.webp"
+    },
+    "spr_mm_hugo10": {
+      "mesh": "hugo10",
+      "image": "hugo10.webp"
+    },
+    "spr_mm_hugo11": {
+      "mesh": "hugo11",
+      "image": "hugo11.webp"
+    },
+    "spr_mm_hugo12": {
+      "mesh": "hugo12",
+      "image": "hugo12.webp"
+    },
+    "spr_mm_hugo13": {
+      "mesh": "hugo13",
+      "image": "hugo13.webp"
+    },
+    "spr_mm_hugo14": {
+      "mesh": "hugo14",
+      "image": "hugo14.webp"
+    },
+    "spr_mm_hugo2": {
+      "mesh": "hugo2",
+      "image": "hugo2.webp"
+    },
+    "spr_mm_hugo3": {
+      "mesh": "hugo3",
+      "image": "hugo3.webp"
+    },
+    "spr_mm_hugo4": {
+      "mesh": "hugo4",
+      "image": "hugo4.webp"
+    },
+    "spr_mm_hugo5": {
+      "mesh": "hugo5",
+      "image": "hugo5.webp"
+    },
+    "spr_mm_hugo6": {
+      "mesh": "hugo6",
+      "image": "hugo6.webp"
+    },
+    "spr_mm_hugo7": {
+      "mesh": "hugo7",
+      "image": "hugo7.webp"
+    },
+    "spr_mm_hugo8": {
+      "mesh": "hugo8",
+      "image": "hugo8.webp"
+    },
+    "spr_mm_hugo9": {
+      "mesh": "hugo9",
+      "image": "hugo9.webp"
+    },
+    "spr_mm_ice1": {
+      "mesh": "ice1",
+      "image": "ice1.webp"
+    },
+    "spr_mm_ice2": {
+      "mesh": "ice2",
+      "image": "ice2.webp"
+    },
+    "spr_mm_ice3": {
+      "mesh": "ice3",
+      "image": "ice3.webp"
+    },
+    "spr_mm_ice4": {
+      "mesh": "ice4",
+      "image": "ice4.webp"
+    },
+    "spr_jug": {
+      "mesh": "jug",
+      "image": "jug.webp"
+    },
+    "spr_knife_eating": {
+      "mesh": "knife_eating",
+      "image": "knife_eating.webp"
+    },
+    "spr_mm_la_haye1": {
+      "mesh": "la_haye_saint",
+      "image": "la_haye_saint.webp"
+    },
+    "spr_mm_la_haye2": {
+      "mesh": "la_haye_saint",
+      "image": "la_haye_saint.webp"
+    },
+    "spr_mm_la_haye3": {
+      "mesh": "la_haye_saint2",
+      "image": "la_haye_saint2.webp"
+    },
+    "spr_mm_la_haye4": {
+      "mesh": "la_haye_saint3",
+      "image": "la_haye_saint3.webp"
+    },
+    "spr_mm_la_haye5": {
+      "mesh": "la_haye_saint4",
+      "image": "la_haye_saint4.webp"
+    },
+    "spr_mm_la_haye6": {
+      "mesh": "la_haye_saint5",
+      "image": "la_haye_saint5.webp"
+    },
+    "spr_mm_la_haye7": {
+      "mesh": "la_haye_saint6",
+      "image": "la_haye_saint6.webp"
+    },
+    "spr_ladder": {
+      "mesh": "ladder",
+      "image": "ladder.webp"
+    },
+    "spr_ladle": {
+      "mesh": "ladle",
+      "image": "ladle.webp"
+    },
+    "spr_mm_lantern": {
+      "mesh": "lantern",
+      "image": "lantern.webp"
+    },
+    "spr_leatherwork_frame": {
+      "mesh": "leatherwork_frame",
+      "image": "leatherwork_frame.webp"
+    },
+    "spr_lettuce": {
+      "mesh": "lettuce",
+      "image": "lettuce.webp"
+    },
     "spr_flora_lilly1": {
       "mesh": "lilly1",
       "image": "lilly1.webp"
+    },
+    "spr_mm_little_table": {
+      "mesh": "little_table",
+      "image": "little_table.webp"
+    },
+    "spr_mm_little_table2": {
+      "mesh": "little_table2",
+      "image": "little_table2.webp"
+    },
+    "spr_maize_a": {
+      "mesh": "maize_a",
+      "image": "maize_a.webp"
+    },
+    "spr_maize_b": {
+      "mesh": "maize_b",
+      "image": "maize_b.webp"
+    },
+    "spr_marrow_a": {
+      "mesh": "marrow_a",
+      "image": "marrow_a.webp"
+    },
+    "spr_marrow_b": {
+      "mesh": "marrow_b",
+      "image": "marrow_b.webp"
+    },
+    "spr_squash_plant": {
+      "mesh": "marrow_c",
+      "image": "marrow_c.webp"
+    },
+    "spr_mat_a": {
+      "mesh": "mat_a",
+      "image": "mat_a.webp"
+    },
+    "spr_mat_b": {
+      "mesh": "mat_b",
+      "image": "mat_b.webp"
+    },
+    "spr_mat_c": {
+      "mesh": "mat_c",
+      "image": "mat_c.webp"
+    },
+    "spr_mat_d": {
+      "mesh": "mat_d",
+      "image": "mat_d.webp"
+    },
+    "spr_mauers8": {
+      "mesh": "mauers8",
+      "image": "mauers8.webp"
+    },
+    "spr_meat_hook": {
+      "mesh": "meat_hook",
+      "image": "meat_hook.webp"
+    },
+    "spr_merchant_sign": {
+      "mesh": "merchant_sign",
+      "image": "merchant_sign.webp"
+    },
+    "spr_mill_flour_sack": {
+      "mesh": "mill_flour_sack",
+      "image": "mill_flour_sack.webp"
+    },
+    "spr_mill_flour_sack_desk_a": {
+      "mesh": "mill_flour_sack_desk_a",
+      "image": "mill_flour_sack_desk_a.webp"
+    },
+    "spr_mill_flour_sack_desk_b": {
+      "mesh": "mill_flour_sack_desk_b",
+      "image": "mill_flour_sack_desk_b.webp"
+    },
+    "spr_mine_a": {
+      "mesh": "mine_a",
+      "image": "mine_a.webp"
     },
     "spr_mm_tree_aspen1": {
       "mesh": "mm_aspen1",
@@ -362,6 +2571,14 @@
     "spr_mm_tree_autumn5": {
       "mesh": "mm_autumn_tree4",
       "image": "mm_autumn_tree4.webp"
+    },
+    "spr_mm_bedside_table": {
+      "mesh": "mm_bedside_table",
+      "image": "mm_bedside_table.webp"
+    },
+    "spr_mm_box_a": {
+      "mesh": "mm_box_a",
+      "image": "mm_box_a.webp"
     },
     "spr_flora_bush_greena": {
       "mesh": "mm_bush",
@@ -475,6 +2692,30 @@
       "mesh": "mm_bush_winter9",
       "image": "mm_bush_winter9.webp"
     },
+    "spr_mm_cupboardd1": {
+      "mesh": "mm_cupboard1",
+      "image": "mm_cupboard1.webp"
+    },
+    "spr_mm_cupboardd2": {
+      "mesh": "mm_cupboard2",
+      "image": "mm_cupboard2.webp"
+    },
+    "spr_mm_cupboardd3": {
+      "mesh": "mm_cupboard3",
+      "image": "mm_cupboard3.webp"
+    },
+    "spr_mm_cupboardd4": {
+      "mesh": "mm_cupboard4",
+      "image": "mm_cupboard4.webp"
+    },
+    "spr_mm_cupboardd5": {
+      "mesh": "mm_cupboard5",
+      "image": "mm_cupboard5.webp"
+    },
+    "spr_mm_dummy_destroyed": {
+      "mesh": "mm_dummy_destroyed",
+      "image": "mm_dummy_destroyed.webp"
+    },
     "spr_flora_giant_busha": {
       "mesh": "mm_giant_bush",
       "image": "mm_giant_bush.webp"
@@ -530,6 +2771,66 @@
     "spr_flora_old_bushg": {
       "mesh": "mm_giant_bush_new7",
       "image": "mm_giant_bush_new7.webp"
+    },
+    "spr_ground_prop_bricks1": {
+      "mesh": "mm_ground_prop_bricks1",
+      "image": "mm_ground_prop_bricks1.webp"
+    },
+    "spr_ground_prop_grassy_ground": {
+      "mesh": "mm_ground_prop_grassy_ground",
+      "image": "mm_ground_prop_grassy_ground.webp"
+    },
+    "spr_ground_prop_ground_desert": {
+      "mesh": "mm_ground_prop_ground_desert",
+      "image": "mm_ground_prop_ground_desert.webp"
+    },
+    "spr_ground_prop_ground_earth": {
+      "mesh": "mm_ground_prop_ground_earth",
+      "image": "mm_ground_prop_ground_earth.webp"
+    },
+    "spr_ground_prop_ground_path": {
+      "mesh": "mm_ground_prop_ground_path",
+      "image": "mm_ground_prop_ground_path.webp"
+    },
+    "spr_ground_prop_patch_rock": {
+      "mesh": "mm_ground_prop_patch_rock",
+      "image": "mm_ground_prop_patch_rock.webp"
+    },
+    "spr_ground_prop_roof3": {
+      "mesh": "mm_ground_prop_roof3",
+      "image": "mm_ground_prop_roof3.webp"
+    },
+    "spr_ground_prop_snow": {
+      "mesh": "mm_ground_prop_snow",
+      "image": "mm_ground_prop_snow.webp"
+    },
+    "spr_ground_prop_stone_a": {
+      "mesh": "mm_ground_prop_stone_a",
+      "image": "mm_ground_prop_stone_a.webp"
+    },
+    "spr_ground_prop_stone_wall_5": {
+      "mesh": "mm_ground_prop_stone_wall_5",
+      "image": "mm_ground_prop_stone_wall_5.webp"
+    },
+    "spr_ground_prop_stucco_5": {
+      "mesh": "mm_ground_prop_stucco_5",
+      "image": "mm_ground_prop_stucco_5.webp"
+    },
+    "spr_ground_prop_wood1": {
+      "mesh": "mm_ground_prop_wood1",
+      "image": "mm_ground_prop_wood1.webp"
+    },
+    "spr_ground_prop_wood4": {
+      "mesh": "mm_ground_prop_wood4",
+      "image": "mm_ground_prop_wood4.webp"
+    },
+    "spr_mm_kitchentools1": {
+      "mesh": "mm_kitchentools1",
+      "image": "mm_kitchentools1.webp"
+    },
+    "spr_mm_marrows": {
+      "mesh": "mm_marrows",
+      "image": "mm_marrows.webp"
     },
     "spr_flora_mushrooms": {
       "mesh": "mm_mushrooms2",
@@ -646,6 +2947,118 @@
     "spr_mm_tree_northern7": {
       "mesh": "mm_pine_5",
       "image": "mm_pine_5.webp"
+    },
+    "spr_mm_redoubt_modular_corner": {
+      "mesh": "mm_redoubt_modular_corner",
+      "image": "mm_redoubt_modular_corner.webp"
+    },
+    "spr_mm_redoubt_modular_endpart": {
+      "mesh": "mm_redoubt_modular_endpart",
+      "image": "mm_redoubt_modular_endpart.webp"
+    },
+    "spr_mm_redoubt_modular_straight": {
+      "mesh": "mm_redoubt_modular_straight",
+      "image": "mm_redoubt_modular_straight.webp"
+    },
+    "spr_mm_redoubt_modular_straight_d": {
+      "mesh": "mm_redoubt_modular_straight_d",
+      "image": "mm_redoubt_modular_straight_d.webp"
+    },
+    "spr_mm_redoubt_modular_straight_d1": {
+      "mesh": "mm_redoubt_modular_straight_d1",
+      "image": "mm_redoubt_modular_straight_d1.webp"
+    },
+    "spr_mm_sofa": {
+      "mesh": "mm_sofa",
+      "image": "mm_sofa.webp"
+    },
+    "spr_mm_sofa2": {
+      "mesh": "mm_sofa2",
+      "image": "mm_sofa2.webp"
+    },
+    "spr_mm_tablebig1": {
+      "mesh": "mm_tablebig1",
+      "image": "mm_tablebig1.webp"
+    },
+    "spr_mm_tablebig2": {
+      "mesh": "mm_tablebig2",
+      "image": "mm_tablebig2.webp"
+    },
+    "spr_mm_tablebig3": {
+      "mesh": "mm_tablebig3",
+      "image": "mm_tablebig3.webp"
+    },
+    "spr_mm_tablebig4": {
+      "mesh": "mm_tablebig4",
+      "image": "mm_tablebig4.webp"
+    },
+    "spr_mm_tent1": {
+      "mesh": "mm_tent1",
+      "image": "mm_tent1.webp"
+    },
+    "spr_mm_tree_bench": {
+      "mesh": "mm_tree_bench",
+      "image": "mm_tree_bench.webp"
+    },
+    "spr_mm_trench_bastion": {
+      "mesh": "mm_trench_bastion",
+      "image": "mm_trench_bastion.webp"
+    },
+    "spr_mm_trench_big_curve": {
+      "mesh": "mm_trench_big_curve",
+      "image": "mm_trench_big_curve.webp"
+    },
+    "spr_mm_trench_corner": {
+      "mesh": "mm_trench_corner",
+      "image": "mm_trench_corner.webp"
+    },
+    "spr_mm_trench_cross": {
+      "mesh": "mm_trench_cross",
+      "image": "mm_trench_cross.webp"
+    },
+    "spr_mm_trench_cross2": {
+      "mesh": "mm_trench_cross2",
+      "image": "mm_trench_cross2.webp"
+    },
+    "spr_mm_trench_curve": {
+      "mesh": "mm_trench_curve",
+      "image": "mm_trench_curve.webp"
+    },
+    "spr_mm_trench_entrance1": {
+      "mesh": "mm_trench_entrance1",
+      "image": "mm_trench_entrance1.webp"
+    },
+    "spr_mm_trench_entrance2": {
+      "mesh": "mm_trench_entrance2",
+      "image": "mm_trench_entrance2.webp"
+    },
+    "spr_mm_trench_straight": {
+      "mesh": "mm_trench_straight",
+      "image": "mm_trench_straight.webp"
+    },
+    "spr_triangle_bricks1": {
+      "mesh": "mm_triangle_bricks1",
+      "image": "mm_triangle_bricks1.webp"
+    },
+    "spr_triangle_mmstuco": {
+      "mesh": "mm_triangle_mmstuco",
+      "image": "mm_triangle_mmstuco.webp"
+    },
+    "spr_triangle_mmstuco4": {
+      "mesh": "mm_triangle_mmstuco4",
+      "image": "mm_triangle_mmstuco4.webp"
+    },
+    "spr_triangle_stucco_5": {
+      "mesh": "mm_triangle_stucco_5",
+      "image": "mm_triangle_stucco_5.webp"
+    },
+    "spr_triangle_wood1": {
+      "mesh": "mm_triangle_wood1",
+      "image": "mm_triangle_wood1.webp"
+    },
+    "spr_triangle_wood9": {
+      "mesh": "mm_triangle_wood9",
+      "image": "mm_triangle_wood9.webp"
     },
     "spr_mm_tree_vegetation1": {
       "mesh": "mm_vegetation_tree1",
@@ -1159,6 +3572,742 @@
       "mesh": "mm_winter_tree9",
       "image": "mm_winter_tree9.webp"
     },
+    "spr_mm_wood_heap1": {
+      "mesh": "mm_wood_heap1",
+      "image": "mm_wood_heap1.webp"
+    },
+    "spr_mm_wood_heap2": {
+      "mesh": "mm_wood_heap2",
+      "image": "mm_wood_heap2.webp"
+    },
+    "spr_mm_wood_heap3": {
+      "mesh": "mm_wood_heap3",
+      "image": "mm_wood_heap3.webp"
+    },
+    "spr_mm_ship": {
+      "mesh": "mmboat1",
+      "image": "mmboat1.webp"
+    },
+    "spr_mm_mill2": {
+      "mesh": "mmmill2",
+      "image": "mmmill2.webp"
+    },
+    "spr_mm_palisade": {
+      "mesh": "mmpalisade",
+      "image": "mmpalisade.webp"
+    },
+    "spr_mm_palisaded": {
+      "mesh": "mmpalisaded",
+      "image": "mmpalisaded.webp"
+    },
+    "spr_mm_redoubt1": {
+      "mesh": "mmredoubts1",
+      "image": "mmredoubts1.webp"
+    },
+    "spr_mm_redoubt2": {
+      "mesh": "mmredoubts2",
+      "image": "mmredoubts2.webp"
+    },
+    "spr_mm_redoubt3": {
+      "mesh": "mmredoubts3",
+      "image": "mmredoubts3.webp"
+    },
+    "spr_mm_redoubt4": {
+      "mesh": "mmredoubts4",
+      "image": "mmredoubts4.webp"
+    },
+    "spr_mm_redoubt5": {
+      "mesh": "mmredoubts5",
+      "image": "mmredoubts5.webp"
+    },
+    "spr_mm_redoubt6": {
+      "mesh": "mmredoubts6",
+      "image": "mmredoubts6.webp"
+    },
+    "spr_mm_redoubt7": {
+      "mesh": "mmredoubts7",
+      "image": "mmredoubts7.webp"
+    },
+    "spr_mm_redoubt8": {
+      "mesh": "mmredoubts8",
+      "image": "mmredoubts8.webp"
+    },
+    "spr_mm_redoubt9": {
+      "mesh": "mmredoubts9",
+      "image": "mmredoubts9.webp"
+    },
+    "spr_mm_shrine": {
+      "mesh": "mmshrine",
+      "image": "mmshrine.webp"
+    },
+    "spr_mm_shrine1": {
+      "mesh": "mmshrine1",
+      "image": "mmshrine1.webp"
+    },
+    "spr_mm_shrine2": {
+      "mesh": "mmshrine2",
+      "image": "mmshrine2.webp"
+    },
+    "spr_mm_shrine3": {
+      "mesh": "mmshrine3",
+      "image": "mmshrine3.webp"
+    },
+    "spr_mm_shrine4": {
+      "mesh": "mmshrine4",
+      "image": "mmshrine4.webp"
+    },
+    "spr_mm_stakes2_destroyed": {
+      "mesh": "mmstackesd",
+      "image": "mmstackesd.webp"
+    },
+    "spr_mm_trenches1": {
+      "mesh": "mmtrenches1",
+      "image": "mmtrenches1.webp"
+    },
+    "spr_mm_trenches2": {
+      "mesh": "mmtrenches2",
+      "image": "mmtrenches2.webp"
+    },
+    "spr_mm_tunnel_entrance": {
+      "mesh": "mmtunnel1",
+      "image": "mmtunnel1.webp"
+    },
+    "spr_mm_tunnel": {
+      "mesh": "mmtunnel2",
+      "image": "mmtunnel2.webp"
+    },
+    "spr_mm_new_wall_2_1": {
+      "mesh": "ne1wall1",
+      "image": "ne1wall1.webp"
+    },
+    "spr_mm_new_wall_2_10": {
+      "mesh": "ne1wall10",
+      "image": "ne1wall10.webp"
+    },
+    "spr_mm_new_wall_2_10d": {
+      "mesh": "ne1wall10d",
+      "image": "ne1wall10d.webp"
+    },
+    "spr_mm_new_wall_2_10dd": {
+      "mesh": "ne1wall10dd",
+      "image": "ne1wall10dd.webp"
+    },
+    "spr_mm_new_wall_2_10ddd": {
+      "mesh": "ne1wall10ddd",
+      "image": "ne1wall10ddd.webp"
+    },
+    "spr_mm_new_wall_2_11": {
+      "mesh": "ne1wall11",
+      "image": "ne1wall11.webp"
+    },
+    "spr_mm_new_wall_2_11d": {
+      "mesh": "ne1wall11d",
+      "image": "ne1wall11d.webp"
+    },
+    "spr_mm_new_wall_2_11dd": {
+      "mesh": "ne1wall11dd",
+      "image": "ne1wall11dd.webp"
+    },
+    "spr_mm_new_wall_2_11ddd": {
+      "mesh": "ne1wall11ddd",
+      "image": "ne1wall11ddd.webp"
+    },
+    "spr_mm_new_wall_2_1d": {
+      "mesh": "ne1wall1d",
+      "image": "ne1wall1d.webp"
+    },
+    "spr_mm_new_wall_2_1dd": {
+      "mesh": "ne1wall1dd",
+      "image": "ne1wall1dd.webp"
+    },
+    "spr_mm_new_wall_2_1ddd": {
+      "mesh": "ne1wall1ddd",
+      "image": "ne1wall1ddd.webp"
+    },
+    "spr_mm_new_wall_2_2": {
+      "mesh": "ne1wall2",
+      "image": "ne1wall2.webp"
+    },
+    "spr_mm_new_wall_2_2d": {
+      "mesh": "ne1wall2d",
+      "image": "ne1wall2d.webp"
+    },
+    "spr_mm_new_wall_2_2dd": {
+      "mesh": "ne1wall2dd",
+      "image": "ne1wall2dd.webp"
+    },
+    "spr_mm_new_wall_2_2ddd": {
+      "mesh": "ne1wall2ddd",
+      "image": "ne1wall2ddd.webp"
+    },
+    "spr_mm_new_wall_2_3": {
+      "mesh": "ne1wall3",
+      "image": "ne1wall3.webp"
+    },
+    "spr_mm_new_wall_2_3d": {
+      "mesh": "ne1wall3d",
+      "image": "ne1wall3d.webp"
+    },
+    "spr_mm_new_wall_2_3dd": {
+      "mesh": "ne1wall3dd",
+      "image": "ne1wall3dd.webp"
+    },
+    "spr_mm_new_wall_2_3ddd": {
+      "mesh": "ne1wall3ddd",
+      "image": "ne1wall3ddd.webp"
+    },
+    "spr_mm_new_wall_2_4": {
+      "mesh": "ne1wall4",
+      "image": "ne1wall4.webp"
+    },
+    "spr_mm_new_wall_2_4d": {
+      "mesh": "ne1wall4d",
+      "image": "ne1wall4d.webp"
+    },
+    "spr_mm_new_wall_2_4dd": {
+      "mesh": "ne1wall4dd",
+      "image": "ne1wall4dd.webp"
+    },
+    "spr_mm_new_wall_2_4ddd": {
+      "mesh": "ne1wall4ddd",
+      "image": "ne1wall4ddd.webp"
+    },
+    "spr_mm_new_wall_2_5": {
+      "mesh": "ne1wall5",
+      "image": "ne1wall5.webp"
+    },
+    "spr_mm_new_wall_2_5d": {
+      "mesh": "ne1wall5d",
+      "image": "ne1wall5d.webp"
+    },
+    "spr_mm_new_wall_2_5dd": {
+      "mesh": "ne1wall5dd",
+      "image": "ne1wall5dd.webp"
+    },
+    "spr_mm_new_wall_2_5ddd": {
+      "mesh": "ne1wall5ddd",
+      "image": "ne1wall5ddd.webp"
+    },
+    "spr_mm_new_wall_2_6": {
+      "mesh": "ne1wall6",
+      "image": "ne1wall6.webp"
+    },
+    "spr_mm_new_wall_2_6d": {
+      "mesh": "ne1wall6d",
+      "image": "ne1wall6d.webp"
+    },
+    "spr_mm_new_wall_2_6dd": {
+      "mesh": "ne1wall6dd",
+      "image": "ne1wall6dd.webp"
+    },
+    "spr_mm_new_wall_2_6ddd": {
+      "mesh": "ne1wall6ddd",
+      "image": "ne1wall6ddd.webp"
+    },
+    "spr_mm_new_wall_2_7": {
+      "mesh": "ne1wall7",
+      "image": "ne1wall7.webp"
+    },
+    "spr_mm_new_wall_2_7d": {
+      "mesh": "ne1wall7d",
+      "image": "ne1wall7d.webp"
+    },
+    "spr_mm_new_wall_2_7dd": {
+      "mesh": "ne1wall7dd",
+      "image": "ne1wall7dd.webp"
+    },
+    "spr_mm_new_wall_2_7ddd": {
+      "mesh": "ne1wall7ddd",
+      "image": "ne1wall7ddd.webp"
+    },
+    "spr_mm_new_wall_2_8": {
+      "mesh": "ne1wall8",
+      "image": "ne1wall8.webp"
+    },
+    "spr_mm_new_wall_2_8d": {
+      "mesh": "ne1wall8d",
+      "image": "ne1wall8d.webp"
+    },
+    "spr_mm_new_wall_2_8dd": {
+      "mesh": "ne1wall8dd",
+      "image": "ne1wall8dd.webp"
+    },
+    "spr_mm_new_wall_2_8ddd": {
+      "mesh": "ne1wall8ddd",
+      "image": "ne1wall8ddd.webp"
+    },
+    "spr_mm_new_wall_2_9": {
+      "mesh": "ne1wall9",
+      "image": "ne1wall9.webp"
+    },
+    "spr_mm_new_wall_2_9d": {
+      "mesh": "ne1wall9d",
+      "image": "ne1wall9d.webp"
+    },
+    "spr_mm_new_wall_2_9dd": {
+      "mesh": "ne1wall9dd",
+      "image": "ne1wall9dd.webp"
+    },
+    "spr_mm_new_wall_2_9ddd": {
+      "mesh": "ne1wall9ddd",
+      "image": "ne1wall9ddd.webp"
+    },
+    "spr_mm_new_wall_3_1": {
+      "mesh": "ne2wall1",
+      "image": "ne2wall1.webp"
+    },
+    "spr_mm_new_wall_3_10": {
+      "mesh": "ne2wall10",
+      "image": "ne2wall10.webp"
+    },
+    "spr_mm_new_wall_3_10d": {
+      "mesh": "ne2wall10d",
+      "image": "ne2wall10d.webp"
+    },
+    "spr_mm_new_wall_3_10dd": {
+      "mesh": "ne2wall10dd",
+      "image": "ne2wall10dd.webp"
+    },
+    "spr_mm_new_wall_3_10ddd": {
+      "mesh": "ne2wall10ddd",
+      "image": "ne2wall10ddd.webp"
+    },
+    "spr_mm_new_wall_3_11": {
+      "mesh": "ne2wall11",
+      "image": "ne2wall11.webp"
+    },
+    "spr_mm_new_wall_3_11d": {
+      "mesh": "ne2wall11d",
+      "image": "ne2wall11d.webp"
+    },
+    "spr_mm_new_wall_3_11dd": {
+      "mesh": "ne2wall11dd",
+      "image": "ne2wall11dd.webp"
+    },
+    "spr_mm_new_wall_3_11ddd": {
+      "mesh": "ne2wall11ddd",
+      "image": "ne2wall11ddd.webp"
+    },
+    "spr_mm_new_wall_3_1d": {
+      "mesh": "ne2wall1d",
+      "image": "ne2wall1d.webp"
+    },
+    "spr_mm_new_wall_3_1dd": {
+      "mesh": "ne2wall1dd",
+      "image": "ne2wall1dd.webp"
+    },
+    "spr_mm_new_wall_3_1ddd": {
+      "mesh": "ne2wall1ddd",
+      "image": "ne2wall1ddd.webp"
+    },
+    "spr_mm_new_wall_3_2": {
+      "mesh": "ne2wall2",
+      "image": "ne2wall2.webp"
+    },
+    "spr_mm_new_wall_3_2d": {
+      "mesh": "ne2wall2d",
+      "image": "ne2wall2d.webp"
+    },
+    "spr_mm_new_wall_3_2dd": {
+      "mesh": "ne2wall2dd",
+      "image": "ne2wall2dd.webp"
+    },
+    "spr_mm_new_wall_3_2ddd": {
+      "mesh": "ne2wall2ddd",
+      "image": "ne2wall2ddd.webp"
+    },
+    "spr_mm_new_wall_3_3": {
+      "mesh": "ne2wall3",
+      "image": "ne2wall3.webp"
+    },
+    "spr_mm_new_wall_3_3d": {
+      "mesh": "ne2wall3d",
+      "image": "ne2wall3d.webp"
+    },
+    "spr_mm_new_wall_3_3dd": {
+      "mesh": "ne2wall3dd",
+      "image": "ne2wall3dd.webp"
+    },
+    "spr_mm_new_wall_3_3ddd": {
+      "mesh": "ne2wall3ddd",
+      "image": "ne2wall3ddd.webp"
+    },
+    "spr_mm_new_wall_3_4": {
+      "mesh": "ne2wall4",
+      "image": "ne2wall4.webp"
+    },
+    "spr_mm_new_wall_3_4d": {
+      "mesh": "ne2wall4d",
+      "image": "ne2wall4d.webp"
+    },
+    "spr_mm_new_wall_3_4dd": {
+      "mesh": "ne2wall4dd",
+      "image": "ne2wall4dd.webp"
+    },
+    "spr_mm_new_wall_3_4ddd": {
+      "mesh": "ne2wall4ddd",
+      "image": "ne2wall4ddd.webp"
+    },
+    "spr_mm_new_wall_3_5": {
+      "mesh": "ne2wall5",
+      "image": "ne2wall5.webp"
+    },
+    "spr_mm_new_wall_3_5d": {
+      "mesh": "ne2wall5d",
+      "image": "ne2wall5d.webp"
+    },
+    "spr_mm_new_wall_3_5dd": {
+      "mesh": "ne2wall5dd",
+      "image": "ne2wall5dd.webp"
+    },
+    "spr_mm_new_wall_3_5ddd": {
+      "mesh": "ne2wall5ddd",
+      "image": "ne2wall5ddd.webp"
+    },
+    "spr_mm_new_wall_3_6": {
+      "mesh": "ne2wall6",
+      "image": "ne2wall6.webp"
+    },
+    "spr_mm_new_wall_3_6d": {
+      "mesh": "ne2wall6d",
+      "image": "ne2wall6d.webp"
+    },
+    "spr_mm_new_wall_3_6dd": {
+      "mesh": "ne2wall6dd",
+      "image": "ne2wall6dd.webp"
+    },
+    "spr_mm_new_wall_3_6ddd": {
+      "mesh": "ne2wall6ddd",
+      "image": "ne2wall6ddd.webp"
+    },
+    "spr_mm_new_wall_3_7": {
+      "mesh": "ne2wall7",
+      "image": "ne2wall7.webp"
+    },
+    "spr_mm_new_wall_3_7d": {
+      "mesh": "ne2wall7d",
+      "image": "ne2wall7d.webp"
+    },
+    "spr_mm_new_wall_3_7dd": {
+      "mesh": "ne2wall7dd",
+      "image": "ne2wall7dd.webp"
+    },
+    "spr_mm_new_wall_3_7ddd": {
+      "mesh": "ne2wall7ddd",
+      "image": "ne2wall7ddd.webp"
+    },
+    "spr_mm_new_wall_3_8": {
+      "mesh": "ne2wall8",
+      "image": "ne2wall8.webp"
+    },
+    "spr_mm_new_wall_3_8d": {
+      "mesh": "ne2wall8d",
+      "image": "ne2wall8d.webp"
+    },
+    "spr_mm_new_wall_3_8dd": {
+      "mesh": "ne2wall8dd",
+      "image": "ne2wall8dd.webp"
+    },
+    "spr_mm_new_wall_3_8ddd": {
+      "mesh": "ne2wall8ddd",
+      "image": "ne2wall8ddd.webp"
+    },
+    "spr_mm_new_wall_3_9": {
+      "mesh": "ne2wall9",
+      "image": "ne2wall9.webp"
+    },
+    "spr_mm_new_wall_3_9d": {
+      "mesh": "ne2wall9d",
+      "image": "ne2wall9d.webp"
+    },
+    "spr_mm_new_wall_3_9dd": {
+      "mesh": "ne2wall9dd",
+      "image": "ne2wall9dd.webp"
+    },
+    "spr_mm_new_wall_3_9ddd": {
+      "mesh": "ne2wall9ddd",
+      "image": "ne2wall9ddd.webp"
+    },
+    "spr_net_a": {
+      "mesh": "net_a",
+      "image": "net_a.webp"
+    },
+    "spr_net_b": {
+      "mesh": "net_b",
+      "image": "net_b.webp"
+    },
+    "spr_new_mm_10housebuild": {
+      "mesh": "new_10housebuild",
+      "image": "new_10housebuild.webp"
+    },
+    "spr_new_mm_11housebuild": {
+      "mesh": "new_11housebuild",
+      "image": "new_11housebuild.webp"
+    },
+    "spr_new_mm_12housebuild": {
+      "mesh": "new_12housebuild",
+      "image": "new_12housebuild.webp"
+    },
+    "spr_new_mm_13housebuild": {
+      "mesh": "new_13housebuild",
+      "image": "new_13housebuild.webp"
+    },
+    "spr_new_mm_14housebuild": {
+      "mesh": "new_14housebuild",
+      "image": "new_14housebuild.webp"
+    },
+    "spr_new_mm_15housebuild": {
+      "mesh": "new_15housebuild",
+      "image": "new_15housebuild.webp"
+    },
+    "spr_new_mm_16housebuild": {
+      "mesh": "new_16housebuild",
+      "image": "new_16housebuild.webp"
+    },
+    "spr_new_mm_17housebuild": {
+      "mesh": "new_17housebuild",
+      "image": "new_17housebuild.webp"
+    },
+    "spr_new_mm_18housebuild": {
+      "mesh": "new_18housebuild",
+      "image": "new_18housebuild.webp"
+    },
+    "spr_new_mm_19housebuild": {
+      "mesh": "new_19housebuild",
+      "image": "new_19housebuild.webp"
+    },
+    "spr_new_mm_1housebuild": {
+      "mesh": "new_1housebuild",
+      "image": "new_1housebuild.webp"
+    },
+    "spr_new_mm_20housebuild": {
+      "mesh": "new_20housebuild",
+      "image": "new_20housebuild.webp"
+    },
+    "spr_new_mm_2housebuild": {
+      "mesh": "new_2housebuild",
+      "image": "new_2housebuild.webp"
+    },
+    "spr_new_mm_3housebuild": {
+      "mesh": "new_3housebuild",
+      "image": "new_3housebuild.webp"
+    },
+    "spr_new_mm_4housebuild": {
+      "mesh": "new_4housebuild",
+      "image": "new_4housebuild.webp"
+    },
+    "spr_new_mm_5housebuild": {
+      "mesh": "new_5housebuild",
+      "image": "new_5housebuild.webp"
+    },
+    "spr_new_mm_6housebuild": {
+      "mesh": "new_6housebuild",
+      "image": "new_6housebuild.webp"
+    },
+    "spr_new_mm_7housebuild": {
+      "mesh": "new_7housebuild",
+      "image": "new_7housebuild.webp"
+    },
+    "spr_new_mm_8housebuild": {
+      "mesh": "new_8housebuild",
+      "image": "new_8housebuild.webp"
+    },
+    "spr_new_mm_9housebuild": {
+      "mesh": "new_9housebuild",
+      "image": "new_9housebuild.webp"
+    },
+    "spr_mm_new_wall_1_1": {
+      "mesh": "newall1",
+      "image": "newall1.webp"
+    },
+    "spr_mm_new_wall_1_10": {
+      "mesh": "newall10",
+      "image": "newall10.webp"
+    },
+    "spr_mm_new_wall_1_10d": {
+      "mesh": "newall10d",
+      "image": "newall10d.webp"
+    },
+    "spr_mm_new_wall_1_10dd": {
+      "mesh": "newall10dd",
+      "image": "newall10dd.webp"
+    },
+    "spr_mm_new_wall_1_10ddd": {
+      "mesh": "newall10ddd",
+      "image": "newall10ddd.webp"
+    },
+    "spr_mm_new_wall_1_11": {
+      "mesh": "newall11",
+      "image": "newall11.webp"
+    },
+    "spr_mm_new_wall_1_11d": {
+      "mesh": "newall11d",
+      "image": "newall11d.webp"
+    },
+    "spr_mm_new_wall_1_11dd": {
+      "mesh": "newall11dd",
+      "image": "newall11dd.webp"
+    },
+    "spr_mm_new_wall_1_11ddd": {
+      "mesh": "newall11ddd",
+      "image": "newall11ddd.webp"
+    },
+    "spr_mm_new_wall_1_1d": {
+      "mesh": "newall1d",
+      "image": "newall1d.webp"
+    },
+    "spr_mm_new_wall_1_1dd": {
+      "mesh": "newall1dd",
+      "image": "newall1dd.webp"
+    },
+    "spr_mm_new_wall_1_1ddd": {
+      "mesh": "newall1ddd",
+      "image": "newall1ddd.webp"
+    },
+    "spr_mm_new_wall_1_2": {
+      "mesh": "newall2",
+      "image": "newall2.webp"
+    },
+    "spr_mm_new_wall_1_2d": {
+      "mesh": "newall2d",
+      "image": "newall2d.webp"
+    },
+    "spr_mm_new_wall_1_2dd": {
+      "mesh": "newall2dd",
+      "image": "newall2dd.webp"
+    },
+    "spr_mm_new_wall_1_2ddd": {
+      "mesh": "newall2ddd",
+      "image": "newall2ddd.webp"
+    },
+    "spr_mm_new_wall_1_3": {
+      "mesh": "newall3",
+      "image": "newall3.webp"
+    },
+    "spr_mm_new_wall_1_3d": {
+      "mesh": "newall3d",
+      "image": "newall3d.webp"
+    },
+    "spr_mm_new_wall_1_3dd": {
+      "mesh": "newall3dd",
+      "image": "newall3dd.webp"
+    },
+    "spr_mm_new_wall_1_3ddd": {
+      "mesh": "newall3ddd",
+      "image": "newall3ddd.webp"
+    },
+    "spr_mm_new_wall_1_4": {
+      "mesh": "newall4",
+      "image": "newall4.webp"
+    },
+    "spr_mm_new_wall_1_4d": {
+      "mesh": "newall4d",
+      "image": "newall4d.webp"
+    },
+    "spr_mm_new_wall_1_4dd": {
+      "mesh": "newall4dd",
+      "image": "newall4dd.webp"
+    },
+    "spr_mm_new_wall_1_4ddd": {
+      "mesh": "newall4ddd",
+      "image": "newall4ddd.webp"
+    },
+    "spr_mm_new_wall_1_5": {
+      "mesh": "newall5",
+      "image": "newall5.webp"
+    },
+    "spr_mm_new_wall_1_5d": {
+      "mesh": "newall5d",
+      "image": "newall5d.webp"
+    },
+    "spr_mm_new_wall_1_5dd": {
+      "mesh": "newall5dd",
+      "image": "newall5dd.webp"
+    },
+    "spr_mm_new_wall_1_5ddd": {
+      "mesh": "newall5ddd",
+      "image": "newall5ddd.webp"
+    },
+    "spr_mm_new_wall_1_6": {
+      "mesh": "newall6",
+      "image": "newall6.webp"
+    },
+    "spr_mm_new_wall_1_6d": {
+      "mesh": "newall6d",
+      "image": "newall6d.webp"
+    },
+    "spr_mm_new_wall_1_6dd": {
+      "mesh": "newall6dd",
+      "image": "newall6dd.webp"
+    },
+    "spr_mm_new_wall_1_6ddd": {
+      "mesh": "newall6ddd",
+      "image": "newall6ddd.webp"
+    },
+    "spr_mm_new_wall_1_7": {
+      "mesh": "newall7",
+      "image": "newall7.webp"
+    },
+    "spr_mm_new_wall_1_7d": {
+      "mesh": "newall7d",
+      "image": "newall7d.webp"
+    },
+    "spr_mm_new_wall_1_7dd": {
+      "mesh": "newall7dd",
+      "image": "newall7dd.webp"
+    },
+    "spr_mm_new_wall_1_7ddd": {
+      "mesh": "newall7ddd",
+      "image": "newall7ddd.webp"
+    },
+    "spr_mm_new_wall_1_8": {
+      "mesh": "newall8",
+      "image": "newall8.webp"
+    },
+    "spr_mm_new_wall_1_8d": {
+      "mesh": "newall8d",
+      "image": "newall8d.webp"
+    },
+    "spr_mm_new_wall_1_8dd": {
+      "mesh": "newall8dd",
+      "image": "newall8dd.webp"
+    },
+    "spr_mm_new_wall_1_8ddd": {
+      "mesh": "newall8ddd",
+      "image": "newall8ddd.webp"
+    },
+    "spr_mm_new_wall_1_9": {
+      "mesh": "newall9",
+      "image": "newall9.webp"
+    },
+    "spr_mm_new_wall_1_9d": {
+      "mesh": "newall9d",
+      "image": "newall9d.webp"
+    },
+    "spr_mm_new_wall_1_9dd": {
+      "mesh": "newall9dd",
+      "image": "newall9dd.webp"
+    },
+    "spr_mm_new_wall_1_9ddd": {
+      "mesh": "newall9ddd",
+      "image": "newall9ddd.webp"
+    },
+    "spr_oim_church1": {
+      "mesh": "oim_rus_wood_church_a",
+      "image": "oim_rus_wood_church_a.webp"
+    },
+    "spr_olive_plane": {
+      "mesh": "olive_plane",
+      "image": "olive_plane.webp"
+    },
+    "spr_open_stable_a": {
+      "mesh": "open_stable_a",
+      "image": "open_stable_a.webp"
+    },
+    "spr_open_stable_b": {
+      "mesh": "open_stable_b",
+      "image": "open_stable_b.webp"
+    },
     "spr_mm_tree_palm4": {
       "mesh": "palmb_10",
       "image": "palmb_10.webp"
@@ -1183,9 +4332,1233 @@
       "mesh": "palmb_9",
       "image": "palmb_9.webp"
     },
+    "spr_passage_house_a": {
+      "mesh": "passage_house_a",
+      "image": "passage_house_a.webp"
+    },
+    "spr_passage_house_b": {
+      "mesh": "passage_house_b",
+      "image": "passage_house_b.webp"
+    },
+    "spr_passage_house_c": {
+      "mesh": "passage_house_c",
+      "image": "passage_house_c.webp"
+    },
+    "spr_passage_house_c_door": {
+      "mesh": "passage_house_c_door",
+      "image": "passage_house_c_door.webp"
+    },
+    "spr_passage_house_d": {
+      "mesh": "passage_house_d",
+      "image": "passage_house_d.webp"
+    },
+    "spr_pillow_a": {
+      "mesh": "pillow_a",
+      "image": "pillow_a.webp"
+    },
+    "spr_pillow_b": {
+      "mesh": "pillow_b",
+      "image": "pillow_b.webp"
+    },
+    "spr_pillow_c": {
+      "mesh": "pillow_c",
+      "image": "pillow_c.webp"
+    },
+    "spr_plate_a": {
+      "mesh": "plate_a",
+      "image": "plate_a.webp"
+    },
+    "spr_plate_b": {
+      "mesh": "plate_b",
+      "image": "plate_b.webp"
+    },
+    "spr_plate_c": {
+      "mesh": "plate_c",
+      "image": "plate_c.webp"
+    },
+    "spr_player_chest": {
+      "mesh": "player_chest",
+      "image": "player_chest.webp"
+    },
+    "spr_locked_player_chest": {
+      "mesh": "player_chest",
+      "image": "player_chest.webp"
+    },
+    "spr_oim_church2": {
+      "mesh": "polsc_chapel_1a",
+      "image": "polsc_chapel_1a.webp"
+    },
+    "spr_mm_pontoon_bridge1": {
+      "mesh": "pontoon",
+      "image": "pontoon.webp"
+    },
+    "spr_mm_pontoon_bridge2": {
+      "mesh": "pontoon2",
+      "image": "pontoon2.webp"
+    },
+    "spr_mm_pontoon_bridge_long": {
+      "mesh": "pontoon_deploy_long",
+      "image": "pontoon_deploy_long.webp"
+    },
+    "spr_mm_pontoon_bridge_med": {
+      "mesh": "pontoon_deploy_med",
+      "image": "pontoon_deploy_med.webp"
+    },
+    "spr_mm_pontoon_bridge_short": {
+      "mesh": "pontoon_deploy_short",
+      "image": "pontoon_deploy_short.webp"
+    },
+    "spr_fried_pig": {
+      "mesh": "pork",
+      "image": "pork.webp"
+    },
+    "spr_portcullis": {
+      "mesh": "portcullis_a",
+      "image": "portcullis_a.webp"
+    },
+    "spr_potlamp": {
+      "mesh": "potlamp",
+      "image": "potlamp.webp"
+    },
+    "spr_pyramid": {
+      "mesh": "pyramid",
+      "image": "pyramid.webp"
+    },
+    "spr_railing_a": {
+      "mesh": "railing_a",
+      "image": "railing_a.webp"
+    },
+    "spr_ramp_12m": {
+      "mesh": "ramp_12m",
+      "image": "ramp_12m.webp"
+    },
+    "spr_ramp_14m": {
+      "mesh": "ramp_14m",
+      "image": "ramp_14m.webp"
+    },
+    "spr_ramp_small_a": {
+      "mesh": "ramp_small_a",
+      "image": "ramp_small_a.webp"
+    },
+    "spr_dye_blue": {
+      "mesh": "raw_dye_blue",
+      "image": "raw_dye_blue.webp"
+    },
+    "spr_dye_red": {
+      "mesh": "raw_dye_red",
+      "image": "raw_dye_red.webp"
+    },
+    "spr_dye_yellow": {
+      "mesh": "raw_dye_yellow",
+      "image": "raw_dye_yellow.webp"
+    },
+    "spr_flax_bundle": {
+      "mesh": "raw_flax",
+      "image": "raw_flax.webp"
+    },
+    "spr_mm_restroom": {
+      "mesh": "restroom",
+      "image": "restroom.webp"
+    },
+    "spr_rock_bridge_a": {
+      "mesh": "rock_bridge_a",
+      "image": "rock_bridge_a.webp"
+    },
+    "spr_rope_bridge_15m": {
+      "mesh": "rope_bridge_15m",
+      "image": "rope_bridge_15m.webp"
+    },
     "spr_flora_roses": {
       "mesh": "roses",
       "image": "roses.webp"
+    },
+    "spr_oim_rus_house4": {
+      "mesh": "rus_izba_a",
+      "image": "rus_izba_a.webp"
+    },
+    "spr_oim_rus_house5": {
+      "mesh": "rus_izba_b",
+      "image": "rus_izba_b.webp"
+    },
+    "spr_oim_rus_house1": {
+      "mesh": "rus_izba_c",
+      "image": "rus_izba_c.webp"
+    },
+    "spr_oim_rus_house2": {
+      "mesh": "rus_izba_d",
+      "image": "rus_izba_d.webp"
+    },
+    "spr_oim_rus_house3": {
+      "mesh": "rus_izba_e",
+      "image": "rus_izba_e.webp"
+    },
+    "spr_sack": {
+      "mesh": "sack",
+      "image": "sack.webp"
+    },
+    "spr_salt_a": {
+      "mesh": "salt_a",
+      "image": "salt_a.webp"
+    },
+    "spr_shadow_circle_1": {
+      "mesh": "shadow_circle_1",
+      "image": "shadow_circle_1.webp"
+    },
+    "spr_shadow_circle_2": {
+      "mesh": "shadow_circle_2",
+      "image": "shadow_circle_2.webp"
+    },
+    "spr_shadow_square_1": {
+      "mesh": "shadow_square_1",
+      "image": "shadow_square_1.webp"
+    },
+    "spr_shadow_square_2": {
+      "mesh": "shadow_square_2",
+      "image": "shadow_square_2.webp"
+    },
+    "spr_shelves": {
+      "mesh": "shelves",
+      "image": "shelves.webp"
+    },
+    "spr_ship": {
+      "mesh": "ship",
+      "image": "ship.webp"
+    },
+    "spr_ship_b": {
+      "mesh": "ship_b",
+      "image": "ship_b.webp"
+    },
+    "spr_ship_c": {
+      "mesh": "ship_c",
+      "image": "ship_c.webp"
+    },
+    "spr_ship_c_sail_off": {
+      "mesh": "ship_c_sail_off",
+      "image": "ship_c_sail_off.webp"
+    },
+    "spr_ship_d": {
+      "mesh": "ship_d",
+      "image": "ship_d.webp"
+    },
+    "spr_ship_sail_off": {
+      "mesh": "ship_sail_off",
+      "image": "ship_sail_off.webp"
+    },
+    "spr_ship_sail_off_b": {
+      "mesh": "ship_sail_off_b",
+      "image": "ship_sail_off_b.webp"
+    },
+    "spr_siege_ladder_12m": {
+      "mesh": "siege_ladder_12m",
+      "image": "siege_ladder_12m.webp"
+    },
+    "spr_siege_ladder_14m": {
+      "mesh": "siege_ladder_14m",
+      "image": "siege_ladder_14m.webp"
+    },
+    "spr_siege_ladder_10m": {
+      "mesh": "siege_ladder_move_10m",
+      "image": "siege_ladder_move_10m.webp"
+    },
+    "spr_siege_ladder_6m": {
+      "mesh": "siege_ladder_move_6m",
+      "image": "siege_ladder_move_6m.webp"
+    },
+    "spr_siege_ladder_8m": {
+      "mesh": "siege_ladder_move_8m",
+      "image": "siege_ladder_move_8m.webp"
+    },
+    "spr_mm_sign": {
+      "mesh": "sign",
+      "image": "sign.webp"
+    },
+    "spr_skeleton_a": {
+      "mesh": "skeleton_a",
+      "image": "skeleton_a.webp"
+    },
+    "spr_skeleton_bone": {
+      "mesh": "skeleton_bone",
+      "image": "skeleton_bone.webp"
+    },
+    "spr_skeleton_head": {
+      "mesh": "skeleton_head",
+      "image": "skeleton_head.webp"
+    },
+    "spr_skewer": {
+      "mesh": "skewer",
+      "image": "skewer.webp"
+    },
+    "spr_small_wall_a": {
+      "mesh": "small_wall_a",
+      "image": "small_wall_a.webp"
+    },
+    "spr_small_wall_b": {
+      "mesh": "small_wall_b",
+      "image": "small_wall_b.webp"
+    },
+    "spr_small_wall_c": {
+      "mesh": "small_wall_c",
+      "image": "small_wall_c.webp"
+    },
+    "spr_small_wall_c_destroy": {
+      "mesh": "small_wall_c_destroy",
+      "image": "small_wall_c_destroy.webp"
+    },
+    "spr_small_wall_connect_a": {
+      "mesh": "small_wall_connect_a",
+      "image": "small_wall_connect_a.webp"
+    },
+    "spr_small_wall_d": {
+      "mesh": "small_wall_d",
+      "image": "small_wall_d.webp"
+    },
+    "spr_small_wall_e": {
+      "mesh": "small_wall_e",
+      "image": "small_wall_e.webp"
+    },
+    "spr_small_wall_f": {
+      "mesh": "small_wall_f",
+      "image": "small_wall_f.webp"
+    },
+    "spr_small_wall_f2": {
+      "mesh": "small_wall_f2",
+      "image": "small_wall_f2.webp"
+    },
+    "spr_mm_smallredoubt1": {
+      "mesh": "smallredoubts",
+      "image": "smallredoubts.webp"
+    },
+    "spr_mm_smallredoubt2": {
+      "mesh": "smallredoubts1",
+      "image": "smallredoubts1.webp"
+    },
+    "spr_mm_smallredoubt3": {
+      "mesh": "smallredoubts2",
+      "image": "smallredoubts2.webp"
+    },
+    "spr_mm_smallredoubt4": {
+      "mesh": "smallredoubts3",
+      "image": "smallredoubts3.webp"
+    },
+    "spr_snowy_barrel_a": {
+      "mesh": "snowy_barrel_a",
+      "image": "snowy_barrel_a.webp"
+    },
+    "spr_snowy_fence": {
+      "mesh": "snowy_fence",
+      "image": "snowy_fence.webp"
+    },
+    "spr_snowy_heap_a": {
+      "mesh": "snowy_heap_a",
+      "image": "snowy_heap_a.webp"
+    },
+    "spr_snowy_stand": {
+      "mesh": "snowy_stand",
+      "image": "snowy_stand.webp"
+    },
+    "spr_snowy_trunks_a": {
+      "mesh": "snowy_trunks_a",
+      "image": "snowy_trunks_a.webp"
+    },
+    "spr_snowy_wall_a": {
+      "mesh": "snowy_wall_a",
+      "image": "snowy_wall_a.webp"
+    },
+    "spr_snowy_wood_heap": {
+      "mesh": "snowy_wood_heap",
+      "image": "snowy_wood_heap.webp"
+    },
+    "spr_sofa_a": {
+      "mesh": "sofa_a",
+      "image": "sofa_a.webp"
+    },
+    "spr_sofa_b": {
+      "mesh": "sofa_b",
+      "image": "sofa_b.webp"
+    },
+    "spr_smoke_stain": {
+      "mesh": "soot_a",
+      "image": "soot_a.webp"
+    },
+    "spr_mm_sp_poor_bridge1": {
+      "mesh": "sp_poor_village_bridge1",
+      "image": "sp_poor_village_bridge1.webp"
+    },
+    "spr_mm_sp_poor_bridge1d": {
+      "mesh": "sp_poor_village_bridge1d",
+      "image": "sp_poor_village_bridge1d.webp"
+    },
+    "spr_mm_sp_poor_house10": {
+      "mesh": "sp_poor_village_houses10",
+      "image": "sp_poor_village_houses10.webp"
+    },
+    "spr_mm_sp_poor_house11": {
+      "mesh": "sp_poor_village_houses11",
+      "image": "sp_poor_village_houses11.webp"
+    },
+    "spr_mm_sp_poor_house6": {
+      "mesh": "sp_poor_village_houses6",
+      "image": "sp_poor_village_houses6.webp"
+    },
+    "spr_mm_sp_poor_house7": {
+      "mesh": "sp_poor_village_houses7",
+      "image": "sp_poor_village_houses7.webp"
+    },
+    "spr_mm_sp_poor_house9": {
+      "mesh": "sp_poor_village_houses9",
+      "image": "sp_poor_village_houses9.webp"
+    },
+    "spr_mm_sp_rich_bridge1": {
+      "mesh": "sp_rich_village_bridge1",
+      "image": "sp_rich_village_bridge1.webp"
+    },
+    "spr_mm_sp_rich_bridge2": {
+      "mesh": "sp_rich_village_bridge11",
+      "image": "sp_rich_village_bridge11.webp"
+    },
+    "spr_mm_sp_rich_bridge2d": {
+      "mesh": "sp_rich_village_bridge11d",
+      "image": "sp_rich_village_bridge11d.webp"
+    },
+    "spr_mm_sp_rich_bridge3": {
+      "mesh": "sp_rich_village_bridge12",
+      "image": "sp_rich_village_bridge12.webp"
+    },
+    "spr_mm_sp_rich_bridge3d": {
+      "mesh": "sp_rich_village_bridge12d",
+      "image": "sp_rich_village_bridge12d.webp"
+    },
+    "spr_mm_sp_rich_bridge4": {
+      "mesh": "sp_rich_village_bridge13",
+      "image": "sp_rich_village_bridge13.webp"
+    },
+    "spr_mm_sp_rich_bridge4d": {
+      "mesh": "sp_rich_village_bridge13d",
+      "image": "sp_rich_village_bridge13d.webp"
+    },
+    "spr_mm_sp_rich_house1": {
+      "mesh": "sp_rich_village_houses1",
+      "image": "sp_rich_village_houses1.webp"
+    },
+    "spr_mm_sp_rich_house9": {
+      "mesh": "sp_rich_village_houses10",
+      "image": "sp_rich_village_houses10.webp"
+    },
+    "spr_mm_sp_rich_house10": {
+      "mesh": "sp_rich_village_houses11",
+      "image": "sp_rich_village_houses11.webp"
+    },
+    "spr_mm_sp_rich_house11": {
+      "mesh": "sp_rich_village_houses12",
+      "image": "sp_rich_village_houses12.webp"
+    },
+    "spr_mm_sp_rich_house12": {
+      "mesh": "sp_rich_village_houses13",
+      "image": "sp_rich_village_houses13.webp"
+    },
+    "spr_mm_sp_rich_house14": {
+      "mesh": "sp_rich_village_houses15",
+      "image": "sp_rich_village_houses15.webp"
+    },
+    "spr_mm_sp_rich_house15": {
+      "mesh": "sp_rich_village_houses15",
+      "image": "sp_rich_village_houses15.webp"
+    },
+    "spr_mm_sp_rich_house16": {
+      "mesh": "sp_rich_village_houses17",
+      "image": "sp_rich_village_houses17.webp"
+    },
+    "spr_mm_sp_rich_house17": {
+      "mesh": "sp_rich_village_houses17",
+      "image": "sp_rich_village_houses17.webp"
+    },
+    "spr_mm_sp_rich_house18": {
+      "mesh": "sp_rich_village_houses18",
+      "image": "sp_rich_village_houses18.webp"
+    },
+    "spr_mm_sp_rich_house19": {
+      "mesh": "sp_rich_village_houses19",
+      "image": "sp_rich_village_houses19.webp"
+    },
+    "spr_mm_sp_rich_house2": {
+      "mesh": "sp_rich_village_houses2",
+      "image": "sp_rich_village_houses2.webp"
+    },
+    "spr_mm_sp_rich_house21": {
+      "mesh": "sp_rich_village_houses21",
+      "image": "sp_rich_village_houses21.webp"
+    },
+    "spr_mm_sp_rich_house20": {
+      "mesh": "sp_rich_village_houses22",
+      "image": "sp_rich_village_houses22.webp"
+    },
+    "spr_mm_sp_rich_house22": {
+      "mesh": "sp_rich_village_houses22",
+      "image": "sp_rich_village_houses22.webp"
+    },
+    "spr_mm_sp_rich_house23": {
+      "mesh": "sp_rich_village_houses24",
+      "image": "sp_rich_village_houses24.webp"
+    },
+    "spr_mm_sp_rich_house24": {
+      "mesh": "sp_rich_village_houses24",
+      "image": "sp_rich_village_houses24.webp"
+    },
+    "spr_mm_sp_rich_house25": {
+      "mesh": "sp_rich_village_houses25",
+      "image": "sp_rich_village_houses25.webp"
+    },
+    "spr_mm_sp_rich_house3": {
+      "mesh": "sp_rich_village_houses3",
+      "image": "sp_rich_village_houses3.webp"
+    },
+    "spr_mm_sp_rich_house4": {
+      "mesh": "sp_rich_village_houses4",
+      "image": "sp_rich_village_houses4.webp"
+    },
+    "spr_mm_sp_rich_house5": {
+      "mesh": "sp_rich_village_houses5",
+      "image": "sp_rich_village_houses5.webp"
+    },
+    "spr_mm_sp_rich_house6": {
+      "mesh": "sp_rich_village_houses6",
+      "image": "sp_rich_village_houses6.webp"
+    },
+    "spr_mm_sp_rich_church1": {
+      "mesh": "sp_rich_village_houses7",
+      "image": "sp_rich_village_houses7.webp"
+    },
+    "spr_mm_sp_rich_house7": {
+      "mesh": "sp_rich_village_houses8",
+      "image": "sp_rich_village_houses8.webp"
+    },
+    "spr_mm_sp_rich_house8": {
+      "mesh": "sp_rich_village_houses9",
+      "image": "sp_rich_village_houses9.webp"
+    },
+    "spr_mm_sp_rich_street1": {
+      "mesh": "sp_rich_village_street1",
+      "image": "sp_rich_village_street1.webp"
+    },
+    "spr_mm_sp_rich_street2": {
+      "mesh": "sp_rich_village_street2",
+      "image": "sp_rich_village_street2.webp"
+    },
+    "spr_mm_sp_rich_street3": {
+      "mesh": "sp_rich_village_street3",
+      "image": "sp_rich_village_street3.webp"
+    },
+    "spr_mm_sp_rich_street4": {
+      "mesh": "sp_rich_village_street4",
+      "image": "sp_rich_village_street4.webp"
+    },
+    "spr_mm_sp_rich_street5": {
+      "mesh": "sp_rich_village_street5",
+      "image": "sp_rich_village_street5.webp"
+    },
+    "spr_spanish": {
+      "mesh": "spanish",
+      "image": "spanish.webp"
+    },
+    "spr_spanish1": {
+      "mesh": "spanish1",
+      "image": "spanish1.webp"
+    },
+    "spr_spanish10": {
+      "mesh": "spanish10",
+      "image": "spanish10.webp"
+    },
+    "spr_spanish11": {
+      "mesh": "spanish11",
+      "image": "spanish11.webp"
+    },
+    "spr_spanish12": {
+      "mesh": "spanish12",
+      "image": "spanish12.webp"
+    },
+    "spr_spanish13": {
+      "mesh": "spanish13",
+      "image": "spanish13.webp"
+    },
+    "spr_spanish14": {
+      "mesh": "spanish14",
+      "image": "spanish14.webp"
+    },
+    "spr_spanish15": {
+      "mesh": "spanish15",
+      "image": "spanish15.webp"
+    },
+    "spr_spanish16": {
+      "mesh": "spanish16",
+      "image": "spanish16.webp"
+    },
+    "spr_spanish2": {
+      "mesh": "spanish2",
+      "image": "spanish2.webp"
+    },
+    "spr_spanish3": {
+      "mesh": "spanish3",
+      "image": "spanish3.webp"
+    },
+    "spr_spanish4": {
+      "mesh": "spanish4",
+      "image": "spanish4.webp"
+    },
+    "spr_spanish5": {
+      "mesh": "spanish5",
+      "image": "spanish5.webp"
+    },
+    "spr_spanish6": {
+      "mesh": "spanish6",
+      "image": "spanish6.webp"
+    },
+    "spr_spanish7": {
+      "mesh": "spanish7",
+      "image": "spanish7.webp"
+    },
+    "spr_spanish8": {
+      "mesh": "spanish8",
+      "image": "spanish8.webp"
+    },
+    "spr_spanish9": {
+      "mesh": "spanish9",
+      "image": "spanish9.webp"
+    },
+    "spr_spanishwallcorner": {
+      "mesh": "spanishwallcorner",
+      "image": "spanishwallcorner.webp"
+    },
+    "spr_spanishwallgate": {
+      "mesh": "spanishwallgate",
+      "image": "spanishwallgate.webp"
+    },
+    "spr_spike_a": {
+      "mesh": "spike_a",
+      "image": "spike_a.webp"
+    },
+    "spr_spike_group_a": {
+      "mesh": "spike_group_a",
+      "image": "spike_group_a.webp"
+    },
+    "spr_mm_wall_wood_planks1": {
+      "mesh": "splinters",
+      "image": "splinters.webp"
+    },
+    "spr_mm_wall_wood_planks2": {
+      "mesh": "splinters2",
+      "image": "splinters2.webp"
+    },
+    "spr_mm_wall_wood_planks3": {
+      "mesh": "splinters3",
+      "image": "splinters3.webp"
+    },
+    "spr_spoon": {
+      "mesh": "spoon",
+      "image": "spoon.webp"
+    },
+    "spr_square_stairs_a": {
+      "mesh": "square_stairs_a",
+      "image": "square_stairs_a.webp"
+    },
+    "spr_mm_stakes": {
+      "mesh": "stackes",
+      "image": "stackes.webp"
+    },
+    "spr_mm_stakes_destroyed": {
+      "mesh": "stackes_destroyed",
+      "image": "stackes_destroyed.webp"
+    },
+    "spr_mm_house_stair1": {
+      "mesh": "stair",
+      "image": "stair.webp"
+    },
+    "spr_mm_house_stair2": {
+      "mesh": "stair2",
+      "image": "stair2.webp"
+    },
+    "spr_mm_house_stair3": {
+      "mesh": "stair3",
+      "image": "stair3.webp"
+    },
+    "spr_stairs_a": {
+      "mesh": "stairs_a",
+      "image": "stairs_a.webp"
+    },
+    "spr_stairs_arch_a": {
+      "mesh": "stairs_arch_a",
+      "image": "stairs_arch_a.webp"
+    },
+    "spr_stand_cloth": {
+      "mesh": "stand_cloth",
+      "image": "stand_cloth.webp"
+    },
+    "spr_stand_thatched": {
+      "mesh": "stand_thatched",
+      "image": "stand_thatched.webp"
+    },
+    "spr_mm_stockade": {
+      "mesh": "stockade",
+      "image": "stockade.webp"
+    },
+    "spr_mm_stockade_cannon": {
+      "mesh": "stockade_cannon",
+      "image": "stockade_cannon.webp"
+    },
+    "spr_mm_stockade_cannon_destroyed": {
+      "mesh": "stockade_cannon_destroyed",
+      "image": "stockade_cannon_destroyed.webp"
+    },
+    "spr_mm_stockade_destroyed": {
+      "mesh": "stockade_destroyed",
+      "image": "stockade_destroyed.webp"
+    },
+    "spr_stone_ball": {
+      "mesh": "stone_ball",
+      "image": "stone_ball.webp"
+    },
+    "spr_stone_heap": {
+      "mesh": "stone_heap",
+      "image": "stone_heap.webp"
+    },
+    "spr_stone_heap_b": {
+      "mesh": "stone_heap_b",
+      "image": "stone_heap_b.webp"
+    },
+    "spr_stone_stairs_a": {
+      "mesh": "stone_stairs_a",
+      "image": "stone_stairs_a.webp"
+    },
+    "spr_stone_stairs_b": {
+      "mesh": "stone_stairs_b",
+      "image": "stone_stairs_b.webp"
+    },
+    "spr_stone_step_b": {
+      "mesh": "stone_step_b",
+      "image": "stone_step_b.webp"
+    },
+    "spr_stone_step_c": {
+      "mesh": "stone_step_c",
+      "image": "stone_step_c.webp"
+    },
+    "spr_straw_a": {
+      "mesh": "straw_a",
+      "image": "straw_a.webp"
+    },
+    "spr_straw_b": {
+      "mesh": "straw_b",
+      "image": "straw_b.webp"
+    },
+    "spr_straw_c": {
+      "mesh": "straw_c",
+      "image": "straw_c.webp"
+    },
+    "spr_suspension_bridge_a": {
+      "mesh": "suspension_bridge_a",
+      "image": "suspension_bridge_a.webp"
+    },
+    "spr_mm_table1": {
+      "mesh": "table1",
+      "image": "table1.webp"
+    },
+    "spr_table_castle_a": {
+      "mesh": "table_castle_a",
+      "image": "table_castle_a.webp"
+    },
+    "spr_table_round_a": {
+      "mesh": "table_round_a",
+      "image": "table_round_a.webp"
+    },
+    "spr_table_round_b": {
+      "mesh": "table_round_b",
+      "image": "table_round_b.webp"
+    },
+    "spr_table_small": {
+      "mesh": "table_small",
+      "image": "table_small.webp"
+    },
+    "spr_table_small_b": {
+      "mesh": "table_small_b",
+      "image": "table_small_b.webp"
+    },
+    "spr_table_tavern": {
+      "mesh": "table_tavern",
+      "image": "table_tavern.webp"
+    },
+    "spr_table_trestle_long": {
+      "mesh": "table_trestle_long",
+      "image": "table_trestle_long.webp"
+    },
+    "spr_table_trestle_small": {
+      "mesh": "table_trestle_small",
+      "image": "table_trestle_small.webp"
+    },
+    "spr_table_trunk_a": {
+      "mesh": "table_trunk_a",
+      "image": "table_trunk_a.webp"
+    },
+    "spr_tavern_barrel_b": {
+      "mesh": "tavern_barrel_b",
+      "image": "tavern_barrel_b.webp"
+    },
+    "spr_tavern_chair_a": {
+      "mesh": "tavern_chair_a",
+      "image": "tavern_chair_a.webp"
+    },
+    "spr_tavern_chair_b": {
+      "mesh": "tavern_chair_b",
+      "image": "tavern_chair_b.webp"
+    },
+    "spr_tavern_door_a": {
+      "mesh": "tavern_door_a",
+      "image": "tavern_door_a.webp"
+    },
+    "spr_tavern_door_b": {
+      "mesh": "tavern_door_b",
+      "image": "tavern_door_b.webp"
+    },
+    "spr_tavern_sign": {
+      "mesh": "tavern_sign",
+      "image": "tavern_sign.webp"
+    },
+    "spr_tavern_table_a": {
+      "mesh": "tavern_table_a",
+      "image": "tavern_table_a.webp"
+    },
+    "spr_tavern_table_b": {
+      "mesh": "tavern_table_b",
+      "image": "tavern_table_b.webp"
+    },
+    "spr_mm_sp_small_fort": {
+      "mesh": "testforts",
+      "image": "testforts.webp"
+    },
+    "spr_mm_sp_small_fort1": {
+      "mesh": "testforts1",
+      "image": "testforts1.webp"
+    },
+    "spr_mm_sp_small_fort2": {
+      "mesh": "testforts2",
+      "image": "testforts2.webp"
+    },
+    "spr_torture_tool_a": {
+      "mesh": "torture_tool_a",
+      "image": "torture_tool_a.webp"
+    },
+    "spr_torture_tool_b": {
+      "mesh": "torture_tool_b",
+      "image": "torture_tool_b.webp"
+    },
+    "spr_torture_tool_c": {
+      "mesh": "torture_tool_c",
+      "image": "torture_tool_c.webp"
+    },
+    "spr_towngate_rectangle_door_left": {
+      "mesh": "towngate_rectangle_door_left",
+      "image": "towngate_rectangle_door_left.webp"
+    },
+    "spr_towngate_rectangle_door_right": {
+      "mesh": "towngate_rectangle_door_right",
+      "image": "towngate_rectangle_door_right.webp"
+    },
+    "spr_tree_house_guard_a": {
+      "mesh": "tree_house_guard_a",
+      "image": "tree_house_guard_a.webp"
+    },
+    "spr_tree_house_guard_b": {
+      "mesh": "tree_house_guard_b",
+      "image": "tree_house_guard_b.webp"
+    },
+    "spr_tree_shelter_a": {
+      "mesh": "tree_shelter_a",
+      "image": "tree_shelter_a.webp"
+    },
+    "spr_tripod_cauldron_a": {
+      "mesh": "tripod_cauldron_a",
+      "image": "tripod_cauldron_a.webp"
+    },
+    "spr_tripod_cauldron_b": {
+      "mesh": "tripod_cauldron_b",
+      "image": "tripod_cauldron_b.webp"
+    },
+    "spr_tutorial_door_a": {
+      "mesh": "tutorial_door_a",
+      "image": "tutorial_door_a.webp"
+    },
+    "spr_tutorial_door_b": {
+      "mesh": "tutorial_door_b",
+      "image": "tutorial_door_b.webp"
+    },
+    "spr_village_house_e": {
+      "mesh": "village_house_e",
+      "image": "village_house_e.webp"
+    },
+    "spr_village_house_f": {
+      "mesh": "village_house_f",
+      "image": "village_house_f.webp"
+    },
+    "spr_village_oven": {
+      "mesh": "village_oven",
+      "image": "village_oven.webp"
+    },
+    "spr_village_shed_a": {
+      "mesh": "village_shed_a",
+      "image": "village_shed_a.webp"
+    },
+    "spr_village_snowy_house_a": {
+      "mesh": "village_snowy_house_a",
+      "image": "village_snowy_house_a.webp"
+    },
+    "spr_village_snowy_house_b": {
+      "mesh": "village_snowy_house_b",
+      "image": "village_snowy_house_b.webp"
+    },
+    "spr_village_snowy_house_c": {
+      "mesh": "village_snowy_house_c",
+      "image": "village_snowy_house_c.webp"
+    },
+    "spr_village_snowy_house_d": {
+      "mesh": "village_snowy_house_d",
+      "image": "village_snowy_house_d.webp"
+    },
+    "spr_village_snowy_house_e": {
+      "mesh": "village_snowy_house_e",
+      "image": "village_snowy_house_e.webp"
+    },
+    "spr_village_snowy_house_f": {
+      "mesh": "village_snowy_house_f",
+      "image": "village_snowy_house_f.webp"
+    },
+    "spr_village_snowy_stable_a": {
+      "mesh": "village_snowy_stable_a",
+      "image": "village_snowy_stable_a.webp"
+    },
+    "spr_village_stable_a": {
+      "mesh": "village_stable_a",
+      "image": "village_stable_a.webp"
+    },
+    "spr_village_stand": {
+      "mesh": "village_stand",
+      "image": "village_stand.webp"
+    },
+    "spr_village_straw_house_a": {
+      "mesh": "village_straw_house_a",
+      "image": "village_straw_house_a.webp"
+    },
+    "spr_mm_wall1": {
+      "mesh": "wall1",
+      "image": "wall1.webp"
+    },
+    "spr_mm_wall1d": {
+      "mesh": "wall1d",
+      "image": "wall1d.webp"
+    },
+    "spr_mm_wall1dd": {
+      "mesh": "wall1dd",
+      "image": "wall1dd.webp"
+    },
+    "spr_mm_wall2": {
+      "mesh": "wall2",
+      "image": "wall2.webp"
+    },
+    "spr_mm_wall3": {
+      "mesh": "wall3",
+      "image": "wall3.webp"
+    },
+    "spr_mm_wall4": {
+      "mesh": "wall4",
+      "image": "wall4.webp"
+    },
+    "spr_mm_wall5": {
+      "mesh": "wall5",
+      "image": "wall5.webp"
+    },
+    "spr_mm_wall82": {
+      "mesh": "wall82",
+      "image": "wall82.webp"
+    },
+    "spr_mm_wall84": {
+      "mesh": "wall84",
+      "image": "wall84.webp"
+    },
+    "spr_mm_wall_destoyed": {
+      "mesh": "wall_destoyed",
+      "image": "wall_destoyed.webp"
+    },
+    "spr_mm_wall_stones1": {
+      "mesh": "wall_stones1",
+      "image": "wall_stones1.webp"
+    },
+    "spr_mm_wall_stones2": {
+      "mesh": "wall_stones2",
+      "image": "wall_stones2.webp"
+    },
+    "spr_mm_wall_stones3": {
+      "mesh": "wall_stones3",
+      "image": "wall_stones3.webp"
+    },
+    "spr_mm_wall_stones4": {
+      "mesh": "wall_stones4",
+      "image": "wall_stones4.webp"
+    },
+    "spr_mm_wallgate": {
+      "mesh": "wallgate",
+      "image": "wallgate.webp"
+    },
+    "spr_washtub_a": {
+      "mesh": "washtub_a",
+      "image": "washtub_a.webp"
+    },
+    "spr_washtub_b": {
+      "mesh": "washtub_b",
+      "image": "washtub_b.webp"
+    },
+    "spr_water_well_a": {
+      "mesh": "water_well_a",
+      "image": "water_well_a.webp"
+    },
+    "spr_weapon_rack": {
+      "mesh": "weapon_rack",
+      "image": "weapon_rack.webp"
+    },
+    "spr_weapon_rack_big": {
+      "mesh": "weapon_rack_big",
+      "image": "weapon_rack_big.webp"
+    },
+    "spr_weavery_loom_a": {
+      "mesh": "weavery_loom_a",
+      "image": "weavery_loom_a.webp"
+    },
+    "spr_well_shaft": {
+      "mesh": "well_shaft",
+      "image": "well_shaft.webp"
+    },
+    "spr_wheel": {
+      "mesh": "wheel",
+      "image": "wheel.webp"
+    },
+    "spr_wheelbarrow": {
+      "mesh": "wheelbarrow",
+      "image": "wheelbarrow.webp"
+    },
+    "spr_winch": {
+      "mesh": "winch",
+      "image": "winch.webp"
+    },
+    "spr_windmill": {
+      "mesh": "windmill",
+      "image": "windmill.webp"
+    },
+    "spr_windmill_fan": {
+      "mesh": "windmill_fan",
+      "image": "windmill_fan.webp"
+    },
+    "spr_windmill_fan_turning": {
+      "mesh": "windmill_fan_turning",
+      "image": "windmill_fan_turning.webp"
+    },
+    "spr_mm_window1d": {
+      "mesh": "window1d",
+      "image": "window1d.webp"
+    },
+    "spr_mm_window1d_poor": {
+      "mesh": "window1d_poor",
+      "image": "window1d_poor.webp"
+    },
+    "spr_mm_window2d": {
+      "mesh": "window2d",
+      "image": "window2d.webp"
+    },
+    "spr_mm_window2d_poor": {
+      "mesh": "window2d_poor",
+      "image": "window2d_poor.webp"
+    },
+    "spr_mm_window3d": {
+      "mesh": "window_old_walls1d",
+      "image": "window_old_walls1d.webp"
+    },
+    "spr_mm_window3d_poor": {
+      "mesh": "window_old_walls1d_poor",
+      "image": "window_old_walls1d_poor.webp"
+    },
+    "spr_mm_window4d": {
+      "mesh": "window_repos1d",
+      "image": "window_repos1d.webp"
+    },
+    "spr_mm_window4d_poor": {
+      "mesh": "window_repos1d_poor",
+      "image": "window_repos1d_poor.webp"
+    },
+    "spr_winery_barrel_shelf": {
+      "mesh": "winery_barrel_shelf",
+      "image": "winery_barrel_shelf.webp"
+    },
+    "spr_winery_huge_barrel": {
+      "mesh": "winery_huge_barrel",
+      "image": "winery_huge_barrel.webp"
+    },
+    "spr_winery_middle_barrel": {
+      "mesh": "winery_middle_barrel",
+      "image": "winery_middle_barrel.webp"
+    },
+    "spr_winery_wall_shelf": {
+      "mesh": "winery_wall_shelf",
+      "image": "winery_wall_shelf.webp"
+    },
+    "spr_winery_wine_cart_empty": {
+      "mesh": "winery_wine_cart_empty",
+      "image": "winery_wine_cart_empty.webp"
+    },
+    "spr_winery_wine_cart_loaded": {
+      "mesh": "winery_wine_cart_loaded",
+      "image": "winery_wine_cart_loaded.webp"
+    },
+    "spr_winery_wine_cart_small_empty": {
+      "mesh": "winery_wine_cart_small_empty",
+      "image": "winery_wine_cart_small_empty.webp"
+    },
+    "spr_winery_wine_cart_small_loaded": {
+      "mesh": "winery_wine_cart_small_loaded",
+      "image": "winery_wine_cart_small_loaded.webp"
+    },
+    "spr_winery_wine_press": {
+      "mesh": "winery_wine_press",
+      "image": "winery_wine_press.webp"
+    },
+    "spr_mm_wallwood1": {
+      "mesh": "woodWall1",
+      "image": "woodWall1.webp"
+    },
+    "spr_mm_wallwood1d": {
+      "mesh": "woodWall1d",
+      "image": "woodWall1d.webp"
+    },
+    "spr_mm_wallwood1dd": {
+      "mesh": "woodWall1dd",
+      "image": "woodWall1dd.webp"
+    },
+    "spr_mm_wallwood2": {
+      "mesh": "woodWall1ddd",
+      "image": "woodWall1ddd.webp"
+    },
+    "spr_mm_wallwood82": {
+      "mesh": "woodWall82",
+      "image": "woodWall82.webp"
+    },
+    "spr_mm_wallwoodgatewood": {
+      "mesh": "woodWallGatehouse",
+      "image": "woodWallGatehouse.webp"
+    },
+    "spr_wood_a": {
+      "mesh": "wood_a",
+      "image": "wood_a.webp"
+    },
+    "spr_wood_b": {
+      "mesh": "wood_b",
+      "image": "wood_b.webp"
+    },
+    "spr_wood_heap": {
+      "mesh": "wood_heap_a",
+      "image": "wood_heap_a.webp"
+    },
+    "spr_wood_heap_b": {
+      "mesh": "wood_heap_b",
+      "image": "wood_heap_b.webp"
+    },
+    "spr_wooden_stand": {
+      "mesh": "wooden_stand",
+      "image": "wooden_stand.webp"
+    },
+    "spr_mm_woodenhouse": {
+      "mesh": "woodenhouse",
+      "image": "woodenhouse.webp"
+    },
+    "spr_mm_woodenhouse2story": {
+      "mesh": "woodenhouse2story",
+      "image": "woodenhouse2story.webp"
+    },
+    "spr_mm_woodenhouse2story2": {
+      "mesh": "woodenhouse2story2",
+      "image": "woodenhouse2story2.webp"
+    },
+    "spr_mm_woodenhouse2story3": {
+      "mesh": "woodenhouse2story3",
+      "image": "woodenhouse2story3.webp"
+    },
+    "spr_mm_woodenhouse2story4": {
+      "mesh": "woodenhouse2story4",
+      "image": "woodenhouse2story4.webp"
+    },
+    "spr_mm_woodenhouse2storysnowy": {
+      "mesh": "woodenhouse2storysnowy",
+      "image": "woodenhouse2storysnowy.webp"
+    },
+    "spr_mm_woodenhouse2storysnowy2": {
+      "mesh": "woodenhouse2storysnowy2",
+      "image": "woodenhouse2storysnowy2.webp"
+    },
+    "spr_mm_woodensnowhouse": {
+      "mesh": "woodensnowhouse",
+      "image": "woodensnowhouse.webp"
+    },
+    "spr_mm_woodenwall1": {
+      "mesh": "woodenwall1",
+      "image": "woodenwall1.webp"
+    },
+    "spr_mm_woodenwall1d": {
+      "mesh": "woodenwall1d",
+      "image": "woodenwall1d.webp"
+    },
+    "spr_mm_woodenwall1dd": {
+      "mesh": "woodenwall1dd",
+      "image": "woodenwall1dd.webp"
+    },
+    "spr_mm_woodenwall2": {
+      "mesh": "woodenwall2",
+      "image": "woodenwall2.webp"
+    },
+    "spr_mm_woodenwall2d": {
+      "mesh": "woodenwall2d",
+      "image": "woodenwall2d.webp"
+    },
+    "spr_mm_woodenwall3": {
+      "mesh": "woodenwall3",
+      "image": "woodenwall3.webp"
+    },
+    "spr_mm_woodenwall3d": {
+      "mesh": "woodenwall3d",
+      "image": "woodenwall3d.webp"
+    },
+    "spr_mm_woodenwallsnowy1": {
+      "mesh": "woodenwallsnowy1",
+      "image": "woodenwallsnowy1.webp"
+    },
+    "spr_mm_woodenwallsnowy1d": {
+      "mesh": "woodenwallsnowy1d",
+      "image": "woodenwallsnowy1d.webp"
+    },
+    "spr_mm_woodenwallsnowy1dd": {
+      "mesh": "woodenwallsnowy1dd",
+      "image": "woodenwallsnowy1dd.webp"
+    },
+    "spr_mm_woodenwallsnowy2": {
+      "mesh": "woodenwallsnowy2",
+      "image": "woodenwallsnowy2.webp"
+    },
+    "spr_mm_woodenwallsnowy2d": {
+      "mesh": "woodenwallsnowy2d",
+      "image": "woodenwallsnowy2d.webp"
+    },
+    "spr_mm_woodenwallsnowy3": {
+      "mesh": "woodenwallsnowy3",
+      "image": "woodenwallsnowy3.webp"
+    },
+    "spr_mm_woodenwallsnowy3d": {
+      "mesh": "woodenwallsnowy3d",
+      "image": "woodenwallsnowy3d.webp"
+    },
+    "spr_mm_oim_debris1": {
+      "mesh": "zaval",
+      "image": "zaval.webp"
     }
   }
 }

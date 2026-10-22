@@ -1,0 +1,11 @@
+.editor-viewbar,.editor-camera{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:10px}
+.editor-viewbar .scale-note{margin-left:auto;color:var(--muted);font-size:12px}
+.editor-camera label{margin:0}.editor-camera select{max-width:170px}.editor-camera button{font-size:12px}
+#editor-three{position:relative;height:600px;min-height:340px;max-height:72vw;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#dce4dd;touch-action:none}
+#editor-three canvas{display:block;width:100%;height:100%;outline-offset:-4px}
+#editor-three-message{position:absolute;inset:0;display:grid;place-content:center;gap:12px;text-align:center;padding:24px;background:#e6ede5;z-index:2}
+.editor-model-info,.editor-three-help{font-size:12px;line-height:1.5;color:var(--muted);margin:8px 0}
+.editor-model-info{font-variant-numeric:tabular-nums;min-height:18px}.editor-model-info.error{color:#a12819}
+.editing-3d aside{max-height:920px;overflow:auto}.editing-3d #zoom,.editing-3d label[for="zoom"]{display:none}
+[hidden]{display:none!important}
+@media(max-width:600px){#editor-three{height:440px;max-height:85vw;min-height:310px}.editor-viewbar .scale-note{margin-left:0;width:100%}.editing-3d aside{max-height:none}}

@@ -30,7 +30,7 @@ local function check_objects_then_terrain()
       end
       local count = #instances
       local found = false
-      local mismatch = 'Vegetation missing or position mismatch'
+      local mismatch = 'Map asset missing or position mismatch'
       local observed = {}
       for _, instance in ipairs(instances) do
         if not consumed[instance] then
@@ -58,7 +58,7 @@ local function check_objects_then_terrain()
               lines[#lines + 1] = string.format('%d,%d,%d,%d,%d,%d,%d,%d', expected.index, instance, x, y, z, sx, sy, sz)
               break
             end
-            mismatch = not variant_matches and 'Vegetation variant mismatch' or (scale_matches and 'Vegetation rotation mismatch' or 'Vegetation scale mismatch')
+            mismatch = not variant_matches and 'Map asset variant mismatch' or (scale_matches and 'Map asset rotation mismatch' or 'Map asset scale mismatch')
           end
         end
       end

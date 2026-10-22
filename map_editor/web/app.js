@@ -4,6 +4,8 @@
   const C = MapCoordinates, $ = id => document.getElementById(id);
   const svg = $('overlay'), NS = 'http://www.w3.org/2000/svg';
   const assets = new Map(project.assets.map(a=>[a.name,a]));
+  const categories = [...new Set(project.assets.map(a=>a.group))];
+  for(const group of categories) $('asset-category').appendChild(new Option(group,group));
   let previewRequest = 0;
   let points = [], selected = null, mode = 'place', dirty = false, drag = null;
   let settings = {...C.defaults};
@@ -11,6 +13,13 @@
   const undo = [], redo = [];
   const snapshot = () => JSON.stringify({points,settings,spawns});
   const documentData = () => ({version:3, source:project.source, placements:points, settings, default_spawn_points:project.default_spawn_points, spawn_points:spawns});
+  // Optional same-origin 3D view shares this document and its undo history.
+  // Standalone heatmap editors keep working without a renderer or network.
+  const listeners = new Set();
+  let externalMove = null;
+  const state = () => JSON.parse(JSON.stringify({document:documentData(),selected,mode,
+    brush:{asset:$('asset').value,yaw_deg:Number($('yaw').value),scale:Number($('scale').value)}}));
+  function notify() { if(listeners.size) { const value=state(); for(const fn of listeners) fn(value); } }
   function status(message, error=false) { $('status').textContent=message; $('status').classList.toggle('error',error); }
   function remember(before=snapshot()) { undo.push(before); if(undo.length>100) undo.shift(); redo.length=0; dirty=true; }
   function restore(value) { const state=JSON.parse(value); points=state.points; settings=state.settings; spawns=state.spawns; }
@@ -27,8 +36,9 @@
   function assetOptions() {
     const previous=$('asset').value, query=$('search').value.trim().toLowerCase();
     $('asset').replaceChildren();
-    for(const group of ['Trees','Shrubs','Other vegetation']) {
-      const entries=project.assets.filter(a=>a.group===group && a.label.toLowerCase().includes(query));
+    for(const group of categories) {
+      if($('asset-category').value && $('asset-category').value!==group) continue;
+      const entries=project.assets.filter(a=>a.group===group && `${a.label} ${a.name} ${a.mesh}`.toLowerCase().includes(query));
       if(!entries.length) continue;
       const el=document.createElement('optgroup'); el.label=group;
       for(const asset of entries) el.appendChild(new Option(asset.label,asset.name));
@@ -36,6 +46,7 @@
     }
     if([...$('asset').options].some(o=>o.value===previous)) $('asset').value=previous;
     else if($('asset').options.length) $('asset').selectedIndex=0;
+    $('asset-count').textContent=`${$('asset').options.length} of ${project.assets.length} assets`;
     assetInfo();
   }
   function assetInfo() {
@@ -44,6 +55,7 @@
     const token=++previewRequest, container=$('asset-preview-image');
     $('asset-preview-caption').textContent=a ? a.label : 'No asset selected';
     container.textContent=a ? (a.preview ? 'Loading preview…' : 'Preview unavailable for this asset.') : 'No matching assets.';
+    notify();
     if(!a?.preview) return;
     const image=new Image();
     image.alt=`${a.label} — textured model preview`;
@@ -56,7 +68,7 @@
     selected=id;
     const p=current();
     if(p) {
-      if(![...$('asset').options].some(o=>o.value===p.asset)) { $('search').value=''; assetOptions(); }
+      if(![...$('asset').options].some(o=>o.value===p.asset)) { $('search').value=''; $('asset-category').value=''; assetOptions(); }
       $('asset').value=p.asset; $('yaw').value=p.yaw_deg; $('scale').value=p.scale; assetInfo();
     }
     render();
@@ -103,12 +115,28 @@
     $('count').textContent=`${points.length} object${points.length===1?'':'s'}`;
     $('point-list').replaceChildren(...points.map((p,i)=>new Option(`${i+1}. ${assets.get(p.asset).label}`,p.id)));
     $('point-list').value=selected||'';
+    notify();
   }
   function changeSelected(patch) {
-    const p=current(); if(!p) return;
+    const p=current(); if(!p) {notify(); return;}
     const candidate=points.map(item=>item.id===p.id?{...item,...patch}:item);
     try { C.validate({...documentData(),placements:candidate},project); remember(); points=candidate; render(); status('Point updated.'); }
     catch(error) { status(error.message,true); choose(selected); }
+  }
+  function placeAt(x,y) {
+    const point={x_m:C.quantize(x),y_m:C.quantize(y)};
+    if(!C.inside(point.x_m,point.y_m,project.bounds)) throw new Error('Place inside the actual terrain border.');
+    const p={id:globalThis.crypto?.randomUUID?.()||`p_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+      asset:$('asset').value,...point,yaw_deg:Number($('yaw').value),scale:Number($('scale').value)};
+    C.validate({...documentData(),placements:[...points,p]},project);
+    remember(); points.push(p); choose(p.id); status('Placed. Select and drag to adjust its position.');
+    return p.id;
+  }
+  function setMode(value) {
+    if(!['place','select','navigate'].includes(value)) throw new Error('Unknown editor mode');
+    mode=value;
+    $('place').setAttribute('aria-pressed',value==='place'); $('select').setAttribute('aria-pressed',value==='select');
+    svg.classList.toggle('select-mode',value!=='place'); choose(null);
   }
   svg.addEventListener('pointerdown', event=>{
     if(event.button!==0) return;
@@ -125,12 +153,10 @@
       drag={id:selected,before:snapshot(),pointer:event.pointerId};
       svg.setPointerCapture(event.pointerId); event.preventDefault(); return;
     }
-    if(mode==='select') { choose(null); return; }
+    if(mode!=='place') { choose(null); return; }
     const point=pointAt(event);
     if(!C.inside(point.x_m,point.y_m,project.bounds)) { status('Click inside the actual terrain border; blank margins are outside the map.',true); return; }
-    const asset=$('asset').value;
-    const p={id:globalThis.crypto?.randomUUID?.()||`p_${Date.now()}_${Math.random().toString(36).slice(2)}`,asset,...point,yaw_deg:Number($('yaw').value),scale:Number($('scale').value)};
-    try { C.validate({...documentData(),placements:[...points,p]},project); remember(); points.push(p); choose(p.id); status('Placed. Drag the marker to adjust its position.'); }
+    try { placeAt(point.x_m,point.y_m); }
     catch(error) { status(error.message,true); }
   });
   svg.addEventListener('pointermove',event=>{
@@ -141,7 +167,7 @@
       if(drag.team!==undefined) {
         const candidate=spawns.map(p=>p.team===drag.team?{...p,...point}:p);
         try { C.validateSpawns({...documentData(),spawn_points:candidate},project); spawns=candidate; render(); } catch(error) {status(error.message,true);}
-      } else { Object.assign(current(),point); draw(); $('x').value=point.x_m; $('y').value=point.y_m; }
+      } else { Object.assign(current(),point); draw(); $('x').value=point.x_m; $('y').value=point.y_m; notify(); }
     }
   });
   function finishDrag(event) {
@@ -166,12 +192,13 @@
   });
   $('spawn-reset').addEventListener('click',()=>{remember(); spawns=C.editableSpawns(project); render(); status('Both team spawns reset to the original defaults.');});
   $('search').addEventListener('input',assetOptions);
+  $('asset-category').addEventListener('change',assetOptions);
   $('asset').addEventListener('change',()=>{assetInfo(); if(current()) changeSelected({asset:$('asset').value});});
   for(const [id,key] of [['yaw','yaw_deg'],['scale','scale'],['x','x_m'],['y','y_m']])
     $(id).addEventListener('change',()=>changeSelected({[key]:Number($(id).value)}));
   $('point-list').addEventListener('change',()=>choose($('point-list').value));
   $('delete').addEventListener('click',()=>{if(!current()) return; remember(); points=points.filter(p=>p.id!==selected); choose(null); status('Point deleted.');});
-  for(const id of ['place','select']) $(id).addEventListener('click',()=>{mode=id; $('place').setAttribute('aria-pressed',id==='place'); $('select').setAttribute('aria-pressed',id==='select'); svg.classList.toggle('select-mode',id==='select'); choose(null);});
+  for(const id of ['place','select']) $(id).addEventListener('click',()=>setMode(id));
   $('undo').addEventListener('click',()=>{if(!undo.length) return; redo.push(snapshot()); restore(undo.pop()); dirty=true; choose(null);});
   $('redo').addEventListener('click',()=>{if(!redo.length) return; undo.push(snapshot()); restore(redo.pop()); dirty=true; choose(null);});
   function fitStage() {
@@ -189,7 +216,7 @@
       const blob=new Blob([JSON.stringify(documentData(),null,2)+'\n'],{type:'application/json'});
       const url=URL.createObjectURL(blob), link=document.createElement('a');
       link.href=url; link.download=project.source.scene_id+'.placements.json'; link.click();
-      setTimeout(()=>URL.revokeObjectURL(url),1000); dirty=false; status('Map loadout downloaded. Build applies vegetation, biome, weather and team spawn settings.');
+      setTimeout(()=>URL.revokeObjectURL(url),1000); dirty=false; status('Map loadout downloaded. Build applies map assets, biome, weather and team spawn settings.');
     } catch(error) {status(error.message,true);}
   });
   $('import').addEventListener('click',()=>$('file').click());
@@ -212,4 +239,27 @@
   svg.setAttribute('viewBox',`0 0 ${project.calibration.width_px} ${project.calibration.height_px}`);
   $('scene-name').textContent=project.source.scene_id;
   assetOptions(); render();
+  window.MapEditor = Object.freeze({
+    getState:state,
+    subscribe(fn) { listeners.add(fn); fn(state()); return ()=>listeners.delete(fn); },
+    select(id) { if(id!==null&&!points.some(p=>p.id===id)) throw new Error('Unknown placement'); choose(id); },
+    setMode, placeAt, status,
+    beginMove(id) {
+      if(externalMove||drag) throw new Error('A move is already in progress');
+      if(!points.some(p=>p.id===id)) throw new Error('Unknown placement');
+      choose(id); externalMove={id,before:snapshot()};
+    },
+    moveTo(x,y) {
+      if(!externalMove) return;
+      const patch={x_m:C.quantize(x),y_m:C.quantize(y)};
+      const candidate=points.map(p=>p.id===externalMove.id?{...p,...patch}:p);
+      C.validate({...documentData(),placements:candidate},project); points=candidate; render();
+    },
+    finishMove(cancel=false) {
+      if(!externalMove) return;
+      if(cancel) restore(externalMove.before);
+      else if(snapshot()!==externalMove.before) remember(externalMove.before);
+      externalMove=null; render();
+    },
+  });
 })();

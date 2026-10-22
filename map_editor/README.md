@@ -1,6 +1,62 @@
-# Map editor: vegetation, biome and weather
+# Map editor: scenery, vegetation, biome and weather
 
-A standalone browser editor for placing vegetation and choosing biome, fog, precipitation and thunder on an existing Warband random-map heatmap. Python measures the ground under each point and exports a new SCO/recipe pair. Work on one selected spawn layout at a time.
+A standalone browser editor for placing game scenery and vegetation and choosing biome, fog, precipitation and thunder on an existing Warband random-map heatmap. Python measures the ground under each point and exports a new SCO/recipe pair. Work on one selected spawn layout at a time.
+
+The `rate_maps` website also includes a **3D terrain editor for every fixed map in the current rotation**.
+It uses the same placement state, undo history and version-3 loadout format as
+this standalone editor. Native game meshes keep their original Z-up axes,
+metre units and origins. Terrain remains at true scale while editing. Orbit and
+spawn cameras, click-to-place, selection/dragging, yaw, uniform scale and a
+**Focus selected** camera are available. Switch between 3D and the calibrated
+2D heatmap without losing edits. Inactive 3D renderers are released when switching
+maps or tabs; each map's loadout and undo history remain available. The three
+micro generators reroll and have no permanent height maps to edit.
+
+Both website 3D views include directional sunlight, soft sky fill, shadows and
+gentle distance haze. **Lighting & haze** changes the preview surface, sun
+direction and atmospheric effects. **Infantry** and **Mounted** enter a
+first-person explorer: WASD moves, Shift runs/gallops, dragging looks around,
+arrow keys turn/look, and Space hops. **Mouse look** optionally captures the
+pointer; Escape releases it. **Stand here** chooses a point on the terrain.
+Team buttons use the current edited spawns, and the minimap shows position and
+facing and supports click-to-relocate. **Exit explorer** restores the overview.
+
+Infantry defaults to 1.7 m eye height and 3.2/6.2 m/s walk/run; mounted defaults
+to 2.8 m and 6/12 m/s. Eye height is adjustable. These are preview settings,
+not troop/horse statistics or game physics. Movement follows the same measured
+triangles as placement; it does not collide with placed objects. The editor shows
+the current placed models at native scale. Explorer movement and lighting do
+not change the loadout JSON, its weather settings, or team spawn positions.
+
+The optional `window.MapEditor` bridge in `web/app.js` exposes cloned state,
+subscriptions, selection, modes, placement and transactional dragging. Both
+views validate changes with `MapCoordinates` and save through the existing JSON
+button. Native browser models load on demand; the standalone HTML remains an
+offline 2D editor. Final builds still measure exact-point ground height in the
+engine; browser Z is interpolated from the measured terrain triangles.
+
+To export the installed asset catalogue, run in WSL from MOD:
+
+```sh
+uv run --with matplotlib --with numpy --with pillow --with moderngl \
+  python pythonHelpers/export_editor_models.py \
+  --website-root /home/glect/rate_maps \
+  --map-id scn_mp_custom_map_1 \
+  --output map_analysis/editor_models_<timestamp> --publish
+uv run --with matplotlib python pythonHelpers/register_rotation_editor_models.py \
+  --website-root /home/glect/rate_maps \
+  --output map_analysis/rotation_editor_models_<timestamp> --publish
+```
+
+Use a fresh output directory. The helper uses `pythonHelpers/game_scene_resources.py`, verifies
+the registered map and source asset definitions, and records resource/texture
+checksums. It reads resources in `module.ini` load order and exports all full-detail multipart scenery and vegetation meshes, 1024-pixel
+maximum diffuse textures and native alpha blending/cutoffs. Texture orientation and packed vertex colours are converted for WebGL. It retains native
+origins, including geometry below ground; it does not fit or rebase meshes.
+Commit the website's `public/editor-models/` and `lib/editor-models.json` together.
+`npm run check:editor-models` verifies source identity, checksums, vertex/index
+layout and bounds. Terrain export uses `export_rotation_topology.py --all-maps`
+separately; export the full rotation before registering it with the model library.
 
 All new code and generated projects live in `map_editor/`. The tool imports the existing `pythonHelpers` renderer, SCO parser, and engine probe; it does not change the generator, source maps, installed scenes, rotation, or live weather. Environment changes apply only to new exported builds.
 
@@ -33,9 +89,9 @@ Measurements must match the original SCO and recipe checksums, or have a matchin
 
 Open the printed `editor.html` path in a browser, using the corresponding Windows path when opening it from Windows Explorer. Preparation stores its own source snapshots, measured data, calibrated heatmap, and project metadata. The original source paths must remain available and unchanged when building.
 
-## 2. Place vegetation in the browser
+## 2. Place assets in the browser
 
-1. Search for an asset, such as `pine`, `aspen`, or `giant bush`. The palette uses the installed module's vegetation definitions and indicates whether a collision mesh is defined.
+1. Choose a category and search for an asset, such as `house`, `wall`, `barrel`, `bridge`, `rock`, or `pine`. The palette includes 1,030 static scenery props and 282 vegetation choices from the installed module. Buildings, walls/fences, bridges/walkways, rocks/terrain, camp/defenses, furniture/containers, ships/vehicles and other props have separate categories. Each entry indicates whether a collision mesh is defined.
 2. In **Place** mode, click inside the terrain border. Blank margins, axis labels, and the colour bar are outside the terrain. Coordinates are in world metres, X right and Y up.
 3. Click a marker or choose an item in **Placed objects** to select it. Drag it, or edit its X/Y fields. Asset, yaw, and scale changes apply to the selected point. Press Escape or click **Place** to deselect before choosing settings for a new point.
 4. Use **Select / drag** to inspect or move points without adding new ones. Zoom and scroll for precision. Delete, undo, and redo are available; keyboard shortcuts work when a form field is not focused.
@@ -43,7 +99,25 @@ Open the printed `editor.html` path in a browser, using the corresponding Window
 
 The HTML embeds the heatmap and metadata. Reopening it starts with no additions; load your saved JSON to resume. Unsaved changes trigger the browser's normal leave-page prompt. Downloads are the saved editing state.
 
-Vegetation starts upright at scale 1 and yaw 0. Yaw is counterclockwise around world +Z; zero faces +Y. Allowed scale is 0.1–10 and yaw is 0–359.999… degrees. X/Y accept three decimal places. Up to 10,000 additions are supported; practical performance depends on the browser and game.
+Assets start upright at native scale 1 and yaw 0. Yaw is counterclockwise around world +Z; zero faces +Y. Allowed scale is 0.1–10 and yaw is 0–359.999… degrees. X/Y accept three decimal places. Up to 10,000 additions are supported; practical performance depends on the browser and game.
+
+Only visible, unscripted scenery is offered. Invisible helpers, weather controls,
+spawn markers, flags and scripted gameplay systems are excluded. The preview
+shows static geometry; it does not simulate interactive doors, ships or machinery.
+
+New projects use asset catalogue version 2. To add the expanded catalogue to a
+verified older project without remeasuring terrain, run:
+
+```bash
+uv run --with matplotlib python map_editor/editor.py upgrade-assets \
+  --project /path/to/prepared/project
+```
+
+This backs up `project.json` under `asset_backups/`, updates the catalogue and
+regenerates `editor.html`. Source identity, height data, spawns and existing
+loadout JSON remain compatible. `refresh` alone retains the existing catalogue.
+Scenery uses the same `{id, asset, x_m, y_m, yaw_deg, scale}` placement fields;
+the loadout schema remains version 3.
 
 ### Biome and weather
 
@@ -88,7 +162,7 @@ New fields in a version-1 document are rejected rather than silently ignored.
 
 ### Team spawns (version 3)
 
-New browser loadouts use version 3, retaining the settings and vegetation fields.
+New browser loadouts use version 3, retaining the settings and asset placement fields.
 `default_spawn_points` stores the exact original XYZ/facing records for Team 1
 (internal team 0, entry 0) and Team 2 (internal team 1, entry 32).
 `spawn_points` stores editable team/entry and X/Y coordinates in metres, rounded
@@ -118,7 +192,7 @@ uv run --with matplotlib python map_editor/editor.py build \
   --placements /mnt/c/Users/<you>/Downloads/<scene-id>.placements.json
 ```
 
-Build validates source and project checksums, resolves asset names against the installed definitions, and asks the engine for the ground height at every exact X/Y. It resolves each selected scene-prop mesh to its installed `Data/flora_kinds.txt` definition and appends native flora records (SCO kind 4), including the exact mesh variant. This preserves the native tree flags used for distant rendering. It writes these records onto the original source snapshot. It always starts from that snapshot; rebuilding the same document never appends another copy of its objects.
+Build validates source and project checksums, resolves asset names against the installed definitions, and asks the engine for the ground height at every exact X/Y. Static scenery is appended as native scene-prop records (SCO kind 0) using the exact compiled prop ID and name. Vegetation resolves to `Data/flora_kinds.txt` and uses native flora records (SCO kind 4), including the exact mesh variant and tree flags used for distant rendering. It writes these records onto the original source snapshot. It always starts from that snapshot; rebuilding the same document never appends another copy of its objects.
 
 The result goes into a new `builds/<UTC timestamp>/` directory within the project, or a new directory specified by `--output`. It contains:
 
@@ -129,7 +203,7 @@ The result goes into a new `builds/<UTC timestamp>/` directory within the projec
 - `manifest.json`, with resolved heights, output checksums, and validation results.
 - `ground_probe/` and `edited_probe/`, with engine requests, logs, and replay evidence.
 
-An edited-scene engine replay checks terrain, spawn positions, and every added vegetation instance’s position, yaw, scale, and flora variant before publication. It also verifies exactly one engine-loaded weather prop with the requested values for each override. Selected fog/precipitation/thunder props are replaced, including any duplicates. All other original object records and the trailing terrain/AI data remain byte-for-byte unchanged. Biome settings belong in the companion recipe: install both the SCO and recipe together.
+An edited-scene engine replay checks terrain, spawn positions, and every added asset instance’s kind, position, yaw, scale, and variant before publication. It also verifies exactly one engine-loaded weather prop with the requested values for each override. Selected fog/precipitation/thunder props are replaced, including any duplicates. All other original object records and the trailing terrain/AI data remain byte-for-byte unchanged. Biome settings belong in the companion recipe: install both the SCO and recipe together.
 
 A successful build prints `COMPLETE`. On failure, no success manifest is published; `_staging/` and probe logs remain for diagnosis. Use a fresh output directory to retry. Ctrl+C requests engine-worker cleanup and preserves source maps. Do not treat staging files as finished maps.
 
@@ -141,7 +215,7 @@ Installation is a separate task. Use the repository's map installation workflow 
 
 - Clicks use the actual rendered plotting rectangle, including the 975 m reference frame and outer padding. Browser resizing, scrolling, and zoom do not change world coordinates.
 - The heatmap contains discrete samples, approximately 4.9 m apart on a full-size map. Final object Z uses exact-point engine measurements, not interpolation. Millimetre coordinate storage is not a claim of millimetre mouse accuracy.
-- Only additions appear as markers. Existing procedural vegetation and obstacles remain in the scene but are not depicted. Biome selection changes procedural vegetation and may affect terrain heights. The tool does not sculpt terrain, edit existing vegetation individually, create a 3D preview, or assess paths and collisions.
+- Only additions appear as markers in 2D and native models in the website's 3D editor. Existing procedural vegetation and obstacles remain in the scene but are not depicted. Biome selection changes procedural vegetation and may affect terrain heights. The tool does not sculpt terrain, edit existing vegetation individually, or assess paths and collisions. The 3D editor previews the source terrain; biome, weather, wind and seasonal shading changes appear only after building in the game.
 - Ground offsets currently default to **zero, uncalibrated**, placing each asset's origin on the measured terrain. No visual root-offset corrections have been inferred. Inspect the result in a game client, especially on slopes or at unusual scales; mesh origins can differ and wide shrubs can intersect sloping ground.
 - The dedicated probe validates engine data, not rendered appearance or gameplay. Trees with collision meshes and decorative shrubs can behave differently on the server. Validation evidence distinguishes what was checked.
 - Changed source maps, source recipe files, prepared height data, or module asset definitions require preparing a new project. This prevents accidentally applying points to a different topology or asset table.

@@ -1,3 +1,5 @@
+import topologyMaps from '../lib/rotation-topology.json';
+import editorModels from '../lib/editor-models.json';
 import editorMaps from '../lib/editor-maps.json';
 import assetPreviews from '../lib/editor-asset-previews.json';
 import template from '../map_editor/web/index.html?raw';
@@ -8,14 +10,42 @@ import app from '../map_editor/web/app.js?raw';
 export function setupEditor(selectTab) {
   const $ = id => document.getElementById(id);
   const frames = new Map();
+  const projects = new Map();
   let current = '', request = 0;
+  let visible = false, active3D = null, threeRequest = 0;
   const url = path => new URL(import.meta.env.BASE_URL + path, location.href).href;
   $('editor-map').replaceChildren(...editorMaps.map(map => new Option(map.filename, map.id)));
   $('editor-map').disabled = !editorMaps.length;
 
+  function stop3D() {
+    threeRequest++;
+    active3D?.controller.dispose();
+    active3D = null;
+  }
+  async function start3D(id) {
+    if (!visible || current !== id) return;
+    if (active3D?.id === id) return;
+    stop3D();
+    const frame = frames.get(id), project = projects.get(id);
+    const topology = topologyMaps.maps.find(entry => entry.id === id);
+    if (!visible || current !== id || !frame?.contentWindow?.MapEditor || !topology || !editorModels.maps.some(entry => entry.id === id)) return;
+    const token = threeRequest;
+    try {
+      const { attachEditor3D } = await import('./editor-3d.js');
+      if (token !== threeRequest || !visible || current !== id) return;
+      active3D = { id, controller: attachEditor3D(frame, project, topology, editorModels, path => url(path.replace(/^\//, ''))) };
+    } catch {
+      if (token !== threeRequest) return;
+      const note = frame.contentDocument.createElement('p');
+      note.className = 'hint'; note.textContent = '3D could not start. Your heatmap editor and saved placements are still available. Reload to retry 3D.';
+      frame.contentDocument.querySelector('.workspace').prepend(note);
+    }
+  }
+
   async function open(id = current || editorMaps[0]?.id) {
     const map = editorMaps.find(map => map.id === id);
     if (!map) { $('editor-state').textContent = 'No registered rotation maps are available to edit.'; return; }
+    if (current !== id) stop3D();
     current = id;
     $('editor-map').value = id;
     const token = ++request;
@@ -23,6 +53,7 @@ export function setupEditor(selectTab) {
     $('editor-state').hidden = frames.has(id);
     $('editor-retry').hidden = true;
     if (frames.has(id)) {
+      start3D(id);
       if (frames.get(id).dataset.imageFailed === 'true') {
         $('editor-state').textContent = 'The editor image could not load. Check your connection and retry.';
         $('editor-state').hidden = false;
@@ -36,6 +67,7 @@ export function setupEditor(selectTab) {
       if (!response.ok) throw new Error('Project could not load');
       const project = await response.json();
       if (token !== request) return;
+      projects.set(id, project);
       for (const asset of project.assets) {
         const preview = assetPreviews.assets[asset.name];
         if (preview?.mesh === asset.mesh) asset.preview = url('editor-assets/' + preview.image);
@@ -71,6 +103,7 @@ export function setupEditor(selectTab) {
         };
         image.addEventListener('error', failed);
         if (image.complete && !image.naturalWidth) failed();
+        start3D(id);
       });
       frames.set(id, frame);
       $('editor-workspace').append(frame);
@@ -92,6 +125,10 @@ export function setupEditor(selectTab) {
   });
   return {
     count: editorMaps.length,
+    setVisible(value) {
+      visible = value;
+      if (value) start3D(current); else stop3D();
+    },
     canEdit: filename => editorMaps.some(map => map.filename === filename),
     show: () => { if (!current) open(); },
     edit: filename => {

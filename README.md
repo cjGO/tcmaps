@@ -61,11 +61,11 @@ npm run preview
 
 ## Map editor
 
-**Current rotation → Edit this map** opens that registered map in the **Map editor** tab. The map selector includes every fixed custom map in the synced installed rotation, sorted by slot number. GOOD MAPS is a separate browsing collection. The micro pool’s three procedural maps generate new terrain each round and have no fixed scene to edit. The original editor supports vegetation placement and dragging, asset search, yaw/scale and coordinate editing, zoom, delete, undo/redo, biome and weather settings, and JSON import/export. Switching maps or website tabs retains each editing session until the page closes or reloads.
+**Current rotation → Edit this map** opens that registered map in the **Map editor** tab. The map selector includes every fixed custom map in the synced installed rotation, sorted by slot number. GOOD MAPS is a separate browsing collection. The micro pool’s three procedural maps generate new terrain each round and have no fixed scene to edit. The editor supports scenery and vegetation placement and dragging, category filtering, asset search, yaw/scale and coordinate editing, zoom, delete, undo/redo, biome and weather settings, and JSON import/export. Switching maps or website tabs retains each editing session until the page closes or reloads.
 
-Users click **Save map loadout JSON** and send the downloaded `.placements.json` file to the map organizer. Nothing is uploaded automatically. **Open loadout** restores a saved file for the same map; files from a different map/source version are rejected. Download before leaving; unsaved edits trigger the editor's browser warning. Version-3 JSON preserves exact source identity and includes vegetation, map settings, original spawn defaults and edited spawn positions for the Python build tool.
+Users click **Save map loadout JSON** and send the downloaded `.placements.json` file to the map organizer. Nothing is uploaded automatically. **Open loadout** restores a saved file for the same map; files from a different map/source version are rejected. Download before leaving; unsaved edits trigger the editor's browser warning. Version-3 JSON preserves exact source identity and includes asset placements, map settings, original spawn defaults and edited spawn positions for the Python build tool.
 
-The sidebar shows a textured model preview when choosing an asset or selecting a placed object. Previews are fitted to the frame independently; they do not depict relative sizes or the selected yaw/scale. The 282 entries share 280 static thumbnails in `public/editor-assets`, generated from the installed module's full-detail meshes and diffuse textures. Visitors do not need game files or a 3D renderer.
+The sidebar shows a textured model preview when choosing an asset or selecting a placed object. Previews are fitted to the frame independently; they do not depict relative sizes or the selected yaw/scale. The 1,312 entries include 1,030 static scenery props and 282 vegetation choices, with static thumbnails in `public/editor-assets`, generated from the installed module's full-detail meshes and diffuse textures. Visitors do not need game files or a 3D renderer.
 
 Registered rotation maps have measured, calibrated editor projects. Published project metadata and heatmaps live in `public/editor`, indexed by `lib/editor-maps.json`. These files must be committed along with the website. Deployment needs no Python, game installation, or backend. The editor code is reused directly from `map_editor/web`, isolated in an embedded document so the website's styles and shortcuts do not interfere.
 
@@ -130,3 +130,185 @@ Commit `public/editor-assets` and `lib/editor-asset-previews.json` with the code
 ```sh
 uv run --with playwright python tests/website_editor_smoke.py http://127.0.0.1:4173
 ```
+
+## Current rotation: interactive topology
+
+Every fixed map in **Current rotation** has an interactive Three.js terrain model
+and a calibrated heatmap. The current collection has **95 maps: 39 tiny, 30 small,
+and 26 medium**. Each model uses all **40,401 measured vertices / 80,000 triangles**
+from its verified installed editor project. The three micro generators reroll on
+each load and have no permanent height grid or editor project.
+
+Drag to orbit, scroll to zoom, and right-drag (or focus the canvas and use arrow
+keys) to pan. Camera presets include aerial, opposite side, overhead and looking
+inward from 12 metres above each original team spawn. Blue 1 and red 2 mark the
+original entries. Toggle 2 m contours or the triangle mesh. Height starts at **1×
+true scale**; 2× and 4× are explicitly labeled exaggeration. Reset restores the
+initial view and true scale, with contours off. The Heatmap button restores the original
+calibrated map image. Original vegetation, structures and game weather are omitted.
+Editor additions appear in the Map editor view.
+
+The compact model is approximately 235 kB before HTTP compression. Three.js and
+the model load only when this preview is used. The renderer draws on interaction
+and resize, releases GPU resources when changing maps/tabs, and offers the heatmap
+if WebGL is unavailable. No user data is uploaded and no game files are edited.
+
+### Lighting and ground exploration
+
+Both 3D views use a matte, biome-coloured terrain surface, angled
+sunlight, hemisphere fill, terrain/model shadows and sky-matched distance haze.
+**Lighting & haze** adjusts sun direction, switches Natural/Elevation colouring,
+and toggles shadows/haze. Overhead stays clear; overview haze follows camera
+distance. These are preview graphics, independent of saved game-weather settings.
+
+Choose **Infantry** or **Mounted**, or **Stand here** then click the terrain.
+WASD moves, Shift runs/gallops, drag looks around, arrow keys turn/look, and Space
+hops. **Mouse look** optionally captures the pointer; Escape releases it. Team
+buttons jump to the current spawns (including editor changes). A minimap shows
+your position/facing, team starts and a metre scale; click it to relocate.
+**Exit explorer** restores the previous overview and height exaggeration.
+
+Exploration always uses true terrain scale, interpolating the same triangles as
+asset placement. Infantry defaults to 1.7 m eye height and 3.2/6.2 m/s walk/run;
+mounted uses 2.8 m and 6/12 m/s. Eye height can be adjusted from 0.8 to 4 m.
+These are preview values, not Warband troop/horse statistics. There is no obstacle
+collision or avatar model. The editor shows placed native assets at their saved
+scale. Moving, hopping, switching profiles and lighting controls do not change
+placements, team spawns, JSON, undo history or saved biome/weather settings.
+
+The animation loop runs while moving, looking with keys or hopping; it stops
+when idle, hidden, unfocused or disposed. Mouse look has a drag fallback if
+pointer capture is unavailable. Exploration consumes editor canvas gestures and
+shortcuts to prevent accidental placements/deletions while navigating.
+
+The WebGL regression check runs isolated Chromium, rejects shader errors and
+checks actual terrain pixels in both the rotation viewer and editor. It covers
+surface/lighting controls, infantry/mounted movement, overview restoration and
+unchanged loadout data. Run it against the production preview after building:
+
+```sh
+uv run --with playwright --with pillow python tests/terrain_render_smoke.py http://127.0.0.1:4173
+```
+
+Install the Playwright Chromium runtime once with `uv run --with playwright
+python -m playwright install chromium`, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE`
+to an installed Chromium binary. `MAPROOM_SCREENSHOT_DIR` optionally retains
+screenshots. A JavaScript build alone does not compile WebGL shaders.
+
+### Refresh rotation height maps
+
+In WSL, from the MOD module directory:
+
+```sh
+uv run --with matplotlib python pythonHelpers/export_rotation_topology.py \
+  --website-root /home/glect/rate_maps \
+  --all-maps \
+  --output map_analysis/rotation_topology_<timestamp> --publish
+uv run --with matplotlib python pythonHelpers/register_rotation_editor_models.py \
+  --website-root /home/glect/rate_maps \
+  --output map_analysis/rotation_editor_models_<timestamp> --publish
+cd /home/glect/rate_maps
+npm run check:topology
+npm run check:editor-models
+npm test
+npm run build
+```
+
+Use a fresh output directory. The exporter verifies the installed rotation,
+source SCO/recipe, measured height provenance and original spawn coordinates and
+facing. It preserves all samples in X-major order with integer millimetre heights.
+The sample spacing (approximately 2.75–4.15 m across these sizes) limits spatial detail; interpolated
+triangles do not claim additional measurements. Saved pool data may predate a
+biome change and must not replace installed measurements without verification.
+
+Commit `public/topology`, `lib/rotation-topology.json` and the UI together. Dev and
+build checks reject missing rotation maps, changed files and stale source identities. The
+registration helper reuses the verified native asset library for every matching
+project; re-export native models if asset definitions change. No engine probe,
+map regeneration or server restart is needed. Source projects remain in the
+existing ignored `map_editor/projects` archive. The export folder retains a
+provenance report and any previous published topology manifest.
+
+
+## Current rotation: place native assets in 3D
+
+Open **Current rotation → Edit this map**, or choose any map in **Map editor**.
+Select **3D terrain** or **2D heatmap**. Terrain and native game assets
+use world metres at true scale (no height exaggeration in the editor). Navigate
+by dragging/scrolling, use aerial/overhead/team-spawn presets, or double-click
+terrain in Navigate mode to move closer. In Place mode, the translucent asset
+follows the surface; click to place. Select a tree/shrub to drag it, edit yaw and
+scale, and use **Focus selected** to inspect it. Right-drag orbits while editing;
+Shift-right-drag pans. Touch supports tapping/dragging and two-finger navigation.
+
+The 2D heatmap and 3D view share one placement document, selection and undo
+history. Dragging is one undo step; Escape cancels a drag. Existing save/import,
+biome/weather and spawn editing continue to use version-3 loadouts. Spawn markers
+follow changes made in the sidebar or 2D view; the 3D markers are not draggable.
+All fixed rotation maps use the same editing tools. Switching maps or tabs releases
+the inactive 3D renderer while retaining each map's loadout, selection and undo
+history. Returning to a map restores its 3D scene from that editing state.
+
+The catalogue includes buildings, walls and fences, bridges, rocks, camp props,
+furniture, containers, ships and vehicles, alongside vegetation. Models and
+textures load on demand, so opening the editor does not download the entire
+catalogue (1,293 meshes and 154 textures, about 138 MB in total). Use the category selector and search to find a prop.
+Assets retain their native Z-up axes, origin, dimensions and UVs. Texture upload orientation, packed vertex colours, alpha blending, cutoffs and draw order are handled for the browser.
+The size readout shows width/depth/height at the chosen uniform scale before yaw.
+Models are not normalized to thumbnail sizes or automatically rebased at roots.
+
+Browser grounding interpolates the same triangles that are displayed, using the
+original measured grid. The narrow unsampled edge clamps to its nearest sample
+for loadouts placed in 2D. Python builds still measure the exact ground beneath
+each placement. This previews additions on the source terrain; it does not show
+existing procedural vegetation, collision volumes, new biome terrain, weather,
+wind or seasonal game shaders. Source maps and installed scenes are preserved.
+
+### Regenerate native models
+
+From MOD in WSL, with a fresh output directory:
+
+```sh
+uv run --with matplotlib --with numpy --with pillow --with moderngl \
+  python pythonHelpers/export_editor_models.py \
+  --website-root /home/glect/rate_maps \
+  --map-id scn_mp_custom_map_1 \
+  --output map_analysis/editor_models_<timestamp> --publish
+uv run --with matplotlib python pythonHelpers/register_rotation_editor_models.py \
+  --website-root /home/glect/rate_maps \
+  --output map_analysis/rotation_editor_models_<timestamp> --publish
+cd /home/glect/rate_maps
+npm run check:editor-models
+npm test
+npm run build
+```
+
+This reuses `scripts/prepare-asset-previews.py` to read native BRFs. The module
+helper verifies the installed source and asset definitions and records input
+hashes in its output provenance. `public/editor-models/<version>/` contains a
+manifest, little-endian interleaved float32 vertices/uint32 indices, and WebP
+textures (maximum 1024 pixels). `lib/editor-models.json` pins the exact manifest
+hash and enabled map revision. Commit both with the editor code and topology.
+Build/dev checks verify every checksum, source identity, binary layout and native
+bounding box. `map_editor/web/app.js` is also kept in MOD so the standalone
+editor and website use the same placement bridge; standalone editors remain 2D.
+
+### Static scenery catalogue
+
+The shared MOD editor catalogue is version 2. New prepared projects include
+1,030 visible, unscripted scenery props and the existing 282 vegetation aliases.
+Invisible helpers and scripted gameplay controllers are excluded. All 95 fixed
+rotation editors have the same palette and show these assets in
+3D at native scale. Browser exploration does not collide with placed objects.
+
+Existing placement JSON remains compatible. Scenery records use the same asset,
+XY, yaw and scale fields. The Python build resolves scenery to SCO kind 0 with
+its compiled prop ID; vegetation retains kind 4 and its native flora variant.
+Both are grounded with exact engine measurements and checked by engine replay.
+
+For older prepared projects, run `map_editor/editor.py upgrade-assets --project
+/path/to/project` in the MOD helper environment. It backs up the old metadata,
+retains source identity and height measurements, and regenerates the standalone
+editor. Then run `npm run prepare:editor` and export thumbnails/models before
+building the website. Both exporters share MOD's
+`pythonHelpers/game_scene_resources.py`, reading BRFs in module load order.

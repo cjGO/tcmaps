@@ -75,15 +75,53 @@ def verify_source(source):
     return recipe
 
 
-def asset_catalogue(path):
+ASSET_CATALOGUE_VERSION = 2
+# These are engine/editor helpers or multi-part gameplay systems, not standalone
+# static map props. Visible, unscripted scenery is otherwise included wholesale.
+PROP_HELPER_PREFIXES = ('spr_invalid_', 'spr_pointer_', 'spr_light', 'spr_barrier',
+    'spr_exit_', 'spr_ai_', 'spr_mm_player_limiter', 'spr_mm_cannon', 'spr_mm_rocket',
+    'spr_mm_limber', 'spr_mm_ship_', 'spr_royale_', 'spr_formation_', 'spr_objectives_',
+    'spr_headquarters_', 'spr_ctf_', 'spr_flag_', 'spr_mm_flag', 'spr_mm_weather',
+    'spr_ambience_', 'spr_custom_', 'spr_door_teleport')
+
+
+def prop_group(name):
+    name = name.lower()
+    categories = (
+        ('Rocks & terrain', ('rock', 'ground_prop', 'triangle_', 'pyramid', 'stone_heap')),
+        ('Camp & defenses', ('tent', 'camp', 'sandbag', 'gabion', 'barricade', 'spike', 'trench', 'sapper')),
+        ('Bridges & walkways', ('bridge', 'stair', 'ladder', 'ramp', 'floor', 'platform', 'street', 'road')),
+        ('Walls & fences', ('wall', 'fence', 'palisade', 'railing', 'gate', 'battlement')),
+        ('Buildings', ('house', 'barn', 'hall', 'tower', 'keep', 'church', 'castle', 'mill', 'stable', 'mosque', 'roof', 'ruin', 'interior')),
+        ('Ships & vehicles', ('ship', 'boat', 'cart', 'wagon', 'frigate', 'wheel')),
+        ('Furniture & containers', ('table', 'chair', 'barrel', 'box', 'crate', 'chest', 'bed', 'bench', 'shelf', 'shelves', 'stool', 'cupboard', 'sofa', 'bucket', 'bowl', 'basket', 'trough')),
+    )
+    return next((group for group, words in categories if any(word in name for word in words)), 'Other props')
+
+
+def asset_catalogue(path, version=ASSET_CATALOGUE_VERSION):
+    if type(version) is not int or version not in (1, 2):
+        raise ValueError('Unsupported asset catalogue version')
     lines = Path(path).read_text(encoding='utf-8').splitlines()
     records = [line.split() for line in lines if line.startswith('spr_')]
     if not lines or lines[0] != 'scene_propsfile version 1' or int(lines[1]) != len(records):
         raise ValueError('Invalid scene_props.txt')
-    result = []
+    result, props = [], []
     for index, fields in enumerate(records):
         name = fields[0]
-        if not name.startswith(('spr_mm_tree_', 'spr_flora_')) or not int(fields[1]) & 0x1000000:
+        if len(fields) != 6:
+            raise ValueError('Invalid scene prop definition: ' + name)
+        vegetation = name.startswith(('spr_mm_tree_', 'spr_flora_')) and int(fields[1]) & 0x1000000
+        if not vegetation:
+            if (version == 1 or fields[3] == '0' or int(fields[1]) & 0x4000
+                    or int(fields[5]) != 0 or name.startswith(PROP_HELPER_PREFIXES)
+                    or 'code_only' in name or name == 'spr_water_river'
+                    # These shipped placeholder meshes contain no triangles.
+                    or fields[3] in ('gunrack', 'cupboard3')):
+                continue
+            props.append(dict(name=name, prop_id=index, object_name=name[4:], kind='scene_prop',
+                group=prop_group(name), label=name.removeprefix('spr_').replace('_', ' '),
+                mesh=fields[3], collision=fields[4] != '0', ground_offset_m=0.0))
             continue
         group = ('Trees' if name.startswith('spr_mm_tree_') else
                  'Shrubs' if 'bush' in name else 'Other vegetation')
@@ -93,7 +131,7 @@ def asset_catalogue(path):
                            ground_offset_m=0.0))
     if not result:
         raise ValueError('No supported vegetation assets found')
-    return result
+    return result + props
 
 
 def native_flora_assets(assets, path):
@@ -131,6 +169,11 @@ def native_flora_assets(assets, path):
         raise ValueError('Invalid flora_kinds.txt') from exc
     result = []
     for asset in assets:
+        if asset.get('kind') == 'scene_prop':
+            result.append(dict(asset, object_kind=0, object_id=asset['prop_id'], variant=0))
+            continue
+        if asset.get('kind', 'flora') != 'flora':
+            raise ValueError('Unsupported scene object kind')
         matches = [m for m in meshes.get(asset['mesh'], []) if m['collision'] == asset['collision']]
         if not matches:
             raise ValueError('No matching native flora for ' + asset['name'])
@@ -213,7 +256,7 @@ def validate_placements(document, source, bounds, assets):
             raise ValueError('Invalid or duplicate placement ID')
         seen.add(key)
         if not isinstance(p['asset'], str) or p['asset'] not in names:
-            raise ValueError('Unknown vegetation asset')
+            raise ValueError('Unknown map asset')
         x, y = (number(p[k], k) for k in ('x_m', 'y_m'))
         yaw, scale = number(p['yaw_deg'], 'yaw'), number(p['scale'], 'scale')
         if not in_bounds(x, y, bounds):
@@ -253,3 +296,8 @@ def append_vegetation(original, placements, heights, assets):
         if any(abs(a-b) > 0.001 for a, b in zip(struct.unpack_from('<3f', raw, 48), expected)):
             raise ValueError('SCO coordinate precision check failed')
     return data
+
+
+# Keep the older vegetation-only API usable for archived helper callers.
+resolve_native_assets = native_flora_assets
+append_assets = append_vegetation

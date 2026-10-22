@@ -28,7 +28,11 @@ with sync_playwright() as pw, tempfile.TemporaryDirectory() as downloads:
     frame = page.frame_locator('iframe:not([hidden])')
     frame.locator('#asset option').first.wait_for(state='attached')
     assert frame.locator('#scene-name').inner_text() == selected[:-4]
-    assert frame.locator('#asset option').count() == 282
+    selected_map = next(m for m in manifest if m['filename'] == selected)
+    project = json.loads((ROOT / 'public' / selected_map['project']).read_text())
+    assert frame.locator('#asset option').count() == len(project['assets'])
+    if frame.locator('#editor-view-2d').count():
+        frame.locator('#editor-view-2d').click()
     assert frame.locator('.spawn-point').count() == 2
     original_x = frame.locator('#spawn-x').input_value()
     frame.locator('.spawn-point circle').first.scroll_into_view_if_needed()

@@ -1,0 +1,27 @@
+.terrain-experience{position:absolute;inset:0;pointer-events:none;z-index:1;font:12px/1.4 system-ui,sans-serif;color:#243a37}
+.terrain-experience [hidden]{display:none!important}
+.terrain-experience button,.terrain-experience select,.terrain-experience input,.terrain-experience summary{font:inherit;pointer-events:auto}
+.terrain-experience button,.terrain-experience select{border:1px solid #a9bab7;border-radius:6px;padding:7px 10px;background:#f8fbf7ed;color:#243a37;cursor:pointer;min-height:34px}
+.terrain-experience button[aria-pressed=true]{color:#fff;background:#355e58;border-color:#355e58}
+.terrain-experience button:focus-visible,.terrain-experience select:focus-visible,.terrain-experience input:focus-visible,.terrain-experience canvas:focus-visible,.terrain-experience summary:focus-visible{outline:3px solid #eca849;outline-offset:2px}
+.terrain-tools{position:absolute;top:12px;left:12px;right:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.terrain-graphics{pointer-events:auto;background:#f8fbf7ed;border:1px solid #a9bab7;border-radius:7px;padding:8px 10px;box-shadow:0 2px 8px #24423b12}
+.terrain-graphics summary{font-weight:650;cursor:pointer}.terrain-graphics[open]{width:210px}
+.terrain-graphics label{display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:12px;font-weight:500;margin:10px 0 0;color:#243a37}
+.terrain-graphics select{max-width:130px}.terrain-graphics input[type=range]{width:100px;padding:0}.terrain-graphics input[type=checkbox]{width:16px;height:16px;margin:0;accent-color:#355e58}
+.terrain-experience-actions{display:flex;justify-content:flex-end;gap:5px;flex-wrap:wrap;max-width:390px}
+.terrain-pick-note{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 16px;border:1px solid #d4decf;border-radius:8px;background:#f8fbf7ed;text-align:center;font-weight:600;max-width:80%}
+.terrain-crosshair{position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%);border:1px solid #fff9;border-radius:50%;box-shadow:0 0 2px #233a36}
+.terrain-hud{position:absolute;left:12px;bottom:12px;max-width:calc(100% - 132px);padding:10px 12px;background:#f8fbf7ee;border:1px solid #a9bab7;border-radius:8px;pointer-events:auto;box-shadow:0 2px 10px #24423b15}
+.terrain-hud p{font:11px/1.5 system-ui,sans-serif;margin:4px 0;color:#405a53}.terrain-hud strong{font-size:12px;font-variant-numeric:tabular-nums}.terrain-hud-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.terrain-hud label{display:flex;align-items:center;gap:5px;font:11px system-ui,sans-serif;margin:0}.terrain-hud input{width:58px;padding:6px;border:1px solid #a9bab7;border-radius:5px;background:white;color:#243a37}
+.terrain-minimap{position:absolute;right:12px;top:60px;width:180px;background:#f8fbf7ee;border:1px solid #a9bab7;border-radius:7px;overflow:hidden;pointer-events:auto}
+.terrain-minimap canvas{display:block;width:100%!important;height:auto!important;aspect-ratio:1;cursor:crosshair;touch-action:none}
+.terrain-minimap p{margin:0;padding:4px 6px;font:10px/1.3 system-ui,sans-serif;color:#405a53}
+.terrain-move-pad{position:absolute;bottom:12px;right:12px;display:grid;grid-template-columns:repeat(3,32px);grid-template-rows:repeat(2,32px);gap:3px;pointer-events:auto}
+.terrain-move-pad button{padding:0;min-height:0;touch-action:none}.terrain-move-pad [data-move=forward]{grid-column:2}.terrain-move-pad [data-move=left]{grid-column:1;grid-row:2}.terrain-move-pad [data-move=back]{grid-column:2;grid-row:2}.terrain-move-pad [data-move=right]{grid-column:3;grid-row:2}
+.terrain-3d-surface{outline-offset:-4px}
+@media(max-width:700px){.terrain-minimap{width:130px;top:96px}.terrain-tools{top:8px;left:8px;right:8px}.terrain-experience-actions{max-width:220px}.terrain-experience button{padding:6px 8px;font-size:11px}.terrain-hud{bottom:8px;left:8px;padding:7px 9px;max-width:calc(100% - 116px)}.terrain-hud .terrain-extra-help{display:none}.terrain-hud p{font-size:10px}.terrain-minimap p{font-size:9px}.terrain-move-pad{right:8px;bottom:8px}.terrain-graphics[open]{position:relative;z-index:2;min-width:190px}}
+
+/* Keep collection-wide loading-status styles out of the explorer HUD. */
+.terrain-experience .terrain-hud [role=status]{position:static;padding:0;text-align:left;color:#405a53;font-size:11px}

@@ -107,6 +107,44 @@ class EditorTests(unittest.TestCase):
         self.assertEqual(self.sco.read_bytes(),self.original)
         with self.assertRaises(ValueError):core.append_vegetation(self.original,[self.point],[],assets)
 
+    def test_static_props_catalogue_and_mixed_scene_encoding(self):
+        legacy=core.asset_catalogue(MODULE_ROOT/'scene_props.txt',1)
+        self.assertEqual(self.assets[:len(legacy)],legacy)
+        names={a['name'] for a in self.assets}
+        self.assertTrue({'spr_barrel','spr_village_house_e','spr_bridge_wooden','spr_small_wall_a'} <= names)
+        self.assertFalse({'spr_invalid_object','spr_light_sun','spr_water_river','spr_mm_cannon_12pdr','spr_pointer_arrow'} & names)
+        assets=core.resolve_native_assets(self.assets,MODULE_ROOT/'Data/flora_kinds.txt')
+        barrel=next(a for a in assets if a['name']=='spr_barrel')
+        self.assertEqual((barrel['object_kind'],barrel['object_id'],barrel['object_name'],barrel['variant']),
+                         (0,barrel['prop_id'],'barrel',0))
+        points=[self.point,dict(self.point,id='prop',asset='spr_barrel',scale=2,yaw_deg=35)]
+        data=core.append_assets(self.original,points,[12.125,14.5],assets)
+        objects,tail=split_objects(data)
+        self.assertEqual(objects[:2],split_objects(self.original)[0]);self.assertEqual(tail,split_objects(self.original)[1])
+        self.assertEqual(struct.unpack_from('<I',objects[2][2])[0],4)
+        raw=objects[3][2];size=struct.unpack_from('<I',raw,60)[0]
+        self.assertEqual(struct.unpack_from('<II',raw),(0,barrel['prop_id']))
+        self.assertEqual(raw[64:64+size],b'barrel')
+        self.assertEqual(struct.unpack_from('<3f',raw,48),(20.125,40.25,14.5))
+        self.assertEqual(struct.unpack_from('<3f',raw,72+size),(2,2,2))
+        self.assertEqual(core.validate_placements(core.placement_document(self.source,points),self.source,self.bounds,self.assets),points)
+
+    def test_legacy_project_upgrade_keeps_source_measurements_and_saved_loadouts(self):
+        folder=editor.prepare(self.args());project=core.read_json(folder/'project.json')
+        project.pop('asset_catalogue_version');project['assets']=core.asset_catalogue(MODULE_ROOT/'scene_props.txt',1)
+        core.write_json(folder/'project.json',project)
+        before=(folder/'project.json').read_bytes();height=(folder/'height_data.json').read_bytes()
+        editor.load_project(folder)
+        with patch('editor.probe',side_effect=AssertionError('unexpected engine run')):
+            editor.upgrade_assets(argparse.Namespace(project=folder))
+        updated,_,_,assets=editor.load_project(folder)
+        self.assertEqual(updated['source'],project['source']);self.assertEqual((folder/'height_data.json').read_bytes(),height)
+        self.assertEqual(updated['asset_catalogue_version'],2);self.assertGreater(len(assets),len(project['assets']))
+        backups=list((folder/'asset_backups').glob('*/project.json'));self.assertEqual(len(backups),1)
+        self.assertEqual(backups[0].read_bytes(),before)
+        core.validate_placements(core.placement_document(self.source,[self.point]),updated['source'],self.bounds,assets)
+        editor.upgrade_assets(argparse.Namespace(project=folder));self.assertEqual(len(list((folder/'asset_backups').glob('*/project.json'))),1)
+
     def test_native_palm_records_keep_tree_flag_and_exact_variant(self):
         assets=core.native_flora_assets(self.assets,MODULE_ROOT/'Data/flora_kinds.txt')
         for i in range(1,7):

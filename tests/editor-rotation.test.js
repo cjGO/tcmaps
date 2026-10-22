@@ -10,11 +10,16 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 test('editor options exactly match registered current rotation and source versions', async () => {
   const rotation = await json('lib/editor-rotation.json');
   const published = await json('lib/editor-maps.json');
+  const terrain = await json('lib/rotation-topology.json');
+  const models = await json('lib/editor-models.json');
   const filenames = (await readdir(new URL('current_rotation/', root))).filter(f => /\.png$/i.test(f)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   assert.ok(rotation.length > 0);
   assert.equal(new Set(rotation.map(map => map.id)).size, rotation.length);
   assert.deepEqual(rotation.map(map => map.filename), filenames);
   assert.deepEqual(published.map(map => map.id), rotation.map(map => map.id));
+  assert.deepEqual(terrain.maps.map(map => map.id), rotation.map(map => map.id));
+  assert.deepEqual(models.maps.map(map => map.id), rotation.map(map => map.id));
+  assert.equal(terrain.map_count, rotation.length);
   for (const [i, map] of published.entries()) {
     const registered = rotation[i];
     assert.equal(map.filename, registered.filename);

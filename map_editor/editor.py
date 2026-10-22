@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare a standalone vegetation editor and build grounded SCO copies."""
+"""Prepare a map asset editor and build grounded SCO copies."""
 import argparse
 from datetime import datetime, timezone
 from pathlib import Path
@@ -7,7 +7,7 @@ import shutil
 import subprocess
 import sys
 
-from core import (append_vegetation, asset_catalogue, native_flora_assets, digest, placement_document,
+from core import (append_assets, asset_catalogue, resolve_native_assets, ASSET_CATALOGUE_VERSION, digest, placement_document,
                   read_json, source_identity, validate_height_data, validate_placements,
                   verify_height_provenance, verify_source, write_json)
 from engine import probe, replay_objects, verify_replay
@@ -65,7 +65,8 @@ def prepare(args):
     verify_source(source)
     project = dict(version=1, source=source, bounds=data['bounds'], calibration=calibration,
                    default_spawn_points=data['spawn_points'],
-                   assets=assets, asset_catalogue_sha256=checksum(MODULE_ROOT / 'scene_props.txt'),
+                   assets=assets, asset_catalogue_version=ASSET_CATALOGUE_VERSION,
+                   asset_catalogue_sha256=checksum(MODULE_ROOT / 'scene_props.txt'),
                    flora_catalogue_sha256=checksum(MODULE_ROOT / 'Data/flora_kinds.txt'),
                    height_data_sha256=checksum(folder / 'height_data.json'),
                    height_provenance=provenance, ground_offsets='uncalibrated; zero metres')
@@ -88,7 +89,7 @@ def load_project(folder):
     if checksum(folder / 'height_data.json') != project['height_data_sha256']:
         raise ValueError('Prepared terrain measurements changed')
     if checksum(MODULE_ROOT / 'scene_props.txt') != project['asset_catalogue_sha256']:
-        raise ValueError('Module vegetation definitions changed; prepare a new project')
+        raise ValueError('Module scene prop definitions changed; prepare a new project')
     if (project.get('flora_catalogue_sha256') is not None
             and checksum(MODULE_ROOT / 'Data/flora_kinds.txt') != project['flora_catalogue_sha256']):
         raise ValueError('Module flora definitions changed; prepare a new project')
@@ -99,7 +100,7 @@ def load_project(folder):
     project.setdefault('default_spawn_points', data['spawn_points'])
     if data['bounds'] != project['bounds'] or data['terrain_code'] != project['source']['terrain_code']:
         raise ValueError('Project terrain metadata mismatch')
-    assets = asset_catalogue(MODULE_ROOT / 'scene_props.txt')
+    assets = asset_catalogue(MODULE_ROOT / 'scene_props.txt', project.get('asset_catalogue_version', 1))
     if project['assets'] != assets:
         raise ValueError('Project asset definitions changed')
     return project, recipe, data, assets
@@ -115,7 +116,7 @@ def build(args):
     spawn_points = validate_spawns(document, defaults, data['bounds'])
     spawns_changed = spawn_points != editable_spawns(defaults)
     flora_sha256 = checksum(MODULE_ROOT / 'Data/flora_kinds.txt')
-    assets = native_flora_assets(assets, MODULE_ROOT / 'Data/flora_kinds.txt')
+    assets = resolve_native_assets(assets, MODULE_ROOT / 'Data/flora_kinds.txt')
     output = new_directory(args.output or folder / 'builds' / timestamp())
     print('Build: ' + str(output), flush=True)
     # Stage outputs until all checks pass; retain failed probe evidence for diagnosis.
@@ -156,7 +157,7 @@ def build(args):
         lines[0] = ' '.join(fields)
         recipe = '\n'.join(lines) + '\n'
         data = dict(data, spawn_points=resolved_spawns)
-    edited = append_vegetation(base, placements, heights, assets)
+    edited = append_assets(base, placements, heights, assets)
     name = project['source']['scene_id']
     sco = stage / (name + '.sco')
     sco.write_bytes(edited)
@@ -187,7 +188,7 @@ def build(args):
         default_spawn_points=defaults, spawn_points=data['spawn_points'], spawns_changed=spawns_changed,
         settings=settings, output_terrain_code=terrain_code, output_outer_terrain=recipe.splitlines()[3].strip(),
         weather_overrides=weather, terrain_remeasured=biome_changed,
-        vegetation_encoding='native_flora_v1', flora_catalogue_sha256=flora_sha256,
+        vegetation_encoding='native_flora_v1', scene_prop_encoding='native_kind_0_v1', flora_catalogue_sha256=flora_sha256,
         resolved_assets=[a for a in assets if a['name'] in {p['asset'] for p in placements}],
         placements=[dict(p, ground_z_m=z, z_m=z + next(a['ground_offset_m'] for a in assets if a['name'] == p['asset'])*p['scale'])
                     for p, z in zip(placements, heights)],
@@ -214,6 +215,25 @@ def refresh(args):
     print('REFRESHED: ' + str(folder / 'editor.html'))
 
 
+def upgrade_assets(args):
+    """Expand a verified project without remeasuring terrain or changing identity."""
+    folder = args.project.resolve()
+    project, _, _, _ = load_project(folder)
+    if project.get('asset_catalogue_version', 1) == ASSET_CATALOGUE_VERSION:
+        return folder
+    backup = new_directory(folder / 'asset_backups' / timestamp())
+    shutil.copyfile(folder / 'project.json', backup / 'project.json')
+    project['assets'] = asset_catalogue(MODULE_ROOT / 'scene_props.txt')
+    project['asset_catalogue_version'] = ASSET_CATALOGUE_VERSION
+    temporary = folder / 'project.json.tmp'
+    write_json(temporary, project)
+    temporary.replace(folder / 'project.json')
+    load_project(folder)
+    (folder / 'editor.html').write_text(editor_html(project, folder / 'heatmap.png'), encoding='utf-8')
+    print('ASSETS UPDATED: ' + str(folder), flush=True)
+    return folder
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
@@ -229,6 +249,9 @@ def main(argv=None):
     refresh_parser = commands.add_parser('refresh', help='Update browser UI without changing saved placements')
     refresh_parser.add_argument('--project', required=True, type=Path)
     refresh_parser.set_defaults(action=refresh, timeout=180)
+    upgrade_parser = commands.add_parser('upgrade-assets', help='Add scene props to a verified legacy project; keeps source and saved JSON compatible')
+    upgrade_parser.add_argument('--project', required=True, type=Path)
+    upgrade_parser.set_defaults(action=upgrade_assets, timeout=180)
     for command in (prep, builder):
         command.add_argument('--output', type=Path, help='New directory; never overwrite an existing one')
         command.add_argument('--timeout', type=int, default=180, help='Per-map engine timeout in seconds')
