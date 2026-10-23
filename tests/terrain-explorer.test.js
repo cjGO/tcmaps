@@ -75,7 +75,8 @@ test('explorer input moves without placing/editing, changes profile in place, th
     assert.ok(e.frame.x>original.x);assert.equal(edits,0);
     const moved={...e.frame};e.$('mounted').click();assert.equal(e.begin,1);assert.equal(e.frame.x,moved.x);assert.equal(e.frame.y,moved.y);assert.equal(e.frame.yaw,moved.yaw);assert.equal(e.frame.eyeHeight,2.8);
     e.pointer('pointerdown');e.pointer('pointermove',150,100);e.pointer('pointerup',150,100);assert.notEqual(e.frame.yaw,moved.yaw);assert.equal(edits,0);
-    e.key('keydown','Delete');assert.equal(edits,0);
+    for(const code of ['Delete','KeyX','KeyQ','KeyE','KeyA','KeyD']) e.key('keydown',code);
+    assert.equal(edits,0);
     e.$('exit').click();assert.equal(e.end,1);assert.equal(e.mode,'orbit');assert.equal(e.pending.size,0);
     assert.equal(e.$('hud').hidden,true);assert.equal(e.$('minimap-wrap').hidden,true);
   } finally {e.close();}

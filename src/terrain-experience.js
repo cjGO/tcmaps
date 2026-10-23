@@ -131,7 +131,8 @@ export function createTerrainExperience(container, data, api, styles = '') {
     if (mode === 'orbit' || (doc.activeElement !== canvas && doc.pointerLockElement !== canvas)) return;
     if (event.code === 'Escape') { event.stopImmediatePropagation(); if (doc.pointerLockElement === canvas) pause(); else exit(); return; }
     // Explorer controls must never invoke the editor's delete/undo shortcuts.
-    if (['Delete', 'Backspace'].includes(event.code) || ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ')) { event.preventDefault(); event.stopImmediatePropagation(); return; }
+    if (['Delete', 'Backspace', 'KeyX'].includes(event.code) || ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ')) { event.preventDefault(); event.stopImmediatePropagation(); return; }
+    if (['KeyQ', 'KeyE'].includes(event.code) || (mode !== 'explore' && ['KeyA', 'KeyD', 'Space'].includes(event.code))) { event.preventDefault(); event.stopImmediatePropagation(); return; }
     if (mode !== 'explore' || !movementKeys.has(event.code)) return;
     event.preventDefault(); event.stopImmediatePropagation();
     if (event.code === 'Space' && !event.repeat) jump = true;

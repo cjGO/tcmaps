@@ -16,3 +16,6 @@ summary{font-size:15px;font-weight:700;cursor:pointer}input:disabled{background:
 .spawn-point { cursor: grab; }
 .spawn-point:active { cursor: grabbing; }
 #spawn-reset { width: 100%; white-space: normal; margin-top: 12px; }
+
+#hotkeys{width:min(620px,calc(100% - 32px));max-height:85vh;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:24px;color:var(--ink);background:#fff;box-shadow:0 18px 70px #0004}
+#hotkeys::backdrop{background:#14261dcc}#hotkeys h2{font-size:19px;padding-right:75px}#hotkeys h3{font-size:15px;margin:22px 0 12px}.hotkeys-close{float:right}#hotkeys dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 18px;font-size:13px;line-height:1.5}#hotkeys dd{margin:0}kbd{font:inherit;font-size:.9em;background:#edf1eb;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;white-space:nowrap}#hotkeys-open{width:100%;white-space:normal}

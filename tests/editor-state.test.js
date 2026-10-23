@@ -107,3 +107,58 @@ test('scenery categories filter by mesh/name and mixed assets survive JSON expor
     $('undo').click(); assert.equal(api.getState().document.placements.length,1);
   } finally {dom.window.close();}
 });
+
+test('editing hotkeys update props and placement settings with wrap, limits, and undo',()=>{
+  const {dom,w,api,$,change}=editor();
+  const key=(value,options={})=>w.document.body.dispatchEvent(new w.KeyboardEvent('keydown',{key:value,bubbles:true,cancelable:true,...options}));
+  try {
+    key('d'); assert.equal(api.getState().brush.yaw_deg,359);
+    key('a'); assert.equal(api.getState().brush.yaw_deg,0);
+    key('q'); assert.equal(api.getState().brush.scale,1.1);
+    const id=api.placeAt(200,300);
+    key('A'); key('e');
+    let point=api.getState().document.placements[0];
+    assert.equal(point.yaw_deg,1); assert.equal(point.scale,1);
+    key('z',{ctrlKey:true}); assert.equal(api.getState().document.placements[0].scale,1.1);
+    api.select(id); change('scale','10'); key('q'); assert.equal(api.getState().document.placements[0].scale,10);
+    change('scale','0.1'); key('e'); assert.equal(api.getState().document.placements[0].scale,.1);
+    key('x',{ctrlKey:true}); assert.equal(api.getState().document.placements.length,1);
+    $('search').dispatchEvent(new w.KeyboardEvent('keydown',{key:'x',bubbles:true}));
+    assert.equal(api.getState().document.placements.length,1);
+    key('x'); assert.equal(api.getState().document.placements.length,0);
+    key('z',{ctrlKey:true}); assert.equal(api.getState().document.placements.length,1);
+  } finally {dom.window.close();}
+});
+
+test('controls help opens from the sidebar and suppresses editing shortcuts',()=>{
+  const {dom,w,api,$}=editor();
+  try {
+    $('hotkeys').showModal=()=>{$('hotkeys').open=true;};
+    $('hotkeys-open').click(); assert.equal($('hotkeys').open,true);
+    assert.match($('hotkeys').textContent,/Move \(pan\) the camera/);
+    assert.match($('hotkeys').textContent,/Rotate the camera angle/);
+    api.placeAt(200,300);
+    for(const key of ['x','a','q']) w.document.body.dispatchEvent(new w.KeyboardEvent('keydown',{key,bubbles:true}));
+    const point=api.getState().document.placements[0];
+    assert.equal(point.yaw_deg,0); assert.equal(point.scale,1);
+  } finally {dom.window.close();}
+});
+
+test('Space toggles Navigate and Place once per press without editing while typing or dragging',()=>{
+  const {dom,w,api,$}=editor();
+  const space=(target=w.document.body,options={})=>target.dispatchEvent(new w.KeyboardEvent('keydown',{key:' ',code:'Space',bubbles:true,cancelable:true,...options}));
+  try {
+    space(); assert.equal(api.getState().mode,'navigate');
+    space(w.document.body,{repeat:true}); assert.equal(api.getState().mode,'navigate');
+    space(); assert.equal(api.getState().mode,'place');
+    space($('search')); assert.equal(api.getState().mode,'place');
+    space(w.document.body,{ctrlKey:true}); assert.equal(api.getState().mode,'place');
+    const id=api.placeAt(200,300); api.beginMove(id);
+    space(); assert.equal(api.getState().mode,'place'); api.finishMove();
+    $('hotkeys').open=true; space(); assert.equal(api.getState().mode,'place');
+    $('hotkeys').open=false;
+    api.setMode('select'); space(); assert.equal(api.getState().mode,'navigate');
+    space(); assert.equal(api.getState().mode,'place');
+    assert.equal(api.getState().document.placements.length,1);
+  } finally {dom.window.close();}
+});

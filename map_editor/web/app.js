@@ -229,9 +229,29 @@
       remember(); points=imported; settings=importedSettings; spawns=C.validateSpawns(document,project); choose(null); status('Loadout loaded. Undo restores your previous points, spawns and map settings.');
     } catch(error) {status(error.message,true);} finally {$('file').value='';}
   });
+  $('hotkeys-open').addEventListener('click',()=>$('hotkeys').showModal());
   document.addEventListener('keydown',event=>{
-    if(event.target.closest('input,select,textarea')) return;
+    if($('hotkeys').open || event.defaultPrevented || event.target.closest('input,select,textarea,[contenteditable]:not([contenteditable="false"])')) return;
     if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='z') {event.preventDefault(); $(event.shiftKey?'redo':'undo').click();}
+    if(event.ctrlKey||event.metaKey||event.altKey) return;
+    if(event.key===' ') {
+      event.preventDefault();
+      if(!event.repeat && !drag && !externalMove) setMode(mode==='navigate'?'place':'navigate');
+      return;
+    }
+    const key=event.key.toLowerCase();
+    if(['x','a','d','q','e'].includes(key)) {
+      if(drag || externalMove) return;
+      event.preventDefault();
+      if(key==='x') {$('delete').click(); return;}
+      const yaw=key==='a'||key==='d', input=$(yaw?'yaw':'scale');
+      const value=Number(input.value);
+      if(!Number.isFinite(value)) return;
+      input.value=yaw ? ((value+(key==='a'?1:-1))%360+360)%360
+        : Math.max(.1,Math.min(10,Math.round((value+(key==='q' ? .1 : -.1))*1000)/1000));
+      if(Number(input.value)!==value) input.dispatchEvent(new Event('change'));
+      return;
+    }
     if(event.key==='Delete'||event.key==='Backspace') {event.preventDefault(); $('delete').click();}
     if(event.key==='Escape') choose(null);
   });
