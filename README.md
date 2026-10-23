@@ -162,23 +162,21 @@ and toggles shadows/haze. Overhead stays clear; overview haze follows camera
 distance. These are preview graphics, independent of saved game-weather settings.
 
 Choose **Explore on foot**, or **Stand here** then click the terrain.
-WASD moves, the speed slider selects 6–30 m/s, drag looks around, arrow keys turn/look, and Space
-hops. **Mouse look** optionally captures the pointer; Escape releases it. Team
-buttons jump to the current spawns (including editor changes). A minimap shows
+WASD moves, drag looks around, arrow keys turn/look, and Space
+hops. Escape exits exploration. A minimap shows
 your position/facing, team starts and a metre scale; click it to relocate.
 **Exit explorer** restores the previous overview and height exaggeration.
 
 Exploration always uses true terrain scale, interpolating the same triangles as
-asset placement. On-foot exploration defaults to 1.7 m eye height and 6 m/s.
-Eye height can be adjusted from 0.8 to 4 m.
+asset placement. On-foot exploration defaults to 1.0 m eye height and 30.0 m/s.
+
 These are preview values, not Warband troop/horse statistics. There is no obstacle
 collision or avatar model. The editor shows placed native assets at their saved
-scale. Moving, hopping, adjusting speed and lighting controls do not change
+scale. Moving, hopping and lighting controls do not change
 placements, team spawns, JSON, undo history or saved biome/weather settings.
 
 The animation loop runs while moving, looking with keys or hopping; it stops
-when idle, hidden, unfocused or disposed. Mouse look has a drag fallback if
-pointer capture is unavailable. Exploration consumes editor canvas gestures and
+when idle, hidden, unfocused or disposed. Click and drag to look around. Exploration consumes editor canvas gestures and
 shortcuts to prevent accidental placements/deletions while navigating.
 
 The WebGL regression check runs isolated Chromium, rejects shader errors and

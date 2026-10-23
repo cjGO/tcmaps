@@ -72,19 +72,12 @@ with sync_playwright() as pw:
     rotation.locator("summary").click()
     page.locator("#topology-scale").select_option("2")
     rotation.locator('[data-ui="explore"]').click()
-    expect(rotation.locator('[data-ui="readout"]')).to_contain_text("On foot")
     expect(page.locator("#topology-scale")).to_have_value("1")
-    rendered(canvas, "rotation-on-foot")
-    assert rotation.locator('[data-ui="message"]').evaluate("""el => {
-      const hud=el.closest('.terrain-hud').getBoundingClientRect(), message=el.getBoundingClientRect();
-      return getComputedStyle(el).position==='static' && message.bottom<=hud.bottom;
-    }"""), "Explorer status must stay inside its HUD"
-    position = rotation.locator('[data-ui="position"]').inner_text()
+    expect(rotation.locator('[data-ui="hud"]')).to_have_count(0)
+    before_walk = rendered(canvas, "rotation-on-foot")
     canvas.press("w", delay=350)
-    expect(rotation.locator('[data-ui="position"]')).not_to_have_text(position)
-    rotation.locator('[data-ui="speed"]').fill("30")
-    expect(rotation.locator('[data-ui="readout"]')).to_contain_text("1.7 m")
-    rendered(canvas, "rotation-fast-on-foot")
+    after_walk = rendered(canvas, "rotation-on-foot-moved")
+    assert_different(before_walk, after_walk, "On-foot movement")
     rotation.locator('[data-ui="exit"]').click()
     expect(page.locator("#topology-scale")).to_have_value("2")
 
@@ -157,11 +150,11 @@ with sync_playwright() as pw:
     rendered(terrain, "editor-selected-asset")
     editor.locator('[data-ui="explore"]').click()
     rendered(terrain, "editor-on-foot")
-    position = editor.locator('[data-ui="position"]').inner_text()
+    expect(editor.locator('[data-ui="hud"]')).to_have_count(0)
+    before_walk = rendered(terrain, "editor-before-walk")
     terrain.press("w", delay=350)
-    expect(editor.locator('[data-ui="position"]')).not_to_have_text(position)
-    editor.locator('[data-ui="speed"]').fill("30")
-    rendered(terrain, "editor-fast-on-foot")
+    after_walk = rendered(terrain, "editor-after-walk")
+    assert_different(before_walk, after_walk, "Editor on-foot movement")
     editor.locator('[data-ui="exit"]').click()
     assert document_frame.evaluate("JSON.stringify(window.MapEditor.getState().document)") == before
     assert not errors, "\n".join(errors)

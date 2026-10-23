@@ -9,7 +9,7 @@ export function explorerPosition(data, x, y) {
 export function createExplorerState(data, point, yaw = 0) {
   if (![point.x, point.y, yaw].every(Number.isFinite)) throw new Error('Invalid explorer start');
   const xy = explorerPosition(data, point.x, point.y), ground = groundHeight(data, xy.x, xy.y);
-  return { ...xy, ground, z: ground, yaw, pitch: 0, eyeHeight: 1.7, verticalVelocity: 0, airborne: false, speed: 0 };
+  return { ...xy, ground, z: ground, yaw, pitch: 0, eyeHeight: 1.0, verticalVelocity: 0, airborne: false, speed: 0 };
 }
 export function turnExplorer(state, dx, dy) {
   return { ...state, yaw: state.yaw + dx, pitch: clamp(state.pitch + dy, -Math.PI * .46, Math.PI * .46) };
@@ -20,7 +20,7 @@ export function stepExplorer(data, state, input, seconds) {
   let forward = clamp(input.forward || 0, -1, 1), right = clamp(input.right || 0, -1, 1);
   const length = Math.hypot(forward, right);
   if (length > 1) { forward /= length; right /= length; }
-  const speed = clamp(Number.isFinite(input.speed) ? input.speed : 6, 6, 30);
+  const speed = clamp(Number.isFinite(input.speed) ? input.speed : 30, 6, 30);
   const xy = explorerPosition(data,
     state.x + (Math.sin(state.yaw) * forward + Math.cos(state.yaw) * right) * speed * dt,
     state.y + (Math.cos(state.yaw) * forward - Math.sin(state.yaw) * right) * speed * dt);

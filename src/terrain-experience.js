@@ -1,5 +1,5 @@
 import { elevationPalettes } from './terrain-palettes.js';
-import { createExplorerState, stepExplorer, turnExplorer, clamp } from './terrain-explorer-motion.js';
+import { createExplorerState, stepExplorer, turnExplorer } from './terrain-explorer-motion.js';
 
 export function createTerrainExperience(container, data, api, styles = '') {
   const doc = container.ownerDocument, win = doc.defaultView, canvas = api.canvas;
@@ -24,15 +24,6 @@ export function createTerrainExperience(container, data, api, styles = '') {
     <div class="terrain-pick-note" data-ui="pick-note" hidden>Click the terrain to stand there.<br>Escape cancels.</div>
     <div class="terrain-crosshair" data-ui="crosshair" hidden aria-hidden="true"></div>
     <div class="terrain-minimap" data-ui="minimap-wrap" hidden><canvas data-ui="minimap" width="320" height="320" tabindex="0" role="img" aria-label="Explorer overview. Click to move here; orange arrow shows your position and facing."></canvas><p>↑ +Y · blue/red: teams · orange: you<br>Click to relocate</p></div>
-    <div class="terrain-hud" data-ui="hud" hidden>
-      <strong data-ui="readout"></strong><p data-ui="position"></p>
-      <div class="terrain-hud-row"><button data-ui="lock">Mouse look</button><button data-ui="team1">Team 1</button><button data-ui="team2">Team 2</button>
-      <label>Eye m <input data-ui="eye" type="number" min=".8" max="4" step=".1" value="1.7" aria-label="Preview eye height in metres"></label></div>
-      <div class="terrain-hud-row"><label>Speed <input data-ui="speed" type="range" min="6" max="30" step="1" value="6" aria-label="Movement speed in metres per second"> <output data-ui="speed-value">6 m/s</output></label></div>
-      <p>WASD move · drag to look · Space hop</p>
-      <p data-ui="message" role="status">Esc releases the mouse; Exit returns to the overview.</p>
-      <p class="terrain-extra-help">Preview heights/speeds · true terrain scale · no obstacle collisions.</p>
-    </div>
     <div class="terrain-move-pad" data-ui="pad" role="group" aria-label="Move explorer" hidden>
       <button data-move="forward" aria-label="Move forward">↑</button><button data-move="left" aria-label="Move left">←</button><button data-move="back" aria-label="Move backward">↓</button><button data-move="right" aria-label="Move right">→</button>
     </div>`;
@@ -72,12 +63,10 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function paint() {
     if (!state || mode !== 'explore' || disposed) return;
     api.frame(state); map();
-    $('readout').textContent = `On foot · ${state.eyeHeight.toFixed(1)} m eyes · ${state.speed.toFixed(1)} m/s`;
-    $('position').textContent = `X ${state.x.toFixed(1)} · Y ${state.y.toFixed(1)} · ground ${state.ground.toFixed(1)} m`;
   }
   function notify() {
     const exploring = mode === 'explore';
-    for (const name of ['hud', 'crosshair', 'minimap-wrap', 'pad']) $(name).hidden = !exploring;
+    for (const name of ['crosshair', 'minimap-wrap', 'pad']) $(name).hidden = !exploring;
     $('exit').hidden = mode === 'orbit'; $('pick-note').hidden = mode !== 'pick';
     $('pick').setAttribute('aria-pressed', mode === 'pick');
     $('explore').setAttribute('aria-pressed', exploring);
@@ -85,8 +74,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     api.modeChanged(mode);
     container.dispatchEvent(new win.CustomEvent('terrain-modechange', { detail: { mode } }));
   }
-  function unlock() { if (doc.pointerLockElement === canvas) doc.exitPointerLock?.(); }
-  function pause() { keys.clear(); pad.clear(); jump = false; pointer = null; win.cancelAnimationFrame(raf); raf = 0; lastTime = 0; if (state) state.speed = 0; unlock(); }
+  function pause() { keys.clear(); pad.clear(); jump = false; pointer = null; win.cancelAnimationFrame(raf); raf = 0; lastTime = 0; if (state) state.speed = 0; }
   function exit() {
     if (mode === 'orbit') return;
     const wasExploring = mode === 'explore'; pause(); mode = 'orbit';
@@ -102,8 +90,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
       const start = point ? { point, yaw: yaw ?? state?.yaw ?? 0 } : state ? { point: state, yaw: state.yaw } : spawnPoint();
       state = createExplorerState(data, start.point, start.yaw);
     }
-    mode = 'explore'; $('eye').value = state.eyeHeight;
-    $('message').textContent = 'Esc releases the mouse; Exit returns to the overview.';
+    mode = 'explore';
     notify(); paint(); canvas.focus({ preventScroll: true });
   }
   function selectPlace() {
@@ -114,7 +101,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function input() {
     return { forward: Number(keys.has('KeyW') || pad.has('forward')) - Number(keys.has('KeyS') || pad.has('back')),
       right: Number(keys.has('KeyD') || pad.has('right')) - Number(keys.has('KeyA') || pad.has('left')),
-      speed: Number($('speed').value), jump };
+      jump };
   }
   function tick(time) {
     raf = 0;
@@ -129,8 +116,8 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function wake() { if (!raf && mode === 'explore') raf = win.requestAnimationFrame(tick); }
   const movementKeys = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
   function keyDown(event) {
-    if (mode === 'orbit' || (doc.activeElement !== canvas && doc.pointerLockElement !== canvas)) return;
-    if (event.code === 'Escape') { event.stopImmediatePropagation(); if (doc.pointerLockElement === canvas) pause(); else exit(); return; }
+    if (mode === 'orbit' || doc.activeElement !== canvas) return;
+    if (event.code === 'Escape') { event.stopImmediatePropagation(); exit(); return; }
     // Explorer controls must never invoke the editor's delete/undo shortcuts.
     if (['Delete', 'Backspace', 'KeyX'].includes(event.code) || ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ')) { event.preventDefault(); event.stopImmediatePropagation(); return; }
     if (['KeyQ', 'KeyE'].includes(event.code) || (mode !== 'explore' && ['KeyA', 'KeyD', 'Space'].includes(event.code))) { event.preventDefault(); event.stopImmediatePropagation(); return; }
@@ -149,7 +136,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function pointerMove(event) {
     if (mode === 'orbit') return;
     event.stopImmediatePropagation();
-    if (mode !== 'explore' || doc.pointerLockElement === canvas || pointer?.id !== event.pointerId) return;
+    if (mode !== 'explore' || pointer?.id !== event.pointerId) return;
     state = turnExplorer(state, (event.clientX - pointer.x) * .003, -(event.clientY - pointer.y) * .003);
     pointer.x = event.clientX; pointer.y = event.clientY; paint();
   }
@@ -166,36 +153,16 @@ export function createTerrainExperience(container, data, api, styles = '') {
   listen(canvas, 'click', event => { if (mode !== 'orbit') event.stopImmediatePropagation(); }, true);
   listen(canvas, 'dblclick', event => { if (mode !== 'orbit') event.stopImmediatePropagation(); }, true);
   listen(doc, 'keydown', keyDown, true); listen(doc, 'keyup', event => keys.delete(event.code), true);
-  listen(doc, 'mousemove', event => {
-    if (mode === 'explore' && doc.pointerLockElement === canvas) { state = turnExplorer(state, event.movementX * .002, -event.movementY * .002); paint(); }
-  });
-  listen(doc, 'pointerlockchange', () => {
-    keys.clear(); pad.clear(); jump = false;
-    if (mode !== 'explore') return;
-    $('message').textContent = doc.pointerLockElement === canvas ? 'Mouse captured. Press Esc to release it.' : 'Mouse released. Drag to look, or click Mouse look.';
-  });
-  listen(doc, 'pointerlockerror', () => { $('message').textContent = 'Mouse capture is unavailable. Drag to look; WASD still works.'; });
   listen(win, 'blur', pause); listen(doc, 'visibilitychange', () => { if (doc.visibilityState === 'hidden') pause(); });
   listen(canvas, 'blur', () => { keys.clear(); pad.clear(); });
   listen($('explore'), 'click', () => enter());
-  listen($('speed'), 'input', () => { $('speed-value').textContent = `${$('speed').value} m/s`; });
   listen($('pick'), 'click', selectPlace); listen($('exit'), 'click', exit);
-  listen($('lock'), 'click', async () => {
-    canvas.focus({ preventScroll: true });
-    try { if (!canvas.requestPointerLock) throw new Error('Unavailable'); await canvas.requestPointerLock(); }
-    catch { if (!disposed) $('message').textContent = 'Mouse capture is unavailable. Drag to look; WASD still works.'; }
-  });
-  for (const index of [0, 1]) listen($(`team${index + 1}`), 'click', () => { const start = spawnPoint(index); enter(start.point, start.yaw); });
-  listen($('eye'), 'change', () => {
-    const value = Number($('eye').value); if (state && Number.isFinite(value)) state.eyeHeight = clamp(value, .8, 4);
-    $('eye').value = state.eyeHeight; paint();
-  });
   listen(mini, 'pointerdown', event => {
     if (mode !== 'explore' || event.button !== 0) return;
     const rect = mini.getBoundingClientRect(), eyeHeight = state.eyeHeight, pitch = state.pitch;
     const point = { x: data.xs[0] + (event.clientX - rect.left) / rect.width * (data.xs.at(-1) - data.xs[0]),
       y: data.ys.at(-1) - (event.clientY - rect.top) / rect.height * (data.ys.at(-1) - data.ys[0]) };
-    enter(point, state.yaw); state.eyeHeight = eyeHeight; state.pitch = pitch; $('eye').value = eyeHeight; paint(); event.preventDefault();
+    enter(point, state.yaw); state.eyeHeight = eyeHeight; state.pitch = pitch; paint(); event.preventDefault();
   });
   for (const button of ui.querySelectorAll('[data-move]')) {
     listen(button, 'pointerdown', event => { event.preventDefault(); canvas.focus({ preventScroll: true }); button.setPointerCapture(event.pointerId); pad.add(button.dataset.move); wake(); });

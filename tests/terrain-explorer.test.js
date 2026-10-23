@@ -13,19 +13,19 @@ test('on-foot speeds follow the same measured terrain with correct eye clearance
     for(let i=0;i<100;i++) {
       state=stepExplorer(data,state,{forward:1,right:.3,speed},1/60);
       assert.equal(state.z,groundHeight(data,state.x,state.y));
-      assert.equal(state.eyeHeight,1.7);
+      assert.equal(state.eyeHeight,1.0);
     }
   }
 });
 test('movement normalizes diagonals, uses the selected speed and caps elapsed-time spikes',()=>{
   const start=createExplorerState(data,{x:20,y:20});
-  const forward=stepExplorer(data,start,{forward:1},.05),diagonal=stepExplorer(data,start,{forward:1,right:1},.05);
+  const forward=stepExplorer(data,start,{forward:1,speed:6},.05),diagonal=stepExplorer(data,start,{forward:1,right:1,speed:6},.05);
   assert.ok(Math.abs(Math.hypot(forward.x-20,forward.y-20)-Math.hypot(diagonal.x-20,diagonal.y-20))<1e-10);
   const fast=stepExplorer(data,start,{forward:1,speed:30},.05);
   assert.ok(Math.abs((fast.y-start.y)/(forward.y-start.y)-5)<1e-10);
   assert.equal(stepExplorer(data,start,{forward:1,speed:100},.05).y,fast.y);
   assert.equal(stepExplorer(data,start,{forward:1,speed:0},.05).y,forward.y);
-  assert.deepEqual(stepExplorer(data,start,{forward:1},30),forward);
+  assert.deepEqual(stepExplorer(data,start,{forward:1,speed:6},30),forward);
 });
 test('exploration stays within measured geometry, lands hops',()=>{
   let state=createExplorerState(data,{x:1000,y:-1000},1.2);
@@ -66,39 +66,34 @@ function setup() {
     tick(){const callbacks=[...pending.values()];pending.clear();time+=16;callbacks.forEach(fn=>fn(time));},
     close(){experience.dispose();dom.window.close();}};
 }
-test('explorer input moves without placing/editing, adjusts speed in place, then exits cleanly',()=>{
+test('explorer input moves without placing/editing, then exits cleanly',()=>{
   const e=setup();let edits=0;
   try {
     e.canvas.addEventListener('pointerdown',()=>edits++);e.doc.addEventListener('keydown',()=>edits++);
     e.$('explore').click();assert.equal(e.begin,1);assert.equal(e.mode,'explore');
     const original={...e.frame};e.key('keydown','KeyW');for(let i=0;i<10;i++)e.tick();e.key('keyup','KeyW');e.tick();
     assert.ok(e.frame.x>original.x);assert.equal(edits,0);
-    const moved={...e.frame};e.$('speed').value='30';e.$('speed').dispatchEvent(new e.w.Event('input'));assert.equal(e.$('speed-value').textContent,'30 m/s');assert.equal(e.begin,1);assert.equal(e.frame.x,moved.x);assert.equal(e.frame.y,moved.y);assert.equal(e.frame.yaw,moved.yaw);assert.equal(e.frame.eyeHeight,1.7);
+    const moved={...e.frame};
     e.pointer('pointerdown');e.pointer('pointermove',150,100);e.pointer('pointerup',150,100);assert.notEqual(e.frame.yaw,moved.yaw);assert.equal(edits,0);
     for(const code of ['Delete','KeyX','KeyQ','KeyE','KeyA','KeyD']) e.key('keydown',code);
     assert.equal(edits,0);
     e.$('exit').click();assert.equal(e.end,1);assert.equal(e.mode,'orbit');assert.equal(e.pending.size,0);
-    assert.equal(e.$('hud').hidden,true);assert.equal(e.$('minimap-wrap').hidden,true);
+    assert.equal(e.$('hud'),null);assert.equal(e.$('minimap-wrap').hidden,true);
   } finally {e.close();}
 });
-test('speed slider controls actual movement and persists across relocation',()=>{
+test('explorer has no HUD and uses 1 m eyes and 30 m/s movement',()=>{
   const e=setup();
   try {
     e.$('explore').click();
-    assert.equal(e.$('infantry'),null);assert.equal(e.$('mounted'),null);
-    assert.equal(e.$('speed').min,'6');assert.equal(e.$('speed').max,'30');
-    let start={...e.frame};
-    e.key('keydown','KeyW');e.tick();e.key('keyup','KeyW');e.tick();
-    const slow=Math.hypot(e.frame.x-start.x,e.frame.y-start.y);
-    e.$('speed').value='30';e.$('speed').dispatchEvent(new e.w.Event('input'));
-    e.$('team1').click();start={...e.frame};
-    e.key('keydown','KeyW');e.tick();e.key('keyup','KeyW');e.tick();
-    const fast=Math.hypot(e.frame.x-start.x,e.frame.y-start.y);
-    assert.ok(Math.abs(fast/slow-5)<1e-10);
-    e.$('exit').click();e.$('explore').click();assert.equal(e.$('speed').value,'30');
+    for(const control of ['hud','lock','eye','speed','team1','team2']) assert.equal(e.$(control),null);
+    assert.equal(e.frame.eyeHeight,1);
+    const start={...e.frame};
+    e.key('keydown','KeyW');e.tick();e.key('keyup','KeyW');
+    assert.ok(Math.abs(Math.hypot(e.frame.x-start.x,e.frame.y-start.y)-.5)<1e-10);
+    e.$('exit').click();e.$('explore').click();assert.equal(e.frame.eyeHeight,1);
   } finally {e.close();}
 });
-test('stand-here picking consumes editor gestures; team jumps use updated spawns without changing them',()=>{
+test('stand-here picking consumes editor gestures; minimap relocates without changing spawns',()=>{
   const e=setup();let placements=0;
   try {
     e.canvas.addEventListener('pointerdown',()=>placements++);
@@ -106,19 +101,17 @@ test('stand-here picking consumes editor gestures; team jumps use updated spawns
     e.pointer('pointerdown');e.pointer('pointerup');assert.equal(e.mode,'explore');assert.equal(e.frame.x,40);assert.equal(e.frame.y,60);assert.equal(placements,0);
     e.spawns[1].x_m=72;e.spawns[1].y_m=37;
     const savedSpawns=structuredClone(e.spawns);
-    e.$('team2').click();assert.equal(e.frame.x,72);assert.equal(e.frame.y,37);
+    e.$('minimap').dispatchEvent(new e.w.MouseEvent('pointerdown',{button:0,clientX:160,clientY:160,bubbles:true}));assert.equal(e.frame.x,50);assert.equal(e.frame.y,50);
     assert.deepEqual(e.spawns,savedSpawns);assert.equal(data.spawns[1].x_m,80);
     e.key('keydown','KeyW');e.tick();const last=e.frame.x;
     e.w.dispatchEvent(new e.w.Event('blur'));assert.equal(e.pending.size,0);e.tick();assert.equal(e.frame.x,last);
     e.experience.exit();assert.equal(e.mode,'orbit');
   } finally {e.close();}
 });
-test('pointer-lock rejection leaves drag-look and movement available',async()=>{
+test('drag-look works without pointer capture and Escape exits',()=>{
   const e=setup();
   try {
-    e.canvas.requestPointerLock=async()=>{throw new Error('Denied');};
-    e.$('explore').click();e.$('lock').click();await Promise.resolve();await Promise.resolve();
-    assert.match(e.$('message').textContent,/Drag to look/);
+    e.$('explore').click();
     const before=e.frame.yaw;e.pointer('pointerdown');e.pointer('pointermove',130,100);e.pointer('pointerup',130,100);
     assert.notEqual(e.frame.yaw,before);assert.equal(e.mode,'explore');
     e.key('keydown','Escape');assert.equal(e.mode,'orbit');
