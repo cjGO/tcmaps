@@ -4,6 +4,16 @@
   const C = MapCoordinates, $ = id => document.getElementById(id);
   const svg = $('overlay'), NS = 'http://www.w3.org/2000/svg';
   const assets = new Map(project.assets.map(a=>[a.name,a]));
+  const favoritesKey = 'map-editor.asset-favorites.v1';
+  let favorites = new Set(), favoritesOnly = false;
+  function readFavorites() {
+    try {
+      const saved=JSON.parse(localStorage.getItem(favoritesKey)||'[]');
+      if(Array.isArray(saved)) return new Set(saved.filter(name=>typeof name==='string'));
+    } catch {}
+    return new Set();
+  }
+  favorites=readFavorites();
   const categories = [...new Set(project.assets.map(a=>a.group))];
   for(const group of categories) $('asset-category').appendChild(new Option(group,group));
   let previewRequest = 0;
@@ -17,7 +27,7 @@
   // Standalone heatmap editors keep working without a renderer or network.
   const listeners = new Set();
   let externalMove = null;
-  const state = () => JSON.parse(JSON.stringify({document:documentData(),selected,mode,
+  const state = () => JSON.parse(JSON.stringify({document:documentData(),selected,mode,favorites:[...favorites],
     brush:{asset:$('asset').value,yaw_deg:Number($('yaw').value),scale:Number($('scale').value)}}));
   function notify() { if(listeners.size) { const value=state(); for(const fn of listeners) fn(value); } }
   function status(message, error=false) { $('status').textContent=message; $('status').classList.toggle('error',error); }
@@ -34,11 +44,14 @@
     return C.imageToWorld((event.clientX-r.left)/r.width,(event.clientY-r.top)/r.height,project.calibration);
   }
   function assetOptions() {
+    $('assets-all').setAttribute('aria-pressed',!favoritesOnly);
+    $('assets-favorites').setAttribute('aria-pressed',favoritesOnly);
+    $('assets-favorites').textContent=`★ Favorites (${project.assets.filter(a=>favorites.has(a.name)).length})`;
     const previous=$('asset').value, query=$('search').value.trim().toLowerCase();
     $('asset').replaceChildren();
     for(const group of categories) {
       if($('asset-category').value && $('asset-category').value!==group) continue;
-      const entries=project.assets.filter(a=>a.group===group && `${a.label} ${a.name} ${a.mesh}`.toLowerCase().includes(query));
+      const entries=project.assets.filter(a=>a.group===group && (!favoritesOnly || favorites.has(a.name)) && `${a.label} ${a.name} ${a.mesh}`.toLowerCase().includes(query));
       if(!entries.length) continue;
       const el=document.createElement('optgroup'); el.label=group;
       for(const asset of entries) el.appendChild(new Option(asset.label,asset.name));
@@ -47,10 +60,17 @@
     if([...$('asset').options].some(o=>o.value===previous)) $('asset').value=previous;
     else if($('asset').options.length) $('asset').selectedIndex=0;
     $('asset-count').textContent=`${$('asset').options.length} of ${project.assets.length} assets`;
+    $('favorites-hint').textContent=favoritesOnly && !$('asset').options.length
+      ? 'No favorites match. Open All assets to star assets, or clear your search and category filters.'
+      : 'Favorites are saved in this browser across maps.';
     assetInfo();
   }
   function assetInfo() {
     const a=assets.get($('asset').value);
+    const favorite=Boolean(a && favorites.has(a.name));
+    $('asset-favorite').disabled=!a;
+    $('asset-favorite').setAttribute('aria-pressed',favorite);
+    $('asset-favorite').textContent=favorite ? '★ Remove from favorites' : '☆ Add to favorites';
     $('asset-info').textContent=a ? `${a.group} · ${a.collision?'Collision mesh defined':'No collision mesh'} · Origin offset 0 m (unverified)` : 'No matching assets.';
     const token=++previewRequest, container=$('asset-preview-image');
     $('asset-preview-caption').textContent=a ? a.label : 'No asset selected';
@@ -68,7 +88,7 @@
     selected=id;
     const p=current();
     if(p) {
-      if(![...$('asset').options].some(o=>o.value===p.asset)) { $('search').value=''; $('asset-category').value=''; assetOptions(); }
+      if(![...$('asset').options].some(o=>o.value===p.asset)) { favoritesOnly=false; $('search').value=''; $('asset-category').value=''; assetOptions(); }
       $('asset').value=p.asset; $('yaw').value=p.yaw_deg; $('scale').value=p.scale; assetInfo();
     }
     render();
@@ -124,6 +144,7 @@
     catch(error) { status(error.message,true); choose(selected); }
   }
   function placeAt(x,y) {
+    if(!assets.has($('asset').value)) throw new Error('Choose an asset from All assets or Favorites first.');
     const point={x_m:C.quantize(x),y_m:C.quantize(y)};
     if(!C.inside(point.x_m,point.y_m,project.bounds)) throw new Error('Place inside the actual terrain border.');
     const p={id:globalThis.crypto?.randomUUID?.()||`p_${Date.now()}_${Math.random().toString(36).slice(2)}`,
@@ -133,7 +154,7 @@
     return p.id;
   }
   function setMode(value) {
-    if(!['place','select','navigate'].includes(value)) throw new Error('Unknown editor mode');
+    if(!['place','select','navigate','line'].includes(value)) throw new Error('Unknown editor mode');
     mode=value;
     $('place').setAttribute('aria-pressed',value==='place'); $('select').setAttribute('aria-pressed',value==='select');
     svg.classList.toggle('select-mode',value!=='place'); choose(null);
@@ -193,6 +214,20 @@
   $('spawn-reset').addEventListener('click',()=>{remember(); spawns=C.editableSpawns(project); render(); status('Both team spawns reset to the original defaults.');});
   $('search').addEventListener('input',assetOptions);
   $('asset-category').addEventListener('change',assetOptions);
+  $('assets-all').addEventListener('click',()=>{favoritesOnly=false;assetOptions();});
+  $('assets-favorites').addEventListener('click',()=>{favoritesOnly=true;assetOptions();});
+  $('asset-favorite').addEventListener('click',()=>{
+    const name=$('asset').value;
+    if(!assets.has(name)) return;
+    if(favorites.has(name)) favorites.delete(name); else favorites.add(name);
+    let saved=true;
+    try { localStorage.setItem(favoritesKey,JSON.stringify([...favorites])); } catch { saved=false; }
+    assetOptions();
+    if(!saved) $('favorites-hint').textContent='Favorites are available for this session. Browser storage is unavailable.';
+  });
+  window.addEventListener('storage',event=>{
+    if(event.key===favoritesKey || event.key===null) { favorites=readFavorites(); assetOptions(); }
+  });
   $('asset').addEventListener('change',()=>{assetInfo(); if(current()) changeSelected({asset:$('asset').value});});
   for(const [id,key] of [['yaw','yaw_deg'],['scale','scale'],['x','x_m'],['y','y_m']])
     $(id).addEventListener('change',()=>changeSelected({[key]:Number($(id).value)}));
@@ -264,6 +299,16 @@
     subscribe(fn) { listeners.add(fn); fn(state()); return ()=>listeners.delete(fn); },
     select(id) { if(id!==null&&!points.some(p=>p.id===id)) throw new Error('Unknown placement'); choose(id); },
     setMode, placeAt, status,
+    placeBatch(locations) {
+      if(!Array.isArray(locations)||!locations.length||locations.length>1000) throw new Error('Choose between 1 and 1000 assets.');
+      const batch=locations.map(({asset=$('asset').value,x_m,y_m,yaw_deg=Number($('yaw').value),scale=Number($('scale').value)})=>({
+        id:globalThis.crypto?.randomUUID?.()||`p_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+        asset,x_m:C.quantize(x_m),y_m:C.quantize(y_m),
+        yaw_deg,scale,
+      }));
+      C.validate({...documentData(),placements:[...points,...batch]},project);
+      remember(); points.push(...batch); choose(null); status(`Placed ${batch.length} assets along the line.`);
+    },
     beginMove(id) {
       if(externalMove||drag) throw new Error('A move is already in progress');
       if(!points.some(p=>p.id===id)) throw new Error('Unknown placement');

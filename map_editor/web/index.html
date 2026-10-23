@@ -26,10 +26,13 @@
 <button id="spawn-reset">Reset both spawns to defaults</button>
 </details><hr>
 <h2>Map assets</h2>
+<div class="asset-views" role="group" aria-label="Asset collection"><button id="assets-all" aria-pressed="true">All assets</button><button id="assets-favorites" aria-pressed="false">★ Favorites (0)</button></div>
 <label for="asset-category">Category</label><select id="asset-category"><option value="">All assets</option></select>
 <label for="search">Search assets</label><input id="search" type="search" placeholder="House, wall, barrel, rock, pine…">
 <p id="asset-count" class="hint"></p>
 <label for="asset">Asset</label><select id="asset" size="9" aria-label="Map asset"></select>
+<button id="asset-favorite" aria-pressed="false">☆ Add to favorites</button>
+<p id="favorites-hint" class="hint" aria-live="polite">Favorites are saved in this browser across maps.</p>
 <figure id="asset-preview" aria-label="Selected asset preview">
 <div id="asset-preview-image" aria-live="polite"></div>
 <figcaption id="asset-preview-caption"></figcaption>

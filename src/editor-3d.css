@@ -9,3 +9,9 @@
 .editing-3d aside{max-height:920px;overflow:auto}.editing-3d #zoom,.editing-3d label[for="zoom"]{display:none}
 [hidden]{display:none!important}
 @media(max-width:600px){#editor-three{height:440px;max-height:85vw;min-height:310px}.editor-viewbar .scale-note{margin-left:0;width:100%}.editing-3d aside{max-height:none}}
+.editor-line-panel{border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:14px}
+.editor-line-panel h3{margin:0 0 8px}.editor-line-panel p{font-size:12px;line-height:1.5}
+.editor-line-panel button{margin:4px 4px 0 0}
+.editor-line-panel input[type="checkbox"]{width:auto;margin-right:6px;vertical-align:middle}
+#line-assets{margin:0;border:1px solid var(--line);border-radius:6px;padding:8px;min-width:0}#line-favorites{max-height:240px;overflow:auto}.line-asset-row{display:grid;grid-template-columns:minmax(0,1fr) 65px;gap:6px;align-items:center;margin:6px 0}.line-asset-row label{margin:0;overflow-wrap:anywhere}.line-asset-row:has(:checked){background:#edf3ee;border-radius:4px}#line-mix{font-weight:650;overflow-wrap:anywhere}
+.line-asset-scale{grid-column:1 / -1;padding:8px;border-top:1px solid var(--line)}.line-asset-scale .pair{margin-top:8px}.line-asset-scale button{white-space:normal;font-size:12px}#line-favorites{max-height:420px}
