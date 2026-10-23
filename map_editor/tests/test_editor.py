@@ -107,6 +107,21 @@ class EditorTests(unittest.TestCase):
         self.assertEqual(self.sco.read_bytes(),self.original)
         with self.assertRaises(ValueError):core.append_vegetation(self.original,[self.point],[],assets)
 
+    def test_height_offsets_validate_and_sink_native_scene_objects(self):
+        assets=core.resolve_native_assets(self.assets,MODULE_ROOT/'Data/flora_kinds.txt')
+        for offset in [-20, -2.5, 0, 3.125]:
+            point=dict(self.point,z_offset_m=offset)
+            doc=core.placement_document(self.source,[point])
+            self.assertEqual(core.validate_placements(doc,self.source,self.bounds,self.assets),[point])
+            edited=core.append_assets(self.original,[point],[12.125],assets)
+            objects,tail=split_objects(edited)
+            old,old_tail=split_objects(self.original)
+            self.assertEqual(objects[:len(old)],old); self.assertEqual(tail,old_tail)
+            self.assertEqual(struct.unpack_from('<3f',objects[-1][2],48),(20.125,40.25,12.125+offset))
+        for invalid in [True, '1', None, float('nan'), float('inf')]:
+            with self.assertRaises(ValueError):
+                core.validate_placements(core.placement_document(self.source,[dict(self.point,z_offset_m=invalid)]),self.source,self.bounds,self.assets)
+
     def test_static_props_catalogue_and_mixed_scene_encoding(self):
         legacy=core.asset_catalogue(MODULE_ROOT/'scene_props.txt',1)
         self.assertEqual(self.assets[:len(legacy)],legacy)

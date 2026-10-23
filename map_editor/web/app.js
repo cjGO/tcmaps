@@ -131,6 +131,8 @@
     const p=current();
     $('selection').textContent=p ? `${points.indexOf(p)+1}. ${assets.get(p.asset).label}` : 'No point selected';
     for(const axis of ['x','y']) { $(axis).disabled=!p; $(axis).value=p?p[axis+'_m']:''; }
+    $('z-offset').disabled=!p; $('z-offset').value=p ? (p.z_offset_m ?? 0) : '';
+    $('z-lower').disabled=$('z-reset').disabled=!p;
     $('delete').disabled=!p; $('undo').disabled=!undo.length; $('redo').disabled=!redo.length;
     $('count').textContent=`${points.length} object${points.length===1?'':'s'}`;
     $('point-list').replaceChildren(...points.map((p,i)=>new Option(`${i+1}. ${assets.get(p.asset).label}`,p.id)));
@@ -229,8 +231,10 @@
     if(event.key===favoritesKey || event.key===null) { favorites=readFavorites(); assetOptions(); }
   });
   $('asset').addEventListener('change',()=>{assetInfo(); if(current()) changeSelected({asset:$('asset').value});});
-  for(const [id,key] of [['yaw','yaw_deg'],['scale','scale'],['x','x_m'],['y','y_m']])
+  for(const [id,key] of [['yaw','yaw_deg'],['scale','scale'],['x','x_m'],['y','y_m'],['z-offset','z_offset_m']])
     $(id).addEventListener('change',()=>changeSelected({[key]:Number($(id).value)}));
+  $('z-lower').addEventListener('click',()=>{if(current()) changeSelected({z_offset_m:C.quantize((current().z_offset_m ?? 0)-.25)});});
+  $('z-reset').addEventListener('click',()=>{if(current()) changeSelected({z_offset_m:0});});
   $('point-list').addEventListener('change',()=>choose($('point-list').value));
   $('delete').addEventListener('click',()=>{if(!current()) return; remember(); points=points.filter(p=>p.id!==selected); choose(null); status('Point deleted.');});
   for(const id of ['place','select']) $(id).addEventListener('click',()=>setMode(id));
@@ -314,9 +318,10 @@
       if(!points.some(p=>p.id===id)) throw new Error('Unknown placement');
       choose(id); externalMove={id,before:snapshot()};
     },
-    moveTo(x,y) {
+    moveTo(x,y,zOffset) {
       if(!externalMove) return;
       const patch={x_m:C.quantize(x),y_m:C.quantize(y)};
+      if(zOffset!==undefined) patch.z_offset_m=C.quantize(zOffset);
       const candidate=points.map(p=>p.id===externalMove.id?{...p,...patch}:p);
       C.validate({...documentData(),placements:candidate},project); points=candidate; render();
     },

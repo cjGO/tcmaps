@@ -310,3 +310,18 @@ retains source identity and height measurements, and regenerates the standalone
 editor. Then run `npm run prepare:editor` and export thumbnails/models before
 building the website. Both exporters share MOD's
 `pythonHelpers/game_scene_resources.py`, reading BRFs in module load order.
+
+## Tactical round replays and movement heatmaps
+
+Current rotation's existing terrain viewer accepts exported `.replay.json` files
+through **Open round recordings**. Import is local, verifies the exact measured
+terrain/source checksums, and also supports archived terrain versions. It adds
+play/pause, timeline, speed, player/bot filters and time-weighted movement heatmaps.
+No backend or server filesystem endpoint is required.
+
+See [operator workflow](docs/replay.md), [schema and measurement limits](docs/replay-schema.md)
+and [validation results](docs/replay-validation.md). The 320-soldier fixture in
+`tests/fixtures/SYNTHETIC-tactical-demo.replay.json` is explicitly artificial.
+Keep server recordings and exported bundles outside disposable `dist/`; nothing
+is uploaded automatically. `scripts/export-replay.mjs` prepares bundles and
+`scripts/replay-heatmap.mjs` aggregates many rounds one file at a time.

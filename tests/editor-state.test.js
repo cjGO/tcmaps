@@ -15,6 +15,33 @@ function editor() {
   const $=id=>w.document.getElementById(id), change=(id,value)=>{$(id).value=value;$(id).dispatchEvent(new w.Event('change'));};
   return {dom,w,$,change,api:w.MapEditor};
 }
+test('selected height offsets preserve XY, undo per drag, and survive export/import',async()=>{
+  const {dom,w,api,$,change}=editor();
+  try {
+    assert.equal($('z-offset').disabled,true);
+    const id=api.placeAt(200,300);
+    change('z-offset','-2.5');
+    let p=api.getState().document.placements[0];
+    assert.equal(p.z_offset_m,-2.5); assert.equal(p.x_m,200); assert.equal(p.y_m,300);
+    api.beginMove(id); api.moveTo(200,300,-3); api.moveTo(200,300,-4); api.finishMove();
+    $('undo').click(); assert.equal(api.getState().document.placements[0].z_offset_m,-2.5);
+    $('redo').click(); assert.equal(api.getState().document.placements[0].z_offset_m,-4);
+    api.beginMove(id); api.moveTo(200,300,-10); api.finishMove(true);
+    assert.equal(api.getState().document.placements[0].z_offset_m,-4);
+    api.select(id); $('z-lower').click(); assert.equal(api.getState().document.placements[0].z_offset_m,-4.25);
+    $('z-reset').click(); assert.equal(api.getState().document.placements[0].z_offset_m,0);
+    change('z-offset','-4.25');
+    let saved;
+    w.URL.createObjectURL=blob=>{saved=blob;return 'blob:test';}; w.URL.revokeObjectURL=()=>{};
+    w.HTMLAnchorElement.prototype.click=()=>{}; $('export').click();
+    const text=await new Promise(resolve=>{const reader=new w.FileReader();reader.onload=()=>resolve(reader.result);reader.readAsText(saved);});
+    assert.equal(JSON.parse(text).placements[0].z_offset_m,-4.25);
+    $('delete').click();
+    Object.defineProperty($('file'),'files',{value:[{size:text.length,text:async()=>text}],configurable:true});
+    $('file').dispatchEvent(new w.Event('change')); await new Promise(resolve=>setTimeout(resolve,0));
+    assert.equal(api.getState().document.placements[0].z_offset_m,-4.25);
+  } finally {dom.window.close();}
+});
 test('favorites filter, persist, sync across maps and leave loadouts and undo untouched',()=>{
   const {dom,w,api,$}=editor();
   try {

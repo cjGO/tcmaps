@@ -249,7 +249,7 @@ def validate_placements(document, source, bounds, assets):
     names = {a['name'] for a in assets}
     seen, result = set(), []
     for p in placements:
-        if not isinstance(p, dict) or set(p) != {'id', 'asset', 'x_m', 'y_m', 'yaw_deg', 'scale'}:
+        if not isinstance(p, dict) or set(p) - {'z_offset_m'} != {'id', 'asset', 'x_m', 'y_m', 'yaw_deg', 'scale'}:
             raise ValueError('Invalid placement fields')
         key = p['id']
         if not isinstance(key, str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,80}', key) or key in seen:
@@ -259,6 +259,8 @@ def validate_placements(document, source, bounds, assets):
             raise ValueError('Unknown map asset')
         x, y = (number(p[k], k) for k in ('x_m', 'y_m'))
         yaw, scale = number(p['yaw_deg'], 'yaw'), number(p['scale'], 'scale')
+        if 'z_offset_m' in p:
+            number(p['z_offset_m'], 'height offset')
         if not in_bounds(x, y, bounds):
             raise ValueError('Placement lies outside the terrain')
         if not 0 <= yaw < 360 or not 0.1 <= scale <= 10:
@@ -269,8 +271,12 @@ def validate_placements(document, source, bounds, assets):
     return result
 
 
+def placement_height(asset, placement, ground_z):
+    return number(ground_z, 'ground height') + asset['ground_offset_m'] * placement['scale'] + number(placement.get('z_offset_m', 0), 'height offset')
+
+
 def vegetation_record(asset, placement, ground_z):
-    z = number(ground_z, 'ground height') + asset['ground_offset_m'] * placement['scale']
+    z = placement_height(asset, placement, ground_z)
     angle = math.radians(placement['yaw_deg'])
     c, s = math.cos(angle), math.sin(angle)
     name = asset['object_name'].encode('ascii')
@@ -292,7 +298,7 @@ def append_vegetation(original, placements, heights, assets):
     if decoded[:len(objects)] != objects or decoded_tail != tail:
         raise ValueError('Scene preservation check failed')
     for (_, _, raw), p, ground in zip(decoded[len(objects):], placements, heights):
-        expected = (p['x_m'], p['y_m'], ground + by_name[p['asset']]['ground_offset_m'] * p['scale'])
+        expected = (p['x_m'], p['y_m'], placement_height(by_name[p['asset']], p, ground))
         if any(abs(a-b) > 0.001 for a, b in zip(struct.unpack_from('<3f', raw, 48), expected)):
             raise ValueError('SCO coordinate precision check failed')
     return data

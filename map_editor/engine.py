@@ -2,6 +2,7 @@
 import json
 import subprocess
 
+from core import placement_height
 from helpers import EDITOR_ROOT, MODULE_ROOT, parse_samples, run_engine_probe
 from plot_saved_map_heights import windows_path
 
@@ -45,7 +46,7 @@ def replay_objects(source, recipe, logs, timeout, windows_python, placements, he
         a = by_name[p['asset']]
         expected.append('{index=%d, prop=%d, kind=%d, variant=%d, x=%d, y=%d, z=%d, scale=%d, yaw=%.9f}' % (
             i, a['object_id'], a['object_kind'], a['variant'], round(p['x_m']*1000), round(p['y_m']*1000),
-            round((z+a['ground_offset_m']*p['scale'])*1000), round(p['scale']*1000), p['yaw_deg']))
+            round(placement_height(a,p,z)*1000), round(p['scale']*1000), p['yaw_deg']))
     lua_source = logs / 'replay.lua'
     base = (MODULE_ROOT / 'pythonHelpers/height_probe.lua').read_text()
     validation = (EDITOR_ROOT / 'replay.lua').read_text().replace('-- EXPECTED_OBJECTS', ',\n'.join(expected))

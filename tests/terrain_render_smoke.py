@@ -57,6 +57,11 @@ with sync_playwright() as pw:
     expect(page.locator("#rotation-filename")).to_have_text("scn_mp_custom_map_1.png")
     rotation = page.locator(".topology-live")
     canvas = rotation.locator(".terrain-3d-surface")
+    # The viewer defaults to elevation; explicitly establish this test's
+    # natural baseline before testing the graphics toggle.
+    rotation.locator("summary").click()
+    rotation.locator('[data-ui="surface"]').select_option("natural")
+    rotation.locator("summary").click()
     natural = rendered(canvas, "rotation-natural")
     rotation.locator("summary").click()
     rotation.locator('[data-ui="surface"]').select_option("elevation")

@@ -43,11 +43,12 @@
       throw new Error('Expected up to 10000 placements.');
     const ids = new Set(), assets = new Set(project.assets.map(a=>a.name));
     for (const p of document.placements) {
-      if (!p || Object.keys(p).sort().join(',') !== 'asset,id,scale,x_m,y_m,yaw_deg') throw new Error('Invalid placement fields.');
+      if (!p || Object.keys(p).filter(k=>k!=='z_offset_m').sort().join(',') !== 'asset,id,scale,x_m,y_m,yaw_deg') throw new Error('Invalid placement fields.');
       if (typeof p.id !== 'string' || !/^[A-Za-z0-9_-]{1,80}$/.test(p.id) || ids.has(p.id)) throw new Error('Invalid or duplicate placement ID.');
       ids.add(p.id);
       if (!assets.has(p.asset)) throw new Error('Unknown map asset.');
       if (![p.x_m,p.y_m,p.yaw_deg,p.scale].every(n=>typeof n === 'number' && Number.isFinite(n))) throw new Error('Invalid placement numbers.');
+      if (Object.hasOwn(p,'z_offset_m') && (typeof p.z_offset_m!=='number' || !Number.isFinite(p.z_offset_m))) throw new Error('Invalid height offset.');
       if (!inside(p.x_m,p.y_m,project.bounds)) throw new Error('A point lies outside the terrain.');
       if (p.yaw_deg < 0 || p.yaw_deg >= 360 || p.scale < .1 || p.scale > 10) throw new Error('Invalid yaw or scale.');
       if ([p.x_m,p.y_m].some(n=>Math.abs(n*1000-Math.round(n*1000))>1e-6)) throw new Error('Coordinates require millimetre precision.');

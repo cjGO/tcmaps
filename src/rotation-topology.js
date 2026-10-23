@@ -1,3 +1,4 @@
+import { setupReplay } from './replay-controls.js';
 import { elevationRamp } from './terrain-palettes.js';
 import manifest from '../lib/rotation-topology.json';
 import './rotation-topology.css';
@@ -17,7 +18,8 @@ export function setupTopology() {
   const contour = panel.querySelector('#topology-contours'), wire = panel.querySelector('#topology-wireframe');
   let entry, current, viewer, request, generation = 0, selected = '3d', visible = true;
   const modes = [...panel.querySelectorAll('[data-mode]')];
-  function destroy() { generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
+  const replay = setupReplay(panel, () => show('3d'));
+  function destroy() { replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
   function scaleNote() { info.querySelector('#topology-scale-note').textContent = viewer?.mode === 'explore' ? 'Explorer · true scale · preview movement' : scale.value === '1' ? 'True height scale' : `Height exaggerated ${scale.value}×`; }
   function cameraHelp() { info.querySelector('#topology-help').textContent = viewer?.mode === 'explore' ? 'WASD to move · Shift to run/gallop · drag to look or use Mouse look. The minimap shows your position and facing; click it to relocate.' : camera.value.startsWith('team') ? 'Looking inward from 12 m above the original spawn. Infantry / Mounted switches to ground exploration.' : 'Drag to orbit · scroll to zoom · right-drag or arrow keys to pan. Infantry / Mounted explores the terrain; Stand here starts at a point you choose.'; }
   live.addEventListener('terrain-modechange', () => {
@@ -53,14 +55,17 @@ export function setupTopology() {
     state.textContent = 'Loading measured topology…'; state.hidden = false;
     request = new AbortController();
     try {
-      const [{ createTopologyViewer }, response] = await Promise.all([import('./topology-viewer.js'), fetch(current.url, { signal: request.signal })]);
-      if (!response.ok) throw new Error('Terrain file could not load');
-      const data = await response.json();
+      const [{ createTopologyViewer }, response] = await Promise.all([import('./topology-viewer.js'), replay.terrain() ? Promise.resolve(null) : fetch(current.url, { signal: request.signal })]);
+      if (response && !response.ok) throw new Error('Terrain file could not load');
+      const data = replay.terrain() || await response.json();
       if (generation !== token) return;
       viewer = createTopologyViewer(live, data, message => { if (generation === token) { state.textContent = message; state.hidden = false; } });
       info.classList.remove('natural-surface');
       info.querySelector('.topology-ramp').style.background = elevationRamp();
       applyControls();
+      await replay.attach(viewer);
+      if (generation !== token) return;
+      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `Custom map ${current.id.split('_').at(-1)} · topology`;
       info.querySelector('#topology-low').textContent = `${data.min_height_m.toFixed(1)} m`;
       info.querySelector('#topology-high').textContent = `${data.max_height_m.toFixed(1)} m`;
       const b = data.bounds;

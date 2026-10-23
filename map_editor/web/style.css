@@ -15,6 +15,7 @@ summary{font-size:15px;font-weight:700;cursor:pointer}input:disabled{background:
 #asset-preview .preview-note{margin:0;padding:0 10px 8px;font-size:11px}
 
 .spawn-point { cursor: grab; }
+#z-lower,#z-reset{white-space:normal;min-width:0;width:100%}
 .spawn-point:active { cursor: grabbing; }
 #spawn-reset { width: 100%; white-space: normal; margin-top: 12px; }
 

@@ -20,6 +20,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   const surface = createTerrainSurface(data), material = surface.material;
   const sun = new THREE.DirectionalLight('#fff0d5', 2.8);
   const markers = [], resources = [];
+  const heightListeners = new Set();
   let positions, baseHeights, boundary, canvas;
   const b = data.bounds;
   const cx = (b.x_min_m + b.x_max_m) / 2, cy = (b.y_min_m + b.y_max_m) / 2;
@@ -109,6 +110,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     boundary.geometry.setFromPoints(indices.map(i => new THREE.Vector3(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2] + .12)));
     for (const [index, marker] of markers.entries()) marker.position.set(activeSpawns[index].x_m, activeSpawns[index].y_m, z(activeSpawns[index].z_m));
     if (renderer) renderer.shadowMap.needsUpdate = true;
+    for (const listener of heightListeners) listener(scale);
   }
   function exaggeration(value) {
     experience?.exit(); updateHeights(value); preset(activeView);
@@ -124,6 +126,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   }
   function dispose() {
     if (disposed) return; disposed = true;
+    heightListeners.clear();
     experience?.dispose(); observer?.disconnect(); controls?.dispose();
     canvas?.removeEventListener('webglcontextlost', lost);
     geometry.dispose(); material.dispose();
@@ -197,6 +200,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       get mode() { return experience.mode; }, get heightScale() { return scale; },
       exitExplorer() { experience.exit(); }, pauseExplorer() { experience.pause(); },
       addLayer(layer) { scene.add(layer); draw(); },
+      onHeightChange(listener) { heightListeners.add(listener); return () => heightListeners.delete(listener); },
       navigation(value) { navigation = value; configureControls(); },
       enabled(value) { enabled = value; configureControls(); },
       updateSpawns(spawns) {

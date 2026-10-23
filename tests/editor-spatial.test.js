@@ -5,6 +5,12 @@ import { terrainGeometry } from '../src/terrain-geometry.js';
 import { groundHeight, placementTransform, decodeMesh } from '../src/editor-spatial.js';
 
 const data = {grid_size:2,xs:[10,20],ys:[30,40],heights_mm:[1000,3000,5000,12000],vertical_scale:1,height_order:'x-major, y-minor'};
+test('height offsets can sink assets below terrain independently of scale', () => {
+  const point={x_m:15,y_m:35,yaw_deg:0,scale:2,z_offset_m:-6};
+  assert.deepEqual(placementTransform(data,point,{ground_offset_m:.25}).position,[15,35,-1.5]);
+  assert.equal(placementTransform(data,{...point,z_offset_m:3},{ground_offset_m:.25}).position[2],7.5);
+  assert.throws(()=>placementTransform(data,{...point,z_offset_m:NaN},{ground_offset_m:0}));
+});
 test('placement heights match ray intersections on both terrain triangles', () => {
   const arrays = terrainGeometry(data), geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position',new THREE.BufferAttribute(arrays.positions,3));

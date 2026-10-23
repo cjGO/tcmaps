@@ -46,6 +46,9 @@
 <hr><h2>Selected point</h2><p id="selection">No point selected</p>
 <div class="pair"><div><label for="x">X (m)</label><input id="x" type="number" step="0.001" disabled></div>
 <div><label for="y">Y (m)</label><input id="y" type="number" step="0.001" disabled></div></div>
+<label for="z-offset">Height offset Z (m)</label><input id="z-offset" type="number" step="0.1" value="0" disabled>
+<p class="hint">Negative values sink into the ground; positive values raise the object. In 3D, Alt-drag an object up or down to adjust height. X/Y stay fixed.</p>
+<div class="pair"><button id="z-lower" disabled>Lower 0.25 m</button><button id="z-reset" disabled>Reset height</button></div>
 <button id="delete" disabled>Delete selected</button>
 <label for="point-list">Placed objects</label><select id="point-list" size="5" aria-label="Placed objects"></select>
 <p class="hint">Only your additions are shown. Existing trees and obstacles are not visible on this heatmap.</p>
@@ -68,6 +71,7 @@
 <dl>
 <dt><kbd>Space</kbd></dt><dd>Switch between Navigate and Place</dd>
 <dt><kbd>X</kbd> / <kbd>Delete</kbd> / <kbd>Backspace</kbd></dt><dd>Delete selected item / prop</dd>
+<dt><kbd>Alt</kbd> + drag object</dt><dd>Raise or sink the object in 3D, keeping X/Y fixed (0.05 m per pixel). Negative height offsets clip into the ground.</dd>
 <dt><kbd>A</kbd> / <kbd>D</kbd></dt><dd>Increase / decrease yaw by 1°</dd>
 <dt><kbd>Q</kbd> / <kbd>E</kbd></dt><dd>Increase / decrease scale by 0.1 (0.1–10)</dd>
 <dt><kbd>Ctrl/Cmd</kbd> + <kbd>Z</kbd></dt><dd>Undo</dd>

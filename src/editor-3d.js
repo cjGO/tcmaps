@@ -309,9 +309,10 @@ export function attachEditor3D(frame, project, topology, models, assetURL) {
     if (viewer.mode !== 'orbit') return;
     pointers.add(event.pointerId);
     if (pointers.size > 1) { cancelGesture(); return; }
-    if (event.button !== 0 || state.mode === 'navigate' || !ready) return;
+    if (event.button !== 0 || (state.mode === 'navigate' && !event.altKey) || !ready) return;
     viewer.canvas.focus({ preventScroll: true });
     const hit = ground(event), id = state.mode === 'line' ? null : objectAt(event);
+    if (event.altKey && !id) return;
     gesture = { pointer: event.pointerId, x: event.clientX, y: event.clientY, mode: state.mode, id, moved: false };
     if (state.mode === 'line') {
       const marker = viewer.pick(event.clientX,event.clientY,linePreview.children.filter(child => child.userData.pathNode !== undefined))[0]?.object;
@@ -323,6 +324,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL) {
     }
     if (id) {
       const point = state.document.placements.find(p => p.id === id);
+      gesture.vertical = event.altKey; gesture.originalPlacement = {...point};
       gesture.offset = hit ? { x: point.x_m - hit.x, y: point.y_m - hit.y } : { x: 0, y: 0 };
       api.beginMove(id); viewer.enabled(false);
     }
@@ -340,8 +342,13 @@ export function attachEditor3D(frame, project, topology, models, assetURL) {
           pathNodes=candidate; refreshLine();
         }
       }
-      if (gesture.id && gesture.moved && hover) {
-        try { api.moveTo(hover.x + gesture.offset.x, hover.y + gesture.offset.y); } catch (error) { api.status(error.message, true); }
+      if (gesture.id && gesture.moved && (hover || gesture.vertical)) {
+        try {
+          if (gesture.vertical) {
+            const p=gesture.originalPlacement;
+            api.moveTo(p.x_m,p.y_m,(p.z_offset_m ?? 0)+(gesture.y-event.clientY)*.05);
+          } else api.moveTo(hover.x + gesture.offset.x, hover.y + gesture.offset.y);
+        } catch (error) { api.status(error.message, true); }
       }
     }
     updateGhost(); updatePathHover();

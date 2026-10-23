@@ -7,7 +7,7 @@ import shutil
 import subprocess
 import sys
 
-from core import (append_assets, asset_catalogue, resolve_native_assets, ASSET_CATALOGUE_VERSION, digest, placement_document,
+from core import (append_assets, asset_catalogue, resolve_native_assets, ASSET_CATALOGUE_VERSION, digest, placement_document, placement_height,
                   read_json, source_identity, validate_height_data, validate_placements,
                   verify_height_provenance, verify_source, write_json)
 from engine import probe, replay_objects, verify_replay
@@ -190,7 +190,7 @@ def build(args):
         weather_overrides=weather, terrain_remeasured=biome_changed,
         vegetation_encoding='native_flora_v1', scene_prop_encoding='native_kind_0_v1', flora_catalogue_sha256=flora_sha256,
         resolved_assets=[a for a in assets if a['name'] in {p['asset'] for p in placements}],
-        placements=[dict(p, ground_z_m=z, z_m=z + next(a['ground_offset_m'] for a in assets if a['name'] == p['asset'])*p['scale'])
+        placements=[dict(p, ground_z_m=z, z_m=placement_height(next(a for a in assets if a['name'] == p['asset']), p, z))
                     for p, z in zip(placements, heights)],
         files={p.name: checksum(p) for p in stage.iterdir() if p.is_file()},
         validation=dict(binary_preservation='passed', exact_ground_heights='passed',

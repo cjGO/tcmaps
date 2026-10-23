@@ -91,7 +91,7 @@ Open the printed `editor.html` path in a browser, using the corresponding Window
 
 1. Choose a category and search for an asset, such as `house`, `wall`, `barrel`, `bridge`, `rock`, or `pine`. The palette includes 1,030 static scenery props and 282 vegetation choices from the installed module. Buildings, walls/fences, bridges/walkways, rocks/terrain, camp/defenses, furniture/containers, ships/vehicles and other props have separate categories. Each entry indicates whether a collision mesh is defined.
 2. In **Place** mode, click inside the terrain border. Blank margins, axis labels, and the colour bar are outside the terrain. Coordinates are in world metres, X right and Y up.
-3. Click a marker or choose an item in **Placed objects** to select it. Drag it, or edit its X/Y fields. Asset, yaw, and scale changes apply to the selected point. Press Escape or click **Place** to deselect before choosing settings for a new point.
+3. Click a marker or choose an item in **Placed objects** to select it. Drag it, or edit its X/Y fields. Set **Height offset Z (m)** to a negative number to sink it into terrain, or a positive number to raise it. **Alt-drag** an object vertically in 3D to change only its height (0.05 m per pixel); **Lower 0.25 m** and **Reset height** also support objects selected from the list, including fully buried objects. Height changes share undo/redo and survive JSON save/open and the native map build. Asset, yaw, and scale changes apply to the selected point. Press Escape or click **Place** to deselect before choosing settings for a new point.
 4. Use **Select / drag** to inspect or move points without adding new ones. Zoom and scroll for precision. Delete, undo, and redo are available; keyboard shortcuts work when a form field is not focused.
 5. Click **Save map loadout JSON**. **Open loadout** restores a saved document for the same original map. Import replaces points and map settings together and can be undone.
 
@@ -115,7 +115,7 @@ This backs up `project.json` under `asset_backups/`, updates the catalogue and
 regenerates `editor.html`. Source identity, height data, spawns and existing
 loadout JSON remain compatible. `refresh` alone retains the existing catalogue.
 Scenery uses the same `{id, asset, x_m, y_m, yaw_deg, scale}` placement fields;
-the loadout schema remains version 3.
+the loadout schema remains version 3. An optional `z_offset_m` placement field adds a world-metre offset after measured terrain height and the scaled asset-origin correction. Existing files without it use zero; the offset does not scale with the asset.
 
 ### Biome and weather
 

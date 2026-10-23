@@ -1,0 +1,9 @@
+.replay-controls { border-top: 1px solid #62747b55; margin-top: 12px; padding-top: 12px; font-size: .85rem; }
+.replay-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 8px; }
+.replay-toolbar label { display: flex; gap: 6px; align-items: center; }
+.replay-toolbar input[type=file] { max-width: 230px; }
+.replay-toolbar select { max-width: 290px; }
+.replay-controls input[type=range] { width: 100%; }
+.replay-controls p { margin: 8px 0; opacity: .85; line-height: 1.5; }
+.replay-controls output { font-variant-numeric: tabular-nums; }
+.topology-panel .replay-controls [data-replay="status"] { position: static; color: inherit; padding: 0; text-align: left; opacity: 1; overflow-wrap: anywhere; }
