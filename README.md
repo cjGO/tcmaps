@@ -161,19 +161,19 @@ sunlight, hemisphere fill, terrain/model shadows and sky-matched distance haze.
 and toggles shadows/haze. Overhead stays clear; overview haze follows camera
 distance. These are preview graphics, independent of saved game-weather settings.
 
-Choose **Infantry** or **Mounted**, or **Stand here** then click the terrain.
-WASD moves, Shift runs/gallops, drag looks around, arrow keys turn/look, and Space
+Choose **Explore on foot**, or **Stand here** then click the terrain.
+WASD moves, the speed slider selects 6–30 m/s, drag looks around, arrow keys turn/look, and Space
 hops. **Mouse look** optionally captures the pointer; Escape releases it. Team
 buttons jump to the current spawns (including editor changes). A minimap shows
 your position/facing, team starts and a metre scale; click it to relocate.
 **Exit explorer** restores the previous overview and height exaggeration.
 
 Exploration always uses true terrain scale, interpolating the same triangles as
-asset placement. Infantry defaults to 1.7 m eye height and 3.2/6.2 m/s walk/run;
-mounted uses 2.8 m and 6/12 m/s. Eye height can be adjusted from 0.8 to 4 m.
+asset placement. On-foot exploration defaults to 1.7 m eye height and 6 m/s.
+Eye height can be adjusted from 0.8 to 4 m.
 These are preview values, not Warband troop/horse statistics. There is no obstacle
 collision or avatar model. The editor shows placed native assets at their saved
-scale. Moving, hopping, switching profiles and lighting controls do not change
+scale. Moving, hopping, adjusting speed and lighting controls do not change
 placements, team spawns, JSON, undo history or saved biome/weather settings.
 
 The animation loop runs while moving, looking with keys or hopping; it stops
@@ -183,7 +183,7 @@ shortcuts to prevent accidental placements/deletions while navigating.
 
 The WebGL regression check runs isolated Chromium, rejects shader errors and
 checks actual terrain pixels in both the rotation viewer and editor. It covers
-surface/lighting controls, infantry/mounted movement, overview restoration and
+surface/lighting controls, on-foot movement, overview restoration and
 unchanged loadout data. Run it against the production preview after building:
 
 ```sh

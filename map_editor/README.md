@@ -14,15 +14,14 @@ micro generators reroll and have no permanent height maps to edit.
 
 Both website 3D views include directional sunlight, soft sky fill, shadows and
 gentle distance haze. **Lighting & haze** changes the preview surface, sun
-direction and atmospheric effects. **Infantry** and **Mounted** enter a
-first-person explorer: WASD moves, Shift runs/gallops, dragging looks around,
+direction and atmospheric effects. **Explore on foot** enters a
+first-person explorer: WASD moves, a speed slider selects 6–30 m/s, dragging looks around,
 arrow keys turn/look, and Space hops. **Mouse look** optionally captures the
 pointer; Escape releases it. **Stand here** chooses a point on the terrain.
 Team buttons use the current edited spawns, and the minimap shows position and
 facing and supports click-to-relocate. **Exit explorer** restores the overview.
 
-Infantry defaults to 1.7 m eye height and 3.2/6.2 m/s walk/run; mounted defaults
-to 2.8 m and 6/12 m/s. Eye height is adjustable. These are preview settings,
+On-foot exploration defaults to 1.7 m eye height and 6 m/s. Eye height is adjustable. These are preview settings,
 not troop/horse statistics or game physics. Movement follows the same measured
 triangles as placement; it does not collide with placed objects. The editor shows
 the current placed models at native scale. Explorer movement and lighting do

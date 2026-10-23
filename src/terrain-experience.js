@@ -1,5 +1,5 @@
 import { elevationPalettes } from './terrain-palettes.js';
-import { createExplorerState, switchExplorerMode, stepExplorer, turnExplorer, EXPLORER_PROFILES, clamp } from './terrain-explorer-motion.js';
+import { createExplorerState, stepExplorer, turnExplorer, clamp } from './terrain-explorer-motion.js';
 
 export function createTerrainExperience(container, data, api, styles = '') {
   const doc = container.ownerDocument, win = doc.defaultView, canvas = api.canvas;
@@ -8,15 +8,17 @@ export function createTerrainExperience(container, data, api, styles = '') {
   }
   const ui = doc.createElement('div'); ui.className = 'terrain-experience';
   ui.innerHTML = `<div class="terrain-tools">
-    <details class="terrain-graphics"><summary>Lighting & haze</summary>
+    <details class="terrain-graphics"><summary>Lighting & fog</summary>
       <label>Surface <select data-ui="surface"><option value="elevation">Elevation</option><option value="natural">Natural</option></select></label>
       <label>Elevation palette <select data-ui="palette">${Object.entries(elevationPalettes).map(([value, palette]) => `<option value="${value}">${palette.label}</option>`).join('')}</select></label>
       <label>Sun direction <input data-ui="sun" type="range" min="0" max="360" value="135" aria-label="Sun direction in degrees"></label>
       <label>Distance haze <input data-ui="haze" type="checkbox" checked></label>
+      <label>Fog level <select data-ui="fog"><option value="source">Keep source fog</option><option value="none">No fog</option><option value="low">Low (600 m)</option><option value="medium">Medium (450 m)</option><option value="dense">Dense (300 m)</option></select></label>
+      <p class="terrain-fog-note">White fog · approximate Warband falloff. Preview only; Keep source fog retains the preview’s distance haze.</p>
       <label>Shadows <input data-ui="shadows" type="checkbox" checked></label>
     </details>
     <div class="terrain-experience-actions" role="group" aria-label="Explore the map">
-      <button data-ui="infantry" aria-pressed="false">Infantry</button><button data-ui="mounted" aria-pressed="false">Mounted</button>
+      <button data-ui="explore" aria-pressed="false">Explore on foot</button>
       <button data-ui="pick" aria-pressed="false">Stand here</button><button data-ui="exit" hidden>Exit explorer</button>
     </div></div>
     <div class="terrain-pick-note" data-ui="pick-note" hidden>Click the terrain to stand there.<br>Escape cancels.</div>
@@ -26,7 +28,8 @@ export function createTerrainExperience(container, data, api, styles = '') {
       <strong data-ui="readout"></strong><p data-ui="position"></p>
       <div class="terrain-hud-row"><button data-ui="lock">Mouse look</button><button data-ui="team1">Team 1</button><button data-ui="team2">Team 2</button>
       <label>Eye m <input data-ui="eye" type="number" min=".8" max="4" step=".1" value="1.7" aria-label="Preview eye height in metres"></label></div>
-      <p>WASD move · Shift run/gallop · drag to look · Space hop</p>
+      <div class="terrain-hud-row"><label>Speed <input data-ui="speed" type="range" min="6" max="30" step="1" value="6" aria-label="Movement speed in metres per second"> <output data-ui="speed-value">6 m/s</output></label></div>
+      <p>WASD move · drag to look · Space hop</p>
       <p data-ui="message" role="status">Esc releases the mouse; Exit returns to the overview.</p>
       <p class="terrain-extra-help">Preview heights/speeds · true terrain scale · no obstacle collisions.</p>
     </div>
@@ -35,7 +38,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     </div>`;
   container.append(ui);
   const $ = name => ui.querySelector(`[data-ui="${name}"]`), mini = $('minimap'), ctx = mini.getContext('2d');
-  let mode = 'orbit', profile = 'infantry', state = null, disposed = false, raf = 0, lastTime = 0, pointer = null, jump = false;
+  let mode = 'orbit', state = null, disposed = false, raf = 0, lastTime = 0, pointer = null, jump = false;
   const keys = new Set(), pad = new Set(), listeners = [];
   function listen(target, event, fn, options) { target.addEventListener(event, fn, options); listeners.push(() => target.removeEventListener(event, fn, options)); }
   const mapImage = doc.createElement('canvas'), n = data.grid_size; mapImage.width = mapImage.height = n;
@@ -69,7 +72,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function paint() {
     if (!state || mode !== 'explore' || disposed) return;
     api.frame(state); map();
-    $('readout').textContent = `${EXPLORER_PROFILES[state.mode].label} · ${state.eyeHeight.toFixed(1)} m eyes · ${state.speed.toFixed(1)} m/s`;
+    $('readout').textContent = `On foot · ${state.eyeHeight.toFixed(1)} m eyes · ${state.speed.toFixed(1)} m/s`;
     $('position').textContent = `X ${state.x.toFixed(1)} · Y ${state.y.toFixed(1)} · ground ${state.ground.toFixed(1)} m`;
   }
   function notify() {
@@ -77,10 +80,10 @@ export function createTerrainExperience(container, data, api, styles = '') {
     for (const name of ['hud', 'crosshair', 'minimap-wrap', 'pad']) $(name).hidden = !exploring;
     $('exit').hidden = mode === 'orbit'; $('pick-note').hidden = mode !== 'pick';
     $('pick').setAttribute('aria-pressed', mode === 'pick');
-    for (const name of ['infantry', 'mounted']) $(name).setAttribute('aria-pressed', exploring && state.mode === name);
+    $('explore').setAttribute('aria-pressed', exploring);
     canvas.style.cursor = mode === 'pick' ? 'crosshair' : exploring ? 'crosshair' : '';
     api.modeChanged(mode);
-    container.dispatchEvent(new win.CustomEvent('terrain-modechange', { detail: { mode, profile } }));
+    container.dispatchEvent(new win.CustomEvent('terrain-modechange', { detail: { mode } }));
   }
   function unlock() { if (doc.pointerLockElement === canvas) doc.exitPointerLock?.(); }
   function pause() { keys.clear(); pad.clear(); jump = false; pointer = null; win.cancelAnimationFrame(raf); raf = 0; lastTime = 0; if (state) state.speed = 0; unlock(); }
@@ -93,13 +96,11 @@ export function createTerrainExperience(container, data, api, styles = '') {
     const spawns = api.spawns(), p = spawns[index], q = spawns[1 - index];
     return { point: { x: p.x_m, y: p.y_m }, yaw: Math.atan2(q.x_m - p.x_m, q.y_m - p.y_m) };
   }
-  function enter(nextProfile, point, yaw) {
-    profile = nextProfile;
-    if (mode === 'explore' && !point) state = switchExplorerMode(state, profile);
-    else {
+  function enter(point, yaw) {
+    if (mode !== 'explore' || point) {
       if (mode !== 'explore') api.begin();
       const start = point ? { point, yaw: yaw ?? state?.yaw ?? 0 } : state ? { point: state, yaw: state.yaw } : spawnPoint();
-      state = createExplorerState(data, profile, start.point, start.yaw);
+      state = createExplorerState(data, start.point, start.yaw);
     }
     mode = 'explore'; $('eye').value = state.eyeHeight;
     $('message').textContent = 'Esc releases the mouse; Exit returns to the overview.';
@@ -113,7 +114,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function input() {
     return { forward: Number(keys.has('KeyW') || pad.has('forward')) - Number(keys.has('KeyS') || pad.has('back')),
       right: Number(keys.has('KeyD') || pad.has('right')) - Number(keys.has('KeyA') || pad.has('left')),
-      run: keys.has('ShiftLeft') || keys.has('ShiftRight'), jump };
+      speed: Number($('speed').value), jump };
   }
   function tick(time) {
     raf = 0;
@@ -126,7 +127,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     if (command.forward || command.right || turnX || turnY || state.airborne) raf = win.requestAnimationFrame(tick); else lastTime = 0;
   }
   function wake() { if (!raf && mode === 'explore') raf = win.requestAnimationFrame(tick); }
-  const movementKeys = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ShiftLeft', 'ShiftRight', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
+  const movementKeys = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
   function keyDown(event) {
     if (mode === 'orbit' || (doc.activeElement !== canvas && doc.pointerLockElement !== canvas)) return;
     if (event.code === 'Escape') { event.stopImmediatePropagation(); if (doc.pointerLockElement === canvas) pause(); else exit(); return; }
@@ -158,7 +159,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     const previous = pointer; pointer = null;
     if (mode !== 'pick' || previous?.id !== event.pointerId || event.type === 'pointercancel' || Math.hypot(event.clientX - previous.startX, event.clientY - previous.startY) > 5) return;
     const hit = api.pick(event.clientX, event.clientY)[0]?.point;
-    if (hit) enter(profile, hit, Math.atan2((data.xs[0] + data.xs.at(-1)) / 2 - hit.x, (data.ys[0] + data.ys.at(-1)) / 2 - hit.y));
+    if (hit) enter(hit, Math.atan2((data.xs[0] + data.xs.at(-1)) / 2 - hit.x, (data.ys[0] + data.ys.at(-1)) / 2 - hit.y));
   }
   listen(canvas, 'pointerdown', pointerDown, true); listen(canvas, 'pointermove', pointerMove, true);
   listen(canvas, 'pointerup', pointerUp, true); listen(canvas, 'pointercancel', pointerUp, true);
@@ -176,14 +177,15 @@ export function createTerrainExperience(container, data, api, styles = '') {
   listen(doc, 'pointerlockerror', () => { $('message').textContent = 'Mouse capture is unavailable. Drag to look; WASD still works.'; });
   listen(win, 'blur', pause); listen(doc, 'visibilitychange', () => { if (doc.visibilityState === 'hidden') pause(); });
   listen(canvas, 'blur', () => { keys.clear(); pad.clear(); });
-  listen($('infantry'), 'click', () => enter('infantry')); listen($('mounted'), 'click', () => enter('mounted'));
+  listen($('explore'), 'click', () => enter());
+  listen($('speed'), 'input', () => { $('speed-value').textContent = `${$('speed').value} m/s`; });
   listen($('pick'), 'click', selectPlace); listen($('exit'), 'click', exit);
   listen($('lock'), 'click', async () => {
     canvas.focus({ preventScroll: true });
     try { if (!canvas.requestPointerLock) throw new Error('Unavailable'); await canvas.requestPointerLock(); }
     catch { if (!disposed) $('message').textContent = 'Mouse capture is unavailable. Drag to look; WASD still works.'; }
   });
-  for (const index of [0, 1]) listen($(`team${index + 1}`), 'click', () => { const start = spawnPoint(index); enter(profile, start.point, start.yaw); });
+  for (const index of [0, 1]) listen($(`team${index + 1}`), 'click', () => { const start = spawnPoint(index); enter(start.point, start.yaw); });
   listen($('eye'), 'change', () => {
     const value = Number($('eye').value); if (state && Number.isFinite(value)) state.eyeHeight = clamp(value, .8, 4);
     $('eye').value = state.eyeHeight; paint();
@@ -193,15 +195,15 @@ export function createTerrainExperience(container, data, api, styles = '') {
     const rect = mini.getBoundingClientRect(), eyeHeight = state.eyeHeight, pitch = state.pitch;
     const point = { x: data.xs[0] + (event.clientX - rect.left) / rect.width * (data.xs.at(-1) - data.xs[0]),
       y: data.ys.at(-1) - (event.clientY - rect.top) / rect.height * (data.ys.at(-1) - data.ys[0]) };
-    enter(profile, point, state.yaw); state.eyeHeight = eyeHeight; state.pitch = pitch; $('eye').value = eyeHeight; paint(); event.preventDefault();
+    enter(point, state.yaw); state.eyeHeight = eyeHeight; state.pitch = pitch; $('eye').value = eyeHeight; paint(); event.preventDefault();
   });
   for (const button of ui.querySelectorAll('[data-move]')) {
     listen(button, 'pointerdown', event => { event.preventDefault(); canvas.focus({ preventScroll: true }); button.setPointerCapture(event.pointerId); pad.add(button.dataset.move); wake(); });
     for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) listen(button, type, () => pad.delete(button.dataset.move));
   }
-  for (const name of ['surface', 'palette', 'sun', 'haze', 'shadows']) listen($(name), name === 'sun' ? 'input' : 'change', () => {
+  for (const name of ['surface', 'palette', 'sun', 'haze', 'shadows', 'fog']) listen($(name), name === 'sun' ? 'input' : 'change', () => {
     $('palette').disabled = $('surface').value !== 'elevation';
-    api.graphics({ palette: $('palette').value, surface: $('surface').value, sun: Number($('sun').value), haze: $('haze').checked, shadows: $('shadows').checked });
+    api.graphics({ fog: $('fog').value, palette: $('palette').value, surface: $('surface').value, sun: Number($('sun').value), haze: $('haze').checked, shadows: $('shadows').checked });
     container.dispatchEvent(new win.CustomEvent('terrain-graphics-change', { detail: { surface: $('surface').value, palette: $('palette').value } }));
   });
   return { get mode() { return mode; }, enter, exit, pause, refresh: map,

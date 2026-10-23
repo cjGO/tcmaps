@@ -25,3 +25,7 @@
 
 /* Keep collection-wide loading-status styles out of the explorer HUD. */
 .terrain-experience .terrain-hud [role=status]{position:static;padding:0;text-align:left;color:#405a53;font-size:11px}
+
+.terrain-fog-note{font-size:10px;line-height:1.4;margin:8px 0 0;color:#405a53}
+
+.terrain-hud input[type=range]{width:140px;padding:0;accent-color:#355e58}.terrain-hud output{min-width:46px;font-variant-numeric:tabular-nums}

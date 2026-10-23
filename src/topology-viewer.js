@@ -14,7 +14,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   let camera, controls, observer, disposed = false, scale = 1, activeView = 'aerial';
   let navigation = true, enabled = true, activeSpawns = data.spawns, terrain;
   let experience, returnView, contoursEnabled = false;
-  const graphics = { surface: 'elevation', palette: 'terrain', haze: true, sun: 135, shadows: true };
+  const graphics = { surface: 'elevation', palette: 'terrain', haze: true, fog: 'source', sun: 135, shadows: true };
   const raycaster = new THREE.Raycaster();
   const geometry = new THREE.BufferGeometry();
   const surface = createTerrainSurface(data), material = surface.material;
@@ -29,8 +29,13 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   function draw(updateShadows = true) {
     if (disposed || !camera || !renderer || !container.clientWidth || !container.clientHeight) return;
     const range = hazeRange({ exploring: experience?.mode === 'explore', overhead: camera.isOrthographicCamera,
-      distance: controls ? camera.position.distanceTo(controls.target) : span, span, enabled: graphics.haze });
-    scene.fog.near = range.near; scene.fog.far = range.far;
+      distance: controls ? camera.position.distanceTo(controls.target) : span, span, enabled: graphics.haze && graphics.fog !== 'none' });
+    const fogDistance = { low: 600, medium: 450, dense: 300 }[graphics.fog];
+    const mapFog = fogDistance !== undefined;
+    scene.fog.color.set(mapFog ? '#ffffff' : '#c4d5df');
+    scene.background.copy(scene.fog.color);
+    scene.fog.near = mapFog ? 0 : range.near;
+    scene.fog.far = mapFog ? fogDistance : range.far;
     if (updateShadows) renderer.shadowMap.needsUpdate = true;
     renderer.render(scene, camera);
   }
