@@ -14,7 +14,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   let camera, controls, observer, disposed = false, scale = 1, activeView = 'aerial';
   let navigation = true, enabled = true, activeSpawns = data.spawns, terrain;
   let experience, returnView, contoursEnabled = false;
-  const graphics = { surface: 'natural', haze: true, sun: 135, shadows: true };
+  const graphics = { surface: 'elevation', palette: 'terrain', haze: true, sun: 135, shadows: true };
   const raycaster = new THREE.Raycaster();
   const geometry = new THREE.BufferGeometry();
   const surface = createTerrainSurface(data), material = surface.material;
@@ -113,6 +113,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     const angle = graphics.sun * Math.PI / 180;
     sun.position.set(cx + Math.cos(angle) * span, cy + Math.sin(angle) * span, minimum + span * .72);
     surface.elevation(graphics.surface === 'elevation');
+    surface.palette(graphics.palette);
     sun.castShadow = graphics.shadows; renderer.shadowMap.enabled = graphics.shadows;
     draw();
   }

@@ -1,3 +1,4 @@
+import { elevationPalettes } from './terrain-palettes.js';
 import { createExplorerState, switchExplorerMode, stepExplorer, turnExplorer, EXPLORER_PROFILES, clamp } from './terrain-explorer-motion.js';
 
 export function createTerrainExperience(container, data, api, styles = '') {
@@ -8,7 +9,8 @@ export function createTerrainExperience(container, data, api, styles = '') {
   const ui = doc.createElement('div'); ui.className = 'terrain-experience';
   ui.innerHTML = `<div class="terrain-tools">
     <details class="terrain-graphics"><summary>Lighting & haze</summary>
-      <label>Surface <select data-ui="surface"><option value="natural">Natural</option><option value="elevation">Elevation</option></select></label>
+      <label>Surface <select data-ui="surface"><option value="elevation">Elevation</option><option value="natural">Natural</option></select></label>
+      <label>Elevation palette <select data-ui="palette">${Object.entries(elevationPalettes).map(([value, palette]) => `<option value="${value}">${palette.label}</option>`).join('')}</select></label>
       <label>Sun direction <input data-ui="sun" type="range" min="0" max="360" value="135" aria-label="Sun direction in degrees"></label>
       <label>Distance haze <input data-ui="haze" type="checkbox" checked></label>
       <label>Shadows <input data-ui="shadows" type="checkbox" checked></label>
@@ -196,9 +198,10 @@ export function createTerrainExperience(container, data, api, styles = '') {
     listen(button, 'pointerdown', event => { event.preventDefault(); canvas.focus({ preventScroll: true }); button.setPointerCapture(event.pointerId); pad.add(button.dataset.move); wake(); });
     for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) listen(button, type, () => pad.delete(button.dataset.move));
   }
-  for (const name of ['surface', 'sun', 'haze', 'shadows']) listen($(name), name === 'sun' ? 'input' : 'change', () => {
-    api.graphics({ surface: $('surface').value, sun: Number($('sun').value), haze: $('haze').checked, shadows: $('shadows').checked });
-    container.dispatchEvent(new win.CustomEvent('terrain-graphics-change', { detail: { surface: $('surface').value } }));
+  for (const name of ['surface', 'palette', 'sun', 'haze', 'shadows']) listen($(name), name === 'sun' ? 'input' : 'change', () => {
+    $('palette').disabled = $('surface').value !== 'elevation';
+    api.graphics({ palette: $('palette').value, surface: $('surface').value, sun: Number($('sun').value), haze: $('haze').checked, shadows: $('shadows').checked });
+    container.dispatchEvent(new win.CustomEvent('terrain-graphics-change', { detail: { surface: $('surface').value, palette: $('palette').value } }));
   });
   return { get mode() { return mode; }, enter, exit, pause, refresh: map,
     dispose() { exit(); disposed = true; pause(); for (const remove of listeners) remove(); ui.remove(); },

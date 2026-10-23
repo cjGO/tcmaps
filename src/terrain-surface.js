@@ -1,15 +1,17 @@
 import * as THREE from 'three';
+import { elevationPalettes } from './terrain-palettes.js';
 
 export function createTerrainSurface(data) {
   const region = Number((BigInt(data.source.terrain_code) >> 156n) & 15n);
   const snow = region === 4 || region === 12, desert = region === 5 || region === 13;
   const base = snow ? '#c5cfce' : desert ? '#b7a17c' : '#8b9273';
   const earth = snow ? '#8d9692' : desert ? '#978067' : '#8b8068';
+  const [low, mid, high] = elevationPalettes.terrain.colors;
   const uniforms = {
     terrainLow: { value: data.min_height_m }, terrainHigh: { value: data.max_height_m },
     contourAmount: { value: 0 }, elevationMode: { value: 0 },
     earthColor: { value: new THREE.Color(earth) }, baseColor: { value: new THREE.Color(base) },
-    lowColor: { value: new THREE.Color('#4d7467') }, midColor: { value: new THREE.Color('#a8b28a') }, highColor: { value: new THREE.Color('#d9c79f') },
+    lowColor: { value: new THREE.Color(low) }, midColor: { value: new THREE.Color(mid) }, highColor: { value: new THREE.Color(high) },
   };
   const material = new THREE.MeshStandardMaterial({ roughness: 1, metalness: 0, side: THREE.DoubleSide });
   material.onBeforeCompile = shader => {
@@ -33,6 +35,10 @@ export function createTerrainSurface(data) {
   };
   material.customProgramCacheKey = () => 'measured-terrain-sunlight-v2';
   return { material,
+    palette(value) {
+      const colors = elevationPalettes[value].colors;
+      ['lowColor', 'midColor', 'highColor'].forEach((name, index) => uniforms[name].value.set(colors[index]));
+    },
     contours(value) { uniforms.contourAmount.value = value ? 1 : 0; },
     elevation(value) { uniforms.elevationMode.value = value ? 1 : 0; },
   };
