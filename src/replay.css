@@ -7,3 +7,12 @@
 .replay-controls p { margin: 8px 0; opacity: .85; line-height: 1.5; }
 .replay-controls output { font-variant-numeric: tabular-nums; }
 .topology-panel .replay-controls [data-replay="status"] { position: static; color: inherit; padding: 0; text-align: left; opacity: 1; overflow-wrap: anywhere; }
+
+.replay-catalog { display: grid; gap: 8px; margin-bottom: 20px; }
+.replay-catalog button { text-align: left; padding: 14px 16px; background: white; color: #365431; border: 1px solid #ccd7c8; border-radius: 6px; line-height: 1.5; overflow-wrap: anywhere; }
+.replay-catalog button[aria-pressed=true] { background: #eaf1e3; border-color: #779867; }
+#replays-panel .image-stage { height: clamp(380px, 65vh, 850px); background: #dce4dd; }
+#replays-state { position: absolute; z-index: 2; max-width: 85%; border-radius: 7px; padding: 14px; color: white; background: #172527de; pointer-events: none; }
+#replays-panel .topology-panel { padding-top: 16px; }
+#rotation-replays[hidden] { display: none; }
+@media(max-width:700px) { .replay-toolbar label { flex-wrap: wrap; } .replay-toolbar select { max-width: 100%; } #replays-panel .image-stage { height: 440px; } }

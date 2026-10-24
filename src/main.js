@@ -7,6 +7,7 @@ import roundStatsCsv from '../map_round_stats.csv?raw';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
 import { setupEditor } from './editor.js';
+import recordings from 'virtual:replays';
 import { setupTopology } from './rotation-topology.js';
 inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
@@ -130,9 +131,31 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
   });
 });
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
-const tabs = ['rotation', 'review', 'good', 'bad', 'server', 'editor'];
+const tabs = ['rotation', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const editor = setupEditor(selectTab);
 const topology = setupTopology();
+const replays = setupTopology({ prefix: 'replays', recordings: true });
+const replayCatalog = $('replay-catalog');
+if (!recordings.length) replayCatalog.textContent = 'No published replays yet. Open a local recording below.';
+function openRecording(recording) {
+  selectTab('replays');
+  $('replays-filename').textContent = `${recording.map.replace('scn_mp_custom_map_', 'Custom map ')} · ${recording.id}`;
+  replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
+  replays.openReplay(recording);
+}
+for (const recording of recordings) {
+  const button = document.createElement('button');
+  button.type = 'button'; button.dataset.id = recording.id; button.setAttribute('aria-pressed', 'false');
+  button.textContent = `${recording.map.replace('scn_mp_custom_map_', 'Custom map ')} · ${new Date(recording.created).toLocaleString()} · ${recording.id}${recording.synthetic ? ' · SYNTHETIC' : ''}`;
+  button.addEventListener('click', () => openRecording(recording));
+  replayCatalog.append(button);
+}
+$('rotation-replays').addEventListener('click', event => {
+  event.preventDefault();
+  const filename = collections.rotation.images[collections.rotation.index]?.filename;
+  const recording = recordings.find(item => `${item.map}.png` === filename);
+  if (recording) openRecording(recording);
+});
 $('rotation-edit').addEventListener('click', () => editor.edit(collections.rotation.images[collections.rotation.index]?.filename));
 let activeTab = 'rotation';
 function renderCollection(name) {
@@ -140,6 +163,9 @@ function renderCollection(name) {
   const entry = images[index];
   if (name === 'rotation' || name === 'good') renderRoundStats(name, entry?.filename);
   if (name === 'rotation') {
+    const matches = recordings.filter(item => `${item.map}.png` === entry?.filename);
+    $('rotation-replays').hidden = !matches.length;
+    $('rotation-replays').textContent = `View replays (${matches.length})`;
     const available = editor.canEdit(entry?.filename);
     $('rotation-edit').disabled = !available;
     $('rotation-edit').textContent = available ? 'Edit this map' : 'Editor unavailable';
@@ -171,6 +197,7 @@ function moveCollection(name, delta) {
 function selectTab(name) {
   activeTab = name;
   topology.setVisible(name === 'rotation');
+  replays.setVisible(name === 'replays');
   for (const tab of tabs) {
     $(tab + '-tab').setAttribute('aria-selected', String(tab === name));
     $(tab + '-tab').tabIndex = tab === name ? 0 : -1;
@@ -178,7 +205,7 @@ function selectTab(name) {
   }
   editor.setVisible(name === 'editor');
   if (name === 'editor') editor.show();
-  $('collection-summary').textContent = name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
 }
 for (const name of tabs) {
   $(name + '-tab').addEventListener('click', () => selectTab(name));

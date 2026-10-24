@@ -7,6 +7,7 @@
   <main>
     <div class="page-tabs" role="tablist" aria-label="Map collections">
       <button id="rotation-tab" role="tab" aria-selected="true" aria-controls="rotation-panel">Current rotation</button>
+      <button id="replays-tab" role="tab" aria-selected="false" aria-controls="replays-panel" tabindex="-1">Replays</button>
       <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
       <button id="good-tab" role="tab" aria-selected="false" aria-controls="good-panel" tabindex="-1">GOOD MAPS</button>
       <button id="bad-tab" role="tab" aria-selected="false" aria-controls="bad-panel" tabindex="-1">BAD MAPS</button>
@@ -31,7 +32,7 @@
         <p>Player count filters the statistics and ordering for all rotation maps. Use the arrows to browse the selected map size in the selected order. Maps without an average or win percentage appear last.</p>
       </section>
       <section class="viewer" aria-label="Current rotation viewer">
-        <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><button id="rotation-edit" class="keep-button">Edit this map</button><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation image">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation image">→</button></div></div>
+        <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><a id="rotation-replays" class="keep-button" href="#replays" hidden>View replays</a><button id="rotation-edit" class="keep-button">Edit this map</button><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation image">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation image">→</button></div></div>
         <div class="image-stage rotation-stage"><img id="rotation-image" alt=""/><span id="rotation-state" role="status">Loading map…</span><a id="rotation-full-image" target="_blank" rel="noopener" aria-label="Open original rotation PNG in a new tab">↗ Full size</a></div>
       </section>
       <section id="rotation-round-stats" class="round-stats" aria-label="Round statistics">
@@ -57,6 +58,14 @@
           </table>
         </div>
         <p id="rotation-round-empty" hidden>No rounds recorded for this map.</p>
+      </section>
+    </section>
+    <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
+      <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play. You can also open local recordings.</p></div></div>
+      <div id="replay-catalog" class="replay-catalog" aria-label="Available replays"></div>
+      <section class="viewer" aria-label="Replay viewer">
+        <div class="map-toolbar"><h2 id="replays-filename">Select a recording</h2></div>
+        <div class="image-stage rotation-stage"><img id="replays-image" alt="" hidden/><span id="replays-state" role="status">Select an available replay or open a local recording.</span><a id="replays-full-image" hidden>Full size</a></div>
       </section>
     </section>
     <section id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden>

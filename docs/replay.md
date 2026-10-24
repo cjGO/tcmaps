@@ -104,7 +104,13 @@ need their matching terrain exported. Native reroll captures remain unavailable
 for 3D in this version; `/savemap` can preserve the loaded recipe for future
 measurement, but a saved recipe alone is not a measured topology.
 
-Open **Current rotation → Open round recordings**, choose one or more exported
+Place exported `*.replay.json` bundles in the repository’s `/replays` folder and
+rebuild/redeploy to publish them. The **Replays** tab lists every available recording
+without downloading the bundles until selected. Current rotation maps with recordings
+have a **View replays** link. Selecting a recording loads its embedded matching 3D
+terrain; press **Play** to start playback.
+
+For local files, open **Replays → Open round recordings**, choose one or more exported
 files, then select a recording. Import is local; nothing uploads. The existing
 viewer opens the embedded matching terrain and retains camera presets, contours,
 exploration, and height exaggeration. Use Play/Pause, speed, timeline, and

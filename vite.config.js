@@ -1,2 +1,3 @@
 import { defineConfig } from 'vite';
-export default defineConfig({});
+import { replaysPlugin } from './scripts/replay-catalog.mjs';
+export default defineConfig({ plugins: [replaysPlugin()] });
