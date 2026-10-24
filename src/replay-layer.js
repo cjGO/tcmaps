@@ -15,7 +15,7 @@ export function createReplayLayer(viewer, data, replay) {
   const heatGeometry = new THREE.PlaneGeometry(1, 1), heatMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: .65, side: THREE.DoubleSide, depthWrite: false });
   // Untouched cells are black in the instance buffer and contribute no overlay.
   heatMaterial.onBeforeCompile = shader => { shader.fragmentShader = shader.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\nif (max(diffuseColor.r, max(diffuseColor.g, diffuseColor.b)) < 0.001) discard;'); };
-  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, heatmap: false, trails: false, trailOpacity: .25, deaths: false, deathOpacity: .25, squad: '', soldier: '' };
+  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, heatmap: false, trails: false, trailOpacity: .25, deaths: true, deathOpacity: .25, squad: '', soldier: '' };
   const trailMaterial = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .25, depthWrite: false });
   const trailGeometry = new THREE.BufferGeometry(), partialGeometry = new THREE.BufferGeometry();
   const trails = new THREE.LineSegments(trailGeometry, trailMaterial), partial = new THREE.LineSegments(partialGeometry, trailMaterial);
