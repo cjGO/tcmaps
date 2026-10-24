@@ -93,6 +93,15 @@ export function soldierAt(track, t, replay) {
     y: a.y + ((b?.y ?? a.y) - a.y) * u, z: a.z + ((b?.z ?? a.z) - a.z) * u,
     facing: facingBetween(a.facing, b?.facing ?? a.facing, u), mounted: a.mounted };
 }
+// Camera holds the last known pose through missing samples and after removal.
+// Resolve from the timeline each time so seeking never retains a future pose.
+export function soldierViewAt(track, t, replay) {
+  if (!track || t < track.birth || t < replay.first || t > replay.coverageEnd) return null;
+  const live = soldierAt(track, t, replay);
+  const sample = track.samples[upperIndex(track.samples, Math.min(t, track.death))];
+  if (!live && !sample) return null;
+  return { ...(live || sample), ended: t >= track.death, holding: !live };
+}
 export function matchTerrain(replay, data) {
   if (replay.header.map.kind !== 'fixed') fail('3D unavailable: this generated map needs matching saved and measured terrain');
   if (!sourceEqual(replay.header.map.source, data.source)) fail('Terrain version mismatch; scene slots are not map identities');

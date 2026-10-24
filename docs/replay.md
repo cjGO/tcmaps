@@ -135,6 +135,18 @@ arrows identify mounted soldiers. The readout shows elapsed round time, actual
 coverage, incomplete status and synthetic labels. Switching view releases GPU
 resources; Clear recordings releases the imported data.
 
+Choose **Follow soldier** to use the on-foot camera at a soldier's recorded
+position and facing. This selection is independent of the overlay filters. The
+camera follows playback and timeline scrubbing at true terrain scale; the followed
+soldier's arrow is hidden so it does not obstruct the view. Walking, drag-look,
+and minimap relocation are disabled while following. Escape, **Exit soldier view**,
+or **Free camera** restores the overview; **Explore on foot** switches to free
+walking. If the soldier dies or is removed, the camera holds the last recorded
+position and facing while playback continues. Gaps also hold the last known pose;
+following resumes when samples return. Before the soldier's first sample, the
+camera waits in the overview. Rewinding resolves the pose from the selected time.
+Positions and facing are sampled approximations, including the death location.
+
 ## Many-round movement analysis
 
 The on-screen heatmap shows only the selected recording up to the current

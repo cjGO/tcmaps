@@ -15,7 +15,7 @@ export function createReplayLayer(viewer, data, replay) {
   const heatGeometry = new THREE.PlaneGeometry(1, 1), heatMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: .65, side: THREE.DoubleSide, depthWrite: false });
   // Untouched cells are black in the instance buffer and contribute no overlay.
   heatMaterial.onBeforeCompile = shader => { shader.fragmentShader = shader.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\nif (max(diffuseColor.r, max(diffuseColor.g, diffuseColor.b)) < 0.001) discard;'); };
-  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, heatmap: false, trails: false, deaths: false, squad: '', soldier: '' };
+  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, heatmap: false, trails: false, trailOpacity: .65, deaths: false, squad: '', soldier: '' };
   const trailMaterial = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .65, depthWrite: false });
   const trailGeometry = new THREE.BufferGeometry(), partialGeometry = new THREE.BufferGeometry();
   const trails = new THREE.LineSegments(trailGeometry, trailMaterial), partial = new THREE.LineSegments(partialGeometry, trailMaterial);
@@ -92,7 +92,7 @@ export function createReplayLayer(viewer, data, replay) {
     Object.assign(state, next); let count = 0, people = 0;
     for (const track of replay.tracks.values()) {
       const p = soldierAt(track, state.t, replay);
-      if (!p || !matchesHistory(p, track.id, state)) continue;
+      if (!p || String(track.id) === state.followSoldier || !matchesHistory(p, track.id, state)) continue;
       dummy.position.set(p.x, p.y, displayedHeight(p.z, data.min_height_m, viewer.heightScale) + 2);
       dummy.rotation.set(0, 0, -p.facing * Math.PI / 180); dummy.scale.set(p.mounted ? 1.4 : 1, p.mounted ? 2.4 : 1, 1); dummy.updateMatrix();
       soldiers.setMatrixAt(count, dummy.matrix); soldiers.setColorAt(count++, colors[p.team] || neutral);
@@ -101,6 +101,7 @@ export function createReplayLayer(viewer, data, replay) {
     soldiers.count = count; humans.count = people;
     soldiers.instanceMatrix.needsUpdate = humans.instanceMatrix.needsUpdate = true;
     if (soldiers.instanceColor) soldiers.instanceColor.needsUpdate = true;
+    trailMaterial.opacity = state.trailOpacity;
     trails.visible = partial.visible = state.trails;
     if (state.heatmap || state.trails) {
       prepareHistory();

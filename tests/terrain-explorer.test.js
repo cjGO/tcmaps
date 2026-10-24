@@ -118,6 +118,39 @@ test('drag-look works without pointer capture and Escape exits',()=>{
   } finally {e.close();}
 });
 
+test('soldier view uses recorded pose, blocks walking and relocations, and exits to orbit',()=>{
+  const e=setup();
+  try {
+    const pose={x:35,y:40,z:80,facing:90,mounted:false};
+    e.experience.follow(pose);
+    assert.equal(e.mode,'explore');assert.equal(e.experience.following,true);assert.equal(e.begin,1);
+    assert.equal(e.frame.x,35);assert.equal(e.frame.y,40);assert.equal(e.frame.z,80);
+    assert.equal(e.frame.yaw,Math.PI/2);assert.equal(e.$('pad').hidden,true);
+    e.canvas.focus();const original={...e.frame};
+    for(const code of ['KeyW','Space','ArrowRight'])e.key('keydown',code);
+    e.tick();
+    e.pointer('pointerdown');e.pointer('pointermove',200,200);e.pointer('pointerup',200,200);
+    e.$('minimap').dispatchEvent(new e.w.MouseEvent('pointerdown',{button:0,clientX:160,clientY:160,bubbles:true}));
+    assert.deepEqual(e.frame,original);assert.equal(e.pending.size,0);
+    e.experience.follow({...pose,x:50,facing:180,mounted:true});
+    assert.equal(e.begin,1);assert.equal(e.frame.x,50);assert.equal(e.frame.eyeHeight,2.2);
+    e.key('keydown','Escape');assert.equal(e.mode,'orbit');assert.equal(e.end,1);assert.equal(e.experience.following,false);
+    e.$('explore').click();assert.equal(e.$('pad').hidden,false);
+    e.key('keydown','KeyW');e.tick();assert.notEqual(e.frame.y,40);
+  } finally {e.close();}
+});
+
+test('following cancels pending free movement and can return directly to on-foot exploration',()=>{
+  const e=setup();
+  try {
+    e.$('explore').click();e.key('keydown','KeyW');assert.ok(e.pending.size);
+    e.experience.follow({x:50,y:50,z:30,facing:0,mounted:false});
+    assert.equal(e.pending.size,0);assert.equal(e.begin,1);
+    e.$('explore').click();assert.equal(e.experience.following,false);assert.equal(e.begin,1);
+    e.key('keydown','KeyW');e.tick();assert.ok(e.frame.y>50);
+  } finally {e.close();}
+});
+
 test('3D fog menu matches the map editor weather options',()=>{
   const e=setup();
   try {

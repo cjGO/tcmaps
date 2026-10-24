@@ -4,9 +4,11 @@
 .replay-toolbar input[type=file] { max-width: 230px; }
 .replay-toolbar select { max-width: 290px; }
 .replay-controls input[type=range] { width: 100%; }
+.replay-toolbar input[data-replay="trail-transparency"] { width: 120px; }
+.replay-toolbar [data-replay="trail-transparency-value"] { min-width: 4ch; }
 .replay-controls p { margin: 8px 0; opacity: .85; line-height: 1.5; }
 .replay-controls output { font-variant-numeric: tabular-nums; }
-.topology-panel .replay-controls [data-replay="status"] { position: static; color: inherit; padding: 0; text-align: left; opacity: 1; overflow-wrap: anywhere; }
+.topology-panel .replay-controls [role="status"] { position: static; color: inherit; padding: 0; text-align: left; opacity: 1; overflow-wrap: anywhere; }
 
 .replay-catalog { display: grid; gap: 8px; margin-bottom: 20px; }
 .replay-catalog button { text-align: left; padding: 14px 16px; background: white; color: #365431; border: 1px solid #ccd7c8; border-radius: 6px; line-height: 1.5; overflow-wrap: anywhere; }

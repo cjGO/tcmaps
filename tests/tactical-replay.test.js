@@ -1,10 +1,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { parseJournal, soldierAt, facingBetween, movementHeatmap, matchTerrain, parseBundle } from '../src/tactical-replay.js';
+import { parseJournal, soldierAt, soldierViewAt, facingBetween, movementHeatmap, matchTerrain, parseBundle } from '../src/tactical-replay.js';
 
 const journal = () => fs.readFileSync(new URL('./fixtures/SYNTHETIC-tactical-demo.jsonl', import.meta.url), 'utf8');
 const replay = () => parseJournal(journal());
+test('soldier camera follows interpolation, holds on death and gaps, and seeks without future poses', () => {
+  const r = replay(), track = r.tracks.get(2);
+  const moving = soldierViewAt(track, 22500, r);
+  assert.deepEqual(moving, { ...soldierAt(track, 22500, r), ended: false, holding: false });
+  const dead = soldierViewAt(track, 45000, r);
+  assert.deepEqual(dead, { ...track.samples.at(-1), ended: true, holding: true });
+  assert.deepEqual(soldierViewAt(track, 110000, r), dead);
+  assert.deepEqual(soldierViewAt(track, 22500, r), moving);
+  assert.equal(soldierViewAt(track, 19999, r), null);
+  assert.equal(soldierViewAt(undefined, 20000, r), null);
+  const late = r.tracks.get(321);
+  assert.equal(soldierViewAt(late, 59999, r), null);
+  assert.ok(soldierViewAt(late, 60000, r));
+  const gapTrack = r.tracks.get(1), gap = soldierViewAt(gapTrack, 90000, r);
+  assert.equal(gap.holding, true);
+  assert.equal(gap.x, gapTrack.samples.filter(p => p.t <= 90000).at(-1).x);
+  assert.equal(soldierViewAt(gapTrack, 110000, r).holding, false);
+});
 test('schema, torn tail and bounded input validation', () => {
   assert.throws(() => parseJournal(journal().replace('"version":1', '"version":2')), /Unsupported/);
   assert.throws(() => parseJournal('x\n'), /Malformed/);
@@ -80,6 +98,12 @@ test('replay layer reveals cached trail geometry and rewinds heat without future
   const trails = group.children.filter(child => child.isLineSegments);
   assert.equal(trails[0].geometry.drawRange.count, 0);
   assert.ok(trails[1].geometry.drawRange.count > 0);
+  assert.equal(trails[0].material.opacity, .65);
+  for (const opacity of [0, .25, 1]) {
+    layer.update({ trailOpacity: opacity });
+    assert.ok(trails.every(trail => trail.material.opacity === opacity));
+  }
+  layer.update({ trailOpacity: .65 });
   const heat = group.children.find(child => child.geometry?.type === 'PlaneGeometry');
   assert.ok(heat.instanceColor.array.some(value => value > 0));
   layer.update({ t: 60000 });

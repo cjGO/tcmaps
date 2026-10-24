@@ -29,7 +29,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     </div>`;
   container.append(ui);
   const $ = name => ui.querySelector(`[data-ui="${name}"]`), mini = $('minimap'), ctx = mini.getContext('2d');
-  let mode = 'orbit', state = null, disposed = false, raf = 0, lastTime = 0, pointer = null, jump = false;
+  let mode = 'orbit', state = null, following = false, disposed = false, raf = 0, lastTime = 0, pointer = null, jump = false;
   const keys = new Set(), pad = new Set(), listeners = [];
   function listen(target, event, fn, options) { target.addEventListener(event, fn, options); listeners.push(() => target.removeEventListener(event, fn, options)); }
   const mapImage = doc.createElement('canvas'), n = data.grid_size; mapImage.width = mapImage.height = n;
@@ -67,6 +67,10 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function notify() {
     const exploring = mode === 'explore';
     for (const name of ['crosshair', 'minimap-wrap', 'pad']) $(name).hidden = !exploring;
+    $('pad').hidden = !exploring || following;
+    $('exit').textContent = following ? 'Exit soldier view' : 'Exit explorer';
+    mini.setAttribute('aria-label', following ? 'Followed soldier position and facing' : 'Explorer overview. Click to move here; orange arrow shows your position and facing.');
+    $('minimap-wrap').querySelector('p').innerHTML = `↑ +Y · blue/red: teams · orange: you<br>${following ? 'Following recorded soldier' : 'Click to relocate'}`;
     $('exit').hidden = mode === 'orbit'; $('pick-note').hidden = mode !== 'pick';
     $('pick').setAttribute('aria-pressed', mode === 'pick');
     $('explore').setAttribute('aria-pressed', exploring);
@@ -75,8 +79,13 @@ export function createTerrainExperience(container, data, api, styles = '') {
     container.dispatchEvent(new win.CustomEvent('terrain-modechange', { detail: { mode } }));
   }
   function pause() { keys.clear(); pad.clear(); jump = false; pointer = null; win.cancelAnimationFrame(raf); raf = 0; lastTime = 0; if (state) state.speed = 0; }
+  function releaseFollow() {
+    if (!following) return;
+    following = false; api.followEnded?.();
+  }
   function exit() {
     if (mode === 'orbit') return;
+    releaseFollow();
     const wasExploring = mode === 'explore'; pause(); mode = 'orbit';
     if (wasExploring) api.end(); notify();
   }
@@ -85,6 +94,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     return { point: { x: p.x_m, y: p.y_m }, yaw: Math.atan2(q.x_m - p.x_m, q.y_m - p.y_m) };
   }
   function enter(point, yaw) {
+    releaseFollow();
     if (mode !== 'explore' || point) {
       if (mode !== 'explore') api.begin();
       const start = point ? { point, yaw: yaw ?? state?.yaw ?? 0 } : state ? { point: state, yaw: state.yaw } : spawnPoint();
@@ -92,6 +102,21 @@ export function createTerrainExperience(container, data, api, styles = '') {
     }
     mode = 'explore';
     notify(); paint(); canvas.focus({ preventScroll: true });
+  }
+  function follow(point) {
+    if (disposed) return;
+    const starting = !following;
+    pause();
+    if (mode !== 'explore') api.begin();
+    following = true; mode = 'explore';
+    // Recorded altitude preserves mounted/elevated positions; terrain is a floor.
+    state = createExplorerState(data, point, point.facing * Math.PI / 180);
+    state.x = point.x; state.y = point.y;
+    state.z = Math.max(state.ground, point.z);
+    state.eyeHeight = point.mounted ? 2.2 : 1.0;
+    if (starting) notify();
+    paint();
+    if (starting) canvas.focus({ preventScroll: true });
   }
   function selectPlace() {
     if (mode === 'pick') { exit(); return; }
@@ -105,7 +130,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
   }
   function tick(time) {
     raf = 0;
-    if (mode !== 'explore' || disposed || !visible()) { pause(); return; }
+    if (mode !== 'explore' || following || disposed || !visible()) { pause(); return; }
     const dt = lastTime ? Math.min((time - lastTime) / 1000, .05) : 1 / 60; lastTime = time;
     const turnX = Number(keys.has('ArrowRight')) - Number(keys.has('ArrowLeft'));
     const turnY = Number(keys.has('ArrowUp')) - Number(keys.has('ArrowDown'));
@@ -123,6 +148,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     if (['KeyQ', 'KeyE'].includes(event.code) || (mode !== 'explore' && ['KeyA', 'KeyD', 'Space'].includes(event.code))) { event.preventDefault(); event.stopImmediatePropagation(); return; }
     if (mode !== 'explore' || !movementKeys.has(event.code)) return;
     event.preventDefault(); event.stopImmediatePropagation();
+    if (following) return;
     if (event.code === 'Space' && !event.repeat) jump = true;
     keys.add(event.code); wake();
   }
@@ -136,7 +162,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
   function pointerMove(event) {
     if (mode === 'orbit') return;
     event.stopImmediatePropagation();
-    if (mode !== 'explore' || pointer?.id !== event.pointerId) return;
+    if (mode !== 'explore' || following || pointer?.id !== event.pointerId) return;
     state = turnExplorer(state, (event.clientX - pointer.x) * .003, -(event.clientY - pointer.y) * .003);
     pointer.x = event.clientX; pointer.y = event.clientY; paint();
   }
@@ -158,7 +184,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
   listen($('explore'), 'click', () => enter());
   listen($('pick'), 'click', selectPlace); listen($('exit'), 'click', exit);
   listen(mini, 'pointerdown', event => {
-    if (mode !== 'explore' || event.button !== 0) return;
+    if (mode !== 'explore' || following || event.button !== 0) return;
     const rect = mini.getBoundingClientRect(), eyeHeight = state.eyeHeight, pitch = state.pitch;
     const point = { x: data.xs[0] + (event.clientX - rect.left) / rect.width * (data.xs.at(-1) - data.xs[0]),
       y: data.ys.at(-1) - (event.clientY - rect.top) / rect.height * (data.ys.at(-1) - data.ys[0]) };
@@ -173,7 +199,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
     api.graphics({ fog: $('fog').value, palette: $('palette').value, surface: $('surface').value, sun: Number($('sun').value), haze: $('haze').checked, shadows: $('shadows').checked });
     container.dispatchEvent(new win.CustomEvent('terrain-graphics-change', { detail: { surface: $('surface').value, palette: $('palette').value } }));
   });
-  return { get mode() { return mode; }, enter, exit, pause, refresh: map,
+  return { get mode() { return mode; }, get following() { return following; }, enter, follow, exit, pause, refresh: map,
     dispose() { exit(); disposed = true; pause(); for (const remove of listeners) remove(); ui.remove(); },
   };
 }

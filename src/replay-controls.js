@@ -1,4 +1,4 @@
-import { MAX_BYTES, parseBundle, movementHeatmap, sourceEqual } from './tactical-replay.js';
+import { MAX_BYTES, parseBundle, movementHeatmap, sourceEqual, soldierViewAt } from './tactical-replay.js';
 import { squadKey } from './replay-history.js';
 import './replay.css';
 
@@ -6,17 +6,39 @@ export function setupReplay(panel, refresh) {
   const root = document.createElement('section'); root.className = 'replay-controls';
   root.setAttribute('aria-label', 'Tactical replay');
   root.innerHTML = `<div class="replay-toolbar"><label>Open round recordings <input type="file" accept=".json" multiple data-replay="files"></label><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
-    <div data-replay="transport" hidden><div class="replay-toolbar"><button data-replay="play">Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label><input type="checkbox" data-replay="deaths">Bot deaths</label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · White ring: player-controlled · Long arrow: mounted. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open exported .replay.json files locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
+    <div data-replay="transport" hidden><div class="replay-toolbar"><button data-replay="play">Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="35"><output data-replay="trail-transparency-value">35%</output></label><label><input type="checkbox" data-replay="deaths">Bot deaths</label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · White ring: player-controlled · Long arrow: mounted. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open exported .replay.json files locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
   panel.append(root);
   const el = name => root.querySelector(`[data-replay="${name}"]`);
-  let loaded = [], selected, layer, viewer, frame, playing = false, t = 0, previousFrame, attached = 0, inputGeneration = 0, heatResult, totalBytes = 0;
+  let loaded = [], selected, layer, viewer, frame, playing = false, t = 0, previousFrame, attached = 0, inputGeneration = 0, heatResult, totalBytes = 0, unsubscribeFollow, syncingFollow = false;
   const options = () => ({ players: el('players').checked, bots: el('bots').checked, squad: el('squad').value, soldier: el('soldier').value });
   const time = ms => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}`;
   function stop() { playing = false; cancelAnimationFrame(frame); frame = null; previousFrame = undefined; el('play').textContent = 'Play'; }
-  function detach() { attached++; stop(); layer?.dispose(); layer = viewer = null; }
+  function detach() {
+    attached++; stop(); unsubscribeFollow?.(); unsubscribeFollow = null;
+    el('follow').disabled = true;
+    if (el('follow').value) viewer?.stopFollowing();
+    layer?.dispose(); layer = viewer = null;
+  }
+  function updateFollow() {
+    const id = el('follow').value;
+    const track = selected.replay.tracks.get(Number(id));
+    const pose = id && soldierViewAt(track, t, selected.replay);
+    const message = !pose ? 'waiting for first recorded position.' : pose.ended ?
+      `${track.removalReason === 'death' ? 'died' : 'removed'}; camera held at last recorded position.` :
+      pose.holding ? 'recording gap; camera held.' : 'following recorded position and facing.';
+    const status = id ? `Soldier #${id}: ${message}` : '';
+    if (el('follow-status').textContent !== status) el('follow-status').textContent = status;
+    if (!viewer) return;
+    syncingFollow = true;
+    try {
+      if (pose) viewer.followSoldier(pose);
+      else if (id) viewer.stopFollowing();
+    } finally { syncingFollow = false; }
+  }
   function update() {
     if (!selected) return;
-    const r = selected.replay, count = layer?.update({ t, ...options(), heatmap: el('heat').checked, trails: el('trails').checked, deaths: el('deaths').checked });
+    updateFollow();
+    const r = selected.replay, count = layer?.update({ t, ...options(), heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, followSoldier: el('follow').value });
     el('timeline').value = String(t);
     el('time').textContent = `Round ${time(t - r.header.round_start_ms)} · Coverage ${time(r.first - r.header.round_start_ms)}–${time(r.coverageEnd - r.header.round_start_ms)} · ${count ?? 0} visible · ${r.header.sample_interval_ms / 1000}s samples${r.incomplete ? ' · INCOMPLETE' : ` · ${r.end.reason}`}${r.header.synthetic ? ' · SYNTHETIC' : ''}`;
   }
@@ -26,15 +48,19 @@ export function setupReplay(panel, refresh) {
     el('status').textContent = `${heatResult.recordings.length} matching recording(s) · ${(heatResult.soldier_seconds / 60).toFixed(1)} soldier-minutes · 10 m cells. Only intervals with two samples count; large gaps and unrecorded time are excluded. ${selected.replay.header.synthetic ? 'Synthetic demonstration, not real battle data.' : ''}`;
   }
   function choose(index) {
-    stop(); selected = loaded[index]; heatResult = null;
+    stop(); el('follow').value = ''; viewer?.stopFollowing(); selected = loaded[index]; heatResult = null;
     el('transport').hidden = !selected;
     el('play').disabled = true;
     el('squad').replaceChildren(new Option('All squads', ''));
     el('soldier').replaceChildren(new Option('All soldiers', ''));
+    el('follow').replaceChildren(new Option('Free camera', ''));
+    el('follow-status').textContent = '';
+    el('follow').disabled = true;
     if (selected) {
       const squads = new Map();
       for (const track of selected.replay.tracks.values()) {
         el('soldier').append(new Option(`Soldier #${track.id}`, String(track.id)));
+        if (track.samples.length) el('follow').append(new Option(`Soldier #${track.id} · ${track.changes[0].kind}`, String(track.id)));
         for (const meta of track.changes) squads.set(squadKey(meta), `Team ${meta.team + 1} · ${meta.owner === false ? 'Unassigned' : `Commander #${meta.owner}`}`);
       }
       for (const [key, label] of squads) el('squad').append(new Option(label, key));
@@ -78,6 +104,14 @@ export function setupReplay(panel, refresh) {
   for (const key of ['players', 'bots', 'heat', 'trails', 'deaths', 'squad', 'soldier']) el(key).addEventListener('change', () => {
     try { update(); } catch (error) { stop(); el('heat').checked = el('trails').checked = false; update(); el('status').textContent = error.message; }
   });
+  el('trail-transparency').addEventListener('input', () => {
+    el('trail-transparency-value').textContent = `${el('trail-transparency').value}%`;
+    update();
+  });
+  el('follow').addEventListener('change', () => {
+    if (!el('follow').value) viewer?.stopFollowing();
+    update();
+  });
   el('export').addEventListener('click', () => {
     try {
       heatmap(); const url = URL.createObjectURL(new Blob([JSON.stringify(heatResult)], { type: 'application/json' }));
@@ -107,7 +141,14 @@ export function setupReplay(panel, refresh) {
     if (!selected) return;
     const token = ++attached, { createReplayLayer } = await import('./replay-layer.js');
     if (token !== attached) return;
-    viewer = nextViewer; layer = createReplayLayer(viewer, selected.data, selected.replay); el('play').disabled = false; update();
+    viewer = nextViewer;
+    unsubscribeFollow = viewer.onFollowEnd(() => {
+      if (syncingFollow) return;
+      el('follow').value = ''; el('follow-status').textContent = '';
+      update();
+    });
+    el('follow').disabled = false;
+    layer = createReplayLayer(viewer, selected.data, selected.replay); el('play').disabled = false; update();
     el('status').textContent = 'Trails and heatmap show movement up to the timeline cursor in this recording. Squad uses recorded team and commander ownership; soldier IDs identify individual lifetimes. Export includes full matching rounds and player/bot filters.';
   } };
 }

@@ -21,6 +21,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   const sun = new THREE.DirectionalLight('#fff0d5', 2.8);
   const markers = [], resources = [];
   const heightListeners = new Set();
+  const followEndListeners = new Set();
   let positions, baseHeights, boundary, canvas;
   const b = data.bounds;
   const cx = (b.x_min_m + b.x_max_m) / 2, cy = (b.y_min_m + b.y_max_m) / 2;
@@ -173,6 +174,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     applyGraphics(graphics);
     experience = createTerrainExperience(container, data, {
       canvas, pick, spawns: () => activeSpawns, graphics: applyGraphics,
+      followEnded() { for (const listener of followEndListeners) listener(); },
       begin() {
         returnView = { camera, scale, wireframe: material.wireframe };
         controls.enabled = false; updateHeights(1);
@@ -197,8 +199,11 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       modeChanged(mode) { configureControls(); options.onModeChange?.(mode); },
     }, experienceStyles);
     return { preset, exaggeration, dispose, resize, canvas, draw, pick,
-      get mode() { return experience.mode; }, get heightScale() { return scale; },
+      get mode() { return experience.mode; }, get following() { return experience.following; }, get heightScale() { return scale; },
       exitExplorer() { experience.exit(); }, pauseExplorer() { experience.pause(); },
+      followSoldier(point) { experience.follow(point); },
+      stopFollowing() { experience.exit(); },
+      onFollowEnd(listener) { followEndListeners.add(listener); return () => followEndListeners.delete(listener); },
       addLayer(layer) { scene.add(layer); draw(); },
       onHeightChange(listener) { heightListeners.add(listener); return () => heightListeners.delete(listener); },
       navigation(value) { navigation = value; configureControls(); },
