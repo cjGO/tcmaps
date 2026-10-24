@@ -136,9 +136,11 @@ const editor = setupEditor(selectTab);
 const topology = setupTopology();
 const replays = setupTopology({ prefix: 'replays', recordings: true });
 const replayCatalog = $('replay-catalog');
+let replayOpened = false;
 if (!recordings.length) replayCatalog.textContent = 'No published replays yet. Open a local recording below.';
 function openRecording(recording) {
-  selectTab('replays');
+  replayOpened = true;
+  if (activeTab !== 'replays') selectTab('replays');
   $('replays-filename').textContent = `${recording.map.replace('scn_mp_custom_map_', 'Custom map ')} · ${recording.id}`;
   replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
   replays.openReplay(recording);
@@ -206,6 +208,7 @@ function selectTab(name) {
   editor.setVisible(name === 'editor');
   if (name === 'editor') editor.show();
   $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  if (name === 'replays' && !replayOpened && recordings.length) openRecording(recordings[0]);
 }
 for (const name of tabs) {
   $(name + '-tab').addEventListener('click', () => selectTab(name));
