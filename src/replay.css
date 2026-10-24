@@ -18,3 +18,13 @@
 #replays-panel .topology-panel { padding-top: 16px; }
 #rotation-replays[hidden] { display: none; }
 @media(max-width:700px) { .replay-toolbar label { flex-wrap: wrap; } .replay-toolbar select { max-width: 100%; } #replays-panel .image-stage { height: 440px; } }
+
+.replay-strength { margin: 14px 0 6px; padding: 12px; border: 1px solid #62747b55; border-radius: 6px; background: #ffffff80; }
+.replay-strength-legend { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 8px 0; }
+.replay-strength-team { display: flex; align-items: baseline; gap: 10px; border-left: 4px solid var(--team-color); padding-left: 8px; }
+.replay-strength-team output { color: var(--team-color); font-size: 1.45rem; font-weight: 700; min-width: 3ch; }
+.replay-strength svg { display: block; width: 100%; height: 150px; cursor: crosshair; touch-action: none; }
+.replay-strength svg text { fill: currentColor; font: 13px sans-serif; }
+.replay-strength-grid { stroke: #62747b44; }
+.replay-strength-cursor { stroke: currentColor; stroke-width: 1; stroke-dasharray: 3 3; }
+.replay-strength p { font-size: .78rem; }

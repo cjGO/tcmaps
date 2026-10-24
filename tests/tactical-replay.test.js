@@ -176,3 +176,43 @@ test('death marker instances persist, toggle and scrub with filters and height s
   viewer.heightScale = 4; heightChanged(); assert.ok(mesh.instanceMatrix.version > matrices);
   layer.dispose();
 });
+
+test('bot strength counts lifetimes through gaps, control/team changes, removals and reverse seeking', async () => {
+  const { botStrengthHistory, botStrengthAt } = await import('../src/replay-strength.js');
+  const track = (id, birth, death, changes, samples = []) => ({ id, birth, death, changes, samples });
+  const recording = { first: 1000, coverageEnd: 10000, tracks: new Map([
+    [1, track(1, 0, 5000, [{ t: 0, team: 0, kind: 'bot' }])], // counted without any positions
+    [2, track(2, 1000, Infinity, [
+      { t: 1000, team: 1, kind: 'bot' }, { t: 3000, team: 1, kind: 'player' },
+      { t: 4000, team: 0, kind: 'bot' }, { t: 6000, team: 1, kind: 'bot' }
+    ])],
+    [3, track(3, 5000, 5000, [{ t: 5000, team: 0, kind: 'bot' }])], // no duration
+    [4, track(4, 7000, 8000, [{ t: 7000, team: -1, kind: 'bot' }])],
+    [5, track(5, 11000, Infinity, [{ t: 11000, team: 0, kind: 'bot' }])],
+    [6, track(6, 1000, 9000, [{ t: 1000, team: 1, kind: 'player' }])]
+  ]) };
+  const history = botStrengthHistory(recording);
+  assert.deepEqual(history.teams, [-1, 0, 1]);
+  for (const [t, expected] of [
+    [1000, [0, 1, 1]], [2999, [0, 1, 1]], [3000, [0, 1, 0]], [4000, [0, 2, 0]],
+    [5000, [0, 1, 0]], [6000, [0, 0, 1]], [7000, [1, 0, 1]], [8000, [0, 0, 1]],
+    [10000, [0, 0, 1]], [1000, [0, 1, 1]]
+  ]) assert.deepEqual(botStrengthAt(history, t), expected, `at ${t}`);
+  assert.equal(history.max, 2);
+  const empty = botStrengthHistory({ ...recording, tracks: new Map() });
+  assert.deepEqual(botStrengthAt(empty, 1000), [0, 0]);
+  assert.equal(empty.max, 1);
+});
+
+test('bot strength in synthetic replay persists through position gaps and excludes player takeover', async () => {
+  const { botStrengthHistory, botStrengthAt } = await import('../src/replay-strength.js');
+  const r = replay(), history = botStrengthHistory(r);
+  for (const t of [r.first, 30000, 45000, 60000, 90000, r.coverageEnd, r.first]) {
+    const expected = history.teams.map(team => [...r.tracks.values()].filter(track => {
+      const meta = track.changes.filter(change => change.t <= t).at(-1);
+      return track.birth <= t && t < track.death && meta?.kind === 'bot' && meta.team === team;
+    }).length);
+    assert.deepEqual(botStrengthAt(history, t), expected);
+  }
+  assert.deepEqual(botStrengthAt(history, 90000), botStrengthAt(history, 110000));
+});

@@ -114,7 +114,15 @@ For local files, open **Replays → Open round recordings**, choose one or more 
 files, then select a recording. Import is local; nothing uploads. The existing
 viewer opens the embedded matching terrain and retains camera presets, contours,
 exploration, and height exaggeration. Use Play/Pause, speed, timeline, and
-Players/Bots filters. Enable **Trails so far** to see cumulative team-colored
+Players/Bots filters. **Bots alive** shows whole-team counts and a step chart over
+recorded coverage, with a cursor that follows playback and scrubbing. Click or
+drag the chart to seek; the replay timeline also supports keyboard seeking.
+Counts use recorded lifetimes and team/control metadata, including soldiers with
+no position sample. Spawns add bots, all removals subtract them, and player
+takeover excludes the controlled soldier until it becomes a bot again. Position
+gaps and map filters do not change the totals. Late/incomplete recordings cover
+only the recorded portion; these counts do not reconstruct earlier casualties.
+Enable **Trails so far** to see cumulative team-colored
 paths, or **Movement heatmap so far** for time spent through the current cursor.
 Both overlays follow playback and backward scrubbing in the selected recording.
 Use **Squad** (team + recorded commander ownership) and **Soldier** (individual
