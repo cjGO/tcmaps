@@ -11,6 +11,46 @@ export function durationSamples(headers, rows) {
   return rows.map(row => ({ players: numeric(row[column('player_count')]), seconds: numeric(row[column('duration_seconds')]), map: row[column('map_name')], round: row[column('round')] }))
     .filter(point => Number.isInteger(point.players) && point.players >= 0 && Number.isFinite(point.seconds) && point.seconds >= 0);
 }
+// Fit original observations, with equal weight per round. Normalize counts to
+// keep the small least-squares system well conditioned.
+export function durationRegression(points) {
+  if (!points.length) return null;
+  const min = Math.min(...points.map(p => p.players)), max = Math.max(...points.map(p => p.players));
+  const center = (min + max) / 2, scale = (max - min) / 2 || 1;
+  const degree = Math.min(2, new Set(points.map(p => p.players)).size - 1);
+  const matrix = Array.from({ length: degree + 1 }, () => Array(degree + 2).fill(0));
+  for (const point of points) {
+    const z = (point.players - center) / scale;
+    for (let i = 0; i <= degree; i++) {
+      for (let j = 0; j <= degree; j++) matrix[i][j] += z ** (i + j);
+      matrix[i][degree + 1] += point.seconds * z ** i;
+    }
+  }
+  for (let i = 0; i <= degree; i++) {
+    let pivot = i;
+    for (let j = i + 1; j <= degree; j++) if (Math.abs(matrix[j][i]) > Math.abs(matrix[pivot][i])) pivot = j;
+    [matrix[i], matrix[pivot]] = [matrix[pivot], matrix[i]];
+    const divisor = matrix[i][i];
+    for (let j = i; j <= degree + 1; j++) matrix[i][j] /= divisor;
+    for (let row = 0; row <= degree; row++) {
+      if (row === i) continue;
+      const factor = matrix[row][i];
+      for (let j = i; j <= degree + 1; j++) matrix[row][j] -= factor * matrix[i][j];
+    }
+  }
+  const coefficients = matrix.map(row => row[degree + 1]);
+  const predict = players => coefficients.reduce((sum, coefficient, i) => sum + coefficient * ((players - center) / scale) ** i, 0);
+  const mean = points.reduce((sum, p) => sum + p.seconds, 0) / points.length;
+  const total = points.reduce((sum, p) => sum + (p.seconds - mean) ** 2, 0);
+  const residual = points.reduce((sum, p) => sum + (p.seconds - predict(p.players)) ** 2, 0);
+  return { min, max, degree, predict, r2: total ? 1 - residual / total : 1 };
+}
+
+export function durationJitter(index) {
+  // Stable across renders; at most 0.18 players of horizontal displacement.
+  const value = Math.imul(index + 1, 2654435761) >>> 0;
+  return (value / 4294967296 - .5) * .36;
+}
 export function populationSamples(headers, rows) {
   const column = name => headers.indexOf(name);
   return rows.map(row => {
@@ -65,12 +105,27 @@ export function setupServerStats(headers, rows) {
       durationChart.append(make('text', { x: x(players), y: 375, 'text-anchor': 'middle' }, players));
     }
     durationChart.append(make('text', { x: 510, y: 408, 'text-anchor': 'middle' }, 'Player count'), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Round duration (minutes)'));
-    for (const point of durations) {
+    for (const [index, point] of durations.entries()) {
       const label = `${point.players} players · ${point.seconds} seconds (${(point.seconds / 60).toFixed(2)} minutes) · ${point.map} · round ${point.round}`;
-      const dot = make('circle', { cx: x(point.players), cy: y(point.seconds), r: 4, class: 'population-dot duration-dot', tabindex: 0, 'aria-label': label });
+      const jitter = Math.max(-5, Math.min(5, x(point.players + durationJitter(index)) - x(point.players)));
+      const dot = make('circle', { cx: x(point.players) + jitter, cy: y(point.seconds), r: 4, class: 'population-dot duration-dot', tabindex: 0, 'aria-label': label });
       dot.append(make('title', {}, label));
       for (const event of ['pointerenter', 'focus', 'click']) dot.addEventListener(event, () => $('duration-detail').textContent = label);
       durationChart.append(dot);
+    }
+    const fit = durationRegression(durations);
+    if (fit.min < fit.max) {
+      const label = `${fit.degree === 2 ? 'Quadratic' : 'Linear'} regression · R² = ${fit.r2.toFixed(3)}`;
+      const clip = make('clipPath', { id: 'duration-fit-clip' });
+      clip.append(make('rect', { x: 70, y: 50, width: 880, height: 300 }));
+      const defs = make('defs'); defs.append(clip); durationChart.append(defs);
+      const curve = Array.from({ length: 201 }, (_, i) => {
+        const players = fit.min + (fit.max - fit.min) * i / 200;
+        return `${x(players)},${y(fit.predict(players))}`;
+      });
+      const line = make('polyline', { points: curve.join(' '), class: 'duration-fit', 'clip-path': 'url(#duration-fit-clip)', 'aria-label': label });
+      line.append(make('title', {}, `${label}. Fitted to original values, before jitter.`));
+      durationChart.append(line, make('line', { x1: 695, x2: 725, y1: 28, y2: 28, class: 'duration-fit' }), make('text', { x: 735, y: 32 }, label));
     }
   }
   sessions.forEach((session, index) => {
@@ -80,19 +135,28 @@ export function setupServerStats(headers, rows) {
     $('population-session').append(option);
   });
   $('population-coverage').textContent = `${points.length} timestamped samples · ${rows.length - points.length} rows without usable time/population omitted`;
+  const rangeControl = $('population-range');
   function render() {
     const selected = $('population-session').value;
     let visible = selected === 'all' ? points : sessions[Number(selected)];
-    const range = Number($('population-range').value);
-    if (range && visible.length) visible = visible.filter(point => point.time >= visible.at(-1).time - range * 3600000);
+    const hours = Number(rangeControl.value);
+    const rangeLabel = `Past ${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+    $('population-range-value').textContent = rangeLabel;
+    rangeControl.setAttribute('aria-valuetext', rangeLabel);
+    const rangeEnd = visible.at(-1)?.time;
+    const rangeStart = rangeEnd - hours * 3600000;
+    visible = visible.filter(point => point.time >= rangeStart);
     svg.replaceChildren(make('title', {}, 'Server population over time'), make('desc', {}, 'Round-end samples. Long gaps have no connecting line; missing samples do not confirm zero players.'));
     $('population-empty').hidden = visible.length > 0;
     $('population-chart-wrap').hidden = !visible.length;
     const colorByDuration = $('population-duration-color').checked;
     $('population-duration-legend').hidden = !colorByDuration || !visible.length;
-    if (!visible.length) return;
-    const start = visible[0].time - (visible.length === 1 ? 60000 : 0);
-    const end = visible.at(-1).time + (visible.length === 1 ? 60000 : 0);
+    if (!visible.length) {
+      $('population-summary').textContent = '0 samples in this time range.';
+      $('population-detail').textContent = 'Try a wider time range or choose another session.';
+      return;
+    }
+    const start = rangeStart, end = rangeEnd;
     const maximum = Math.max(5, ...visible.map(point => point.players));
     const top = Math.ceil(maximum / 5) * 5;
     const x = time => 70 + (time - start) / Math.max(1, end - start) * 880;
@@ -128,7 +192,8 @@ export function setupServerStats(headers, rows) {
     $('population-summary').textContent = `Peak: ${Math.max(...visible.map(point => point.players))} players · ${visible.length} samples · ${date(visible[0].time)} – ${date(visible.at(-1).time)} UTC`;
     $('population-detail').textContent = 'Hover, tap, or focus a point for its time, population, and map.';
   }
-  for (const id of ['population-session', 'population-range', 'population-style', 'population-duration-color']) $(id).addEventListener('change', render);
+  rangeControl.addEventListener('input', render);
+  for (const id of ['population-session', 'population-style', 'population-duration-color']) $(id).addEventListener('change', render);
   render();
   return { count: points.length };
 }

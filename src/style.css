@@ -81,3 +81,6 @@
 .rotation-size label{display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer}
 .rotation-size input{margin:0;accent-color:#426b43}
 .rotation-size input:focus-visible{outline:3px solid #e6ad4c;outline-offset:3px}
+
+.duration-fit{fill:none;stroke:#c18220;stroke-width:3;pointer-events:none}
+.population-controls .population-hours{gap:4px;min-width:220px}.population-hours output{font-size:12px;font-weight:400;color:#536356}.population-hours input{width:100%;min-height:32px;margin:0;accent-color:#426842}.population-hours input:focus-visible{outline:3px solid #e6ad4c;outline-offset:2px}

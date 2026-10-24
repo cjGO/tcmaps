@@ -15,8 +15,8 @@ export function createReplayLayer(viewer, data, replay) {
   const heatGeometry = new THREE.PlaneGeometry(1, 1), heatMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: .65, side: THREE.DoubleSide, depthWrite: false });
   // Untouched cells are black in the instance buffer and contribute no overlay.
   heatMaterial.onBeforeCompile = shader => { shader.fragmentShader = shader.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\nif (max(diffuseColor.r, max(diffuseColor.g, diffuseColor.b)) < 0.001) discard;'); };
-  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, heatmap: false, trails: false, trailOpacity: .65, deaths: false, squad: '', soldier: '' };
-  const trailMaterial = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .65, depthWrite: false });
+  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, heatmap: false, trails: false, trailOpacity: .25, deaths: false, deathOpacity: .25, squad: '', soldier: '' };
+  const trailMaterial = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .25, depthWrite: false });
   const trailGeometry = new THREE.BufferGeometry(), partialGeometry = new THREE.BufferGeometry();
   const trails = new THREE.LineSegments(trailGeometry, trailMaterial), partial = new THREE.LineSegments(partialGeometry, trailMaterial);
   trails.frustumCulled = partial.frustumCulled = false; group.add(trails, partial);
@@ -62,12 +62,13 @@ export function createReplayLayer(viewer, data, replay) {
     }
   }
   deathGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-  const deathMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, depthWrite: false });
+  const deathMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, transparent: true, opacity: .25, depthWrite: false });
   const deathRows = botDeathMarkers(replay);
   const deaths = new THREE.InstancedMesh(deathGeometry, deathMaterial, deathRows.length);
   deaths.name = 'bot-deaths'; deaths.count = 0; deaths.frustumCulled = false; group.add(deaths);
   let filteredDeaths = [], deathFilterKey, deathHeightScale;
   function updateDeaths() {
+    deathMaterial.opacity = state.deathOpacity;
     deaths.visible = state.deaths;
     if (!state.deaths) return;
     const key = JSON.stringify([state.bots, state.squad, state.soldier]);

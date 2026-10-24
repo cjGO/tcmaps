@@ -98,12 +98,12 @@ test('replay layer reveals cached trail geometry and rewinds heat without future
   const trails = group.children.filter(child => child.isLineSegments);
   assert.equal(trails[0].geometry.drawRange.count, 0);
   assert.ok(trails[1].geometry.drawRange.count > 0);
-  assert.equal(trails[0].material.opacity, .65);
+  assert.equal(trails[0].material.opacity, .25);
   for (const opacity of [0, .25, 1]) {
     layer.update({ trailOpacity: opacity });
     assert.ok(trails.every(trail => trail.material.opacity === opacity));
   }
-  layer.update({ trailOpacity: .65 });
+  layer.update({ trailOpacity: .25 });
   const heat = group.children.find(child => child.geometry?.type === 'PlaneGeometry');
   assert.ok(heat.instanceColor.array.some(value => value > 0));
   layer.update({ t: 60000 });
@@ -156,7 +156,15 @@ test('death marker instances persist, toggle and scrub with filters and height s
   const mesh = group.getObjectByName('bot-deaths'); assert.equal(mesh.count, 0);
   layer.update({ t: 45000 }); assert.equal(mesh.count, 29);
   layer.update({ t: 110000 }); assert.equal(mesh.count, 29);
+  assert.equal(mesh.material.transparent, true);
+  assert.equal(mesh.material.opacity, .25);
   const matrices = mesh.instanceMatrix.version;
+  for (const opacity of [0, .25, 1]) {
+    layer.update({ deathOpacity: opacity });
+    assert.equal(mesh.material.opacity, opacity);
+    assert.equal(mesh.count, 29);
+    assert.equal(mesh.instanceMatrix.version, matrices);
+  }
   layer.update({ deaths: false }); assert.equal(mesh.visible, false);
   layer.update({ deaths: true }); assert.equal(mesh.visible, true); assert.equal(mesh.count, 29);
   assert.equal(mesh.instanceMatrix.version, matrices);

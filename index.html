@@ -109,7 +109,7 @@
       <section class="population-card" aria-label="Server population chart">
         <div class="population-controls">
           <label>Session<select id="population-session"><option value="all">All sessions · real elapsed time</option></select></label>
-          <label>Time range<select id="population-range"><option value="0">All time</option><option value="24">Last 24 hours</option><option value="168">Last 7 days</option><option value="720">Last 30 days</option></select></label>
+          <label class="population-hours">Time range<output id="population-range-value" for="population-range">Past 24 hours</output><input id="population-range" type="range" min="1" max="100" step="1" value="24" aria-label="Past hours" aria-valuetext="Past 24 hours"></label>
           <label>Plot<select id="population-style"><option value="line">Line + points</option><option value="scatter">Points only</option></select></label>
           <label class="population-color-toggle"><input id="population-duration-color" type="checkbox"> Color points by round duration</label>
         </div>
@@ -122,12 +122,12 @@
         <div id="population-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable population plot"><svg id="population-chart" viewBox="0 0 1000 430" role="img" aria-label="Server population versus UTC time"></svg></div>
         <p id="population-empty" hidden>No timestamped population samples available for this selection.</p>
         <p id="population-detail" role="status" aria-live="polite"></p>
-        <p class="population-note">Counts are recorded at round end. Zero-player samples appear on the baseline. Shaded gaps over 30 minutes break the line: they may include empty-server periods, but missing records do not confirm zero players. Sessions separate at these gaps. Time ranges end at the latest sample in the selected session.</p>
+        <p class="population-note">Counts are recorded at round end. Zero-player samples appear on the baseline. Shaded gaps over 30 minutes break the line: they may include empty-server periods, but missing records do not confirm zero players. Sessions separate at these gaps. The time range ends at the latest sample in the selected session.</p>
         <p id="population-coverage" class="population-note"></p>
       </section>
       <section class="population-card duration-card" aria-labelledby="duration-title">
         <h2 id="duration-title">Player count &amp; round duration</h2>
-        <p class="population-note">Each point represents a round. Includes all recorded rounds with valid counts and durations, including those without timestamps. This plot is independent of the time and session filters above. Overlapping points appear darker.</p>
+        <p class="population-note">Each point represents a round. Includes all recorded rounds with valid counts and durations, including those without timestamps. This plot is independent of the time and session filters above. Points have slight horizontal jitter to reveal overlaps; details show the original values. The orange curve is a quadratic regression fitted to all original rounds (equal weight per round).</p>
         <p id="duration-summary" class="population-summary"></p>
         <div id="duration-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable round duration scatterplot"><svg id="duration-chart" viewBox="0 0 1000 430" role="img" aria-label="Player count on the X axis and round duration in minutes on the Y axis"></svg></div>
         <p id="duration-empty" hidden>No rounds with valid player counts and durations available.</p>
