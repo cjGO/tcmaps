@@ -48,7 +48,7 @@ export function parseJournal(input) {
       } else {
         if (!track || track.death !== Infinity) fail('Event outside soldier lifetime');
         if (row.type === 'change') track.changes.push({ t: row.t, ...metadata(row) });
-        else { if (!text(row.reason, 64) || row.position !== 'last_sample') fail('Invalid removal'); track.death = row.t; }
+        else { if (!text(row.reason, 64) || row.position !== 'last_sample') fail('Invalid removal'); track.death = row.t; track.removalReason = row.reason; }
       }
     } else if (row.type === 'sample') {
       if (!Array.isArray(row.p) || row.p.length > 4096 || row.t <= sampleTime) fail('Invalid snapshot');

@@ -114,15 +114,39 @@ For local files, open **Replays → Open round recordings**, choose one or more 
 files, then select a recording. Import is local; nothing uploads. The existing
 viewer opens the embedded matching terrain and retains camera presets, contours,
 exploration, and height exaggeration. Use Play/Pause, speed, timeline, and
-Players/Bots filters. White rings identify player-controlled soldiers; elongated
+Players/Bots filters. Enable **Trails so far** to see cumulative team-colored
+paths, or **Movement heatmap so far** for time spent through the current cursor.
+Both overlays follow playback and backward scrubbing in the selected recording.
+Use **Squad** (team + recorded commander ownership) and **Soldier** (individual
+lifetime ID) to focus the arrows and both overlays. Unassigned soldiers are grouped
+by team. Ownership/control changes apply at their recorded times; paths stop at
+death and never bridge missing snapshots or large gaps. Completed trails remain
+visible after death. Enable **Bot deaths** for persistent team-colored X markers
+that appear at each recorded death time. They use the bot's last observed x/y/z
+position (raised above terrain for visibility), without extrapolation. A marker
+can be displaced from the actual death location, especially after a sampling gap.
+Only explicit `death` removals of bot-controlled soldiers are marked; despawns,
+reused agent IDs, deaths without a position sample, and player-controlled deaths
+are excluded. Markers respect the Bots, Squad and Soldier filters and disappear
+when rewinding before their death time. Toggling them preserves their history.
+Paths interpolate between recorded positions; they do not
+reconstruct exact footsteps. White rings identify player-controlled soldiers; elongated
 arrows identify mounted soldiers. The readout shows elapsed round time, actual
 coverage, incomplete status and synthetic labels. Switching view releases GPU
 resources; Clear recordings releases the imported data.
 
 ## Many-round movement analysis
 
-The Movement heatmap toggle combines loaded recordings of the exact same source
-version and synthetic/real category, respecting player/bot filters. Export heatmap
+The on-screen heatmap shows only the selected recording up to the current
+playback time, respecting player/bot, squad and soldier filters. Heat cells use
+sampled linear intervals at half-cell spacing. A time index per cell supports
+forward and backward scrubbing without rescanning all movement. Trail segments
+are uploaded once and progressively revealed; only the current partial segment
+per soldier changes during playback.
+
+**Export all loaded rounds heatmap JSON** combines entire loaded recordings of
+the exact same source version and synthetic/real category, respecting player/bot
+filters. Squad and individual filters apply to the viewer only. Export heatmap
 JSON retains per-team and mounted/infantry categories. The overlay represents
 time spent in each cell, so larger armies and longer observed rounds contribute
 more soldier-seconds; it is not a count of equally weighted round visits.
