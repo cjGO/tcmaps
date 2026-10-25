@@ -14,7 +14,7 @@ export function setupEditor(selectTab) {
   let current = '', request = 0;
   let visible = false, active3D = null, threeRequest = 0;
   const url = path => new URL(import.meta.env.BASE_URL + path, location.href).href;
-  $('editor-map').replaceChildren(...editorMaps.map(map => new Option(map.filename, map.id)));
+  $('editor-map').replaceChildren(...editorMaps.map(map => new Option(map.map_id + (map.variant_id !== 'source' ? ' · ' + map.variant_id : ''), map.id)));
   $('editor-map').disabled = !editorMaps.length;
 
   function stop3D() {
@@ -61,12 +61,13 @@ export function setupEditor(selectTab) {
       }
       return;
     }
-    $('editor-state').textContent = 'Loading ' + map.filename + '…';
+    $('editor-state').textContent = 'Loading ' + map.map_id + '…';
     try {
       const response = await fetch(url(map.project));
       if (!response.ok) throw new Error('Project could not load');
       const project = await response.json();
       if (token !== request) return;
+      project.display_name = map.map_id;
       projects.set(id, project);
       for (const asset of project.assets) {
         const preview = assetPreviews.assets[asset.name];
@@ -74,7 +75,7 @@ export function setupEditor(selectTab) {
       }
       const frame = document.createElement('iframe');
       frame.className = 'map-editor-frame';
-      frame.title = 'Map editor — ' + map.filename;
+      frame.title = 'Map editor — ' + map.map_id;
       // The existing editor runs intact in its own document, isolating its CSS,
       // IDs and keyboard shortcuts from the map browser. Keep visited frames alive.
       frame.srcdoc = template

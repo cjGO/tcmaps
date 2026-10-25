@@ -254,7 +254,7 @@
       C.validate(documentData(),project);
       const blob=new Blob([JSON.stringify(documentData(),null,2)+'\n'],{type:'application/json'});
       const url=URL.createObjectURL(blob), link=document.createElement('a');
-      link.href=url; link.download=project.source.scene_id+'.placements.json'; link.click();
+      link.href=url; link.download=(project.display_name || project.source.scene_id)+'.placements.json'; link.click();
       setTimeout(()=>URL.revokeObjectURL(url),1000); dirty=false; status('Map loadout downloaded. Build applies map assets, biome, weather and team spawn settings.');
     } catch(error) {status(error.message,true);}
   });
@@ -296,7 +296,7 @@
   });
   window.addEventListener('beforeunload',event=>{if(dirty){event.preventDefault();event.returnValue='';}});
   svg.setAttribute('viewBox',`0 0 ${project.calibration.width_px} ${project.calibration.height_px}`);
-  $('scene-name').textContent=project.source.scene_id;
+  $('scene-name').textContent=project.display_name || project.source.scene_id;
   assetOptions(); render();
   window.MapEditor = Object.freeze({
     getState:state,

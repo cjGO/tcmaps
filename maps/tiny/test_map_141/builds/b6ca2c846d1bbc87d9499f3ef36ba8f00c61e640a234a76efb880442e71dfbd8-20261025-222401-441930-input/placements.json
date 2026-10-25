@@ -1,0 +1,70 @@
+{
+  "default_spawn_points": [
+    {
+      "entry": 0,
+      "forward": [
+        0.6585046052932739,
+        -0.7525767087936401,
+        0.0
+      ],
+      "team": 0,
+      "x_m": 106.80000305175781,
+      "y_m": 520.7999877929688,
+      "z_m": 5.789999961853027
+    },
+    {
+      "entry": 32,
+      "forward": [
+        -0.6585046052932739,
+        0.7525767087936401,
+        0.0
+      ],
+      "team": 1,
+      "x_m": 493.20001220703125,
+      "y_m": 79.19999694824219,
+      "z_m": 13.489999771118164
+    }
+  ],
+  "placements": [
+    {
+      "asset": "spr_rock_bridge_a",
+      "id": "library-smoke-rock",
+      "scale": 1,
+      "x_m": 112.8,
+      "y_m": 524.8,
+      "yaw_deg": 30
+    }
+  ],
+  "settings": {
+    "biome": "plains",
+    "fog": "source",
+    "precipitation": "source",
+    "precipitation_intensity": 10,
+    "thunder": "source",
+    "thunder_frequency": 50
+  },
+  "source": {
+    "recipe_file_sha256": "6b099703006d3172ac0141c5554739176c881c2d99731ff8a56a0bdaad2f2057",
+    "recipe_path": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD\\custom_maps\\random_maps\\maps\\test_map_141\\source\\scn_test_003_plain__01_top_left.txt",
+    "recipe_sha256": "6b099703006d3172ac0141c5554739176c881c2d99731ff8a56a0bdaad2f2057",
+    "scene_id": "scn_test_003_plain__01_top_left",
+    "sco_path": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD\\custom_maps\\random_maps\\maps\\test_map_141\\source\\scn_test_003_plain__01_top_left.sco",
+    "sco_sha256": "f0e953a6047be986a0d5ed270a382bd0c763fe0e404f875ac47d23e767f22e17",
+    "terrain_code": "0x0000000332814a0a000962582f34faa51c7e52943bc0ff92"
+  },
+  "spawn_points": [
+    {
+      "entry": 0,
+      "team": 0,
+      "x_m": 108.8,
+      "y_m": 520.8
+    },
+    {
+      "entry": 32,
+      "team": 1,
+      "x_m": 493.2,
+      "y_m": 79.2
+    }
+  ],
+  "version": 3
+}

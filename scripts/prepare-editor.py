@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def registered_maps(module, source_identity, checksum):
     pools = json.loads((module / 'custom_maps/population_rotation.json').read_text())['pools']
     installed = json.loads((module / 'custom_maps/installed_random_maps.json').read_text())
+    identities = json.loads((module / 'custom_maps/map_identity.json').read_text())['maps']
     scenes = (module / 'scenes.txt').read_text(encoding='ascii').splitlines()
     recipes = {}
     for i, line in enumerate(scenes):
@@ -50,7 +51,10 @@ def registered_maps(module, source_identity, checksum):
                 raise ValueError('Registered terrain code differs: ' + slot)
             image = sco.with_suffix('.png')
             version = source['sco_sha256'][:16] + '-' + source['recipe_sha256'][:16]
-            result.append(dict(id=scene_id, filename=scene_id + '.png', pool=pool,
+            identity = identities[slot]
+            if identity['sco_sha256'] != source['sco_sha256']:
+                raise ValueError('Public identity source mismatch: ' + slot)
+            result.append(dict(id=scene_id, map_id=identity['map_id'], variant_id=identity['variant_id'], variant_revision=identity['variant_revision'], filename=scene_id + '.png', pool=pool,
                                imageSha256=checksum(image), source=source,
                                project=f'map_editor/projects/current_rotation/{scene_id}/{version}'))
     if not result:

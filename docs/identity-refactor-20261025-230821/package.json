@@ -1,0 +1,33 @@
+{
+  "name": "rate-maps",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "prepare:maps": "node scripts/prepare-maps.mjs",
+    "predev": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check && node scripts/check-topology.mjs && node scripts/check-editor-models.mjs",
+    "prebuild": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check && node scripts/check-topology.mjs && node scripts/check-editor-models.mjs",
+    "prepare:editor": "node scripts/prepare-editor.mjs",
+    "test": "node --test map_editor/tests/coordinates.test.js tests/server-stats.test.js tests/map-stats.test.js tests/editor-rotation.test.js tests/terrain-geometry.test.js tests/editor-state.test.js tests/editor-spatial.test.js tests/editor-line.test.js tests/terrain-explorer.test.js tests/tactical-replay.test.js",
+    "check:topology": "node scripts/check-topology.mjs",
+    "check:editor-models": "node scripts/check-editor-models.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "30.1.3",
+    "sharp": "^0.35.4",
+    "vite": "^7.1.0"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "three": "0.186.1"
+  }
+}

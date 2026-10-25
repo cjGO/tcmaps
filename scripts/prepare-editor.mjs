@@ -24,7 +24,7 @@ if (process.argv.includes('--check')) {
   }
   for (const [i, map] of manifest.entries()) {
     const registered = rotation[i];
-    if (map.filename !== registered.filename || map.imageSha256 !== registered.imageSha256 || map.pool !== registered.pool) {
+    if (map.map_id !== registered.map_id || map.variant_id !== registered.variant_id || map.variant_revision !== registered.variant_revision || map.filename !== registered.filename || map.imageSha256 !== registered.imageSha256 || map.pool !== registered.pool) {
       throw new Error(`Published editor registration changed: ${map.id}. Run npm run prepare:editor.`);
     }
     for (const [key, expected] of [['project', map.projectSha256], ['heatmap', map.heatmapSha256]]) {
@@ -37,7 +37,7 @@ if (process.argv.includes('--check')) {
 } else {
   const manifest = [];
   for (const map of rotation) {
-    const { id, filename, pool, imageSha256 } = map;
+    const { id, map_id, variant_id, variant_revision, filename, pool, imageSha256 } = map;
     const projectDir = path.join(root, map.project);
     const projectBytes = await readFile(path.join(projectDir, 'project.json'));
     const project = JSON.parse(projectBytes);
@@ -51,7 +51,7 @@ if (process.argv.includes('--check')) {
     await mkdir(path.join(root, 'public', directory), { recursive: true });
     await copyFile(path.join(projectDir, 'project.json'), path.join(root, 'public', directory, 'project.json'));
     await copyFile(path.join(projectDir, 'heatmap.png'), path.join(root, 'public', directory, 'heatmap.png'));
-    manifest.push({ filename, id, pool, imageSha256, projectSha256, heatmapSha256, project: `${directory}/project.json`, heatmap: `${directory}/heatmap.png` });
+    manifest.push({ filename, id, map_id, variant_id, variant_revision, pool, imageSha256, projectSha256, heatmapSha256, project: `${directory}/project.json`, heatmap: `${directory}/heatmap.png` });
   }
   await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
   console.log(`Published ${manifest.length} registered current-rotation editor projects.`);

@@ -1,0 +1,33 @@
+{
+  "module": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD",
+  "lua_source": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD\\pythonHelpers\\height_probe.lua",
+  "grid_size": 2,
+  "timeout": 180,
+  "logs": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD\\map_editor\\projects\\library_builds\\20261025-223544-333455\\ground_probe",
+  "result": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD\\map_editor\\projects\\library_builds\\20261025-223544-333455\\ground_probe\\results.json",
+  "cancel": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD\\map_editor\\projects\\library_builds\\20261025-223544-333455\\ground_probe\\cancel",
+  "maps": [
+    {
+      "name": "scn_test_003_plain__01_top_left",
+      "sco": "C:\\Program Files (x86)\\Mount&Blade Warband\\Modules\\MOD\\map_editor\\projects\\library_builds\\20261025-223544-333455\\environment_source.sco",
+      "recipe": "scn_test_003_plain__01_top_left test_003_plain__01_top_left 256 none none 0.000000 0.000000 240.000000 240.000000 -0.500000 0x0000000332814a0a000962582f34faa51c7e52943bc0ff92\n  0 \n  0 \n outer_terrain_plain \n",
+      "extra_points": [
+        {
+          "index": 0,
+          "x_fixed": 112800,
+          "y_fixed": 524800
+        },
+        {
+          "index": 1,
+          "x_fixed": 108800,
+          "y_fixed": 520800
+        },
+        {
+          "index": 2,
+          "x_fixed": 493200,
+          "y_fixed": 79200
+        }
+      ]
+    }
+  ]
+}

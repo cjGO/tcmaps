@@ -1,3 +1,5 @@
+import identityRegistry from '../lib/editor-rotation.json';
+import { publicMapId } from './map-identity.js';
 import { setupReplay } from './replay-controls.js';
 import { elevationRamp } from './terrain-palettes.js';
 import manifest from '../lib/rotation-topology.json';
@@ -53,7 +55,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     if (!is3d) {
       if (recordings) { image.hidden = full.hidden = true; state.textContent = 'Select an available replay or open a local recording.'; state.hidden = false; return; }
       state.textContent = 'Loading map…'; state.hidden = false;
-      if (entry) { image.src = entry.image; image.alt = entry.filename + ' elevation heatmap'; full.href = entry.image; }
+      if (entry) { image.src = entry.image; image.alt = (publicMapId(identityRegistry, entry.filename) || 'Archived map') + ' elevation heatmap'; full.href = entry.image; }
       if (image.complete && image.naturalWidth) { image.style.opacity = '1'; state.hidden = true; }
       return;
     }
@@ -71,7 +73,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       applyControls();
       await replay.attach(viewer);
       if (generation !== token) return;
-      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `Custom map ${current.id.split('_').at(-1)} · topology`;
+      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'} · topology`;
       query(info, '#topology-low').textContent = `${data.min_height_m.toFixed(1)} m`;
       query(info, '#topology-high').textContent = `${data.max_height_m.toFixed(1)} m`;
       const b = data.bounds;
@@ -86,7 +88,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
   function setMap(next) {
     entry = next; current = maps.get(next?.filename); panel.hidden = !current;
     if (!current) { destroy(); live.hidden = info.hidden = true; stage.classList.remove('is-topology'); return; }
-    panel.querySelector('.topology-heading strong').textContent = `Custom map ${current.id.split('_').at(-1)} · topology`;
+    panel.querySelector('.topology-heading strong').textContent = `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'} · topology`;
     show(selected);
   }
   function setVisible(value) { visible = value; if (!value) destroy(); else if (current && selected === '3d' && !viewer) show('3d'); }

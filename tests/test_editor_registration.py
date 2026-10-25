@@ -42,6 +42,7 @@ class RegisteredEditorMapsTests(unittest.TestCase):
     def discover(self):
         (self.custom / 'population_rotation.json').write_text(json.dumps(dict(pools=self.pools)))
         (self.custom / 'installed_random_maps.json').write_text(json.dumps(self.installed))
+        (self.custom / 'map_identity.json').write_text(json.dumps(dict(maps={'mp_custom_map_2': dict(map_id='test_map_128', variant_id='source', variant_revision='', sco_sha256=self.installed['mp_custom_map_2']['sha256'])})))
         return registered_maps(self.module, source_identity, checksum)
 
     def test_uses_registered_fixed_maps_and_ignores_unregistered_files(self):
@@ -49,6 +50,7 @@ class RegisteredEditorMapsTests(unittest.TestCase):
         rows = self.discover()
         self.assertEqual([row['id'] for row in rows], ['scn_mp_custom_map_2'])
         self.assertEqual(rows[0]['pool'], 'tiny')
+        self.assertEqual(rows[0]['map_id'], 'test_map_128')
         self.assertIn('/current_rotation/scn_mp_custom_map_2/', rows[0]['project'])
         self.assertEqual(rows[0]['imageSha256'], checksum(self.batch / 'scn_mp_custom_map_2.png'))
 

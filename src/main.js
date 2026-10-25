@@ -1,6 +1,8 @@
 import './style.css';
 import { inject } from '@vercel/analytics';
 import mapNames from '../MAP_NAMES.md?raw';
+import identityRegistry from '../lib/editor-rotation.json';
+import { publicMapId, mapLabel, csvRows } from './map-identity.js';
 
 import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
@@ -24,7 +26,7 @@ const rotationImages = collections.rotation.images;
 const rotationPools = new Map([...mapNames.matchAll(/^\|\s*(tiny|small|medium)\s*\|\s*\d+\s*\|\s*(mp_custom_map_\d+)\s*\|/gm)]
   .map(([, pool, slot]) => [`scn_${slot}.png`, pool]));
 let rotationPool = 'all';
-const [roundStatsHeaders, ...roundStatsRows] = roundStatsCsv.trim().split(/\r?\n/).map(line => line.split(','));
+const [roundStatsHeaders, ...roundStatsRows] = csvRows(roundStatsCsv);
 const roundStatsColumns = ['result', 'duration_seconds', 'player_count'].map(header => ({ header, index: roundStatsHeaders.indexOf(header) }));
 const roundRanges = new Map();
 let rotationRange = [1, 30];
@@ -54,7 +56,7 @@ for (const row of roundStatsRows) {
 function renderRoundStats(name, filename) {
   const el = suffix => $(name + '-' + suffix);
   el('round-stats').hidden = !filename;
-  const mapName = filename?.replace(/^scn_/, '').replace(/\.png$/i, '');
+  const mapName = name === 'rotation' ? publicMapId(identityRegistry, filename) : filename?.replace(/^scn_/, '').replace(/\.png$/i, '');
   const allRows = roundStatsByMap.get(mapName) || [];
   const [min, max] = name === 'rotation' ? rotationRange : roundRanges.get(mapName) || [1, 30];
   el('player-min').value = min;
@@ -69,7 +71,7 @@ function renderRoundStats(name, filename) {
   const { rows } = stats;
   el('game-count').textContent = stats.games;
   el('round-empty').textContent = allRows.length ? 'No rounds match this player count range.' : 'No rounds recorded for this map.';
-  el('round-note').textContent = `Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
+  el('round-note').textContent = `Historical rows with unverified map identities are excluded from map totals. Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
   el('team1-average').textContent = stats.win === null ? '—' : `${stats.win.toFixed(1)}%`;
   const averageSeconds = stats.duration === null ? null : Math.round(stats.duration);
   el('duration-average').textContent = averageSeconds === null ? '—' : `${Math.floor(averageSeconds / 60)}m ${averageSeconds % 60}s`;
@@ -91,7 +93,7 @@ for (const name of ['rotation', 'good']) {
     $(name + '-player-' + end).addEventListener('input', () => {
       const filename = collections[name].images[collections[name].index]?.filename;
       if (!filename) return;
-      const mapName = filename.replace(/^scn_/, '').replace(/\.png$/i, '');
+      const mapName = name === 'rotation' ? publicMapId(identityRegistry, filename) : filename.replace(/^scn_/, '').replace(/\.png$/i, '');
       let min = Number($(name + '-player-min').value);
       let max = Number($(name + '-player-max').value);
       if (end === 'min') min = Math.min(min, max);
@@ -113,7 +115,7 @@ function sortRotation(keepCurrent = false) {
   const filename = collection.images[collection.index]?.filename;
   const images = rotationImages.filter(entry => rotationPool === 'all' || rotationPools.get(entry.filename) === rotationPool);
   const summaries = new Map(images.map(entry => {
-    const mapName = entry.filename.replace(/^scn_/, '').replace(/\.png$/i, '');
+    const mapName = publicMapId(identityRegistry, entry.filename);
     return [entry.filename, summarizeRounds(roundStatsHeaders, roundStatsByMap.get(mapName) || [], ...rotationRange)];
   }));
   collection.images = orderMaps(images, summaries, $('rotation-sort').value, $('rotation-sort-direction').value);
@@ -141,14 +143,14 @@ if (!recordings.length) replayCatalog.textContent = 'No published replays yet. O
 function openRecording(recording) {
   replayOpened = true;
   if (activeTab !== 'replays') selectTab('replays');
-  $('replays-filename').textContent = `${recording.map.replace('scn_mp_custom_map_', 'Custom map ')} · ${recording.id}`;
+  $('replays-filename').textContent = `${(recording.map_id || 'Historical replay · identity unverified')} · ${recording.id}`;
   replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
   replays.openReplay(recording);
 }
 for (const recording of recordings) {
   const button = document.createElement('button');
   button.type = 'button'; button.dataset.id = recording.id; button.setAttribute('aria-pressed', 'false');
-  button.textContent = `${recording.map.replace('scn_mp_custom_map_', 'Custom map ')} · ${new Date(recording.created).toLocaleString()} · ${recording.id}${recording.synthetic ? ' · SYNTHETIC' : ''}`;
+  button.textContent = `${(recording.map_id || 'Historical replay · identity unverified')} · ${new Date(recording.created).toLocaleString()} · ${recording.id}${recording.synthetic ? ' · SYNTHETIC' : ''}`;
   button.addEventListener('click', () => openRecording(recording));
   replayCatalog.append(button);
 }
@@ -182,11 +184,11 @@ function renderCollection(name) {
     el('state').textContent = 'No PNG images are available in this collection.';
     return;
   }
-  el('filename').textContent = entry.filename;
+  el('filename').textContent = mapLabel(name === 'rotation' ? identityRegistry : [], entry.filename);
   el('full-image').href = entry.image;
   el('state').textContent = 'Loading map…';
   el('image').style.opacity = '0';
-  el('image').alt = entry.filename;
+  el('image').alt = mapLabel(name === 'rotation' ? identityRegistry : [], entry.filename);
   el('image').src = entry.image;
   if (name === 'rotation') topology.setMap(entry);
 }

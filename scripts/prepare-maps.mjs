@@ -1,4 +1,4 @@
-import { readdir, mkdir, writeFile } from 'node:fs/promises';
+import { readdir, mkdir, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -16,13 +16,17 @@ try {
 }
 await mkdir('public/maps', { recursive: true });
 const maps = new Map();
+const identities = JSON.parse(await readFile('lib/candidate-identities.json', 'utf8'));
 const files = sourceFiles.filter(f => f.endsWith('.png')).sort();
 if (!files.length && !process.argv.includes('--if-present')) throw new Error(`No PNG maps found in ${source}`);
 async function prepare(file) {
   const match = file.match(/^(scn_test_\d+).*?__(\d+)_(.+)\.png$/);
   if (!match) throw new Error(`Unexpected filename: ${file}`);
-  const [, id, order, spawn] = match;
-  if (!maps.has(id)) maps.set(id, { id, name: `Map ${id.match(/\d+$/)[0]}`, spawns: [] });
+  const [, sourceId, order, spawn] = match;
+  const identity = identities[file];
+  if (!identity || !/^test_map_\d+$/.test(identity.map_id) || identity.sha256 !== createHash('sha256').update(await readFile(path.join(source, file))).digest('hex')) throw new Error(`Unverified catalogue identity for ${file}; run export_rating_identity_index.py.`);
+  const id = identity.map_id;
+  if (!maps.has(id)) maps.set(id, { id, name: id, spawns: [] });
   const filename = `${id}__${spawn}.webp`;
   const buffer = await sharp(path.join(source, file)).resize(1200, 1200, { withoutEnlargement: true }).webp({ quality: 80 }).toBuffer();
   const version = createHash('sha256').update(buffer).digest('hex').slice(0, 16);

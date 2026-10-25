@@ -325,3 +325,27 @@ and [validation results](docs/replay-validation.md). The 320-soldier fixture in
 Keep server recordings and exported bundles outside disposable `dist/`; nothing
 is uploaded automatically. `scripts/export-replay.mjs` prepares bundles and
 `scripts/replay-heatmap.mjs` aggregates many rounds one file at a time.
+
+## Permanent map identities
+
+Player-facing IDs and statistics keys are permanent `test_map_#` values. Engine
+scene IDs remain internal asset keys only. `lib/editor-rotation.json` stores the
+verified `map_id`, `variant_id`, and `variant_revision` next to each resource ID.
+Approval never renames a public ID. Editor downloads use the permanent ID while
+their source checksums still bind them to the exact measured source.
+
+The current collection contains only the 68 active map families. These previews
+are verified saved source measurements; installed biome/weather may differ.
+Older excluded previews and pre-refactor CSVs are preserved in the timestamped
+`docs/identity-refactor-*` backup. Unattributable historical slot-based rows use
+`legacy_mp_custom_map_*` and cannot contribute to a current map's totals.
+
+For new review images, first register their SCO/TXT source in the module catalogue,
+then run the module's `pythonHelpers/export_rating_identity_index.py --website-root
+/home/glect/rate_maps`. Image checksums must identify exactly one public map.
+`npm run prepare:maps` refuses unverified candidates rather than inferring IDs from
+source filenames. Existing uncatalogued review selections/ratings are retained as
+legacy data; do not relabel them by extracting a filename number.
+
+`npm test` includes identity and quoted-CSV tests. `npm run build` checks the editor,
+measured topology, and model registry. Building locally does not publish the site.
