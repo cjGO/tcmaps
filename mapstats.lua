@@ -2,7 +2,8 @@
 local path = 'comms/map_round_stats.csv'
 local legacy_header = 'map_name,round,result,remaining_time,duration_seconds\n'
 local player_header = 'map_name,round,result,remaining_time,duration_seconds,player_count\n'
-local header = 'map_name,round,result,remaining_time,duration_seconds,player_count,timestamp_utc\n'
+local timestamp_header = 'map_name,round,result,remaining_time,duration_seconds,player_count,timestamp_utc\n'
+local header = 'map_name,round,result,remaining_time,duration_seconds,player_count,timestamp_utc,remaining_bots\n'
 local migration
 local totals, loaded, failure = {}, false, nil
 local enabled, round, current = false, 0, nil
@@ -28,20 +29,22 @@ local function load()
       data = data:gsub('\r\n', '\n') -- Accept CSVs saved by Windows text-mode tools.
       local old = data:sub(1, #legacy_header) == legacy_header
       local untimed = data:sub(1, #player_header) == player_header
-      local active_header = old and legacy_header or untimed and player_header or header
+      local uncounted = data:sub(1, #timestamp_header) == timestamp_header
+      local active_header = old and legacy_header or untimed and player_header or uncounted and timestamp_header or header
       assert(data:sub(1, #active_header) == active_header, 'unexpected CSV header')
       local converted = {header}
       assert(data:sub(-1) == '\n', 'incomplete CSV row; repair before continuing')
       for row in data:sub(#active_header+1):gmatch('([^\n]+)\n') do
          if old then row = row .. ',' end
          if old or untimed then row = row .. ',' end
-         local name, n, result, remaining, duration, players, timestamp = row:match('^([%w_%-]+),(%d+),([%w]+),(%d+),(%d+),(%d*),([^,]*)$')
+         if old or untimed or uncounted then row = row .. ',0' end
+         local name, n, result, remaining, duration, players, timestamp, bots = row:match('^([%w_%-]+),(%d+),([%w]+),(%d+),(%d+),(%d*),([^,]*),(%d+)$')
          assert(name and tonumber(n) > 0 and (result == 'team1' or result == 'team2' or result == 'draw'), 'invalid CSV row')
          assert(timestamp == '' or timestamp:match('^%d%d%d%d%-%d%d%-%d%dT%d%d:%d%d:%d%dZ$'), 'invalid CSV timestamp')
          add(name, result, tonumber(duration), tonumber(players))
          converted[#converted+1] = row .. '\n'
       end
-      if old or untimed then migration = table.concat(converted) end
+      if old or untimed or uncounted then migration = table.concat(converted) end
    end
    loaded = true
 end
@@ -49,7 +52,7 @@ end
 -- Upgrade only when saving a new round; retain the original history as a backup.
 local function migrate()
    if not migration then return end
-   local backup = path .. '.before-timestamp.bak'
+   local backup = path .. '.before-remaining-bots.bak'
    local existing, err, code = io.open(backup, 'rb')
    if existing then existing:close(); error('migration backup already exists: ' .. backup) end
    assert(code == 2, err)
@@ -73,6 +76,29 @@ local function player_count()
    local first = game.multiplayer_is_dedicated_server() and 1 or 0
    for player = first, maximum - 1 do
       if game.player_is_active(player) then count = count + 1 end
+   end
+   return count
+end
+
+local function remaining_bots(winner)
+   -- Materialize the iterator before native getters can affect its state.
+   local agents = {}
+   local next_agent = game.agentsIt()
+   while true do
+      local agent = next_agent()
+      if agent == nil then break end
+      agents[#agents+1] = agent
+   end
+   local count = 0
+   for _, agent in ipairs(agents) do
+      if game.agent_is_active(agent) and game.agent_is_human(agent) and
+         game.agent_is_alive(agent) and game.agent_is_non_player(agent) then
+         local team, status = game.agent_get_team(0, agent)
+         assert(status == 0, 'agent team unavailable')
+         if (team == 0 or team == 1) and (winner == -1 or team == winner) then
+            count = count + 1
+         end
+      end
    end
    return count
 end
@@ -129,11 +155,12 @@ function comms_mapstats_event(event, a, b, c, d, e)
          local remaining = math.max(0, math.floor(d - duration))
          local result = a == -1 and 'draw' or a == 0 and 'team1' or 'team2'
          local players = player_count()
+         local bots = remaining_bots(a)
          local timestamp = os.date('!%Y-%m-%dT%H:%M:%SZ')
          migrate()
          local file = assert(io.open(path, 'a+b'))
          local size = assert(file:seek('end'))
-         local row = string.format('%s,%d,%s,%d,%d,%d,%s\n', finished.name, finished.number, result, remaining, duration, players, timestamp)
+         local row = string.format('%s,%d,%s,%d,%d,%d,%s,%d\n', finished.name, finished.number, result, remaining, duration, players, timestamp, bots)
          local written, err = file:write((size == 0 and header or '') .. row)
          local closed, close_err = file:close()
          assert(written, err); assert(closed, close_err)
