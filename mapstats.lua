@@ -3,7 +3,8 @@ local path = 'comms/map_round_stats.csv'
 local legacy_header = 'map_name,round,result,remaining_time,duration_seconds\n'
 local player_header = 'map_name,round,result,remaining_time,duration_seconds,player_count\n'
 local timestamp_header = 'map_name,round,result,remaining_time,duration_seconds,player_count,timestamp_utc\n'
-local header = 'map_name,round,result,remaining_time,duration_seconds,player_count,timestamp_utc,remaining_bots\n'
+local previous_header = 'map_name,round,result,remaining_time,duration_seconds,player_count,timestamp_utc,remaining_bots\n'
+local header = 'map_name,round,result,remaining_time,duration_seconds,player_count,timestamp_utc,remaining_bots,variant_id,variant_revision\n'
 local migration
 local totals, loaded, failure = {}, false, nil
 local enabled, round, current = false, 0, nil
@@ -30,7 +31,8 @@ local function load()
       local old = data:sub(1, #legacy_header) == legacy_header
       local untimed = data:sub(1, #player_header) == player_header
       local uncounted = data:sub(1, #timestamp_header) == timestamp_header
-      local active_header = old and legacy_header or untimed and player_header or uncounted and timestamp_header or header
+      local unversioned = data:sub(1, #previous_header) == previous_header
+      local active_header = old and legacy_header or untimed and player_header or uncounted and timestamp_header or unversioned and previous_header or header
       assert(data:sub(1, #active_header) == active_header, 'unexpected CSV header')
       local converted = {header}
       assert(data:sub(-1) == '\n', 'incomplete CSV row; repair before continuing')
@@ -38,13 +40,17 @@ local function load()
          if old then row = row .. ',' end
          if old or untimed then row = row .. ',' end
          if old or untimed or uncounted then row = row .. ',0' end
-         local name, n, result, remaining, duration, players, timestamp, bots = row:match('^([%w_%-]+),(%d+),([%w]+),(%d+),(%d+),(%d*),([^,]*),(%d+)$')
+         if old or untimed or uncounted or unversioned then row = row .. ',source,' end
+         local fields = map_feedback_csv_fields(row)
+         assert(#fields == 10, 'invalid CSV columns')
+         local name, n, result, remaining, duration, players, timestamp, bots = unpack(fields)
+         assert(name:match('^[%w_%-]+$') and n:match('^%d+$') and remaining:match('^%d+$') and duration:match('^%d+$') and players:match('^%d*$') and bots:match('^%d+$'), 'invalid CSV row')
          assert(name and tonumber(n) > 0 and (result == 'team1' or result == 'team2' or result == 'draw'), 'invalid CSV row')
          assert(timestamp == '' or timestamp:match('^%d%d%d%d%-%d%d%-%d%dT%d%d:%d%d:%d%dZ$'), 'invalid CSV timestamp')
          add(name, result, tonumber(duration), tonumber(players))
          converted[#converted+1] = row .. '\n'
       end
-      if old or untimed or uncounted then migration = table.concat(converted) end
+      if old or untimed or uncounted or unversioned then migration = table.concat(converted) end
    end
    loaded = true
 end
@@ -52,7 +58,7 @@ end
 -- Upgrade only when saving a new round; retain the original history as a backup.
 local function migrate()
    if not migration then return end
-   local backup = path .. '.before-remaining-bots.bak'
+   local backup = path .. '.before-map-identity.bak'
    local existing, err, code = io.open(backup, 'rb')
    if existing then existing:close(); error('migration backup already exists: ' .. backup) end
    assert(code == 2, err)
@@ -140,7 +146,10 @@ function comms_mapstats_event(event, a, b, c, d, e)
    elseif event == 'statistics_spawn' and enabled and not current and b == 0 and c == 0 and d == 0 then
       guarded(function()
          round = round + 1
-         current = {name=map_name(), number=round}
+         local scene, status = game.store_current_scene(0)
+         assert(status == 0, 'current scene unavailable')
+         local identity = map_feedback_map_identity(scene)
+         current = {name=map_name(), number=round, variant=identity.variant_id, revision=identity.variant_revision or ''}
       end)
    elseif event == 'statistics_round_end' and enabled and current then
       local finished = current
@@ -160,7 +169,7 @@ function comms_mapstats_event(event, a, b, c, d, e)
          migrate()
          local file = assert(io.open(path, 'a+b'))
          local size = assert(file:seek('end'))
-         local row = string.format('%s,%d,%s,%d,%d,%d,%s,%d\n', finished.name, finished.number, result, remaining, duration, players, timestamp, bots)
+         local row = string.format('%s,%d,%s,%d,%d,%d,%s,%d,%s,%s\n', finished.name, finished.number, result, remaining, duration, players, timestamp, bots, map_feedback_csv_field(finished.variant), finished.revision)
          local written, err = file:write((size == 0 and header or '') .. row)
          local closed, close_err = file:close()
          assert(written, err); assert(closed, close_err)
