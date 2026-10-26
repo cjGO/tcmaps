@@ -21,7 +21,8 @@ export function summarizeRounds(headers, allRows, min, max) {
 export function orderMaps(images, statsByFilename, metric, direction) {
   const sign = direction === 'desc' ? -1 : 1;
   return [...images].sort((a, b) => {
-    const byNumber = a.filename.localeCompare(b.filename, undefined, { numeric: true });
+    const byNumber = (a.map_id || a.filename).localeCompare(b.map_id || b.filename, undefined, { numeric: true })
+      || a.filename.localeCompare(b.filename, undefined, { numeric: true });
     if (metric === 'number') return sign * byNumber;
     const left = statsByFilename.get(a.filename)?.[metric] ?? null;
     const right = statsByFilename.get(b.filename)?.[metric] ?? null;

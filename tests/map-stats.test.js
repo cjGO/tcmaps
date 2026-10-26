@@ -2,6 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { summarizeRounds, orderMaps } from '../src/map-stats.js';
 
+test('rotation numbers follow permanent map IDs instead of engine slots', () => {
+  const images = [
+    { filename: 'scn_mp_custom_map_1.png', map_id: 'test_map_100' },
+    { filename: 'scn_mp_custom_map_2.png', map_id: 'test_map_20' },
+    { filename: 'scn_mp_custom_map_3.png', map_id: 'test_map_3' },
+  ];
+  for (const metric of ['number', 'games']) {
+    assert.deepEqual(orderMaps(images, new Map(), metric, 'asc').map(entry => entry.map_id),
+      ['test_map_3', 'test_map_20', 'test_map_100']);
+  }
+  assert.deepEqual(orderMaps(images, new Map(), 'number', 'desc').map(entry => entry.map_id),
+    ['test_map_100', 'test_map_20', 'test_map_3']);
+});
+
 test('summaries filter inclusive player counts and omit invalid durations', () => {
   const headers = ['player_count', 'result', 'duration_seconds'];
   const rows = [['1', 'team1', '30'], ['5', 'team1', '60'], ['10', 'team2', '120'], ['10', 'draw', ''], ['11', 'team1', '900'], ['', 'team1', '10'], ['5.5', 'team1', '10']];

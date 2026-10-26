@@ -22,7 +22,9 @@ const collections = {
   good: { images: imageEntries(import.meta.glob('../goodmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
   bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
 };
-const rotationImages = collections.rotation.images;
+const rotationImages = collections.rotation.images.map(entry => ({
+  ...entry, map_id: publicMapId(identityRegistry, entry.filename),
+}));
 const rotationPools = new Map([...mapNames.matchAll(/^\|\s*(tiny|small|medium)\s*\|\s*\d+\s*\|\s*(mp_custom_map_\d+)\s*\|/gm)]
   .map(([, pool, slot]) => [`scn_${slot}.png`, pool]));
 let rotationPool = 'all';
@@ -360,4 +362,5 @@ document.addEventListener('keydown', event => {
 render(); message(maps.length ? 'Keep the setups you like, then copy your list to share.' : 'No maps are available for review.');
 
 Object.keys(collections).forEach(renderCollection);
+sortRotation();
 selectTab('rotation');
