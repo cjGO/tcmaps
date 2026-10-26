@@ -2,8 +2,9 @@
 
 The server writes UTF-8 JSON Lines (`.jsonl`), one complete record per newline.
 Schema identifier: `warband-tactical-replay`, version `1`. Read records in file
-order. IDs and strings are data, never executable code or HTML. There are no
-usernames, account identifiers, IP addresses, equipment inventories or projectiles.
+order. IDs and strings are data, never executable code or HTML. Optional player
+display names may be recorded; account identifiers, IP addresses, equipment
+inventories and projectiles are not included.
 
 ## Time and coordinates
 
@@ -82,6 +83,14 @@ connection physically controlling the soldier. Both are recording-local integers
 or `false` (unknown/no active player). Disconnect/reconnect gets a fresh local
 connection identity. `troop` is the module troop ID; `class` is troop slot 10
 (`slot_troop_class`). Team 0/1 correspond to displayed Team 1/2.
+
+Optional `player_name` contains the controlling player's display name (1–256
+characters), or `false` when unavailable. Optional `unit_category` is `infantry`,
+`artillery`, or `cavalry`. Both fields also apply to `change` records. Older
+journals remain supported: labels fall back to `Player #<controller>` (or soldier
+ID when no controller is known). Categories fall back to troop class: 14–19 are
+cavalry and 20–21 are artillery; otherwise mounted soldiers use cavalry markers
+and other soldiers use infantry markers. Explicit categories take precedence.
 
 `change` carries the same metadata fields and `id,t`, without `origin`. It updates
 the existing lifetime. Native group/control hooks run **after** mutation, so bot

@@ -1,21 +1,52 @@
 import * as THREE from 'three';
 import { displayedHeight } from './terrain-geometry.js';
 import { groundHeight } from './editor-spatial.js';
-import { soldierAt, upperIndex } from './tactical-replay.js';
+import { soldierAt, upperIndex, unitCategory, playerLabel } from './tactical-replay.js';
 import { createMovementHistory, matchesHistory, botDeathMarkers } from './replay-history.js';
 
 export function createReplayLayer(viewer, data, replay) {
   const group = new THREE.Group(), capacity = replay.tracks.size, dummy = new THREE.Object3D();
-  const geometry = new THREE.ConeGeometry(1.7, 4.5, 3); // local +Y points forward
   const material = new THREE.MeshBasicMaterial({ color: 'white' });
-  const soldiers = new THREE.InstancedMesh(geometry, material, capacity);
+  const geometries = {
+    infantry: new THREE.BoxGeometry(3.4, 3.4, 1),
+    artillery: new THREE.CylinderGeometry(2, 2, 1, 24).rotateX(-Math.PI / 2),
+    cavalry: new THREE.CylinderGeometry(2.7, 2.7, 1, 3).rotateX(-Math.PI / 2),
+  };
+  const units = Object.fromEntries(Object.entries(geometries).map(([kind, geometry]) => {
+    const mesh = new THREE.InstancedMesh(geometry, material, capacity);
+    mesh.name = `replay-${kind}`; return [kind, mesh];
+  }));
   const ringsGeometry = new THREE.RingGeometry(2.5, 3.3, 12), ringsMaterial = new THREE.MeshBasicMaterial({ color: '#ffffff', side: THREE.DoubleSide });
   const humans = new THREE.InstancedMesh(ringsGeometry, ringsMaterial, capacity);
-  for (const mesh of [soldiers, humans]) { mesh.frustumCulled = false; mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); group.add(mesh); }
+  for (const mesh of [...Object.values(units), humans]) { mesh.frustumCulled = false; mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); group.add(mesh); }
+  const labels = new Map(), viewPoint = new THREE.Vector3();
+  function disposeLabel(label) { label.material.map.dispose(); label.material.dispose(); label.removeFromParent(); }
+  function updateLabel(p) {
+    const name = playerLabel(p);
+    let label = labels.get(p.id);
+    if (label && label.userData.text !== name) { disposeLabel(label); labels.delete(p.id); label = null; }
+    if (!label) {
+      const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
+      ctx.font = '600 28px sans-serif';
+      canvas.width = Math.min(600, Math.ceil(ctx.measureText(name).width) + 24); canvas.height = 44;
+      ctx.fillStyle = '#14212ee6'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '600 28px sans-serif'; ctx.fillStyle = '#ffffff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(name, canvas.width / 2, canvas.height / 2, canvas.width - 24);
+      label = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvas), depthTest: false, depthWrite: false, toneMapped: false, fog: false }));
+      label.name = `replay-player-${p.id}`; label.userData.text = name; label.center.set(.5, 0); label.renderOrder = 15;
+      label.onBeforeRender = (renderer, scene, camera) => {
+        viewPoint.copy(label.position).applyMatrix4(camera.matrixWorldInverse);
+        const perPixel = 2 * (camera.isPerspectiveCamera ? Math.max(.1, -viewPoint.z) : 1) / (camera.projectionMatrix.elements[5] * Math.max(1, viewer.canvas.clientHeight));
+        label.scale.set(canvas.width / 2 * perPixel, 22 * perPixel, 1); label.updateMatrixWorld();
+      };
+      labels.set(p.id, label); group.add(label);
+    }
+    label.position.copy(dummy.position); label.position.z += 3; label.visible = true;
+  }
   const heatGeometry = new THREE.PlaneGeometry(1, 1), heatMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: .65, side: THREE.DoubleSide, depthWrite: false });
   // Untouched cells are black in the instance buffer and contribute no overlay.
   heatMaterial.onBeforeCompile = shader => { shader.fragmentShader = shader.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\nif (max(diffuseColor.r, max(diffuseColor.g, diffuseColor.b)) < 0.001) discard;'); };
-  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, heatmap: false, trails: false, trailOpacity: .25, deaths: true, deathOpacity: .25, squad: '', soldier: '' };
+  let heat, history, filterKey, heightScale, state = { t: replay.first, players: true, bots: true, playerNames: false, heatmap: false, trails: false, trailOpacity: .25, deaths: true, deathOpacity: .25, squad: '', soldier: '' };
   const trailMaterial = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .25, depthWrite: false });
   const trailGeometry = new THREE.BufferGeometry(), partialGeometry = new THREE.BufferGeometry();
   const trails = new THREE.LineSegments(trailGeometry, trailMaterial), partial = new THREE.LineSegments(partialGeometry, trailMaterial);
@@ -91,17 +122,25 @@ export function createReplayLayer(viewer, data, replay) {
   viewer.addLayer(group);
   function update(next = {}) {
     Object.assign(state, next); let count = 0, people = 0;
+    const counts = { infantry: 0, artillery: 0, cavalry: 0 };
+    for (const label of labels.values()) label.visible = false;
     for (const track of replay.tracks.values()) {
       const p = soldierAt(track, state.t, replay);
       if (!p || String(track.id) === state.followSoldier || !matchesHistory(p, track.id, state)) continue;
       dummy.position.set(p.x, p.y, displayedHeight(p.z, data.min_height_m, viewer.heightScale) + 2);
-      dummy.rotation.set(0, 0, -p.facing * Math.PI / 180); dummy.scale.set(p.mounted ? 1.4 : 1, p.mounted ? 2.4 : 1, 1); dummy.updateMatrix();
-      soldiers.setMatrixAt(count, dummy.matrix); soldiers.setColorAt(count++, colors[p.team] || neutral);
-      if (p.kind === 'player') { dummy.rotation.set(0, 0, 0); dummy.scale.setScalar(1); dummy.position.z += 1; dummy.updateMatrix(); humans.setMatrixAt(people++, dummy.matrix); }
+      dummy.rotation.set(0, 0, -p.facing * Math.PI / 180); dummy.scale.setScalar(1); dummy.updateMatrix();
+      const kind = unitCategory(p), mesh = units[kind], index = counts[kind]++;
+      mesh.setMatrixAt(index, dummy.matrix); mesh.setColorAt(index, colors[p.team] || neutral); count++;
+      if (p.kind === 'player') {
+        dummy.rotation.set(0, 0, 0); dummy.position.z += 1; dummy.updateMatrix(); humans.setMatrixAt(people++, dummy.matrix);
+        if (state.playerNames) updateLabel(p);
+      }
     }
-    soldiers.count = count; humans.count = people;
-    soldiers.instanceMatrix.needsUpdate = humans.instanceMatrix.needsUpdate = true;
-    if (soldiers.instanceColor) soldiers.instanceColor.needsUpdate = true;
+    humans.count = people; humans.instanceMatrix.needsUpdate = true;
+    for (const [kind, mesh] of Object.entries(units)) {
+      mesh.count = counts[kind]; mesh.instanceMatrix.needsUpdate = true;
+      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    }
     trailMaterial.opacity = state.trailOpacity;
     trails.visible = partial.visible = state.trails;
     if (state.heatmap || state.trails) {
@@ -121,5 +160,5 @@ export function createReplayLayer(viewer, data, replay) {
     viewer.draw(false); return count;
   }
   const unsubscribe = viewer.onHeightChange(() => update());
-  return { update, dispose() { unsubscribe(); group.removeFromParent(); soldiers.dispose(); humans.dispose(); deaths.dispose(); heat?.dispose(); for (const r of [geometry, material, ringsGeometry, ringsMaterial, heatGeometry, heatMaterial, trailGeometry, partialGeometry, trailMaterial, deathGeometry, deathMaterial]) r.dispose(); } };
+  return { update, dispose() { unsubscribe(); group.removeFromParent(); for (const mesh of Object.values(units)) mesh.dispose(); for (const label of labels.values()) disposeLabel(label); labels.clear(); humans.dispose(); deaths.dispose(); heat?.dispose(); for (const r of [...Object.values(geometries), material, ringsGeometry, ringsMaterial, heatGeometry, heatMaterial, trailGeometry, partialGeometry, trailMaterial, deathGeometry, deathMaterial]) r.dispose(); } };
 }

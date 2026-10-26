@@ -11,6 +11,12 @@ with sync_playwright() as p:
     browser=p.chromium.launch(headless=True,args=['--use-gl=angle','--use-angle=swiftshader'],
         **({'executable_path':os.environ['PLAYWRIGHT_CHROMIUM_EXECUTABLE']} if os.environ.get('PLAYWRIGHT_CHROMIUM_EXECUTABLE') else {}))
     page=browser.new_page(viewport={'width':1440,'height':1200},device_scale_factor=1)
+    page.add_init_script('''window.replayLabelText = [];
+      const fillText = CanvasRenderingContext2D.prototype.fillText;
+      CanvasRenderingContext2D.prototype.fillText = function(text, ...args) {
+        if (String(text).startsWith('Player #') || text === '<Recorded player>') window.replayLabelText.push(text);
+        return fillText.call(this, text, ...args);
+      };''')
     errors=[]
     page.route('**/_vercel/insights/script.js',lambda r:r.fulfill(status=200,body=''))
     page.on('pageerror',lambda e:errors.append(str(e)))
@@ -43,6 +49,8 @@ with sync_playwright() as p:
     team2=strength.get_by_label('Team 2 bots alive',exact=True)
     expect(team1).to_have_text('152'); expect(team2).to_have_text('160')
     page.locator('#replays-topology-camera').select_option('overhead')
+    page.locator('[data-replay=player-names]').check()
+    assert page.evaluate('window.replayLabelText.includes("Player #1")')
     canvas=page.locator('#replays-panel .topology-live canvas.terrain-3d-surface')
     def shot(name):
         canvas.evaluate('(e)=>e.scrollIntoView({block:"center"})')
@@ -121,6 +129,20 @@ with sync_playwright() as p:
     page.locator('#rotation-tab').click(); expect(canvas).to_have_count(0)
     page.locator('#replays-tab').click(); expect(page.locator('[data-replay=time]')).to_contain_text('visible')
     page.locator('[data-replay=clear]').click(); expect(page.locator('[data-replay=transport]')).to_be_hidden()
+    named=json.loads(Path('tests/fixtures/SYNTHETIC-tactical-demo.replay.json').read_text())
+    rows=[json.loads(line) for line in named['journal'].splitlines()]
+    rows[0]['id'] += '-named'
+    for row in rows:
+        if row['type']=='entity' and row['id']==40:
+            row['player_name']='<Recorded player>'; row['unit_category']='artillery'
+    named['journal']=''.join(json.dumps(row)+'\n' for row in rows)
+    page.locator('[data-replay=files]').set_input_files({'name':'named.replay.json','mimeType':'application/json','buffer':json.dumps(named).encode()})
+    expect(page.locator('[data-replay=time]')).to_contain_text('320 visible',timeout=20000)
+    assert page.evaluate('window.replayLabelText.includes("<Recorded player>")')
+    page.locator('[data-replay=player-names]').uncheck()
+    page.locator('[data-replay=player-names]').check()
+    shot('player-names-and-artillery.png')
+    page.locator('[data-replay=clear]').click()
     bad=json.loads(Path('tests/fixtures/SYNTHETIC-tactical-demo.replay.json').read_text()); bad['terrain_sha256']='0'*64
     page.locator('[data-replay=files]').set_input_files({'name':'bad.replay.json','mimeType':'application/json','buffer':json.dumps(bad).encode()})
     expect(page.locator('[data-replay=status]')).to_contain_text('checksum mismatch')

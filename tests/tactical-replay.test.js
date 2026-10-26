@@ -1,10 +1,69 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { parseJournal, soldierAt, soldierViewAt, facingBetween, movementHeatmap, matchTerrain, parseBundle } from '../src/tactical-replay.js';
+import { parseJournal, soldierAt, soldierViewAt, facingBetween, movementHeatmap, matchTerrain, parseBundle, unitCategory, playerLabel } from '../src/tactical-replay.js';
 
 const journal = () => fs.readFileSync(new URL('./fixtures/SYNTHETIC-tactical-demo.jsonl', import.meta.url), 'utf8');
 const replay = () => parseJournal(journal());
+test('optional recorded names and categories validate and follow metadata changes', () => {
+  const rows = journal().trim().split('\n').map(JSON.parse);
+  Object.assign(rows.find(row => row.type === 'entity' && row.id === 1), { player_name: 'First name', unit_category: 'artillery' });
+  Object.assign(rows.find(row => row.type === 'change' && row.id === 1), { player_name: '<New name>', unit_category: 'cavalry' });
+  const encode = () => rows.map(JSON.stringify).join('\n') + '\n';
+  const r = parseJournal(encode());
+  assert.equal(soldierAt(r.tracks.get(1), 20000, r).unit_category, 'artillery');
+  assert.equal(playerLabel(soldierAt(r.tracks.get(1), 30000, r)), '<New name>');
+  assert.equal(playerLabel({ id: 9, controller: 3 }), 'Player #3');
+  assert.equal(playerLabel({ id: 9, controller: false }), 'Player #9');
+  rows[1].player_name = 123;
+  assert.throws(() => parseJournal(encode()), /player name/);
+  rows[1].player_name = false; rows[1].unit_category = 'invalid';
+  assert.throws(() => parseJournal(encode()), /unit category/);
+  for (const cls of [14, 15, 16, 17, 18, 19]) assert.equal(unitCategory({ class: cls, mounted: false }), 'cavalry');
+  for (const cls of [20, 21]) assert.equal(unitCategory({ class: cls, mounted: true }), 'artillery');
+  assert.equal(unitCategory({ class: 0 }), 'infantry');
+  assert.equal(unitCategory({ class: 4, mounted: true }), 'cavalry');
+  assert.equal(unitCategory({ class: 14, unit_category: 'infantry' }), 'infantry');
+});
+
+test('unit shapes and player labels follow playback, visibility filters and disposal', async () => {
+  const { createReplayLayer } = await import('../src/replay-layer.js');
+  const { replay: r, data } = await parseBundle(fs.readFileSync(new URL('./fixtures/SYNTHETIC-tactical-demo.replay.json', import.meta.url), 'utf8'));
+  Object.assign(r.tracks.get(40).changes[0], { player_name: '<Player forty>', unit_category: 'artillery' });
+  Object.assign(r.tracks.get(250).changes[0], { class: 14 });
+  const originalDocument = globalThis.document;
+  // Exercise text drawing without a native canvas dependency in Node.
+  const drawn = [];
+  globalThis.document = { createElement() { return { getContext() { return {
+    measureText: text => ({ width: text.length * 14 }), fillRect() {}, fillText(text) { drawn.push(text); }
+  }; } }; } };
+  let group, onHeight;
+  const viewer = { heightScale: 1, addLayer(value) { group = value; }, draw() {}, onHeightChange(fn) { onHeight = fn; return () => {}; } };
+  const layer = createReplayLayer(viewer, data, r);
+  try {
+    assert.equal(layer.update({ t: 20000 }), 320);
+    assert.equal(group.children.filter(child => child.isSprite).length, 0);
+    assert.equal(group.getObjectByName('replay-artillery').count, 1);
+    assert.equal(group.getObjectByName('replay-cavalry').count, 71);
+    assert.equal(group.getObjectByName('replay-infantry').count, 248);
+    layer.update({ playerNames: true });
+    const label = group.getObjectByName('replay-player-40');
+    assert.equal(label.userData.text, '<Player forty>'); assert.ok(drawn.includes('<Player forty>'));
+    assert.equal(group.children.filter(child => child.isSprite && child.visible).length, 8);
+    const firstZ = label.position.z;
+    viewer.heightScale = 4; onHeight(); assert.notEqual(label.position.z, firstZ);
+    layer.update({ t: 30000 }); assert.equal(group.getObjectByName('replay-player-1').visible, true);
+    layer.update({ t: 20000 }); assert.equal(group.getObjectByName('replay-player-1').visible, false);
+    layer.update({ players: false }); assert.equal(label.visible, false);
+    layer.update({ players: true, soldier: '1' }); assert.equal(label.visible, false);
+    layer.update({ soldier: '', followSoldier: '40' }); assert.equal(label.visible, false);
+    layer.update({ followSoldier: '', playerNames: false }); assert.equal(label.visible, false);
+    layer.update({ playerNames: true, t: 90000 }); assert.equal(label.visible, false);
+    layer.update({ t: 45000 }); assert.equal(group.getObjectByName('replay-cavalry').count, 71); // dismounted cavalry keeps its role
+    let disposed = false; label.material.map.addEventListener('dispose', () => { disposed = true; });
+    layer.dispose(); assert.equal(disposed, true); assert.equal(group.children.some(child => child.isSprite), false);
+  } finally { globalThis.document = originalDocument; }
+});
 test('soldier camera follows interpolation, holds on death and gaps, and seeks without future poses', () => {
   const r = replay(), track = r.tracks.get(2);
   const moving = soldierViewAt(track, 22500, r);

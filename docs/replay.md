@@ -63,7 +63,8 @@ does not automatically start again on the next round.
 Output: `lua/replays/<UTC>-<mission>-<round>-<sequence>.jsonl`. File collisions
 are skipped, never overwritten. Keep this directory in durable server backups,
 outside website `dist/`. One server process should own its recording directory.
-No player account IDs or names are collected; connections are local pseudonyms.
+Connections use local IDs rather than account IDs. Newer recorder versions can
+include player display names; older recordings have only local IDs.
 
 Default hard ceilings, adjustable **downward** in `lua/replay_config.lua` before
 restart: 3,600,000 ms duration (one hour), 4,096 distinct soldier lifetimes,
@@ -138,8 +139,12 @@ reused agent IDs, deaths without a position sample, and player-controlled deaths
 are excluded. Markers respect the Bots, Squad and Soldier filters and disappear
 when rewinding before their death time. Toggling them preserves their history.
 Paths interpolate between recorded positions; they do not
-reconstruct exact footsteps. White rings identify player-controlled soldiers; elongated
-arrows identify mounted soldiers. The readout shows elapsed round time, actual
+reconstruct exact footsteps. Squares identify infantry, circles identify artillery,
+and triangles identify cavalry, including dismounted cavalry when its class or
+category is recorded. White rings identify player-controlled soldiers. Enable
+**Player names** to show labels above visible player units in the 3D view; older
+recordings without names show player IDs. Labels follow the timeline and filters.
+The readout shows elapsed round time, actual
 coverage, incomplete status and synthetic labels. Switching view releases GPU
 resources; Clear recordings releases the imported data.
 

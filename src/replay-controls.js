@@ -7,13 +7,47 @@ export function setupReplay(panel, refresh) {
   const root = document.createElement('section'); root.className = 'replay-controls';
   root.setAttribute('aria-label', 'Tactical replay');
   root.innerHTML = `<div class="replay-toolbar"><label>Open round recordings <input type="file" accept=".json" multiple data-replay="files"></label><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
-    <div data-replay="transport" hidden><div class="replay-toolbar"><button data-replay="play">Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · White ring: player-controlled · Long arrow: mounted. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open exported .replay.json files locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
+    <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open exported .replay.json files locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
   panel.append(root);
   const el = name => root.querySelector(`[data-replay="${name}"]`);
+  // Keep the control hooks together while giving each task a clear visual group.
+  const transport = el('transport');
+  const group = (title, keys) => {
+    const fieldset = document.createElement('fieldset');
+    fieldset.className = 'replay-group';
+    const legend = document.createElement('legend'); legend.textContent = title;
+    fieldset.append(legend);
+    for (const key of keys) fieldset.append(el(key).closest('label'));
+    return fieldset;
+  };
+  const playback = document.createElement('div'); playback.className = 'replay-playback';
+  playback.append(el('play'), el('speed').closest('label'));
+  const scrubber = document.createElement('div'); scrubber.className = 'replay-scrubber';
+  const timelineLabel = document.createElement('label'); timelineLabel.textContent = 'Round timeline';
+  timelineLabel.append(el('timeline'));
+  scrubber.append(timelineLabel, el('time')); playback.append(scrubber);
+  const groups = document.createElement('div'); groups.className = 'replay-option-grid';
+  const display = group('Map display', ['players', 'bots', 'player-names', 'heat']);
+  for (const [toggle, slider] of [['trails', 'trail-transparency'], ['deaths', 'death-transparency']]) {
+    const row = document.createElement('div'); row.className = 'replay-overlay';
+    row.append(el(toggle).closest('label'), el(slider).closest('label')); display.append(row);
+  }
+  const filters = group('Soldier filters & camera', ['squad', 'soldier', 'follow']);
+  filters.append(el('follow-status'));
+  groups.append(display, filters);
+  const exportRow = document.createElement('div'); exportRow.className = 'replay-export';
+  const exportNote = document.createElement('p'); exportNote.textContent = 'Combine all loaded rounds of the same terrain version, using the player and bot filters.';
+  el('export').textContent = 'Export heatmap JSON'; exportRow.append(exportNote, el('export'));
+  const guide = document.createElement('details'); guide.className = 'replay-guide';
+  const summary = document.createElement('summary'); summary.textContent = 'Map legend & recording details';
+  guide.append(summary, transport.querySelector('p'));
+  transport.querySelector('.replay-toolbar').remove();
+  transport.prepend(playback, groups);
+  transport.append(exportRow, guide);
   let loaded = [], selected, layer, viewer, frame, playing = false, t = 0, previousFrame, attached = 0, inputGeneration = 0, heatResult, totalBytes = 0, unsubscribeFollow, syncingFollow = false, strengthChart;
   const options = () => ({ players: el('players').checked, bots: el('bots').checked, squad: el('squad').value, soldier: el('soldier').value });
   const time = ms => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}`;
-  function stop() { playing = false; cancelAnimationFrame(frame); frame = null; previousFrame = undefined; el('play').textContent = 'Play'; }
+  function stop() { playing = false; cancelAnimationFrame(frame); frame = null; previousFrame = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
   function detach() {
     attached++; stop(); unsubscribeFollow?.(); unsubscribeFollow = null;
     el('follow').disabled = true;
@@ -40,7 +74,7 @@ export function setupReplay(panel, refresh) {
     if (!selected) return;
     strengthChart?.update(t);
     updateFollow();
-    const r = selected.replay, count = layer?.update({ t, ...options(), heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
+    const r = selected.replay, count = layer?.update({ t, ...options(), playerNames: el('player-names').checked, heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
     el('timeline').value = String(t);
     el('time').textContent = `Round ${time(t - r.header.round_start_ms)} · Coverage ${time(r.first - r.header.round_start_ms)}–${time(r.coverageEnd - r.header.round_start_ms)} · ${count ?? 0} visible · ${r.header.sample_interval_ms / 1000}s samples${r.incomplete ? ' · INCOMPLETE' : ` · ${r.end.reason}`}${r.header.synthetic ? ' · SYNTHETIC' : ''}`;
   }
@@ -103,9 +137,9 @@ export function setupReplay(panel, refresh) {
   el('play').addEventListener('click', () => {
     if (playing) { stop(); return; } if (!layer) return;
     if (t >= selected.replay.coverageEnd) t = selected.replay.first;
-    playing = true; el('play').textContent = 'Pause'; frame = requestAnimationFrame(tick);
+    playing = true; el('play').textContent = 'Ⅱ Pause'; el('play').setAttribute('aria-pressed', 'true'); frame = requestAnimationFrame(tick);
   });
-  for (const key of ['players', 'bots', 'heat', 'trails', 'deaths', 'squad', 'soldier']) el(key).addEventListener('change', () => {
+  for (const key of ['players', 'bots', 'player-names', 'heat', 'trails', 'deaths', 'squad', 'soldier']) el(key).addEventListener('change', () => {
     try { update(); } catch (error) { stop(); el('heat').checked = el('trails').checked = false; update(); el('status').textContent = error.message; }
   });
   for (const key of ['trail-transparency', 'death-transparency']) el(key).addEventListener('input', () => {

@@ -9,7 +9,20 @@ function metadata(row) {
   if (!integer(row.team, -1, 15) || !['player', 'bot'].includes(row.kind) ||
       !integer(row.troop, 0, 100000) || !integer(row.class, -1, 10000) ||
       ![row.owner, row.controller].every(x => x === false || integer(x, 1, 100000))) fail('Invalid soldier metadata');
-  return { team: row.team, kind: row.kind, troop: row.troop, class: row.class, owner: row.owner, controller: row.controller };
+  if (row.player_name !== undefined && row.player_name !== false && !text(row.player_name)) fail('Invalid player name');
+  if (row.unit_category !== undefined && !['infantry', 'artillery', 'cavalry'].includes(row.unit_category)) fail('Invalid unit category');
+  return { team: row.team, kind: row.kind, troop: row.troop, class: row.class, owner: row.owner, controller: row.controller,
+    player_name: row.player_name || false, unit_category: row.unit_category };
+}
+// Napoleonic Wars slot_troop_class values. Roles persist after dismounting.
+export function unitCategory(row) {
+  if (row.unit_category) return row.unit_category;
+  if (row.class >= 14 && row.class <= 19) return 'cavalry';
+  if (row.class === 20 || row.class === 21) return 'artillery';
+  return row.mounted ? 'cavalry' : 'infantry';
+}
+export function playerLabel(row) {
+  return row.player_name || `Player #${row.controller || row.id}`;
 }
 export function parseJournal(input) {
   if (typeof input !== 'string' || input.length > MAX_BYTES) fail('Replay exceeds the 64 MiB journal limit');
