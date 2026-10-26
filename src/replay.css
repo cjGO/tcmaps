@@ -59,3 +59,7 @@
 .replay-strength-grid { stroke: #62747b44; }
 .replay-strength-cursor { stroke: currentColor; stroke-width: 1; stroke-dasharray: 3 3; }
 .replay-strength p { font-size: .78rem; }
+
+.replay-day { display: grid; gap: 8px; min-width: 0; }
+.replay-day + .replay-day { margin-top: 12px; }
+.replay-day h3 { margin: 0 0 4px; font-size: 1rem; color: #536356; }

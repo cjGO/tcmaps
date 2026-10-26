@@ -10,6 +10,7 @@ import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
 import { setupEditor } from './editor.js';
 import recordings from 'virtual:replays';
+import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
 import { setupTopology } from './rotation-topology.js';
 inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
@@ -145,17 +146,11 @@ if (!recordings.length) replayCatalog.textContent = 'No published replays yet. O
 function openRecording(recording) {
   replayOpened = true;
   if (activeTab !== 'replays') selectTab('replays');
-  $('replays-filename').textContent = `${(recording.map_id || 'Historical replay · identity unverified')} · ${recording.id}`;
+  $('replays-filename').textContent = recordingLabel(recording);
   replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
   replays.openReplay(recording);
 }
-for (const recording of recordings) {
-  const button = document.createElement('button');
-  button.type = 'button'; button.dataset.id = recording.id; button.setAttribute('aria-pressed', 'false');
-  button.textContent = `${(recording.map_id || 'Historical replay · identity unverified')} · ${new Date(recording.created).toLocaleString()} · ${recording.id}${recording.synthetic ? ' · SYNTHETIC' : ''}`;
-  button.addEventListener('click', () => openRecording(recording));
-  replayCatalog.append(button);
-}
+renderReplayCatalog(replayCatalog, recordings, openRecording);
 $('rotation-replays').addEventListener('click', event => {
   event.preventDefault();
   const filename = collections.rotation.images[collections.rotation.index]?.filename;

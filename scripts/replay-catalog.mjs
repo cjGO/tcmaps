@@ -1,14 +1,27 @@
 import { readdir, readFile } from 'node:fs/promises';
+import { parseJournal, sourceEqual } from '../src/tactical-replay.js';
+import { botStrengthHistory, botStrengthAt } from '../src/replay-strength.js';
 
 // Keep recordings as separate assets so opening the app never downloads every round.
 export async function replayCatalog(directory) {
+  const registry = JSON.parse(await readFile(new URL('../lib/editor-rotation.json', import.meta.url), 'utf8'));
   const files = await readdir(directory).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
   return Promise.all(files.filter(name => name.endsWith('.replay.json')).sort().reverse().map(async filename => {
     const bundle = JSON.parse(await readFile(new URL(filename, directory), 'utf8'));
-    const header = JSON.parse(bundle.journal.slice(0, bundle.journal.indexOf('\n')));
-    return { filename, id: header.id, map: header.map.id, created: header.created_utc, synthetic: header.synthetic,
+    const replay = parseJournal(bundle.journal), { header, end } = replay;
+    // Scene slots can be reassigned; require an exact source match.
+    const matches = registry.filter(row => sourceEqual(row.source, header.map.source));
+    const mapIds = new Set(matches.map(row => row.map_id).filter(Boolean));
+    const history = botStrengthHistory(replay);
+    const counts = botStrengthAt(history, replay.coverageEnd);
+    return { filename, id: header.id, map: header.map.id,
+      map_id: mapIds.size === 1 ? [...mapIds][0] : null,
+      round: /^\d+:(\d+):\d+$/.exec(header.round_id)?.[1] || null,
+      bots: counts.reduce((sum, count) => sum + count, 0),
+      bots_by_team: history.teams.map((team, i) => ({ team, count: counts[i] })),
+      round_ended: end?.complete === true && end.reason === 'round_end', created: header.created_utc, synthetic: header.synthetic,
       url: `replays/${encodeURIComponent(filename)}` };
-  }));
+  })).then(rows => rows.sort((a, b) => Date.parse(b.created) - Date.parse(a.created) || b.id.localeCompare(a.id)));
 }
 
 export function replaysPlugin() {
