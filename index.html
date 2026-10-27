@@ -130,6 +130,14 @@
         <p class="population-note">Counts are recorded at round end. Zero-player samples appear on the baseline. Shaded gaps over 30 minutes break the line: they may include empty-server periods, but missing records do not confirm zero players. Sessions separate at these gaps. The time range ends at the latest sample in the selected session.</p>
         <p id="population-coverage" class="population-note"></p>
       </section>
+      <section class="population-card daily-players-card" aria-labelledby="daily-players-title">
+        <h2 id="daily-players-title">Daily unique players</h2>
+        <p class="population-note">Distinct players across each whole UTC day, counted once even if they reconnect or change names. Recorded sessions spanning midnight count on both days. Missing logouts count only on the login day. Totals cover the available activity log and are independent of the filters above.</p>
+        <div id="daily-players-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable daily unique player chart"><svg id="daily-players-chart" viewBox="0 0 1000 430" role="img" aria-label="Unique players by UTC day"></svg></div>
+        <p id="daily-players-empty" hidden>No player activity records available.</p>
+        <p id="daily-players-detail" role="status" aria-live="polite"></p>
+        <p class="population-note">Dates without activity records are omitted; missing records do not confirm zero players.</p>
+      </section>
       <section class="population-card duration-card" aria-labelledby="duration-title">
         <h2 id="duration-title">Player count &amp; round duration</h2>
         <p class="population-note">Each point represents a round. Includes all recorded rounds with valid counts and durations, including those without timestamps. This plot is independent of the time and session filters above. Points have slight horizontal jitter to reveal overlaps; details show the original values. The orange curve is a quadratic regression fitted to all original rounds (equal weight per round).</p>

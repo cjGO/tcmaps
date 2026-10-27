@@ -8,6 +8,7 @@ import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
+import dailyPlayers from 'virtual:daily-players';
 import { setupEditor } from './editor.js';
 import recordings from 'virtual:replays';
 import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
@@ -135,7 +136,7 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
     sortRotation(true);
   });
 });
-const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows);
+const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows, dailyPlayers);
 const tabs = ['rotation', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const editor = setupEditor(selectTab);
 const topology = setupTopology();

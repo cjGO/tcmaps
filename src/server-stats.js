@@ -69,7 +69,7 @@ export function populationSessions(points) {
   }
   return sessions;
 }
-export function setupServerStats(headers, rows) {
+export function setupServerStats(headers, rows, dailyPlayers = []) {
   const $ = id => document.getElementById(id);
   const points = populationSamples(headers, rows);
   const sessions = populationSessions(points);
@@ -83,6 +83,32 @@ export function setupServerStats(headers, rows) {
     node.textContent = text;
     return node;
   };
+  const dailyChart = $('daily-players-chart');
+  dailyChart.replaceChildren(make('title', {}, 'Daily unique players'), make('desc', {}, 'Distinct player IDs seen on each UTC day. Repeated visits count once per day.'));
+  $('daily-players-empty').hidden = dailyPlayers.length > 0;
+  $('daily-players-chart-wrap').hidden = !dailyPlayers.length;
+  $('daily-players-detail').textContent = dailyPlayers.length ? 'Hover, tap, or focus a bar for its daily total.' : '';
+  if (dailyPlayers.length) {
+    const width = Math.max(1000, dailyPlayers.length * 70 + 120);
+    dailyChart.setAttribute('viewBox', '0 0 ' + width + ' 430');
+    dailyChart.style.minWidth = width + 'px';
+    const top = Math.max(5, Math.ceil(Math.max(...dailyPlayers.map(day => day.players)) / 5) * 5);
+    const y = players => 350 - players / top * 300;
+    const step = (width - 120) / dailyPlayers.length;
+    for (let i = 0; i <= 5; i++) {
+      const value = top * i / 5;
+      dailyChart.append(make('line', { x1: 70, x2: width - 50, y1: y(value), y2: y(value), class: 'population-grid' }), make('text', { x: 58, y: y(value) + 4, 'text-anchor': 'end' }, value));
+    }
+    dailyPlayers.forEach((day, i) => {
+      const x = 70 + step * (i + .5);
+      const label = day.day + ' UTC · ' + day.players + ' unique players';
+      const bar = make('rect', { x: x - Math.min(50, step * .65) / 2, y: y(day.players), width: Math.min(50, step * .65), height: 350 - y(day.players), class: 'daily-player-bar', tabindex: 0, 'aria-label': label });
+      bar.append(make('title', {}, label));
+      for (const event of ['pointerenter', 'focus', 'click']) bar.addEventListener(event, () => $('daily-players-detail').textContent = label);
+      dailyChart.append(bar, make('text', { x, y: y(day.players) - 8, 'text-anchor': 'middle' }, day.players), make('text', { x, y: 375, 'text-anchor': 'middle' }, day.day));
+    });
+    dailyChart.append(make('text', { x: width / 2, y: 408, 'text-anchor': 'middle' }, 'Day (UTC)'), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Unique players'));
+  }
   const durations = durationSamples(headers, rows);
   const durationChart = $('duration-chart');
   durationChart.append(make('title', {}, 'Round duration by player count'), make('desc', {}, 'Each point is a recorded round. Player count is on the horizontal axis and duration in minutes is on the vertical axis. Includes rounds without timestamps.'));
