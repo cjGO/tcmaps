@@ -161,6 +161,7 @@ function updateReplayList() {
   const playerNames = $('replay-player-names').value;
   const visible = renderReplayCatalog(replayCatalog, recordings, openRecording, { minimumPlayers, playerNames, selectedId: selectedReplayId });
   $('replay-filter-count').textContent = visible + ' of ' + recordings.length + ' replays';
+  $('replay-browser-count').textContent = visible + ' of ' + recordings.length;
 }
 $('replay-min-players').addEventListener('input', updateReplayList);
 $('replay-player-names').addEventListener('input', updateReplayList);
@@ -382,7 +383,10 @@ function restoreLocation() {
   const link = readReplayLink(location.href);
   if (link.id) {
     const recording = recordings.find(item => item.id === link.id);
-    if (recording) openRecording(recording, { ...link, syncUrl: false });
+    if (recording) {
+      $('replay-browser').open = false;
+      openRecording(recording, { ...link, syncUrl: false });
+    }
     else {
       selectTab('replays', { autoOpen: false, syncUrl: false });
       $('replays-panel').querySelector('[data-replay="status"]').textContent = 'This replay is not available in this deployment. Select another recording below.';

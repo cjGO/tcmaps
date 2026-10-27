@@ -48,7 +48,12 @@
 .replay-controls > [role="status"] { font-size: 12px; }
 @media(max-width:800px) { .replay-option-grid { grid-template-columns: minmax(0,1fr); } }
 @media(max-width:480px) { .replay-playback { padding: 12px; gap: 12px; } .replay-controls .replay-play { flex: 1 1 140px; } .replay-overlay { grid-template-columns: minmax(0,1fr); gap: 0; } .replay-group { padding: 12px; } .replay-export button { width: 100%; } }
-.replay-catalog { display: grid; gap: 8px; margin-bottom: 20px; }
+.replay-browser { margin-bottom: 20px; border: 1px solid #ccd7c8; border-radius: 10px; background: #f7f9f4; }
+.replay-browser > summary { padding: 14px 16px; color: #365431; font-weight: 700; cursor: pointer; }
+.replay-browser > summary span { margin-left: 10px; font-size: .85rem; font-weight: 400; color: #647562; }
+.replay-browser > summary:focus-visible, .replay-catalog:focus-visible { outline: 3px solid #c18220; outline-offset: 3px; }
+.replay-browser-content { padding: 0 16px 16px; }
+.replay-catalog { display: grid; gap: 8px; max-height: min(44rem, 70vh); overflow-y: auto; overscroll-behavior-y: contain; scrollbar-gutter: stable; padding: 4px; }
 .replay-catalog button { text-align: left; padding: 14px 16px; background: white; color: #365431; border: 1px solid #ccd7c8; border-radius: 6px; line-height: 1.5; overflow-wrap: anywhere; }
 .replay-catalog button[aria-pressed=true] { background: #eaf1e3; border-color: #779867; }
 #replays-panel .image-stage { height: clamp(380px, 65vh, 850px); background: #dce4dd; }
@@ -79,6 +84,10 @@
 .replay-player-filter input[type=search] { min-height: 44px; padding: 10px 12px; border: 1px solid #cdd7c8; border-radius: 8px; background: white; color: #365431; font: inherit; }
 .replay-entry { min-width: 0; }
 .replay-entry > button { width: 100%; }
+.replay-entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+.replay-entry > button { padding: 8px 12px; font-size: .8rem; }
+.replay-entry > .replay-permalink { padding: 10px; white-space: nowrap; }
+.replay-entry > .replay-roster { grid-column: 1 / -1; padding: 4px 12px; font-size: .75rem; }
 .replay-roster { padding: 8px 16px; font-size: .85rem; color: #536356; }
 .replay-roster summary { cursor: pointer; }
 .replay-roster summary:focus-visible { outline: 3px solid #c18220; outline-offset: 3px; }

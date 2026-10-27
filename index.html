@@ -62,6 +62,9 @@
     </section>
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
       <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play. You can also open local recordings.</p></div></div>
+      <details id="replay-browser" class="replay-browser" open>
+      <summary>Browse replays <span id="replay-browser-count"></span></summary>
+      <div class="replay-browser-content">
       <div class="replay-player-filter">
         <label for="replay-player-names">Player names (optional)</label>
         <input id="replay-player-names" type="search" placeholder="e.g. Marechal_Ney, 7jacin" aria-describedby="replay-player-names-help" aria-controls="replay-catalog" />
@@ -70,7 +73,9 @@
         <input id="replay-min-players" type="range" min="0" max="30" step="1" value="0" aria-valuetext="All replays" aria-controls="replay-catalog" />
         <p id="replay-filter-count" role="status" aria-live="polite"></p>
       </div>
-      <div id="replay-catalog" class="replay-catalog" aria-label="Available replays"></div>
+      <div id="replay-catalog" class="replay-catalog" role="region" tabindex="0" aria-label="Available replays"></div>
+      </div>
+      </details>
       <section class="viewer" aria-label="Replay viewer">
         <div class="map-toolbar"><h2 id="replays-filename">Select a recording</h2></div>
         <div class="image-stage rotation-stage"><img id="replays-image" alt="" hidden/><span id="replays-state" role="status">Select an available replay or open a local recording.</span><a id="replays-full-image" hidden>Full size</a></div>

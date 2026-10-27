@@ -121,6 +121,11 @@ before they can be shared. Recordings must remain in subsequent deployments for
 their links to keep working. Tabs also support `/?tab=replays` (or `rotation`,
 `review`, `good`, `bad`, `server`, `editor`).
 
+**Browse replays** collapses the catalog and its filters. The expanded list scrolls
+inside a bounded area (roughly ten compact entries on desktop); player rosters
+expand inside that list. Shared replay links start with the catalog collapsed so
+the recording and playback controls are immediately accessible.
+
 Use **Player names (optional)** to filter by a partial recorded display name,
 ignoring letter case. Separate names with commas to require every name in the
 same replay; the minimum-player filter applies alongside this search. Clear the
