@@ -16,6 +16,13 @@
 .replay-scrubber { flex: 1 1 320px; min-width: 0; }
 .replay-scrubber label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; }
 .replay-scrubber output { display: block; font-size: 12px; line-height: 1.6; color: #536356; overflow-wrap: anywhere; }
+.replay-sharing { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 20px; margin-bottom: 20px; }
+.replay-sharing label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 600; }
+.replay-sharing input { min-width: 0; min-height: 44px; padding: 8px 12px; border: 1px solid #cdd7c8; border-radius: 8px; }
+.replay-sharing [data-replay=share-link-label] { flex: 1 1 100%; min-width: 0; }
+.replay-sharing [hidden] { display: none; }
+.replay-sharing p { flex-basis: 100%; margin: 0; }
+.replay-permalink { display: inline-block; padding: 8px 16px; color: #365431; font-size: .85rem; }
 .replay-controls input[type=range] { width: 100%; min-width: 0; min-height: 32px; margin: 0; accent-color: #426842; cursor: pointer; }
 .replay-option-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; }
 .replay-group { min-width: 0; margin: 0; padding: 16px; border: 1px solid #dce1d7; border-radius: 10px; background: #fff; display: flex; flex-wrap: wrap; align-content: start; gap: 8px 16px; }

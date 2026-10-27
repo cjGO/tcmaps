@@ -102,6 +102,7 @@ test('catalog shows inspectable rosters safely and keeps selection and empty sta
     assert.equal(container.querySelector('button').getAttribute('aria-pressed'), 'true');
     container.querySelector('button').click();
     assert.equal(opened, recording);
+    assert.equal(new URL(container.querySelector('a').href).searchParams.get('replay'), recording.id);
     assert.match(container.querySelector('summary').textContent, /2.*1 without recorded names/);
     assert.match(container.querySelector('details p').textContent, /<img.*Alias.*Player #2 \(name unavailable\)/);
     assert.equal(container.querySelector('img'), null);

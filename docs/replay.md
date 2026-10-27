@@ -111,6 +111,16 @@ without downloading the bundles until selected. Current rotation maps with recor
 have a **View replays** link. Selecting a recording loads its embedded matching 3D
 terrain; press **Play** to start playback.
 
+Each catalog entry has a **Replay link**. During playback, **Copy link at current
+time** shares the selected published recording, round time, and followed soldier
+(if any). Links open paused; press **Play** to watch. Optionally enter **Clip end**
+in seconds from round start to stop playback there. For example,
+`/?replay=20261027T052501Z-62-1-78&t=90&end=120` opens at 1:30 and stops at 2:00.
+Times are clamped to recorded coverage. Local file imports must be published
+before they can be shared. Recordings must remain in subsequent deployments for
+their links to keep working. Tabs also support `/?tab=replays` (or `rotation`,
+`review`, `good`, `bad`, `server`, `editor`).
+
 Use **Player names (optional)** to filter by a partial recorded display name,
 ignoring letter case. Separate names with commas to require every name in the
 same replay; the minimum-player filter applies alongside this search. Clear the
@@ -231,6 +241,7 @@ node scripts/export-replay.mjs --journal tests/fixtures/SYNTHETIC-tactical-demo.
 npm test
 npm run build
 uv run --with playwright python tests/replay_smoke.py http://127.0.0.1:4175
+uv run --with playwright python tests/replay_links_smoke.py http://127.0.0.1:4175
 ```
 
 The checked-in `tests/fixtures/SYNTHETIC-tactical-demo.replay.json` is an explicitly

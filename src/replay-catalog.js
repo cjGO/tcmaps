@@ -1,3 +1,5 @@
+import { replayLink } from './replay-link.js';
+
 export function recordingLabel(recording) {
   const map = recording.map_id?.replace(/^test_map_/, 'Test map #') || `Map unverified (${recording.map.replace(/^scn_/, '')})`;
   return `${map} - Round ${recording.round ? '#' + recording.round : 'unknown'} - ${recording.players} players recorded - ${recording.bots} bots remaining ${recording.round_ended ? 'at round end' : 'at recording end'}${recording.synthetic ? ' · SYNTHETIC' : ''}`;
@@ -50,6 +52,12 @@ export function renderReplayCatalog(container, recordings, openRecording, { mini
     const entry = document.createElement('div');
     entry.className = 'replay-entry';
     entry.append(button);
+    const permalink = document.createElement('a');
+    permalink.className = 'replay-permalink';
+    permalink.href = replayLink(container.ownerDocument.baseURI, recording.id);
+    permalink.textContent = 'Replay link';
+    permalink.setAttribute('aria-label', `Link to ${button.textContent}`);
+    entry.append(permalink);
     const roster = document.createElement('details');
     roster.className = 'replay-roster';
     const summary = document.createElement('summary');

@@ -12,6 +12,7 @@ import dailyPlayers from 'virtual:daily-players';
 import { setupEditor } from './editor.js';
 import recordings from 'virtual:replays';
 import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
+import { readReplayLink, replayLink } from './replay-link.js';
 import { setupTopology } from './rotation-topology.js';
 inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
@@ -144,13 +145,14 @@ const replays = setupTopology({ prefix: 'replays', recordings: true });
 const replayCatalog = $('replay-catalog');
 let replayOpened = false;
 let selectedReplayId;
-function openRecording(recording) {
+function openRecording(recording, options = {}) {
   selectedReplayId = recording.id;
   replayOpened = true;
-  if (activeTab !== 'replays') selectTab('replays');
+  if (activeTab !== 'replays') selectTab('replays', { autoOpen: false, syncUrl: false });
   $('replays-filename').textContent = recordingLabel(recording);
   replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
-  replays.openReplay(recording);
+  if (options.syncUrl !== false) history.pushState(null, '', replayLink(location.href, recording.id, options));
+  replays.openReplay(recording, options);
 }
 function updateReplayList() {
   const minimumPlayers = Number($('replay-min-players').value);
@@ -207,7 +209,7 @@ function moveCollection(name, delta) {
   collection.index = (collection.index + delta + collection.images.length) % collection.images.length;
   renderCollection(name);
 }
-function selectTab(name) {
+function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   activeTab = name;
   topology.setVisible(name === 'rotation');
   replays.setVisible(name === 'replays');
@@ -219,7 +221,13 @@ function selectTab(name) {
   editor.setVisible(name === 'editor');
   if (name === 'editor') editor.show();
   $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
-  if (name === 'replays' && !replayOpened && recordings.length) openRecording(recordings[0]);
+  if (syncUrl) {
+    const url = new URL(location.href);
+    for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
+    url.searchParams.set('tab', name);
+    history.pushState(null, '', url);
+  }
+  if (autoOpen && name === 'replays' && !replayOpened && recordings.length) openRecording(recordings[0], { syncUrl: false });
 }
 for (const name of tabs) {
   $(name + '-tab').addEventListener('click', () => selectTab(name));
@@ -370,4 +378,19 @@ render(); message(maps.length ? 'Keep the setups you like, then copy your list t
 
 Object.keys(collections).forEach(renderCollection);
 sortRotation();
-selectTab('rotation');
+function restoreLocation() {
+  const link = readReplayLink(location.href);
+  if (link.id) {
+    const recording = recordings.find(item => item.id === link.id);
+    if (recording) openRecording(recording, { ...link, syncUrl: false });
+    else {
+      selectTab('replays', { autoOpen: false, syncUrl: false });
+      $('replays-panel').querySelector('[data-replay="status"]').textContent = 'This replay is not available in this deployment. Select another recording below.';
+    }
+  } else {
+    const tab = new URL(location.href).searchParams.get('tab');
+    selectTab(tabs.includes(tab) ? tab : 'rotation', { syncUrl: false });
+  }
+}
+window.addEventListener('popstate', restoreLocation);
+restoreLocation();
