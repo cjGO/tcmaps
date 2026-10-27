@@ -62,6 +62,11 @@
     </section>
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
       <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play. You can also open local recordings.</p></div></div>
+      <div class="replay-player-filter">
+        <label for="replay-min-players">Minimum players: <output id="replay-min-players-value" for="replay-min-players">0 (all replays)</output></label>
+        <input id="replay-min-players" type="range" min="0" max="30" step="1" value="0" aria-valuetext="All replays" aria-controls="replay-catalog" />
+        <p id="replay-filter-count" role="status" aria-live="polite"></p>
+      </div>
       <div id="replay-catalog" class="replay-catalog" aria-label="Available replays"></div>
       <section class="viewer" aria-label="Replay viewer">
         <div class="map-toolbar"><h2 id="replays-filename">Select a recording</h2></div>

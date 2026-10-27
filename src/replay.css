@@ -63,3 +63,9 @@
 .replay-day { display: grid; gap: 8px; min-width: 0; }
 .replay-day + .replay-day { margin-top: 12px; }
 .replay-day h3 { margin: 0 0 4px; font-size: 1rem; color: #536356; }
+
+.replay-player-filter { display: grid; gap: 10px; max-width: 520px; margin-bottom: 24px; }
+.replay-player-filter label { font-weight: 600; color: #365431; }
+.replay-player-filter input { width: 100%; min-height: 32px; margin: 0; accent-color: #426842; }
+.replay-player-filter input:focus-visible { outline: 3px solid #c18220; outline-offset: 3px; }
+.replay-player-filter p { margin: 0; font-size: .85rem; color: #536356; }

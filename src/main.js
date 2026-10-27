@@ -142,15 +142,24 @@ const topology = setupTopology();
 const replays = setupTopology({ prefix: 'replays', recordings: true });
 const replayCatalog = $('replay-catalog');
 let replayOpened = false;
-if (!recordings.length) replayCatalog.textContent = 'No published replays yet. Open a local recording below.';
+let selectedReplayId;
 function openRecording(recording) {
+  selectedReplayId = recording.id;
   replayOpened = true;
   if (activeTab !== 'replays') selectTab('replays');
   $('replays-filename').textContent = recordingLabel(recording);
   replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
   replays.openReplay(recording);
 }
-renderReplayCatalog(replayCatalog, recordings, openRecording);
+function updateReplayList() {
+  const minimumPlayers = Number($('replay-min-players').value);
+  $('replay-min-players-value').textContent = minimumPlayers === 0 ? '0 (all replays)' : String(minimumPlayers);
+  $('replay-min-players').setAttribute('aria-valuetext', minimumPlayers === 0 ? 'All replays' : minimumPlayers + ' players minimum');
+  const visible = renderReplayCatalog(replayCatalog, recordings, openRecording, { minimumPlayers, selectedId: selectedReplayId });
+  $('replay-filter-count').textContent = visible + ' of ' + recordings.length + ' replays';
+}
+$('replay-min-players').addEventListener('input', updateReplayList);
+updateReplayList();
 $('rotation-replays').addEventListener('click', event => {
   event.preventDefault();
   const filename = collections.rotation.images[collections.rotation.index]?.filename;

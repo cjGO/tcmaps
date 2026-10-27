@@ -2,6 +2,20 @@ import { readdir, readFile } from 'node:fs/promises';
 import { parseJournal, sourceEqual } from '../src/tactical-replay.js';
 import { botStrengthHistory, botStrengthAt } from '../src/replay-strength.js';
 
+// Count each recorded connection once across spawns, ownership and control changes.
+// Spectators are not recorded, and reconnects receive a new connection ID.
+export function recordedPlayerCount(replay) {
+  const connections = new Set();
+  for (const track of replay.tracks.values()) {
+    for (const meta of track.changes) {
+      for (const id of [meta.owner, meta.controller]) {
+        if (Number.isSafeInteger(id) && id > 0) connections.add(id);
+      }
+    }
+  }
+  return connections.size;
+}
+
 // Keep recordings as separate assets so opening the app never downloads every round.
 export async function replayCatalog(directory) {
   const registry = JSON.parse(await readFile(new URL('../lib/editor-rotation.json', import.meta.url), 'utf8'));
@@ -17,6 +31,7 @@ export async function replayCatalog(directory) {
     return { filename, id: header.id, map: header.map.id,
       map_id: mapIds.size === 1 ? [...mapIds][0] : null,
       round: /^\d+:(\d+):\d+$/.exec(header.round_id)?.[1] || null,
+      players: recordedPlayerCount(replay),
       bots: counts.reduce((sum, count) => sum + count, 0),
       bots_by_team: history.teams.map((team, i) => ({ team, count: counts[i] })),
       round_ended: end?.complete === true && end.reason === 'round_end', created: header.created_utc, synthetic: header.synthetic,
