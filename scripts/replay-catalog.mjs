@@ -4,16 +4,22 @@ import { botStrengthHistory, botStrengthAt } from '../src/replay-strength.js';
 
 // Count each recorded connection once across spawns, ownership and control changes.
 // Spectators are not recorded, and reconnects receive a new connection ID.
-export function recordedPlayerCount(replay) {
-  const connections = new Set();
+export function recordedPlayerRoster(replay) {
+  const connections = new Map();
   for (const track of replay.tracks.values()) {
     for (const meta of track.changes) {
       for (const id of [meta.owner, meta.controller]) {
-        if (Number.isSafeInteger(id) && id > 0) connections.add(id);
+        if (Number.isSafeInteger(id) && id > 0 && !connections.has(id)) connections.set(id, new Set());
       }
+      // A display name belongs to the controller, never to a different commander.
+      if (connections.has(meta.controller) && typeof meta.player_name === 'string') connections.get(meta.controller).add(meta.player_name);
     }
   }
-  return connections.size;
+  return [...connections].sort(([a], [b]) => a - b).map(([id, names]) => ({ id, names: [...names].sort() }));
+}
+
+export function recordedPlayerCount(replay) {
+  return recordedPlayerRoster(replay).length;
 }
 
 // Keep recordings as separate assets so opening the app never downloads every round.
@@ -28,10 +34,11 @@ export async function replayCatalog(directory) {
     const mapIds = new Set(matches.map(row => row.map_id).filter(Boolean));
     const history = botStrengthHistory(replay);
     const counts = botStrengthAt(history, replay.coverageEnd);
+    const roster = recordedPlayerRoster(replay);
     return { filename, id: header.id, map: header.map.id,
       map_id: mapIds.size === 1 ? [...mapIds][0] : null,
       round: /^\d+:(\d+):\d+$/.exec(header.round_id)?.[1] || null,
-      players: recordedPlayerCount(replay),
+      players: roster.length, roster,
       bots: counts.reduce((sum, count) => sum + count, 0),
       bots_by_team: history.teams.map((team, i) => ({ team, count: counts[i] })),
       round_ended: end?.complete === true && end.reason === 'round_end', created: header.created_utc, synthetic: header.synthetic,

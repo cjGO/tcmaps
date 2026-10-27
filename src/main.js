@@ -156,10 +156,12 @@ function updateReplayList() {
   const minimumPlayers = Number($('replay-min-players').value);
   $('replay-min-players-value').textContent = minimumPlayers === 0 ? '0 (all replays)' : String(minimumPlayers);
   $('replay-min-players').setAttribute('aria-valuetext', minimumPlayers === 0 ? 'All replays' : minimumPlayers + ' players minimum');
-  const visible = renderReplayCatalog(replayCatalog, recordings, openRecording, { minimumPlayers, selectedId: selectedReplayId });
+  const playerNames = $('replay-player-names').value;
+  const visible = renderReplayCatalog(replayCatalog, recordings, openRecording, { minimumPlayers, playerNames, selectedId: selectedReplayId });
   $('replay-filter-count').textContent = visible + ' of ' + recordings.length + ' replays';
 }
 $('replay-min-players').addEventListener('input', updateReplayList);
+$('replay-player-names').addEventListener('input', updateReplayList);
 updateReplayList();
 $('rotation-replays').addEventListener('click', event => {
   event.preventDefault();

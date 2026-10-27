@@ -111,6 +111,16 @@ without downloading the bundles until selected. Current rotation maps with recor
 have a **View replays** link. Selecting a recording loads its embedded matching 3D
 terrain; press **Play** to start playback.
 
+Use **Player names (optional)** to filter by a partial recorded display name,
+ignoring letter case. Separate names with commas to require every name in the
+same replay; the minimum-player filter applies alongside this search. Clear the
+search to show all names again. Expand **Player roster** below any recording to
+inspect its connections, recorded aliases, and missing names. Reconnects remain
+separate connections. Names are indexed from all soldier metadata at build time,
+so searching does not download replay bundles. Only controlling-player names
+actually present in a journal are searchable; older unnamed connections cannot
+be recovered from their recording-local IDs.
+
 For local files, open **Replays → Open round recordings**, choose one or more exported
 files, then select a recording. Import is local; nothing uploads. The existing
 viewer opens the embedded matching terrain and retains camera presets, contours,

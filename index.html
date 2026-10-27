@@ -63,6 +63,9 @@
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
       <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play. You can also open local recordings.</p></div></div>
       <div class="replay-player-filter">
+        <label for="replay-player-names">Player names (optional)</label>
+        <input id="replay-player-names" type="search" placeholder="e.g. Marechal_Ney, 7jacin" aria-describedby="replay-player-names-help" aria-controls="replay-catalog" />
+        <p id="replay-player-names-help">Partial names, any letter case. Separate names with commas to require all of them in the same replay. Only recorded names can be searched; some older recordings have missing names.</p>
         <label for="replay-min-players">Minimum players: <output id="replay-min-players-value" for="replay-min-players">0 (all replays)</output></label>
         <input id="replay-min-players" type="range" min="0" max="30" step="1" value="0" aria-valuetext="All replays" aria-controls="replay-catalog" />
         <p id="replay-filter-count" role="status" aria-live="polite"></p>
