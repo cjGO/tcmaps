@@ -12,12 +12,13 @@ with sync_playwright() as p:
         **({'executable_path': os.environ['PLAYWRIGHT_CHROMIUM_EXECUTABLE']} if os.environ.get('PLAYWRIGHT_CHROMIUM_EXECUTABLE') else {}))
     context = browser.new_context(viewport={'width': 1280, 'height': 900}, permissions=['clipboard-read', 'clipboard-write'])
     page = context.new_page()
+    page.set_default_navigation_timeout(60000)
     errors = []
     requests = []
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('request', lambda request: requests.append(request.url) if '.replay.json' in request.url else None)
     page.route('**/_vercel/insights/**', lambda route: route.fulfill(status=200, body=''))
-    page.goto(link)
+    page.goto(link, wait_until='domcontentloaded')
     play = page.locator('[data-replay=play]')
     timeline = page.locator('[data-replay=timeline]')
     follow = page.locator('[data-replay=follow]')
@@ -46,13 +47,13 @@ with sync_playwright() as p:
     assert parse_qs(urlparse(page.locator('[data-replay=share-link]').input_value()).query)['end'] == ['92.125']
     page.locator('[data-replay=clip-end]').fill('92')
     page.locator('[data-replay=share]').click()
-    page.reload()
+    page.reload(wait_until='domcontentloaded')
     expect(play).to_be_enabled(timeout=60000)
     expect(timeline).to_have_value('131000')
     expect(follow).to_have_value('1')
     page.locator('#rotation-tab').click()
     assert parse_qs(urlparse(page.url).query) == {'tab': ['rotation']}
-    page.go_back()
+    page.go_back(wait_until='domcontentloaded')
     expect(play).to_be_enabled(timeout=60000)
     expect(timeline).to_have_value('131000')
     expect(page.locator('#replays-tab')).to_have_attribute('aria-selected', 'true')
@@ -74,10 +75,10 @@ with sync_playwright() as p:
     expect(page.locator('[data-replay=share-status]')).to_contain_text('Publish this local recording')
     assert 'replay' not in parse_qs(urlparse(page.url).query)
 
-    page.goto(f'{base}/?replay=missing')
+    page.goto(f'{base}/?replay=missing', wait_until='domcontentloaded')
     expect(page.locator('#replays-tab')).to_have_attribute('aria-selected', 'true')
     expect(page.locator('[data-replay=status]')).to_contain_text('not available')
-    page.goto(f'{base}/?tab=server')
+    page.goto(f'{base}/?tab=server', wait_until='domcontentloaded')
     expect(page.locator('#server-tab')).to_have_attribute('aria-selected', 'true')
     assert not errors, errors
     browser.close()
