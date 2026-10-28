@@ -28,7 +28,7 @@ export function setupReplay(panel, refresh) {
   timelineLabel.append(el('timeline'));
   scrubber.append(timelineLabel, el('time')); playback.append(scrubber);
   const sharing = document.createElement('div'); sharing.className = 'replay-sharing';
-  sharing.innerHTML = `<button type="button" data-replay="share">Copy link at current time</button><label>Clip end (round seconds, optional)<input data-replay="clip-end" type="number" min="0" step="any" placeholder="Play to round end"></label><label data-replay="share-link-label" hidden>Replay link<input data-replay="share-link" type="text" readonly></label><p data-replay="share-status" role="status"></p>`;
+  sharing.innerHTML = `<button type="button" data-replay="share">Copy link at current time</button><button type="button" data-replay="mp4" disabled>Export MP4</button><label>Clip end (round seconds, optional)<input data-replay="clip-end" type="number" min="0" step="any" placeholder="Play to round end"></label><label data-replay="share-link-label" hidden>Replay link<input data-replay="share-link" type="text" readonly></label><p data-replay="share-status" role="status"></p>`;
   const groups = document.createElement('div'); groups.className = 'replay-option-grid';
   const display = group('Map display', ['players', 'bots', 'player-names', 'heat']);
   for (const [toggle, slider] of [['trails', 'trail-transparency'], ['deaths', 'death-transparency']]) {
@@ -48,11 +48,12 @@ export function setupReplay(panel, refresh) {
   transport.prepend(playback, sharing, groups);
   transport.append(exportRow, guide);
   let loaded = [], selected, layer, viewer, frame, playing = false, t = 0, previousFrame, attached = 0, inputGeneration = 0, heatResult, totalBytes = 0, unsubscribeFollow, syncingFollow = false, strengthChart;
-  let clipStart = 0, clipEnd = 0;
+  let clipStart = 0, clipEnd = 0, closeVideo;
   const options = () => ({ players: el('players').checked, bots: el('bots').checked, squad: el('squad').value, soldier: el('soldier').value });
   const time = ms => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}`;
   function stop() { playing = false; cancelAnimationFrame(frame); frame = null; previousFrame = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
   function detach() {
+    closeVideo?.(); closeVideo = null; el('mp4').disabled = true;
     attached++; stop(); unsubscribeFollow?.(); unsubscribeFollow = null;
     el('follow').disabled = true;
     if (el('follow').value) viewer?.stopFollowing();
@@ -74,11 +75,12 @@ export function setupReplay(panel, refresh) {
       else if (id) viewer.stopFollowing();
     } finally { syncingFollow = false; }
   }
+  const overlayOptions = () => ({ ...options(), playerNames: el('player-names').checked, heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
   function update() {
     if (!selected) return;
     strengthChart?.update(t);
     updateFollow();
-    const r = selected.replay, count = layer?.update({ t, ...options(), playerNames: el('player-names').checked, heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
+    const r = selected.replay, count = layer?.update({ t, ...overlayOptions() });
     el('timeline').value = String(t);
     el('time').textContent = `Round ${time(t - r.header.round_start_ms)} · Coverage ${time(r.first - r.header.round_start_ms)}–${time(r.coverageEnd - r.header.round_start_ms)} · ${count ?? 0} visible · ${r.header.sample_interval_ms / 1000}s samples${r.incomplete ? ' · INCOMPLETE' : ` · ${r.end.reason}`}${r.header.synthetic ? ' · SYNTHETIC' : ''}`;
   }
@@ -206,6 +208,19 @@ export function setupReplay(panel, refresh) {
       const a = document.createElement('a'); a.href = url; a.download = 'movement-heatmap.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (error) { el('status').textContent = error.message; }
   });
+  el('mp4').addEventListener('click', async () => {
+    if (!viewer || !selected || !layer) return;
+    stop(); viewer.pauseExplorer(); closeVideo?.();
+    const token = attached;
+    const snapshot = { ...selected, t, clipEnd, speed: Number(el('speed').value), overlays: overlayOptions(),
+      view: viewer.captureViewState(), mapLabel: `${selected.replay.header.map.id} · ${selected.replay.header.map.version.slice(0, 10)}` };
+    el('mp4').disabled = true;
+    try {
+      const { openVideoExport } = await import('./replay-video-dialog.js');
+      if (token === attached && viewer) closeVideo = openVideoExport(snapshot);
+    } catch (error) { el('status').textContent = `MP4 export could not open: ${error.message}`; }
+    finally { el('mp4').disabled = !layer; }
+  });
   document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
   return { detach, async open(recording, initial = {}) {
     const token = ++inputGeneration;
@@ -237,7 +252,7 @@ export function setupReplay(panel, refresh) {
       update();
     });
     el('follow').disabled = false;
-    layer = createReplayLayer(viewer, selected.data, selected.replay); el('play').disabled = false; update();
+    layer = createReplayLayer(viewer, selected.data, selected.replay); el('play').disabled = false; el('mp4').disabled = false; update();
     el('status').textContent = 'Trails and heatmap show movement up to the timeline cursor in this recording. Squad uses recorded team and commander ownership; soldier IDs identify individual lifetimes. Export includes full matching rounds and player/bot filters.';
   } };
 }

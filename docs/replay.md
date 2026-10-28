@@ -185,6 +185,38 @@ following resumes when samples return. Before the soldier's first sample, the
 camera waits in the overview. Rewinding resolves the pose from the selected time.
 Positions and facing are sampled approximations, including the death location.
 
+### Share a replay as MP4
+
+Select overlays and filters, position the camera, then choose **Export MP4**.
+The preview includes the map on the left and whole-team army stats on the right.
+Choose **Current view** to keep your camera framing (or follow the selected
+soldier), or **Full-map overhead** to fit the map without following. Names, trails,
+deaths, heatmap, transparency, and terrain appearance use the settings captured
+when opening the preview. Close and reopen it to capture new viewer settings.
+
+Set start/end times in round seconds, speed, and 1080p or 720p resolution. Scrub
+the preview before choosing **Save MP4…** and a destination. Exports are silent,
+30 fps H.264 MP4. Frames have explicit video timestamps, so rendering may run
+faster or slower than playback without changing video speed. The interactive
+replay stays paused at its original time and camera. Local imports also export;
+publishing a recording first is not required.
+
+The stats show bots alive, explicit recorded bot deaths since capture began,
+and each team's share of surviving bots across assigned teams. Unassigned bots
+are separate and excluded from that percentage; when none survive, the share
+is shown as “—”. Player-controlled deaths, takeovers, and despawns are not bot
+deaths. Unlike map death markers, death totals include events without a position
+sample. Map filters do not change these totals. The strength chart reveals only
+history through the current video time. Late/incomplete and synthetic recordings
+remain labeled; unrecorded casualties and movement are never reconstructed.
+
+Saving initially requires desktop Chrome/Edge over HTTPS or localhost, with
+H.264 encoding available at the selected resolution. The preview checks support;
+try 720p if 1080p is unavailable. Output streams directly to the selected file.
+**Cancel export**, Escape, or closing the preview stops an export and discards
+uncommitted file writes; an existing destination file is preserved on failure.
+Automatic highlights and camera cuts are not included in this version.
+
 ## Many-round movement analysis
 
 The on-screen heatmap shows only the selected recording up to the current
@@ -247,6 +279,7 @@ npm test
 npm run build
 uv run --with playwright python tests/replay_smoke.py http://127.0.0.1:4175
 uv run --with playwright python tests/replay_links_smoke.py http://127.0.0.1:4175
+uv run --with playwright python tests/replay_video_smoke.py http://127.0.0.1:4175
 ```
 
 The checked-in `tests/fixtures/SYNTHETIC-tactical-demo.replay.json` is an explicitly

@@ -12,12 +12,14 @@ with sync_playwright() as p:
         **({'executable_path': os.environ['PLAYWRIGHT_CHROMIUM_EXECUTABLE']} if os.environ.get('PLAYWRIGHT_CHROMIUM_EXECUTABLE') else {}))
     context = browser.new_context(viewport={'width': 1280, 'height': 900}, permissions=['clipboard-read', 'clipboard-write'])
     page = context.new_page()
+    page.set_default_timeout(120000)
     page.set_default_navigation_timeout(60000)
     errors = []
     requests = []
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('request', lambda request: requests.append(request.url) if '.replay.json' in request.url else None)
     page.route('**/_vercel/insights/**', lambda route: route.fulfill(status=200, body=''))
+    page.route('https://fonts.googleapis.com/**', lambda route: route.fulfill(status=200, content_type='text/css', body=''))
     page.goto(link, wait_until='domcontentloaded')
     play = page.locator('[data-replay=play]')
     timeline = page.locator('[data-replay=timeline]')

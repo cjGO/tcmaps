@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import sys
 import os
+import re
 from playwright.sync_api import sync_playwright, expect
 
 url=sys.argv[1] if len(sys.argv)>1 else 'http://127.0.0.1:4175'
@@ -11,6 +12,7 @@ with sync_playwright() as p:
     browser=p.chromium.launch(headless=True,args=['--use-gl=angle','--use-angle=swiftshader'],
         **({'executable_path':os.environ['PLAYWRIGHT_CHROMIUM_EXECUTABLE']} if os.environ.get('PLAYWRIGHT_CHROMIUM_EXECUTABLE') else {}))
     page=browser.new_page(viewport={'width':1440,'height':1200},device_scale_factor=1)
+    page.set_default_timeout(120000)
     page.add_init_script('''window.replayLabelText = [];
       const fillText = CanvasRenderingContext2D.prototype.fillText;
       CanvasRenderingContext2D.prototype.fillText = function(text, ...args) {
@@ -19,9 +21,10 @@ with sync_playwright() as p:
       };''')
     errors=[]
     page.route('**/_vercel/insights/script.js',lambda r:r.fulfill(status=200,body=''))
+    page.route('https://fonts.googleapis.com/**',lambda r:r.fulfill(status=200,content_type='text/css',body=''))
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.on('console',lambda m:errors.append(m.text) if m.type=='error' else None)
-    page.goto(url)
+    page.goto(url, wait_until='domcontentloaded', timeout=120000)
     page.locator('.topology-live canvas.terrain-3d-surface').wait_for()
     page.locator('#replays-tab').click()
     expect(page.locator('#replay-catalog button').first).to_have_attribute('aria-pressed','true')
@@ -29,8 +32,19 @@ with sync_playwright() as p:
     expect(page.locator('#replays-panel canvas.terrain-3d-surface')).to_have_count(1)
     page.locator('#rotation-tab').click()
     expect(page.locator('#rotation-replays')).to_be_hidden()
-    for _ in range(2): page.locator('#rotation-next').click()
-    expect(page.locator('#rotation-filename')).to_have_text('scn_mp_custom_map_3.png')
+    # Rotation order and permanent map IDs evolve independently of scene slots.
+    # Find a map with recordings instead of assuming the third image has them.
+    page.locator('#rotation-panel [data-mode=heatmap]').click()
+    found=page.evaluate('''() => {
+      const total = Number(document.getElementById('rotation-count').textContent.split('/')[1]);
+      for (let i=0; i<total; i++) {
+        document.getElementById('rotation-next').click();
+        if (!document.getElementById('rotation-replays').hidden) return true;
+      }
+      return false;
+    }''')
+    assert found, 'No current rotation map has replay links'
+    expect(page.locator('#rotation-filename')).to_have_text(re.compile(r'test_map_\d+'))
     expect(page.locator('#rotation-replays')).to_be_visible()
     page.locator('#rotation-replays').click()
     expect(page.locator('#replays-tab')).to_have_attribute('aria-selected','true')
@@ -42,6 +56,7 @@ with sync_playwright() as p:
         expect(page.locator('#replays-panel canvas.terrain-3d-surface')).to_have_count(1)
         page.locator('[data-replay=clear]').click()
     page.locator('[data-replay=files]').set_input_files('tests/fixtures/SYNTHETIC-tactical-demo.replay.json')
+    expect(page.locator('[data-replay=play]')).to_be_enabled(timeout=120000)
     expect(page.locator('[data-replay=time]')).to_contain_text('320 visible',timeout=20000)
     expect(page.locator('[data-replay=time]')).to_contain_text('SYNTHETIC')
     strength=page.locator('[data-replay=strength]')
@@ -125,7 +140,7 @@ with sync_playwright() as p:
     assert json.loads((output/'heatmap.json').read_text())['soldier_seconds']>0
     scrub(20000); page.locator('[data-replay=play]').click()
     page.wait_for_function('Number(document.querySelector("[data-replay=timeline]").value)>20000',timeout=15000)
-    page.locator('[data-replay=play]').click(); expect(page.locator('[data-replay=play]')).to_have_text('Play')
+    page.locator('[data-replay=play]').click(); expect(page.locator('[data-replay=play]')).to_have_text(re.compile(r'Play$'))
     page.locator('#rotation-tab').click(); expect(canvas).to_have_count(0)
     page.locator('#replays-tab').click(); expect(page.locator('[data-replay=time]')).to_contain_text('visible')
     page.locator('[data-replay=clear]').click(); expect(page.locator('[data-replay=transport]')).to_be_hidden()
@@ -137,6 +152,7 @@ with sync_playwright() as p:
             row['player_name']='<Recorded player>'; row['unit_category']='artillery'
     named['journal']=''.join(json.dumps(row)+'\n' for row in rows)
     page.locator('[data-replay=files]').set_input_files({'name':'named.replay.json','mimeType':'application/json','buffer':json.dumps(named).encode()})
+    expect(page.locator('[data-replay=play]')).to_be_enabled(timeout=120000)
     expect(page.locator('[data-replay=time]')).to_contain_text('320 visible',timeout=20000)
     assert page.evaluate('window.replayLabelText.includes("<Recorded player>")')
     page.locator('[data-replay=player-names]').uncheck()

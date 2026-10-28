@@ -4,6 +4,7 @@ import { terrainGeometry, displayedHeight } from './terrain-geometry.js';
 import { createTerrainSurface } from './terrain-surface.js';
 import { createTerrainExperience } from './terrain-experience.js';
 import { hazeRange } from './terrain-explorer-motion.js';
+import { groundHeight } from './editor-spatial.js';
 import experienceStyles from './terrain-experience.css?inline';
 
 export function createTopologyViewer(container, data, onError, options = {}) {
@@ -14,6 +15,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   let camera, controls, observer, disposed = false, scale = 1, activeView = 'aerial';
   let navigation = true, enabled = true, activeSpawns = data.spawns, terrain;
   let experience, returnView, contoursEnabled = false;
+  let frameCamera, renderTarget, renderExploring = false;
   const graphics = { surface: 'elevation', palette: 'terrain', haze: true, fog: 'source', sun: 135, shadows: true };
   const raycaster = new THREE.Raycaster();
   const geometry = new THREE.BufferGeometry();
@@ -29,9 +31,9 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   const minimum = data.min_height_m;
   const z = h => displayedHeight(h, minimum, scale);
   function draw(updateShadows = true) {
-    if (disposed || !camera || !renderer || !container.clientWidth || !container.clientHeight) return;
-    const range = hazeRange({ exploring: experience?.mode === 'explore', overhead: camera.isOrthographicCamera,
-      distance: controls ? camera.position.distanceTo(controls.target) : span, span, enabled: graphics.haze && graphics.fog !== 'none' });
+    if (disposed || !camera || !renderer || (!options.renderOnly && (!container.clientWidth || !container.clientHeight))) return;
+    const range = hazeRange({ exploring: renderExploring || experience?.mode === 'explore', overhead: camera.isOrthographicCamera,
+      distance: controls ? camera.position.distanceTo(controls.target) : renderTarget ? camera.position.distanceTo(renderTarget) : span, span, enabled: graphics.haze && graphics.fog !== 'none' });
     const fogDistance = { low: 600, medium: 450, dense: 300 }[graphics.fog];
     const mapFog = fogDistance !== undefined;
     scene.fog.color.set(mapFog ? '#ffffff' : '#c4d5df');
@@ -58,15 +60,29 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   }
   function resize() {
     if (!camera || disposed) return;
-    const w = Math.max(1, container.clientWidth), h = Math.max(1, container.clientHeight);
+    const w = Math.max(1, options.width || container.clientWidth), h = Math.max(1, options.height || container.clientHeight);
     renderer.setSize(w, h, false);
-    if (camera.isPerspectiveCamera) camera.aspect = w / h;
+    if (frameCamera) {
+      // Expand the projection to contain the original framing at the new aspect.
+      const aspect = w / h;
+      if (camera.isPerspectiveCamera) {
+        camera.aspect = aspect;
+        camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(frameCamera.fov) / 2) * Math.max(1, frameCamera.aspect / aspect)));
+      } else {
+        const midX = (frameCamera.left + frameCamera.right) / 2, midY = (frameCamera.top + frameCamera.bottom) / 2;
+        const height = Math.max(frameCamera.top - frameCamera.bottom, (frameCamera.right - frameCamera.left) / aspect);
+        camera.left = midX - height * aspect / 2; camera.right = midX + height * aspect / 2;
+        camera.top = midY + height / 2; camera.bottom = midY - height / 2;
+      }
+    } else if (camera.isPerspectiveCamera) camera.aspect = w / h;
     else { const height = span * 1.18 * Math.max(1, h / w); camera.left = -height * w / h / 2; camera.right = -camera.left; camera.top = height / 2; camera.bottom = -height / 2; }
     camera.updateProjectionMatrix(); draw(false);
   }
   function preset(name = 'aerial') {
     if (disposed) return;
     experience?.exit();
+    frameCamera = null; renderExploring = false;
+    if (boundary) boundary.visible = true;
     activeView = name; controls?.dispose();
     camera = name === 'overhead' ? new THREE.OrthographicCamera() : new THREE.PerspectiveCamera(45, 1, .2, 10000);
     camera.near = .2; camera.far = 10000; camera.up.set(0, 0, 1);
@@ -88,6 +104,11 @@ export function createTopologyViewer(container, data, onError, options = {}) {
         if (corners.every(p => Math.abs(p.x) < .88 && Math.abs(p.y) < .88)) break;
         camera.position.sub(target).multiplyScalar(1.08).add(target); camera.lookAt(target);
       }
+    }
+    if (options.renderOnly) {
+      controls = null; renderTarget = target.clone(); camera.lookAt(target);
+      for (const [index, marker] of markers.entries()) marker.visible = name !== `team${index + 1}`;
+      resize(); return;
     }
     controls = new OrbitControls(camera, canvas);
     controls.target.copy(target); controls.minDistance = options.editing ? .25 : 3; controls.maxDistance = span * 6;
@@ -124,6 +145,34 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     surface.palette(graphics.palette);
     sun.castShadow = graphics.shadows; renderer.shadowMap.enabled = graphics.shadows;
     draw();
+  }
+  function captureViewState() {
+    const state = { camera: camera.clone(), target: controls?.target.clone(), scale, graphics: { ...graphics }, wireframe: material.wireframe,
+      contours: contoursEnabled && experience?.mode !== 'explore', exploring: experience?.mode === 'explore',
+      markers: markers.map(marker => marker.visible), boundary: boundary.visible };
+    if (returnView) state.overview = { ...state, camera: returnView.camera.clone(), scale: returnView.scale,
+      wireframe: returnView.wireframe, contours: contoursEnabled, exploring: false,
+      markers: markers.map((_, i) => activeView !== `team${i + 1}`), boundary: true };
+    return state;
+  }
+  function applyViewState(state) {
+    if (!options.renderOnly) throw new Error('View-state application requires an export viewer.');
+    camera = state.camera.clone(); frameCamera = state.camera.clone(); renderTarget = state.target?.clone(); renderExploring = state.exploring;
+    updateHeights(state.scale); material.wireframe = state.wireframe;
+    contoursEnabled = state.contours; surface.contours(state.contours);
+    markers.forEach((marker, i) => { marker.visible = state.markers[i]; }); boundary.visible = state.boundary;
+    applyGraphics(state.graphics); resize();
+  }
+  function renderSoldier(point, sourceAspect) {
+    if (!renderExploring || !camera.isPerspectiveCamera) {
+      camera = new THREE.PerspectiveCamera(60, sourceAspect, .08, 10000); camera.up.set(0, 0, 1);
+      frameCamera = camera.clone(); updateHeights(1); renderExploring = true;
+      material.wireframe = false; surface.contours(false); boundary.visible = false;
+      markers.forEach(marker => { marker.visible = false; }); resize();
+    }
+    const yaw = point.facing * Math.PI / 180;
+    camera.position.set(point.x, point.y, Math.max(groundHeight(data, point.x, point.y), point.z) + (point.mounted ? 2.2 : 1));
+    camera.lookAt(point.x + Math.sin(yaw), point.y + Math.cos(yaw), camera.position.z);
   }
   function dispose() {
     if (disposed) return; disposed = true;
@@ -162,17 +211,18 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       resources.push(texture, spriteMaterial); markers.push(marker); scene.add(marker);
     }
     renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(options.renderOnly ? 1 : Math.min(window.devicePixelRatio || 1, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.15;
     renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFShadowMap; renderer.shadowMap.autoUpdate = false;
     canvas = renderer.domElement; canvas.tabIndex = 0; canvas.classList.add('terrain-3d-surface');
+    if (options.renderOnly) { canvas.style.width = `${options.width}px`; canvas.style.height = `${options.height}px`; }
     canvas.setAttribute('aria-label', 'Custom map 1 interactive topology. Drag to orbit, scroll to zoom, right-drag or arrow keys to pan.');
     container.append(canvas); canvas.addEventListener('webglcontextlost', lost);
     canvas.addEventListener('keydown', event => { if (event.key.startsWith('Arrow')) event.stopPropagation(); });
-    observer = new ResizeObserver(resize); observer.observe(container);
+    if (!options.renderOnly) { observer = new ResizeObserver(resize); observer.observe(container); }
     exaggeration(1);
     applyGraphics(graphics);
-    experience = createTerrainExperience(container, data, {
+    if (!options.renderOnly) experience = createTerrainExperience(container, data, {
       canvas, pick, spawns: () => activeSpawns, graphics: applyGraphics,
       followEnded() { for (const listener of followEndListeners) listener(); },
       begin() {
@@ -198,9 +248,9 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       },
       modeChanged(mode) { configureControls(); options.onModeChange?.(mode); },
     }, experienceStyles);
-    return { preset, exaggeration, dispose, resize, canvas, draw, pick,
-      get mode() { return experience.mode; }, get following() { return experience.following; }, get heightScale() { return scale; },
-      exitExplorer() { experience.exit(); }, pauseExplorer() { experience.pause(); },
+    return { preset, exaggeration, dispose, resize, canvas, draw, pick, captureViewState, applyViewState, renderSoldier,
+      get mode() { return experience?.mode || 'orbit'; }, get following() { return experience?.following || false; }, get heightScale() { return scale; },
+      exitExplorer() { experience?.exit(); }, pauseExplorer() { experience?.pause(); },
       followSoldier(point) { experience.follow(point); },
       stopFollowing() { experience.exit(); },
       onFollowEnd(listener) { followEndListeners.add(listener); return () => followEndListeners.delete(listener); },
