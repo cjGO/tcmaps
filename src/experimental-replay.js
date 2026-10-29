@@ -238,12 +238,25 @@ export function terrainCandidate(replay, entries) {
   if (map.available === false || !hash(map.source?.sco_sha256) || !hash(map.source?.recipe_sha256) || !hash(map.version)) return null;
   return entries.find(e => sourceEqual(map.source, e.source) && ['map_id', 'variant_id', 'variant_revision'].every(k => map[k] === false || map[k] === e[k])) ?? null;
 }
+export function terrainOverlayCandidate(replay, entries) {
+  const map = replay.header.map;
+  if (map.available === false || map.kind === 'generated' || !str(map.map_id)) return null;
+  // A scene slot or filename can be reused. Only the public map identity may
+  // select a fallback, and ambiguous variants must stay on the neutral grid.
+  const matches = entries.filter(e => e.map_id === map.map_id &&
+    ['variant_id', 'variant_revision'].every(k => map[k] === false || map[k] === e[k]));
+  return matches.length === 1 ? matches[0] : null;
+}
 export async function verifyExperimentalTerrain(replay, data, entry, manual = false) {
   check(data.schema_version === 1 && hash(data.height_data_sha256) && sourceEqual(data.source, entry.source), 'Terrain provenance mismatch');
   const b = data.bounds, n = data.grid_size;
   check(b && [b.x_min_m, b.x_max_m, b.y_min_m, b.y_max_m, data.min_height_m, data.max_height_m, data.relief_m].every(Number.isFinite) && b.x_max_m > b.x_min_m && b.y_max_m > b.y_min_m && Math.max(b.x_max_m - b.x_min_m, b.y_max_m - b.y_min_m) <= 2000 && int(n, 2, 501), 'Invalid terrain bounds');
   check(data.vertical_scale === 1 && data.height_order === 'x-major, y-minor' && [data.xs, data.ys].every(a => Array.isArray(a) && a.length === n && a.every((v, i) => Number.isFinite(v) && Math.abs(v) <= 100000 && (!i || v > a[i - 1]))) && Array.isArray(data.heights_mm) && data.heights_mm.length === n * n && data.heights_mm.every(v => int(v, -10000000, 10000000)), 'Invalid terrain grid');
   check(Array.isArray(data.spawns) && data.spawns.length === 2 && data.spawns.every(p => [p.x_m, p.y_m, p.z_m].every(Number.isFinite)), 'Invalid terrain spawns');
+  if (manual === 'map-id') {
+    check(terrainOverlayCandidate(replay, [entry]), 'Terrain map identity mismatch');
+    return { verified: false, label: 'UNVERIFIED terrain overlay · matched test map automatically; recorded version differs or is unverified; alignment unknown' };
+  }
   if (manual) return { verified: false, label: 'UNVERIFIED terrain overlay · selected manually; alignment unknown' };
   check(terrainCandidate(replay, [entry]) && replay.header.map.version === await sha256(`${data.source.sco_sha256}:${data.source.recipe_sha256}`), 'Recorded terrain version mismatch');
   return { verified: true, label: 'Exact recorded terrain · recorded source identity verified' };

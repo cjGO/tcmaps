@@ -104,8 +104,19 @@ Frozen fixed-map headers may omit `available` and `scene` and instead carry
 matching requires exact recorded source hashes/terrain code, the SHA-256 source
 version, and all supplied public/variant/revision fields. The asset itself is
 verified against the topology manifest checksum and measured grid provenance.
-Only terrain available in this site's topology manifest can match automatically.
-Unavailable archived terrain still permits the neutral preview.
+Only terrain available in this site's topology manifest can load automatically.
+If the exact source is unavailable, the viewer automatically selects a unique
+entry with the same public `map_id` and supplied variant/revision, labelled
+**UNVERIFIED terrain overlay** with a recorded-version warning. This provides
+terrain context without claiming that the current terrain matches the recording.
+Missing identities, generated maps, absent maps and ambiguous variants retain
+the neutral preview. Scene slots and filenames are never fallback identities.
+
+The JSONL header contains identity, not the measured terrain itself. Adjacent
+files such as `experimental_replays/test_map_107.json` are raw measurements and
+are not topology assets registered in the site's manifest. That file and the
+current rotation both have different source hashes from the bundled recordings;
+neither establishes an exact historical terrain match.
 
 Selecting terrain from the dropdown is an explicit **UNVERIFIED terrain overlay**.
 The original header is never modified. Returning to the neutral grid removes the

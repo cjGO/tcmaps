@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import { parseExperimentalJournal as parse, experimentalPose, entityAt, projectileAt, experimentalFrame, effectsAt, activeProjectiles, eventIndex, terrainCandidate, verifyExperimentalTerrain, neutralReference, EXP_LIMITS } from '../src/experimental-replay.js';
+import { readFileSync, readdirSync } from 'node:fs';
+import { parseExperimentalJournal as parse, experimentalPose, entityAt, projectileAt, experimentalFrame, effectsAt, activeProjectiles, eventIndex, terrainCandidate, terrainOverlayCandidate, verifyExperimentalTerrain, neutralReference, EXP_LIMITS } from '../src/experimental-replay.js';
 import { parseJournal, sha256 } from '../src/tactical-replay.js';
 import { displayedHeight } from '../src/terrain-geometry.js';
 import { experimentalFixture, journal, finalize } from './fixtures/experimental-fixtures.js';
@@ -103,6 +103,40 @@ test('terrain requires hashes, version and recorded variant; manual overlay stay
   assert.equal(parse(journal(rows)).header.map.available, undefined);
   assert.equal(terrainCandidate(r, [{ ...entry, variant_revision: 'r2' }]), null);
   r.header.map.version = 'd'.repeat(64); await assert.rejects(verifyExperimentalTerrain(r, data, entry), /version mismatch/);
+});
+test('bundled recordings resolve available test maps without claiming exact historical terrain', async () => {
+  const directory = new URL('../experimental_replays/', import.meta.url);
+  const { maps } = JSON.parse(readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8'));
+  const matched = new Set();
+  for (const filename of readdirSync(directory).filter(name => name.startsWith('EXP-') && name.endsWith('.jsonl'))) {
+    const replay = { header: JSON.parse(readFileSync(new URL(filename, directory), 'utf8').split('\n')[0]) };
+    const original = structuredClone(replay.header.map);
+    const candidate = terrainOverlayCandidate(replay, maps);
+    if (replay.header.map.available === false) { assert.equal(candidate, null); continue; }
+    assert.ok(candidate, filename);
+    assert.equal(candidate.map_id, replay.header.map.map_id);
+    assert.equal(terrainCandidate(replay, maps), null, 'Current assets differ from recorded sources');
+    const text = readFileSync(new URL('../public' + candidate.url, import.meta.url), 'utf8');
+    assert.equal(await sha256(text), candidate.sha256);
+    const data = JSON.parse(text), result = await verifyExperimentalTerrain(replay, data, candidate, 'map-id');
+    assert.equal(result.verified, false);
+    assert.match(result.label, /matched test map automatically; recorded version differs/);
+    await assert.rejects(verifyExperimentalTerrain(replay, data, candidate), /version mismatch/);
+    assert.deepEqual(replay.header.map, original);
+    matched.add(candidate.map_id);
+  }
+  assert.ok(matched.size > 0, 'At least one bundled recording has an available test map');
+});
+test('automatic overlays reject missing identities, scene-slot guesses and ambiguous or different variants', () => {
+  const entry = { id: 'scn_mp_custom_map_1', map_id: 'test_map_107', variant_id: 'source', variant_revision: '' };
+  const replay = { header: { map: { ...entry, kind: 'fixed' } } };
+  assert.equal(terrainOverlayCandidate(replay, [entry]), entry);
+  for (const patch of [{ available: false }, { kind: 'generated' }, { map_id: false }, { map_id: 'test_map_999' }, { variant_id: 'VarA' }, { variant_revision: 'r2' }]) {
+    assert.equal(terrainOverlayCandidate({ header: { map: { ...replay.header.map, ...patch } } }, [entry]), null);
+  }
+  assert.equal(terrainOverlayCandidate(replay, [entry, { ...entry }]), null);
+  const noVariant = { header: { map: { ...entry, variant_id: false, variant_revision: false } } };
+  assert.equal(terrainOverlayCandidate(noVariant, [entry, { ...entry, variant_id: 'VarA' }]), null);
 });
 test('torn final line and absent terminal are explicitly incomplete; interior corruption is fatal', () => {
   const rows = fixture(); rows.pop();

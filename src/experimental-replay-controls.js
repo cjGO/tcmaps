@@ -1,4 +1,4 @@
-import { EXP_LIMITS, EFFECTS, eventIndex, metadataAt, neutralReference, terrainCandidate, verifyExperimentalTerrain } from './experimental-replay.js';
+import { EXP_LIMITS, EFFECTS, eventIndex, metadataAt, neutralReference, terrainCandidate, terrainOverlayCandidate, verifyExperimentalTerrain } from './experimental-replay.js';
 import { sha256 } from './tactical-replay.js';
 import manifest from '../lib/rotation-topology.json';
 import './experimental-replay.css';
@@ -155,7 +155,8 @@ export function setupExperimentalReplay(root) {
       el('alignment').textContent = alignment;
       el('status').textContent = `Imported locally in ${(performance.now() - start).toFixed(0)} ms (worker parse, indexing and transfer). Recorded locations are distinct from reconstructed motion.`;
       const exact = terrainCandidate(replay, manifest.maps);
-      if (exact) { el('terrain').value = String(manifest.maps.indexOf(exact)); await useTerrain(exact, false); }
+      const candidate = exact || terrainOverlayCandidate(replay, manifest.maps);
+      if (candidate) { el('terrain').value = String(manifest.maps.indexOf(candidate)); await useTerrain(candidate, exact ? false : 'map-id'); }
       else await attach();
     } catch (error) { if (token === loadGeneration) el('status').textContent = `Experimental recording could not load: ${error.message}`; }
     return replay;

@@ -46,6 +46,23 @@ with sync_playwright() as p:
     e('terrain').select_option('0'); expect(e('alignment')).to_contain_text('UNVERIFIED terrain overlay')
     expect(e('play')).to_be_enabled(); expect(e('metadata')).to_contain_text('"available": false')
     e('terrain').select_option(''); expect(e('alignment')).to_contain_text('Unaligned'); expect(e('play')).to_be_enabled()
+    # Public test-map IDs automatically load existing terrain even when source
+    # versions differ, with an explicit warning instead of an exact-match claim.
+    for filename, map_id in [('EXP-20261029T075251Z-1.jsonl', 'test_map_107'),
+                             ('EXP-20261029T123029Z-1.jsonl', 'test_map_166'),
+                             ('EXP-20261029T123743Z-1.jsonl', 'test_map_170')]:
+        e('file').set_input_files('experimental_replays/' + filename)
+        expect(e('title')).to_have_text(filename.removesuffix('.jsonl'))
+        expect(e('alignment')).to_contain_text('matched test map automatically')
+        expect(e('alignment')).to_contain_text('recorded version differs')
+        expect(e('alignment')).to_contain_text(map_id)
+        expect(e('terrain')).not_to_have_value('')
+        expect(e('play')).to_be_enabled()
+        expect(e('stage').locator('canvas.terrain-3d-surface')).to_have_count(1)
+    e('file').set_input_files('experimental_replays/EXP-20261029T074033Z-1.jsonl')
+    expect(e('alignment')).to_contain_text('Unaligned')
+    expect(e('terrain')).to_have_value('')
+    expect(e('play')).to_be_enabled()
     # Stable import and playback continue to work after the experimental session.
     page.locator('#replays-tab').click(); expect(e('stage').locator('canvas')).to_have_count(0)
     page.locator('[data-replay=files]').set_input_files('tests/fixtures/SYNTHETIC-tactical-demo.replay.json')
