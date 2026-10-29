@@ -1,0 +1,76 @@
+# Map library
+
+Put rate_maps JSON exports directly in the linked variants folders.
+Source SCO/TXT pairs are immutable; builds are generated automatically.
+Refresh keeps the surviving roster and picks a variant, or source when none is eligible.
+
+| Installed slot | Map | Size | Variants folder |
+|---|---|---|---|
+| mp_custom_map_21 | test_map_116 | small | [variants](small/test_map_116/variants/) |
+| mp_custom_map_52 | test_map_130 | small | [variants](small/test_map_130/variants/) |
+| mp_custom_map_45 | test_map_125 | small | [variants](small/test_map_125/variants/) |
+| mp_custom_map_40 | test_map_120 | small | [variants](small/test_map_120/variants/) |
+| mp_custom_map_5 | test_map_111 | small | [variants](small/test_map_111/variants/) |
+| mp_custom_map_56 | test_map_134 | small | [variants](small/test_map_134/variants/) |
+| mp_custom_map_13 | test_map_114 | small | [variants](small/test_map_114/variants/) |
+| mp_custom_map_48 | test_map_126 | small | [variants](small/test_map_126/variants/) |
+| mp_custom_map_50 | test_map_128 | small | [variants](small/test_map_128/variants/) |
+| mp_custom_map_32 | test_map_117 | small | [variants](small/test_map_117/variants/) |
+| mp_custom_map_49 | test_map_127 | small | [variants](small/test_map_127/variants/) |
+| mp_custom_map_58 | test_map_136 | small | [variants](small/test_map_136/variants/) |
+| mp_custom_map_61 | test_map_139 | small | [variants](small/test_map_139/variants/) |
+| mp_custom_map_54 | test_map_132 | small | [variants](small/test_map_132/variants/) |
+| mp_custom_map_20 | test_map_115 | small | [variants](small/test_map_115/variants/) |
+| mp_custom_map_2 | test_map_108 | small | [variants](small/test_map_108/variants/) |
+| mp_custom_map_9 | test_map_113 | small | [variants](small/test_map_113/variants/) |
+| mp_custom_map_62 | test_map_140 | small | [variants](small/test_map_140/variants/) |
+| mp_custom_map_60 | test_map_138 | small | [variants](small/test_map_138/variants/) |
+| mp_custom_map_4 | test_map_110 | small | [variants](small/test_map_110/variants/) |
+| mp_custom_map_53 | test_map_131 | small | [variants](small/test_map_131/variants/) |
+| mp_custom_map_59 | test_map_137 | small | [variants](small/test_map_137/variants/) |
+| mp_custom_map_51 | test_map_129 | small | [variants](small/test_map_129/variants/) |
+| mp_custom_map_42 | test_map_122 | small | [variants](small/test_map_122/variants/) |
+| mp_custom_map_1 | test_map_107 | small | [variants](small/test_map_107/variants/) |
+| mp_custom_map_8 | test_map_112 | small | [variants](small/test_map_112/variants/) |
+| mp_custom_map_44 | test_map_124 | small | [variants](small/test_map_124/variants/) |
+| mp_custom_map_41 | test_map_121 | small | [variants](small/test_map_121/variants/) |
+| mp_custom_map_55 | test_map_133 | small | [variants](small/test_map_133/variants/) |
+| mp_custom_map_39 | test_map_145 | tiny | [variants](tiny/test_map_145/variants/) |
+| mp_custom_map_79 | test_map_163 | tiny | [variants](tiny/test_map_163/variants/) |
+| mp_custom_map_83 | test_map_167 | tiny | [variants](tiny/test_map_167/variants/) |
+| mp_custom_map_82 | test_map_166 | tiny | [variants](tiny/test_map_166/variants/) |
+| mp_custom_map_71 | test_map_156 | tiny | [variants](tiny/test_map_156/variants/) |
+| mp_custom_map_65 | test_map_150 | tiny | [variants](tiny/test_map_150/variants/) |
+| mp_custom_map_95 | test_map_177 | tiny | [variants](tiny/test_map_177/variants/) |
+| mp_custom_map_70 | test_map_155 | tiny | [variants](tiny/test_map_155/variants/) |
+| mp_custom_map_68 | test_map_153 | tiny | [variants](tiny/test_map_153/variants/) |
+| mp_custom_map_66 | test_map_151 | tiny | [variants](tiny/test_map_151/variants/) |
+| mp_custom_map_78 | test_map_162 | tiny | [variants](tiny/test_map_162/variants/) |
+| mp_custom_map_80 | test_map_164 | tiny | [variants](tiny/test_map_164/variants/) |
+| mp_custom_map_75 | test_map_160 | tiny | [variants](tiny/test_map_160/variants/) |
+| mp_custom_map_90 | test_map_173 | tiny | [variants](tiny/test_map_173/variants/) |
+| mp_custom_map_3 | test_map_141 | tiny | [variants](tiny/test_map_141/variants/) |
+| mp_custom_map_88 | test_map_171 | tiny | [variants](tiny/test_map_171/variants/) |
+| mp_custom_map_69 | test_map_154 | tiny | [variants](tiny/test_map_154/variants/) |
+| mp_custom_map_63 | test_map_148 | tiny | [variants](tiny/test_map_148/variants/) |
+| mp_custom_map_43 | test_map_146 | tiny | [variants](tiny/test_map_146/variants/) |
+| mp_custom_map_57 | test_map_147 | tiny | [variants](tiny/test_map_147/variants/) |
+| mp_custom_map_85 | test_map_169 | tiny | [variants](tiny/test_map_169/variants/) |
+| mp_custom_map_81 | test_map_165 | tiny | [variants](tiny/test_map_165/variants/) |
+| mp_custom_map_84 | test_map_168 | tiny | [variants](tiny/test_map_168/variants/) |
+| mp_custom_map_98 | test_map_179 | tiny | [variants](tiny/test_map_179/variants/) |
+| mp_custom_map_89 | test_map_172 | tiny | [variants](tiny/test_map_172/variants/) |
+| mp_custom_map_64 | test_map_149 | tiny | [variants](tiny/test_map_149/variants/) |
+| mp_custom_map_34 | test_map_144 | tiny | [variants](tiny/test_map_144/variants/) |
+| mp_custom_map_86 | test_map_170 | tiny | [variants](tiny/test_map_170/variants/) |
+| mp_custom_map_67 | test_map_152 | tiny | [variants](tiny/test_map_152/variants/) |
+| mp_custom_map_94 | test_map_176 | tiny | [variants](tiny/test_map_176/variants/) |
+| mp_custom_map_96 | test_map_178 | tiny | [variants](tiny/test_map_178/variants/) |
+| mp_custom_map_7 | test_map_142 | tiny | [variants](tiny/test_map_142/variants/) |
+| mp_custom_map_93 | test_map_175 | tiny | [variants](tiny/test_map_175/variants/) |
+| mp_custom_map_92 | test_map_174 | tiny | [variants](tiny/test_map_174/variants/) |
+| mp_custom_map_74 | test_map_159 | tiny | [variants](tiny/test_map_159/variants/) |
+| mp_custom_map_29 | test_map_143 | tiny | [variants](tiny/test_map_143/variants/) |
+| mp_custom_map_73 | test_map_158 | tiny | [variants](tiny/test_map_158/variants/) |
+| mp_custom_map_76 | test_map_161 | tiny | [variants](tiny/test_map_161/variants/) |
+| mp_custom_map_72 | test_map_157 | tiny | [variants](tiny/test_map_157/variants/) |

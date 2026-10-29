@@ -1,8 +1,8 @@
 import './style.css';
 import { inject } from '@vercel/analytics';
-import mapNames from '../MAP_NAMES.md?raw';
+import mapNames from '../MAPNAMES.md?raw';
 import identityRegistry from '../lib/editor-rotation.json';
-import { publicMapId, mapLabel, csvRows } from './map-identity.js';
+import { publicMapId, mapLabel, csvRows, parseMapNames, statsMapId } from './map-identity.js';
 
 import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
@@ -28,10 +28,13 @@ const collections = {
 const rotationImages = collections.rotation.images.map(entry => ({
   ...entry, map_id: publicMapId(identityRegistry, entry.filename),
 }));
-const rotationPools = new Map([...mapNames.matchAll(/^\|\s*(tiny|small|medium)\s*\|\s*\d+\s*\|\s*(mp_custom_map_\d+)\s*\|/gm)]
-  .map(([, pool, slot]) => [`scn_${slot}.png`, pool]));
+const installedMaps = parseMapNames(mapNames);
+const rotationPools = new Map(installedMaps.map(map => [map.filename, map.pool]));
 let rotationPool = 'all';
-const [roundStatsHeaders, ...roundStatsRows] = csvRows(roundStatsCsv);
+const [roundStatsHeaders, ...recordedRoundStatsRows] = csvRows(roundStatsCsv);
+const mapNameColumn = roundStatsHeaders.indexOf('map_name');
+const roundStatsRows = recordedRoundStatsRows.map(row => row.map((value, index) =>
+  index === mapNameColumn ? statsMapId(installedMaps, value) : value));
 const roundStatsColumns = ['result', 'duration_seconds', 'player_count'].map(header => ({ header, index: roundStatsHeaders.indexOf(header) }));
 const roundRanges = new Map();
 let rotationRange = [1, 30];
@@ -76,7 +79,7 @@ function renderRoundStats(name, filename) {
   const { rows } = stats;
   el('game-count').textContent = stats.games;
   el('round-empty').textContent = allRows.length ? 'No rounds match this player count range.' : 'No rounds recorded for this map.';
-  el('round-note').textContent = `Historical rows with unverified map identities are excluded from map totals. Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
+  el('round-note').textContent = `Source and named variants count toward the same map. Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
   el('team1-average').textContent = stats.win === null ? '—' : `${stats.win.toFixed(1)}%`;
   const averageSeconds = stats.duration === null ? null : Math.round(stats.duration);
   el('duration-average').textContent = averageSeconds === null ? '—' : `${Math.floor(averageSeconds / 60)}m ${averageSeconds % 60}s`;

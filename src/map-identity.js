@@ -1,4 +1,18 @@
 // Engine IDs remain resource keys; only permanent IDs identify feedback.
+export function parseMapNames(markdown) {
+  return [...markdown.matchAll(/^\|\s*(mp_custom_map_\d+)\s*\|\s*(test_map_\d+)\s*\|\s*(tiny|small|medium)\s*\|/gm)]
+    .map(([, slot, map_id, pool]) => ({ id: `scn_${slot}`, filename: `scn_${slot}.png`, map_id, pool }));
+}
+
+// Resolve recorded names using the supplied installed-slot mapping. RAW and
+// named variants share their permanent map family's statistics.
+export function statsMapId(mapNames, recordedName) {
+  const name = recordedName?.trim().replace(/^scn_/, '').replace(/\.png$/i, '');
+  const permanent = /^(test_map_\d+)(?:_(?:RAW|Var[a-z0-9]+))?$/i.exec(name || '');
+  if (permanent) return permanent[1];
+  return mapNames.find(row => row.id === `scn_${name}`)?.map_id || name;
+}
+
 export function publicMapId(registry, filename) {
   const key = filename?.replace(/\.png$/i, '');
   const row = registry.find(row => row.id === key);
