@@ -46,6 +46,52 @@ export function durationRegression(points) {
   return { min, max, degree, predict, r2: total ? 1 - residual / total : 1 };
 }
 
+// Natural cubic regression spline: evenly spaced interior knots, linear tails.
+// Solve least squares with reorthogonalized QR, preserving equal weight per round.
+export function durationSpline(points, knotCount = 2) {
+  if (!points.length) return null;
+  const min = Math.min(...points.map(p => p.players)), max = Math.max(...points.map(p => p.players));
+  const distinct = new Set(points.map(p => p.players)).size;
+  const requested = Math.max(2, Math.min(5, Math.round(knotCount) || 2));
+  for (let count = Math.min(requested, distinct - 2); count >= 1; count--) {
+    const knots = Array.from({ length: count + 2 }, (_, i) => i / (count + 1));
+    const cube = value => Math.max(0, value) ** 3;
+    const d = (z, knot) => (cube(z - knot) - cube(z - 1)) / (1 - knot);
+    const basis = players => {
+      const z = (players - min) / (max - min);
+      return [1, z, ...knots.slice(0, -2).map(knot => d(z, knot) - d(z, knots.at(-2)))];
+    };
+    const rows = points.map(p => basis(p.players));
+    const size = count + 2, q = [], r = Array.from({ length: size }, () => Array(size).fill(0));
+    let singular = false;
+    for (let j = 0; j < size; j++) {
+      const column = rows.map(row => row[j]);
+      for (let pass = 0; pass < 2; pass++) {
+        for (let i = 0; i < j; i++) {
+          const projection = column.reduce((sum, v, k) => sum + v * q[i][k], 0);
+          r[i][j] += projection;
+          column.forEach((v, k) => { column[k] = v - projection * q[i][k]; });
+        }
+      }
+      r[j][j] = Math.sqrt(column.reduce((sum, v) => sum + v * v, 0));
+      if (r[j][j] < 1e-10 * Math.sqrt(points.length)) { singular = true; break; }
+      q.push(column.map(v => v / r[j][j]));
+    }
+    if (singular) continue;
+    const coefficients = q.map(column => column.reduce((sum, v, i) => sum + v * points[i].seconds, 0));
+    for (let i = size - 1; i >= 0; i--) {
+      for (let j = i + 1; j < size; j++) coefficients[i] -= r[i][j] * coefficients[j];
+      coefficients[i] /= r[i][i];
+    }
+    const predict = players => basis(players).reduce((sum, v, i) => sum + v * coefficients[i], 0);
+    const mean = points.reduce((sum, p) => sum + p.seconds, 0) / points.length;
+    const total = points.reduce((sum, p) => sum + (p.seconds - mean) ** 2, 0);
+    const residual = points.reduce((sum, p) => sum + (p.seconds - predict(p.players)) ** 2, 0);
+    return { min, max, predict, r2: total ? 1 - residual / total : 1, knots: knots.slice(1, -1).map(k => min + k * (max - min)), label: `Natural cubic spline · ${count} ${count === 1 ? 'knot' : 'knots'}` };
+  }
+  return { ...durationRegression(points), knots: [], label: distinct > 1 ? 'Linear fit (sparse counts)' : 'Constant fit (one count)' };
+}
+
 export function durationJitter(index) {
   // Stable across renders; at most 0.18 players of horizontal displacement.
   const value = Math.imul(index + 1, 2654435761) >>> 0;
@@ -111,71 +157,76 @@ export function setupServerStats(headers, rows, dailyPlayers = []) {
   }
   const durations = durationSamples(headers, rows);
   const durationChart = $('duration-chart');
-  durationChart.append(make('title', {}, 'Round duration by player count'), make('desc', {}, 'Each point is a recorded round. Player count is on the horizontal axis and duration in minutes is on the vertical axis. Includes rounds without timestamps.'));
-  $('duration-empty').hidden = durations.length > 0;
-  $('duration-chart-wrap').hidden = !durations.length;
-  $('duration-summary').textContent = `${durations.length} rounds · ${rows.length - durations.length} rows without usable count/duration omitted`;
-  if (durations.length) {
-    const fit = durationRegression(durations);
-    const extrapolate = fit.min < fit.max && fit.max < 50;
-    const projected = extrapolate ? Array.from({ length: 201 }, (_, i) => fit.predict(fit.max + (50 - fit.max) * i / 200)) : [];
-    const playerStep = Math.max(5, Math.ceil(fit.max / 10));
-    const playerMax = playerStep * 10;
-    const low = Math.min(0, ...projected.map(v => v / 60));
-    const high = Math.max(...durations.map(p => p.seconds / 60), ...projected.map(v => v / 60));
-    const minuteStep = Math.max(1, Math.ceil((high - low) / 5));
-    const minuteMin = Math.floor(low / minuteStep) * minuteStep;
-    const minuteMax = Math.ceil(high / minuteStep) * minuteStep;
-    const x = players => 70 + players / playerMax * 880;
-    const y = seconds => 350 - (seconds / 60 - minuteMin) / (minuteMax - minuteMin || 1) * 300;
-    if (extrapolate) {
-      durationChart.append(
-        make('rect', { x: x(fit.max), y: 50, width: x(50) - x(fit.max), height: 300, class: 'duration-extrapolation-region' }),
-        make('line', { x1: x(fit.max), x2: x(fit.max), y1: 50, y2: 350, class: 'duration-extrapolation-boundary' })
-      );
-      const estimate = fit.predict(50) / 60;
-      $('duration-summary').textContent += ` · 50-player extrapolation: ${estimate.toFixed(2)} min${estimate < 0 ? ' (negative model output; not a valid duration)' : ''}`;
-    }
-    for (let minutes = minuteMin; minutes <= minuteMax; minutes += minuteStep) {
-      durationChart.append(make('line', { x1: 70, x2: 950, y1: y(minutes * 60), y2: y(minutes * 60), class: 'population-grid' }), make('text', { x: 58, y: y(minutes * 60) + 4, 'text-anchor': 'end' }, minutes));
-    }
-    for (let i = 0; i <= 10; i++) {
-      const players = playerStep * i;
-      durationChart.append(make('text', { x: x(players), y: 375, 'text-anchor': 'middle' }, players));
-    }
-    durationChart.append(make('text', { x: 510, y: 408, 'text-anchor': 'middle' }, 'Player count'), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Round duration (minutes)'));
-    for (const [index, point] of durations.entries()) {
-      const label = `${point.players} players · ${point.seconds} seconds (${(point.seconds / 60).toFixed(2)} minutes) · ${point.map} · round ${point.round}`;
-      const jitter = Math.max(-5, Math.min(5, x(point.players + durationJitter(index)) - x(point.players)));
-      const dot = make('circle', { cx: x(point.players) + jitter, cy: y(point.seconds), r: 4, class: 'population-dot duration-dot', tabindex: 0, 'aria-label': label });
-      dot.append(make('title', {}, label));
-      for (const event of ['pointerenter', 'focus', 'click']) dot.addEventListener(event, () => $('duration-detail').textContent = label);
-      durationChart.append(dot);
-    }
-    if (fit.min < fit.max) {
-      const label = `${fit.degree === 2 ? 'Quadratic' : 'Linear'} regression · R² = ${fit.r2.toFixed(3)}`;
-      const clip = make('clipPath', { id: 'duration-fit-clip' });
-      clip.append(make('rect', { x: 70, y: 50, width: 880, height: 300 }));
-      const defs = make('defs'); defs.append(clip); durationChart.append(defs);
-      const curve = Array.from({ length: 201 }, (_, i) => {
-        const players = fit.min + (fit.max - fit.min) * i / 200;
-        return `${x(players)},${y(fit.predict(players))}`;
-      });
-      const line = make('polyline', { points: curve.join(' '), class: 'duration-fit', 'clip-path': 'url(#duration-fit-clip)', 'aria-label': label });
-      line.append(make('title', {}, `${label}. Fitted to original values, before jitter.`));
-      durationChart.append(line, make('line', { x1: 70, x2: 100, y1: 28, y2: 28, class: 'duration-fit' }), make('text', { x: 110, y: 32 }, label));
+  function renderDuration() {
+    durationChart.replaceChildren(make('title', {}, 'Round duration by player count'), make('desc', {}, 'Each point is a recorded round. Player count is on the horizontal axis and duration in minutes is on the vertical axis. Includes rounds without timestamps.'));
+    $('duration-empty').hidden = durations.length > 0;
+    $('duration-chart-wrap').hidden = !durations.length;
+    $('duration-summary').textContent = `${durations.length} rounds · ${rows.length - durations.length} rows without usable count/duration omitted`;
+    if (durations.length) {
+      const fit = durationSpline(durations, Number($('duration-knots').value));
+      const extrapolate = fit.min < fit.max && fit.max < 50;
+      const projected = extrapolate ? Array.from({ length: 201 }, (_, i) => fit.predict(fit.max + (50 - fit.max) * i / 200)) : [];
+      const fitted = Array.from({ length: 201 }, (_, i) => fit.predict(fit.min + (fit.max - fit.min) * i / 200));
+      const playerStep = Math.max(5, Math.ceil(fit.max / 10));
+      const playerMax = playerStep * 10;
+      const low = Math.min(0, ...fitted.map(v => v / 60), ...projected.map(v => v / 60));
+      const high = Math.max(...durations.map(p => p.seconds / 60), ...fitted.map(v => v / 60), ...projected.map(v => v / 60));
+      const minuteStep = Math.max(1, Math.ceil((high - low) / 5));
+      const minuteMin = Math.floor(low / minuteStep) * minuteStep;
+      const minuteMax = Math.ceil(high / minuteStep) * minuteStep;
+      const x = players => 70 + players / playerMax * 880;
+      const y = seconds => 350 - (seconds / 60 - minuteMin) / (minuteMax - minuteMin || 1) * 300;
       if (extrapolate) {
-        const extension = make('polyline', {
-          points: projected.map((seconds, i) => `${x(fit.max + (50 - fit.max) * i / 200)},${y(seconds)}`).join(' '),
-          class: 'duration-fit duration-extrapolation', 'clip-path': 'url(#duration-fit-clip)', 'aria-label': 'Extrapolated regression to 50 players'
+        durationChart.append(
+          make('rect', { x: x(fit.max), y: 50, width: x(50) - x(fit.max), height: 300, class: 'duration-extrapolation-region' }),
+          make('line', { x1: x(fit.max), x2: x(fit.max), y1: 50, y2: 350, class: 'duration-extrapolation-boundary' })
+        );
+        const estimate = fit.predict(50) / 60;
+        $('duration-summary').textContent += ` · 50-player extrapolation: ${estimate.toFixed(2)} min${estimate < 0 ? ' (negative model output; not a valid duration)' : ''}`;
+      }
+      for (let minutes = minuteMin; minutes <= minuteMax; minutes += minuteStep) {
+        durationChart.append(make('line', { x1: 70, x2: 950, y1: y(minutes * 60), y2: y(minutes * 60), class: 'population-grid' }), make('text', { x: 58, y: y(minutes * 60) + 4, 'text-anchor': 'end' }, minutes));
+      }
+      for (let i = 0; i <= 10; i++) {
+        const players = playerStep * i;
+        durationChart.append(make('text', { x: x(players), y: 375, 'text-anchor': 'middle' }, players));
+      }
+      durationChart.append(make('text', { x: 510, y: 408, 'text-anchor': 'middle' }, 'Player count'), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Round duration (minutes)'));
+      for (const [index, point] of durations.entries()) {
+        const label = `${point.players} players · ${point.seconds} seconds (${(point.seconds / 60).toFixed(2)} minutes) · ${point.map} · round ${point.round}`;
+        const jitter = Math.max(-5, Math.min(5, x(point.players + durationJitter(index)) - x(point.players)));
+        const dot = make('circle', { cx: x(point.players) + jitter, cy: y(point.seconds), r: 4, class: 'population-dot duration-dot', tabindex: 0, 'aria-label': label });
+        dot.append(make('title', {}, label));
+        for (const event of ['pointerenter', 'focus', 'click']) dot.addEventListener(event, () => $('duration-detail').textContent = label);
+        durationChart.append(dot);
+      }
+      if (fit.min < fit.max) {
+        const label = `${fit.label} · R² = ${fit.r2.toFixed(3)}`;
+        const clip = make('clipPath', { id: 'duration-fit-clip' });
+        clip.append(make('rect', { x: 70, y: 50, width: 880, height: 300 }));
+        const defs = make('defs'); defs.append(clip); durationChart.append(defs);
+        const curve = Array.from({ length: 201 }, (_, i) => {
+          const players = fit.min + (fit.max - fit.min) * i / 200;
+          return `${x(players)},${y(fit.predict(players))}`;
         });
-        extension.append(make('title', {}, 'Same regression extended beyond recorded counts to 50 players; uncertain estimate.'));
-        durationChart.append(extension,
-          make('line', { x1: 620, x2: 650, y1: 28, y2: 28, class: 'duration-fit duration-extrapolation' }),
-          make('text', { x: 660, y: 32 }, 'Extrapolation · no recorded rounds'));
+        const line = make('polyline', { points: curve.join(' '), class: 'duration-fit', 'clip-path': 'url(#duration-fit-clip)', 'aria-label': label });
+        line.append(make('title', {}, `${label}. Fitted to original values, before jitter.`));
+        durationChart.append(line, make('line', { x1: 70, x2: 100, y1: 28, y2: 28, class: 'duration-fit' }), make('text', { x: 110, y: 32 }, label));
+        if (extrapolate) {
+          const extension = make('polyline', {
+            points: projected.map((seconds, i) => `${x(fit.max + (50 - fit.max) * i / 200)},${y(seconds)}`).join(' '),
+            class: 'duration-fit duration-extrapolation', 'clip-path': 'url(#duration-fit-clip)', 'aria-label': 'Extrapolated regression to 50 players'
+          });
+          extension.append(make('title', {}, 'Same regression extended beyond recorded counts to 50 players; uncertain estimate.'));
+          durationChart.append(extension,
+            make('line', { x1: 620, x2: 650, y1: 28, y2: 28, class: 'duration-fit duration-extrapolation' }),
+            make('text', { x: 660, y: 32 }, 'Extrapolation · no recorded rounds'));
+        }
       }
     }
   }
+  $('duration-knots').addEventListener('change', renderDuration);
+  renderDuration();
   sessions.forEach((session, index) => {
     const option = document.createElement('option');
     option.value = index;

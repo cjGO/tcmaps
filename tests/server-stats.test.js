@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { populationSamples, populationSessions, durationSamples, durationColor, durationRegression, durationJitter, setupServerStats } from '../src/server-stats.js';
+import { populationSamples, populationSessions, durationSamples, durationColor, durationRegression, durationSpline, durationJitter, setupServerStats } from '../src/server-stats.js';
 const headers = ['map_name', 'round', 'player_count', 'timestamp_utc'];
 test('duration gradient distinguishes short, middle, long and unavailable durations', () => {
   assert.equal(durationColor(0, 120), 'rgb(37, 99, 235)');
@@ -89,14 +89,20 @@ test('duration chart shows jitter and regression while preserving original point
     const fit = chart.querySelector('polyline.duration-fit');
     assert.equal(fit.getAttribute('points').split(' ').length, 201);
     assert.ok(!fit.getAttribute('points').includes('NaN'));
-    assert.match(fit.getAttribute('aria-label'), /Quadratic regression · R²/);
+    assert.match(fit.getAttribute('aria-label'), /Natural cubic spline · 1 knot · R²/);
     const extension = chart.querySelector('polyline.duration-extrapolation');
     const coordinates = extension.getAttribute('points').split(' ').map(pair => pair.split(',').map(Number));
     assert.equal(extension.getAttribute('points').split(' ')[0], fit.getAttribute('points').split(' ').at(-1));
     assert.equal(coordinates.at(-1)[0], 950);
     assert.ok(coordinates.every(([x, y]) => Number.isFinite(x) && y >= 50 && y <= 350));
     assert.ok(chart.querySelector('.duration-extrapolation-region'));
-    assert.match(document.getElementById('duration-summary').textContent, /50-player extrapolation:.*negative model output/);
+    assert.match(document.getElementById('duration-summary').textContent, /50-player extrapolation:/);
+    const selector = document.getElementById('duration-knots');
+    assert.equal(selector.value, '2');
+    selector.value = '5';
+    selector.dispatchEvent(new dom.window.Event('change'));
+    assert.equal(chart.querySelectorAll('.duration-dot').length, 4);
+    assert.equal(chart.querySelectorAll('polyline.duration-extrapolation').length, 1);
   } finally {
     globalThis.document = previous;
     dom.window.close();
@@ -138,6 +144,69 @@ test('population hours slider filters immediately and follows the selected sessi
     slide(1);
     assert.equal(count(), 3);
     assert.equal(document.querySelectorAll('.duration-dot').length, 4);
+  } finally {
+    globalThis.document = previous;
+    dom.window.close();
+  }
+});
+
+
+test('natural splines use evenly spaced knots and reproduce linear data with linear tails', () => {
+  const points = Array.from({ length: 31 }, (_, players) => ({ players, seconds: 120 + 20 * players }));
+  for (let count = 2; count <= 5; count++) {
+    const fit = durationSpline(points, count);
+    assert.equal(fit.knots.length, count);
+    fit.knots.forEach((knot, i) => assert.ok(Math.abs(knot - 30 * (i + 1) / (count + 1)) < 1e-10));
+    for (const players of [-5, 0, 7.5, 30, 40, 50]) {
+      assert.ok(Math.abs(fit.predict(players) - (120 + 20 * players)) < 1e-6);
+    }
+    assert.ok(Math.abs(fit.r2 - 1) < 1e-10);
+  }
+});
+
+test('natural spline tails stay linear, join smoothly, and weight each round', () => {
+  const points = Array.from({ length: 31 }, (_, players) => ({ players, seconds: 150 + 300 * Math.sin(players / 15) }));
+  points.push({ players: 10, seconds: 900 });
+  for (let count = 2; count <= 5; count++) {
+    const fit = durationSpline(points, count);
+    assert.ok(Math.abs(fit.predict(50) - 2 * fit.predict(40) + fit.predict(30)) < 1e-6);
+    for (const knot of [...fit.knots, fit.max]) {
+      const h = 0.0001;
+      const left = (fit.predict(knot) - fit.predict(knot - h)) / h;
+      const right = (fit.predict(knot + h) - fit.predict(knot)) / h;
+      assert.ok(Math.abs(left - right) < 0.01);
+    }
+    assert.ok(Math.abs(points.reduce((sum, p) => sum + p.seconds - fit.predict(p.players), 0)) < 1e-6);
+  }
+  assert.notEqual(durationSpline(points, 2).predict(15), durationSpline(points, 5).predict(15));
+  assert.equal(durationSpline([]), null);
+  assert.equal(durationSpline([{ players: 3, seconds: 60 }]).predict(50), 60);
+  assert.equal(durationSpline([{ players: 1, seconds: 60 }, { players: 3, seconds: 120 }]).predict(5), 180);
+});
+
+
+test('all spline selector options refit the chart without duplicating observations', async () => {
+  const { JSDOM } = await import('jsdom');
+  const { readFileSync } = await import('node:fs');
+  const dom = new JSDOM(readFileSync(new URL('../index.html', import.meta.url), 'utf8'));
+  const previous = globalThis.document;
+  globalThis.document = dom.window.document;
+  try {
+    setupServerStats(['map_name', 'round', 'player_count', 'duration_seconds'],
+      Array.from({ length: 31 }, (_, players) => ['map', String(players), String(players), String(150 + 300 * Math.sin(players / 15))]));
+    const selector = document.getElementById('duration-knots');
+    const chart = document.getElementById('duration-chart');
+    const curves = new Set();
+    for (const count of [2, 3, 4, 5]) {
+      selector.value = String(count);
+      selector.dispatchEvent(new dom.window.Event('change'));
+      const fit = chart.querySelector('polyline.duration-fit');
+      assert.ok(fit.getAttribute('aria-label').includes(count + ' knots'));
+      curves.add(fit.getAttribute('points'));
+      assert.equal(chart.querySelectorAll('.duration-dot').length, 31);
+      assert.equal(chart.querySelectorAll('.duration-extrapolation-region').length, 1);
+    }
+    assert.equal(curves.size, 4);
   } finally {
     globalThis.document = previous;
     dom.window.close();

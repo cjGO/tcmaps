@@ -151,7 +151,14 @@
       </section>
       <section class="population-card duration-card" aria-labelledby="duration-title">
         <h2 id="duration-title">Player count &amp; round duration</h2>
-        <p class="population-note">Each point represents a round. Includes all recorded rounds with valid counts and durations, including those without timestamps. This plot is independent of the time and session filters above. Points have slight horizontal jitter to reveal overlaps; details show the original values. The orange curve is a quadratic regression fitted to all original rounds (equal weight per round). Beyond the highest recorded count, the dashed purple curve and shaded region extrapolate the same fit to 50 players. Extrapolation is uncertain; negative estimates are model outputs, not valid round durations.</p>
+        <p class="population-note">Each point represents a round. Includes all recorded rounds with valid counts and durations, including those without timestamps. This plot is independent of the time and session filters above. Points have slight horizontal jitter to reveal overlaps; details show the original values. The orange curve is a natural cubic spline fitted to all original rounds (equal weight per round), with evenly spaced interior knots across the recorded player counts. Beyond the highest recorded count, the dashed purple curve and shaded region extrapolate the spline’s linear tail to 50 players. Extrapolation is uncertain; negative estimates are model outputs, not valid round durations.</p>
+        <label for="duration-knots">Spline interior knots</label>
+        <select id="duration-knots" aria-label="Number of evenly spaced interior spline knots">
+          <option value="2" selected>2 knots</option>
+          <option value="3">3 knots</option>
+          <option value="4">4 knots</option>
+          <option value="5">5 knots</option>
+        </select>
         <p id="duration-summary" class="population-summary"></p>
         <div id="duration-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable round duration scatterplot"><svg id="duration-chart" viewBox="0 0 1000 430" role="img" aria-label="Player count on the X axis and round duration in minutes on the Y axis"></svg></div>
         <p id="duration-empty" hidden>No rounds with valid player counts and durations available.</p>
