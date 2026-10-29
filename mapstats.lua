@@ -186,35 +186,72 @@ local function reply(player, text)
    end
 end
 
+local function scopes()
+   local name = map_name()
+   local family = map_feedback_family_name(name)
+   local result = {{name=family, label=family == name and name or (family .. ' (all loadouts)'), family=true}}
+   if name:match('^test_map_%d+_Var%u+$') then
+      result[#result+1] = {name=name, label=name .. ' (current variant)', family=false}
+   end
+   return result
+end
+
+local function round_summary(scope)
+   local t
+   if scope.family then
+      for name, saved in pairs(totals) do
+         if map_feedback_family_name(name) == scope.name then
+            t = t or {rounds=0, seconds=0, wins=0, players=0, counted=0}
+            for key, value in pairs(saved) do t[key] = t[key] + value end
+         end
+      end
+   else
+      t = totals[scope.name]
+   end
+   local message
+   if not t then
+      message = scope.label .. ' | Rounds: 0 | Average: N/A | Team 1 wins: N/A'
+   else
+      local seconds = math.floor(t.seconds / t.rounds + 0.5)
+      message = string.format('%s | Rounds: %d | Average: %dm %02ds | Team 1 wins: %.1f%% (including draws)',
+         scope.label, t.rounds, math.floor(seconds / 60), seconds % 60, 100 * t.wins / t.rounds)
+   end
+   local average = t and t.counted > 0 and string.format('%.1f', t.players / t.counted) or 'N/A'
+   return message .. ' | Average players at round end: ' .. average
+end
+
 function comms_mapstats_command(player, command, argument)
    if command ~= '/mapstats' then return false end
    if not game.multiplayer_is_server() or not game.player_is_active(player) then return true end
    if argument ~= '' then reply(player, 'Usage: /mapstats'); return true end
-   local message
+   local messages = {}
    local ok = guarded(function()
-      local name = map_name()
-      local t = totals[name]
-      if not t then
-         message = name .. ' | Rounds: 0 | Average: N/A | Team 1 wins: N/A'
-      else
-         local seconds = math.floor(t.seconds / t.rounds + 0.5)
-         message = string.format('%s | Rounds: %d | Average: %dm %02ds | Team 1 wins: %.1f%% (including draws)',
-            name, t.rounds, math.floor(seconds / 60), seconds % 60, 100 * t.wins / t.rounds)
-      end
-      local average = t and t.counted > 0 and string.format('%.1f', t.players / t.counted) or 'N/A'
-      message = message .. ' | Average players at round end: ' .. average
+      for _, scope in ipairs(scopes()) do messages[#messages+1] = round_summary(scope) end
    end)
-   reply(player, ok and message or 'Map statistics unavailable. Please tell a server admin.')
+   if ok then
+      for _, message in ipairs(messages) do reply(player, message) end
+   else
+      reply(player, 'Map statistics unavailable. Please tell a server admin.')
+   end
    -- A feedback read failure must not disable round recording or hide its history.
    local r, s = game.reg[0], game.sreg[0]
    local ratings_ok, ratings = pcall(function()
-      local good, bad = map_feedback_ratings(map_name())
-      return string.format('Map ratings | Good: %d | Bad: %d', good, bad)
+      local result = {}
+      for _, scope in ipairs(scopes()) do
+         local good, bad = map_feedback_ratings(scope.name)
+         local label = scope.name:match('^test_map_%d+') and (scope.label .. ' ratings') or 'Map ratings'
+         result[#result+1] = string.format('%s | Good: %d | Bad: %d', label, good, bad)
+      end
+      return result
    end)
    game.reg[0], game.sreg[0] = r, s
    if not ratings_ok then
       pcall(function() game.server_add_message_to_log('[mapstats ratings] ' .. tostring(ratings)) end)
    end
-   reply(player, ratings_ok and ratings or 'Map ratings unavailable. Please tell a server admin.')
+   if ratings_ok then
+      for _, message in ipairs(ratings) do reply(player, message) end
+   else
+      reply(player, 'Map ratings unavailable. Please tell a server admin.')
+   end
    return true
 end
