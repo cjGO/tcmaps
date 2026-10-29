@@ -8,6 +8,7 @@
     <div class="page-tabs" role="tablist" aria-label="Map collections">
       <button id="rotation-tab" role="tab" aria-selected="true" aria-controls="rotation-panel">Current rotation</button>
       <button id="replays-tab" role="tab" aria-selected="false" aria-controls="replays-panel" tabindex="-1">Replays</button>
+      <button id="experimental-tab" role="tab" aria-selected="false" aria-controls="experimental-panel" tabindex="-1">Experimental replay</button>
       <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
       <button id="good-tab" role="tab" aria-selected="false" aria-controls="good-panel" tabindex="-1">GOOD MAPS</button>
       <button id="bad-tab" role="tab" aria-selected="false" aria-controls="bad-panel" tabindex="-1">BAD MAPS</button>
@@ -62,6 +63,7 @@
     </section>
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
       <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play. You can also open local recordings.</p></div></div>
+      <button id="open-experimental-recording" class="keep-button">Open experimental recording</button>
       <details id="replay-browser" class="replay-browser" open>
       <summary>Browse replays <span id="replay-browser-count"></span></summary>
       <div class="replay-browser-content">
@@ -81,6 +83,7 @@
         <div class="image-stage rotation-stage"><img id="replays-image" alt="" hidden/><span id="replays-state" role="status">Select an available replay or open a local recording.</span><a id="replays-full-image" hidden>Full size</a></div>
       </section>
     </section>
+    <section id="experimental-panel" class="collection-panel" role="tabpanel" aria-labelledby="experimental-tab" hidden></section>
     <section id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden>
       <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>
     <section class="intro"><div><p class="eyebrow">A BETTER MAP STARTS WITH YOUR TAKE</p><h1>Explore. Compare. Keep.</h1><p class="subtitle">Pick the maps and spawn setups you want to keep. Copy your list and send it.</p></div></section>

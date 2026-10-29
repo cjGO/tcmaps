@@ -191,7 +191,8 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('elevation', new THREE.BufferAttribute(baseHeights, 1));
     geometry.setIndex(new THREE.BufferAttribute(arrays.indices, 1)); geometry.computeVertexNormals();
-    terrain = new THREE.Mesh(geometry, material); terrain.castShadow = terrain.receiveShadow = true; scene.add(terrain);
+    terrain = new THREE.Mesh(geometry, material); terrain.castShadow = terrain.receiveShadow = true;
+    terrain.visible = !options.referenceGrid; scene.add(terrain);
     const sky = new THREE.HemisphereLight('#cbdcec', '#756951', 1.1); sky.position.set(0, 0, 1); scene.add(sky);
     sun.target.position.set(cx, cy, minimum); scene.add(sun, sun.target);
     sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);

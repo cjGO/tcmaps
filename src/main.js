@@ -13,6 +13,7 @@ import { setupEditor } from './editor.js';
 import recordings from 'virtual:replays';
 import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
 import { readReplayLink, replayLink } from './replay-link.js';
+import { setupExperimentalReplay } from './experimental-replay-controls.js';
 import { setupTopology } from './rotation-topology.js';
 inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
@@ -141,7 +142,12 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
   });
 });
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows, dailyPlayers);
-const tabs = ['rotation', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
+const tabs = ['rotation', 'replays', 'experimental', 'review', 'good', 'bad', 'server', 'editor'];
+const experimental = setupExperimentalReplay($('experimental-panel'));
+$('open-experimental-recording').addEventListener('click', () => {
+  selectTab('experimental');
+  $('experimental-panel').querySelector('[data-exp=file]').click();
+});
 const editor = setupEditor(selectTab);
 const topology = setupTopology();
 const replays = setupTopology({ prefix: 'replays', recordings: true });
@@ -223,8 +229,9 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
     $(tab + '-panel').hidden = tab !== name;
   }
   editor.setVisible(name === 'editor');
+  experimental.setVisible(name === 'experimental');
   if (name === 'editor') editor.show();
-  $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'experimental' ? 'Experimental combat recordings' : name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
