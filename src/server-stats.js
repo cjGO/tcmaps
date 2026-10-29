@@ -116,14 +116,27 @@ export function setupServerStats(headers, rows, dailyPlayers = []) {
   $('duration-chart-wrap').hidden = !durations.length;
   $('duration-summary').textContent = `${durations.length} rounds · ${rows.length - durations.length} rows without usable count/duration omitted`;
   if (durations.length) {
-    const playerStep = Math.max(1, Math.ceil(Math.max(...durations.map(point => point.players)) / 10));
+    const fit = durationRegression(durations);
+    const extrapolate = fit.min < fit.max && fit.max < 50;
+    const projected = extrapolate ? Array.from({ length: 201 }, (_, i) => fit.predict(fit.max + (50 - fit.max) * i / 200)) : [];
+    const playerStep = Math.max(5, Math.ceil(fit.max / 10));
     const playerMax = playerStep * 10;
-    const minuteStep = Math.max(1, Math.ceil(Math.max(...durations.map(point => point.seconds / 60)) / 5));
-    const minuteMax = minuteStep * 5;
+    const low = Math.min(0, ...projected.map(v => v / 60));
+    const high = Math.max(...durations.map(p => p.seconds / 60), ...projected.map(v => v / 60));
+    const minuteStep = Math.max(1, Math.ceil((high - low) / 5));
+    const minuteMin = Math.floor(low / minuteStep) * minuteStep;
+    const minuteMax = Math.ceil(high / minuteStep) * minuteStep;
     const x = players => 70 + players / playerMax * 880;
-    const y = seconds => 350 - seconds / 60 / minuteMax * 300;
-    for (let i = 0; i <= 5; i++) {
-      const minutes = minuteStep * i;
+    const y = seconds => 350 - (seconds / 60 - minuteMin) / (minuteMax - minuteMin || 1) * 300;
+    if (extrapolate) {
+      durationChart.append(
+        make('rect', { x: x(fit.max), y: 50, width: x(50) - x(fit.max), height: 300, class: 'duration-extrapolation-region' }),
+        make('line', { x1: x(fit.max), x2: x(fit.max), y1: 50, y2: 350, class: 'duration-extrapolation-boundary' })
+      );
+      const estimate = fit.predict(50) / 60;
+      $('duration-summary').textContent += ` · 50-player extrapolation: ${estimate.toFixed(2)} min${estimate < 0 ? ' (negative model output; not a valid duration)' : ''}`;
+    }
+    for (let minutes = minuteMin; minutes <= minuteMax; minutes += minuteStep) {
       durationChart.append(make('line', { x1: 70, x2: 950, y1: y(minutes * 60), y2: y(minutes * 60), class: 'population-grid' }), make('text', { x: 58, y: y(minutes * 60) + 4, 'text-anchor': 'end' }, minutes));
     }
     for (let i = 0; i <= 10; i++) {
@@ -139,7 +152,6 @@ export function setupServerStats(headers, rows, dailyPlayers = []) {
       for (const event of ['pointerenter', 'focus', 'click']) dot.addEventListener(event, () => $('duration-detail').textContent = label);
       durationChart.append(dot);
     }
-    const fit = durationRegression(durations);
     if (fit.min < fit.max) {
       const label = `${fit.degree === 2 ? 'Quadratic' : 'Linear'} regression · R² = ${fit.r2.toFixed(3)}`;
       const clip = make('clipPath', { id: 'duration-fit-clip' });
@@ -151,7 +163,17 @@ export function setupServerStats(headers, rows, dailyPlayers = []) {
       });
       const line = make('polyline', { points: curve.join(' '), class: 'duration-fit', 'clip-path': 'url(#duration-fit-clip)', 'aria-label': label });
       line.append(make('title', {}, `${label}. Fitted to original values, before jitter.`));
-      durationChart.append(line, make('line', { x1: 695, x2: 725, y1: 28, y2: 28, class: 'duration-fit' }), make('text', { x: 735, y: 32 }, label));
+      durationChart.append(line, make('line', { x1: 70, x2: 100, y1: 28, y2: 28, class: 'duration-fit' }), make('text', { x: 110, y: 32 }, label));
+      if (extrapolate) {
+        const extension = make('polyline', {
+          points: projected.map((seconds, i) => `${x(fit.max + (50 - fit.max) * i / 200)},${y(seconds)}`).join(' '),
+          class: 'duration-fit duration-extrapolation', 'clip-path': 'url(#duration-fit-clip)', 'aria-label': 'Extrapolated regression to 50 players'
+        });
+        extension.append(make('title', {}, 'Same regression extended beyond recorded counts to 50 players; uncertain estimate.'));
+        durationChart.append(extension,
+          make('line', { x1: 620, x2: 650, y1: 28, y2: 28, class: 'duration-fit duration-extrapolation' }),
+          make('text', { x: 660, y: 32 }, 'Extrapolation · no recorded rounds'));
+      }
     }
   }
   sessions.forEach((session, index) => {

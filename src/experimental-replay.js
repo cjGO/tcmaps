@@ -37,11 +37,14 @@ export function metadataAt(track, t, seq = Infinity) {
   if (!track) return null;
   return track.changes?.[eventIndex(track.changes, t, seq)] ?? (before(track.birth, t, seq) ? track.meta : null);
 }
+export function experimentalSamplesJoin(a, b) {
+  return b && b.t > a.t && b.t - a.t <= 10000 && b.snapshot >= a.snapshot && b.snapshot <= a.snapshot + 1;
+}
 export function entityAt(track, t, seq = Infinity) {
   if (!track || !aliveAt(track, t, seq)) return null;
   const i = eventIndex(track.samples, t, seq), a = track.samples[i], b = track.samples[i + 1];
   if (!a) return null;
-  const joins = b && b.t > a.t && b.t - a.t <= 10000 && b.snapshot <= a.snapshot + 1;
+  const joins = experimentalSamplesJoin(a, b);
   if (!joins && t - a.t > 5000) return null;
   const u = joins ? (t - a.t) / (b.t - a.t) : 0;
   return { ...mix(a, joins ? b : a, u), ...metadataAt(track, t, seq), id: track.id, t, seq, horse: a.horse, measured: t === a.t };

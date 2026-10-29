@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createExperimentalMovement } from './experimental-replay-movement.js';
 import { displayedHeight } from './terrain-geometry.js';
+import { replayHeight } from './replay-terrain.js';
 import { experimentalFrame, experimentalPose, eventIndex, projectileAt, entityAt } from './experimental-replay.js';
 
 export function createExperimentalLayer(viewer, data, replay, { reference = false, select, metadata } = {}) {
@@ -33,8 +34,8 @@ export function createExperimentalLayer(viewer, data, replay, { reference = fals
   let current, lineCount = 0, state = { t: replay.first, seq: Infinity, layers: {}, density: 128 };
   const z = value => displayedHeight(value, data.min_height_m, viewer.heightScale);
   const color = new THREE.Color();
-  function put(mesh, p, size, ref, tint) {
-    const i = mesh.count++; dummy.position.set(p.x, p.y, z(p.z) + .1);
+  function put(mesh, p, size, ref, tint, height = z(p.z) + .1) {
+    const i = mesh.count++; dummy.position.set(p.x, p.y, height);
     dummy.rotation.set(0, 0, (p.rz || 0) * Math.PI / 180); dummy.scale.setScalar(size); dummy.updateMatrix(); mesh.setMatrixAt(i, dummy.matrix);
     if (tint) mesh.setColorAt(i, color.set(tint)); picks.get(mesh)[i] = ref;
   }
@@ -48,7 +49,7 @@ export function createExperimentalLayer(viewer, data, replay, { reference = fals
     const density = [64, 128, 512].includes(state.density) ? state.density : 128;
     current = experimentalFrame(replay, t, seq, layers, density); lineCount = 0;
     if (referenceGrid) referenceGrid.position.z = z(0);
-    for (const mesh of picks.keys()) { mesh.count = 0; picks.get(mesh).length = 0; }
+    for (const mesh of [projectiles, rings, radii, ...Object.values(effects)]) { mesh.count = 0; picks.get(mesh).length = 0; }
     const movementStats = movement.update(current, state);
     for (const p of current.projectiles) {
       put(projectiles, p, 1, { projectile: p.id });
@@ -59,7 +60,7 @@ export function createExperimentalLayer(viewer, data, replay, { reference = fals
       put(effects[family], p, family === 'deaths' ? 1 : 1.5 + age * (family === 'artillery' ? 4 : 2), { event: event.seq }, family === 'shots' ? (age > .25 ? '#c9ced0' : '#ffcc55') : undefined);
       if (family === 'hits' && event.victim) {
         const victim = entityAt(replay.tracks.get(event.victim), t, seq);
-        if (victim) put(rings, victim, 1, { entity: victim.id });
+        if (victim) put(rings, victim, 1, { entity: victim.id }, undefined, replayHeight(data, victim, viewer.heightScale, !reference && state.terrainPlacement !== false) + 3);
       }
       if (event.type === 'explosion' && layers.radii && event.radius_cm > 0) put(radii, p, event.radius_cm / 100, { event: event.seq });
       if (layers.orientation && ['shot', 'artillery_fire', 'fragment_launch'].includes(event.type)) {
@@ -67,7 +68,7 @@ export function createExperimentalLayer(viewer, data, replay, { reference = fals
         line(p, { ...p, x: p.x - Math.sin(angle) * 6, y: p.y + Math.cos(angle) * 6 }, colors[family]);
       }
     }
-    for (const mesh of picks.keys()) { mesh.instanceMatrix.needsUpdate = true; mesh.boundingSphere = null; if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true; }
+    for (const mesh of [projectiles, rings, radii, ...Object.values(effects)]) { mesh.instanceMatrix.needsUpdate = true; mesh.boundingSphere = null; if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true; }
     lineGeometry.setDrawRange(0, lineCount * 2); lineGeometry.attributes.position.needsUpdate = true; lineGeometry.attributes.color.needsUpdate = true;
     viewer.draw(false);
     return { ...movementStats, projectiles: current.projectiles.length, effects: current.effects.length };
@@ -78,7 +79,8 @@ export function createExperimentalLayer(viewer, data, replay, { reference = fals
     if (ref.projectile) p = projectileAt(replay.projectiles.get(ref.projectile), state.t, state.seq);
     if (ref.event) { const r = replay.records[ref.event - 1]; if (r?.position) p = experimentalPose(r.position); }
     if (!p) return false;
-    const center = new THREE.Vector3(p.x, p.y, z(p.z)); viewer.focus(new THREE.Box3().setFromCenterAndSize(center, new THREE.Vector3(35, 35, 20))); return true;
+    const height = ref.entity ? replayHeight(data, p, viewer.heightScale, !reference && state.terrainPlacement !== false) : z(p.z);
+    const center = new THREE.Vector3(p.x, p.y, height); viewer.focus(new THREE.Box3().setFromCenterAndSize(center, new THREE.Vector3(35, 35, 20))); return true;
   }
   let down;
   function pointerDown(e) { down = [e.clientX, e.clientY]; }

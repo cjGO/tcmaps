@@ -20,35 +20,37 @@ with sync_playwright() as p:
     e = lambda key: page.locator('[data-exp="' + key + '"]')
     expect(page.locator('#experimental-tab')).to_have_attribute('aria-selected', 'true')
     start = time.monotonic()
-    e('file').set_input_files('experimental_replays/EXP-20261029T074033Z-1.jsonl')
+    e('file').set_input_files('experimental_replays/EXP-20261029T093251Z-1.jsonl')
     expect(e('play')).to_be_enabled()
     import_ms = (time.monotonic() - start) * 1000
-    expect(e('summary')).to_contain_text('2:11.893')
-    expect(e('summary')).to_contain_text('82 entity lifetimes')
-    expect(e('summary')).to_contain_text('498 records')
+    expect(e('summary')).to_contain_text('2:27.408')
+    expect(e('summary')).to_contain_text('114 entity lifetimes')
+    expect(e('summary')).to_contain_text('1101 records')
     expect(e('display-status')).to_contain_text('Build-matched declared troop roles applied')
-    expect(e('display-status')).to_contain_text('82 classified units')
+    expect(e('display-status')).to_contain_text('113 classified units')
+    expect(e('alignment')).to_contain_text('test_map_107')
+    expect(e('terrain')).not_to_have_value('')
+    e('terrain').select_option('')
     expect(e('alignment')).to_contain_text('Unaligned')
-    expect(e('terrain')).to_have_value('')
     expect(e('visible')).to_contain_text('soldiers')
     expect(e('stage').locator('canvas.terrain-3d-surface')).to_have_count(1)
-    e('play').click(); page.wait_for_function('Number(document.querySelector("[data-exp=timeline]").value)>50606')
+    e('play').click(); page.wait_for_function('Number(document.querySelector("[data-exp=timeline]").value)>69957')
     e('play').click(); expect(e('play')).to_have_attribute('aria-pressed', 'false')
     def scrub(t): e('timeline').evaluate('(e,t)=>{e.value=t;e.dispatchEvent(new Event("input",{bubbles:true}))}', t)
-    e('type').select_option('shot'); expect(e('results')).to_contain_text('207 matching')
+    e('type').select_option('shot'); expect(e('results')).to_contain_text('24 matching')
     e('events').locator('button').first.click(); expect(e('raw')).to_contain_text('weapon_transform_not_verified_projectile_direction')
     expect(e('time')).to_contain_text('sequence')
     e('next').click(); e('previous').click()
     e('search').fill('not-a-field'); expect(e('results')).to_contain_text('0 matching')
-    e('search').fill(''); expect(e('results')).to_contain_text('207 matching')
-    scrub(80000); e('camera').select_option('overhead'); e('height').select_option('4')
+    e('search').fill(''); expect(e('results')).to_contain_text('24 matching')
+    scrub(100000); e('camera').select_option('overhead'); e('height').select_option('4')
     e('stage').scroll_into_view_if_needed(); page.screenshot(path=str(output / 'real-neutral-grid.png'))
     e('terrain').select_option('0'); expect(e('alignment')).to_contain_text('UNVERIFIED terrain overlay')
-    expect(e('play')).to_be_enabled(); expect(e('metadata')).to_contain_text('"available": false')
+    expect(e('play')).to_be_enabled(); expect(e('metadata')).to_contain_text('"map_id": "test_map_107"')
     e('terrain').select_option(''); expect(e('alignment')).to_contain_text('Unaligned'); expect(e('play')).to_be_enabled()
     # Public test-map IDs automatically load existing terrain even when source
     # versions differ, with an explicit warning instead of an exact-match claim.
-    for filename, map_id in [('EXP-20261029T075251Z-1.jsonl', 'test_map_107'),
+    for filename, map_id in [('EXP-20261029T093251Z-1.jsonl', 'test_map_107'),
                              ('EXP-20261029T123029Z-1.jsonl', 'test_map_166'),
                              ('EXP-20261029T123743Z-1.jsonl', 'test_map_170')]:
         e('file').set_input_files('experimental_replays/' + filename)
@@ -59,9 +61,18 @@ with sync_playwright() as p:
         expect(e('terrain')).not_to_have_value('')
         expect(e('play')).to_be_enabled()
         expect(e('stage').locator('canvas.terrain-3d-surface')).to_have_count(1)
-    e('file').set_input_files('experimental_replays/EXP-20261029T074033Z-1.jsonl')
+        scrub(int(e('timeline').get_attribute('min')) + 60000)
+        expect(e('placement')).to_have_value('terrain')
+        for height in ['2', '4']:
+            e('height').select_option(height)
+            assert int(re.search(r'(\d+) trail segments', e('visible').inner_text())[1]) > 0
+        e('placement').select_option('recorded'); e('placement').select_option('terrain')
+    e('file').set_input_files('experimental_replays/EXP-20261029T093251Z-1.jsonl')
+    expect(e('title')).to_have_text('EXP-20261029T093251Z-1')
+    expect(e('alignment')).to_contain_text('test_map_107')
+    expect(e('terrain')).not_to_have_value('')
+    e('terrain').select_option('')
     expect(e('alignment')).to_contain_text('Unaligned')
-    expect(e('terrain')).to_have_value('')
     expect(e('play')).to_be_enabled()
     # Stable import and playback continue to work after the experimental session.
     page.locator('#replays-tab').click(); expect(e('stage').locator('canvas')).to_have_count(0)
@@ -69,7 +80,7 @@ with sync_playwright() as p:
     expect(page.locator('[data-replay=play]')).to_be_enabled(timeout=120000)
     expect(page.locator('[data-replay=time]')).to_contain_text('320 visible', timeout=120000)
     page.locator('#experimental-tab').click(); expect(e('play')).to_be_enabled()
-    expect(e('title')).to_have_text('EXP-20261029T074033Z-1')
+    expect(e('title')).to_have_text('EXP-20261029T093251Z-1')
     # Labelled artillery example, linked overrides, same-time stepping.
     e('examples').select_option(label='SYNTHETIC · artillery, contacts & fragments'); e('example').click()
     expect(e('summary')).to_contain_text('SYNTHETIC fixture'); expect(e('play')).to_be_enabled()
@@ -135,15 +146,15 @@ with sync_playwright() as p:
     # Malformed imports preserve the prior valid session; torn files remain incomplete.
     e('file').set_input_files({'name': 'bad.jsonl', 'mimeType': 'application/x-ndjson', 'buffer': b'{bad}\n'})
     expect(e('status')).to_contain_text('Line 1: Malformed JSON')
-    raw = Path('experimental_replays/EXP-20261029T074033Z-1.jsonl').read_bytes()
+    raw = Path('experimental_replays/EXP-20261029T093251Z-1.jsonl').read_bytes()
     e('file').set_input_files({'name': 'torn.jsonl', 'mimeType': 'application/x-ndjson', 'buffer': raw.rsplit(b'\n', 2)[0] + b'\n{"t":'})
     expect(e('summary')).to_contain_text('INCOMPLETE'); expect(e('warnings')).to_contain_text('Unterminated final line')
     expect(e('play')).to_be_enabled()
-    # No capabilities means unavailable, while supplied events remain inspectable.
+    # Supplied combat events remain available even without capability declarations.
     rows = [json.loads(line) for line in raw.splitlines()]; rows[0]['capabilities'] = {}
     e('file').set_input_files({'name': 'no-capabilities.jsonl', 'mimeType': 'application/x-ndjson', 'buffer': ('\n'.join(json.dumps(r) for r in rows)+'\n').encode()})
     expect(e('summary')).to_contain_text('Complete capture'); expect(e('play')).to_be_enabled()
-    expect(page.locator('[data-layer=artillery]')).to_be_disabled()
+    expect(page.locator('[data-layer=artillery]')).to_be_enabled()
     expect(page.locator('[data-layer=shots]')).to_be_enabled()
     # A newer import owns the worker result, even when it replaces a busy parser.
     if stress.exists():

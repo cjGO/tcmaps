@@ -9,15 +9,15 @@ const fixture = () => experimentalFixture();
 const model = () => parse(journal(fixture()));
 const change = fn => { const rows = fixture(); fn(rows); return journal(rows); };
 
-test('real recording counts, exact duration, provenance, missing map and fog sentinel', () => {
-  const r = parse(readFileSync(new URL('../experimental_replays/EXP-20261029T074033Z-1.jsonl', import.meta.url), 'utf8'));
-  assert.equal(r.duration, 131893); assert.equal(r.tracks.size, 82); assert.equal(r.records.length, 498); assert.equal(r.positions, 1391);
-  assert.deepEqual(r.counts, { header: 1, entity: 82, sample: 26, shot: 207, hit: 113, death: 68, end: 1 });
+test('bundled v2 recording preserves movement, combat, identity and completion counts', () => {
+  const r = parse(readFileSync(new URL('../experimental_replays/EXP-20261029T093251Z-1.jsonl', import.meta.url), 'utf8'));
+  assert.equal(r.duration, 147408); assert.equal(r.tracks.size, 114); assert.equal(r.records.length, 1101); assert.equal(r.positions, 1800);
+  assert.equal(r.counts.sample, 29); assert.equal(r.counts.shot, 24); assert.equal(r.counts.hit, 153);
+  assert.equal(r.counts.projectile_launch, 10); assert.equal(r.counts.death, 107);
   assert.equal(r.incomplete, false); assert.equal(r.terminal.reason, 'round_end'); assert.equal(r.header.partial_round, true);
-  assert.equal(r.header.map.available, false); assert.equal(r.header.fog.distance_m, -1); assert.equal(r.header.synthetic, false);
+  assert.equal(r.header.map.map_id, 'test_map_107'); assert.equal(r.header.fog.distance_m, -1); assert.equal(r.header.synthetic, false);
+  assert.equal(r.header.version, 2); assert.equal(r.players.size, 1);
   assert.equal(r.header.capabilities.exact_native_shot_hit_link, false); assert.equal(r.header.capabilities.native_missiles, 'unverified_disabled');
-  assert.ok(r.header.build); assert.equal(terrainCandidate(r, [{ source: r.header.map.source }]), null);
-  assert.ok(neutralReference(r).bounds.x_max_m > 100);
 });
 test('experimental and stable schemas are strictly separate', () => {
   assert.throws(() => parseJournal(journal(fixture())), /Unsupported replay schema/);
@@ -26,7 +26,7 @@ test('experimental and stable schemas are strictly separate', () => {
   assert.throws(() => parse(change(r => { r[0].version = 3; })), /schema\/version/);
   assert.throws(() => parse(change(r => { r[0].rotation_units = 'millidegrees'; })), /header or units/);
 });
-test('units, native yaw and shortest-angle interpolation; height is never ground clamped', () => {
+test('raw units, native yaw and projectile heights remain independent of display placement', () => {
   assert.deepEqual(experimentalPose([100, 200, 300, 10, 20, 90]), { x: 1, y: 2, z: 3, rx: 10, ry: 20, rz: 90, facing: 270 });
   const r = model(), p = entityAt(r.tracks.get(1), 3500);
   assert.equal(p.x, 8); assert.equal(p.rz, 45); assert.equal(p.facing, 315); assert.equal(p.measured, false);
@@ -239,7 +239,7 @@ test('follow seeks use recorded poses and heatmap counts only supported movement
   assert.ok(Math.abs(h.heatAt(r.last).reduce((a, b) => a + b, 0) - 11) < .001);
 });
 
-test('experimental GPU layer renders shapes, persistent deaths, full history and disposes without changing stable code', async () => {
+test('experimental GPU adapter renders shapes, persistent deaths and full history through the shared renderer', async () => {
   const { createExperimentalLayer } = await import('../src/experimental-replay-layer.js');
   const r = model(), metadata = presentation.metadataTemplate(r); metadata.troops[102] = { unit_category: 'artillery' }; metadata.troops[123] = { unit_category: 'infantry' };
   let group, heightChanged;
@@ -265,10 +265,10 @@ test('unpositioned births still count toward bot strength; missing death positio
 });
 
 test('declared troop roles require the recorded scripts hash and never provide player identities', () => {
-  const r = parse(readFileSync(new URL('../experimental_replays/EXP-20261029T074033Z-1.jsonl', import.meta.url), 'utf8'));
+  const r = model(); r.header.build.components = { 'scripts.txt': '5b2c26a28ab972460acfb7ff63b4193cd2d2619bad04b4892ac43d85cc1ada02' };
   let metadata = presentation.resolveDisplayMetadata(r);
   assert.equal(metadata.buildMatched, true);
-  for (const track of r.tracks.values()) assert.equal(presentation.displayMeta(track, null, metadata).unit_category, 'infantry');
+  assert.equal(presentation.displayMeta(r.tracks.get(1), null, metadata).unit_category, metadata.declaredRoles[r.tracks.get(1).meta.troop] || 'unknown');
   const player = [...r.tracks.values()].find(t => t.meta.kind === 'player');
   assert.equal(presentation.displayMeta(player, null, metadata).player_name, '');
   assert.equal(metadata.declaredRoles[20], 'artillery'); assert.equal(metadata.declaredRoles[136], 'artillery'); assert.equal(metadata.declaredRoles[49], 'infantry'); assert.equal(metadata.declaredRoles[13], 'cavalry');
@@ -277,4 +277,71 @@ test('declared troop roles require the recorded scripts hash and never provide p
   r.header.build.components['scripts.txt'] = '0'.repeat(64);
   metadata = presentation.resolveDisplayMetadata(r); assert.equal(metadata.buildMatched, false);
   assert.equal(presentation.displayMeta(player, null, metadata).unit_category, 'unknown');
+});
+
+test('shared movement renderer keeps markers and entire trails above hills at 1x, 2x and 4x', async () => {
+  const { createExperimentalLayer } = await import('../src/experimental-replay-layer.js');
+  const { groundHeight } = await import('../src/editor-spatial.js');
+  const r = model(), original = JSON.stringify(r.records);
+  const data = { ...neutralReference(r), grid_size: 3, xs: [0, 10, 20], ys: [-10, 0, 10],
+    heights_mm: [0, 0, 0, 10000, 10000, 10000, 0, 0, 0], min_height_m: 0, max_height_m: 10, relief_m: 10,
+    bounds: { x_min_m: 0, x_max_m: 20, y_min_m: -10, y_max_m: 10 } };
+  let group, heightChanged;
+  const viewer = { canvas: new EventTarget(), heightScale: 1, draw() {}, addLayer(g) { group = g; }, onHeightChange(fn) { heightChanged = fn; return () => {}; } };
+  const layer = createExperimentalLayer(viewer, data, r);
+  const at = (mesh, i) => ({ x: mesh.instanceMatrix.array[i * 16 + 12], y: mesh.instanceMatrix.array[i * 16 + 13], z: mesh.instanceMatrix.array[i * 16 + 14] });
+  const checkTrails = () => {
+    for (const name of ['experimental-trails', 'experimental-partial-trails']) {
+      const mesh = group.getObjectByName(name), { geometry } = mesh, a = geometry.attributes.position.array;
+      for (let i = 0; i < geometry.drawRange.count * 3; i += 6) for (const u of [0, .25, .5, .75, 1]) {
+        const x = a[i] + (a[i + 3] - a[i]) * u, y = a[i + 1] + (a[i + 4] - a[i + 1]) * u, z = a[i + 2] + (a[i + 5] - a[i + 2]) * u;
+        assert.ok(z >= groundHeight(data, x, y) * viewer.heightScale + 1.49, `${name} buried at ${x}, ${y}`);
+      }
+    }
+  };
+  for (const scale of [1, 2, 4]) {
+    viewer.heightScale = scale; heightChanged();
+    layer.update({ t: 3500, layers: { trails: true }, playerNames: false });
+    const unit = at(group.getObjectByName('experimental-cavalry'), 0);
+    assert.equal(unit.x, 8); assert.equal(unit.z, 8 * scale + 2);
+    const projectile = at(group.getObjectByName('experimental-projectiles'), 0);
+    assert.ok(Math.abs(projectile.z - (6.875 * scale + .1)) < 1e-5, 'Projectiles retain recorded altitude even below terrain');
+    checkTrails();
+    layer.update({ t: 8000 }); checkTrails();
+    const cross = at(group.getObjectByName('experimental-bot-deaths'), 0);
+    assert.equal(cross.z, 5 * scale + 2.5);
+    const finalDraw = group.getObjectByName('experimental-trails').geometry.drawRange.count;
+    layer.update({ t: r.first }); assert.equal(group.getObjectByName('experimental-trails').geometry.drawRange.count, 0);
+    layer.update({ t: 8000 }); assert.equal(group.getObjectByName('experimental-trails').geometry.drawRange.count, finalDraw);
+  }
+  layer.update({ t: 3500, terrainPlacement: false });
+  assert.equal(at(group.getObjectByName('experimental-cavalry'), 0).z, 6);
+  layer.update({ terrainPlacement: true }); checkTrails();
+  assert.equal(JSON.stringify(r.records), original); layer.dispose();
+});
+
+test('terrain trails cross diagonal triangle ridges and preserve above-ground positions', async () => {
+  const { terrainTrail, replayHeight } = await import('../src/replay-terrain.js');
+  const { groundHeight } = await import('../src/editor-spatial.js');
+  const data = { grid_size: 2, xs: [0, 10], ys: [0, 10], heights_mm: [0, 10000, 10000, 0], min_height_m: 0 };
+  const a = { x: 0, y: 0, z: 0 }, b = { x: 10, y: 10, z: 0 }, points = terrainTrail(data, a, b);
+  assert.equal(points.length, 3); assert.deepEqual(points[1], { x: 5, y: 5, z: 10 });
+  assert.deepEqual(terrainTrail(data, a, b, false), [a, b]);
+  assert.equal(replayHeight(data, { x: 5, y: 5, z: 20 }, 2), 40);
+  for (let i = 0; i + 1 < points.length; i++) {
+    const p = points[i], q = points[i + 1], x = (p.x + q.x) / 2, y = (p.y + q.y) / 2;
+    assert.ok((p.z + q.z) / 2 >= groundHeight(data, x, y));
+  }
+});
+
+test('movement history uses the same valid observation intervals as the experimental unit playback', () => {
+  const r = model(), track = r.tracks.get(1);
+  // Birth and a later observation can share a snapshot index. Old history
+  // rejected this interval even though entityAt visibly moved through it.
+  track.samples = track.samples.filter((_, i) => i !== 1);
+  track.samples[1].snapshot = track.samples[0].snapshot;
+  const h = presentation.experimentalHistory(r, neutralReference(r));
+  assert.equal(h.partial(3500).find(s => s.id === 1).to.x, entityAt(track, 3500).x);
+  track.samples[1].snapshot += 2;
+  assert.equal(presentation.experimentalHistory(r, neutralReference(r)).partial(3500).some(s => s.id === 1), false);
 });

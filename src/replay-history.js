@@ -17,7 +17,7 @@ export function createMovementHistory(replay, data, filters = {}, cell = 10) {
     const rows = [];
     for (let i = 0; i + 1 < track.samples.length; i++) {
       const a = track.samples[i], b = track.samples[i + 1];
-      if (b.t - a.t > replay.maxGap || b.index !== a.index + 1) continue;
+      if (replay.canJoin ? !replay.canJoin(a, b) : b.t - a.t > replay.maxGap || b.index !== a.index + 1) continue;
       const stop = Math.min(b.t, track.death, replay.coverageEnd);
       if (stop <= a.t) continue;
       const cuts = [a.t, ...track.changes.filter(m => m.t > a.t && m.t < stop).map(m => m.t), stop];

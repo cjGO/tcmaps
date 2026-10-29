@@ -90,6 +90,13 @@ test('duration chart shows jitter and regression while preserving original point
     assert.equal(fit.getAttribute('points').split(' ').length, 201);
     assert.ok(!fit.getAttribute('points').includes('NaN'));
     assert.match(fit.getAttribute('aria-label'), /Quadratic regression · R²/);
+    const extension = chart.querySelector('polyline.duration-extrapolation');
+    const coordinates = extension.getAttribute('points').split(' ').map(pair => pair.split(',').map(Number));
+    assert.equal(extension.getAttribute('points').split(' ')[0], fit.getAttribute('points').split(' ').at(-1));
+    assert.equal(coordinates.at(-1)[0], 950);
+    assert.ok(coordinates.every(([x, y]) => Number.isFinite(x) && y >= 50 && y <= 350));
+    assert.ok(chart.querySelector('.duration-extrapolation-region'));
+    assert.match(document.getElementById('duration-summary').textContent, /50-player extrapolation:.*negative model output/);
   } finally {
     globalThis.document = previous;
     dom.window.close();

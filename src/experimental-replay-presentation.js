@@ -1,5 +1,5 @@
 // Display enrichment stays separate from the immutable recorder journal.
-import { eventIndex, entityAt, experimentalPose, metadataAt } from './experimental-replay.js';
+import { eventIndex, entityAt, experimentalPose, metadataAt, experimentalSamplesJoin } from './experimental-replay.js';
 import roleCatalog from './experimental-replay-roles.js';
 import { createMovementHistory } from './replay-history.js';
 
@@ -77,7 +77,7 @@ export function movementAdapter(replay, metadata, options = {}) {
     if (options.squad) for (const meta of changes) if (meta.squad !== options.squad) meta.unit_category = 'filtered-out';
     tracks.set(track.id, { ...track, birth: track.birth.t, death: track.end.t, changes, samples });
   }
-  return { tracks, first: replay.first, coverageEnd: replay.last, maxGap: 10000, header: { round_start_ms: replay.first } };
+  return { tracks, first: replay.first, coverageEnd: replay.last, maxGap: 10000, canJoin: experimentalSamplesJoin, header: { round_start_ms: replay.first } };
 }
 export function experimentalHistory(replay, data, metadata, options = {}) {
   const history = createMovementHistory(movementAdapter(replay, metadata, options), data, { ...options, squad: '', unitTypes: options.unitTypes || UNIT_TYPES });
