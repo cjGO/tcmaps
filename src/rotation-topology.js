@@ -24,7 +24,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
   const contour = query(panel, '#topology-contours'), wire = query(panel, '#topology-wireframe');
   let entry, current, viewer, request, generation = 0, selected = '3d', visible = !recordings;
   const modes = [...panel.querySelectorAll('[data-mode]')];
-  const replay = recordings ? setupReplay(panel, () => { current = replay.terrain() ? { id: replay.terrain().id } : null; panel.hidden = false; show('3d'); }) : { detach() {}, terrain: () => null, async attach() {} };
+  const replay = recordings ? setupReplay(panel, () => { current = replay.terrain() ? { id: replay.terrain().id } : null; panel.hidden = false; show('3d'); }, stage) : { detach() {}, terrain: () => null, async attach() {} };
   if (recordings) { panel.hidden = false; panel.querySelector('[role=group]').hidden = true; panel.querySelector('.topology-controls').hidden = true; }
   function destroy() { replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
   function scaleNote() { query(info, '#topology-scale-note').textContent = viewer?.mode === 'explore' ? 'Explorer · true scale · preview movement' : scale.value === '1' ? 'True height scale' : `Height exaggerated ${scale.value}×`; }

@@ -150,7 +150,7 @@ export async function parseBundle(input) {
 
 // Each interval contributes soldier-seconds and estimated path metres. Sampling
 // at twice the cell frequency is an explicit approximation, not measured tracks.
-export function movementHeatmap(replays, data, { cell = 10, players = true, bots = true } = {}) {
+export function movementHeatmap(replays, data, { cell = 10, players = true, bots = true, unitTypes } = {}) {
   if (!integer(cell, 5, 100) || replays.length > 100) fail('Heatmap limits exceeded');
   const b = data.bounds, cells = new Map(), used = new Set(); let segments = 0, seconds = 0;
   for (const replay of replays) {
@@ -166,6 +166,7 @@ export function movementHeatmap(replays, data, { cell = 10, players = true, bots
       for (let j = 0; j + 1 < cuts.length; j++) {
         const begin = cuts[j], end = cuts[j + 1], meta = track.changes[upperIndex(track.changes, begin)];
         if (meta.kind === 'player' ? !players : !bots) continue;
+        if (unitTypes && !unitTypes.includes(unitCategory({ ...meta, mounted: a.mounted }))) continue;
         const steps = Math.max(1, Math.min(1000, Math.ceil(distance * (end - begin) / dt / (cell / 2))));
         for (let k = 0; k < steps; k++) {
           if (++segments > 4000000) fail('Heatmap work limit exceeded; import fewer rounds');

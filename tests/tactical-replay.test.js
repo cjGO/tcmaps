@@ -275,3 +275,73 @@ test('bot strength in synthetic replay persists through position gaps and exclud
   }
   assert.deepEqual(botStrengthAt(history, 90000), botStrengthAt(history, 110000));
 });
+
+test('unit type filters track role changes and mounting, with independent trail choices', async () => {
+  const { createMovementHistory, matchesHistory } = await import('../src/replay-history.js');
+  const r = replay(), data = { bounds: { x_min_m: 0, y_min_m: 0, x_max_m: 1000, y_max_m: 1000 } };
+  const track = { id: 7, birth: 0, death: Infinity,
+    changes: [{ t: 0, team: 0, kind: 'bot', class: 0 }, { t: 7500, team: 0, kind: 'bot', class: 20 }],
+    samples: [0, 5000, 10000].map((t, index) => ({ t, index, x: 5, y: 5, z: 0, mounted: index === 1 })) };
+  const recording = { ...r, first: 0, coverageEnd: 10000, tracks: new Map([[7, track]]) };
+  const seconds = history => history.heatAt(10000).reduce((sum, v) => sum + v, 0);
+  for (const [type, expected] of [['infantry', 5], ['cavalry', 2.5], ['artillery', 2.5]]) {
+    assert.equal(seconds(createMovementHistory(recording, data, { unitTypes: [type] })), expected);
+    assert.equal(movementHeatmap([recording], { ...data, schema_version: 1, source: r.header.map.source, height_data_sha256: 'a'.repeat(64) }, { unitTypes: [type] }).soldier_seconds, expected);
+  }
+  assert.equal(matchesHistory({ kind: 'bot', class: 14, mounted: false }, 7, { unitTypes: ['cavalry'] }), true);
+  assert.equal(matchesHistory({ kind: 'bot', class: 20, mounted: true }, 7, { unitTypes: ['cavalry'] }), false);
+  const trails = createMovementHistory(recording, data, { trailUnitTypes: ['cavalry'] });
+  assert.equal(trails.segments.length, 1); assert.equal(trails.segments[0].start, 5000);
+  assert.equal(trails.partial(6000).length, 1); assert.equal(trails.partial(8000).length, 0);
+  assert.equal(seconds(trails), 10);
+  const none = createMovementHistory(recording, data, { trailUnitTypes: [] });
+  assert.equal(none.segments.length, 0); assert.equal(seconds(none), 10);
+  assert.equal(seconds(createMovementHistory(recording, data, { unitTypes: [] })), 0);
+  assert.equal(createMovementHistory(recording, data, { unitTypes: ['infantry'], trailUnitTypes: ['cavalry'] }).segments.length, 0);
+});
+
+test('changing unit filters refreshes live markers, cached trails and deaths', async () => {
+  const { createReplayLayer } = await import('../src/replay-layer.js');
+  const { replay: r, data } = await parseBundle(fs.readFileSync(new URL('./fixtures/SYNTHETIC-tactical-demo.replay.json', import.meta.url), 'utf8'));
+  let group;
+  const viewer = { heightScale: 1, addLayer(value) { group = value; }, draw() {}, onHeightChange() { return () => {}; } };
+  const layer = createReplayLayer(viewer, data, r);
+  const all = layer.update({ t: 60000, trails: true, heatmap: true });
+  const lines = group.children.filter(child => child.isLineSegments);
+  const trailCount = () => lines.reduce((sum, line) => sum + line.geometry.drawRange.count, 0);
+  const fullTrails = trailCount(), deathCount = group.getObjectByName('bot-deaths').count;
+  assert.ok(fullTrails > 0); assert.ok(deathCount > 0);
+  assert.equal(layer.update({ trailUnitTypes: [] }), all);
+  assert.equal(trailCount(), 0);
+  assert.equal(group.getObjectByName('bot-deaths').count, deathCount);
+  assert.ok(group.children.find(child => child.geometry?.type === 'PlaneGeometry').instanceColor.array.some(value => value > 0));
+  layer.update({ trailUnitTypes: ['cavalry', 'artillery', 'infantry'] });
+  assert.equal(trailCount(), fullTrails);
+  assert.equal(layer.update({ deathUnitTypes: [] }), all);
+  assert.equal(group.getObjectByName('bot-deaths').count, 0);
+  assert.equal(trailCount(), fullTrails);
+  const { botDeathMarkers } = await import('../src/replay-history.js');
+  const deaths = botDeathMarkers(r).filter(row => row.t <= 60000);
+  for (const type of ['cavalry', 'artillery', 'infantry']) {
+    assert.equal(layer.update({ deathUnitTypes: [type] }), all);
+    assert.equal(group.getObjectByName('bot-deaths').count, deaths.filter(row => unitCategory(row) === type).length);
+    assert.equal(trailCount(), fullTrails);
+  }
+  layer.update({ deathUnitTypes: ['cavalry', 'artillery', 'infantry'] });
+  assert.equal(group.getObjectByName('bot-deaths').count, deathCount);
+  layer.update({ t: r.first });
+  assert.equal(group.getObjectByName('bot-deaths').count, 0);
+  layer.update({ t: 60000 });
+  assert.equal(group.getObjectByName('bot-deaths').count, deathCount);
+  let partition = 0;
+  for (const type of ['cavalry', 'artillery', 'infantry']) {
+    partition += layer.update({ unitTypes: [type] });
+    for (const other of ['cavalry', 'artillery', 'infantry'].filter(value => value !== type)) assert.equal(group.getObjectByName(`replay-${other}`).count, 0);
+  }
+  assert.equal(partition, all);
+  assert.equal(layer.update({ unitTypes: [] }), 0);
+  assert.equal(trailCount(), 0); assert.equal(group.getObjectByName('bot-deaths').count, 0);
+  assert.equal(layer.update({ unitTypes: ['cavalry', 'artillery', 'infantry'] }), all);
+  assert.equal(trailCount(), fullTrails); assert.equal(group.getObjectByName('bot-deaths').count, deathCount);
+  layer.dispose();
+});

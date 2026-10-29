@@ -1,9 +1,9 @@
-import { upperIndex } from './tactical-replay.js';
+import { upperIndex, unitCategory } from './tactical-replay.js';
 
 // Squad ownership is scoped to a team; connection IDs are local pseudonyms.
 export const squadKey = meta => `${meta.team}:${meta.owner === false ? 'unassigned' : meta.owner}`;
-export function matchesHistory(meta, id, { players = true, bots = true, squad = '', soldier = '' } = {}) {
-  return (meta.kind === 'player' ? players : bots) && (!squad || squadKey(meta) === squad) && (!soldier || id === Number(soldier));
+export function matchesHistory(meta, id, { players = true, bots = true, squad = '', soldier = '', unitTypes } = {}) {
+  return (!unitTypes || unitTypes.includes(unitCategory(meta))) && (meta.kind === 'player' ? players : bots) && (!squad || squadKey(meta) === squad) && (!soldier || id === Number(soldier));
 }
 const point = (a, b, t) => {
   const u = (t - a.t) / (b.t - a.t);
@@ -23,10 +23,12 @@ export function createMovementHistory(replay, data, filters = {}, cell = 10) {
       const cuts = [a.t, ...track.changes.filter(m => m.t > a.t && m.t < stop).map(m => m.t), stop];
       for (let j = 0; j + 1 < cuts.length; j++) {
         const start = cuts[j], end = cuts[j + 1], meta = track.changes[upperIndex(track.changes, start)];
-        if (!matchesHistory(meta, track.id, filters)) continue;
+        if (!matchesHistory({ ...meta, mounted: a.mounted }, track.id, filters)) continue;
         const from = point(a, b, start), to = point(a, b, end);
         const segment = { t: end, start, from, to, team: meta.team, id: track.id };
-        segments.push(segment); rows.push({ ...segment, t: start, end });
+        if (!filters.trailUnitTypes || filters.trailUnitTypes.includes(unitCategory({ ...meta, mounted: a.mounted }))) {
+          segments.push(segment); rows.push({ ...segment, t: start, end });
+        }
         const steps = Math.max(1, Math.min(1000, Math.ceil(Math.hypot(to.x - from.x, to.y - from.y) / (cell / 2))));
         if ((work += steps) > 4000000) throw new Error('Movement history work limit exceeded; select a squad or soldier.');
         for (let k = 0; k < steps; k++) {

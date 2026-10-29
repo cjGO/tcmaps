@@ -4,7 +4,7 @@ import { createBotStrengthChart } from './replay-strength.js';
 import { replayLink, replayWindow } from './replay-link.js';
 import './replay.css';
 
-export function setupReplay(panel, refresh) {
+export function setupReplay(panel, refresh, stage) {
   const root = document.createElement('section'); root.className = 'replay-controls';
   root.setAttribute('aria-label', 'Tactical replay');
   root.innerHTML = `<div class="replay-toolbar"><label>Open round recordings <input type="file" accept=".json" multiple data-replay="files"></label><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
@@ -35,21 +35,36 @@ export function setupReplay(panel, refresh) {
     const row = document.createElement('div'); row.className = 'replay-overlay';
     row.append(el(toggle).closest('label'), el(slider).closest('label')); display.append(row);
   }
+  const unitTypes = (title, prefix) => {
+    const fieldset = document.createElement('fieldset'); fieldset.className = 'replay-unit-types';
+    const legend = document.createElement('legend'); legend.textContent = title; fieldset.append(legend);
+    for (const [value, label] of [['cavalry', 'Cav'], ['artillery', 'Arty'], ['infantry', 'Infantry']]) {
+      const option = document.createElement('label');
+      const input = document.createElement('input'); input.type = 'checkbox'; input.checked = true;
+      input.dataset.replay = `${prefix}-${value}`; input.value = value;
+      option.append(input, label); fieldset.append(option);
+    }
+    return fieldset;
+  };
+  display.querySelector('.replay-overlay').append(unitTypes('Trail unit types', 'trail-type'));
+  display.querySelector('[data-replay=deaths]').closest('.replay-overlay').append(unitTypes('Bot death unit types', 'death-type'));
   const filters = group('Soldier filters & camera', ['squad', 'soldier', 'follow']);
+  filters.insertBefore(unitTypes('Soldier unit types', 'unit-type'), filters.children[1]);
   filters.append(el('follow-status'));
   groups.append(display, filters);
   const exportRow = document.createElement('div'); exportRow.className = 'replay-export';
-  const exportNote = document.createElement('p'); exportNote.textContent = 'Combine all loaded rounds of the same terrain version, using the player and bot filters.';
+  const exportNote = document.createElement('p'); exportNote.textContent = 'Combine all loaded rounds of the same terrain version, using the player, bot, and soldier unit type filters.';
   el('export').textContent = 'Export heatmap JSON'; exportRow.append(exportNote, el('export'));
   const guide = document.createElement('details'); guide.className = 'replay-guide';
   const summary = document.createElement('summary'); summary.textContent = 'Map legend & recording details';
   guide.append(summary, transport.querySelector('p'));
   transport.querySelector('.replay-toolbar').remove();
-  transport.prepend(playback, sharing, groups);
+  transport.prepend(playback, stage, el('strength'), sharing, groups);
   transport.append(exportRow, guide);
   let loaded = [], selected, layer, viewer, frame, playing = false, t = 0, previousFrame, attached = 0, inputGeneration = 0, heatResult, totalBytes = 0, unsubscribeFollow, syncingFollow = false, strengthChart;
   let clipStart = 0, clipEnd = 0, closeVideo;
-  const options = () => ({ players: el('players').checked, bots: el('bots').checked, squad: el('squad').value, soldier: el('soldier').value });
+  const selectedTypes = prefix => ['cavalry', 'artillery', 'infantry'].filter(type => el(`${prefix}-${type}`).checked);
+  const options = () => ({ unitTypes: selectedTypes('unit-type'), players: el('players').checked, bots: el('bots').checked, squad: el('squad').value, soldier: el('soldier').value });
   const time = ms => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}`;
   function stop() { playing = false; cancelAnimationFrame(frame); frame = null; previousFrame = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
   function detach() {
@@ -75,7 +90,7 @@ export function setupReplay(panel, refresh) {
       else if (id) viewer.stopFollowing();
     } finally { syncingFollow = false; }
   }
-  const overlayOptions = () => ({ ...options(), playerNames: el('player-names').checked, heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
+  const overlayOptions = () => ({ ...options(), trailUnitTypes: selectedTypes('trail-type'), deathUnitTypes: selectedTypes('death-type'), playerNames: el('player-names').checked, heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
   function update() {
     if (!selected) return;
     strengthChart?.update(t);
@@ -164,7 +179,7 @@ export function setupReplay(panel, refresh) {
     if (t >= clipEnd) t = clipStart;
     playing = true; el('play').textContent = 'Ⅱ Pause'; el('play').setAttribute('aria-pressed', 'true'); frame = requestAnimationFrame(tick);
   });
-  for (const key of ['players', 'bots', 'player-names', 'heat', 'trails', 'deaths', 'squad', 'soldier']) el(key).addEventListener('change', () => {
+  for (const key of ['players', 'bots', 'player-names', 'heat', 'trails', 'deaths', 'squad', 'soldier', ...['unit-type', 'trail-type', 'death-type'].flatMap(prefix => ['cavalry', 'artillery', 'infantry'].map(type => `${prefix}-${type}`))]) el(key).addEventListener('change', () => {
     try { update(); } catch (error) { stop(); el('heat').checked = el('trails').checked = false; update(); el('status').textContent = error.message; }
   });
   for (const key of ['trail-transparency', 'death-transparency']) el(key).addEventListener('input', () => {
@@ -253,6 +268,6 @@ export function setupReplay(panel, refresh) {
     });
     el('follow').disabled = false;
     layer = createReplayLayer(viewer, selected.data, selected.replay); el('play').disabled = false; el('mp4').disabled = false; update();
-    el('status').textContent = 'Trails and heatmap show movement up to the timeline cursor in this recording. Squad uses recorded team and commander ownership; soldier IDs identify individual lifetimes. Export includes full matching rounds and player/bot filters.';
+    el('status').textContent = 'Trails and heatmap show movement up to the timeline cursor in this recording. Squad uses recorded team and commander ownership; soldier IDs identify individual lifetimes. Export includes full matching rounds and player/bot and soldier unit type filters.';
   } };
 }

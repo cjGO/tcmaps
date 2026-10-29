@@ -69,7 +69,7 @@ export function createReplayLayer(viewer, data, replay) {
     positions.needsUpdate = tint.needsUpdate = true; geometry.setDrawRange(0, segments.length * 2);
   }
   function prepareHistory() {
-    const key = JSON.stringify([state.players, state.bots, state.squad, state.soldier]);
+    const key = JSON.stringify([state.players, state.bots, state.squad, state.soldier, state.unitTypes, state.trailUnitTypes]);
     if (key !== filterKey) {
       history = createMovementHistory(replay, data, state); filterKey = key; heightScale = undefined;
       if (heat) { group.remove(heat); heat.dispose(); }
@@ -102,9 +102,10 @@ export function createReplayLayer(viewer, data, replay) {
     deathMaterial.opacity = state.deathOpacity;
     deaths.visible = state.deaths;
     if (!state.deaths) return;
-    const key = JSON.stringify([state.bots, state.squad, state.soldier]);
+    const key = JSON.stringify([state.bots, state.squad, state.soldier, state.unitTypes, state.deathUnitTypes]);
     if (key !== deathFilterKey) {
-      filteredDeaths = deathRows.filter(row => matchesHistory(row, row.id, state));
+      filteredDeaths = deathRows.filter(row => matchesHistory(row, row.id, state) &&
+        (!state.deathUnitTypes || state.deathUnitTypes.includes(unitCategory(row))));
       deathFilterKey = key; deathHeightScale = undefined;
     }
     if (deathHeightScale !== viewer.heightScale) {
