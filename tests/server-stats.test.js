@@ -1,7 +1,111 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { populationSamples, populationSessions, durationSamples, durationColor, durationRegression, durationSpline, durationJitter, setupServerStats } from '../src/server-stats.js';
+import { populationSamples, populationSessions, weeklyPopulation, durationSamples, durationColor, durationRegression, durationSpline, durationJitter, setupServerStats } from '../src/server-stats.js';
 const headers = ['map_name', 'round', 'player_count', 'timestamp_utc'];
+test('unique player chart switches between daily totals and deduplicated weekly totals', async () => {
+  const { JSDOM } = await import('jsdom');
+  const { readFileSync } = await import('node:fs');
+  const dom = new JSDOM(readFileSync(new URL('../index.html', import.meta.url), 'utf8'));
+  const previous = globalThis.document;
+  globalThis.document = dom.window.document;
+  const el = id => document.getElementById(id);
+  try {
+    setupServerStats([], [], [
+      { day: '2026-10-07', players: 2 }, { day: '2026-10-08', players: 2 },
+    ], [
+      { start: '2026-10-01', day: '2026-10-07', players: 2 },
+      { start: '2026-10-02', day: '2026-10-08', players: 3 },
+    ]);
+    assert.match(el('weekly-players-summary').textContent, /Past 7 days: 3 unique players · 2026-10-02 – 2026-10-08/);
+    const chart = el('daily-players-chart');
+    assert.equal(chart.querySelectorAll('.daily-player-bar').length, 2);
+    const selector = el('daily-players-view');
+    selector.value = 'weekly';
+    selector.dispatchEvent(new dom.window.Event('change'));
+    assert.equal(el('weekly-players-note').hidden, false);
+    assert.equal(chart.querySelectorAll('.daily-player-bar').length, 2);
+    chart.querySelectorAll('.daily-player-bar')[1].dispatchEvent(new dom.window.Event('focus'));
+    assert.equal(el('daily-players-detail').textContent, '2026-10-02 – 2026-10-08 UTC · 3 unique players');
+    assert.match(chart.getAttribute('aria-label'), /Rolling 7-day/);
+    selector.value = 'daily';
+    selector.dispatchEvent(new dom.window.Event('change'));
+    assert.equal(el('weekly-players-note').hidden, true);
+    assert.match(chart.querySelectorAll('.daily-player-bar')[1].getAttribute('aria-label'), /2 unique players/);
+    setupServerStats([], []);
+    assert.equal(el('daily-players-chart-wrap').hidden, true);
+    assert.equal(el('weekly-players-summary').textContent, '');
+  } finally {
+    globalThis.document = previous;
+    dom.window.close();
+  }
+});
+
+test('weekly population matches UTC weekday/hour across weeks, weights rounds and preserves missing hours', () => {
+  const points = [
+    ['2026-10-01T10:00:00Z', 30],
+    ['2026-10-08T10:05:00Z', 0],
+    ['2026-10-08T10:55:00Z', 6],
+    ['2026-10-08T12:15:00Z', 4],
+  ].map(([time, players]) => ({ time: Date.parse(time), players }));
+  const week = weeklyPopulation(points);
+  assert.equal(week.length, 168);
+  assert.equal(week[0].time, Date.parse('2026-10-01T13:00:00Z'));
+  assert.equal(week.at(-3).players, 3);
+  assert.equal(week.at(-3).count, 2);
+  assert.equal(week.at(-3).average, 12);
+  assert.equal(week.at(-3).averageCount, 3);
+  assert.equal(week.at(-2).players, null);
+  assert.equal(week.at(-2).average, null);
+  assert.equal(week.at(-1).players, 4);
+  assert.deepEqual(weeklyPopulation([]), []);
+  assert.equal(weeklyPopulation([{ time: points[0].time, players: 0 }]).at(-1).players, 0);
+});
+
+test('weekly view overlays history, breaks gaps, toggles overlay and restores timeline controls', async () => {
+  const { JSDOM } = await import('jsdom');
+  const { readFileSync } = await import('node:fs');
+  const dom = new JSDOM(readFileSync(new URL('../index.html', import.meta.url), 'utf8'));
+  const previous = globalThis.document;
+  globalThis.document = dom.window.document;
+  const el = id => document.getElementById(`population-${id}`);
+  const change = (id, value) => {
+    el(id).value = value;
+    el(id).dispatchEvent(new dom.window.Event('change'));
+  };
+  try {
+    setupServerStats(headers, [
+      ['map', '1', '30', '2026-10-01T10:00:00Z'],
+      ['map', '2', '0', '2026-10-08T10:05:00Z'],
+      ['map', '3', '6', '2026-10-08T10:55:00Z'],
+      ['map', '4', '4', '2026-10-08T12:15:00Z'],
+    ]);
+    change('view', 'weekly');
+    assert.equal(el('session').disabled, true);
+    assert.equal(el('range').disabled, true);
+    assert.equal(el('weekly-note').hidden, false);
+    assert.equal(el('chart').querySelectorAll('circle.population-week').length, 2);
+    assert.equal(el('chart').querySelectorAll('circle.population-average').length, 2);
+    assert.equal(el('chart').querySelectorAll('polyline.population-week').length, 2);
+    assert.ok([...el('chart').querySelectorAll('polyline')].every(line => line.getAttribute('points').split(' ').length === 1));
+    el('chart').querySelector('circle.population-average').dispatchEvent(new dom.window.Event('focus'));
+    assert.match(el('detail').textContent, /12.00 players · 3 rounds/);
+    assert.match(el('summary').textContent, /3 rounds · Weekly average from all 4 recorded rounds/);
+    el('average').checked = false;
+    el('average').dispatchEvent(new dom.window.Event('change'));
+    assert.equal(el('chart').querySelectorAll('.population-average').length, 0);
+    assert.equal(el('chart').querySelectorAll('circle.population-week').length, 2);
+    change('style', 'scatter');
+    assert.equal(el('chart').querySelectorAll('polyline').length, 0);
+    change('view', 'timeline');
+    assert.equal(el('range').disabled, false);
+    assert.equal(el('session').disabled, false);
+    assert.equal(el('weekly-note').hidden, true);
+    assert.equal(el('chart').querySelectorAll('circle').length, 3);
+  } finally {
+    globalThis.document = previous;
+    dom.window.close();
+  }
+});
 test('duration gradient distinguishes short, middle, long and unavailable durations', () => {
   assert.equal(durationColor(0, 120), 'rgb(37, 99, 235)');
   assert.equal(durationColor(60, 120), 'rgb(136, 94, 124)');

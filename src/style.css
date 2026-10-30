@@ -98,3 +98,8 @@
 .duration-fit.duration-extrapolation{stroke:#8056ac;stroke-dasharray:8 5}
 .duration-extrapolation-region{fill:#8056ac;fill-opacity:.09}
 .duration-extrapolation-boundary{stroke:#8056ac;stroke-width:1;stroke-dasharray:4 4}
+.population-line.population-average{stroke:#8056ac;stroke-dasharray:7 5}
+.population-dot.population-average{--point-color:#8056ac}
+.population-week-swatch::before,.population-average-swatch::before{content:'';display:inline-block;width:28px;border-top:2px solid #426842;margin-right:8px;vertical-align:middle}
+.population-average-swatch::before{border-top:2px dashed #8056ac}
+.population-controls select:disabled,.population-controls input:disabled{opacity:.45;cursor:default}

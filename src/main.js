@@ -11,7 +11,7 @@ import feedbackIdentities from '../lib/map-feedback-identities.json';
 import { normalizeFeedback, summarizeFeedback, renderFeedback } from './map-feedback.js';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
-import dailyPlayers from 'virtual:daily-players';
+import dailyPlayers, { weeklyPlayers } from 'virtual:daily-players';
 import { setupEditor } from './editor.js';
 import recordings from 'virtual:replays';
 import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
@@ -145,7 +145,7 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
     sortRotation(true);
   });
 });
-const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows, dailyPlayers);
+const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows, dailyPlayers, weeklyPlayers);
 const tabs = ['rotation', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
 $('open-experimental-recording').addEventListener('click', () => {

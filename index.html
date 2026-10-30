@@ -145,11 +145,15 @@
       <div class="intro"><div><p class="eyebrow">SERVER STATS</p><h1>Population over time.</h1><p class="subtitle">See when players gather. Choose a session to explore activity between long quiet periods.</p></div></div>
       <section class="population-card" aria-label="Server population chart">
         <div class="population-controls">
+          <label>View<select id="population-view"><option value="timeline">Timeline</option><option value="weekly">Past week + weekly average</option></select></label>
           <label>Session<select id="population-session"><option value="all">All sessions · real elapsed time</option></select></label>
           <label class="population-hours">Time range<output id="population-range-value" for="population-range">Past 24 hours</output><input id="population-range" type="range" min="1" max="100" step="1" value="24" aria-label="Past hours" aria-valuetext="Past 24 hours"></label>
           <label>Plot<select id="population-style"><option value="line">Line + points</option><option value="scatter">Points only</option></select></label>
           <label class="population-color-toggle"><input id="population-duration-color" type="checkbox"> Color points by round duration</label>
+          <label id="population-average-control" class="population-color-toggle" hidden><input id="population-average" type="checkbox" checked> Overlay full-dataset weekly average</label>
         </div>
+        <p id="population-weekly-note" class="population-note" hidden>Past week covers 168 UTC hours through the latest recorded hour. Each point averages the recorded rounds in that hour; the dashed overlay averages all recorded rounds at the matching UTC weekday and hour across the full dataset. Missing hours stay blank and do not count as zero. The latest hour may be incomplete.</p>
+        <div id="population-weekly-legend" class="population-duration-legend" hidden><span class="population-week-swatch">Past week · hourly average</span><span class="population-average-swatch">Full dataset · weekday/hour average</span></div>
         <div id="population-duration-legend" class="population-duration-legend" hidden aria-label="Round duration color scale">
           <span>Round duration</span><div class="duration-color-scale"><div class="duration-color-ramp" aria-hidden="true"></div><div class="duration-color-labels"><span>0 min · short</span><span id="population-duration-max"></span></div></div>
           <span><span class="duration-unknown-swatch" aria-hidden="true"></span> Duration unavailable</span>
@@ -164,6 +168,9 @@
       </section>
       <section class="population-card daily-players-card" aria-labelledby="daily-players-title">
         <h2 id="daily-players-title">Daily unique players</h2>
+        <div class="population-controls"><label>View<select id="daily-players-view"><option value="daily">Daily unique players</option><option value="weekly">Rolling 7-day unique players</option></select></label></div>
+        <p id="weekly-players-summary" class="population-summary"></p>
+        <p id="weekly-players-note" class="population-note" hidden>Each bar counts distinct players across the seven UTC dates ending on that day. Players visiting on multiple days count once per window. The latest window ends on the latest activity date; that day may be incomplete. Early windows may have fewer than seven days of recorded history.</p>
         <p class="population-note">Distinct players across each whole UTC day, counted once even if they reconnect or change names. Recorded sessions spanning midnight count on both days. Missing logouts count only on the login day. Totals cover the available activity log and are independent of the filters above.</p>
         <div id="daily-players-chart-wrap" class="population-chart-wrap" tabindex="0" role="region" aria-label="Scrollable daily unique player chart"><svg id="daily-players-chart" viewBox="0 0 1000 430" role="img" aria-label="Unique players by UTC day"></svg></div>
         <p id="daily-players-empty" hidden>No player activity records available.</p>

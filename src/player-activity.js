@@ -2,7 +2,7 @@ const DAY = 86400000;
 
 // Login and logout callbacks append separate rows for the same session.
 // Missing logouts establish presence only on the recorded login day.
-export function dailyUniquePlayers(headers, rows) {
+function playerDays(headers, rows) {
   const column = name => headers.indexOf(name);
   const sessions = new Map();
   for (const row of rows) {
@@ -24,7 +24,23 @@ export function dailyUniquePlayers(headers, rows) {
       days.get(day).add(id);
     }
   }
-  return [...days].sort(([a], [b]) => a - b).map(([day, players]) => ({
+  return days;
+}
+
+export function dailyUniquePlayers(headers, rows) {
+  return [...playerDays(headers, rows)].sort(([a], [b]) => a - b).map(([day, players]) => ({
     day: new Date(day * DAY).toISOString().slice(0, 10), players: players.size,
   }));
+}
+
+export function weeklyUniquePlayers(headers, rows) {
+  const days = playerDays(headers, rows);
+  return [...days.keys()].sort((a, b) => a - b).map(day => {
+    const players = new Set();
+    for (let offset = 0; offset < 7; offset++) {
+      for (const id of days.get(day - offset) ?? []) players.add(id);
+    }
+    return { day: new Date(day * DAY).toISOString().slice(0, 10),
+      start: new Date((day - 6) * DAY).toISOString().slice(0, 10), players: players.size };
+  });
 }

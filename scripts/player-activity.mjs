@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { csvRows } from '../src/map-identity.js';
-import { dailyUniquePlayers } from '../src/player-activity.js';
+import { dailyUniquePlayers, weeklyUniquePlayers } from '../src/player-activity.js';
 
 export function playerActivityPlugin() {
   let root;
@@ -14,8 +14,9 @@ export function playerActivityPlugin() {
       this.addWatchFile(path);
       const text = await readFile(path, 'utf8').catch(error => { if (error.code === 'ENOENT') return ''; throw error; });
       const [headers = [], ...rows] = csvRows(text);
-      // Publish daily totals only; account IDs and player names stay out of assets.
-      return 'export default ' + JSON.stringify(dailyUniquePlayers(headers, rows));
+      // Publish aggregate totals only; account IDs and player names stay out of assets.
+      return 'export const weeklyPlayers = ' + JSON.stringify(weeklyUniquePlayers(headers, rows)) + ';\n'
+        + 'export default ' + JSON.stringify(dailyUniquePlayers(headers, rows));
     },
   };
 }

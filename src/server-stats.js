@@ -115,7 +115,34 @@ export function populationSessions(points) {
   }
   return sessions;
 }
-export function setupServerStats(headers, rows, dailyPlayers = []) {
+export function weeklyPopulation(points) {
+  if (!points.length) return [];
+  const hour = 3600000;
+  const latest = Math.max(...points.map(point => point.time));
+  const start = Math.floor(latest / hour) * hour - 167 * hour;
+  const recent = new Map(), history = new Map();
+  const weekdayHour = time => {
+    const date = new Date(time);
+    return date.getUTCDay() * 24 + date.getUTCHours();
+  };
+  const add = (buckets, key, players) => {
+    const bucket = buckets.get(key) ?? { total: 0, count: 0 };
+    bucket.total += players;
+    bucket.count++;
+    buckets.set(key, bucket);
+  };
+  for (const point of points) {
+    add(history, weekdayHour(point.time), point.players);
+    if (point.time >= start) add(recent, Math.floor(point.time / hour) * hour, point.players);
+  }
+  return Array.from({ length: 168 }, (_, index) => {
+    const time = start + index * hour;
+    const current = recent.get(time), average = history.get(weekdayHour(time));
+    return { time, players: current ? current.total / current.count : null, count: current?.count ?? 0,
+      average: average ? average.total / average.count : null, averageCount: average?.count ?? 0 };
+  });
+}
+export function setupServerStats(headers, rows, dailyPlayers = [], weeklyPlayers = []) {
   const $ = id => document.getElementById(id);
   const points = populationSamples(headers, rows);
   const sessions = populationSessions(points);
@@ -130,31 +157,44 @@ export function setupServerStats(headers, rows, dailyPlayers = []) {
     return node;
   };
   const dailyChart = $('daily-players-chart');
-  dailyChart.replaceChildren(make('title', {}, 'Daily unique players'), make('desc', {}, 'Distinct player IDs seen on each UTC day. Repeated visits count once per day.'));
-  $('daily-players-empty').hidden = dailyPlayers.length > 0;
-  $('daily-players-chart-wrap').hidden = !dailyPlayers.length;
-  $('daily-players-detail').textContent = dailyPlayers.length ? 'Hover, tap, or focus a bar for its daily total.' : '';
-  if (dailyPlayers.length) {
-    const width = Math.max(1000, dailyPlayers.length * 70 + 120);
-    dailyChart.setAttribute('viewBox', '0 0 ' + width + ' 430');
-    dailyChart.style.minWidth = width + 'px';
-    const top = Math.max(5, Math.ceil(Math.max(...dailyPlayers.map(day => day.players)) / 5) * 5);
-    const y = players => 350 - players / top * 300;
-    const step = (width - 120) / dailyPlayers.length;
-    for (let i = 0; i <= 5; i++) {
-      const value = top * i / 5;
-      dailyChart.append(make('line', { x1: 70, x2: width - 50, y1: y(value), y2: y(value), class: 'population-grid' }), make('text', { x: 58, y: y(value) + 4, 'text-anchor': 'end' }, value));
+  const latestWeek = weeklyPlayers.at(-1);
+  $('weekly-players-summary').textContent = latestWeek ? `Past 7 days: ${latestWeek.players} unique players · ${latestWeek.start} – ${latestWeek.day} UTC (latest activity)` : '';
+  function renderPlayerActivity() {
+    const weekly = $('daily-players-view').value === 'weekly';
+    const activity = weekly ? weeklyPlayers : dailyPlayers;
+    const title = weekly ? 'Rolling 7-day unique players' : 'Daily unique players';
+    $('daily-players-title').textContent = title;
+    $('weekly-players-note').hidden = !weekly;
+    dailyChart.setAttribute('aria-label', title);
+    $('daily-players-chart-wrap').setAttribute('aria-label', `Scrollable ${title.toLowerCase()} chart`);
+    dailyChart.replaceChildren(make('title', {}, title), make('desc', {}, weekly ? 'Distinct players over each trailing seven UTC dates, deduplicated across days.' : 'Distinct player IDs seen on each UTC day. Repeated visits count once per day.'));
+    $('daily-players-empty').hidden = activity.length > 0;
+    $('daily-players-chart-wrap').hidden = !activity.length;
+    $('daily-players-detail').textContent = activity.length ? 'Hover, tap, or focus a bar for its total.' : '';
+    if (activity.length) {
+      const width = Math.max(1000, activity.length * 70 + 120);
+      dailyChart.setAttribute('viewBox', '0 0 ' + width + ' 430');
+      dailyChart.style.minWidth = width + 'px';
+      const top = Math.max(5, Math.ceil(Math.max(...activity.map(day => day.players)) / 5) * 5);
+      const y = players => 350 - players / top * 300;
+      const step = (width - 120) / activity.length;
+      for (let i = 0; i <= 5; i++) {
+        const value = top * i / 5;
+        dailyChart.append(make('line', { x1: 70, x2: width - 50, y1: y(value), y2: y(value), class: 'population-grid' }), make('text', { x: 58, y: y(value) + 4, 'text-anchor': 'end' }, value));
+      }
+      activity.forEach((day, i) => {
+        const x = 70 + step * (i + .5);
+        const label = (weekly ? `${day.start} – ${day.day}` : day.day) + ' UTC · ' + day.players + ' unique players';
+        const bar = make('rect', { x: x - Math.min(50, step * .65) / 2, y: y(day.players), width: Math.min(50, step * .65), height: 350 - y(day.players), class: 'daily-player-bar', tabindex: 0, 'aria-label': label });
+        bar.append(make('title', {}, label));
+        for (const event of ['pointerenter', 'focus', 'click']) bar.addEventListener(event, () => $('daily-players-detail').textContent = label);
+        dailyChart.append(bar, make('text', { x, y: y(day.players) - 8, 'text-anchor': 'middle' }, day.players), make('text', { x, y: 375, 'text-anchor': 'middle' }, day.day));
+      });
+      dailyChart.append(make('text', { x: width / 2, y: 408, 'text-anchor': 'middle' }, weekly ? '7-day window ending (UTC)' : 'Day (UTC)'), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Unique players'));
     }
-    dailyPlayers.forEach((day, i) => {
-      const x = 70 + step * (i + .5);
-      const label = day.day + ' UTC · ' + day.players + ' unique players';
-      const bar = make('rect', { x: x - Math.min(50, step * .65) / 2, y: y(day.players), width: Math.min(50, step * .65), height: 350 - y(day.players), class: 'daily-player-bar', tabindex: 0, 'aria-label': label });
-      bar.append(make('title', {}, label));
-      for (const event of ['pointerenter', 'focus', 'click']) bar.addEventListener(event, () => $('daily-players-detail').textContent = label);
-      dailyChart.append(bar, make('text', { x, y: y(day.players) - 8, 'text-anchor': 'middle' }, day.players), make('text', { x, y: 375, 'text-anchor': 'middle' }, day.day));
-    });
-    dailyChart.append(make('text', { x: width / 2, y: 408, 'text-anchor': 'middle' }, 'Day (UTC)'), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Unique players'));
   }
+  $('daily-players-view').addEventListener('change', renderPlayerActivity);
+  renderPlayerActivity();
   const durations = durationSamples(headers, rows);
   const durationChart = $('duration-chart');
   function renderDuration() {
@@ -235,7 +275,65 @@ export function setupServerStats(headers, rows, dailyPlayers = []) {
   });
   $('population-coverage').textContent = `${points.length} timestamped samples · ${rows.length - points.length} rows without usable time/population omitted`;
   const rangeControl = $('population-range');
+  const weekly = weeklyPopulation(points);
+  function renderWeekly() {
+    const overlay = $('population-average').checked;
+    svg.replaceChildren(make('title', {}, 'Past week population and full-dataset weekly average'), make('desc', {}, 'Hourly round-sample averages in UTC. Dashed line shows all recorded rounds at the matching weekday and hour. Missing hours break each line.'));
+    svg.setAttribute('aria-label', 'Past week population and full-dataset weekly average by UTC hour');
+    $('population-empty').hidden = !!weekly.length;
+    $('population-chart-wrap').hidden = !weekly.length;
+    $('population-duration-legend').hidden = true;
+    $('population-weekly-legend').hidden = !weekly.length;
+    $('population-weekly-legend').querySelector('.population-average-swatch').hidden = !overlay;
+    if (!weekly.length) {
+      $('population-summary').textContent = '0 samples available for the past week.';
+      $('population-detail').textContent = '';
+      return;
+    }
+    const start = weekly[0].time, end = weekly.at(-1).time + 3600000;
+    const top = Math.ceil(Math.max(5, ...weekly.flatMap(p => [p.players ?? 0, overlay ? p.average ?? 0 : 0])) / 5) * 5;
+    const x = time => 70 + (time - start) / (end - start) * 880;
+    const y = players => 350 - players / top * 300;
+    for (let i = 0; i <= 5; i++) {
+      const value = top * i / 5;
+      svg.append(make('line', { x1: 70, x2: 950, y1: y(value), y2: y(value), class: 'population-grid' }), make('text', { x: 58, y: y(value) + 4, 'text-anchor': 'end' }, value));
+    }
+    for (let i = 0; i <= 7; i++) {
+      const time = start + i * 24 * 3600000;
+      const label = new Date(time).toLocaleString(undefined, { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' });
+      svg.append(make('text', { x: x(time), y: 375, 'text-anchor': i === 0 ? 'start' : i === 7 ? 'end' : 'middle' }, label));
+    }
+    svg.append(make('text', { x: 510, y: 408, 'text-anchor': 'middle' }, `Time (UTC) · daily ticks at ${new Date(start).getUTCHours().toString().padStart(2, '0')}:00`), make('text', { transform: 'translate(20 200) rotate(-90)', 'text-anchor': 'middle' }, 'Average population (players)'));
+    for (const key of overlay ? ['average', 'players'] : ['players']) {
+      const className = key === 'average' ? 'population-average' : 'population-week';
+      let segment = [];
+      const flush = () => {
+        if (segment.length && $('population-style').value === 'line') svg.append(make('polyline', { points: segment.join(' '), class: `population-line ${className}` }));
+        segment = [];
+      };
+      for (const point of weekly) {
+        if (point[key] === null) { flush(); continue; }
+        const time = point.time + 1800000;
+        segment.push(`${x(time)},${y(point[key])}`);
+        const label = `${date(point.time)} UTC · ${key === 'average' ? 'Full-dataset weekday/hour average' : 'Past week hourly average'}: ${point[key].toFixed(2)} players · ${key === 'average' ? point.averageCount : point.count} rounds`;
+        const dot = make('circle', { cx: x(time), cy: y(point[key]), r: 3, class: `population-dot ${className}`, tabindex: 0, 'aria-label': label });
+        dot.append(make('title', {}, label));
+        for (const event of ['pointerenter', 'focus', 'click']) dot.addEventListener(event, () => $('population-detail').textContent = label);
+        svg.append(dot);
+      }
+      flush();
+    }
+    $('population-summary').textContent = `Past week: ${date(start)} – ${date(points.at(-1).time)} UTC · ${weekly.reduce((sum, p) => sum + p.count, 0)} rounds${overlay ? ` · Weekly average from all ${points.length} recorded rounds` : ''}`;
+    $('population-detail').textContent = 'Hover, tap, or focus a point for its hourly average and sample count.';
+  }
   function render() {
+    const isWeekly = $('population-view').value === 'weekly';
+    for (const id of ['population-session', 'population-range', 'population-duration-color']) $(id).disabled = isWeekly;
+    $('population-average-control').hidden = !isWeekly;
+    $('population-weekly-note').hidden = !isWeekly;
+    $('population-weekly-legend').hidden = true;
+    if (isWeekly) { renderWeekly(); return; }
+    svg.setAttribute('aria-label', 'Server population versus UTC time');
     const selected = $('population-session').value;
     let visible = selected === 'all' ? points : sessions[Number(selected)];
     const hours = Number(rangeControl.value);
@@ -292,7 +390,7 @@ export function setupServerStats(headers, rows, dailyPlayers = []) {
     $('population-detail').textContent = 'Hover, tap, or focus a point for its time, population, and map.';
   }
   rangeControl.addEventListener('input', render);
-  for (const id of ['population-session', 'population-style', 'population-duration-color']) $(id).addEventListener('change', render);
+  for (const id of ['population-view', 'population-average', 'population-session', 'population-style', 'population-duration-color']) $(id).addEventListener('change', render);
   render();
   return { count: points.length };
 }
