@@ -59,6 +59,27 @@
         </div>
         <p id="rotation-round-empty" hidden>No rounds recorded for this map.</p>
       </section>
+      <section id="rotation-feedback" class="round-stats map-feedback" aria-labelledby="rotation-feedback-title">
+        <p class="eyebrow">COMMUNITY FEEDBACK</p>
+        <h2 id="rotation-feedback-title">Ratings · <span data-feedback="map"></span></h2>
+        <div class="round-stats-summary" aria-live="polite">
+          <div><span>Good</span><strong class="feedback-good" data-feedback="good">0</strong></div>
+          <div><span>Bad</span><strong class="feedback-bad" data-feedback="bad">0</strong></div>
+          <div><span>Good ratings</span><strong data-feedback="percent">—</strong></div>
+        </div>
+        <p data-feedback="empty" hidden>No ratings recorded for this map yet.</p>
+        <p class="feedback-note">Each recorded good/bad vote counts once, including repeat votes. Source and variant ratings share the same map totals. Ratings cover all player counts.</p>
+        <details>
+          <summary>Compare ratings across the rotation</summary>
+          <div class="round-stats-scroll" tabindex="0" role="region" aria-label="Rotation ratings table">
+            <table>
+              <caption>Maps in the selected size and order · select a map to view it</caption>
+              <thead><tr><th scope="col">Map</th><th scope="col">Good</th><th scope="col">Bad</th><th scope="col">Good %</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
     </section>
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
       <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play. You can also open local recordings.</p></div></div>

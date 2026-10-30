@@ -349,3 +349,9 @@ legacy data; do not relabel them by extracting a filename number.
 
 `npm test` includes identity and quoted-CSV tests. `npm run build` checks the editor,
 measured topology, and model registry. Building locally does not publish the site.
+
+## Community map feedback
+
+Current rotation shows the selected map's good/bad totals at the bottom, with an expandable comparison table following the size filter and map order. Each recorded vote counts once, including repeat voters; source and named variants share a permanent map total. Player-count filters do not affect feedback.
+
+`npm run normalize:feedback` rewrites `map_feedback.csv` map names to base `test_map_###` identities while preserving all rows and other fields. Legacy slots are resolved by timestamp using `lib/map-feedback-identities.json`, extracted from the archived module's dated rotation manifests and catalogue public IDs, rather than today's reused slots. Manifest paths are relative to `MOD/custom_maps/random_maps/`. The latest preceding manifest containing a slot supplies its historical identity. Unknown legacy records fail until their historical mapping is added. Procedurally generated terrain has no fixed test-map identity and retains its recorded name.

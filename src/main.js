@@ -6,6 +6,9 @@ import { publicMapId, mapLabel, csvRows, parseMapNames, statsMapId } from './map
 
 import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
+import feedbackCsv from '../map_feedback.csv?raw';
+import feedbackIdentities from '../lib/map-feedback-identities.json';
+import { normalizeFeedback, summarizeFeedback, renderFeedback } from './map-feedback.js';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupServerStats } from './server-stats.js';
 import dailyPlayers from 'virtual:daily-players';
@@ -30,6 +33,7 @@ const rotationImages = collections.rotation.images.map(entry => ({
   ...entry, map_id: publicMapId(identityRegistry, entry.filename),
 }));
 const installedMaps = parseMapNames(mapNames);
+const feedbackSummaries = summarizeFeedback(normalizeFeedback(feedbackCsv, feedbackIdentities));
 const rotationPools = new Map(installedMaps.map(map => [map.filename, map.pool]));
 let rotationPool = 'all';
 const [roundStatsHeaders, ...recordedRoundStatsRows] = csvRows(roundStatsCsv);
@@ -206,6 +210,11 @@ function renderCollection(name) {
   const entry = images[index];
   if (name === 'rotation' || name === 'good') renderRoundStats(name, entry?.filename);
   if (name === 'rotation') {
+    renderFeedback($('rotation-feedback'), feedbackSummaries, collections.rotation.images,
+      publicMapId(identityRegistry, entry?.filename), filename => {
+        collections.rotation.index = collections.rotation.images.findIndex(map => map.filename === filename);
+        renderCollection('rotation');
+      });
     const matches = recordings.filter(item => `${item.map}.png` === entry?.filename);
     $('rotation-replays').hidden = !matches.length;
     $('rotation-replays').textContent = `View replays (${matches.length})`;
