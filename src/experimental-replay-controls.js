@@ -5,7 +5,6 @@ import './experimental-replay.css';
 import { resolveDisplayMetadata, UNIT_TYPES, metadataTemplate, parseDisplayMetadata, displayMeta, movementAdapter, experimentalViewAt, experimentalStrengthAt } from './experimental-replay-presentation.js';
 import { createBotStrengthChart } from './replay-strength.js';
 
-const samples = import.meta.glob('../experimental_replays/*.jsonl', { query: '?url', import: 'default', eager: true });
 const syntheticURL = new URL('../tests/fixtures/SYNTHETIC-experimental-artillery.jsonl', import.meta.url).href;
 const elapsed = ms => `${Math.floor(ms / 60000)}:${(ms / 1000 % 60).toFixed(3).padStart(6, '0')}`;
 const capabilityKeys = { shots: 'shots', hits: 'hits', artillery: 'artillery', contacts: 'artillery', fragments: 'artillery' };
@@ -14,11 +13,10 @@ export function capabilitySummary(replay) {
   return ['shots', 'hits', 'artillery', 'native_missiles', 'native_impacts', 'exact_native_shot_hit_link'].map(k => `${k.replaceAll('_', ' ')}: ${c[k] === undefined || c[k] === false ? 'not captured / unavailable' : String(c[k])}`).join(' · ');
 }
 export function setupExperimentalReplay(root) {
-  root.innerHTML = `<div class="intro"><div><p class="eyebrow">EXPERIMENTAL RECORDING</p><h1>Experimental replay.</h1><p class="subtitle">Explore captured movement and combat events. Raw recordings open locally in your browser.</p></div></div>
-    <div class="exp-toolbar"><label>Open experimental recording<input data-exp="file" type="file" accept=".jsonl,application/x-ndjson"></label><label>Local examples<select data-exp="examples"><option value="">Choose an example</option></select></label><button data-exp="example">Open example</button><button data-exp="clear">Clear</button></div>
-    <p data-exp="status" role="status">Open a warband-experimental-replay JSONL recording. No exporter or stable recording is needed.</p>
+  root.innerHTML = `<div class="exp-toolbar"><label>Open local v2 recording<input data-exp="file" type="file" accept=".jsonl,application/x-ndjson"></label><label>Demo<select data-exp="examples"><option value="">Choose an example</option></select></label><button data-exp="example">Open example</button><button data-exp="clear">Clear</button></div>
+    <p data-exp="status" role="status">Select a v2 replay or open a local recording.</p>
     <div data-exp="loaded" hidden>
-      <div class="exp-summary"><span class="exp-badge">EXPERIMENTAL</span><strong data-exp="title"></strong><p data-exp="summary"></p><p data-exp="warnings"></p></div>
+      <div class="exp-summary"><span class="exp-badge">v2</span><strong data-exp="title"></strong><p data-exp="summary"></p><p data-exp="warnings"></p></div>
       <div class="exp-transport"><button data-exp="play" aria-pressed="false" disabled>▶ Play</button><button data-exp="restart">Restart</button><button data-exp="previous">← Event</button><button data-exp="next">Event →</button><label>Speed<select data-exp="speed"><option>0.25</option><option>0.5</option><option selected>1</option><option>5</option><option>10</option><option>30</option><option>60</option></select>×</label><label class="exp-scrubber">Capture elapsed<input data-exp="timeline" aria-label="Experimental replay timeline" type="range" step="1"></label><output data-exp="time"></output></div>
       <p class="exp-alignment" data-exp="alignment" role="status"></p>
       <div class="exp-toolbar"><label>Terrain overlay<select data-exp="terrain"><option value="">Neutral reference grid</option></select></label><label>Camera<select data-exp="camera"><option value="aerial">Aerial</option><option value="overhead">Overhead</option><option value="reverse">Opposite side</option></select></label><label>Height<select data-exp="height"><option value="1">1× · true scale</option><option value="2">2×</option><option value="4">4×</option></select></label><label>Unit placement<select data-exp="placement"><option value="terrain">Follow terrain</option><option value="recorded">Recorded heights</option></select></label><button data-exp="reset">Reset view</button></div>
@@ -38,7 +36,6 @@ export function setupExperimentalReplay(root) {
       <section class="exp-inspector"><h2>Event inspector</h2><div class="exp-toolbar"><label>Event type<select data-exp="type"><option value="">All event types</option></select></label><label>Search recorded fields<input data-exp="search" type="search" placeholder="Entity, weapon, ammo, reason…"></label></div><p data-exp="results"></p><div class="exp-inspector-grid"><div><div data-exp="events" class="exp-events" role="region" aria-label="Experimental events"></div><div class="exp-toolbar"><button data-exp="page-back">Previous page</button><button data-exp="page-next">Next page</button></div></div><div><p data-exp="selected-note">Select an event to seek and inspect its original fields.</p><button data-exp="focus-event" disabled>Focus selected event</button><pre data-exp="raw" tabindex="0"></pre></div></div></section>
     </div>`;
   const el = name => root.querySelector(`[data-exp="${name}"]`);
-  for (const [path, url] of Object.entries(samples)) el('examples').append(new Option(path.split('/').at(-1), url));
   el('examples').append(new Option('SYNTHETIC · artillery, contacts & fragments', syntheticURL));
   if (el('examples').options.length > 1) el('examples').selectedIndex = 1;
   for (const [i, map] of manifest.maps.entries()) el('terrain').append(new Option(`${map.map_id || map.id} · ${map.variant_id || 'source'} · unverified overlay`, String(i)));
@@ -243,6 +240,12 @@ export function setupExperimentalReplay(root) {
   el('example').addEventListener('click', () => { const url = el('examples').value; if (url) load(async () => { const response = await fetch(url); if (!response.ok) throw new Error('Example could not load'); return response.text(); }); });
   el('clear').addEventListener('click', () => { loadGeneration++; terrainGeneration++; cancelParsing(); detach(); strengthChart?.dispose(); strengthChart = null; metadata = undefined; replay = data = null; filtered = []; selected = undefined; el('loaded').hidden = true; el('events').replaceChildren(); el('raw').textContent = el('metadata').textContent = ''; el('status').textContent = 'Experimental recording cleared.'; });
   document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
-  return { setVisible(value) { visible = value; if (!value) detach(); else if (replay && !viewer) attach(); },
+  return { openReplay(recording) {
+      return load(async () => {
+        const response = await fetch(import.meta.env.BASE_URL + recording.url);
+        if (!response.ok) throw new Error('Recording could not load');
+        return response.text();
+      });
+    }, setVisible(value) { visible = value; if (!value) detach(); else if (replay && !viewer) attach(); },
     diagnostics() { const sorted = [...frameSamples].sort((a, b) => a - b); return { frames: sorted.length, median_ms: sorted[Math.floor(sorted.length * .5)], p95_ms: sorted[Math.floor(sorted.length * .95)], ...lastStats }; } };
 }

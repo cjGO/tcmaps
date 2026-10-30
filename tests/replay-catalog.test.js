@@ -39,7 +39,7 @@ test('published recordings use event totals and distinguish manual stops', async
 
 test('labels show permanent identities and zero survivors when available', () => {
   assert.equal(recordingLabel({ map_id: 'test_map_141', map: 'scn_mp_custom_map_3', round: '2', players: 12, bots: 0, round_ended: true }),
-    'Test map #141 - Round #2 - 12 players recorded - 0 bots remaining at round end');
+    'v1 · Test map #141 - Round #2 - 12 players recorded - 0 bots remaining at round end');
 });
 
 test('player totals deduplicate commanders, respawns and control changes', () => {
@@ -114,4 +114,18 @@ test('catalog shows inspectable rosters safely and keeps selection and empty sta
     globalThis.document = originalDocument;
     dom.window.close();
   }
+});
+
+test('combined catalog interleaves v1 and v2 with shared player filters and links', async () => {
+  const { combinedReplayCatalog } = await import('../scripts/replay-catalog.mjs');
+  const rows = await combinedReplayCatalog(new URL('../replays/', import.meta.url));
+  assert.deepEqual([...new Set(rows.map(row => row.version))].sort(), [1, 2]);
+  for (let i = 1; i < rows.length; i++) assert.ok(Date.parse(rows[i - 1].created) >= Date.parse(rows[i].created));
+  const v2 = rows.find(row => row.version === 2 && row.roster.some(player => player.names.length));
+  assert.ok(v2.url.startsWith('experimental_replays/'));
+  assert.match(recordingLabel(v2), /^v2 · /);
+  assert.equal(v2.players, v2.roster.length);
+  const name = v2.roster.find(player => player.names.length).names[0];
+  assert.ok(filterRecordings(rows, v2.players, name).includes(v2));
+  assert.ok(!filterRecordings(rows, v2.players + 1, name).includes(v2));
 });

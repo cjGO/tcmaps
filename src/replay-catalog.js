@@ -2,7 +2,7 @@ import { replayLink } from './replay-link.js';
 
 export function recordingLabel(recording) {
   const map = recording.map_id?.replace(/^test_map_/, 'Test map #') || `Map unverified (${recording.map.replace(/^scn_/, '')})`;
-  return `${map} - Round ${recording.round ? '#' + recording.round : 'unknown'} - ${recording.players} players recorded - ${recording.bots} bots remaining ${recording.round_ended ? 'at round end' : 'at recording end'}${recording.synthetic ? ' · SYNTHETIC' : ''}`;
+  return `v${recording.version ?? 1} · ${map} - Round ${recording.round ? '#' + recording.round : 'unknown'} - ${recording.players} players recorded - ${recording.bots} bots remaining ${recording.round_ended ? 'at round end' : 'at recording end'}${recording.synthetic ? ' · SYNTHETIC' : ''}`;
 }
 
 const nameIndexes = new WeakMap();

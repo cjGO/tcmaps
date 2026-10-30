@@ -142,11 +142,19 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
   });
 });
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows, dailyPlayers);
-const tabs = ['rotation', 'replays', 'experimental', 'review', 'good', 'bad', 'server', 'editor'];
+const tabs = ['rotation', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
 $('open-experimental-recording').addEventListener('click', () => {
-  selectTab('experimental');
+  replayOpened = true;
+  selectTab('replays', { autoOpen: false });
+  setReplayVersion(2);
   $('experimental-panel').querySelector('[data-exp=file]').click();
+});
+$('open-v1-recording').addEventListener('click', () => {
+  replayOpened = true;
+  selectTab('replays', { autoOpen: false });
+  setReplayVersion(1);
+  $('replay-v1-viewer').querySelector('[data-replay=files]').click();
 });
 const editor = setupEditor(selectTab);
 const topology = setupTopology();
@@ -154,6 +162,14 @@ const replays = setupTopology({ prefix: 'replays', recordings: true });
 const replayCatalog = $('replay-catalog');
 let replayOpened = false;
 let selectedReplayId;
+let replayVersion = 1;
+function setReplayVersion(version) {
+  replayVersion = version;
+  $('replay-v1-viewer').hidden = version === 2;
+  $('experimental-panel').hidden = version !== 2;
+  replays.setVisible(activeTab === 'replays' && version === 1);
+  experimental.setVisible(activeTab === 'replays' && version === 2);
+}
 function openRecording(recording, options = {}) {
   selectedReplayId = recording.id;
   replayOpened = true;
@@ -161,7 +177,9 @@ function openRecording(recording, options = {}) {
   $('replays-filename').textContent = recordingLabel(recording);
   replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
   if (options.syncUrl !== false) history.pushState(null, '', replayLink(location.href, recording.id, options));
-  replays.openReplay(recording, options);
+  setReplayVersion(recording.version);
+  if (recording.version === 2) experimental.openReplay(recording);
+  else replays.openReplay(recording, options);
 }
 function updateReplayList() {
   const minimumPlayers = Number($('replay-min-players').value);
@@ -222,16 +240,16 @@ function moveCollection(name, delta) {
 function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   activeTab = name;
   topology.setVisible(name === 'rotation');
-  replays.setVisible(name === 'replays');
+  replays.setVisible(name === 'replays' && replayVersion === 1);
   for (const tab of tabs) {
     $(tab + '-tab').setAttribute('aria-selected', String(tab === name));
     $(tab + '-tab').tabIndex = tab === name ? 0 : -1;
     $(tab + '-panel').hidden = tab !== name;
   }
   editor.setVisible(name === 'editor');
-  experimental.setVisible(name === 'experimental');
+  experimental.setVisible(name === 'replays' && replayVersion === 2);
   if (name === 'editor') editor.show();
-  $('collection-summary').textContent = name === 'experimental' ? 'Experimental combat recordings' : name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
@@ -402,7 +420,8 @@ function restoreLocation() {
       $('replays-panel').querySelector('[data-replay="status"]').textContent = 'This replay is not available in this deployment. Select another recording below.';
     }
   } else {
-    const tab = new URL(location.href).searchParams.get('tab');
+    const requestedTab = new URL(location.href).searchParams.get('tab');
+    const tab = requestedTab === 'experimental' ? 'replays' : requestedTab;
     selectTab(tabs.includes(tab) ? tab : 'rotation', { syncUrl: false });
   }
 }
