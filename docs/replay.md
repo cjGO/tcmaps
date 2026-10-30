@@ -81,8 +81,14 @@ the incomplete file rather than retrying an ambiguous append.
 ## Export and browser playback
 
 Transfer the journal with the operator's existing file-copy/SFTP workflow. No
-server filesystem HTTP endpoint is installed. With a copy accessible in WSL,
-run from `rate_maps` using the project's supported Node runtime (24 recommended;
+server filesystem HTTP endpoint is installed. Open v1 `.jsonl` recordings directly
+with **Open local v1 recording** on `/replays`, or put them in the repository's
+`replays/` folder and rebuild/redeploy to publish them. No conversion is needed.
+The viewer finds terrain in the published topology manifest by exact source
+identity and verifies its checksum. If that version is missing, publish its
+measured topology or use a bundle containing archived terrain.
+
+To create an optional self-contained bundle, run from `rate_maps` using the project's supported Node runtime (24 recommended;
 validation here used the installed 22.23.2):
 
 ```sh
@@ -105,11 +111,11 @@ need their matching terrain exported. Native reroll captures remain unavailable
 for 3D in this version; `/savemap` can preserve the loaded recipe for future
 measurement, but a saved recipe alone is not a measured topology.
 
-Place exported `*.replay.json` bundles in the repository’s `/replays` folder and
+Place raw `*.jsonl` recordings or exported `*.replay.json` bundles in the repository’s `/replays` folder and
 rebuild/redeploy to publish them. The **Replays** tab lists every available recording
 without downloading the bundles until selected. Current rotation maps with recordings
-have a **View replays** link. Selecting a recording loads its embedded matching 3D
-terrain; press **Play** to start playback.
+have a **View replays** link. Selecting a recording loads its matching 3D
+terrain (from the published topology assets for JSONL, or embedded in a bundle); press **Play** to start playback.
 
 Each catalog entry has a **Replay link**. During playback, **Copy link at current
 time** shares the selected published recording, round time, and followed soldier

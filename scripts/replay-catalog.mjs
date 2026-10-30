@@ -28,9 +28,12 @@ export function recordedPlayerCount(replay) {
 export async function replayCatalog(directory) {
   const registry = JSON.parse(await readFile(new URL('../lib/editor-rotation.json', import.meta.url), 'utf8'));
   const files = await readdir(directory).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
-  return Promise.all(files.filter(name => name.endsWith('.replay.json')).sort().reverse().map(async filename => {
-    const bundle = JSON.parse(await readFile(new URL(filename, directory), 'utf8'));
-    const replay = parseJournal(bundle.journal), { header, end } = replay;
+  return Promise.all(files.filter(name => name.endsWith('.replay.json') || name.endsWith('.jsonl')).sort().reverse().map(async filename => {
+    const content = await readFile(new URL(filename, directory), 'utf8');
+    if (filename.endsWith('.jsonl') && JSON.parse(content.split('\n', 1)[0]).schema === 'warband-experimental-replay') {
+      return experimentalCatalogRow(parseExperimentalJournal(content), filename, 'replays');
+    }
+    const replay = parseJournal(filename.endsWith('.jsonl') ? content : JSON.parse(content).journal), { header, end } = replay;
     // Scene slots can be reassigned; require an exact source match.
     const matches = registry.filter(row => sourceEqual(row.source, header.map.source));
     const mapIds = new Set(matches.map(row => row.map_id).filter(Boolean));
@@ -52,22 +55,26 @@ export async function experimentalReplayCatalog(directory) {
   const files = await readdir(directory).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
   return Promise.all(files.filter(name => name.endsWith('.jsonl')).map(async filename => {
     const replay = parseExperimentalJournal(await readFile(new URL(filename, directory), 'utf8'));
-    const { header, terminal } = replay;
-    const roster = recordedPlayerRoster(replay);
-    for (const player of roster) {
-      const name = replay.players.get(player.id)?.name;
-      if (typeof name === 'string' && !player.names.includes(name)) player.names.push(name);
-    }
-    const counts = experimentalStrengthAt(replay, replay.last);
-    return { version: 2, filename, id: header.id, map: header.map.id || `scene_${header.map.scene ?? 'unknown'}`,
-      map_id: header.map.map_id || null, round: null,
-      players: roster.length, roster,
-      bots: [...counts.values()].reduce((sum, count) => sum + count, 0),
-      bots_by_team: [...counts].map(([team, count]) => ({ team, count })),
-      round_ended: terminal?.complete === true && terminal.reason === 'round_end',
-      created: header.created_utc, synthetic: header.synthetic,
-      url: `experimental_replays/${encodeURIComponent(filename)}` };
+    return experimentalCatalogRow(replay, filename, 'experimental_replays');
   }));
+}
+
+function experimentalCatalogRow(replay, filename, folder) {
+  const { header, terminal } = replay;
+  const roster = recordedPlayerRoster(replay);
+  for (const player of roster) {
+    const name = replay.players.get(player.id)?.name;
+    if (typeof name === 'string' && !player.names.includes(name)) player.names.push(name);
+  }
+  const counts = experimentalStrengthAt(replay, replay.last);
+  return { version: 2, filename, id: header.id, map: header.map.id || `scene_${header.map.scene ?? 'unknown'}`,
+    map_id: header.map.map_id || null, round: null,
+    players: roster.length, roster,
+    bots: [...counts.values()].reduce((sum, count) => sum + count, 0),
+    bots_by_team: [...counts].map(([team, count]) => ({ team, count })),
+    round_ended: terminal?.complete === true && terminal.reason === 'round_end',
+    created: header.created_utc, synthetic: header.synthetic,
+    url: `${folder}/${encodeURIComponent(filename)}` };
 }
 
 export async function combinedReplayCatalog(directory) {

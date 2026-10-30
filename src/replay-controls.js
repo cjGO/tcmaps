@@ -1,14 +1,21 @@
-import { MAX_BYTES, parseBundle, movementHeatmap, sourceEqual, soldierViewAt } from './tactical-replay.js';
+import { MAX_BYTES, parseRecording, movementHeatmap, sourceEqual, soldierViewAt } from './tactical-replay.js';
 import { squadKey } from './replay-history.js';
 import { createBotStrengthChart } from './replay-strength.js';
 import { replayLink, replayWindow } from './replay-link.js';
 import './replay.css';
+import manifest from '../lib/rotation-topology.json';
+
+const loadRecording = input => parseRecording(input, { manifest, async loadTerrain(url) {
+  const response = await fetch(import.meta.env.BASE_URL + url.replace(/^\//, ''));
+  if (!response.ok) throw new Error('Matching terrain file could not load');
+  return response.text();
+} });
 
 export function setupReplay(panel, refresh, stage) {
   const root = document.createElement('section'); root.className = 'replay-controls';
   root.setAttribute('aria-label', 'Tactical replay');
-  root.innerHTML = `<div class="replay-toolbar"><label>Open round recordings <input type="file" accept=".json" multiple data-replay="files"></label><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
-    <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open exported .replay.json files locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
+  root.innerHTML = `<div class="replay-toolbar"><label>Open round recordings <input type="file" accept=".json,.jsonl,application/x-ndjson" multiple data-replay="files"></label><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
+    <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open .jsonl recordings or .replay.json bundles locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
   panel.append(root);
   const el = name => root.querySelector(`[data-replay="${name}"]`);
   // Keep the control hooks together while giving each task a clear visual group.
@@ -152,7 +159,7 @@ export function setupReplay(panel, refresh, stage) {
       const files = [...event.target.files];
       if (loaded.length + files.length > 20 || files.reduce((sum, f) => sum + f.size, totalBytes) > MAX_BYTES + 12 * 1024 * 1024) throw new Error('Import limit: 20 files and 76 MiB total. Clear recordings first.');
       const next = [];
-      for (const file of files) { const value = await parseBundle(await file.text()); next.push({ ...value, bytes: file.size }); }
+      for (const file of files) { const value = await loadRecording(await file.text()); next.push({ ...value, bytes: file.size }); }
       if (token !== inputGeneration) return;
       for (const value of next) {
         if (loaded.some(x => x.replay.header.id === value.replay.header.id)) continue;
@@ -244,7 +251,7 @@ export function setupReplay(panel, refresh, stage) {
       const response = await fetch(import.meta.env.BASE_URL + recording.url);
       if (!response.ok) throw new Error('Recording file could not load');
       const content = await response.text();
-      const value = await parseBundle(content);
+      const value = await loadRecording(content);
       if (token !== inputGeneration) return;
       let index = loaded.findIndex(item => item.replay.header.id === value.replay.header.id);
       if (index < 0) {

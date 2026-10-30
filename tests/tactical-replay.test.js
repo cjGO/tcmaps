@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { parseJournal, soldierAt, soldierViewAt, facingBetween, movementHeatmap, matchTerrain, parseBundle, unitCategory, playerLabel } from '../src/tactical-replay.js';
+import { parseJournal, soldierAt, soldierViewAt, facingBetween, movementHeatmap, matchTerrain, parseBundle, parseRecording, unitCategory, playerLabel } from '../src/tactical-replay.js';
 
 const journal = () => fs.readFileSync(new URL('./fixtures/SYNTHETIC-tactical-demo.jsonl', import.meta.url), 'utf8');
 const replay = () => parseJournal(journal());
@@ -344,4 +344,30 @@ test('changing unit filters refreshes live markers, cached trails and deaths', a
   assert.equal(layer.update({ unitTypes: ['cavalry', 'artillery', 'infantry'] }), all);
   assert.equal(trailCount(), fullTrails); assert.equal(group.getObjectByName('bot-deaths').count, deathCount);
   layer.dispose();
+});
+
+
+test('raw JSONL resolves exact terrain and shares bundle validation', async () => {
+  const bundleText = fs.readFileSync(new URL('./fixtures/SYNTHETIC-tactical-demo.replay.json', import.meta.url), 'utf8');
+  const bundle = JSON.parse(bundleText);
+  const expected = await parseBundle(bundleText);
+  const entry = { source: expected.data.source, url: '/topology/test/terrain.json', sha256: bundle.terrain_sha256 };
+  let requests = 0;
+  const options = { manifest: { schema_version: 1, maps: [entry] }, async loadTerrain(url) {
+    assert.equal(url, entry.url);
+    requests++;
+    return bundle.terrain_json;
+  } };
+  const raw = await parseRecording(bundle.journal, options);
+  assert.equal(requests, 1);
+  assert.deepEqual(raw, expected);
+  assert.deepEqual(await parseRecording(bundleText), expected);
+  await assert.rejects(parseRecording(bundle.journal, { ...options, manifest: { schema_version: 1, maps: [
+    { ...entry, source: { ...entry.source, sco_sha256: '0'.repeat(64) } },
+  ] } }), /No exact terrain source/);
+  assert.equal(requests, 1, 'a reused scene slot must never load mismatched terrain');
+  await assert.rejects(parseRecording(bundle.journal, { ...options, loadTerrain: async () => bundle.terrain_json + ' ' }), /checksum/);
+  const partial = await parseRecording(bundle.journal + '{"torn":', options);
+  assert.equal(partial.replay.incomplete, true);
+  assert.equal(partial.terrainHash, expected.terrainHash);
 });

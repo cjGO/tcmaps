@@ -128,9 +128,13 @@ export async function parseBundle(input) {
   let bundle; try { bundle = JSON.parse(input); } catch { fail('Malformed replay bundle'); }
   if (!bundle || typeof bundle !== 'object' || bundle.schema !== 'warband-replay-bundle' || bundle.version !== 1) fail('Unsupported replay bundle schema');
   const replay = parseJournal(bundle.journal);
-  if (typeof bundle.terrain_json !== 'string' || bundle.terrain_json.length > 8 * 1024 * 1024 || !hash(bundle.terrain_sha256)) fail('Matching terrain is unavailable; export with a verified terrain asset');
-  if (await sha256(bundle.terrain_json) !== bundle.terrain_sha256) fail('Terrain asset checksum mismatch');
-  let data; try { data = JSON.parse(bundle.terrain_json); } catch { fail('Malformed terrain asset'); }
+  return validateReplayTerrain(replay, bundle.terrain_json, bundle.terrain_sha256);
+}
+
+async function validateReplayTerrain(replay, terrainJSON, terrainHash) {
+  if (typeof terrainJSON !== 'string' || terrainJSON.length > 8 * 1024 * 1024 || !hash(terrainHash)) fail('Matching terrain is unavailable; export with a verified terrain asset');
+  if (await sha256(terrainJSON) !== terrainHash) fail('Terrain asset checksum mismatch');
+  let data; try { data = JSON.parse(terrainJSON); } catch { fail('Malformed terrain asset'); }
   if (!data || typeof data !== 'object' || Array.isArray(data)) fail('Malformed terrain asset');
   matchTerrain(replay, data);
   const version = await sha256(`${data.source.sco_sha256}:${data.source.recipe_sha256}`);
@@ -145,7 +149,24 @@ export async function parseBundle(input) {
   if (!text(data.id, 128) || !Number.isFinite(data.relief_m) || data.relief_m < 0 || data.relief_m > 10000 ||
       [data.xs, data.ys].some(axis => axis.some((v, i) => !Number.isFinite(v) || Math.abs(v) > 100000 || (i && v <= axis[i - 1]))) ||
       data.heights_mm.some(v => !integer(v, -10000000, 10000000))) fail('Invalid terrain coordinates');
-  return { replay, data, terrainHash: bundle.terrain_sha256 };
+  return { replay, data, terrainHash };
+}
+
+// Resolve raw journals against exact published source identities, then apply the
+// same checksum, provenance and grid validation used for self-contained bundles.
+export async function parseRecording(input, { manifest, loadTerrain } = {}) {
+  if (typeof input !== 'string' || input.length > MAX_BYTES + 12 * 1024 * 1024) fail('Recording is too large');
+  let json;
+  try { json = JSON.parse(input); } catch { /* Multiple JSONL records. */ }
+  if (json?.schema === 'warband-replay-bundle') return parseBundle(input);
+  const replay = parseJournal(input);
+  if (replay.header.map.kind !== 'fixed') fail('3D unavailable: this generated map needs matching saved and measured terrain');
+  if (manifest?.schema_version !== 1 || !Array.isArray(manifest.maps)) fail('Matching topology manifest is unavailable');
+  const match = manifest.maps.find(entry => sourceEqual(entry.source, replay.header.map.source));
+  if (!match) fail('No exact terrain source version is available for this recording. Publish its matching measured topology or open a replay bundle with archived terrain.');
+  if (typeof match.url !== 'string' || !/^\/topology\/[A-Za-z0-9_/-]+\.json$/.test(match.url) || !hash(match.sha256)) fail('Invalid terrain manifest entry');
+  if (typeof loadTerrain !== 'function') fail('Matching terrain loader is unavailable');
+  return validateReplayTerrain(replay, await loadTerrain(match.url), match.sha256);
 }
 
 // Each interval contributes soldier-seconds and estimated path metres. Sampling

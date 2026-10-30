@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { pathToFileURL } from 'node:url';
+import { join } from 'node:path';
 import { JSDOM } from 'jsdom';
 import { replayCatalog, recordedPlayerCount, recordedPlayerRoster } from '../scripts/replay-catalog.mjs';
 import { recordingLabel, filterRecordings, renderReplayCatalog } from '../src/replay-catalog.js';
@@ -20,9 +23,11 @@ test('published recordings use event totals and distinguish manual stops', async
   // Audit every published roster against the raw journal, including all control
   // changes, then check every recorded name can retrieve its own replay.
   for (const recording of catalog) {
-    const bundle = JSON.parse(await readFile(new URL('../replays/' + recording.filename, import.meta.url), 'utf8'));
+    if (recording.version !== 1) continue;
+    const content = await readFile(new URL('../replays/' + recording.filename, import.meta.url), 'utf8');
+    const journal = recording.filename.endsWith('.jsonl') ? content : JSON.parse(content).journal;
     const expected = new Map();
-    for (const row of bundle.journal.trimEnd().split('\n').map(JSON.parse)) {
+    for (const row of journal.trimEnd().split('\n').map(JSON.parse)) {
       if (!['entity', 'change'].includes(row.type)) continue;
       for (const id of [row.owner, row.controller]) {
         if (id !== false) expected.set(id, expected.get(id) ?? new Set());
@@ -128,4 +133,38 @@ test('combined catalog interleaves v1 and v2 with shared player filters and link
   const name = v2.roster.find(player => player.names.length).names[0];
   assert.ok(filterRecordings(rows, v2.players, name).includes(v2));
   assert.ok(!filterRecordings(rows, v2.players + 1, name).includes(v2));
+});
+
+
+test('JSONL recordings in replays are cataloged and emitted without conversion', async () => {
+  const { replaysPlugin } = await import('../scripts/replay-catalog.mjs');
+  const directory = await mkdtemp(join(tmpdir(), 'replay-jsonl-'));
+  try {
+    const { mkdir } = await import('node:fs/promises');
+    await mkdir(join(directory, 'replays'));
+    const bundleText = await readFile(new URL('./fixtures/SYNTHETIC-tactical-demo.replay.json', import.meta.url), 'utf8');
+    const bundle = JSON.parse(bundleText);
+    const experimental = await readFile(new URL('./fixtures/SYNTHETIC-experimental-artillery.jsonl', import.meta.url), 'utf8');
+    await writeFile(join(directory, 'replays/raw.jsonl'), bundle.journal);
+    await writeFile(join(directory, 'replays/bundled.replay.json'), bundleText);
+    await writeFile(join(directory, 'replays/experimental.jsonl'), experimental);
+    const rows = await replayCatalog(pathToFileURL(join(directory, 'replays/')));
+    const raw = rows.find(row => row.filename === 'raw.jsonl');
+    const bundled = rows.find(row => row.filename === 'bundled.replay.json');
+    assert.deepEqual({ ...raw, filename: bundled.filename, url: bundled.url }, bundled);
+    assert.equal(raw.url, 'replays/raw.jsonl');
+    const exp = rows.find(row => row.filename === 'experimental.jsonl');
+    assert.equal(exp.version, 2);
+    assert.equal(exp.url, 'replays/experimental.jsonl');
+    const plugin = replaysPlugin();
+    plugin.configResolved({ root: directory });
+    const module = await plugin.load('\0virtual:replays');
+    assert.match(module, /replays\/raw.jsonl/);
+    const assets = [];
+    await plugin.generateBundle.call({ emitFile(asset) { assets.push(asset); } });
+    assert.equal(assets.find(asset => asset.fileName === raw.url).source.toString(), bundle.journal);
+    assert.equal(assets.find(asset => asset.fileName === exp.url).source.toString(), experimental);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
