@@ -168,3 +168,15 @@ test('JSONL recordings in replays are cataloged and emitted without conversion',
     await rm(directory, { recursive: true, force: true });
   }
 });
+
+test('raw v1 catalog keeps the recorded test map identity when terrain hashes differ', async () => {
+  const catalog = await replayCatalog(new URL('../replays/', import.meta.url));
+  const rows = catalog.filter(row => row.version === 1 && row.filename.endsWith('.jsonl'));
+  assert.ok(rows.length > 0);
+  for (const row of rows) {
+    const journal = await readFile(new URL('../replays/' + row.filename, import.meta.url), 'utf8');
+    const header = JSON.parse(journal.split('\n', 1)[0]);
+    assert.equal(row.map_id, header.map.map_id, row.id);
+    assert.ok(recordingLabel(row).includes(header.map.map_id.replace('test_map_', 'Test map #')));
+  }
+});

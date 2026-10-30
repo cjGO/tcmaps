@@ -85,8 +85,13 @@ server filesystem HTTP endpoint is installed. Open v1 `.jsonl` recordings direct
 with **Open local v1 recording** on `/replays`, or put them in the repository's
 `replays/` folder and rebuild/redeploy to publish them. No conversion is needed.
 The viewer finds terrain in the published topology manifest by exact source
-identity and verifies its checksum. If that version is missing, publish its
-measured topology or use a bundle containing archived terrain.
+identity and verifies its checksum. If that version is missing, a unique recorded
+`map_id` (test map number) and variant can select the published terrain as an
+**UNVERIFIED terrain overlay**. Its checksum and measured grid are still checked,
+but terrain alignment is unknown because the recorded source differs. Scene slots
+and filenames never select this fallback. Ambiguous or missing maps still fail.
+Heatmap export requires exact terrain; publish the matching measured topology or
+use a bundle containing archived terrain for verified playback and export.
 
 To create an optional self-contained bundle, run from `rate_maps` using the project's supported Node runtime (24 recommended;
 validation here used the installed 22.23.2):

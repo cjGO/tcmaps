@@ -41,7 +41,7 @@ export async function replayCatalog(directory) {
     const counts = botStrengthAt(history, replay.coverageEnd);
     const roster = recordedPlayerRoster(replay);
     return { version: 1, filename, id: header.id, map: header.map.id,
-      map_id: mapIds.size === 1 ? [...mapIds][0] : null,
+      map_id: /^test_map_\d+$/.test(header.map.map_id) ? header.map.map_id : mapIds.size === 1 ? [...mapIds][0] : null,
       round: /^\d+:(\d+):\d+$/.exec(header.round_id)?.[1] || null,
       players: roster.length, roster,
       bots: counts.reduce((sum, count) => sum + count, 0),

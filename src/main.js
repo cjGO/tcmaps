@@ -10,6 +10,8 @@ import feedbackCsv from '../map_feedback.csv?raw';
 import feedbackIdentities from '../lib/map-feedback-identities.json';
 import { normalizeFeedback, summarizeFeedback, renderFeedback } from './map-feedback.js';
 import { summarizeRounds, orderMaps } from './map-stats.js';
+import { setupMapAnalytics, renderDurationDistribution } from './map-analytics-view.js';
+import { analyticsRounds } from './map-analytics.js';
 import { setupServerStats } from './server-stats.js';
 import dailyPlayers, { weeklyPlayers } from 'virtual:daily-players';
 import { setupEditor } from './editor.js';
@@ -82,6 +84,7 @@ function renderRoundStats(name, filename) {
   el('player-min').style.zIndex = min === 30 ? '3' : '1';
   const stats = summarizeRounds(roundStatsHeaders, allRows, min, max);
   const { rows } = stats;
+  renderDurationDistribution(el('duration-distribution'), analyticsRounds(roundStatsHeaders, rows, [], new Set()));
   el('game-count').textContent = stats.games;
   el('round-empty').textContent = allRows.length ? 'No rounds match this player count range.' : 'No rounds recorded for this map.';
   el('round-note').textContent = `Source and named variants count toward the same map. Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
@@ -146,7 +149,17 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
   });
 });
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows, dailyPlayers, weeklyPlayers);
-const tabs = ['rotation', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
+const mapAnalytics = setupMapAnalytics(roundStatsHeaders, roundStatsRows, installedMaps, new Set(rotationImages.map(entry => entry.map_id).filter(Boolean)), mapId => {
+  const entry = rotationImages.find(image => image.map_id === mapId);
+  if (!entry) return;
+  rotationPool = 'all';
+  document.querySelector('input[name="rotation-size"][value="all"]').checked = true;
+  sortRotation(true);
+  collections.rotation.index = collections.rotation.images.findIndex(image => image.filename === entry.filename);
+  renderCollection('rotation');
+  selectTab('rotation');
+});
+const tabs = ['rotation', 'mapstats', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
 $('open-experimental-recording').addEventListener('click', () => {
   replayOpened = true;
@@ -258,7 +271,7 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   editor.setVisible(name === 'editor');
   experimental.setVisible(name === 'replays' && replayVersion === 2);
   if (name === 'editor') editor.show();
-  $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);

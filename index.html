@@ -7,6 +7,7 @@
   <main>
     <div class="page-tabs" role="tablist" aria-label="Map collections">
       <button id="rotation-tab" role="tab" aria-selected="true" aria-controls="rotation-panel">Current rotation</button>
+      <button id="mapstats-tab" role="tab" aria-selected="false" aria-controls="mapstats-panel" tabindex="-1">Map stats</button>
       <button id="replays-tab" role="tab" aria-selected="false" aria-controls="replays-panel" tabindex="-1">Replays</button>
       <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
       <button id="good-tab" role="tab" aria-selected="false" aria-controls="good-panel" tabindex="-1">GOOD MAPS</button>
@@ -50,6 +51,7 @@
           <div><span>Average duration</span><strong id="rotation-duration-average">—</strong></div>
         </div>
         <p id="rotation-round-note" class="round-stats-note"></p>
+        <details class="round-duration-details" open><summary>Round duration distribution</summary><div id="rotation-duration-distribution"></div></details>
         <div class="round-stats-scroll" tabindex="0" role="region" aria-label="Round statistics table">
           <table id="rotation-round-table">
             <caption id="rotation-round-caption">Round stats</caption>
@@ -79,6 +81,48 @@
             </table>
           </div>
         </details>
+      </section>
+    </section>
+    <section id="mapstats-panel" role="tabpanel" aria-labelledby="mapstats-tab" hidden>
+      <div class="intro"><div><p class="eyebrow">MAP ANALYTICS</p><h1>How do the maps play?</h1><p class="subtitle">Compare round lengths across maps and sizes, then check whether the pattern holds at similar player counts.</p></div></div>
+      <section class="population-card analytics-card" aria-label="Map statistics filters">
+        <div class="population-controls analytics-controls">
+          <label>Map collection<select id="mapstats-scope"><option value="all">All recorded maps</option><option value="current">Current rotation</option></select></label>
+          <label>Map size<select id="mapstats-size"><option value="all">All sizes</option><option value="tiny">Tiny</option><option value="small">Small</option><option value="medium">Medium</option><option value="unknown">Unknown</option></select></label>
+          <label>Minimum players<input id="mapstats-player-min" type="number" min="0" value="1" step="1"></label>
+          <label>Maximum players<input id="mapstats-player-max" type="number" min="0" value="30" step="1"></label>
+        </div>
+        <p id="mapstats-summary" class="population-summary" role="status"></p>
+        <p class="population-note">All panels below follow these filters. Source and named variants share one map identity. Defaults include solo rounds; set minimum players to 2 or higher to compare multiplayer rounds. Missing timestamps do not exclude rounds.</p>
+        <details><summary>Data coverage &amp; interpretation</summary><p id="mapstats-coverage" class="population-note"></p><p class="population-note">Durations use non-negative recorded seconds, including zero; blanks and invalid values are omitted. Each round has equal weight, so frequently played maps contribute more. Percentiles use linear interpolation. These are descriptive comparisons: population, variants, and play conditions can differ between sizes.</p></details>
+        <p id="mapstats-empty" class="analytics-empty" hidden>No rounds match these filters. Try a wider player range or another collection.</p>
+      </section>
+      <section class="population-card analytics-card" aria-labelledby="mapstats-size-title">
+        <h2 id="mapstats-size-title">Are rounds longer on smaller maps?</h2>
+        <p class="population-note">Compare the mean and median alongside sample counts and average population. The 90th percentile shows the long-round tail. Unknown maps stay separate.</p>
+        <div id="mapstats-size-table" class="analytics-table" tabindex="0" role="region" aria-label="Round duration comparison by map size"></div>
+        <div class="population-controls analytics-chart-controls"><label>Duration histogram scale<select id="mapstats-scale"><option value="percent">Percent of timed rounds (comparable by size)</option><option value="count">Round counts</option></select></label></div>
+        <p class="population-note">Bins share the same boundaries. Percent view uses a common 0–100% scale; count view scales each panel to its own maximum. Intervals include the lower boundary; the last bin includes every round of 15 minutes or longer.</p>
+        <div id="mapstats-distributions" class="analytics-distributions"></div>
+      </section>
+      <section class="population-card analytics-card" aria-labelledby="mapstats-bands-title">
+        <h2 id="mapstats-bands-title">Compare at similar player counts</h2>
+        <p class="population-note">Mean duration within each player band, with the number of valid durations (n). Bands are intersected with your player filter. Small samples can move sharply; these bands reduce population differences without fully adjusting for them.</p>
+        <div id="mapstats-player-comparison" class="analytics-table" tabindex="0" role="region" aria-label="Mean durations by player count and map size"></div>
+      </section>
+      <div class="analytics-secondary">
+        <section class="population-card analytics-card"><h2>Players per round</h2><p class="population-note">Recorded population at round end · round counts.</p><div id="mapstats-population"></div></section>
+        <section class="population-card analytics-card"><h2>Round outcomes</h2><p class="population-note">Share of all matching rounds, including draws and other results.</p><div id="mapstats-outcomes"></div></section>
+      </div>
+      <section class="population-card analytics-card" aria-labelledby="mapstats-maps-title">
+        <h2 id="mapstats-maps-title">Explore individual maps</h2>
+        <div class="population-controls analytics-controls">
+          <label>Minimum rounds per map<input id="mapstats-min-rounds" type="number" min="1" step="1" value="5"></label>
+          <label>Sort by<select id="mapstats-sort"><option value="median">Median duration</option><option value="mean">Mean duration</option><option value="p90">90th percentile duration</option><option value="games">Rounds played</option><option value="players">Average players</option><option value="map">Map ID</option></select></label>
+          <label>Order<select id="mapstats-direction"><option value="desc">Descending</option><option value="asc">Ascending</option></select></label>
+        </div>
+        <p id="mapstats-map-note" class="population-note"></p>
+        <div id="mapstats-maps" class="analytics-table analytics-map-table" tabindex="0" role="region" aria-label="Per-map round statistics"></div>
       </section>
     </section>
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>

@@ -371,3 +371,44 @@ test('raw JSONL resolves exact terrain and shares bundle validation', async () =
   assert.equal(partial.replay.incomplete, true);
   assert.equal(partial.terrainHash, expected.terrainHash);
 });
+
+test('raw v1 uses a unique public map and variant overlay without changing recorded provenance', async () => {
+  const bundle = JSON.parse(fs.readFileSync(new URL('./fixtures/SYNTHETIC-tactical-demo.replay.json', import.meta.url), 'utf8'));
+  const data = JSON.parse(bundle.terrain_json);
+  const rows = bundle.journal.trimEnd().split('\n').map(JSON.parse);
+  Object.assign(rows[0].map, { map_id: 'test_map_141', variant_id: 'source', variant_revision: '' });
+  rows[0].map.source.sco_sha256 = '0'.repeat(64);
+  const input = rows.map(JSON.stringify).join('\n') + '\n';
+  const entry = { map_id: 'test_map_141', variant_id: 'source', variant_revision: '', source: data.source, url: '/topology/test/terrain.json', sha256: bundle.terrain_sha256 };
+  const options = { manifest: { schema_version: 1, maps: [entry] }, loadTerrain: async () => bundle.terrain_json };
+  const result = await parseRecording(input, options);
+  assert.equal(result.terrainMatch, 'unverified-map-id');
+  assert.equal(result.replay.header.map.source.sco_sha256, '0'.repeat(64));
+  assert.deepEqual(result.data.source, data.source);
+  assert.throws(() => movementHeatmap([result.replay], result.data), /mismatch/);
+  await assert.rejects(parseBundle(JSON.stringify({ ...bundle, journal: input })), /mismatch/);
+  for (const maps of [[entry, { ...entry }], [{ ...entry, variant_id: 'edited' }], [{ ...entry, map_id: 'test_map_142' }]]) {
+    await assert.rejects(parseRecording(input, { ...options, manifest: { schema_version: 1, maps } }), /No exact terrain source/);
+  }
+  await assert.rejects(parseRecording(input, { ...options, loadTerrain: async () => bundle.terrain_json + ' ' }), /checksum/);
+  const badData = { ...data, heights_mm: [] };
+  const terrainJSON = JSON.stringify(badData);
+  const { sha256 } = await import('../src/tactical-replay.js');
+  await assert.rejects(parseRecording(input, {
+    manifest: { schema_version: 1, maps: [{ ...entry, sha256: await sha256(terrainJSON) }] }, loadTerrain: async () => terrainJSON,
+  }), /grid/);
+});
+
+test('every repository v1 JSONL recording resolves published terrain', async () => {
+  const manifest = JSON.parse(fs.readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8'));
+  const folder = new URL('../replays/', import.meta.url);
+  const files = fs.readdirSync(folder).filter(name => name.endsWith('.jsonl'));
+  assert.ok(files.length > 0);
+  for (const name of files) {
+    const result = await parseRecording(fs.readFileSync(new URL(name, folder), 'utf8'), {
+      manifest, loadTerrain: async url => fs.readFileSync(new URL('../public' + url, import.meta.url), 'utf8'),
+    });
+    assert.ok(result.data.grid_size > 1, name);
+    assert.equal(result.terrainMatch, 'unverified-map-id', name);
+  }
+});

@@ -18,6 +18,9 @@ export function setupReplay(panel, refresh, stage) {
     <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open .jsonl recordings or .replay.json bundles locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
   panel.append(root);
   const el = name => root.querySelector(`[data-replay="${name}"]`);
+  const terrainNotice = document.createElement('p');
+  terrainNotice.setAttribute('role', 'status'); terrainNotice.hidden = true;
+  root.append(terrainNotice);
   // Keep the control hooks together while giving each task a clear visual group.
   const transport = el('transport');
   const group = (title, keys) => {
@@ -108,11 +111,15 @@ export function setupReplay(panel, refresh, stage) {
   }
   function heatmap() {
     if (!selected) return;
-    heatResult = movementHeatmap(loaded.filter(x => sourceEqual(x.data.source, selected.data.source) && x.replay.header.synthetic === selected.replay.header.synthetic).map(x => x.replay), selected.data, options());
+    if (selected.terrainMatch) throw new Error('Heatmap export requires terrain matching the recorded source version.');
+    heatResult = movementHeatmap(loaded.filter(x => !x.terrainMatch && sourceEqual(x.data.source, selected.data.source) && x.replay.header.synthetic === selected.replay.header.synthetic).map(x => x.replay), selected.data, options());
     el('status').textContent = `${heatResult.recordings.length} matching recording(s) · ${(heatResult.soldier_seconds / 60).toFixed(1)} soldier-minutes · 10 m cells. Only intervals with two samples count; large gaps and unrecorded time are excluded. ${selected.replay.header.synthetic ? 'Synthetic demonstration, not real battle data.' : ''}`;
   }
   function choose(index, initial = {}) {
     stop(); el('follow').value = ''; viewer?.stopFollowing(); selected = loaded[index]; heatResult = null;
+    terrainNotice.hidden = !selected?.terrainMatch;
+    terrainNotice.textContent = selected?.terrainMatch ? `UNVERIFIED terrain overlay · ${selected.replay.header.map.map_id} · matched test map and variant; recorded source version differs. Terrain alignment is unknown. Heatmap export requires exact terrain.` : '';
+    el('export').disabled = !selected || !!selected.terrainMatch;
     el('transport').hidden = !selected;
     strengthChart?.dispose(); strengthChart = null; el('strength').replaceChildren();
     if (selected) strengthChart = createBotStrengthChart(el('strength'), selected.replay, next => { stop(); t = next; update(); });
@@ -235,7 +242,7 @@ export function setupReplay(panel, refresh, stage) {
     stop(); viewer.pauseExplorer(); closeVideo?.();
     const token = attached;
     const snapshot = { ...selected, t, clipEnd, speed: Number(el('speed').value), overlays: overlayOptions(),
-      view: viewer.captureViewState(), mapLabel: `${selected.replay.header.map.id} · ${selected.replay.header.map.version.slice(0, 10)}` };
+      view: viewer.captureViewState(), mapLabel: selected.terrainMatch ? `UNVERIFIED terrain · ${selected.replay.header.map.map_id}` : `${selected.replay.header.map.id} · ${selected.replay.header.map.version.slice(0, 10)}` };
     el('mp4').disabled = true;
     try {
       const { openVideoExport } = await import('./replay-video-dialog.js');

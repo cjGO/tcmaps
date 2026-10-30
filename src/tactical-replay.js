@@ -131,14 +131,14 @@ export async function parseBundle(input) {
   return validateReplayTerrain(replay, bundle.terrain_json, bundle.terrain_sha256);
 }
 
-async function validateReplayTerrain(replay, terrainJSON, terrainHash) {
+async function validateReplayTerrain(replay, terrainJSON, terrainHash, overlayEntry) {
   if (typeof terrainJSON !== 'string' || terrainJSON.length > 8 * 1024 * 1024 || !hash(terrainHash)) fail('Matching terrain is unavailable; export with a verified terrain asset');
   if (await sha256(terrainJSON) !== terrainHash) fail('Terrain asset checksum mismatch');
   let data; try { data = JSON.parse(terrainJSON); } catch { fail('Malformed terrain asset'); }
   if (!data || typeof data !== 'object' || Array.isArray(data)) fail('Malformed terrain asset');
-  matchTerrain(replay, data);
+  matchTerrain(overlayEntry ? { header: { map: { kind: 'fixed', source: overlayEntry.source } } } : replay, data);
   const version = await sha256(`${data.source.sco_sha256}:${data.source.recipe_sha256}`);
-  if (replay.header.map.version !== version) fail('Map version checksum mismatch');
+  if (!overlayEntry && replay.header.map.version !== version) fail('Map version checksum mismatch');
   const b = data.bounds;
   if (!b || ![b.x_min_m, b.x_max_m, b.y_min_m, b.y_max_m, data.min_height_m, data.max_height_m].every(Number.isFinite) ||
       b.x_max_m <= b.x_min_m || b.y_max_m <= b.y_min_m || b.x_max_m - b.x_min_m > 2000 || b.y_max_m - b.y_min_m > 2000) fail('Invalid terrain bounds');
@@ -149,11 +149,20 @@ async function validateReplayTerrain(replay, terrainJSON, terrainHash) {
   if (!text(data.id, 128) || !Number.isFinite(data.relief_m) || data.relief_m < 0 || data.relief_m > 10000 ||
       [data.xs, data.ys].some(axis => axis.some((v, i) => !Number.isFinite(v) || Math.abs(v) > 100000 || (i && v <= axis[i - 1]))) ||
       data.heights_mm.some(v => !integer(v, -10000000, 10000000))) fail('Invalid terrain coordinates');
-  return { replay, data, terrainHash };
+  return { replay, data, terrainHash, ...(overlayEntry ? { terrainMatch: 'unverified-map-id' } : {}) };
 }
 
-// Resolve raw journals against exact published source identities, then apply the
-// same checksum, provenance and grid validation used for self-contained bundles.
+// Only a permanent public identity can select an unverified fallback. Scene
+// slots and filenames may be reassigned, and ambiguous variants cannot align it.
+export function recordingTerrainOverlay(map, entries) {
+  if (map.kind !== 'fixed' || !/^test_map_\d+$/.test(map.map_id)) return null;
+  const matches = entries.filter(entry => entry.map_id === map.map_id &&
+    ['variant_id', 'variant_revision'].every(key => map[key] === undefined || map[key] === false || map[key] === entry[key]));
+  return matches.length === 1 ? matches[0] : null;
+}
+
+// Raw journals prefer exact sources, then a unique public map/variant overlay.
+// Bundles always retain strict recorded-source validation.
 export async function parseRecording(input, { manifest, loadTerrain } = {}) {
   if (typeof input !== 'string' || input.length > MAX_BYTES + 12 * 1024 * 1024) fail('Recording is too large');
   let json;
@@ -162,11 +171,12 @@ export async function parseRecording(input, { manifest, loadTerrain } = {}) {
   const replay = parseJournal(input);
   if (replay.header.map.kind !== 'fixed') fail('3D unavailable: this generated map needs matching saved and measured terrain');
   if (manifest?.schema_version !== 1 || !Array.isArray(manifest.maps)) fail('Matching topology manifest is unavailable');
-  const match = manifest.maps.find(entry => sourceEqual(entry.source, replay.header.map.source));
+  const exact = manifest.maps.find(entry => sourceEqual(entry.source, replay.header.map.source));
+  const match = exact || recordingTerrainOverlay(replay.header.map, manifest.maps);
   if (!match) fail('No exact terrain source version is available for this recording. Publish its matching measured topology or open a replay bundle with archived terrain.');
   if (typeof match.url !== 'string' || !/^\/topology\/[A-Za-z0-9_/-]+\.json$/.test(match.url) || !hash(match.sha256)) fail('Invalid terrain manifest entry');
   if (typeof loadTerrain !== 'function') fail('Matching terrain loader is unavailable');
-  return validateReplayTerrain(replay, await loadTerrain(match.url), match.sha256);
+  return validateReplayTerrain(replay, await loadTerrain(match.url), match.sha256, exact ? undefined : match);
 }
 
 // Each interval contributes soldier-seconds and estimated path metres. Sampling
