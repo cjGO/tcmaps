@@ -103,7 +103,7 @@ node scripts/export-replay.mjs \
 ```
 
 The exporter searches `lib/rotation-topology.json` by exact source identity and
-verifies the matching `public/topology/.../terrain.json` checksum. For old maps,
+verifies the matching `public/topology/test_map_#_RAW/<checksum>/test_map_#_RAW.json` checksum. For old maps,
 use `--manifest /archive/manifest.json --asset-root /archive/public`. Preserve
 versioned topology assets and their export manifests when updating rotations.
 Existing catalogue, removal archives and map selection policies are unaffected.
@@ -313,7 +313,7 @@ including stationary time and recorded control changes. Missing snapshots and
 unobserved tails are excluded. Death density counts bot death events at their
 recorded or last observed positions. Both stable and experimental recordings are
 supported; synthetic recordings are excluded. Exact terrain versions are used by default.
-**Include older terrain versions** also accepts the same permanent map and variant
+**Include unverified terrain matches** also accepts the same permanent map and variant
 identity, labels these recordings approximate, and reports unknown alignment.
 The status reports included recordings, player-minutes, bot deaths and exclusions.
 
@@ -324,3 +324,17 @@ with higher values saturated. This is a relative within-map view, not an absolut
 comparison between maps. Clear terrain means no density in the available data,
 not proof that nobody ever visited it. Snapshot paths and death locations remain
 approximations.
+
+
+Topology assets use the public names from root `MAP_NAMES.md`, with `_RAW`
+suffixes: `public/topology/test_map_107_RAW/<checksum>/test_map_107_RAW.json`,
+for example. `lib/rotation-topology.json` supplies the URLs. Internal scene IDs in
+measured payloads remain provenance identifiers; the filename change preserves
+all measurement bytes and checksums. `npm run check:topology` checks the public
+names against `MAP_NAMES.md` as well as the terrain and editor measurements.
+
+An unverified match means the replay and current measured asset share a permanent
+map/variant identity but differ in recorded source identity. It does not establish
+which source is older or prove that the height field changed. Renaming an asset
+cannot establish exact geometric alignment; that requires a measurement from the
+recorded source or evidence that both sources produce the same height field.

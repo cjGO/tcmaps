@@ -8,6 +8,13 @@ import { terrainGeometry } from '../src/terrain-geometry.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = async p => JSON.parse(await readFile(path.join(root, p), 'utf8'));
 const manifest = await read('lib/rotation-topology.json');
+const nameRows = [...(await readFile(path.join(root, 'MAP_NAMES.md'), 'utf8')).matchAll(/\|\s*(mp_custom_map_\d+)\s*\|\s*(test_map_\d+)\s*\|/g)];
+const names = new Map();
+for (const [, slot, name] of nameRows) {
+  const id = 'scn_' + slot;
+  if (names.has(id) && names.get(id) !== name) throw new Error('Conflicting MAP_NAMES identity: ' + id);
+  names.set(id, name);
+}
 const rotation = new Map((await read('lib/editor-rotation.json')).map(m => [m.id, m]));
 const editors = new Map((await read('lib/editor-maps.json')).map(m => [m.id, m]));
 if (manifest.schema_version !== 1 || manifest.maps.length !== manifest.map_count || !manifest.maps.length || new Set(manifest.maps.map(m => m.id)).size !== manifest.maps.length) throw new Error('Invalid topology manifest');
@@ -16,7 +23,12 @@ for (const map of manifest.maps) {
   const current = rotation.get(map.id);
   if (!current || current.pool !== map.pool) throw new Error('Topology map is not registered: ' + map.id);
   for (const key of ['sco_sha256', 'recipe_sha256', 'terrain_code']) if (map.source[key] !== current.source[key]) throw new Error('Stale topology source: ' + map.id);
-  if (map.url !== `/topology/${map.id}/${map.sha256.slice(0,20)}/terrain.json`) throw new Error('Invalid topology path');
+  const publicId = names.get(map.id);
+  assert.equal(map.map_id, publicId, 'Topology must follow MAP_NAMES.md');
+  assert.match(publicId || '', /^test_map_\d+$/);
+  const mapName = publicId + '_RAW';
+  assert.equal(map.map_name, mapName, 'Topology must use the public RAW map name');
+  if (map.url !== `/topology/${mapName}/${map.sha256.slice(0,20)}/${mapName}.json`) throw new Error('Invalid topology path');
   const bytes = await readFile(path.join(root, 'public', map.url));
   if (createHash('sha256').update(bytes).digest('hex') !== map.sha256) throw new Error('Topology checksum changed');
   const data = JSON.parse(bytes);

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { parseExperimentalJournal as parse, experimentalPose, entityAt, projectileAt, experimentalFrame, effectsAt, activeProjectiles, eventIndex, terrainCandidate, terrainOverlayCandidate, verifyExperimentalTerrain, neutralReference, EXP_LIMITS } from '../src/experimental-replay.js';
 import { parseJournal, sha256 } from '../src/tactical-replay.js';
+import { replayVariantRegistry } from '../src/replay-variants.js';
 import { displayedHeight } from '../src/terrain-geometry.js';
 import { experimentalFixture, journal, finalize } from './fixtures/experimental-fixtures.js';
 const fixture = () => experimentalFixture();
@@ -106,7 +107,16 @@ test('terrain requires hashes, version and recorded variant; manual overlay stay
 });
 test('bundled recordings resolve available test maps without claiming exact historical terrain', async () => {
   const directory = new URL('../experimental_replays/', import.meta.url);
-  const { maps } = JSON.parse(readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8'));
+  const base = JSON.parse(readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8'));
+  const variants = {};
+  for (const pool of readdirSync(new URL('../maps/', import.meta.url), { withFileTypes: true }).filter(entry => entry.isDirectory()).map(entry => entry.name)) {
+    for (const map of readdirSync(new URL(`../maps/${pool}/`, import.meta.url))) {
+      const directory = new URL(`../maps/${pool}/${map}/variants/`, import.meta.url);
+      let filenames; try { filenames = readdirSync(directory); } catch { continue; }
+      for (const filename of filenames.filter(name => name.endsWith('.placements.json'))) variants[`maps/${pool}/${map}/variants/${filename}`] = readFileSync(new URL(filename, directory), 'utf8');
+    }
+  }
+  const { manifest: { maps } } = await replayVariantRegistry(base, variants);
   const matched = new Set();
   for (const filename of readdirSync(directory).filter(name => name.startsWith('EXP-') && name.endsWith('.jsonl'))) {
     const replay = { header: JSON.parse(readFileSync(new URL(filename, directory), 'utf8').split('\n')[0]) };

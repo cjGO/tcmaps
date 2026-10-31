@@ -1,6 +1,6 @@
 import { EXP_LIMITS, EFFECTS, eventIndex, metadataAt, neutralReference, terrainCandidate, terrainOverlayCandidate, verifyExperimentalTerrain } from './experimental-replay.js';
 import { sha256 } from './tactical-replay.js';
-import manifest from '../lib/rotation-topology.json';
+import { replayAssets, replayVariantAssets } from './replay-variant-assets.js';
 import './experimental-replay.css';
 import { resolveDisplayMetadata, UNIT_TYPES, metadataTemplate, parseDisplayMetadata, displayMeta, movementAdapter, experimentalViewAt, experimentalStrengthAt } from './experimental-replay-presentation.js';
 import { createBotStrengthChart } from './replay-strength.js';
@@ -38,7 +38,13 @@ export function setupExperimentalReplay(root) {
   const el = name => root.querySelector(`[data-exp="${name}"]`);
   el('examples').append(new Option('SYNTHETIC · artillery, contacts & fragments', syntheticURL));
   if (el('examples').options.length > 1) el('examples').selectedIndex = 1;
-  for (const [i, map] of manifest.maps.entries()) el('terrain').append(new Option(`${map.map_id || map.id} · ${map.variant_id || 'source'} · unverified overlay`, String(i)));
+  let manifest;
+  const assetsReady = replayAssets.then(assets => {
+    manifest = assets.manifest;
+    for (const [i, map] of manifest.maps.entries()) el('terrain').append(new Option(`${map.map_id || map.id} · ${map.variant_id || 'source'} · unverified overlay`, String(i)));
+  });
+  const assetNotice = document.createElement('p'); assetNotice.dataset.exp = 'assets'; assetNotice.setAttribute('role', 'status'); el('alignment').after(assetNotice);
+  let variantLayer;
   for (const name of [...Object.keys(EFFECTS), 'orientation', 'radii']) {
     const label = document.createElement('label'), checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = !['orientation', 'radii'].includes(name); checkbox.dataset.layer = name;
     label.append(checkbox, name === 'trails' ? 'Full soldier trails / projectile paths' : name === 'deaths' ? 'Death event flashes' : name === 'radii' ? 'Recorded explosion radii' : name === 'orientation' ? 'Orientation ticks (not bullet paths)' : name[0].toUpperCase() + name.slice(1)); el('layers').append(label);
@@ -75,7 +81,7 @@ export function setupExperimentalReplay(root) {
     const url = URL.createObjectURL(new Blob([text], { type })), a = document.createElement('a'); a.href = url; a.download = filename; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   function stop() { playing = false; cancelAnimationFrame(raf); previousTime = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
-  function detach() { generation++; stop(); layer?.dispose(); viewer?.dispose(); layer = viewer = null; el('stage').replaceChildren(); el('play').disabled = true; }
+  function detach() { variantLayer?.dispose(); variantLayer = null; assetNotice.textContent = ''; generation++; stop(); layer?.dispose(); viewer?.dispose(); layer = viewer = null; el('stage').replaceChildren(); el('play').disabled = true; }
   function update() {
     if (!replay) return;
     strengthChart?.update(t);
@@ -102,6 +108,18 @@ export function setupExperimentalReplay(root) {
       viewer.canvas.setAttribute('aria-label', 'Experimental replay 3D preview. Drag to orbit, scroll to zoom, right-drag to pan.');
       if (reference) for (const button of el('stage').querySelectorAll('[data-ui=explore], [data-ui=pick]')) {
         button.disabled = true; button.title = 'Walking needs measured terrain; this view is an unaligned reference grid.';
+      }
+      const variant = !reference && await replayVariantAssets(replay.header.map);
+      if (token !== generation) return;
+      if (variant) {
+        assetNotice.textContent = `Loading ${variant.label} assets…`;
+        const { createVariantLayer } = await import('./rotation-variant-layer.js');
+        if (token !== generation) return;
+        // Manual overlays must also match the placement file's base terrain.
+        variantLayer = createVariantLayer(viewer, data, variant.document);
+        await variantLayer.ready;
+        if (token !== generation) return;
+        assetNotice.textContent = `Variant assets loaded: ${variant.label} · ${variant.document.placements.length} placements · recorded revision matched.`;
       }
       layer = createExperimentalLayer(viewer, data, replay, { reference, metadata, select: ref => {
         if (ref.event) selectEvent(replay.records[ref.event - 1]);
@@ -152,6 +170,7 @@ export function setupExperimentalReplay(root) {
       alignment = 'Unaligned 3D preview · neutral reference grid; recorded terrain is unavailable';
       el('alignment').textContent = alignment;
       el('status').textContent = `Imported locally in ${(performance.now() - start).toFixed(0)} ms (worker parse, indexing and transfer). Recorded locations are distinct from reconstructed motion.`;
+      await assetsReady; if (token !== loadGeneration) return;
       const exact = terrainCandidate(replay, manifest.maps);
       const candidate = exact || terrainOverlayCandidate(replay, manifest.maps);
       if (candidate) { el('terrain').value = String(manifest.maps.indexOf(candidate)); await useTerrain(candidate, exact ? false : 'map-id'); }
@@ -235,7 +254,7 @@ export function setupExperimentalReplay(root) {
     try { const rows = layer?.heatmap() || []; download('x_m,y_m,soldier_seconds\n' + rows.filter(row => row.soldier_seconds > 0).map(row => [row.x_m, row.y_m, row.soldier_seconds].join(',')).join('\n'), `${replay.header.id}-heatmap-${t}.csv`, 'text/csv'); } catch (error) { el('status').textContent = `Heatmap export unavailable: ${error.message}`; }
   });
   el('density').addEventListener('change', update);
-  el('terrain').addEventListener('change', () => useTerrain(el('terrain').value === '' ? null : manifest.maps[Number(el('terrain').value)]));
+  el('terrain').addEventListener('change', () => useTerrain(el('terrain').value === '' ? null : manifest?.maps[Number(el('terrain').value)]));
   el('file').addEventListener('change', async e => { const file = e.target.files[0]; if (file) await load(() => { if (file.size > EXP_LIMITS.bytes) throw new Error('File exceeds 64 MiB'); return file.text(); }); e.target.value = ''; });
   el('example').addEventListener('click', () => { const url = el('examples').value; if (url) load(async () => { const response = await fetch(url); if (!response.ok) throw new Error('Example could not load'); return response.text(); }); });
   el('clear').addEventListener('click', () => { loadGeneration++; terrainGeneration++; cancelParsing(); detach(); strengthChart?.dispose(); strengthChart = null; metadata = undefined; replay = data = null; filtered = []; selected = undefined; el('loaded').hidden = true; el('events').replaceChildren(); el('raw').textContent = el('metadata').textContent = ''; el('status').textContent = 'Experimental recording cleared.'; });

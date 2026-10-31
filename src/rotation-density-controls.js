@@ -7,7 +7,7 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
   root.innerHTML = `<legend>Replay density</legend>
     <label><span>Player time spent</span><input type="checkbox" data-density="movement"></label>
     <label><span>Bot deaths</span><input type="checkbox" data-density="deaths"></label>
-    <label><span>Include older terrain versions</span><input type="checkbox" data-density="olderVersions"></label>
+    <label><span>Include unverified terrain matches</span><input type="checkbox" data-density="olderVersions"></label>
     <div class="density-sliders">
       <label>Player opacity <output data-value="movementOpacity"></output><input aria-label="Player density opacity" type="range" min="0" max="1" step=".05" data-density="movementOpacity"></label>
       <label>Death opacity <output data-value="deathOpacity"></output><input aria-label="Bot death density opacity" type="range" min="0" max="1" step=".05" data-density="deathOpacity"></label>
@@ -38,7 +38,7 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
     viewer.density(loaded?.result, settings);
     if (loaded) {
       const { result, skipped, failed } = loaded;
-      status.textContent = `${result.rounds} recordings${result.approximateRounds ? ` (${result.approximateRounds} approximate: older terrain; alignment unknown)` : ''} · ${(result.seconds / 60).toFixed(1)} player-minutes · ${result.deathCount} bot deaths${skipped ? ` · ${skipped} terrain versions excluded` : ''}${failed ? ` · ${failed} could not load` : ''}.${!result.rounds ? ' No exact replay data. Try Include older terrain versions for an approximate overlay.' : ''}`;
+      status.textContent = `${result.rounds} recordings${result.approximateRounds ? ` (${result.approximateRounds} approximate: source differs; alignment unverified)` : ''} · ${(result.seconds / 60).toFixed(1)} player-minutes · ${result.deathCount} bot deaths${skipped ? ` · ${skipped} terrain versions excluded` : ''}${failed ? ` · ${failed} could not load` : ''}.${!result.rounds ? ' No exact replay data. Try Include unverified terrain matches for an approximate overlay.' : ''}`;
       if (failed) {
         const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Retry failed recordings';
         retry.addEventListener('click', () => { cache.delete(key); loaded = null; start(); }); status.append(' ', retry);

@@ -9,6 +9,7 @@ import roundStatsCsv from '../map_round_stats.csv?raw';
 import feedbackCsv from '../map_feedback.csv?raw';
 import feedbackIdentities from '../lib/map-feedback-identities.json';
 import { normalizeFeedback, summarizeFeedback, renderFeedback } from './map-feedback.js';
+import { includedVariants, roundVariant } from './map-variants.js';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupMapAnalytics, renderDurationDistribution } from './map-analytics-view.js';
 import { analyticsRounds } from './map-analytics.js';
@@ -35,6 +36,23 @@ const rotationImages = collections.rotation.images.map(entry => ({
   ...entry, map_id: publicMapId(identityRegistry, entry.filename),
 }));
 const installedMaps = parseMapNames(mapNames);
+const variantFiles = import.meta.glob('../maps/*/test_map_*/variants/*.placements.json', { eager: true, import: 'default' });
+const variantSelections = new Map();
+const variantLabel = document.createElement('label');
+variantLabel.className = 'rotation-variant-control';
+variantLabel.append(document.createTextNode('Map variant '));
+const variantSelect = document.createElement('select');
+variantSelect.id = 'rotation-variant';
+variantLabel.append(variantSelect);
+$('rotation-panel').querySelector('.viewer').before(variantLabel);
+function selectedVariant(mapId) { return variantSelections.get(mapId) || 'all'; }
+function mapVariants(mapId) { return includedVariants(variantFiles, mapId); }
+variantSelect.addEventListener('change', () => {
+  const entry = collections.rotation.images[collections.rotation.index];
+  const mapId = publicMapId(identityRegistry, entry?.filename);
+  variantSelections.set(mapId, variantSelect.value);
+  renderCollection('rotation');
+});
 const feedbackSummaries = summarizeFeedback(normalizeFeedback(feedbackCsv, feedbackIdentities));
 const rotationPools = new Map(installedMaps.map(map => [map.filename, map.pool]));
 let rotationPool = 'all';
@@ -42,6 +60,7 @@ const [roundStatsHeaders, ...recordedRoundStatsRows] = csvRows(roundStatsCsv);
 const mapNameColumn = roundStatsHeaders.indexOf('map_name');
 const roundStatsRows = recordedRoundStatsRows.map(row => row.map((value, index) =>
   index === mapNameColumn ? statsMapId(installedMaps, value) : value));
+const recordedRows = new Map(roundStatsRows.map((row, index) => [row, recordedRoundStatsRows[index]]));
 const roundStatsColumns = ['result', 'duration_seconds', 'player_count'].map(header => ({ header, index: roundStatsHeaders.indexOf(header) }));
 const roundRanges = new Map();
 let rotationRange = [1, 30];
@@ -72,7 +91,9 @@ function renderRoundStats(name, filename) {
   const el = suffix => $(name + '-' + suffix);
   el('round-stats').hidden = !filename;
   const mapName = name === 'rotation' ? publicMapId(identityRegistry, filename) : filename?.replace(/^scn_/, '').replace(/\.png$/i, '');
-  const allRows = roundStatsByMap.get(mapName) || [];
+  const familyRows = roundStatsByMap.get(mapName) || [];
+  const variant = name === 'rotation' ? selectedVariant(mapName) : 'all';
+  const allRows = variant === 'all' ? familyRows : familyRows.filter(row => roundVariant(roundStatsHeaders, recordedRows.get(row), mapName) === variant);
   const [min, max] = name === 'rotation' ? rotationRange : roundRanges.get(mapName) || [1, 30];
   el('player-min').value = min;
   el('player-max').value = max;
@@ -87,11 +108,11 @@ function renderRoundStats(name, filename) {
   renderDurationDistribution(el('duration-distribution'), analyticsRounds(roundStatsHeaders, rows, [], new Set()));
   el('game-count').textContent = stats.games;
   el('round-empty').textContent = allRows.length ? 'No rounds match this player count range.' : 'No rounds recorded for this map.';
-  el('round-note').textContent = `Source and named variants count toward the same map. Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
+  el('round-note').textContent = `${variant === 'all' ? 'Source and named variants count toward the same map.' : `Showing ${variant === 'source' ? 'source' : mapVariants(mapName).find(item => item.id === variant)?.label || variant} rounds only, across recorded revisions.`} Each recorded round counts as one game. ${stats.games} of ${allRows.length} games match; average duration uses ${stats.durationGames} games with valid durations.`;
   el('team1-average').textContent = stats.win === null ? '—' : `${stats.win.toFixed(1)}%`;
   const averageSeconds = stats.duration === null ? null : Math.round(stats.duration);
   el('duration-average').textContent = averageSeconds === null ? '—' : `${Math.floor(averageSeconds / 60)}m ${averageSeconds % 60}s`;
-  el('round-caption').textContent = `Round stats · ${mapName || ''}`;
+  el('round-caption').textContent = `Round stats · ${mapName || ''}${variant === 'all' ? ' · All variants' : ' · ' + (variant === 'source' ? 'Source' : mapVariants(mapName).find(item => item.id === variant)?.label || variant)}`;
   el('round-rows').replaceChildren(...rows.map(row => {
     const tr = document.createElement('tr');
     for (const { index } of roundStatsColumns) {
@@ -221,6 +242,19 @@ let activeTab = 'rotation';
 function renderCollection(name) {
   const { images, index } = collections[name];
   const entry = images[index];
+  if (name === 'rotation') {
+    const mapId = publicMapId(identityRegistry, entry?.filename);
+    const variants = mapVariants(mapId);
+    // Recorded variants remain available for statistics even without a bundled placement file.
+    const ids = new Set(variants.map(item => item.id));
+    for (const row of roundStatsByMap.get(mapId) || []) {
+      const id = roundVariant(roundStatsHeaders, recordedRows.get(row), mapId);
+      if (id !== 'source' && !ids.has(id)) { variants.push({ id, label: `${id} (stats only)` }); ids.add(id); }
+    }
+    variantLabel.hidden = !variants.length;
+    variantSelect.replaceChildren(new Option('All variants', 'all'), new Option('Source / RAW', 'source'), ...variants.map(item => new Option(item.label, item.id)));
+    variantSelect.value = selectedVariant(mapId);
+  }
   if (name === 'rotation' || name === 'good') renderRoundStats(name, entry?.filename);
   if (name === 'rotation') {
     renderFeedback($('rotation-feedback'), feedbackSummaries, collections.rotation.images,
@@ -251,7 +285,11 @@ function renderCollection(name) {
   el('image').style.opacity = '0';
   el('image').alt = mapLabel(name === 'rotation' ? identityRegistry : [], entry.filename);
   el('image').src = entry.image;
-  if (name === 'rotation') topology.setMap(entry);
+  if (name === 'rotation') {
+    const mapId = publicMapId(identityRegistry, entry.filename);
+    const variantId = selectedVariant(mapId);
+    topology.setMap({ ...entry, variantId, variant: mapVariants(mapId).find(item => item.id === variantId) });
+  }
 }
 function moveCollection(name, delta) {
   const collection = collections[name];
@@ -296,10 +334,12 @@ for (const name of Object.keys(collections)) {
   $(name + '-previous').addEventListener('click', () => moveCollection(name, -1));
   $(name + '-next').addEventListener('click', () => moveCollection(name, 1));
   $(name + '-image').addEventListener('load', () => {
+    if ($(name + '-image').hidden) return;
     $(name + '-state').hidden = true;
     $(name + '-image').style.opacity = '1';
   });
   $(name + '-image').addEventListener('error', () => {
+    if ($(name + '-image').hidden) return;
     $(name + '-state').hidden = false;
     $(name + '-state').textContent = 'Map image could not load. Try refreshing the page.';
   });

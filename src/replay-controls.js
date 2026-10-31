@@ -3,9 +3,9 @@ import { squadKey } from './replay-history.js';
 import { createBotStrengthChart } from './replay-strength.js';
 import { replayLink, replayWindow } from './replay-link.js';
 import './replay.css';
-import manifest from '../lib/rotation-topology.json';
+import { replayAssets, replayVariantAssets } from './replay-variant-assets.js';
 
-const loadRecording = input => parseRecording(input, { manifest, async loadTerrain(url) {
+const loadRecording = async input => parseRecording(input, { manifest: (await replayAssets).manifest, async loadTerrain(url) {
   const response = await fetch(import.meta.env.BASE_URL + url.replace(/^\//, ''));
   if (!response.ok) throw new Error('Matching terrain file could not load');
   return response.text();
@@ -21,6 +21,8 @@ export function setupReplay(panel, refresh, stage) {
   const terrainNotice = document.createElement('p');
   terrainNotice.setAttribute('role', 'status'); terrainNotice.hidden = true;
   root.append(terrainNotice);
+  const assetNotice = document.createElement('p'); assetNotice.dataset.replay = 'assets'; assetNotice.setAttribute('role', 'status'); root.append(assetNotice);
+  let variantLayer;
   // Keep the control hooks together while giving each task a clear visual group.
   const transport = el('transport');
   const group = (title, keys) => {
@@ -79,6 +81,7 @@ export function setupReplay(panel, refresh, stage) {
   function stop() { playing = false; cancelAnimationFrame(frame); frame = null; previousFrame = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
   function detach() {
     closeVideo?.(); closeVideo = null; el('mp4').disabled = true;
+    variantLayer?.dispose(); variantLayer = null; assetNotice.textContent = '';
     attached++; stop(); unsubscribeFollow?.(); unsubscribeFollow = null;
     el('follow').disabled = true;
     if (el('follow').value) viewer?.stopFollowing();
@@ -275,6 +278,17 @@ export function setupReplay(panel, refresh, stage) {
     const token = ++attached, { createReplayLayer } = await import('./replay-layer.js');
     if (token !== attached) return;
     viewer = nextViewer;
+    const variant = await replayVariantAssets(selected.replay.header.map);
+    if (token !== attached) return;
+    if (variant) {
+      assetNotice.textContent = `Loading ${variant.label} assets…`;
+      const { createVariantLayer } = await import('./rotation-variant-layer.js');
+      if (token !== attached) return;
+      variantLayer = createVariantLayer(viewer, selected.data, variant.document);
+      await variantLayer.ready;
+      if (token !== attached) return;
+      assetNotice.textContent = `Variant assets loaded: ${variant.label} · ${variant.document.placements.length} placements · recorded revision matched.`;
+    }
     unsubscribeFollow = viewer.onFollowEnd(() => {
       if (syncingFollow) return;
       el('follow').value = ''; el('follow-status').textContent = '';

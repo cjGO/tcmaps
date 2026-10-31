@@ -24,12 +24,12 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
   const camera = query(panel, '#topology-camera'), scale = query(panel, '#topology-scale');
   const contour = query(panel, '#topology-contours'), wire = query(panel, '#topology-wireframe');
   let entry, current, viewer, request, generation = 0, selected = '3d', visible = !recordings;
-  let densityControls;
+  let densityControls, variantLayer;
   const densitySettings = densityDefaults();
   const modes = [...panel.querySelectorAll('[data-mode]')];
   const replay = recordings ? setupReplay(panel, () => { current = replay.terrain() ? { id: replay.terrain().id } : null; panel.hidden = false; show('3d'); }, stage) : { detach() {}, terrain: () => null, async attach() {} };
   if (recordings) { panel.hidden = false; panel.querySelector('[role=group]').hidden = true; panel.querySelector('.topology-controls').hidden = true; }
-  function destroy() { densityControls?.dispose(); densityControls = null; replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
+  function destroy() { variantLayer?.dispose(); variantLayer = null; densityControls?.dispose(); densityControls = null; replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
   function scaleNote() { query(info, '#topology-scale-note').textContent = viewer?.mode === 'explore' ? 'Explorer · true scale · preview movement' : scale.value === '1' ? 'True height scale' : `Height exaggerated ${scale.value}×`; }
   function cameraHelp() { query(info, '#topology-help').textContent = viewer?.following ? 'Following the soldier’s recorded position and facing. Camera holds at the last recorded position after death. Escape or Exit soldier view returns to the free camera.' : viewer?.mode === 'explore' ? 'WASD to move · Shift to run/gallop · drag to look or use Mouse look. The minimap shows your position and facing; click it to relocate.' : camera.value.startsWith('team') ? 'Looking inward from 12 m above the original spawn. Infantry / Mounted switches to ground exploration.' : 'Drag to orbit · scroll to zoom · right-drag or arrow keys to pan. Infantry / Mounted explores the terrain; Stand here starts at a point you choose.'; }
   live.addEventListener('terrain-modechange', () => {
@@ -74,25 +74,42 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       info.classList.remove('natural-surface');
       info.querySelector('.topology-ramp').style.background = elevationRamp();
       applyControls();
-      if (!recordings && prefix === 'rotation') densityControls = setupDensityControls(live, viewer, data, densitySettings, current);
+      if (!recordings && prefix === 'rotation') {
+        if (entry?.variant) {
+          const { createVariantLayer } = await import('./rotation-variant-layer.js');
+          if (generation !== token) return;
+          state.textContent = 'Loading variant assets…';
+          variantLayer = createVariantLayer(viewer, data, entry.variant.document);
+          await variantLayer.ready;
+          if (generation !== token) return;
+        }
+        densityControls = setupDensityControls(live, viewer, data, densitySettings, entry?.variant ? { ...current, variant_id: entry.variant.filename } : current);
+      }
       await replay.attach(viewer);
       if (generation !== token) return;
-      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'} · topology`;
+      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'}${entry?.variant ? ' · ' + entry.variant.label : ''} · topology`;
       query(info, '#topology-low').textContent = `${data.min_height_m.toFixed(1)} m`;
       query(info, '#topology-high').textContent = `${data.max_height_m.toFixed(1)} m`;
       const b = data.bounds;
       query(info, '#topology-metrics').textContent = `${b.x_max_m-b.x_min_m} × ${b.y_max_m-b.y_min_m} m · ${data.relief_m.toFixed(1)} m relief · ${data.grid_size} × ${data.grid_size} measured points`;
+      info.querySelector('p:last-child').textContent = recordings
+        ? 'Measured terrain with preview lighting and haze. Original trees, structures and game weather are omitted.'
+        : entry?.variant
+        ? `Variant assets loaded: ${entry.variant.label} · ${entry.variant.document.placements.length} placements. Terrain uses preview lighting and haze.`
+        : entry?.variantId && !['all', 'source'].includes(entry.variantId)
+          ? 'No placement file is included for this variant. Showing source terrain; statistics are filtered to the selected variant.'
+          : 'Measured source terrain with preview lighting and haze. Select an included variant to see its placed assets.';
       state.hidden = true;
     } catch (error) {
       if (generation !== token || error.name === 'AbortError') return;
       console.warn('Topology preview unavailable:', error);
-      state.textContent = '3D could not load. Select Heatmap to continue, or click 3D topology to retry.'; state.hidden = false;
+      state.textContent = `3D could not load: ${error.message} Select Heatmap to continue, or click 3D topology to retry.`; state.hidden = false;
     }
   }
   function setMap(next) {
     entry = next; current = maps.get(next?.filename); panel.hidden = !current;
     if (!current) { destroy(); live.hidden = info.hidden = true; stage.classList.remove('is-topology'); return; }
-    panel.querySelector('.topology-heading strong').textContent = `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'} · topology`;
+    panel.querySelector('.topology-heading strong').textContent = `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'}${entry?.variant ? ' · ' + entry.variant.label : ''} · topology`;
     show(selected);
   }
   function setVisible(value) { visible = value; if (!value) destroy(); else if (current && selected === '3d' && !viewer) show('3d'); }

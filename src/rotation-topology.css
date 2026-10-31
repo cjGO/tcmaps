@@ -24,3 +24,6 @@
 .natural-surface #topology-low,.natural-surface #topology-high,.natural-surface .topology-ramp{display:none}
 #rotation-panel .map-stats-workspace:has(.is-topology){height:clamp(750px,90vh,1100px)}
 @media(max-width:900px){#rotation-panel .map-stats-workspace:has(.is-topology){height:auto}#rotation-panel .image-stage.is-topology{aspect-ratio:4/3;min-height:330px}.topology-controls{gap:8px 12px}.topology-controls select{max-width:160px}.topology-panel{padding:0 12px 12px}.topology-heading{align-items:flex-start}.topology-heading [role=group]{flex-shrink:0}}
+.rotation-variant-control{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:13px;font-weight:600;color:#536356}
+.rotation-variant-control select{font:inherit;min-height:40px;padding:8px 12px;border:1px solid #b5c3ae;border-radius:5px;color:#365431;background:#fff;max-width:100%}
+.rotation-variant-control select:focus-visible{outline:3px solid #e6ad4c;outline-offset:3px}
