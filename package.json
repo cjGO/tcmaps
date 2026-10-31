@@ -12,7 +12,7 @@
     "predev": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check && node scripts/check-topology.mjs && node scripts/check-editor-models.mjs",
     "prebuild": "node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check && node scripts/check-topology.mjs && node scripts/check-editor-models.mjs",
     "prepare:editor": "node scripts/prepare-editor.mjs",
-    "test": "node --test map_editor/tests/coordinates.test.js tests/server-stats.test.js tests/map-stats.test.js tests/editor-rotation.test.js tests/terrain-geometry.test.js tests/editor-state.test.js tests/editor-spatial.test.js tests/editor-line.test.js tests/terrain-explorer.test.js tests/tactical-replay.test.js tests/replay-video.test.js tests/replay-catalog.test.js tests/replay-link.test.js tests/map-identity.test.js tests/map-feedback.test.js tests/player-activity.test.js tests/experimental-replay.test.js tests/rotation-density.test.js tests/map-variants.test.js",
+    "test": "node --test map_editor/tests/coordinates.test.js tests/server-stats.test.js tests/map-stats.test.js tests/editor-rotation.test.js tests/terrain-geometry.test.js tests/editor-state.test.js tests/editor-spatial.test.js tests/editor-line.test.js tests/editor-line-picker.test.js tests/editor-line-presets.test.js tests/terrain-explorer.test.js tests/tactical-replay.test.js tests/replay-video.test.js tests/replay-catalog.test.js tests/replay-link.test.js tests/map-identity.test.js tests/map-feedback.test.js tests/player-activity.test.js tests/experimental-replay.test.js tests/rotation-density.test.js tests/map-variants.test.js",
     "check:topology": "node scripts/check-topology.mjs",
     "check:editor-models": "node scripts/check-editor-models.mjs"
   },

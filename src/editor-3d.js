@@ -4,6 +4,8 @@ import { checkedBuffer, createModelLibrary } from './editor-model-loader.js';
 import { groundHeight, placementTransform } from './editor-spatial.js';
 import { pathPlacements, lineScales, lineAssetMix, lineAssetScales, shuffleLineAssets } from './editor-line.js';
 import styles from './editor-3d.css?inline';
+import { createLineAssetPicker } from './editor-line-picker.js';
+import { createLinePresets } from './editor-line-presets.js';
 import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
 
 export function attachEditor3D(frame, project, topology, models, assetURL, densitySettings = densityDefaults()) {
@@ -30,21 +32,39 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   const lineButton = doc.createElement('button'); lineButton.textContent = 'Place on line';
   doc.querySelector('.modes').append(lineButton);
   const linePanel = doc.createElement('section'); linePanel.className = 'editor-line-panel'; linePanel.hidden = true;
-  linePanel.innerHTML = '<h3>Place on line · connected path</h3><p>Click the terrain to add connected corners, then Finish path. Drag numbered markers to adjust the route. Green is START, blue marks corners, and orange is the current END.</p><p id="line-path-summary" role="status"></p><button id="line-finish" disabled>Finish path</button><button id="line-remove" disabled>Remove last point</button><button id="line-reset">Clear path</button><fieldset id="line-assets"><legend>Choose favorites for this line</legend><div class="line-asset-row line-asset-head"><span>Asset</span><span>Ratio</span></div><div id="line-favorites"></div></fieldset><p id="line-mix" role="status"></p><button id="line-reroll-assets" disabled>Randomize assets</button><p>Shuffle asset order while keeping the counts shown above. Positions, jitter, and yaw stay fixed; each asset keeps its scale settings.</p><p>Check one or more favorites and set their relative ratios. A 2:1 ratio places about twice as many of the first asset. The Selected summary shows whole-object counts; assets are spread along the line.</p><p id="line-hint" role="status">Click START on the terrain.</p><label>Total number<input id="line-count" type="number" min="1" max="1000" step="1" value="10"></label><label>Jitter (± metres)<input id="line-jitter" type="number" min="0" step="1" value="0"></label><label><input id="line-random-yaw" type="checkbox" checked> Random yaw (0–360°)</label><button id="line-reroll-yaw">Randomize yaw</button><label><input id="line-random-scale" type="checkbox"> Default random scale</label><div class="pair"><label>Low scale<input id="line-scale-low" type="number" min="0.1" max="10" step="0.1" value="0.8"></label><label>High scale<input id="line-scale-high" type="number" min="0.1" max="10" step="0.1" value="1.2"></label></div><button id="line-reroll-scale">Randomize default scales</button><p>Default scale settings apply unless an asset has its own random scale enabled above. Each copy gets an independent scale within its asset’s range.</p><p>Even spacing over the whole path from START to END, with jitter perpendicular to each segment. Total number applies to the whole path. Uses the favorite mix shown above. Turn off random yaw or scale to use the selected rotation or scale.</p><button id="line-randomize">Randomize jitter</button><button id="line-place" disabled>Place assets</button>';
+  linePanel.innerHTML = '<h3>Place on line · connected path</h3><p>Click the terrain to add connected corners, then Finish path. Drag numbered markers to adjust the route. Green is START, blue marks corners, and orange is the current END.</p><p id="line-path-summary" role="status"></p><button id="line-finish" disabled>Finish path</button><button id="line-remove" disabled>Remove last point</button><button id="line-reset">Clear path</button><fieldset id="line-assets"><legend>Build your asset mix</legend><div id="line-presets"></div><div id="line-asset-picker"></div><h4>In this line</h4><div class="line-asset-row line-asset-head"><span>Asset</span><span>Ratio</span></div><div id="line-favorites"></div></fieldset><p id="line-mix" role="status"></p><button id="line-reroll-assets" disabled>Randomize assets</button><p>Shuffle asset order while keeping the counts shown above. Positions, jitter, and yaw stay fixed; each asset keeps its scale settings.</p><p>Add assets above and set their relative ratios. Uncheck an asset to remove it from the mix. A 2:1 ratio places about twice as many of the first asset. The Selected summary shows whole-object counts; assets are spread along the line.</p><p id="line-hint" role="status">Click START on the terrain.</p><label>Total number<input id="line-count" type="number" min="1" max="1000" step="1" value="10"></label><label>Jitter (± metres)<input id="line-jitter" type="number" min="0" step="1" value="0"></label><label><input id="line-random-yaw" type="checkbox" checked> Random yaw (0–360°)</label><button id="line-reroll-yaw">Randomize yaw</button><label><input id="line-random-scale" type="checkbox"> Default random scale</label><div class="pair"><label>Low scale<input id="line-scale-low" type="number" min="0.1" max="10" step="0.1" value="0.8"></label><label>High scale<input id="line-scale-high" type="number" min="0.1" max="10" step="0.1" value="1.2"></label></div><button id="line-reroll-scale">Randomize default scales</button><p>Default scale settings apply unless an asset has its own random scale enabled above. Each copy gets an independent scale within its asset’s range.</p><p>Even spacing over the whole path from START to END, with jitter perpendicular to each segment. Total number applies to the whole path. Uses the asset mix shown above. Turn off random yaw or scale to use the selected rotation or scale.</p><button id="line-randomize">Randomize jitter</button><button id="line-place" disabled>Place assets</button>';
   doc.querySelector('aside').prepend(linePanel);
   let pathNodes = [], pathDrawing = true, linePoints = [], offsets = [], yaws = [], scaleFractions = [];
   const lineSelection = new Map(), lineModels = new Map(), lineScaleOverrides = new Map();
-  let favoritesSignature = '', mixSignature = '', assetMix = [];
-  function updateLineFavorites() {
-    const favorites = project.assets.filter(a => state.favorites?.includes(a.name));
-    const signature = JSON.stringify(favorites.map(a => a.name));
-    if (signature === favoritesSignature) return;
-    favoritesSignature = signature;
-    for (const name of lineSelection.keys()) if (!favorites.some(a => a.name === name)) lineSelection.delete(name);
-    for (const name of lineScaleOverrides.keys()) if (!favorites.some(a => a.name === name)) lineScaleOverrides.delete(name);
+  let selectionSignature = '', mixSignature = '', assetMix = [];
+  const picker = createLineAssetPicker($('line-asset-picker'), project.assets, {
+    selection: lineSelection,
+    onAdd(asset) {
+      lineSelection.set(asset.name, 1);
+      refreshLine();
+    },
+  });
+  const presets = createLinePresets($('line-presets'), project.assets, {
+    getMix: () => [...lineSelection].map(([asset, ratio]) => ({asset, ratio, scale:lineScaleOverrides.get(asset)})),
+    applyMix(entries) {
+      lineSelection.clear(); lineScaleOverrides.clear();
+      for (const {asset, ratio, scale} of entries) {
+        lineSelection.set(asset, ratio);
+        lineScaleOverrides.set(asset, {...scale, fractions:[]});
+      }
+      selectionSignature = ''; mixSignature = '';
+      refreshLine();
+    },
+  });
+  function updateLineSelection() {
+    picker.update(state.favorites);
+    const selectedAssets = project.assets.filter(a => lineSelection.has(a.name));
+    const signature = JSON.stringify(selectedAssets.map(a => a.name));
+    if (signature === selectionSignature) return;
+    selectionSignature = signature;
     const list = $('line-favorites'); list.replaceChildren();
-    if (!favorites.length) list.textContent = 'No favorites yet. Star assets in the Map assets section below.';
-    for (const asset of favorites) {
+    if (!selectedAssets.length) list.textContent = 'Your mix is empty. Add assets from the list above.';
+    for (const asset of selectedAssets) {
       const row = doc.createElement('div'); row.className = 'line-asset-row';
       const label = doc.createElement('label'), check = doc.createElement('input');
       check.type = 'checkbox'; check.checked = lineSelection.has(asset.name);
@@ -54,7 +74,8 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
       ratio.setAttribute('aria-label', `${asset.label} ratio`);
       let config = lineScaleOverrides.get(asset.name);
       if (!config) { config = {enabled:false, low:.8, high:1.2, fractions:[]}; lineScaleOverrides.set(asset.name, config); }
-      const scaleBox = doc.createElement('div'); scaleBox.className = 'line-asset-scale'; scaleBox.hidden = !check.checked;
+      const scaleBox = doc.createElement('details'); scaleBox.className = 'line-asset-scale';
+      const scaleSummary = doc.createElement('summary'); scaleSummary.textContent = 'Scale settings'; scaleBox.append(scaleSummary);
       const scaleLabel = doc.createElement('label'), random = doc.createElement('input');
       random.type = 'checkbox'; random.checked = config.enabled;
       scaleLabel.append(random, doc.createTextNode('Random scale for this asset'));
@@ -129,7 +150,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
     clearPathHover();
   }
   function refreshLine() {
-    updateLineFavorites();
+    updateLineSelection();
     let mix = [];
     $('line-reroll-assets').disabled = true;
     try {
@@ -444,7 +465,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   }
   function blur() { pointers.clear(); cancelGesture(); }
   function dispose() {
-    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.(); densityControls?.dispose();
+    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.(); densityControls?.dispose(); presets.dispose();
     win.cancelAnimationFrame(animation); doc.removeEventListener('keydown', keys, true); win.removeEventListener('blur', blur);
     clearLinePreview(); lineMaterial.dispose(); markerMaterials.forEach(material => material.dispose()); discardGhost(); selection.dispose(); cursor.geometry.dispose(); cursor.material.dispose(); library?.dispose(); viewer?.dispose();
     doc.body.classList.remove('editing-3d'); $('viewport').hidden = false;
