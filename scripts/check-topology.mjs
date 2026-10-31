@@ -4,16 +4,16 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 import { terrainGeometry } from '../src/terrain-geometry.js';
+import { parseMapNames } from '../src/map-identity.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = async p => JSON.parse(await readFile(path.join(root, p), 'utf8'));
 const manifest = await read('lib/rotation-topology.json');
-const nameRows = [...(await readFile(path.join(root, 'MAP_NAMES.md'), 'utf8')).matchAll(/\|\s*(mp_custom_map_\d+)\s*\|\s*(test_map_\d+)\s*\|/g)];
+const nameRows = parseMapNames(await readFile(path.join(root, 'MAPNAMES.md'), 'utf8'));
 const names = new Map();
-for (const [, slot, name] of nameRows) {
-  const id = 'scn_' + slot;
-  if (names.has(id) && names.get(id) !== name) throw new Error('Conflicting MAP_NAMES identity: ' + id);
-  names.set(id, name);
+for (const { id, map_id } of nameRows) {
+  if (names.has(id)) throw new Error('Duplicate MAPNAMES identity: ' + id);
+  names.set(id, map_id);
 }
 const rotation = new Map((await read('lib/editor-rotation.json')).map(m => [m.id, m]));
 const editors = new Map((await read('lib/editor-maps.json')).map(m => [m.id, m]));
@@ -24,7 +24,8 @@ for (const map of manifest.maps) {
   if (!current || current.pool !== map.pool) throw new Error('Topology map is not registered: ' + map.id);
   for (const key of ['sco_sha256', 'recipe_sha256', 'terrain_code']) if (map.source[key] !== current.source[key]) throw new Error('Stale topology source: ' + map.id);
   const publicId = names.get(map.id);
-  assert.equal(map.map_id, publicId, 'Topology must follow MAP_NAMES.md');
+  assert.equal(map.map_id, publicId, 'Topology must follow MAPNAMES.md');
+  assert.equal(current.map_id, publicId, 'Rotation must follow MAPNAMES.md');
   assert.match(publicId || '', /^test_map_\d+$/);
   const mapName = publicId + '_RAW';
   assert.equal(map.map_name, mapName, 'Topology must use the public RAW map name');

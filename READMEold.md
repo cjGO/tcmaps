@@ -334,8 +334,16 @@ verified `map_id`, `variant_id`, and `variant_revision` next to each resource ID
 Approval never renames a public ID. Editor downloads use the permanent ID while
 their source checksums still bind them to the exact measured source.
 
-The current collection contains only the 68 active map families. These previews
-are verified saved source measurements; installed biome/weather may differ.
+The website rotation contains 94 map families: 39 tiny, 29 small, and the 26
+restored medium maps. `MAPNAMES.md` supplies their permanent IDs and size pools
+for Current rotation and Map stats, including old slot names in round statistics.
+Medium previews, editor projects, and topology reuse the verified measurements
+in `docs/identity-refactor-20261025-230821`; the saved deployment manifests bind
+their source checksums to catalogue IDs. The former `rated_good_015`, `016`,
+`017`, and `019` families retain public IDs `test_map_194`, `195`, `196`, and `198`.
+The website's restored medium roster is independent of the installed game's
+active pools: syncing from the installed rotation replaces the website snapshot.
+These previews are verified saved source measurements; installed biome/weather may differ.
 Older excluded previews and pre-refactor CSVs are preserved in the timestamped
 `docs/identity-refactor-*` backup. Unattributable historical slot-based rows use
 `legacy_mp_custom_map_*` and cannot contribute to a current map's totals.
