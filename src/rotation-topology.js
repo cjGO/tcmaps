@@ -83,7 +83,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
           await variantLayer.ready;
           if (generation !== token) return;
         }
-        densityControls = setupDensityControls(live, viewer, data, densitySettings, entry?.variant ? { ...current, variant_id: entry.variant.filename } : current);
+        densityControls = setupDensityControls(live, viewer, data, densitySettings, { ...current, selectedVariant: entry?.variantId || 'all', variantLabel: entry?.variant?.label });
       }
       await replay.attach(viewer);
       if (generation !== token) return;

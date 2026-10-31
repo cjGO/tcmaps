@@ -1,6 +1,6 @@
 import { createVideoRenderer } from './replay-video-renderer.js';
 import { checkMp4Support, encodeMp4 } from './replay-video-encoder.js';
-import { videoSchedule, videoSize, videoClock } from './replay-video-model.js';
+import { videoSchedule, videoSize, videoClock, videoReplayModel, isExperimentalVideo } from './replay-video-model.js';
 
 export function openVideoExport(snapshot) {
   const dialog = document.createElement('dialog'); dialog.className = 'replay-video-dialog';
@@ -20,7 +20,10 @@ export function openVideoExport(snapshot) {
     <p data-video="status" role="status" aria-live="polite">Preparing preview…</p>`;
   document.body.append(dialog); dialog.showModal();
   const el = key => dialog.querySelector(`[data-video="${key}"]`);
-  const { replay } = snapshot, origin = replay.header.round_start_ms;
+  const replay = videoReplayModel(snapshot.replay), origin = replay.header.round_start_ms;
+  if (isExperimentalVideo(snapshot.replay)) {
+    for (const key of ['start', 'end']) el(key).parentElement.firstChild.textContent = `${key === 'start' ? 'Start' : 'End'} (capture seconds)`;
+  }
   const first = (replay.first - origin) / 1000, last = (replay.coverageEnd - origin) / 1000;
   for (const key of ['start', 'end']) { el(key).min = String(first); el(key).max = String(last); }
   el('start').value = String((snapshot.t - origin) / 1000);
@@ -34,7 +37,7 @@ export function openVideoExport(snapshot) {
     el('save').disabled = true; status(`Export graphics were interrupted: ${message} Close and reopen the export to retry.`);
   }
   function preview() {
-    if (disposed || !renderer || !schedule || graphicsError) return;
+    if (disposed || !renderer?.loaded || !schedule || graphicsError) return;
     try {
       const t = origin + Number(el('timeline').value) * 1000;
       renderer.render(t); el('time').textContent = videoClock(t - origin);
@@ -55,6 +58,9 @@ export function openVideoExport(snapshot) {
         renderer = createVideoRenderer(next, graphicsLost); settings = next;
         el('preview').replaceChildren(renderer.canvas);
       }
+      status('Loading map assets…');
+      await renderer.ready;
+      if (disposed || token !== generation) return;
       preview();
       el('compatibility').textContent = 'Checking MP4 support…';
       const reason = await checkMp4Support(next);
@@ -65,6 +71,8 @@ export function openVideoExport(snapshot) {
       if (!graphicsError) status('Scrub the preview to check the clip before saving.');
     } catch (error) {
       if (disposed || token !== generation) return;
+      schedule = null;
+      if (renderer && !renderer.loaded) { renderer.dispose(); renderer = null; settings = null; }
       el('duration').textContent = ''; el('compatibility').textContent = ''; status(error.message);
     }
   }

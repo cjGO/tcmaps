@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { videoSchedule, videoStatsHistory, videoStatsAt } from '../src/replay-video-model.js';
+import { videoSchedule, videoStatsHistory, videoStatsAt, videoReplayModel } from '../src/replay-video-model.js';
+import { parseExperimentalJournal } from '../src/experimental-replay.js';
+import { experimentalStrengthAt } from '../src/experimental-replay-presentation.js';
+import { experimentalFixture, journal, finalize } from './fixtures/experimental-fixtures.js';
 
 const track = (id, birth, death, changes, removalReason = 'death') => ({ id, birth, death, changes, removalReason, samples: [] });
 const meta = (t, team, kind = 'bot') => ({ t, team, kind });
@@ -54,4 +57,37 @@ test('invalid or out-of-coverage clip times and speed are rejected', () => {
     { start: NaN, end: 12, speed: 1 }, { start: 2, end: 12, speed: 0 },
     { start: 2, end: 12, speed: Infinity },
   ]) assert.throws(() => videoSchedule(replay, options));
+});
+
+test('experimental export uses capture elapsed time without changing the source model', () => {
+  const rows = experimentalFixture(); rows[0].round_start_seconds = 42;
+  const recording = parseExperimentalJournal(journal(rows));
+  const model = videoReplayModel(recording);
+  assert.equal(model.header.round_start_ms, 1000);
+  assert.equal(model.coverageEnd, recording.last);
+  assert.equal(videoReplayModel(model), model);
+  assert.equal(recording.header.round_start_ms, undefined);
+  assert.equal(typeof recording.tracks.get(1).birth, 'object');
+  const clip = videoSchedule(recording, { start: 0, end: 10, speed: 5 });
+  assert.equal(clip.frames, 60);
+  assert.equal(clip.frame(0).t, recording.first);
+  assert.equal(clip.frame(59).t, recording.last);
+  assert.throws(() => videoSchedule(recording, { start: 0, end: 10.001, speed: 1 }));
+});
+
+test('experimental export stats match live lifetimes, deaths, removals and reverse seeks', () => {
+  const rows = experimentalFixture();
+  rows.find(row => row.type === 'death').position = false;
+  const recording = parseExperimentalJournal(journal(rows)), history = videoStatsHistory(recording);
+  for (const t of [1000, 6999, 7000, 11000, 3000]) {
+    const live = experimentalStrengthAt(recording, t);
+    for (const row of videoStatsAt(history, t)) assert.equal(row.alive, live.get(row.team) || 0);
+  }
+  assert.equal(videoStatsAt(history, 6999).find(row => row.team === 1).deaths, 0);
+  assert.equal(videoStatsAt(history, 7000).find(row => row.team === 1).deaths, 1);
+  // A removal remains excluded even if its reason text says death.
+  const removed = experimentalFixture();
+  removed.find(row => row.type === 'death').type = 'remove';
+  const removalHistory = videoStatsHistory(parseExperimentalJournal(journal(finalize(removed))));
+  assert.equal(videoStatsAt(removalHistory, 7000).find(row => row.team === 1).deaths, 0);
 });

@@ -306,16 +306,17 @@ Open **Map settings** in a rotation map’s 3D preview. At the top, **Player tim
 spent** and **Bot deaths** independently enable terrain-following density layers.
 Recordings load only when a layer is enabled, in a worker; switching maps or
 turning both layers off cancels pending work. Completed density grids are cached
-for up to four terrain versions during the browser session.
+for up to eight map, variant or comparison selections during the browser session.
 
 Player density measures player-seconds along interpolated sample intervals,
 including stationary time and recorded control changes. Missing snapshots and
 unobserved tails are excluded. Death density counts bot death events at their
 recorded or last observed positions. Both stable and experimental recordings are
-supported; synthetic recordings are excluded. Exact terrain versions are used by default.
-**Include unverified terrain matches** also accepts the same permanent map and variant
-identity, labels these recordings approximate, and reports unknown alignment.
-The status reports included recordings, player-minutes, bot deaths and exclusions.
+supported; synthetic recordings are excluded. Density follows the **Map variant** selector: **Source / RAW** includes only source
+recordings, a named variant includes only its recordings, and **All variants** combines
+them. Source versions remain combined within the selected variant. Legacy recordings follow the same map link as the rotation
+replay list. No terrain-version checkbox is needed. The status reports included
+recordings, player-minutes, bot deaths and any recordings that could not load.
 
 Opacity is separate for each layer. Smoothing is a Gaussian radius in world
 metres (standard deviation); contrast below 1 reveals lower densities. Each layer
@@ -338,3 +339,17 @@ map/variant identity but differ in recorded source identity. It does not establi
 which source is older or prove that the height field changed. Renaming an asset
 cannot establish exact geometric alignment; that requires a measurement from the
 recorded source or evidence that both sources produce the same height field.
+
+Use **Compare RAW vs variant** in **Map settings → Replay density** to see a
+signed difference overlay. Choose the variant, then **Bot deaths** or **Player
+movement**. Blue marks higher values on RAW, orange marks higher values on the
+variant, and unchanged areas stay clear. The difference is computed from the
+underlying density grids before applying a shared color scale.
+
+**Average per recording** is the default, so unequal recording counts do not
+alone create differences. **Recorded totals** compares the full captured volume.
+Capture length and player count can still affect either comparison. Smoothing,
+contrast and comparison opacity apply to the difference view. The Map variant
+selector controls which assets are visible; the comparison includes both RAW and
+the chosen variant regardless of that selector. Turn comparison off to restore
+the selected variant's regular heatmaps. Both groups must have loaded recordings.

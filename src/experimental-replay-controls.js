@@ -32,7 +32,7 @@ export function setupExperimentalReplay(root) {
       <p class="exp-legend">Blue: Team 1 · Red: Team 2 · Yellow: other teams. Triangles: cavalry · Squares: infantry · Circles: artillery · Hollow diamonds: unknown class · White rings: players · Rectangles: explicit horses · Team-colored crosses: confirmed bot deaths. Gold: shots · Pink: hits · Dark rings: deaths · Orange: artillery/explosions · Teal: contacts · Purple: fragments/projectiles. Follow terrain keeps unit markers, death crosses and trails above the displayed terrain; Recorded heights shows the original elevations. Terrain overlays may differ from the recorded map. Combat effects and projectiles retain recorded elevations. Event markers are recorded locations; agent paths and projectile motion between commands are reconstructed. Orientation ticks show native Z heading only, not verified bullet direction. Soldier trails accumulate from capture start, including dead units; gaps are not bridged. Projectile trails show the current command. Death markers use the measured death position, or the last observed position if absent. Heatmaps show reconstructed soldier-seconds so far.</p>
       <div class="exp-toolbar"><label>Focus type<select data-exp="focus-type"><option value="entity">Entity</option><option value="projectile">Projectile</option></select></label><label>Recording-local ID<input data-exp="focus-id" type="number" min="1" step="1" value="1"></label><button data-exp="focus">Focus at current time</button><output data-exp="focus-status"></output></div>
       <details><summary>Coverage, counts & original metadata</summary><p data-exp="capabilities"></p><p>Missing capability means not captured, not zero events occurred. Native probe records describe that capture only. Exact native shot-to-hit linkage is unavailable. Capture starts at activation; round-start seconds are separate metadata.</p><p>Incoming damage and script overrides are separate reported values; neither is verified health loss. Contacts are script-measured positions, not guaranteed mesh intersections. Fragment launches have no tracked flight or manufactured impacts.</p><p>Recorded fog is preserved below. This preview uses viewer lighting/haze; native fog semantics and sentinel values are not applied.</p><p data-exp="counts"></p><pre data-exp="metadata"></pre></details>
-      <div class="exp-toolbar exp-unavailable"><button disabled title="Experimental combat effects are not supported by the video exporter">Export MP4</button><span>Video export is unavailable for experimental combat recordings.</span></div>
+      <div class="exp-toolbar"><button data-exp="mp4" disabled>Export MP4…</button></div>
       <section class="exp-inspector"><h2>Event inspector</h2><div class="exp-toolbar"><label>Event type<select data-exp="type"><option value="">All event types</option></select></label><label>Search recorded fields<input data-exp="search" type="search" placeholder="Entity, weapon, ammo, reason…"></label></div><p data-exp="results"></p><div class="exp-inspector-grid"><div><div data-exp="events" class="exp-events" role="region" aria-label="Experimental events"></div><div class="exp-toolbar"><button data-exp="page-back">Previous page</button><button data-exp="page-next">Next page</button></div></div><div><p data-exp="selected-note">Select an event to seek and inspect its original fields.</p><button data-exp="focus-event" disabled>Focus selected event</button><pre data-exp="raw" tabindex="0"></pre></div></div></section>
     </div>`;
   const el = name => root.querySelector(`[data-exp="${name}"]`);
@@ -44,7 +44,7 @@ export function setupExperimentalReplay(root) {
     for (const [i, map] of manifest.maps.entries()) el('terrain').append(new Option(`${map.map_id || map.id} · ${map.variant_id || 'source'} · unverified overlay`, String(i)));
   });
   const assetNotice = document.createElement('p'); assetNotice.dataset.exp = 'assets'; assetNotice.setAttribute('role', 'status'); el('alignment').after(assetNotice);
-  let variantLayer;
+  let variantLayer, closeVideo;
   for (const name of [...Object.keys(EFFECTS), 'orientation', 'radii']) {
     const label = document.createElement('label'), checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = !['orientation', 'radii'].includes(name); checkbox.dataset.layer = name;
     label.append(checkbox, name === 'trails' ? 'Full soldier trails / projectile paths' : name === 'deaths' ? 'Death event flashes' : name === 'radii' ? 'Recorded explosion radii' : name === 'orientation' ? 'Orientation ticks (not bullet paths)' : name[0].toUpperCase() + name.slice(1)); el('layers').append(label);
@@ -81,7 +81,7 @@ export function setupExperimentalReplay(root) {
     const url = URL.createObjectURL(new Blob([text], { type })), a = document.createElement('a'); a.href = url; a.download = filename; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   function stop() { playing = false; cancelAnimationFrame(raf); previousTime = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
-  function detach() { variantLayer?.dispose(); variantLayer = null; assetNotice.textContent = ''; generation++; stop(); layer?.dispose(); viewer?.dispose(); layer = viewer = null; el('stage').replaceChildren(); el('play').disabled = true; }
+  function detach() { closeVideo?.(); closeVideo = null; variantLayer?.dispose(); variantLayer = null; assetNotice.textContent = ''; generation++; stop(); layer?.dispose(); viewer?.dispose(); layer = viewer = null; el('stage').replaceChildren(); el('play').disabled = el('mp4').disabled = true; }
   function update() {
     if (!replay) return;
     strengthChart?.update(t);
@@ -126,7 +126,7 @@ export function setupExperimentalReplay(root) {
         else { const kind = ref.entity ? 'entity' : 'projectile'; el('focus-type').value = kind; el('focus-id').value = ref[kind]; showRaw((kind === 'entity' ? replay.tracks : replay.projectiles).get(ref[kind]).meta); }
       } });
       viewer.onFollowEnd(() => { if (syncingFollow) return; el('follow').value = ''; update(); });
-      viewer.exaggeration(Number(el('height').value)); viewer.preset(el('camera').value); viewer.resize(); update(); el('play').disabled = false;
+      viewer.exaggeration(Number(el('height').value)); viewer.preset(el('camera').value); viewer.resize(); update(); el('play').disabled = el('mp4').disabled = false;
     } catch (error) { detach(); el('status').textContent = `3D unavailable: ${error.message}. The event inspector remains available.`; }
   }
   function cancelParsing() { worker?.terminate(); worker = null; rejectWorker?.(new Error('Import replaced')); rejectWorker = null; }
@@ -254,6 +254,20 @@ export function setupExperimentalReplay(root) {
     try { const rows = layer?.heatmap() || []; download('x_m,y_m,soldier_seconds\n' + rows.filter(row => row.soldier_seconds > 0).map(row => [row.x_m, row.y_m, row.soldier_seconds].join(',')).join('\n'), `${replay.header.id}-heatmap-${t}.csv`, 'text/csv'); } catch (error) { el('status').textContent = `Heatmap export unavailable: ${error.message}`; }
   });
   el('density').addEventListener('change', update);
+  el('mp4').addEventListener('click', async () => {
+    if (!viewer || !layer || !replay) return;
+    stop(); viewer.pauseExplorer(); closeVideo?.();
+    const token = generation;
+    const snapshot = { replay, data, reference, metadata, t: t >= replay.last ? replay.first : t, clipEnd: replay.last,
+      speed: Number(el('speed').value), overlays: { ...displayOptions(), layers: layers(), density: Number(el('density').value) },
+      view: viewer.captureViewState(), mapLabel: `v2 · ${replay.header.map.map_id || replay.header.id} · ${alignment}` };
+    el('mp4').disabled = true;
+    try {
+      const { openVideoExport } = await import('./replay-video-dialog.js');
+      if (token === generation && viewer) closeVideo = openVideoExport(snapshot);
+    } catch (error) { el('status').textContent = `MP4 export could not open: ${error.message}`; }
+    finally { el('mp4').disabled = !layer; }
+  });
   el('terrain').addEventListener('change', () => useTerrain(el('terrain').value === '' ? null : manifest?.maps[Number(el('terrain').value)]));
   el('file').addEventListener('change', async e => { const file = e.target.files[0]; if (file) await load(() => { if (file.size > EXP_LIMITS.bytes) throw new Error('File exceeds 64 MiB'); return file.text(); }); e.target.value = ''; });
   el('example').addEventListener('click', () => { const url = el('examples').value; if (url) load(async () => { const response = await fetch(url); if (!response.ok) throw new Error('Example could not load'); return response.text(); }); });

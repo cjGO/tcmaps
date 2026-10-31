@@ -31,7 +31,12 @@
 .density-key{display:grid;gap:4px;margin-top:10px;font-size:10px}
 .density-key i{display:block;height:6px;border-radius:3px}
 .density-movement-ramp{background:linear-gradient(90deg,#0059ff,#19ffa6,#fff21a)}
-.density-death-ramp{background:linear-gradient(90deg,#ff660d,#ff0059)}
+.density-death-ramp{background:linear-gradient(90deg,#420a68,#a52c84,#e9514a,#fb9f3a,#fcf7b2)}
 .terrain-graphics[open]{max-height:calc(100% - 16px);overflow-y:auto;overscroll-behavior:contain}
 .terrain-tools:has(.terrain-graphics[open]){bottom:12px;pointer-events:none}
 .terrain-tools .terrain-graphics{pointer-events:auto;flex-shrink:0;box-sizing:content-box}
+.terrain-graphics .terrain-density .density-status{position:static;padding:0;text-align:left;color:#405a53;font-size:10px}
+.density-comparison{border-top:1px solid #c7d2c9;margin-top:10px;padding-top:10px}
+.terrain-density .density-comparison select{max-width:100%;width:100%;min-width:0}
+.terrain-density [data-comparison-controls] label{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
+.density-difference-ramp{background:linear-gradient(90deg,#1f66ff,transparent 50%,#ff6e14)}

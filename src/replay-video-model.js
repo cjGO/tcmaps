@@ -1,11 +1,22 @@
 import { botStrengthHistory, botStrengthAt } from './replay-strength.js';
 import { upperIndex } from './tactical-replay.js';
+import { metadataAt } from './experimental-replay.js';
+
+export const isExperimentalVideo = replay => replay.header.schema === 'warband-experimental-replay';
+
+// Adapt timing and lifetimes only; rendering still consumes the original v2 journal.
+export function videoReplayModel(replay) {
+  if (!isExperimentalVideo(replay) || Number.isFinite(replay.coverageEnd)) return replay;
+  const tracks = new Map([...replay.tracks].map(([id, track]) => [id, { ...track, birth: track.birth.t, death: track.end.t }]));
+  return { ...replay, tracks, coverageEnd: replay.last, header: { ...replay.header, round_start_ms: replay.header.start_ms } };
+}
 
 export const VIDEO_FPS = 30;
 export const videoSize = resolution => resolution === '720' ? { width: 1280, height: 720 } : { width: 1920, height: 1080 };
 
 // The media clock is independent of rendering/encoding wall time.
 export function videoSchedule(replay, { start, end, speed }) {
+  replay = videoReplayModel(replay);
   if (![start, end, speed].every(Number.isFinite) || speed <= 0) throw new Error('Enter valid times and a positive playback speed.');
   const from = replay.header.round_start_ms + start * 1000, to = replay.header.round_start_ms + end * 1000;
   if (from < replay.first || to > replay.coverageEnd || to <= from) throw new Error('Choose an end later than the start, within recorded coverage.');
@@ -19,12 +30,14 @@ export function videoSchedule(replay, { start, end, speed }) {
 }
 
 export function videoStatsHistory(replay) {
-  const alive = botStrengthHistory(replay), teams = new Set(alive.teams), events = [];
+  const alive = botStrengthHistory(videoReplayModel(replay)), teams = new Set(alive.teams), events = [];
   for (const track of replay.tracks.values()) {
-    if (track.removalReason !== 'death' || track.death > replay.coverageEnd) continue;
-    const meta = track.changes[upperIndex(track.changes, track.death)];
+    const experimental = isExperimentalVideo(replay);
+    const death = experimental ? track.end.t : track.death;
+    if ((experimental ? track.end.type !== 'death' : track.removalReason !== 'death') || death > (experimental ? replay.last : replay.coverageEnd)) continue;
+    const meta = experimental ? metadataAt(track, death, track.end.seq) : track.changes[upperIndex(track.changes, death)];
     if (meta?.kind !== 'bot') continue;
-    teams.add(meta.team); events.push({ t: track.death, team: meta.team });
+    teams.add(meta.team); events.push({ t: death, team: meta.team });
   }
   const order = [...teams].sort((a, b) => a - b), counts = new Map(order.map(team => [team, 0]));
   const deaths = events.sort((a, b) => a.t - b.t).map(event => {

@@ -2,6 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import { parseExperimentalJournal } from '../src/experimental-replay.js';
 import { experimentalStrengthAt } from '../src/experimental-replay-presentation.js';
 import { parseJournal, sourceEqual } from '../src/tactical-replay.js';
+import { recordedVariantId } from '../src/map-variants.js';
 import { botStrengthHistory, botStrengthAt } from '../src/replay-strength.js';
 
 // Count each recorded connection once across spawns, ownership and control changes.
@@ -40,8 +41,9 @@ export async function replayCatalog(directory) {
     const history = botStrengthHistory(replay);
     const counts = botStrengthAt(history, replay.coverageEnd);
     const roster = recordedPlayerRoster(replay);
+    const mapId = /^test_map_\d+$/.test(header.map.map_id) ? header.map.map_id : mapIds.size === 1 ? [...mapIds][0] : null;
     return { version: 1, filename, id: header.id, map: header.map.id,
-      map_id: /^test_map_\d+$/.test(header.map.map_id) ? header.map.map_id : mapIds.size === 1 ? [...mapIds][0] : null,
+      map_id: mapId, variant_id: recordedVariantId(header.map, mapId),
       round: /^\d+:(\d+):\d+$/.exec(header.round_id)?.[1] || null,
       players: roster.length, roster,
       bots: counts.reduce((sum, count) => sum + count, 0),
@@ -68,7 +70,7 @@ function experimentalCatalogRow(replay, filename, folder) {
   }
   const counts = experimentalStrengthAt(replay, replay.last);
   return { version: 2, filename, id: header.id, map: header.map.id || `scene_${header.map.scene ?? 'unknown'}`,
-    map_id: header.map.map_id || null, round: null,
+    map_id: header.map.map_id || null, variant_id: recordedVariantId(header.map), round: null,
     players: roster.length, roster,
     bots: [...counts.values()].reduce((sum, count) => sum + count, 0),
     bots_by_team: [...counts].map(([team, count]) => ({ team, count })),

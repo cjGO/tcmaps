@@ -6,6 +6,13 @@ export function variantId(value, mapId) {
   return (name.toLowerCase().startsWith(prefix.toLowerCase()) ? name.slice(prefix.length) : name).toLowerCase();
 }
 
+export function recordedVariantId(map, mapId = map.map_id) {
+  const explicit = map.variant_id || map.variant_filename;
+  if (explicit) return variantId(explicit, mapId);
+  const name = map.map_name || '';
+  return mapId && name.toLowerCase().startsWith(`${mapId}_`.toLowerCase()) ? variantId(name, mapId) : 'source';
+}
+
 export function roundVariant(headers, row, mapId) {
   const recorded = row[headers.indexOf('variant_id')];
   if (recorded?.trim()) return variantId(recorded, mapId);

@@ -268,7 +268,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       updateSpawns(spawns) {
         activeSpawns = spawns;
         for (const [i, marker] of markers.entries()) marker.position.set(spawns[i].x_m, spawns[i].y_m, z(spawns[i].z_m));
-        experience.refresh();
+        experience?.refresh();
         draw();
       },
       focus(box) {

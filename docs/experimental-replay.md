@@ -105,8 +105,11 @@ squad labels are supplied. Incoming damage and script overrides
 are not verified health loss. No health bars, bullet tracers, exact native
 shot-to-hit links, inferred victims for shots, estimated fragment flights, or
 manufactured impacts are provided. Probe events are inspectable without implying
-ordinary installed native-missile coverage. Video export is explicitly disabled
-because the stable exporter does not render experimental combat effects.
+ordinary installed native-missile coverage. MP4 export uses the same preview,
+clip settings, live army statistics and encoder
+as stable replays, with experimental combat effects and selected display layers.
+Clip times are capture elapsed seconds. Current-view and overhead cameras,
+720p/1080p, speed settings and cancellation follow the stable export flow.
 
 The actual recorder uses native Euler degrees, not stable replay millidegrees.
 `map_editor/replay.lua` verifies a local +Y displacement against
@@ -286,7 +289,10 @@ The unchanged stable replay browser suite also passed against the built preview:
 The unchanged stable video browser suite passed: real H.264 MP4 encode/decode,
 frame timing, statistics composition, overhead and soldier-follow views,
 cancellation, transactional write-failure handling, compatibility and disposal.
-Experimental video export remains disabled independently of that stable path.
+Experimental video export shares that stable path and renders the v2 combat layers.
+`tests/experimental_replay_video_smoke.py` checks real v2 H.264 encode/decode,
+capture timing, combat layer toggles, overhead/follow views, cancellation,
+write failures, compatibility and cleanup against a local server.
 
 
 ## Experimental movement parity
@@ -353,8 +359,9 @@ not from `troops.txt` (whose checksum is absent from the headers).
 `tests/fixtures/SYNTHETIC-experimental-display.json` is an explicitly synthetic
 example for the bundled artillery fixture. It demonstrates names, squads and
 all three roles without claiming those values were captured from the game.
-Experimental MP4 remains disabled because the standard video exporter does
-not include these combat effects. Heatmap CSV exports the current recording,
+Experimental MP4 includes the selected combat effects, projectiles, movement
+layers, display metadata and matching variant placements. Preview and saving
+wait for the placed meshes and textures to load. Heatmap CSV exports the current recording,
 time and display filters; it does not merge unrelated experimental captures.
 
 

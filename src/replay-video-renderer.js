@@ -1,25 +1,42 @@
 import { createTopologyViewer } from './topology-viewer.js';
 import { createReplayLayer } from './replay-layer.js';
 import { soldierViewAt } from './tactical-replay.js';
-import { videoStatsHistory, videoStatsAt, videoTeamColor, videoTeamLabel, videoClock } from './replay-video-model.js';
+import { createExperimentalLayer } from './experimental-replay-layer.js';
+import { experimentalViewAt } from './experimental-replay-presentation.js';
+import { replayVariantAssets } from './replay-variant-assets.js';
+import { createVariantLayer } from './rotation-variant-layer.js';
+import { videoStatsHistory, videoStatsAt, videoTeamColor, videoTeamLabel, videoClock, videoReplayModel, isExperimentalVideo } from './replay-video-model.js';
 
 // Both the preview and the encoder consume this exact composition.
-export function createVideoRenderer({ replay, data, view, overlays, cameraMode, width, height, speed, mapLabel }, onError) {
+export function createVideoRenderer({ replay: recording, data, view, overlays, cameraMode, width, height, speed, mapLabel, reference = false, metadata }, onError) {
+  const experimental = isExperimentalVideo(recording), replay = videoReplayModel(recording);
   const host = document.createElement('div'); host.className = 'replay-video-offscreen';
   host.inert = true; host.setAttribute('aria-hidden', 'true'); document.body.append(host);
   const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height;
   canvas.setAttribute('aria-label', 'MP4 preview: map and live team statistics');
-  const ctx = canvas.getContext('2d', { alpha: false }), stats = videoStatsHistory(replay);
-  let viewer, layer, disposed = false, following = false;
-  const followId = cameraMode === 'current' ? overlays.followSoldier : '';
+  const ctx = canvas.getContext('2d', { alpha: false }), stats = videoStatsHistory(recording);
+  let viewer, layer, variantLayer, loaded = false, disposed = false, following = false;
+  const followId = cameraMode === 'current' ? (experimental ? overlays.follow : overlays.followSoldier) : '';
   const initialView = followId ? view.overview || view : view;
   const aspect = view.camera.isPerspectiveCamera ? view.camera.aspect : (view.camera.right - view.camera.left) / (view.camera.top - view.camera.bottom);
   try {
-    viewer = createTopologyViewer(host, data, onError, { renderOnly: true, width: width * .75, height: height * 876 / 1080 });
+    viewer = createTopologyViewer(host, data, onError, { renderOnly: true, referenceGrid: reference, width: width * .75, height: height * 876 / 1080 });
     viewer.applyViewState(initialView);
     if (cameraMode === 'overhead') viewer.preset('overhead');
-    layer = createReplayLayer(viewer, data, replay);
+    layer = experimental ? createExperimentalLayer(viewer, data, recording, { reference, metadata }) : createReplayLayer(viewer, data, replay);
   } catch (error) { viewer?.dispose(); host.remove(); throw error; }
+
+  // A separate export scene needs its own meshes and textures. Finish loading
+  // the recorded placement revision before previewing or encoding any frames.
+  const ready = (async () => {
+    const variant = !reference && await replayVariantAssets(recording.header.map);
+    if (disposed) return;
+    if (variant) {
+      variantLayer = createVariantLayer(viewer, data, variant.document);
+      await variantLayer.ready;
+    }
+    if (!disposed) loaded = true;
+  })();
 
   function text(value, x, y, size = 24, color = '#e8eef3', weight = 400, maxWidth) {
     ctx.font = `${weight} ${size}px system-ui, sans-serif`; ctx.fillStyle = color;
@@ -53,18 +70,19 @@ export function createVideoRenderer({ replay, data, view, overlays, cameraMode, 
   }
   function render(t) {
     if (disposed) throw new Error('Export renderer has been closed.');
+    if (!loaded) throw new Error('Map assets are still loading.');
     if (followId) {
-      const pose = soldierViewAt(replay.tracks.get(Number(followId)), t, replay);
+      const pose = experimental ? experimentalViewAt(recording.tracks.get(Number(followId)), t) : soldierViewAt(replay.tracks.get(Number(followId)), t, replay);
       if (pose) { viewer.renderSoldier(pose, aspect); following = true; }
       else if (following) { viewer.applyViewState(initialView); following = false; }
     }
     // Copy immediately after WebGL draws; its drawing buffer need not be preserved.
-    layer.update({ ...overlays, followSoldier: followId, t });
+    layer.update({ ...overlays, followSoldier: followId, follow: followId, t, seq: Infinity });
     ctx.setTransform(width / 1920, 0, 0, height / 1080, 0, 0);
     ctx.fillStyle = '#101d29'; ctx.fillRect(0, 0, 1920, 1080);
     ctx.drawImage(viewer.canvas, 0, 88, 1440, 876);
     text(mapLabel, 28, 39, 29, '#f1f5f8', 650, 1020);
-    text(`Round ${videoClock(t - replay.header.round_start_ms)}  ·  ${speed}× speed`, 28, 70, 21, '#adbfcc');
+    text(`${experimental ? 'Capture' : 'Round'} ${videoClock(t - replay.header.round_start_ms)}  ·  ${speed}× speed`, 28, 70, 21, '#adbfcc');
     text(cameraMode === 'overhead' ? 'FULL-MAP OVERHEAD' : followId ? `FOLLOWING #${followId}` : 'CURRENT VIEW', 1090, 53, 17, '#adbfcc', 600, 320);
     ctx.fillStyle = '#172735'; ctx.fillRect(1440, 0, 480, 1080);
     text('LIVE ARMY STATS', 1476, 47, 25, '#f1f5f8', 650);
@@ -95,11 +113,11 @@ export function createVideoRenderer({ replay, data, view, overlays, cameraMode, 
     text('Takeovers / despawns are not deaths.', 1476, 1011, 18, '#adbfcc');
     text('Share excludes unassigned bots.', 1476, 1041, 18, '#adbfcc');
     text('Blue: Team 1  ·  Red: Team 2  ·  Yellow: other / unassigned', 28, 998, 21, '#d1dde5');
-    text('■ Infantry   ● Artillery   ▲ Cavalry   ○ Player   × Bot death', 28, 1030, 21, '#adbfcc');
-    const flags = [replay.header.synthetic && 'SYNTHETIC', replay.incomplete && 'INCOMPLETE',
-      replay.first > replay.header.round_start_ms && `LATE START ${videoClock(replay.first - replay.header.round_start_ms)}`].filter(Boolean);
+    text(experimental ? 'Gold: shots · Pink: hits · Orange: artillery · Teal: contacts · Purple: projectiles / fragments' : '■ Infantry   ● Artillery   ▲ Cavalry   ○ Player   × Bot death', 28, 1030, 21, '#adbfcc', 400, 1384);
+    const flags = [replay.header.synthetic && 'SYNTHETIC', recording.incomplete && 'INCOMPLETE', experimental && 'V2 · CAPTURED FROM ACTIVATION',
+      !experimental && replay.first > replay.header.round_start_ms && `LATE START ${videoClock(replay.first - replay.header.round_start_ms)}`].filter(Boolean);
     text(`${flags.length ? flags.join(' · ') + ' · ' : ''}${replay.header.sample_interval_ms / 1000}s samples · interpolated movement · gaps are not reconstructed`, 28, 1060, 18, flags.length ? '#edc66c' : '#adbfcc', 400, 1384);
     return canvas;
   }
-  return { canvas, render, dispose() { if (disposed) return; disposed = true; layer.dispose(); viewer.dispose(); host.remove(); } };
+  return { canvas, ready, get loaded() { return loaded; }, render, dispose() { if (disposed) return; disposed = true; variantLayer?.dispose(); layer.dispose(); viewer.dispose(); host.remove(); } };
 }
