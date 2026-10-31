@@ -298,3 +298,29 @@ synthetic 320-soldier demo on checksum-matched measured terrain. Browser smoke
 tests use it for cavalry, takeover, deaths, respawn, gap hiding, scrubbing, playback,
 player/bot visibility, heatmap export, 4× exaggeration and resource disposal.
 See `replay-validation.md` for observed costs and remaining acceptance work.
+
+
+### Current rotation density overlays
+
+Open **Map settings** in a rotation map’s 3D preview. At the top, **Player time
+spent** and **Bot deaths** independently enable terrain-following density layers.
+Recordings load only when a layer is enabled, in a worker; switching maps or
+turning both layers off cancels pending work. Completed density grids are cached
+for up to four terrain versions during the browser session.
+
+Player density measures player-seconds along interpolated sample intervals,
+including stationary time and recorded control changes. Missing snapshots and
+unobserved tails are excluded. Death density counts bot death events at their
+recorded or last observed positions. Both stable and experimental recordings are
+supported; synthetic recordings are excluded. Exact terrain versions are used by default.
+**Include older terrain versions** also accepts the same permanent map and variant
+identity, labels these recordings approximate, and reports unknown alignment.
+The status reports included recordings, player-minutes, bot deaths and exclusions.
+
+Opacity is separate for each layer. Smoothing is a Gaussian radius in world
+metres (standard deviation); contrast below 1 reveals lower densities. Each layer
+is normalized independently to the 95th percentile of occupied smoothed cells,
+with higher values saturated. This is a relative within-map view, not an absolute
+comparison between maps. Clear terrain means no density in the available data,
+not proof that nobody ever visited it. Snapshot paths and death locations remain
+approximations.

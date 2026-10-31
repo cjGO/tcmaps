@@ -4,6 +4,7 @@ import { setupReplay } from './replay-controls.js';
 import { elevationRamp } from './terrain-palettes.js';
 import manifest from '../lib/rotation-topology.json';
 import './rotation-topology.css';
+import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
 
 export function setupTopology({ prefix = 'rotation', recordings = false } = {}) {
   const maps = new Map(manifest.maps.map(map => [`${map.id}.png`, map]));
@@ -23,10 +24,12 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
   const camera = query(panel, '#topology-camera'), scale = query(panel, '#topology-scale');
   const contour = query(panel, '#topology-contours'), wire = query(panel, '#topology-wireframe');
   let entry, current, viewer, request, generation = 0, selected = '3d', visible = !recordings;
+  let densityControls;
+  const densitySettings = densityDefaults();
   const modes = [...panel.querySelectorAll('[data-mode]')];
   const replay = recordings ? setupReplay(panel, () => { current = replay.terrain() ? { id: replay.terrain().id } : null; panel.hidden = false; show('3d'); }, stage) : { detach() {}, terrain: () => null, async attach() {} };
   if (recordings) { panel.hidden = false; panel.querySelector('[role=group]').hidden = true; panel.querySelector('.topology-controls').hidden = true; }
-  function destroy() { replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
+  function destroy() { densityControls?.dispose(); densityControls = null; replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
   function scaleNote() { query(info, '#topology-scale-note').textContent = viewer?.mode === 'explore' ? 'Explorer · true scale · preview movement' : scale.value === '1' ? 'True height scale' : `Height exaggerated ${scale.value}×`; }
   function cameraHelp() { query(info, '#topology-help').textContent = viewer?.following ? 'Following the soldier’s recorded position and facing. Camera holds at the last recorded position after death. Escape or Exit soldier view returns to the free camera.' : viewer?.mode === 'explore' ? 'WASD to move · Shift to run/gallop · drag to look or use Mouse look. The minimap shows your position and facing; click it to relocate.' : camera.value.startsWith('team') ? 'Looking inward from 12 m above the original spawn. Infantry / Mounted switches to ground exploration.' : 'Drag to orbit · scroll to zoom · right-drag or arrow keys to pan. Infantry / Mounted explores the terrain; Stand here starts at a point you choose.'; }
   live.addEventListener('terrain-modechange', () => {
@@ -71,6 +74,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       info.classList.remove('natural-surface');
       info.querySelector('.topology-ramp').style.background = elevationRamp();
       applyControls();
+      if (!recordings && prefix === 'rotation') densityControls = setupDensityControls(live, viewer, data, densitySettings, current);
       await replay.attach(viewer);
       if (generation !== token) return;
       panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'} · topology`;

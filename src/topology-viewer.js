@@ -5,6 +5,7 @@ import { createTerrainSurface } from './terrain-surface.js';
 import { createTerrainExperience } from './terrain-experience.js';
 import { hazeRange } from './terrain-explorer-motion.js';
 import { groundHeight } from './editor-spatial.js';
+import { createDensityLayer } from './rotation-density-layer.js';
 import experienceStyles from './terrain-experience.css?inline';
 
 export function createTopologyViewer(container, data, onError, options = {}) {
@@ -14,7 +15,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   scene.fog = new THREE.Fog(scene.background, 100, 2000);
   let camera, controls, observer, disposed = false, scale = 1, activeView = 'aerial';
   let navigation = true, enabled = true, activeSpawns = data.spawns, terrain;
-  let experience, returnView, contoursEnabled = false;
+  let experience, returnView, contoursEnabled = false, densityLayer;
   let frameCamera, renderTarget, renderExploring = false;
   const graphics = { surface: 'elevation', palette: 'terrain', haze: true, fog: 'source', sun: 135, shadows: true };
   const raycaster = new THREE.Raycaster();
@@ -179,7 +180,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     heightListeners.clear();
     experience?.dispose(); observer?.disconnect(); controls?.dispose();
     canvas?.removeEventListener('webglcontextlost', lost);
-    geometry.dispose(); material.dispose();
+    densityLayer?.dispose(); geometry.dispose(); material.dispose();
     for (const resource of resources) resource.dispose();
     sun.shadow.dispose();
     renderer?.dispose(); renderer?.forceContextLoss(); canvas?.remove();
@@ -250,6 +251,11 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       modeChanged(mode) { configureControls(); options.onModeChange?.(mode); },
     }, experienceStyles);
     return { preset, exaggeration, dispose, resize, canvas, draw, pick, captureViewState, applyViewState, renderSoldier,
+      density(result, settings) {
+        if (!densityLayer && !result) return;
+        if (!densityLayer) { densityLayer = createDensityLayer(geometry, data); scene.add(densityLayer.mesh); }
+        densityLayer.update(result, settings); draw(false);
+      },
       get mode() { return experience?.mode || 'orbit'; }, get following() { return experience?.following || false; }, get heightScale() { return scale; },
       exitExplorer() { experience?.exit(); }, pauseExplorer() { experience?.pause(); },
       followSoldier(point) { experience.follow(point); },
