@@ -4,8 +4,9 @@ import { checkedBuffer, createModelLibrary } from './editor-model-loader.js';
 import { groundHeight, placementTransform } from './editor-spatial.js';
 import { pathPlacements, lineScales, lineAssetMix, lineAssetScales, shuffleLineAssets } from './editor-line.js';
 import styles from './editor-3d.css?inline';
+import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
 
-export function attachEditor3D(frame, project, topology, models, assetURL) {
+export function attachEditor3D(frame, project, topology, models, assetURL, densitySettings = densityDefaults()) {
   const doc = frame.contentDocument, win = frame.contentWindow, api = win.MapEditor;
   if (!api) throw new Error('Editor state is unavailable');
   const $ = id => doc.getElementById(id);
@@ -96,7 +97,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL) {
   }
   // Make the map asset palette visible immediately; other settings remain one click away.
   doc.querySelectorAll('aside > details').forEach(el => { el.open = false; });
-  let viewer, library, data, manifest, unsubscribe, disposed = false, ready = false, is3D = true, starting = false, modelError = false;
+  let viewer, library, data, manifest, unsubscribe, densityControls, disposed = false, ready = false, is3D = true, starting = false, modelError = false;
   let state = api.getState(), gesture = null, hover = null, ghost = null, ghostAsset = '', ghostToken = 0, animation = 0;
   const records = new Map(), controller = new AbortController(), pointers = new Set();
   const objects = new THREE.Group(), extras = new THREE.Group();
@@ -410,13 +411,14 @@ export function attachEditor3D(frame, project, topology, models, assetURL) {
       for (const asset of project.assets) if (manifest.assets[asset.name]?.mesh !== asset.mesh || manifest.assets[asset.name]?.ground_offset_m !== asset.ground_offset_m) throw new Error('3D asset definitions have changed.');
       library = createModelLibrary(manifest, assetURL(models.manifest_url));
       viewer = createTopologyViewer(container, data, message => {
-        ready = false; cancelGesture(); unsubscribe?.(); unsubscribe = null; viewer?.dispose(); library?.dispose();
+        ready = false; cancelGesture(); unsubscribe?.(); unsubscribe = null; densityControls?.dispose(); densityControls = null; viewer?.dispose(); library?.dispose();
         $('editor-three-loading').textContent = message; $('editor-three-message').hidden = false; $('editor-three-retry').hidden = false;
       }, { editing: true, onModeChange(mode) {
         cancelGesture(); hover = null; extras.visible = mode === 'orbit';
         $('editor-camera').disabled = $('editor-contours').disabled = mode === 'explore';
         selectionBox(); updateGhost();
       } });
+      densityControls = setupDensityControls(container, viewer, data, densitySettings, { ...topology, selectedVariant: 'all' });
       viewer.canvas.setAttribute('aria-label', '3D map editor. Navigate, place map assets or select and drag objects.');
       viewer.addLayer(objects); viewer.addLayer(extras);
       viewer.canvas.addEventListener('pointerdown', pointerDown);
@@ -437,12 +439,12 @@ export function attachEditor3D(frame, project, topology, models, assetURL) {
       if (is3D && !frame.dataset.editor3dOpened) api.setMode('navigate');
       frame.dataset.editor3dOpened = 'true'; unsubscribe = api.subscribe(schedule);
     } catch (error) {
-      if (!disposed) { viewer?.dispose(); library?.dispose(); $('editor-three-loading').textContent = error.message; $('editor-three-retry').hidden = false; }
+      if (!disposed) { densityControls?.dispose(); densityControls = null; viewer?.dispose(); library?.dispose(); $('editor-three-loading').textContent = error.message; $('editor-three-retry').hidden = false; }
     } finally { starting = false; }
   }
   function blur() { pointers.clear(); cancelGesture(); }
   function dispose() {
-    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.();
+    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.(); densityControls?.dispose();
     win.cancelAnimationFrame(animation); doc.removeEventListener('keydown', keys, true); win.removeEventListener('blur', blur);
     clearLinePreview(); lineMaterial.dispose(); markerMaterials.forEach(material => material.dispose()); discardGhost(); selection.dispose(); cursor.geometry.dispose(); cursor.material.dispose(); library?.dispose(); viewer?.dispose();
     doc.body.classList.remove('editing-3d'); $('viewport').hidden = false;

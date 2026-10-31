@@ -6,11 +6,13 @@ import template from '../map_editor/web/index.html?raw';
 import styles from '../map_editor/web/style.css?raw';
 import coordinates from '../map_editor/web/coordinates.js?raw';
 import app from '../map_editor/web/app.js?raw';
+import { densityDefaults } from './rotation-density-controls.js';
 
 export function setupEditor(selectTab) {
   const $ = id => document.getElementById(id);
   const frames = new Map();
   const projects = new Map();
+  const densitySettings = new Map();
   let current = '', request = 0;
   let visible = false, active3D = null, threeRequest = 0;
   const url = path => new URL(import.meta.env.BASE_URL + path, location.href).href;
@@ -33,7 +35,8 @@ export function setupEditor(selectTab) {
     try {
       const { attachEditor3D } = await import('./editor-3d.js');
       if (token !== threeRequest || !visible || current !== id) return;
-      active3D = { id, controller: attachEditor3D(frame, project, topology, editorModels, path => url(path.replace(/^\//, ''))) };
+      if (!densitySettings.has(id)) densitySettings.set(id, densityDefaults());
+      active3D = { id, controller: attachEditor3D(frame, project, topology, editorModels, path => url(path.replace(/^\//, '')), densitySettings.get(id)) };
     } catch {
       if (token !== threeRequest) return;
       const note = frame.contentDocument.createElement('p');

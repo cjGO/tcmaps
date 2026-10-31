@@ -7,6 +7,7 @@ export const densityDefaults = () => ({ movement: false, deaths: false, comparis
 const variantLabel = id => /^var[a-z]$/i.test(id) ? `Var${id.slice(3).toUpperCase()}` : id;
 
 export function setupDensityControls(container, viewer, data, settings, mapEntry) {
+  const document = container.ownerDocument;
   const root = document.createElement('fieldset'); root.className = 'terrain-density';
   root.innerHTML = `<legend>Replay density</legend>
     <label data-normal><span>Player time spent</span><input type="checkbox" data-density="movement"></label>
@@ -42,7 +43,7 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
   root.querySelector('.density-comparison').hidden = !canCompare;
   if (!canCompare) settings.comparison = false;
   if (!variants.includes(settings.compareVariant)) settings.compareVariant = variants.includes(mapEntry.selectedVariant) ? mapEntry.selectedVariant : variants[0] || '';
-  root.querySelector('[data-density=compareVariant]').replaceChildren(...variants.map(id => new Option(variantLabel(id), id)));
+  root.querySelector('[data-density=compareVariant]').replaceChildren(...variants.map(id => new document.defaultView.Option(variantLabel(id), id)));
   const variantNote = !mapEntry.selectedVariant || mapEntry.selectedVariant === 'all' ? 'All variants combined.' : `${mapEntry.selectedVariant === 'source' ? 'Source / RAW' : mapEntry.variantLabel || mapEntry.selectedVariant} recordings only.`;
   let terrain, candidates, key, worker, disposed = false, loaded, loading = false, generation = 0;
   const enabled = () => settings.comparison || settings.movement || settings.deaths;
