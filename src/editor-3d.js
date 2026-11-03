@@ -120,7 +120,8 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   doc.querySelectorAll('aside > details').forEach(el => { el.open = false; });
   let viewer, library, data, manifest, unsubscribe, densityControls, disposed = false, ready = false, is3D = true, starting = false, modelError = false;
   let state = api.getState(), gesture = null, hover = null, ghost = null, ghostAsset = '', ghostToken = 0, animation = 0;
-  const records = new Map(), controller = new AbortController(), pointers = new Set();
+  // Event listeners belong to the iframe, so use its AbortSignal implementation.
+  const records = new Map(), controller = new win.AbortController(), pointers = new Set();
   const objects = new THREE.Group(), extras = new THREE.Group();
   const linePreview = new THREE.Group(), lineAssets = new THREE.Group(), pathHover = new THREE.Group(); extras.add(linePreview, lineAssets, pathHover);
   const lineMaterial = new THREE.LineBasicMaterial({ color: '#f5a623', depthTest: false });

@@ -7,6 +7,9 @@ import styles from '../map_editor/web/style.css?raw';
 import coordinates from '../map_editor/web/coordinates.js?raw';
 import app from '../map_editor/web/app.js?raw';
 import { densityDefaults } from './rotation-density-controls.js';
+// Keep editor code available with the page, even if a deployment removes old
+// chunks before this tab opens the editor. Terrain and models still load on demand.
+import { attachEditor3D } from './editor-3d.js';
 
 export function setupEditor(selectTab) {
   const $ = id => document.getElementById(id);
@@ -14,31 +17,27 @@ export function setupEditor(selectTab) {
   const projects = new Map();
   const densitySettings = new Map();
   let current = '', request = 0;
-  let visible = false, active3D = null, threeRequest = 0;
+  let visible = false, active3D = null;
   const url = path => new URL(import.meta.env.BASE_URL + path, location.href).href;
   $('editor-map').replaceChildren(...editorMaps.map(map => new Option(map.map_id + (map.variant_id !== 'source' ? ' · ' + map.variant_id : ''), map.id)));
   $('editor-map').disabled = !editorMaps.length;
 
   function stop3D() {
-    threeRequest++;
     active3D?.controller.dispose();
     active3D = null;
   }
-  async function start3D(id) {
+  function start3D(id) {
     if (!visible || current !== id) return;
     if (active3D?.id === id) return;
     stop3D();
     const frame = frames.get(id), project = projects.get(id);
     const topology = topologyMaps.maps.find(entry => entry.id === id);
     if (!visible || current !== id || !frame?.contentWindow?.MapEditor || !topology || !editorModels.maps.some(entry => entry.id === id)) return;
-    const token = threeRequest;
     try {
-      const { attachEditor3D } = await import('./editor-3d.js');
-      if (token !== threeRequest || !visible || current !== id) return;
       if (!densitySettings.has(id)) densitySettings.set(id, densityDefaults());
       active3D = { id, controller: attachEditor3D(frame, project, topology, editorModels, path => url(path.replace(/^\//, '')), densitySettings.get(id)) };
-    } catch {
-      if (token !== threeRequest) return;
+    } catch (error) {
+      console.error(`3D editor could not start for ${id}`, error);
       const note = frame.contentDocument.createElement('p');
       note.className = 'hint'; note.textContent = '3D could not start. Your heatmap editor and saved placements are still available. Reload to retry 3D.';
       frame.contentDocument.querySelector('.workspace').prepend(note);
