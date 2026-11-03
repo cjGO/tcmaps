@@ -29,7 +29,7 @@ export function createReplayMovement(viewer, data, model, group, picks, { refere
     dummy.rotation.set(0, 0, -(p.facing || 0) * Math.PI / 180); dummy.scale.setScalar(1); dummy.updateMatrix(); target.setMatrixAt(index, dummy.matrix);
     if (tint) target.setColorAt(index, color.set(tint)); picks.get(target)[index] = { entity: p.id };
   }
-  function nameLabel(p, meta) {
+  function nameLabel(p, meta, scale = .5) {
     let label = labels.get(p.id);
     if (label && label.userData.text !== meta.label) {
       label.material.map.dispose(); label.material.dispose(); label.removeFromParent();
@@ -45,10 +45,11 @@ export function createReplayMovement(viewer, data, model, group, picks, { refere
       label.onBeforeRender = (renderer, scene, camera) => {
         viewPoint.copy(label.position).applyMatrix4(camera.matrixWorldInverse);
         const perPixel = 2 * (camera.isPerspectiveCamera ? Math.max(.1, -viewPoint.z) : 1) / (camera.projectionMatrix.elements[5] * Math.max(1, viewer.canvas.clientHeight));
-        label.scale.set(canvas.width / 2 * perPixel, 22 * perPixel, 1); label.updateMatrixWorld();
+        label.scale.set(canvas.width / 2 * perPixel * label.userData.nameScale, 22 * perPixel * label.userData.nameScale, 1); label.updateMatrixWorld();
       };
       labels.set(p.id, label); group.add(label);
     }
+    label.userData.nameScale = Number.isFinite(scale) ? Math.max(.1, Math.min(1, scale)) : .5;
     label.position.set(p.x, p.y, placed(p) + 6); label.visible = true;
   }
   const vertices = [];
@@ -133,7 +134,7 @@ export function createReplayMovement(viewer, data, model, group, picks, { refere
       if (String(state.followSoldier) === String(p.id)) continue;
       visible++;
       put(units[horse ? 'horse' : meta.unit_category], p, teamColor(p.team));
-      if (p.kind === 'player') { put(humans, p, undefined, 3); if (state.playerNames) { nameLabel(p, meta); names++; } }
+      if (p.kind === 'player') { put(humans, p, undefined, 3); if (state.playerNames) { nameLabel(p, meta, state.playerNameScale); names++; } }
     }
     updateDeaths(state);
     full.visible = partial.visible = false; if (heat) heat.visible = false;

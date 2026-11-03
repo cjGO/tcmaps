@@ -56,7 +56,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     live.hidden = info.hidden = !is3d; image.hidden = full.hidden = is3d;
     stage.classList.toggle('is-topology', is3d);
     if (!is3d) {
-      if (recordings) { image.hidden = full.hidden = true; state.textContent = 'Select an available replay or open a local recording.'; state.hidden = false; return; }
+      if (recordings) { image.hidden = full.hidden = true; state.textContent = 'Select an available replay.'; state.hidden = false; return; }
       state.textContent = 'Loading map…'; state.hidden = false;
       if (entry) { image.src = entry.image; image.alt = (publicMapId(identityRegistry, entry.filename) || 'Archived map') + ' elevation heatmap'; full.href = entry.image; }
       if (image.complete && image.naturalWidth) { image.style.opacity = '1'; state.hidden = true; }

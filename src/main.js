@@ -182,18 +182,6 @@ const mapAnalytics = setupMapAnalytics(roundStatsHeaders, roundStatsRows, instal
 });
 const tabs = ['rotation', 'mapstats', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
-$('open-experimental-recording').addEventListener('click', () => {
-  replayOpened = true;
-  selectTab('replays', { autoOpen: false });
-  setReplayVersion(2);
-  $('experimental-panel').querySelector('[data-exp=file]').click();
-});
-$('open-v1-recording').addEventListener('click', () => {
-  replayOpened = true;
-  selectTab('replays', { autoOpen: false });
-  setReplayVersion(1);
-  $('replay-v1-viewer').querySelector('[data-replay=files]').click();
-});
 const editor = setupEditor(selectTab);
 const topology = setupTopology();
 const replays = setupTopology({ prefix: 'replays', recordings: true });
@@ -216,15 +204,31 @@ function openRecording(recording, options = {}) {
   replayCatalog.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.id === recording.id)));
   if (options.syncUrl !== false) history.pushState(null, '', replayLink(location.href, recording.id, options));
   setReplayVersion(recording.version);
-  if (recording.version === 2) experimental.openReplay(recording);
-  else replays.openReplay(recording, options);
+  if (recording.version === 2) return experimental.openReplay(recording);
+  return replays.openReplay(recording, options);
+}
+async function openCatalogRecording(recording) {
+  const browser = $('replay-browser');
+  browser.open = false;
+  const panel = recording.version === 2 ? $('experimental-panel') : $('replay-v1-viewer');
+  const loading = openRecording(recording);
+  // Move keyboard focus out of the collapsed list while the recording loads.
+  panel.tabIndex = -1;
+  panel.focus({ preventScroll: true });
+  await loading;
+  requestAnimationFrame(() => {
+    if (activeTab !== 'replays' || selectedReplayId !== recording.id || browser.open) return;
+    const stage = panel.querySelector(recording.version === 2 ? '[data-exp="stage"]' : '.replay-playback');
+    const target = stage?.getClientRects().length ? stage : panel;
+    target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+  });
 }
 function updateReplayList() {
   const minimumPlayers = Number($('replay-min-players').value);
   $('replay-min-players-value').textContent = minimumPlayers === 0 ? '0 (all replays)' : String(minimumPlayers);
   $('replay-min-players').setAttribute('aria-valuetext', minimumPlayers === 0 ? 'All replays' : minimumPlayers + ' players minimum');
   const playerNames = $('replay-player-names').value;
-  const visible = renderReplayCatalog(replayCatalog, recordings, openRecording, { minimumPlayers, playerNames, selectedId: selectedReplayId });
+  const visible = renderReplayCatalog(replayCatalog, recordings, openCatalogRecording, { minimumPlayers, playerNames, selectedId: selectedReplayId });
   $('replay-filter-count').textContent = visible + ' of ' + recordings.length + ' replays';
   $('replay-browser-count').textContent = visible + ' of ' + recordings.length;
 }

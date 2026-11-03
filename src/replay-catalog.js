@@ -26,7 +26,7 @@ export function renderReplayCatalog(container, recordings, openRecording, { mini
   if (!visible.length) {
     container.textContent = recordings.length
       ? 'No replays match these filters. Lower the minimum or clear the player names to see more.'
-      : 'No published replays yet. Open a local recording below.';
+      : 'No published replays yet.';
     return 0;
   }
   let previousDay, group;

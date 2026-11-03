@@ -14,8 +14,8 @@ const loadRecording = async input => parseRecording(input, { manifest: (await re
 export function setupReplay(panel, refresh, stage) {
   const root = document.createElement('section'); root.className = 'replay-controls';
   root.setAttribute('aria-label', 'Tactical replay');
-  root.innerHTML = `<div class="replay-toolbar"><label>Open round recordings <input type="file" accept=".json,.jsonl,application/x-ndjson" multiple data-replay="files"></label><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
-    <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above, or open .jsonl recordings or .replay.json bundles locally. Local files stay in your browser. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
+  root.innerHTML = `<div class="replay-toolbar"><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
+    <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label>Player name size<input data-replay="name-size" type="range" min="10" max="100" step="5" value="50"><output data-replay="name-size-value">50%</output></label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
   panel.append(root);
   const el = name => root.querySelector(`[data-replay="${name}"]`);
   const terrainNotice = document.createElement('p');
@@ -42,7 +42,7 @@ export function setupReplay(panel, refresh, stage) {
   const sharing = document.createElement('div'); sharing.className = 'replay-sharing';
   sharing.innerHTML = `<button type="button" data-replay="share">Copy link at current time</button><button type="button" data-replay="mp4" disabled>Export MP4</button><label>Clip end (round seconds, optional)<input data-replay="clip-end" type="number" min="0" step="any" placeholder="Play to round end"></label><label data-replay="share-link-label" hidden>Replay link<input data-replay="share-link" type="text" readonly></label><p data-replay="share-status" role="status"></p>`;
   const groups = document.createElement('div'); groups.className = 'replay-option-grid';
-  const display = group('Map display', ['players', 'bots', 'player-names', 'heat']);
+  const display = group('Map display', ['players', 'bots', 'player-names', 'name-size', 'heat']);
   for (const [toggle, slider] of [['trails', 'trail-transparency'], ['deaths', 'death-transparency']]) {
     const row = document.createElement('div'); row.className = 'replay-overlay';
     row.append(el(toggle).closest('label'), el(slider).closest('label')); display.append(row);
@@ -103,7 +103,7 @@ export function setupReplay(panel, refresh, stage) {
       else if (id) viewer.stopFollowing();
     } finally { syncingFollow = false; }
   }
-  const overlayOptions = () => ({ ...options(), trailUnitTypes: selectedTypes('trail-type'), deathUnitTypes: selectedTypes('death-type'), playerNames: el('player-names').checked, heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
+  const overlayOptions = () => ({ ...options(), trailUnitTypes: selectedTypes('trail-type'), deathUnitTypes: selectedTypes('death-type'), playerNames: el('player-names').checked, playerNameScale: Number(el('name-size').value) / 100, heatmap: el('heat').checked, trails: el('trails').checked, trailOpacity: 1 - Number(el('trail-transparency').value) / 100, deaths: el('deaths').checked, deathOpacity: 1 - Number(el('death-transparency').value) / 100, followSoldier: el('follow').value });
   function update() {
     if (!selected) return;
     strengthChart?.update(t);
@@ -163,25 +163,6 @@ export function setupReplay(panel, refresh, stage) {
     }
     refresh();
   }
-  el('files').addEventListener('change', async event => {
-    const token = ++inputGeneration;
-    try {
-      const files = [...event.target.files];
-      if (loaded.length + files.length > 20 || files.reduce((sum, f) => sum + f.size, totalBytes) > MAX_BYTES + 12 * 1024 * 1024) throw new Error('Import limit: 20 files and 76 MiB total. Clear recordings first.');
-      const next = [];
-      for (const file of files) { const value = await loadRecording(await file.text()); next.push({ ...value, bytes: file.size }); }
-      if (token !== inputGeneration) return;
-      for (const value of next) {
-        if (loaded.some(x => x.replay.header.id === value.replay.header.id)) continue;
-        loaded.push(value); totalBytes += value.bytes;
-        const option = document.createElement('option'); option.value = String(loaded.length - 1);
-        option.textContent = `${value.replay.header.synthetic ? '[SYNTHETIC] ' : ''}${value.replay.header.id}${value.replay.incomplete ? ' (incomplete)' : ''}`;
-        el('selection').append(option);
-      }
-      if (loaded.length) { el('selection').value = String(loaded.length - 1); choose(loaded.length - 1); }
-    } catch (error) { el('status').textContent = `Replay could not load: ${error.message}`; }
-    event.target.value = '';
-  });
   el('selection').addEventListener('change', event => choose(event.target.value === '' ? -1 : Number(event.target.value)));
   el('clear').addEventListener('click', () => { inputGeneration++; loaded = []; totalBytes = 0; el('selection').replaceChildren(new Option('Select a recording', '')); choose(-1); el('status').textContent = 'Recordings cleared.'; });
   el('timeline').addEventListener('input', event => { stop(); t = Number(event.target.value); update(); });
@@ -199,7 +180,7 @@ export function setupReplay(panel, refresh, stage) {
   for (const key of ['players', 'bots', 'player-names', 'heat', 'trails', 'deaths', 'squad', 'soldier', ...['unit-type', 'trail-type', 'death-type'].flatMap(prefix => ['cavalry', 'artillery', 'infantry'].map(type => `${prefix}-${type}`))]) el(key).addEventListener('change', () => {
     try { update(); } catch (error) { stop(); el('heat').checked = el('trails').checked = false; update(); el('status').textContent = error.message; }
   });
-  for (const key of ['trail-transparency', 'death-transparency']) el(key).addEventListener('input', () => {
+  for (const key of ['trail-transparency', 'death-transparency', 'name-size']) el(key).addEventListener('input', () => {
     el(`${key}-value`).textContent = `${el(key).value}%`;
     update();
   });
