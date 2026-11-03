@@ -1,14 +1,14 @@
 import { VIDEO_FPS } from './replay-video-model.js';
 
-const bitrateFor = height => height === 720 ? 5_000_000 : 9_000_000;
+const bitrateFor = (width, height) => Math.min(width, height) === 720 ? 5_000_000 : 9_000_000;
 const media = () => import('mediabunny');
 
 export async function checkMp4Support({ width, height }) {
   if (!window.isSecureContext || typeof window.showSaveFilePicker !== 'function') return 'Save MP4 requires desktop Chrome or Edge over HTTPS (or localhost).';
   if (typeof VideoEncoder === 'undefined') return 'This browser does not provide video encoding. Open this replay in desktop Chrome or Edge.';
   const { canEncodeVideo } = await media();
-  const supported = await canEncodeVideo('avc', { width, height, frameRate: VIDEO_FPS, bitrate: bitrateFor(height) });
-  return supported ? '' : `H.264 encoding is unavailable at ${height}p on this device. Try 720p or another desktop Chrome/Edge device.`;
+  const supported = await canEncodeVideo('avc', { width, height, frameRate: VIDEO_FPS, bitrate: bitrateFor(width, height) });
+  return supported ? '' : `H.264 encoding is unavailable at ${width} × ${height} on this device. Try 720p or another desktop Chrome/Edge device.`;
 }
 
 // The caller owns the file transaction: only success commits it. In particular,
@@ -25,7 +25,7 @@ export async function encodeMp4({ canvas, schedule, render, file, signal, onProg
       write(chunk) { signal.throwIfAborted(); return writable.write(chunk); },
     }), { chunked: true, chunkSize: 1024 * 1024 });
     output = new Output({ format: new Mp4OutputFormat({ fastStart: 'reserve' }), target });
-    const source = new CanvasSource(canvas, { codec: 'avc', bitrate: bitrateFor(canvas.height), keyFrameInterval: 2 });
+    const source = new CanvasSource(canvas, { codec: 'avc', bitrate: bitrateFor(canvas.width, canvas.height), keyFrameInterval: 2 });
     output.addVideoTrack(source, { maximumPacketCount: schedule.frames });
     await output.start();
     let lastYield = performance.now();

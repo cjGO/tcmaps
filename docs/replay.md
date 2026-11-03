@@ -196,12 +196,40 @@ following resumes when samples return. Before the soldier's first sample, the
 camera waits in the overview. Rewinding resolves the pose from the selected time.
 Positions and facing are sampled approximations, including the death location.
 
+### Cinematic camera
+
+Enable **Cinematic camera** in the player's camera controls to track the battle
+with a moving aerial view. Both replay versions and MP4 export share this mode.
+Nearby opposing forces and recent recorded casualties receive extra attention;
+the camera considers the whole battle independently of display filters. Missing
+positions fall back to a terrain overview. The viewing path clears measured
+terrain, including exaggerated heights; placed objects are not collision-tested.
+
+- **Orbit speed:** −6 to 6 degrees per playback second. Negative values reverse
+  direction; zero holds the viewing direction while tracking the battle.
+- **Viewing angle:** 25–75 degrees above the horizon.
+- **Terrain context:** widens from the action toward the full map at 100%.
+- **Smoothing:** 2–20 replay seconds. Larger values ease transitions over a longer
+  stretch of the recording, with a small amount of lookahead for framing.
+
+The path is deterministic at each replay time, including after reverse seeks.
+Drag/zoom the view, press Escape while the map is focused, choose a camera preset,
+or follow a soldier to return to manual or soldier control. Camera motion pauses
+with the replay. Changing playback speed also changes the orbit phase at the
+current time, keeping orbit speed consistent per playback second.
+
 ### Share a replay as MP4
 
 Select overlays and filters, position the camera, then choose **Export MP4**.
 The preview includes the map on the left and whole-team army stats on the right.
+Choose **9:16 · Portrait** for a fitted 3D view above live counts and the bots-alive
+plot. Portrait exports are 1080 × 1920 or 720 × 1280, with blank branding margins
+of 10% at the top and bottom and about 6% at each side. The plot unfolds through
+the current frame; its vertical scale uses only counts already revealed.
 Choose **Current view** to keep your camera framing (or follow the selected
-soldier), or **Full-map overhead** to fit the map without following. Names, trails,
+soldier), **Full-map overhead** to fit the map without following, or **Cinematic
+camera** for a moving battle view. Cinematic settings carry over from the player
+and can be adjusted independently in the export dialog. Names, trails,
 deaths, heatmap, transparency, and terrain appearance use the settings captured
 when opening the preview. Close and reopen it to capture new viewer settings.
 

@@ -4,6 +4,8 @@ import { replayAssets, replayVariantAssets } from './replay-variant-assets.js';
 import './experimental-replay.css';
 import { resolveDisplayMetadata, UNIT_TYPES, displayMeta, movementAdapter, experimentalViewAt, experimentalStrengthAt } from './experimental-replay-presentation.js';
 import { createBotStrengthChart } from './replay-strength.js';
+import { createCinematicCamera } from './replay-cinematic-camera.js';
+import { createCinematicControls } from './replay-cinematic-controls.js';
 
 const syntheticURL = new URL('../tests/fixtures/SYNTHETIC-experimental-artillery.jsonl', import.meta.url).href;
 const elapsed = ms => `${Math.floor(ms / 60000)}:${(ms / 1000 % 60).toFixed(3).padStart(6, '0')}`;
@@ -21,7 +23,7 @@ export function setupExperimentalReplay(root) {
       <div class="exp-toolbar"><label>Terrain overlay<select data-exp="terrain"><option value="">Neutral reference grid</option></select></label><label>Camera<select data-exp="camera"><option value="aerial">Aerial</option><option value="overhead">Overhead</option><option value="reverse">Opposite side</option></select></label><label>Height<select data-exp="height"><option value="1">1× · true scale</option><option value="2">2×</option><option value="4">4×</option></select></label><label>Player name size<input data-exp="name-size" type="range" min="10" max="100" step="5" value="50"><output data-exp="name-size-value">50%</output></label><label>Unit placement<select data-exp="placement"><option value="terrain">Follow terrain</option><option value="recorded">Recorded heights</option></select></label><button data-exp="reset">Reset view</button></div>
       <div class="exp-stage" data-exp="stage"></div>
       <p data-exp="visible" class="exp-muted"></p>
-      <div class="exp-transport"><button data-exp="play" aria-pressed="false" disabled>▶ Play</button><button data-exp="restart">Restart</button><button data-exp="previous">← Event</button><button data-exp="next">Event →</button><label>Speed<select data-exp="speed"><option>0.25</option><option>0.5</option><option selected>1</option><option>2</option><option>3</option><option>5</option><option>10</option><option>30</option><option>60</option></select>×</label><label class="exp-scrubber">Capture elapsed<input data-exp="timeline" aria-label="Experimental replay timeline" type="range" step="1"></label><output data-exp="time"></output></div>
+      <div class="exp-transport"><button data-exp="play" aria-pressed="false" disabled>▶ Play</button><button data-exp="restart">Restart</button><button data-exp="previous">← Event</button><button data-exp="next">Event →</button><label>Speed<select data-exp="speed"><option>0.25</option><option>0.5</option><option>1</option><option>2</option><option selected>3</option><option>5</option><option>10</option><option>30</option><option>60</option></select>×</label><label class="exp-scrubber">Capture elapsed<input data-exp="timeline" aria-label="Experimental replay timeline" type="range" step="1"></label><output data-exp="time"></output></div>
       <div data-exp="strength" class="exp-strength replay-strength"></div>
       <fieldset class="exp-layers"><legend>Soldiers & movement</legend><div>
         <label><input data-exp="players" type="checkbox" checked>Players</label><label><input data-exp="bots" type="checkbox" checked>Bots</label><label><input data-exp="horses" type="checkbox" checked>Explicit horses</label><label><input data-exp="names" type="checkbox" checked>Player names</label><label><input data-exp="bot-deaths" type="checkbox" checked>Persistent bot deaths</label><label><input data-exp="heatmap" type="checkbox">Movement heatmap</label>
@@ -35,6 +37,11 @@ export function setupExperimentalReplay(root) {
       <div class="exp-toolbar"><button data-exp="mp4" disabled>Export MP4…</button></div>
     </div>`;
   const el = name => root.querySelector(`[data-exp="${name}"]`);
+  el('camera').append(new Option('Cinematic camera', 'cinematic'));
+  const cinematicControls = createCinematicControls(el('loaded'), update);
+  cinematicControls.element.hidden = true;
+  el('camera').closest('.exp-toolbar').after(cinematicControls.element);
+  let cinematicCamera;
   el('examples').append(new Option('SYNTHETIC · artillery, contacts & fragments', syntheticURL));
   if (el('examples').options.length > 1) el('examples').selectedIndex = 1;
   let manifest;
@@ -90,6 +97,10 @@ export function setupExperimentalReplay(root) {
     el('follow-status').textContent = !follow ? '' : !pose ? 'Waiting for the first recorded position.' : pose.ended ? 'Unit removed; holding the final recorded position.' : pose.holding ? 'Recording gap; holding the last recorded position.' : 'Following recorded position and facing. Press Escape to return to the free camera.';
     syncingFollow = true;
     try { if (pose) viewer?.followSoldier(pose); else if (follow) viewer?.stopFollowing(); } finally { syncingFollow = false; }
+    if (el('camera').value === 'cinematic' && viewer) {
+      cinematicCamera ??= createCinematicCamera(replay, data);
+      viewer.renderCinematic(cinematicCamera.at(t, { settings: cinematicControls.value(), speed: Number(el('speed').value), aspect: viewer.aspect, scale: viewer.heightScale }));
+    }
     const started = performance.now();
     lastStats = layer?.update({ t, seq, layers: layers(), density: Number(el('density').value), ...displayOptions() });
     if (lastStats) { frameSamples.push(performance.now() - started); if (frameSamples.length > 600) frameSamples.shift(); }
@@ -98,6 +109,7 @@ export function setupExperimentalReplay(root) {
     el('visible').textContent = lastStats ? `${lastStats.soldiers} soldiers · ${lastStats.horses} horses · ${lastStats.projectiles} projectiles · ${lastStats.effects} active effects · ${lastStats.botDeaths} bot death markers · ${lastStats.trailSegments} trail segments. ${lastStats.historyError || ''} Display caps: ${el('density').value} per effect layer/projectiles; source counts remain intact.` : 'Preparing 3D preview…';
   }
   async function attach() {
+    cinematicCamera = null;
     detach(); if (!visible || !replay || !data) return;
     const token = generation;
     try {
@@ -125,7 +137,9 @@ export function setupExperimentalReplay(root) {
         else { const kind = ref.entity ? 'entity' : 'projectile'; el('focus-type').value = kind; el('focus-id').value = ref[kind]; }
       } });
       viewer.onFollowEnd(() => { if (syncingFollow) return; el('follow').value = ''; update(); });
-      viewer.exaggeration(Number(el('height').value)); viewer.preset(el('camera').value); viewer.resize(); update(); el('play').disabled = el('mp4').disabled = false;
+      viewer.exaggeration(Number(el('height').value)); viewer.preset(el('camera').value === 'cinematic' ? 'aerial' : el('camera').value);
+      viewer.onCinematicEnd(() => { el('camera').value = 'aerial'; cinematicControls.element.hidden = true; });
+      viewer.resize(); update(); el('play').disabled = el('mp4').disabled = false;
     } catch (error) { detach(); el('status').textContent = `3D unavailable: ${error.message}.`; }
   }
   function cancelParsing() { worker?.terminate(); worker = null; rejectWorker?.(new Error('Import replaced')); rejectWorker = null; }
@@ -201,12 +215,22 @@ export function setupExperimentalReplay(root) {
   el('previous').addEventListener('click', () => { if (!replay) return; const events = replay.events, i = eventIndex(events, t, seq); selectEvent(events[i >= 0 && events[i].t === t && events[i].seq === seq ? i - 1 : i]); });
   el('next').addEventListener('click', () => { if (replay) selectEvent(replay.events[eventIndex(replay.events, t, seq) + 1]); });
   el('focus').addEventListener('click', () => { const ref = { [el('focus-type').value]: Number(el('focus-id').value) }; el('focus-status').textContent = layer?.focus(ref) ? 'Focused recorded entity/projectile.' : 'No recorded position for this ID at the current time.'; });
-  el('camera').addEventListener('change', () => viewer?.preset(el('camera').value)); el('height').addEventListener('change', () => { viewer?.exaggeration(Number(el('height').value)); update(); });
+  el('camera').addEventListener('change', () => {
+    const mode = el('camera').value;
+    cinematicControls.element.hidden = mode !== 'cinematic';
+    if (mode === 'cinematic') {
+      el('follow').value = ''; syncingFollow = true;
+      try { viewer?.stopFollowing(); } finally { syncingFollow = false; }
+      update();
+    } else { viewer?.preset(mode); el('camera').value = mode; }
+  });
+  el('speed').addEventListener('change', update);
+  el('height').addEventListener('change', () => { viewer?.exaggeration(Number(el('height').value)); update(); });
   el('name-size').addEventListener('input', () => { el('name-size-value').textContent = `${el('name-size').value}%`; update(); });
-  el('reset').addEventListener('click', () => viewer?.preset(el('camera').value));
+  el('reset').addEventListener('click', () => { if (el('camera').value === 'cinematic') update(); else viewer?.preset(el('camera').value); });
   for (const key of ['players', 'bots', 'horses', 'names', 'bot-deaths', 'heatmap', 'soldier', 'squad', 'placement']) el(key).addEventListener('change', update);
   for (const key of ['trail-opacity', 'death-opacity']) el(key).addEventListener('input', update);
-  el('follow').addEventListener('change', () => { if (!el('follow').value) { syncingFollow = true; try { viewer?.stopFollowing(); } finally { syncingFollow = false; } } update(); });
+  el('follow').addEventListener('change', () => { if (el('follow').value) { viewer?.stopCinematic(); el('camera').value = 'aerial'; cinematicControls.element.hidden = true; } else { syncingFollow = true; try { viewer?.stopFollowing(); } finally { syncingFollow = false; } } update(); });
   el('export-heat').addEventListener('click', () => {
     try { const rows = layer?.heatmap() || []; download('x_m,y_m,soldier_seconds\n' + rows.filter(row => row.soldier_seconds > 0).map(row => [row.x_m, row.y_m, row.soldier_seconds].join(',')).join('\n'), `${replay.header.id}-heatmap-${t}.csv`, 'text/csv'); } catch (error) { el('status').textContent = `Heatmap export unavailable: ${error.message}`; }
   });
@@ -216,6 +240,7 @@ export function setupExperimentalReplay(root) {
     stop(); viewer.pauseExplorer(); closeVideo?.();
     const token = generation;
     const snapshot = { replay, data, reference, metadata, t: t >= replay.last ? replay.first : t, clipEnd: replay.last,
+      cameraMode: el('camera').value === 'cinematic' ? 'cinematic' : 'current', cinematic: cinematicControls.value(),
       speed: Number(el('speed').value), overlays: { ...displayOptions(), layers: layers(), density: Number(el('density').value) },
       view: viewer.captureViewState(), mapLabel: `v2 · ${replay.header.map.map_id || replay.header.id} · ${alignment}` };
     el('mp4').disabled = true;

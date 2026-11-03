@@ -12,7 +12,16 @@ export function videoReplayModel(replay) {
 }
 
 export const VIDEO_FPS = 30;
-export const videoSize = resolution => resolution === '720' ? { width: 1280, height: 720 } : { width: 1920, height: 1080 };
+export function videoSize(resolution, layout = 'landscape') {
+  const short = resolution === '720' ? 720 : 1080, long = short * 16 / 9;
+  return layout === 'portrait' ? { width: short, height: long } : { width: long, height: short };
+}
+
+// Derive the scale only from revealed data, including when seeking backwards.
+export function videoChartHistory(history, t) {
+  const points = history.points.slice(0, upperIndex(history.points, t) + 1);
+  return { teams: history.teams, points, max: points.reduce((max, point) => Math.max(max, ...point.counts), 1) };
+}
 
 // The media clock is independent of rendering/encoding wall time.
 export function videoSchedule(replay, { start, end, speed }) {

@@ -113,6 +113,7 @@
 .replay-video-options :is(input, select) { width: 100%; min-width: 0; box-sizing: border-box; }
 .replay-video-preview { overflow: hidden; background: #101d29; border-radius: 8px; aspect-ratio: 16 / 9; }
 .replay-video-preview canvas { display: block; width: 100%; height: auto; }
+.replay-video-preview.is-portrait { aspect-ratio: 9 / 16; width: min(100%, 42vh); margin-inline: auto; }
 .replay-video-scrub { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 12px; font-size: .85rem; }
 .replay-video-scrub input { width: 100%; accent-color: #426842; }
 .replay-video-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }

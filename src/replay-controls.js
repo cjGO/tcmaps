@@ -4,6 +4,8 @@ import { createBotStrengthChart } from './replay-strength.js';
 import { replayLink, replayWindow } from './replay-link.js';
 import './replay.css';
 import { replayAssets, replayVariantAssets } from './replay-variant-assets.js';
+import { createCinematicCamera } from './replay-cinematic-camera.js';
+import { createCinematicControls } from './replay-cinematic-controls.js';
 
 const loadRecording = async input => parseRecording(input, { manifest: (await replayAssets).manifest, async loadTerrain(url) {
   const response = await fetch(import.meta.env.BASE_URL + url.replace(/^\//, ''));
@@ -15,7 +17,7 @@ export function setupReplay(panel, refresh, stage) {
   const root = document.createElement('section'); root.className = 'replay-controls';
   root.setAttribute('aria-label', 'Tactical replay');
   root.innerHTML = `<div class="replay-toolbar"><label>Recording <select data-replay="selection"><option value="">Select a recording</option></select></label><button data-replay="clear">Clear recordings</button></div>
-    <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option>5</option><option selected>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label>Player name size<input data-replay="name-size" type="range" min="10" max="100" step="5" value="50"><output data-replay="name-size-value">50%</output></label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
+    <div data-replay="transport" hidden><div class="replay-toolbar"><button class="replay-play" data-replay="play" aria-pressed="false">▶ Play</button><label>Speed <select data-replay="speed"><option>1</option><option selected>3</option><option>5</option><option>10</option><option>30</option><option>60</option></select>×</label><label><input type="checkbox" data-replay="players" checked>Players</label><label><input type="checkbox" data-replay="bots" checked>Bots</label><label><input type="checkbox" data-replay="player-names" checked>Player names</label><label>Player name size<input data-replay="name-size" type="range" min="10" max="100" step="5" value="50"><output data-replay="name-size-value">50%</output></label><label><input type="checkbox" data-replay="heat">Movement heatmap so far</label><label><input type="checkbox" data-replay="trails">Trails so far</label><label>Trail transparency <input type="range" data-replay="trail-transparency" min="0" max="100" step="1" value="75"><output data-replay="trail-transparency-value">75%</output></label><label><input type="checkbox" data-replay="deaths" checked>Bot deaths</label><label>Bot death transparency <input type="range" data-replay="death-transparency" min="0" max="100" step="1" value="75"><output data-replay="death-transparency-value">75%</output></label><label>Squad <select data-replay="squad"><option value="">All squads</option></select></label><label>Soldier <select data-replay="soldier"><option value="">All soldiers</option></select></label><label>Follow soldier <select data-replay="follow"><option value="">Free camera</option></select></label><output data-replay="follow-status" role="status"></output><button data-replay="export">Export all loaded rounds heatmap JSON</button></div><div class="replay-strength" data-replay="strength"></div><input data-replay="timeline" aria-label="Replay timeline" type="range" step="100"><output data-replay="time"></output><p>Blue: Team 1 · Red: Team 2 · Yellow: other teams · Square: infantry · Circle: artillery · Triangle: cavalry · White ring: player-controlled. Player names use recorded names, or player IDs when unavailable. X: bot death at last recorded position (approximate). Death markers persist after the death time. Paths between samples are approximations; gaps are hidden.</p></div><p data-replay="status" role="status">Select an available replay above. Trails and the heatmap follow the selected recording and timeline. Export combines loaded rounds of the exact same terrain version.</p>`;
   panel.append(root);
   const el = name => root.querySelector(`[data-replay="${name}"]`);
   const terrainNotice = document.createElement('p');
@@ -73,6 +75,13 @@ export function setupReplay(panel, refresh, stage) {
   transport.querySelector('.replay-toolbar').remove();
   transport.prepend(playback, stage, el('strength'), sharing, groups);
   transport.append(exportRow, guide);
+  const cameraLabel = document.createElement('label');
+  cameraLabel.innerHTML = '<input type="checkbox" data-replay="cinematic"> Cinematic camera';
+  filters.append(cameraLabel);
+  const cinematicControls = createCinematicControls(transport, update);
+  cinematicControls.element.hidden = true;
+  groups.after(cinematicControls.element);
+  let cinematicCamera, unsubscribeCinematic;
   let loaded = [], selected, layer, viewer, frame, playing = false, t = 0, previousFrame, attached = 0, inputGeneration = 0, heatResult, totalBytes = 0, unsubscribeFollow, syncingFollow = false, strengthChart;
   let clipStart = 0, clipEnd = 0, closeVideo;
   const selectedTypes = prefix => ['cavalry', 'artillery', 'infantry'].filter(type => el(`${prefix}-${type}`).checked);
@@ -83,6 +92,7 @@ export function setupReplay(panel, refresh, stage) {
     closeVideo?.(); closeVideo = null; el('mp4').disabled = true;
     variantLayer?.dispose(); variantLayer = null; assetNotice.textContent = '';
     attached++; stop(); unsubscribeFollow?.(); unsubscribeFollow = null;
+    unsubscribeCinematic?.(); unsubscribeCinematic = null; viewer?.stopCinematic();
     el('follow').disabled = true;
     if (el('follow').value) viewer?.stopFollowing();
     layer?.dispose(); layer = viewer = null;
@@ -108,6 +118,10 @@ export function setupReplay(panel, refresh, stage) {
     if (!selected) return;
     strengthChart?.update(t);
     updateFollow();
+    if (el('cinematic').checked && viewer) {
+      cinematicCamera ??= createCinematicCamera(selected.replay, selected.data);
+      viewer.renderCinematic(cinematicCamera.at(t, { settings: cinematicControls.value(), speed: Number(el('speed').value), aspect: viewer.aspect, scale: viewer.heightScale }));
+    }
     const r = selected.replay, count = layer?.update({ t, ...overlayOptions() });
     el('timeline').value = String(t);
     el('time').textContent = `Round ${time(t - r.header.round_start_ms)} · Coverage ${time(r.first - r.header.round_start_ms)}–${time(r.coverageEnd - r.header.round_start_ms)} · ${count ?? 0} visible · ${r.header.sample_interval_ms / 1000}s samples${r.incomplete ? ' · INCOMPLETE' : ` · ${r.end.reason}`}${r.header.synthetic ? ' · SYNTHETIC' : ''}`;
@@ -119,6 +133,7 @@ export function setupReplay(panel, refresh, stage) {
     el('status').textContent = `${heatResult.recordings.length} matching recording(s) · ${(heatResult.soldier_seconds / 60).toFixed(1)} soldier-minutes · 10 m cells. Only intervals with two samples count; large gaps and unrecorded time are excluded. ${selected.replay.header.synthetic ? 'Synthetic demonstration, not real battle data.' : ''}`;
   }
   function choose(index, initial = {}) {
+    cinematicCamera = null;
     stop(); el('follow').value = ''; viewer?.stopFollowing(); selected = loaded[index]; heatResult = null;
     terrainNotice.hidden = !selected?.terrainMatch;
     terrainNotice.textContent = selected?.terrainMatch ? `UNVERIFIED terrain overlay · ${selected.replay.header.map.map_id} · matched test map and variant; recorded source version differs. Terrain alignment is unknown. Heatmap export requires exact terrain.` : '';
@@ -185,9 +200,19 @@ export function setupReplay(panel, refresh, stage) {
     update();
   });
   el('follow').addEventListener('change', () => {
+    if (el('follow').value) { el('cinematic').checked = false; cinematicControls.element.hidden = true; viewer?.stopCinematic(); }
     if (!el('follow').value) viewer?.stopFollowing();
     update();
   });
+  el('cinematic').addEventListener('change', () => {
+    cinematicControls.element.hidden = !el('cinematic').checked;
+    if (el('cinematic').checked) {
+      el('follow').value = ''; syncingFollow = true;
+      try { viewer?.stopFollowing(); } finally { syncingFollow = false; }
+    } else viewer?.stopCinematic();
+    update();
+  });
+  el('speed').addEventListener('change', update);
   el('clip-end').addEventListener('input', () => {
     el('clip-end').setCustomValidity('');
     if (!selected) return;
@@ -226,6 +251,7 @@ export function setupReplay(panel, refresh, stage) {
     stop(); viewer.pauseExplorer(); closeVideo?.();
     const token = attached;
     const snapshot = { ...selected, t, clipEnd, speed: Number(el('speed').value), overlays: overlayOptions(),
+      cameraMode: el('cinematic').checked ? 'cinematic' : 'current', cinematic: cinematicControls.value(),
       view: viewer.captureViewState(), mapLabel: selected.terrainMatch ? `UNVERIFIED terrain · ${selected.replay.header.map.map_id}` : `${selected.replay.header.map.id} · ${selected.replay.header.map.version.slice(0, 10)}` };
     el('mp4').disabled = true;
     try {
@@ -259,6 +285,7 @@ export function setupReplay(panel, refresh, stage) {
     const token = ++attached, { createReplayLayer } = await import('./replay-layer.js');
     if (token !== attached) return;
     viewer = nextViewer;
+    unsubscribeCinematic = viewer.onCinematicEnd(() => { el('cinematic').checked = false; cinematicControls.element.hidden = true; });
     const variant = await replayVariantAssets(selected.replay.header.map);
     if (token !== attached) return;
     if (variant) {

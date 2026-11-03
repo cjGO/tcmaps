@@ -25,6 +25,8 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   const markers = [], resources = [];
   const heightListeners = new Set();
   const followEndListeners = new Set();
+  const cinematicEndListeners = new Set();
+  let cinematic = false;
   let positions, baseHeights, boundary, canvas;
   const b = data.bounds;
   const cx = (b.x_min_m + b.x_max_m) / 2, cy = (b.y_min_m + b.y_max_m) / 2;
@@ -46,7 +48,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   }
   function configureControls() {
     if (!controls) return;
-    controls.enabled = enabled && (!experience || experience.mode === 'orbit');
+    controls.enabled = enabled && !cinematic && (!experience || experience.mode === 'orbit');
     controls.mouseButtons.LEFT = navigation ? THREE.MOUSE.ROTATE : null;
     controls.mouseButtons.RIGHT = navigation ? THREE.MOUSE.PAN : THREE.MOUSE.ROTATE;
     controls.mouseButtons.MIDDLE = navigation ? THREE.MOUSE.DOLLY : THREE.MOUSE.PAN;
@@ -79,8 +81,9 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     else { const height = span * 1.18 * Math.max(1, h / w); camera.left = -height * w / h / 2; camera.right = -camera.left; camera.top = height / 2; camera.bottom = -height / 2; }
     camera.updateProjectionMatrix(); draw(false);
   }
-  function preset(name = 'aerial') {
+  function preset(name = 'aerial', keepCinematic = false) {
     if (disposed) return;
+    if (!keepCinematic) stopCinematic();
     experience?.exit();
     frameCamera = null; renderExploring = false;
     if (boundary) boundary.visible = true;
@@ -136,7 +139,28 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     for (const listener of heightListeners) listener(scale);
   }
   function exaggeration(value) {
-    experience?.exit(); updateHeights(value); preset(activeView);
+    experience?.exit(); updateHeights(value); preset(activeView, cinematic);
+  }
+  function stopCinematic() {
+    if (!cinematic) return;
+    cinematic = false; frameCamera = null; configureControls();
+    for (const listener of cinematicEndListeners) listener();
+  }
+  function interruptCinematic(event) {
+    if (event.type !== 'keydown' || event.key === 'Escape') stopCinematic();
+  }
+  function renderCinematic(pose) {
+    if (!cinematic) {
+      preset('aerial'); cinematic = true; configureControls();
+    }
+    frameCamera = null; renderExploring = false;
+    camera.fov = pose.fov; camera.zoom = 1;
+    camera.position.fromArray(pose.position);
+    const target = new THREE.Vector3().fromArray(pose.target);
+    if (controls) controls.target.copy(target);
+    renderTarget = target;
+    camera.lookAt(target); camera.updateProjectionMatrix();
+    frameCamera = camera.clone(); // Preserve this framing if the paused viewport resizes.
   }
   function applyGraphics(next) {
     Object.assign(graphics, next);
@@ -178,8 +202,10 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   function dispose() {
     if (disposed) return; disposed = true;
     heightListeners.clear();
+    cinematicEndListeners.clear();
     experience?.dispose(); observer?.disconnect(); controls?.dispose();
     canvas?.removeEventListener('webglcontextlost', lost);
+    for (const type of ['pointerdown', 'wheel', 'keydown']) canvas?.removeEventListener(type, interruptCinematic, true);
     densityLayer?.dispose(); geometry.dispose(); material.dispose();
     for (const resource of resources) resource.dispose();
     sun.shadow.dispose();
@@ -220,6 +246,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     if (options.renderOnly) { canvas.style.width = `${options.width}px`; canvas.style.height = `${options.height}px`; }
     canvas.setAttribute('aria-label', 'Custom map 1 interactive topology. Drag to orbit, scroll to zoom, right-drag or arrow keys to pan.');
     container.append(canvas); canvas.addEventListener('webglcontextlost', lost);
+    for (const type of ['pointerdown', 'wheel', 'keydown']) canvas.addEventListener(type, interruptCinematic, true);
     canvas.addEventListener('keydown', event => { if (event.key.startsWith('Arrow')) event.stopPropagation(); });
     if (!options.renderOnly) { observer = new ResizeObserver(resize); observer.observe(container); }
     exaggeration(1);
@@ -228,6 +255,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       canvas, pick, spawns: () => activeSpawns, graphics: applyGraphics,
       followEnded() { for (const listener of followEndListeners) listener(); },
       begin() {
+        stopCinematic();
         returnView = { camera, scale, wireframe: material.wireframe };
         controls.enabled = false; updateHeights(1);
         camera = new THREE.PerspectiveCamera(60, 1, .08, 10000); camera.up.set(0, 0, 1);
@@ -250,7 +278,9 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       },
       modeChanged(mode) { configureControls(); options.onModeChange?.(mode); },
     }, experienceStyles);
-    return { preset, exaggeration, dispose, resize, canvas, draw, pick, captureViewState, applyViewState, renderSoldier,
+    return { preset, exaggeration, dispose, resize, canvas, draw, pick, captureViewState, applyViewState, renderSoldier, renderCinematic, stopCinematic,
+      get aspect() { return Math.max(.1, (options.width || container.clientWidth || 1) / (options.height || container.clientHeight || 1)); },
+      onCinematicEnd(listener) { cinematicEndListeners.add(listener); return () => cinematicEndListeners.delete(listener); },
       density(result, settings) {
         if (!densityLayer && !result) return;
         if (!densityLayer) { densityLayer = createDensityLayer(geometry, data); scene.add(densityLayer.mesh); }
@@ -272,6 +302,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
         draw();
       },
       focus(box) {
+        stopCinematic();
         experience.exit();
         if (box.isEmpty()) return;
         const sphere = box.getBoundingSphere(new THREE.Sphere()), radius = Math.max(.5, sphere.radius);

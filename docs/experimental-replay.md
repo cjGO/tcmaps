@@ -108,8 +108,10 @@ manufactured impacts are provided. Probe events are inspectable without implying
 ordinary installed native-missile coverage. MP4 export uses the same preview,
 clip settings, live army statistics and encoder
 as stable replays, with experimental combat effects and selected display layers.
-Clip times are capture elapsed seconds. Current-view and overhead cameras,
+Clip times are capture elapsed seconds. Current-view, overhead and cinematic cameras,
 720p/1080p, speed settings and cancellation follow the stable export flow.
+The player's Camera menu also offers **Cinematic camera**, with adjustable orbit
+speed, viewing angle, terrain context and smoothing. See [cinematic camera controls](replay.md#cinematic-camera).
 
 The actual recorder uses native Euler degrees, not stable replay millidegrees.
 `map_editor/replay.lua` verifies a local +Y displacement against

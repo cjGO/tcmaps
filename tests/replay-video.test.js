@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { videoSchedule, videoStatsHistory, videoStatsAt, videoReplayModel } from '../src/replay-video-model.js';
+import { videoSchedule, videoStatsHistory, videoStatsAt, videoReplayModel, videoSize, videoChartHistory } from '../src/replay-video-model.js';
 import { parseExperimentalJournal } from '../src/experimental-replay.js';
 import { experimentalStrengthAt } from '../src/experimental-replay-presentation.js';
 import { experimentalFixture, journal, finalize } from './fixtures/experimental-fixtures.js';
@@ -16,6 +16,28 @@ const replay = { header: { round_start_ms: 10000 }, first: 12000, coverageEnd: 3
   [6, track(6, 29000, 29000, [meta(29000, 2)])],
   [7, track(7, 29000, 31000, [meta(29000, 0)])],
 ]) };
+
+test('export dimensions support landscape and portrait at both resolutions', () => {
+  assert.deepEqual(videoSize('1080'), { width: 1920, height: 1080 });
+  assert.deepEqual(videoSize('720'), { width: 1280, height: 720 });
+  assert.deepEqual(videoSize('1080', 'portrait'), { width: 1080, height: 1920 });
+  assert.deepEqual(videoSize('720', 'portrait'), { width: 720, height: 1280 });
+});
+
+test('chart reveals only past counts and never uses a future peak, including reverse seeks', () => {
+  const history = { teams: [0, 1], max: 90, points: [
+    { t: 0, counts: [10, 10] }, { t: 1000, counts: [5, 8] },
+    { t: 2000, counts: [90, 0] }, { t: 3000, counts: [0, 0] },
+  ] };
+  const first = videoChartHistory(history, 0);
+  assert.equal(first.points.length, 1); assert.equal(first.max, 10);
+  const before = videoChartHistory(history, 1999);
+  assert.deepEqual(before.points.map(p => p.t), [0, 1000]); assert.equal(before.max, 10);
+  assert.equal(videoChartHistory(history, 2000).max, 90);
+  assert.equal(videoChartHistory(history, 3000).points.length, 4);
+  assert.deepEqual(videoChartHistory(history, 0), first);
+  assert.equal(history.points.length, 4);
+});
 
 test('video stats count real bot deaths without positions, independently of bot control and despawns', () => {
   const history = videoStatsHistory(replay);

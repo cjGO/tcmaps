@@ -1,6 +1,7 @@
 import { createVideoRenderer } from './replay-video-renderer.js';
 import { checkMp4Support, encodeMp4 } from './replay-video-encoder.js';
 import { videoSchedule, videoSize, videoClock, videoReplayModel, isExperimentalVideo } from './replay-video-model.js';
+import { createCinematicControls } from './replay-cinematic-controls.js';
 
 export function openVideoExport(snapshot) {
   const dialog = document.createElement('dialog'); dialog.className = 'replay-video-dialog';
@@ -8,11 +9,13 @@ export function openVideoExport(snapshot) {
   dialog.innerHTML = `<div class="replay-video-heading"><div><h2 id="replay-video-title">Export replay MP4</h2><p>Map, live army stats, and your selected overlays. Silent video · 30 fps.</p></div><button type="button" data-video="close" aria-label="Close MP4 export">Close</button></div>
     <fieldset class="replay-video-options"><legend>Video settings</legend>
       <label>Camera<select data-video="camera"><option value="current">Current view</option><option value="overhead">Full-map overhead</option></select></label>
+      <label>Layout<select data-video="layout"><option value="landscape">16:9 · Landscape</option><option value="portrait">9:16 · Portrait</option></select></label>
       <label>Resolution<select data-video="resolution"><option value="1080">1080p</option><option value="720">720p</option></select></label>
       <label>Start (round seconds)<input data-video="start" type="number" step="0.001" required></label>
       <label>End (round seconds)<input data-video="end" type="number" step="0.001" required></label>
       <label>Speed<select data-video="speed"><option>1</option><option>5</option><option>10</option><option>30</option><option>60</option></select>×</label>
     </fieldset>
+    <p data-video="layout-note" hidden>Portrait fits the 3D view above the bots-alive plot. Future chart data stays hidden. Blank margins reserve 10% at the top and bottom and 6% at the sides for future branding.</p>
     <p data-video="duration"></p><div class="replay-video-preview" data-video="preview"></div>
     <label class="replay-video-scrub">Preview time<output data-video="time"></output><input data-video="timeline" type="range" step="0.001" aria-label="Video preview time"></label>
     <p data-video="compatibility" role="status"></p>
@@ -20,6 +23,13 @@ export function openVideoExport(snapshot) {
     <p data-video="status" role="status" aria-live="polite">Preparing preview…</p>`;
   document.body.append(dialog); dialog.showModal();
   const el = key => dialog.querySelector(`[data-video="${key}"]`);
+  el('camera').append(new Option('Cinematic camera', 'cinematic'));
+  el('camera').value = snapshot.cameraMode || 'current';
+  // Rebuild on change below; input events only update the slider readout.
+  const cinematicControls = createCinematicControls(dialog, undefined, snapshot.cinematic);
+  dialog.querySelector('.replay-video-options').after(cinematicControls.element);
+  cinematicControls.element.querySelector('p').textContent = 'Follows opposing forces and recent casualties across the whole battle. Scrub the preview to inspect the camera path.';
+  cinematicControls.element.hidden = el('camera').value !== 'cinematic';
   const replay = videoReplayModel(snapshot.replay), origin = replay.header.round_start_ms;
   if (isExperimentalVideo(snapshot.replay)) {
     for (const key of ['start', 'end']) el(key).parentElement.firstChild.textContent = `${key === 'start' ? 'Start' : 'End'} (capture seconds)`;
@@ -28,9 +38,12 @@ export function openVideoExport(snapshot) {
   for (const key of ['start', 'end']) { el(key).min = String(first); el(key).max = String(last); }
   el('start').value = String((snapshot.t - origin) / 1000);
   el('end').value = String((snapshot.clipEnd - origin) / 1000);
+  if (Number.isFinite(snapshot.speed) && snapshot.speed > 0 && ![...el('speed').options].some(option => Number(option.value) === snapshot.speed)) {
+    el('speed').append(new Option(String(snapshot.speed), String(snapshot.speed)));
+  }
   el('speed').value = String(snapshot.speed);
   let renderer, schedule, settings, controller, disposed = false, generation = 0, busy = false, unsupported = true, graphicsError = '';
-  const options = () => ({ ...snapshot, ...videoSize(el('resolution').value), cameraMode: el('camera').value, speed: Number(el('speed').value) });
+  const options = () => ({ ...snapshot, ...videoSize(el('resolution').value, el('layout').value), cameraMode: el('camera').value, cinematic: cinematicControls.value(), speed: Number(el('speed').value) });
   function status(message) { if (!disposed) el('status').textContent = message; }
   function graphicsLost(message) {
     graphicsError = message; controller?.abort(new Error(message));
@@ -44,6 +57,9 @@ export function openVideoExport(snapshot) {
     } catch (error) { graphicsLost(error.message); }
   }
   async function update() {
+    cinematicControls.element.hidden = el('camera').value !== 'cinematic';
+    el('preview').classList.toggle('is-portrait', el('layout').value === 'portrait');
+    el('layout-note').hidden = el('layout').value !== 'portrait';
     const token = ++generation;
     el('save').disabled = true; schedule = null;
     try {
@@ -53,7 +69,7 @@ export function openVideoExport(snapshot) {
       el('timeline').min = el('start').value; el('timeline').max = el('end').value;
       el('timeline').value = el('start').value;
       const next = options();
-      if (!settings || settings.width !== next.width || settings.cameraMode !== next.cameraMode || settings.speed !== next.speed) {
+      if (!settings || settings.width !== next.width || settings.height !== next.height || settings.cameraMode !== next.cameraMode || settings.speed !== next.speed || JSON.stringify(settings.cinematic) !== JSON.stringify(next.cinematic)) {
         renderer?.dispose(); renderer = null; graphicsError = '';
         renderer = createVideoRenderer(next, graphicsLost); settings = next;
         el('preview').replaceChildren(renderer.canvas);
@@ -78,7 +94,8 @@ export function openVideoExport(snapshot) {
   }
   function setBusy(value) {
     busy = value;
-    dialog.querySelector('fieldset').disabled = value; el('timeline').disabled = value;
+    for (const fieldset of dialog.querySelectorAll('fieldset')) fieldset.disabled = value;
+    el('timeline').disabled = value;
     el('save').disabled = value || unsupported || !schedule || !!graphicsError;
     el('cancel').hidden = el('progress').hidden = !value;
   }
