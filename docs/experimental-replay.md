@@ -134,10 +134,12 @@ as such in the legend. No ballistic equations are substituted. Current bundled v
 tests use labelled synthetic commands, not claims of engine-perfect physics;
 browser checks also exercise recorded artillery launches.
 
-Native fog is preserved but not applied: its complete semantics are not
-established, and the real sample's `distance_m: -1` is a sentinel. Viewer haze is
-identified as preview lighting. Original props, exact mesh intersections and
-native weather are not reconstructed.
+Both replay views offer **Recorded fog**, unchecked by default. When enabled,
+a positive recorded distance and valid colour override preview haze, including
+in MP4 exports. Falloff is an approximation of the game. Missing, disabled or
+nonpositive fog values (including the native `-1` sentinel) leave the option
+unavailable. Turning it off restores the viewer’s preview haze settings.
+Original props, exact mesh intersections and other native weather are not reconstructed.
 
 ## Terrain identity
 

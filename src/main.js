@@ -180,7 +180,18 @@ const mapAnalytics = setupMapAnalytics(roundStatsHeaders, roundStatsRows, instal
   renderCollection('rotation');
   selectTab('rotation');
 });
-const tabs = ['rotation', 'mapstats', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
+let playerStatsLoading;
+function showPlayerStats() {
+  if (!playerStatsLoading) {
+    $('playerstats-loading').textContent = 'Preparing player statistics…';
+    playerStatsLoading = import('./player-stats-view.js').then(module => module.setupPlayerStats($('playerstats-panel'))).catch(error => {
+      console.error('Player statistics could not load', error);
+      $('playerstats-loading').textContent = 'Player statistics could not load. Reopen this tab to retry.';
+      playerStatsLoading = null;
+    });
+  }
+}
+const tabs = ['rotation', 'mapstats', 'playerstats', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
 const editor = setupEditor(selectTab);
 const topology = setupTopology();
@@ -313,7 +324,8 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   editor.setVisible(name === 'editor');
   experimental.setVisible(name === 'replays' && replayVersion === 2);
   if (name === 'editor') editor.show();
-  $('collection-summary').textContent = name === 'replays' ? `${recordings.length} available replays` : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  if (name === 'playerstats') showPlayerStats();
+  $('collection-summary').textContent = name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? `${recordings.length} available replays` : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);

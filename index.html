@@ -8,6 +8,7 @@
     <div class="page-tabs" role="tablist" aria-label="Map collections">
       <button id="rotation-tab" role="tab" aria-selected="true" aria-controls="rotation-panel">Current rotation</button>
       <button id="mapstats-tab" role="tab" aria-selected="false" aria-controls="mapstats-panel" tabindex="-1">Map stats</button>
+      <button id="playerstats-tab" role="tab" aria-selected="false" aria-controls="playerstats-panel" tabindex="-1">PLAYER STATS</button>
       <button id="replays-tab" role="tab" aria-selected="false" aria-controls="replays-panel" tabindex="-1">Replays</button>
       <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
       <button id="good-tab" role="tab" aria-selected="false" aria-controls="good-panel" tabindex="-1">GOOD MAPS</button>
@@ -124,6 +125,10 @@
         <p id="mapstats-map-note" class="population-note"></p>
         <div id="mapstats-maps" class="analytics-table analytics-map-table" tabindex="0" role="region" aria-label="Per-map round statistics"></div>
       </section>
+    </section>
+    <section id="playerstats-panel" class="player-stats" role="tabpanel" aria-labelledby="playerstats-tab" hidden>
+      <div class="intro"><div><p class="eyebrow">COMMANDER BATTLE · PLAYER INTELLIGENCE</p><h1>Every round tells a story.</h1><p class="subtitle">Explore the leaderboard. Understand the performance behind the rank.</p></div></div>
+      <p id="playerstats-loading" role="status">Open this tab to load player statistics.</p>
     </section>
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
       <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play.</p></div></div>

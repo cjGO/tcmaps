@@ -17,7 +17,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
   let navigation = true, enabled = true, activeSpawns = data.spawns, terrain;
   let experience, returnView, contoursEnabled = false, densityLayer;
   let frameCamera, renderTarget, renderExploring = false;
-  const graphics = { surface: 'elevation', palette: 'terrain', haze: true, fog: 'source', sun: 135, shadows: true };
+  const graphics = { surface: 'elevation', palette: 'terrain', haze: true, fog: 'source', recordedFog: null, sun: 135, shadows: true };
   const raycaster = new THREE.Raycaster();
   const geometry = new THREE.BufferGeometry();
   const surface = createTerrainSurface(data), material = surface.material;
@@ -37,9 +37,9 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     if (disposed || !camera || !renderer || (!options.renderOnly && (!container.clientWidth || !container.clientHeight))) return;
     const range = hazeRange({ exploring: renderExploring || experience?.mode === 'explore', overhead: camera.isOrthographicCamera,
       distance: controls ? camera.position.distanceTo(controls.target) : renderTarget ? camera.position.distanceTo(renderTarget) : span, span, enabled: graphics.haze && graphics.fog !== 'none' });
-    const fogDistance = { low: 600, medium: 450, dense: 300, 100: 100, 150: 150, 200: 200, 250: 250, 350: 350, 400: 400, 500: 500 }[graphics.fog];
+    const fogDistance = graphics.recordedFog?.distance_m ?? { low: 600, medium: 450, dense: 300, 100: 100, 150: 150, 200: 200, 250: 250, 350: 350, 400: 400, 500: 500 }[graphics.fog];
     const mapFog = fogDistance !== undefined;
-    scene.fog.color.set(mapFog ? '#ffffff' : '#c4d5df');
+    scene.fog.color.set(graphics.recordedFog?.colour_rgb ?? (mapFog ? '#ffffff' : '#c4d5df'));
     scene.background.copy(scene.fog.color);
     scene.fog.near = mapFog ? 0 : range.near;
     scene.fog.far = mapFog ? fogDistance : range.far;
@@ -278,7 +278,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
       },
       modeChanged(mode) { configureControls(); options.onModeChange?.(mode); },
     }, experienceStyles);
-    return { preset, exaggeration, dispose, resize, canvas, draw, pick, captureViewState, applyViewState, renderSoldier, renderCinematic, stopCinematic,
+    return { recordedFog: fog => applyGraphics({ recordedFog: fog }), preset, exaggeration, dispose, resize, canvas, draw, pick, captureViewState, applyViewState, renderSoldier, renderCinematic, stopCinematic,
       get aspect() { return Math.max(.1, (options.width || container.clientWidth || 1) / (options.height || container.clientHeight || 1)); },
       onCinematicEnd(listener) { cinematicEndListeners.add(listener); return () => cinematicEndListeners.delete(listener); },
       density(result, settings) {

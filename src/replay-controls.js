@@ -1,3 +1,4 @@
+import { createReplayFogControl } from './replay-fog.js';
 import { MAX_BYTES, parseRecording, movementHeatmap, sourceEqual, soldierViewAt } from './tactical-replay.js';
 import { squadKey } from './replay-history.js';
 import { createBotStrengthChart } from './replay-strength.js';
@@ -45,6 +46,7 @@ export function setupReplay(panel, refresh, stage) {
   sharing.innerHTML = `<button type="button" data-replay="share">Copy link at current time</button><button type="button" data-replay="mp4" disabled>Export MP4</button><label>Clip end (round seconds, optional)<input data-replay="clip-end" type="number" min="0" step="any" placeholder="Play to round end"></label><label data-replay="share-link-label" hidden>Replay link<input data-replay="share-link" type="text" readonly></label><p data-replay="share-status" role="status"></p>`;
   const groups = document.createElement('div'); groups.className = 'replay-option-grid';
   const display = group('Map display', ['players', 'bots', 'player-names', 'name-size', 'heat']);
+  const syncFog = createReplayFogControl(display, fog => viewer?.recordedFog(fog));
   for (const [toggle, slider] of [['trails', 'trail-transparency'], ['deaths', 'death-transparency']]) {
     const row = document.createElement('div'); row.className = 'replay-overlay';
     row.append(el(toggle).closest('label'), el(slider).closest('label')); display.append(row);
@@ -285,6 +287,7 @@ export function setupReplay(panel, refresh, stage) {
     const token = ++attached, { createReplayLayer } = await import('./replay-layer.js');
     if (token !== attached) return;
     viewer = nextViewer;
+    syncFog(selected.replay.header);
     unsubscribeCinematic = viewer.onCinematicEnd(() => { el('cinematic').checked = false; cinematicControls.element.hidden = true; });
     const variant = await replayVariantAssets(selected.replay.header.map);
     if (token !== attached) return;
