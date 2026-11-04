@@ -5,6 +5,16 @@ import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import { COUNTERS, emptyTotals, addTotals } from '../src/player-stats.js';
 
+const isMedicmang = name => name.toLowerCase() === 'medicmang';
+const newHistory = name => ({ name, aliases: new Set(), totals: emptyTotals(), days: new Map() });
+function recordChange(player, change, day) {
+  player.name = change.name;
+  player.aliases.add(change.name);
+  addTotals(player.totals, change.delta);
+  if (!player.days.has(day)) player.days.set(day, emptyTotals());
+  addTotals(player.days.get(day), change.delta);
+}
+
 function validateTotals(totals, partial = false) {
   if (!totals || typeof totals !== 'object' || Array.isArray(totals)) throw new Error('Invalid counters');
   for (const key of COUNTERS) {
@@ -57,11 +67,14 @@ export async function loadPlayerStats(directory, watch = () => {}) {
           for (const [uid, change] of Object.entries(e.changes)) {
             if (!/^\d+$/.test(uid) || typeof change.name !== 'string') throw new Error('Invalid journal player');
             validateTotals(change.delta, true);
-            if (!history.has(uid)) history.set(uid, { name: change.name, aliases: new Set(), totals: emptyTotals(), days: new Map() });
-            const p = history.get(uid); p.name = change.name; p.aliases.add(change.name);
-            addTotals(p.totals, change.delta);
-            if (!p.days.has(eventDay)) p.days.set(eventDay, emptyTotals());
-            addTotals(p.days.get(eventDay), change.delta);
+            if (!history.has(uid)) history.set(uid, { ...newHistory(change.name), profiles: new Map() });
+            const p = history.get(uid);
+            // Keep account totals intact for snapshot reconciliation. Presentation
+            // profiles are split only for the explicitly excluded alias pair.
+            recordChange(p, change, eventDay);
+            const bucket = isMedicmang(change.name) ? 'medicmang' : 'other';
+            if (!p.profiles.has(bucket)) p.profiles.set(bucket, newHistory(change.name));
+            recordChange(p.profiles.get(bucket), change, eventDay);
           }
           if (snapshot && seq === snapshot.seq) {
             matchedSnapshot = Object.keys(snapshot.players).length === history.size && Object.entries(snapshot.players).every(([uid, p]) =>
@@ -81,7 +94,12 @@ export async function loadPlayerStats(directory, watch = () => {}) {
   }
   const source = historyValid ? [...history] : Object.entries(snapshot?.players || {});
   source.sort(([a], [b]) => BigInt(a) < BigInt(b) ? -1 : BigInt(a) > BigInt(b) ? 1 : 0);
-  const players = source.map(([uid, p], order) => ({
+  const profiles = source.flatMap(([uid, p]) => {
+    const split = historyValid && p.profiles.has('medicmang') &&
+      [...p.aliases].some(name => name.toLowerCase() === 'the_great_3l3ctor');
+    return split ? [[uid, p.profiles.get('other')], [uid + ':medicmang', p.profiles.get('medicmang')]] : [[uid, p]];
+  });
+  const players = profiles.map(([uid, p], order) => ({
     id: createHash('sha256').update('maproom-player:' + uid).digest('hex').slice(0, 16),
     order, name: p.name, aliases: [...(p.aliases || [])].filter(n => n !== p.name),
     totals: COUNTERS.map(key => p.totals[key]),

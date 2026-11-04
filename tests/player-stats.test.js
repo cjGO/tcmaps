@@ -116,3 +116,34 @@ test('source-based deployment uses the generated aggregate when raw logs are abs
   const result = await plugin.load.call({ addWatchFile() {} }, plugin.resolveId('virtual:player-stats'));
   assert.deepEqual(JSON.parse(result.replace('export default ', '')), aggregate);
 });
+
+test('excluded alias pair has independent profiles, daily stats, and search without changing other aliases', async t => {
+  const { dir, uid } = await fixture(t, { snapshot: false });
+  const names = ['The_Great_3l3ctor', 'MedicmanG', 'Klimt', 'medicmang'];
+  const events = names.map((name, i) => ({ version: 1, seq: i + 1,
+    at: Date.parse(`2026-10-0${i + 1}T12:00:00Z`) / 1000, kind: 'kill',
+    changes: { [uid]: { name, delta: { personal_kills: i + 1 } },
+      '2': { name: i ? 'Ordinary alias' : 'MedicmanG', delta: { personal_kills: 1 } } },
+  }));
+  await writeFile(join(dir, 'events/2026-10-02.jsonl'), events.map(e => JSON.stringify(e)).join('\n'));
+  await writeFile(join(dir, 'snapshots/current.json'), JSON.stringify({ version: 1, seq: 4, day: '2026-10-04', players: {
+    [uid]: { name: 'medicmang', totals: totals({ personal_kills: 10 }) },
+    '2': { name: 'Ordinary alias', totals: totals({ personal_kills: 4 }) },
+  } }));
+  const data = await loadPlayerStats(dir);
+  assert.equal(data.meta.historyValid, true);
+  const players = periodPlayers(data);
+  assert.equal(players.length, 3);
+  const medic = players.find(p => p.name === 'medicmang');
+  const other = players.find(p => p.name === 'Klimt');
+  assert.deepEqual(medic.aliases, ['MedicmanG']);
+  assert.deepEqual(other.aliases, ['The_Great_3l3ctor']);
+  assert.equal(medic.totals.personal_kills, 6);
+  assert.equal(other.totals.personal_kills, 4);
+  assert.notEqual(medic.id, other.id);
+  assert.deepEqual(filterPlayers(players, { search: 'the_great_3l3ctor' }).map(p => p.id), [other.id]);
+  assert.ok(!filterPlayers(players, { search: 'medicmang' }).includes(other));
+  assert.equal(periodPlayers(data, '2026-10-02', '2026-10-02').find(p => p.id === medic.id).totals.personal_kills, 2);
+  assert.deepEqual(players.find(p => p.name === 'Ordinary alias').aliases, ['MedicmanG']);
+  assert.equal(players.reduce((sum, p) => sum + p.totals.personal_kills, 0), 14);
+});
