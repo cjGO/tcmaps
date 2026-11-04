@@ -10,7 +10,8 @@ BIOMES = {name: (region, outer) for name, region, outer in SAVED_BIOME_CYCLE
           if name != 'steppe_forest'}
 BIOMES['steppe'] = (2, 'outer_terrain_steppe')
 # An explicit zero-distance prop overrides source fog and desert/thunder defaults.
-FOG = {'none': 0, 'low': 600, 'medium': 450, 'dense': 300}
+FOG = {'none': 0, 'low': 600, 'medium': 450, 'dense': 300,
+       **{str(distance): distance for distance in (100, 150, 200, 250, 350, 400, 500)}}
 DEFAULTS = dict(biome='source', fog='source', precipitation='source',
                 precipitation_intensity=10, thunder='source', thunder_frequency=50)
 

@@ -13,7 +13,7 @@ export function createTerrainExperience(container, data, api, styles = '') {
       <label>Elevation palette <select data-ui="palette">${Object.entries(elevationPalettes).map(([value, palette]) => `<option value="${value}">${palette.label}</option>`).join('')}</select></label>
       <label>Sun direction <input data-ui="sun" type="range" min="0" max="360" value="135" aria-label="Sun direction in degrees"></label>
       <label>Distance haze <input data-ui="haze" type="checkbox" checked></label>
-      <label>Fog level <select data-ui="fog"><option value="source">Keep source fog</option><option value="none">No fog</option><option value="low">Low (600 m)</option><option value="medium">Medium (450 m)</option><option value="dense">Dense (300 m)</option></select></label>
+      <label>Fog level <select data-ui="fog"><option value="source">Keep source fog</option><option value="none">No fog</option><option value="low">Low (600 m)</option><option value="500">500 m</option><option value="medium">Medium (450 m)</option><option value="400">400 m</option><option value="350">350 m</option><option value="dense">Dense (300 m)</option><option value="250">250 m</option><option value="200">200 m</option><option value="150">150 m</option><option value="100">100 m (super dense)</option></select></label>
       <p class="terrain-fog-note">White fog · approximate Warband falloff. Preview only; Keep source fog retains the preview’s distance haze.</p>
       <label>Shadows <input data-ui="shadows" type="checkbox" checked></label>
     </details>

@@ -13,6 +13,7 @@ import { attachEditor3D } from './editor-3d.js';
 
 export function setupEditor(selectTab) {
   const $ = id => document.getElementById(id);
+  $('editor-guide-open').addEventListener('click', () => $('editor-guide').showModal());
   const frames = new Map();
   const projects = new Map();
   const densitySettings = new Map();

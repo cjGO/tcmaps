@@ -3,7 +3,8 @@ export function linePlacements(start, end, count, jitter, offsets) {
   return pathPlacements([start, end], count, jitter, offsets);
 }
 
-export function pathPlacements(nodes, count, jitter, offsets) {
+export function pathPlacements(nodes, count, jitter, offsets, { alignToPath = false, yawOffset = 0 } = {}) {
+  if (alignToPath && !Number.isFinite(yawOffset)) throw new Error('Angle offset must be a finite number.');
   if (!Number.isInteger(count) || count < 1 || count > 1000) throw new Error('Total number must be between 1 and 1000.');
   if (!Number.isFinite(jitter) || jitter < 0) throw new Error('Jitter must be a nonnegative distance in metres.');
   if (nodes.length < 2) throw new Error('Add at least two path points.');
@@ -18,7 +19,11 @@ export function pathPlacements(nodes, count, jitter, offsets) {
     while (index < segments.length - 1 && distance > segments[index].length) distance -= segments[index++].length;
     const {start, dx, dy, length} = segments[index];
     const t = Math.min(1, distance / length), offset = offsets[i] * jitter;
-    return { x_m: start.x + dx * t - dy / length * offset, y_m: start.y + dy * t + dx / length * offset };
+    const point = { x_m: start.x + dx * t - dy / length * offset, y_m: start.y + dy * t + dx / length * offset };
+    // Corners follow the incoming segment, matching the position/jitter rule.
+    // Use the segment direction so jitter cannot introduce crooked walls.
+    if (alignToPath) point.yaw_deg = ((Math.atan2(dy, dx) * 180 / Math.PI + yawOffset) % 360 + 360) % 360;
+    return point;
   });
 }
 

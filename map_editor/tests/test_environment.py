@@ -44,7 +44,8 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual((sco,recipe,weather),(self.original,self.recipe,[]))
 
     def test_fog_levels_replace_duplicates_and_preserve_all_other_records(self):
-        for level,distance in [('none',0),('low',600),('medium',450),('dense',300)]:
+        for level,distance in [('none',0),('low',600),('medium',450),('dense',300),
+                               *((str(n), n) for n in (100,150,200,250,350,400,500))]:
             settings=dict(DEFAULTS,fog=level)
             self.assertEqual(validate_settings(placement_document({},[],settings)),settings)
             sco,recipe,weather=self.apply(fog=level)

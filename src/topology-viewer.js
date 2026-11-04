@@ -37,7 +37,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     if (disposed || !camera || !renderer || (!options.renderOnly && (!container.clientWidth || !container.clientHeight))) return;
     const range = hazeRange({ exploring: renderExploring || experience?.mode === 'explore', overhead: camera.isOrthographicCamera,
       distance: controls ? camera.position.distanceTo(controls.target) : renderTarget ? camera.position.distanceTo(renderTarget) : span, span, enabled: graphics.haze && graphics.fog !== 'none' });
-    const fogDistance = { low: 600, medium: 450, dense: 300 }[graphics.fog];
+    const fogDistance = { low: 600, medium: 450, dense: 300, 100: 100, 150: 150, 200: 200, 250: 250, 350: 350, 400: 400, 500: 500 }[graphics.fog];
     const mapFog = fogDistance !== undefined;
     scene.fog.color.set(mapFog ? '#ffffff' : '#c4d5df');
     scene.background.copy(scene.fog.color);

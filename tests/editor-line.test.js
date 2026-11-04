@@ -93,3 +93,24 @@ test('random scales interpolate within the entered range and validate limits', (
   for (const [low, high] of [[0,1],[1,11],[2,1],[NaN,1],[1,Infinity]])
     assert.throws(() => lineScales(low,high,[.5]));
 });
+
+test('aligned placements follow each segment, including corners and jitter', () => {
+  const nodes = [{x:0,y:0},{x:10,y:0},{x:10,y:10},{x:0,y:10},{x:0,y:0}];
+  const options = {alignToPath:true};
+  const points = pathPlacements(nodes,9,0,Array(9).fill(0),options);
+  assert.deepEqual(points.map(p=>p.yaw_deg),[0,0,0,90,90,180,180,270,270]);
+  const jittered = pathPlacements(nodes,9,3,[-1,1,-1,1,-1,1,-1,1,-1],options);
+  assert.deepEqual(jittered.map(p=>p.yaw_deg),points.map(p=>p.yaw_deg));
+  assert.deepEqual(pathPlacements(nodes,9,0,Array(9).fill(0),{...options,yawOffset:90}).map(p=>p.yaw_deg),
+    [90,90,90,180,180,270,270,0,0]);
+});
+
+test('aligned yaw handles diagonals, reversed paths, midpoint and wrapped offsets', () => {
+  const nodes = [{x:0,y:0},{x:10,y:10}];
+  const yaw = (path, offset=0) => pathPlacements(path,1,0,[0],{alignToPath:true,yawOffset:offset})[0].yaw_deg;
+  assert.equal(yaw(nodes),45);
+  assert.equal(yaw([...nodes].reverse()),225);
+  assert.equal(yaw(nodes,-90),315);
+  assert.equal(yaw(nodes,720),45);
+  assert.throws(()=>yaw(nodes,NaN),/Angle offset/);
+});

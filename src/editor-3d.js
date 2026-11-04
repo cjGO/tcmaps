@@ -32,7 +32,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   const lineButton = doc.createElement('button'); lineButton.textContent = 'Place on line';
   doc.querySelector('.modes').append(lineButton);
   const linePanel = doc.createElement('section'); linePanel.className = 'editor-line-panel'; linePanel.hidden = true;
-  linePanel.innerHTML = '<h3>Place on line · connected path</h3><p>Click the terrain to add connected corners, then Finish path. Drag numbered markers to adjust the route. Green is START, blue marks corners, and orange is the current END.</p><p id="line-path-summary" role="status"></p><button id="line-finish" disabled>Finish path</button><button id="line-remove" disabled>Remove last point</button><button id="line-reset">Clear path</button><fieldset id="line-assets"><legend>Build your asset mix</legend><div id="line-presets"></div><div id="line-asset-picker"></div><h4>In this line</h4><div class="line-asset-row line-asset-head"><span>Asset</span><span>Ratio</span></div><div id="line-favorites"></div></fieldset><p id="line-mix" role="status"></p><button id="line-reroll-assets" disabled>Randomize assets</button><p>Shuffle asset order while keeping the counts shown above. Positions, jitter, and yaw stay fixed; each asset keeps its scale settings.</p><p>Add assets above and set their relative ratios. Uncheck an asset to remove it from the mix. A 2:1 ratio places about twice as many of the first asset. The Selected summary shows whole-object counts; assets are spread along the line.</p><p id="line-hint" role="status">Click START on the terrain.</p><label>Total number<input id="line-count" type="number" min="1" max="1000" step="1" value="10"></label><label>Jitter (± metres)<input id="line-jitter" type="number" min="0" step="1" value="0"></label><label><input id="line-random-yaw" type="checkbox" checked> Random yaw (0–360°)</label><button id="line-reroll-yaw">Randomize yaw</button><label><input id="line-random-scale" type="checkbox"> Default random scale</label><div class="pair"><label>Low scale<input id="line-scale-low" type="number" min="0.1" max="10" step="0.1" value="0.8"></label><label>High scale<input id="line-scale-high" type="number" min="0.1" max="10" step="0.1" value="1.2"></label></div><button id="line-reroll-scale">Randomize default scales</button><p>Default scale settings apply unless an asset has its own random scale enabled above. Each copy gets an independent scale within its asset’s range.</p><p>Even spacing over the whole path from START to END, with jitter perpendicular to each segment. Total number applies to the whole path. Uses the asset mix shown above. Turn off random yaw or scale to use the selected rotation or scale.</p><button id="line-randomize">Randomize jitter</button><button id="line-place" disabled>Place assets</button>';
+  linePanel.innerHTML = '<h3>Place on line · connected path</h3><p>Click the terrain to add connected corners, then Finish path. Drag numbered markers to adjust the route. Green is START, blue marks corners, and orange is the current END.</p><p id="line-path-summary" role="status"></p><button id="line-finish" disabled>Finish path</button><button id="line-remove" disabled>Remove last point</button><button id="line-reset">Clear path</button><fieldset id="line-assets"><legend>Build your asset mix</legend><div id="line-presets"></div><div id="line-asset-picker"></div><h4>In this line</h4><div class="line-asset-row line-asset-head"><span>Asset</span><span>Ratio</span></div><div id="line-favorites"></div></fieldset><p id="line-mix" role="status"></p><button id="line-reroll-assets" disabled>Randomize assets</button><p>Shuffle asset order while keeping the counts shown above. Positions, jitter, and yaw stay fixed; each asset keeps its scale settings.</p><p>Add assets above and set their relative ratios. Uncheck an asset to remove it from the mix. A 2:1 ratio places about twice as many of the first asset. The Selected summary shows whole-object counts; assets are spread along the line.</p><p id="line-hint" role="status">Click START on the terrain.</p><label>Total number<input id="line-count" type="number" min="1" max="1000" step="1" value="10"></label><label>Jitter (± metres)<input id="line-jitter" type="number" min="0" step="1" value="0"></label><label><input id="line-align-path" type="checkbox" checked> Align to line direction</label><label>Angle offset (degrees)<input id="line-angle-offset" type="number" step="1" value="0"></label><label><input id="line-random-yaw" type="checkbox"> Random yaw (0–360°)</label><button id="line-reroll-yaw">Randomize yaw</button><label><input id="line-random-scale" type="checkbox"> Default random scale</label><div class="pair"><label>Low scale<input id="line-scale-low" type="number" min="0.1" max="10" step="0.1" value="0.8"></label><label>High scale<input id="line-scale-high" type="number" min="0.1" max="10" step="0.1" value="1.2"></label></div><button id="line-reroll-scale">Randomize default scales</button><p>Default scale settings apply unless an asset has its own random scale enabled above. Each copy gets an independent scale within its asset’s range.</p><p>Even spacing over the whole path from START to END, with jitter perpendicular to each segment. Total number applies to the whole path. Uses the asset mix shown above. Alignment follows each segment; objects exactly at a corner follow the incoming segment. Use the angle offset (for example 90°) for models built along a different axis. Turn off alignment and random yaw to use the selected rotation. Turn off random scale to use the selected scale.</p><button id="line-randomize">Randomize jitter</button><button id="line-place" disabled>Place assets</button>';
   doc.querySelector('aside').prepend(linePanel);
   let pathNodes = [], pathDrawing = true, linePoints = [], offsets = [], yaws = [], scaleFractions = [];
   const lineSelection = new Map(), lineModels = new Map(), lineScaleOverrides = new Map();
@@ -221,8 +221,10 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
         ? lineScales(Number($('line-scale-low').value), Number($('line-scale-high').value), scaleFractions)
         : Array(count).fill(state.brush.scale);
       const scales = lineAssetScales(mix, lineScaleOverrides, defaultScales);
-      linePoints = pathPlacements(pathNodes, count, jitter, offsets).map((p, i) => ({
-        ...p, asset: mix[i], yaw_deg: $('line-random-yaw').checked ? yaws[i] : state.brush.yaw_deg,
+      linePoints = pathPlacements(pathNodes, count, jitter, offsets, {
+        alignToPath: $('line-align-path').checked, yawOffset: Number($('line-angle-offset').value),
+      }).map((p, i) => ({
+        ...p, asset: mix[i], yaw_deg: p.yaw_deg ?? ($('line-random-yaw').checked ? yaws[i] : state.brush.yaw_deg),
         scale: scales[i],
       }));
       const bounds = project.bounds;
@@ -473,14 +475,21 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
     for (const element of [style, row, cameraRow, container, info, retry, help, navigate, lineButton, linePanel]) element.remove();
   }
   lineButton.addEventListener('click', () => { viewer?.exitExplorer(); api.setMode('line'); });
-  for (const id of ['line-count', 'line-jitter', 'line-scale-low', 'line-scale-high']) $(id).addEventListener('input', refreshLine);
+  for (const id of ['line-count', 'line-jitter', 'line-angle-offset', 'line-scale-low', 'line-scale-high']) $(id).addEventListener('input', refreshLine);
   $('line-random-scale').addEventListener('change', refreshLine);
   $('line-reroll-scale').addEventListener('click', () => {
     $('line-random-scale').checked = true; scaleFractions = []; refreshLine();
   });
-  $('line-random-yaw').addEventListener('change', refreshLine);
+  $('line-align-path').addEventListener('change', () => {
+    if ($('line-align-path').checked) $('line-random-yaw').checked = false;
+    refreshLine();
+  });
+  $('line-random-yaw').addEventListener('change', () => {
+    if ($('line-random-yaw').checked) $('line-align-path').checked = false;
+    refreshLine();
+  });
   $('line-reroll-yaw').addEventListener('click', () => {
-    $('line-random-yaw').checked = true; yaws = []; refreshLine();
+    $('line-align-path').checked = false; $('line-random-yaw').checked = true; yaws = []; refreshLine();
   });
   $('line-reroll-assets').addEventListener('click', () => { assetMix = shuffleLineAssets(assetMix); refreshLine(); });
   $('line-randomize').addEventListener('click', () => { offsets = []; refreshLine(); });

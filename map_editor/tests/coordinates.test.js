@@ -47,6 +47,11 @@ test('v2 environment loadouts round trip while legacy files keep source settings
   const noFog=JSON.parse(JSON.stringify({...loadout,settings:{...settings,fog:'none'}}));
   assert.deepEqual(C.validate(noFog,project),[point]);
   assert.equal(C.validateSettings(noFog).fog,'none');
+  for (const fog of ['100','150','200','250','350','400','500']) {
+    const doc={...loadout,settings:{...settings,fog}};
+    assert.deepEqual(C.validate(doc,project),[point]);
+    assert.equal(C.validateSettings(doc).fog,fog);
+  }
   for(const update of [{biome:'steppe_forest'},{fog:450},{precipitation:'hail'},{precipitation_intensity:true},{precipitation_intensity:0},{precipitation_intensity:26},{thunder:true},{thunder_frequency:101},{thunder_frequency:1.5},{extra:1}])
     assert.throws(()=>C.validate({...loadout,settings:{...settings,...update}},project));
   assert.throws(()=>C.validate({...document,settings},project));

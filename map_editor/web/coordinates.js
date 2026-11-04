@@ -28,7 +28,7 @@
     if(![2,3].includes(document.version)) throw new Error('Unsupported map loadout version.');
     const s=document.settings;
     if(!s || Array.isArray(s) || Object.keys(s).sort().join(',')!==Object.keys(defaults).sort().join(',')) throw new Error('Invalid map settings fields.');
-    const choices={biome:['source','steppe','plains','snow','desert','plains_forest','snow_forest','desert_forest'],fog:['source','none','low','medium','dense'],precipitation:['source','clear','rain','snow'],thunder:['source','off','thunder','lightning']};
+    const choices={biome:['source','steppe','plains','snow','desert','plains_forest','snow_forest','desert_forest'],fog:['source','none','low','medium','dense','100','150','200','250','350','400','500'],precipitation:['source','clear','rain','snow'],thunder:['source','off','thunder','lightning']};
     for(const [key,values] of Object.entries(choices)) if(!values.includes(s[key])) throw new Error('Invalid '+key+'.');
     for(const [key,max] of [['precipitation_intensity',25],['thunder_frequency',100]])
       if(!Number.isInteger(s[key]) || s[key]<1 || s[key]>max) throw new Error(key.replaceAll('_',' ')+' must be an integer from 1 to '+max+'.');

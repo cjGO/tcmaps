@@ -122,7 +122,7 @@ the loadout schema remains version 3. An optional `z_offset_m` placement field a
 Open **Biome & weather** in the sidebar. Every selector defaults to **Keep source**:
 
 - **Biome:** steppe, plains, snow, desert, plains forest, snow forest, desert forest.
-- **Fog:** low **600 m**, medium **450 m**, dense **300 m**.
+- **Fog:** **100–500 m** in **50 m** increments, plus low **600 m**. Medium is **450 m**, dense is **300 m**, and **100 m would be super dense**.
 - **Precipitation:** clear, rain or snow; intensity **1–25** for rain/snow.
 - **Thunder:** off, thunder only, or thunder and lightning; frequency **1–100** when enabled.
 

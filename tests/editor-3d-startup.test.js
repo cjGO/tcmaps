@@ -45,6 +45,18 @@ test('3D bridge attaches in the editor realm and can reopen without losing place
     for (let visit = 0; visit < 2; visit++) {
       bridge = attachEditor3D(frame, project, {}, {}, path => path);
       assert.equal(doc.querySelectorAll('#editor-view-3d').length, 1);
+      const align = doc.getElementById('line-align-path');
+      const randomYaw = doc.getElementById('line-random-yaw');
+      assert.equal(align.checked, true);
+      assert.equal(randomYaw.checked, false);
+      assert.equal(doc.getElementById('line-angle-offset').value, '0');
+      randomYaw.click();
+      assert.equal(align.checked, false);
+      align.click();
+      assert.equal(randomYaw.checked, false);
+      doc.getElementById('line-reroll-yaw').click();
+      assert.equal(align.checked, false);
+      assert.equal(randomYaw.checked, true);
       assert.equal(signals.length, visit + 1);
       assert.equal(signals[visit].aborted, false);
       assert.equal(doc.getElementById('viewport').hidden, false);

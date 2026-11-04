@@ -155,9 +155,11 @@ test('3D fog menu matches the map editor weather options',()=>{
   const e=setup();
   try {
     assert.deepEqual(Array.from(e.$('fog').options, o=>[o.value,o.textContent]),[
-      ['source','Keep source fog'],['none','No fog'],['low','Low (600 m)'],['medium','Medium (450 m)'],['dense','Dense (300 m)'],
+      ['source','Keep source fog'],['none','No fog'],['low','Low (600 m)'],
+      ['500','500 m'],['medium','Medium (450 m)'],['400','400 m'],['350','350 m'],
+      ['dense','Dense (300 m)'],['250','250 m'],['200','200 m'],['150','150 m'],['100','100 m (super dense)'],
     ]);
-    for(const level of ['low','medium','dense','none','source']) {
+    for(const level of ['low','500','medium','400','350','dense','250','200','150','100','none','source']) {
       e.$('fog').value=level;e.$('fog').dispatchEvent(new e.w.Event('change'));
       assert.equal(e.graphics.fog,level);
     }

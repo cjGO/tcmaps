@@ -237,7 +237,19 @@
     </section>
     <section id="editor-panel" role="tabpanel" aria-labelledby="editor-tab" hidden>
       <div class="intro"><div><p class="eyebrow">CURRENT ROTATION / MAP EDITOR</p><h1>Make the map your own.</h1><p class="subtitle">Choose a registered current-rotation map, add vegetation, and set its biome and weather. Save the JSON file and send it to the map organizer.</p></div></div>
-      <div class="editor-picker"><label for="editor-map">Map to edit</label><select id="editor-map"></select></div>
+      <div class="editor-picker"><label for="editor-map">Map to edit</label><select id="editor-map"></select><button id="editor-guide-open" class="keep-button" type="button" aria-haspopup="dialog" aria-controls="editor-guide">MAP EDIT GUIDE</button></div>
+      <dialog id="editor-guide" class="editor-guide" aria-labelledby="editor-guide-title">
+        <div class="editor-guide-heading"><h2 id="editor-guide-title">MAP EDIT GUIDE</h2><form method="dialog"><button class="keep-button" autofocus>Close</button></form></div>
+        <p>This is a custom map editor, read this before using.</p>
+        <ol>
+          <li><strong>CHANGE SPAWN POINTS :</strong> click 2D heatmap, then you can click and drag the spawn points to new locations. These will be saved and can be previewed in the 3D terrain after moving.</li>
+          <li><strong>HARDCODE WEATHER/BIOME:</strong> Set these to explicitly define the biome type, weather, and fog.</li>
+          <li><strong>MAP SETTINGS BUTTON :</strong> Important, on the 3D terrain viewer, there is map settings button on the top left; this can preview the fog, the heatmaps of player movements/deaths based on the stored replays, and elevation. Use this to get an idea of fog strength roughly.</li>
+          <li><strong>PLACE ON LINE :</strong> Most important tool in this editor; it allows you to rapidly place many assets on the line procedurally meaning you can choose the ratios, scales, assets included, along this line. Increase density/jitter to create visual blocking treelines for example. or forests, or meadows.</li>
+          <li><strong>ALIGN TO LINE DIRECTION :</strong> useful for placing long walls on the map to act as blockers on the map.</li>
+          <li><strong>SEND TO ADMIN :</strong> Save the map loadout JSON and send it to the admin on discord link on front page.</li>
+        </ol>
+      </dialog>
       <p class="editor-note">Your edits stay here while you switch maps or tabs. Download each map’s JSON before closing or refreshing the page. Use Open loadout to resume a saved file. Nothing is sent automatically.</p>
       <p id="editor-state" role="status" aria-live="polite">Choose a map to start editing.</p>
       <button id="editor-retry" class="keep-button" hidden>Retry loading</button>
