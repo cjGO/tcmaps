@@ -16,6 +16,14 @@ export function setupEditor(selectTab) {
   $('editor-guide-open').addEventListener('click', () => $('editor-guide').showModal());
   const frames = new Map();
   const projects = new Map();
+  const pendingLoadouts = new Map();
+  function loadPending(id) {
+    const api = frames.get(id)?.contentWindow?.MapEditor;
+    if (!api || !pendingLoadouts.has(id)) return;
+    try { api.loadDocument(pendingLoadouts.get(id)); }
+    catch (error) { api.status(error.message, true); }
+    pendingLoadouts.delete(id);
+  }
   const densitySettings = new Map();
   let current = '', request = 0;
   let visible = false, active3D = null;
@@ -56,6 +64,7 @@ export function setupEditor(selectTab) {
     $('editor-state').hidden = frames.has(id);
     $('editor-retry').hidden = true;
     if (frames.has(id)) {
+      loadPending(id);
       start3D(id);
       if (frames.get(id).dataset.imageFailed === 'true') {
         $('editor-state').textContent = 'The editor image could not load. Check your connection and retry.';
@@ -107,6 +116,7 @@ export function setupEditor(selectTab) {
         };
         image.addEventListener('error', failed);
         if (image.complete && !image.naturalWidth) failed();
+        loadPending(id);
         start3D(id);
       });
       frames.set(id, frame);
@@ -135,9 +145,10 @@ export function setupEditor(selectTab) {
     },
     canEdit: filename => editorMaps.some(map => map.filename === filename),
     show: () => { if (!current) open(); },
-    edit: filename => {
+    edit: (filename, variant) => {
       const map = editorMaps.find(map => map.filename === filename);
       if (!map) return;
+      if (variant?.document) pendingLoadouts.set(map.id, variant.document);
       open(map.id);
       selectTab('editor');
     },

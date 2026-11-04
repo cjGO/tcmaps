@@ -258,14 +258,17 @@
       setTimeout(()=>URL.revokeObjectURL(url),1000); dirty=false; status('Map loadout downloaded. Build applies map assets, biome, weather and team spawn settings.');
     } catch(error) {status(error.message,true);}
   });
+  function loadDocument(document) {
+    const imported=C.validate(document,project), importedSettings=C.validateSettings(document), importedSpawns=C.validateSpawns(document,project);
+    remember(); points=imported; settings=importedSettings; spawns=importedSpawns; choose(null); status('Loadout loaded. Undo restores your previous points, spawns and map settings.');
+  }
   $('import').addEventListener('click',()=>$('file').click());
   $('file').addEventListener('change',async()=>{
     const file=$('file').files[0]; if(!file) return;
     try {
       if(file.size>10*1024*1024) throw new Error('Placement file is too large.');
       const document=JSON.parse(await file.text());
-      const imported=C.validate(document,project), importedSettings=C.validateSettings(document);
-      remember(); points=imported; settings=importedSettings; spawns=C.validateSpawns(document,project); choose(null); status('Loadout loaded. Undo restores your previous points, spawns and map settings.');
+      loadDocument(document);
     } catch(error) {status(error.message,true);} finally {$('file').value='';}
   });
   $('hotkeys-open').addEventListener('click',()=>$('hotkeys').showModal());
@@ -299,7 +302,7 @@
   $('scene-name').textContent=project.display_name || project.source.scene_id;
   assetOptions(); render();
   window.MapEditor = Object.freeze({
-    getState:state,
+    getState:state, loadDocument,
     subscribe(fn) { listeners.add(fn); fn(state()); return ()=>listeners.delete(fn); },
     select(id) { if(id!==null&&!points.some(p=>p.id===id)) throw new Error('Unknown placement'); choose(id); },
     setMode, placeAt, status,

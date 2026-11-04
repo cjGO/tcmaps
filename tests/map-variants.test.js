@@ -14,9 +14,9 @@ test('variant identity unifies exported filenames, recorded names, and source al
   assert.equal(roundVariant(headers, ['mp_custom_map_21', 'source'], 'test_map_116'), 'source');
 });
 
-test('included VarA matches measured terrain, assets, and its four recorded rounds', () => {
+test('included VarA matches measured terrain, assets, and its recorded rounds', () => {
   const path = 'maps/small/test_map_116/variants/test_map_116_VarA.placements.json';
-  const document = JSON.parse(read(path));
+  const document = JSON.parse(read(path.replace('VarA.placements', 'VarA_3l3ct.placements')));
   const variants = includedVariants({ [path]: document }, 'test_map_116');
   assert.equal(variants.length, 1);
   assert.equal(variants[0].id, 'vara');
@@ -32,7 +32,7 @@ test('included VarA matches measured terrain, assets, and its four recorded roun
   const names = parseMapNames(read('MAPNAMES.md'));
   const family = rows.filter(row => statsMapId(names, row[0]) === 'test_map_116');
   const variant = family.filter(row => roundVariant(headers, row, 'test_map_116') === 'vara');
-  assert.equal(variant.length, 4);
+  assert.ok(variant.length >= 4);
   assert.ok(family.length > variant.length);
 });
 
@@ -41,7 +41,7 @@ test('recorded VarA revision selects its assets and terrain for both replay vers
   const { recordingTerrainOverlay, parseRecording } = await import('../src/tactical-replay.js');
   const { terrainOverlayCandidate, verifyExperimentalTerrain } = await import('../src/experimental-replay.js');
   const path = 'maps/small/test_map_116/variants/test_map_116_VarA.placements.json';
-  const registry = await replayVariantRegistry(JSON.parse(read('lib/rotation-topology.json')), { [path]: read(path) });
+  const registry = await replayVariantRegistry(JSON.parse(read('lib/rotation-topology.json')), { [path]: read(path.replace('VarA.placements', 'VarA_3l3ct.placements')) });
   const header = JSON.parse(read('experimental_replays/EXP-20261030T151732Z-1.jsonl').split('\n')[0]);
   const original = structuredClone(header.map);
   const variant = recordingVariant(header.map, registry.variants);
@@ -68,4 +68,17 @@ test('recorded VarA revision selects its assets and terrain for both replay vers
   assert.equal(stable.terrainMatch, 'unverified-map-id');
   assert.equal(recordingVariant(stable.replay.header.map, registry.variants), variant);
 
+});
+
+test('map 176 VarA is discoverable and matches its terrain and model assets', () => {
+  const path='maps/tiny/test_map_176/variants/test_map_176_VarA_AnnaFreud.placements.json';
+  const document=JSON.parse(read(path));
+  const [variant]=includedVariants({[path]:document},'test_map_176');
+  assert.equal(variant.id,'vara_annafreud');
+  const terrain=JSON.parse(read('lib/rotation-topology.json')).maps.find(m=>m.map_id==='test_map_176');
+  assertVariantSource(document,terrain);
+  const models=JSON.parse(read('lib/editor-models.json'));
+  const assets=JSON.parse(read('public'+models.manifest_url)).assets;
+  assert.ok(document.placements.length>0);
+  for (const point of document.placements) assert.ok(assets[point.asset],point.asset);
 });

@@ -6,8 +6,8 @@ import {JSDOM} from 'jsdom';
 const root=new URL('../',import.meta.url), read=path=>readFile(new URL(path,root),'utf8');
 const [template,coordinates,app,mapsText]=await Promise.all(['map_editor/web/index.html','map_editor/web/coordinates.js','map_editor/web/app.js','lib/editor-maps.json'].map(read));
 const project=JSON.parse(await read('public/'+JSON.parse(mapsText).find(m=>m.id==='scn_mp_custom_map_1').project));
-function editor() {
-  const dom=new JSDOM(template.replace('__EDITOR_DATA__',JSON.stringify(project)),{runScripts:'outside-only',url:'https://map-editor.test/'});
+function editor(data=project) {
+  const dom=new JSDOM(template.replace('__EDITOR_DATA__',JSON.stringify(data)),{runScripts:'outside-only',url:'https://map-editor.test/'});
   const w=dom.window;
   w.ResizeObserver=class {observe(){} disconnect(){}};
   w.SVGElement.prototype.setPointerCapture=()=>{};
@@ -277,3 +277,27 @@ test('line batches preserve individual scales and reject invalid scales atomical
     $('redo').click(); assert.deepEqual(scales(),[.8,1.2,2]);
   } finally {dom.window.close();}
 });
+
+for (const [mapId, pool, name] of [['test_map_116','small','3l3ct'], ['test_map_176','tiny','AnnaFreud']]) {
+  test(`${mapId} variant loads into editor, notifies 3D subscribers, and can reload and undo`, async()=>{
+    const variant=JSON.parse(await read(`maps/${pool}/${mapId}/variants/${mapId}_VarA_${name}.placements.json`));
+    const map=JSON.parse(mapsText).find(m=>m.map_id===mapId);
+    const data=JSON.parse(await read('public/'+map.project));
+    const {dom,api,$}=editor(data);
+    try {
+      let latest;
+      api.subscribe(state=>{latest=state.document;});
+      api.loadDocument(variant);
+      assert.equal(JSON.stringify(latest.placements),JSON.stringify(variant.placements));
+      api.select(variant.placements[0].id); $('delete').click();
+      assert.equal(latest.placements.length,variant.placements.length-1);
+      api.loadDocument(variant);
+      assert.equal(latest.placements.length,variant.placements.length);
+      $('undo').click();
+      assert.equal(latest.placements.length,variant.placements.length-1);
+      const before=JSON.stringify(latest);
+      assert.throws(()=>api.loadDocument({...variant,source:{}}),/different map/);
+      assert.equal(JSON.stringify(api.getState().document),before);
+    } finally {dom.window.close();}
+  });
+}

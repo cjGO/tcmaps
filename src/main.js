@@ -252,7 +252,11 @@ $('rotation-replays').addEventListener('click', event => {
   const recording = recordings.find(item => `${item.map}.png` === filename);
   if (recording) openRecording(recording);
 });
-$('rotation-edit').addEventListener('click', () => editor.edit(collections.rotation.images[collections.rotation.index]?.filename));
+$('rotation-edit').addEventListener('click', () => {
+  const filename = collections.rotation.images[collections.rotation.index]?.filename;
+  const mapId = publicMapId(identityRegistry, filename);
+  editor.edit(filename, mapVariants(mapId).find(item => item.id === selectedVariant(mapId)));
+});
 let activeTab = 'rotation';
 function renderCollection(name) {
   const { images, index } = collections[name];
