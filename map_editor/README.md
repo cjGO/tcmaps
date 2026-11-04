@@ -33,18 +33,29 @@ button. Native browser models load on demand; the standalone HTML remains an
 offline 2D editor. Final builds still measure exact-point ground height in the
 engine; browser Z is interpolated from the measured terrain triangles.
 
-To export the installed asset catalogue, run in WSL from MOD:
+The website catalogue now includes every installed scene-prop definition,
+including invisible props, scripted props and engine helpers. Invisible meshes
+remain visible while editing. Props without renderable geometry use an orange
+wireframe marker; this marker is only an editor aid. Missing native materials use
+a neutral preview material. Exports preserve native prop IDs; scripted behavior
+depends on the game. Catalogue versions 1 and 2 remain readable.
+
+To upgrade the website's existing rotation and export the complete catalogue,
+run in WSL from MOD:
 
 ```sh
-uv run --with matplotlib --with numpy --with pillow --with moderngl \
-  python pythonHelpers/export_editor_models.py \
-  --website-root /home/glect/rate_maps \
-  --map-id scn_mp_custom_map_1 \
-  --output map_analysis/editor_models_<timestamp> --publish
-uv run --with matplotlib python pythonHelpers/register_rotation_editor_models.py \
-  --website-root /home/glect/rate_maps \
-  --output map_analysis/rotation_editor_models_<timestamp> --publish
+uv run --with matplotlib --with numpy --with pillow python \
+  /home/glect/rate_maps/scripts/export-editor-models.py \
+  --module-root "$PWD" --output /tmp/editor-models-all-props --publish
+cd /home/glect/rate_maps
+npm run prepare:editor
+npm run check:editor-models
 ```
+
+Use a fresh output directory. This command verifies and upgrades the website's
+prepared projects, preserving their terrain and identity even if the live server
+rotation has since changed. It records explicit preview fallbacks for meshless
+props.
 
 Use a fresh output directory. The helper uses `pythonHelpers/game_scene_resources.py`, verifies
 the registered map and source asset definitions, and records resource/texture

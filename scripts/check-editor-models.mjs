@@ -14,6 +14,9 @@ const manifest=JSON.parse(bytes);
 assert.equal(manifest.units,'metres'); assert.equal(manifest.up_axis,'Z'); assert.equal(manifest.vertex_stride,12);
 assert.equal(Object.keys(manifest.assets).length,index.asset_count); assert.equal(Object.keys(manifest.meshes).length,index.mesh_count);
 assert.equal(Object.keys(manifest.textures).length,index.texture_count);
+for (const asset of Object.values(manifest.assets)) {
+  assert.ok(manifest.meshes[asset.mesh] || manifest.preview_fallbacks?.[asset.mesh], 'Asset must have a model or an explicit editor marker');
+}
 assert.deepEqual(index.maps.map(m=>m.id),maps.map(m=>m.id),'Native model library must enable every fixed rotation editor');
 assert.deepEqual(topology.maps.map(m=>m.id),maps.map(m=>m.id),'Every editor requires matching height data');
 for(const map of index.maps) {

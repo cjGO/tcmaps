@@ -314,7 +314,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
       info.classList.remove('error');
       info.textContent = dimensions && dimensions.every(Number.isFinite)
         ? `Asset size: ${dimensions[0].toFixed(2)} × ${dimensions[1].toFixed(2)} × ${dimensions[2].toFixed(2)} m (width × depth × height) · scale ${state.brush.scale}×`
-        : 'Choose an asset from the palette.';
+        : 'Editor marker only: this prop has no renderable native mesh.';
     }
   }
   function schedule(value) { state = value; if (!animation) animation = win.requestAnimationFrame(sync); }

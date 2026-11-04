@@ -71,7 +71,7 @@
     $('asset-favorite').disabled=!a;
     $('asset-favorite').setAttribute('aria-pressed',favorite);
     $('asset-favorite').textContent=favorite ? '★ Remove from favorites' : '☆ Add to favorites';
-    $('asset-info').textContent=a ? `${a.group} · ${a.collision?'Collision mesh defined':'No collision mesh'} · Origin offset 0 m (unverified)` : 'No matching assets.';
+    $('asset-info').textContent=a ? `${a.group} · ${a.collision?'Collision mesh defined':'No collision mesh'}${a.invisible?' · Invisible in game (shown in editor)':''}${a.scripted?' · Scripted game prop':''}${a.mesh==='0'?' · Editor marker only':''} · Origin offset 0 m (unverified)` : 'No matching assets.';
     const token=++previewRequest, container=$('asset-preview-image');
     $('asset-preview-caption').textContent=a ? a.label : 'No asset selected';
     container.textContent=a ? (a.preview ? 'Loading preview…' : 'Preview unavailable for this asset.') : 'No matching assets.';

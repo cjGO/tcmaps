@@ -15,6 +15,18 @@ function editor(data=project) {
   const $=id=>w.document.getElementById(id), change=(id,value)=>{$(id).value=value;$(id).dispatchEvent(new w.Event('change'));};
   return {dom,w,$,change,api:w.MapEditor};
 }
+test('invisible barriers are searchable and placeable from the published catalogue', () => {
+  const {dom,w,$,change,api}=editor();
+  try {
+    $('search').value='mm_barrier';
+    $('search').dispatchEvent(new w.Event('input'));
+    assert.equal($('asset').options.length,10);
+    change('asset','spr_mm_barrier_20m');
+    assert.match($('asset-info').textContent,/Invisible in game/);
+    api.placeAt(200,300);
+    assert.equal(api.getState().document.placements[0].asset,'spr_mm_barrier_20m');
+  } finally {dom.window.close();}
+});
 test('selected height offsets preserve XY, undo per drag, and survive export/import',async()=>{
   const {dom,w,api,$,change}=editor();
   try {

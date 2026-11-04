@@ -127,7 +127,14 @@ class EditorTests(unittest.TestCase):
         self.assertEqual(self.assets[:len(legacy)],legacy)
         names={a['name'] for a in self.assets}
         self.assertTrue({'spr_barrel','spr_village_house_e','spr_bridge_wooden','spr_small_wall_a'} <= names)
-        self.assertFalse({'spr_invalid_object','spr_light_sun','spr_water_river','spr_mm_cannon_12pdr','spr_pointer_arrow'} & names)
+        self.assertTrue({'spr_invalid_object','spr_light_sun','spr_water_river','spr_mm_cannon_12pdr','spr_pointer_arrow','spr_mm_barrier_20m'} <= names)
+        records=[line.split()[0] for line in (MODULE_ROOT/'scene_props.txt').read_text().splitlines() if line.startswith('spr_')]
+        self.assertEqual(names,set(records))
+        self.assertEqual(len(self.assets),len(records))
+        barrier=next(a for a in self.assets if a['name']=='spr_mm_barrier_20m')
+        self.assertTrue(barrier['invisible'])
+        previous=core.asset_catalogue(MODULE_ROOT/'scene_props.txt',2)
+        self.assertNotIn('spr_mm_barrier_20m',{a['name'] for a in previous})
         assets=core.resolve_native_assets(self.assets,MODULE_ROOT/'Data/flora_kinds.txt')
         barrel=next(a for a in assets if a['name']=='spr_barrel')
         self.assertEqual((barrel['object_kind'],barrel['object_id'],barrel['object_name'],barrel['variant']),
@@ -154,7 +161,7 @@ class EditorTests(unittest.TestCase):
             editor.upgrade_assets(argparse.Namespace(project=folder))
         updated,_,_,assets=editor.load_project(folder)
         self.assertEqual(updated['source'],project['source']);self.assertEqual((folder/'height_data.json').read_bytes(),height)
-        self.assertEqual(updated['asset_catalogue_version'],2);self.assertGreater(len(assets),len(project['assets']))
+        self.assertEqual(updated['asset_catalogue_version'],3);self.assertGreater(len(assets),len(project['assets']))
         backups=list((folder/'asset_backups').glob('*/project.json'));self.assertEqual(len(backups),1)
         self.assertEqual(backups[0].read_bytes(),before)
         core.validate_placements(core.placement_document(self.source,[self.point]),updated['source'],self.bounds,assets)
@@ -191,7 +198,7 @@ class EditorTests(unittest.TestCase):
         self.assertTrue(0<rect['left']<rect['left']+rect['width']<1)
         self.assertTrue(0<rect['top']<rect['top']+rect['height']<1)
         self.assertAlmostEqual(calibration['x_limits'][1]-calibration['x_limits'][0],975*1.05)
-        html=editor_html(dict(source={'scene_id':'</script>'}),self.root/'map.png')
+        html=editor_html(dict(source={'scene_id':'</script>'},assets=[]),self.root/'map.png')
         self.assertIn('data:image/png;base64,',html)
         self.assertIn('\\u003c/script>',html)
         self.assertNotIn('__EDITOR_DATA__',html)

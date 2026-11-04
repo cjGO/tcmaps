@@ -309,7 +309,27 @@
     "game/Textures/stone.dds": "455354ed2fca09e0d8f8884b8cc87fe48da6587c3be4c728ec0e6153f66d1474",
     "Textures/target_plate.dds": "a1929415135d5aaf19e48650491854e77e2e6703ab3a49e2b055c265d982906e",
     "Textures/DebrisStone0019_S.dds": "ef547293ea3ed8857e5765d4cba6ae11d3552003a231b39250d41132cfaa037c",
-    "Textures/thread.dds": "4acaf7d7c94f0c80496bc23134a7990a9f0ae45fc732ee8e6a3ab9092b9f552b"
+    "Textures/thread.dds": "4acaf7d7c94f0c80496bc23134a7990a9f0ae45fc732ee8e6a3ab9092b9f552b",
+    "Textures/saddle_horse_modified.dds": "000b18a4702ebd0da959ba5bbdc18714c86990f2e237f7a69c0b5c4fd99ec3b1",
+    "Textures/austrian_saddles.dds": "4eee2725d692965af3d2920802caca666399b029c0f4f5c8d52bfab48dd48cf0",
+    "Textures/sumpter_horse_modified.dds": "ff29f61df1a0cf82d7a344833e5a3b68ee7b7bf813f25ab44fba4f09eba8b12c",
+    "Textures/hunting_horse_modified.dds": "c23de845a9d600c10d6532cbfe9b831d2c6d87586b1e6e3984f29fd373141ef2",
+    "Textures/mmflagstufff.dds": "864d6fdd822243c067a1ce6344a453525b34a536cd32b9b003ba6e6b070e622b",
+    "Textures/Birdtexturediffuse.dds": "ba370e19bc28ab1174d4039939794781471cd6ce0205c06b116ac7c6e8645f47",
+    "Textures/French_12pounder_carriage.dds": "898b9baa25f2015badd36e32e2ab5e718594536b2b2d73f6d76b4c99fe4ee529",
+    "Textures/French_12pounder_muzzle.dds": "5d3bcd4d8158b2067935ff7ea2f52c7c63f04faf83b5ddb1bde014c3b190de2c",
+    "Textures/Naval_carriage_final.dds": "bc5a669924c6ca066c3dd6db6f298081f7fd0fc14e3b4f45d465663ec15911ef",
+    "Textures/Naval_muzzle.dds": "ef0e673da332aac48a35a43760fce0e65068dfcef16f9ab55889b07f5e94d1cc",
+    "Textures/Mortar_Wood.dds": "1d29dd3bbdb69a7fffaec9c82fe57418b366477dca4b03e83382f11987b0f236",
+    "Textures/French_equipment.dds": "8bebff959104b63bfd85653cd4482e9d274eb56dd0a6993763cd419e3f348830",
+    "Textures/grape.dds": "d8c4a701b8d0ed7bc329d84bcd2feddf6b866b349c7246cced15a270df8053cf",
+    "Textures/sail_1_off.dds": "8d4ed840d7befe3ddf9305a46f741268783a643fc71ee5b4407eaec6aead123a",
+    "Textures/austrian_cuirassier.dds": "fa99dd572d3cb3ea1f541a8f0f60f5aa2ad20834c0782868bf307d00bb144f29",
+    "game/Textures/mp_ctf_flags.dds": "cc57df050e927790a334b84d8fc92d547b5ebc36b7fc21043d0377a6150f59f5",
+    "Textures/white.dds": "69e505332a2bfd84b5cca034d60833bc2b4b9cc763020a090b33d87f44102fc7",
+    "Textures/prussian_saddles.dds": "e653e68920f40da512cdcf01325a8c67f0f2edfaca991fea21327d787ba4543a",
+    "Textures/fr_carabineer.dds": "8e70033ef7fd01221a52af172ecb6e8132ccaef7c740f3b3fe71a77274332379",
+    "game/Textures/ocean.dds": "a38b4beacc0cf09e9905ee15466407d0138174a375cafc0b3b1b1cc87477cfdd"
   },
   "assets": {
     "spr_mm_10housebuild": {
@@ -5559,6 +5579,946 @@
     "spr_mm_oim_debris1": {
       "mesh": "zaval",
       "image": "zaval.webp"
+    },
+    "spr_archery_butt_a": {
+      "mesh": "archery_butt",
+      "image": "archery_butt.webp"
+    },
+    "spr_archery_target_with_hit_a": {
+      "mesh": "arena_archery_target_a",
+      "image": "arena_archery_target_a.webp"
+    },
+    "spr_dummy_a": {
+      "mesh": "arena_archery_target_b",
+      "image": "arena_archery_target_b.webp"
+    },
+    "spr_dummy_a_undestructable": {
+      "mesh": "arena_archery_target_b",
+      "image": "arena_archery_target_b.webp"
+    },
+    "spr_royale_horse_spawn_heavy": {
+      "mesh": "austrian_cuirassier_horse",
+      "image": "austrian_cuirassier_horse.webp"
+    },
+    "spr_royale_horse_spawn_middle": {
+      "mesh": "austrian_dragoon_horse",
+      "image": "austrian_dragoon_horse.webp"
+    },
+    "spr_royale_horse_spawn": {
+      "mesh": "austrian_hussard_horse",
+      "image": "austrian_hussard_horse.webp"
+    },
+    "spr_royale_horse_spawn_light": {
+      "mesh": "austrian_lightcav_horse",
+      "image": "austrian_lightcav_horse.webp"
+    },
+    "spr_headquarters_flag_rhodok": {
+      "mesh": "austrianflag",
+      "image": "austrianflag.webp"
+    },
+    "spr_royale_weapon_spawn_axe": {
+      "mesh": "axescrate",
+      "image": "axescrate.webp"
+    },
+    "spr_mm_french_barrel_explosive": {
+      "mesh": "barreltriangulated",
+      "image": "barreltriangulated.webp"
+    },
+    "spr_mm_sp_crate_explosive": {
+      "mesh": "barreltriangulated",
+      "image": "barreltriangulated.webp"
+    },
+    "spr_crate_explosive_brit": {
+      "mesh": "barreltriangulated_brit",
+      "image": "barreltriangulated_brit.webp"
+    },
+    "spr_crate_explosive_fra": {
+      "mesh": "barreltriangulated_fra",
+      "image": "barreltriangulated_fra.webp"
+    },
+    "spr_crate_explosive_ger": {
+      "mesh": "barreltriangulated_prus",
+      "image": "barreltriangulated_prus.webp"
+    },
+    "spr_crate_explosive_rus": {
+      "mesh": "barreltriangulated_rus",
+      "image": "barreltriangulated_rus.webp"
+    },
+    "spr_barrier_16m": {
+      "mesh": "barrier_16m",
+      "image": "barrier_16m.webp"
+    },
+    "spr_exit_16m": {
+      "mesh": "barrier_16m",
+      "image": "barrier_16m.webp"
+    },
+    "spr_ai_limiter_16m": {
+      "mesh": "barrier_16m",
+      "image": "barrier_16m.webp"
+    },
+    "spr_mm_barrier_16m": {
+      "mesh": "barrier_16m",
+      "image": "barrier_16m.webp"
+    },
+    "spr_mm_barrier_no_col_16m": {
+      "mesh": "barrier_16m",
+      "image": "barrier_16m.webp"
+    },
+    "spr_mm_player_limiter_16m": {
+      "mesh": "barrier_16m",
+      "image": "barrier_16m.webp"
+    },
+    "spr_barrier_20m": {
+      "mesh": "barrier_20m",
+      "image": "barrier_20m.webp"
+    },
+    "spr_mm_barrier_20m": {
+      "mesh": "barrier_20m",
+      "image": "barrier_20m.webp"
+    },
+    "spr_mm_barrier_no_col_20m": {
+      "mesh": "barrier_20m",
+      "image": "barrier_20m.webp"
+    },
+    "spr_barrier_2m": {
+      "mesh": "barrier_2m",
+      "image": "barrier_2m.webp"
+    },
+    "spr_ai_limiter_2m": {
+      "mesh": "barrier_2m",
+      "image": "barrier_2m.webp"
+    },
+    "spr_mm_barrier_2m": {
+      "mesh": "barrier_2m",
+      "image": "barrier_2m.webp"
+    },
+    "spr_mm_barrier_no_col_2m": {
+      "mesh": "barrier_2m",
+      "image": "barrier_2m.webp"
+    },
+    "spr_mm_player_limiter_2m": {
+      "mesh": "barrier_2m",
+      "image": "barrier_2m.webp"
+    },
+    "spr_barrier_4m": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_exit_4m": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_ai_limiter_4m": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_mm_barrier_4m": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_mm_barrier_no_col_4m": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_mm_player_limiter_4m": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_mm_player_limiter_move_1": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_mm_player_limiter_move_2": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_mm_player_limiter_move_3": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_mm_player_limiter_move_4": {
+      "mesh": "barrier_4m",
+      "image": "barrier_4m.webp"
+    },
+    "spr_barrier_8m": {
+      "mesh": "barrier_8m",
+      "image": "barrier_8m.webp"
+    },
+    "spr_exit_8m": {
+      "mesh": "barrier_8m",
+      "image": "barrier_8m.webp"
+    },
+    "spr_ai_limiter_8m": {
+      "mesh": "barrier_8m",
+      "image": "barrier_8m.webp"
+    },
+    "spr_mm_barrier_8m": {
+      "mesh": "barrier_8m",
+      "image": "barrier_8m.webp"
+    },
+    "spr_mm_barrier_no_col_8m": {
+      "mesh": "barrier_8m",
+      "image": "barrier_8m.webp"
+    },
+    "spr_mm_player_limiter_8m": {
+      "mesh": "barrier_8m",
+      "image": "barrier_8m.webp"
+    },
+    "spr_barrier_box": {
+      "mesh": "barrier_box",
+      "image": "barrier_box.webp"
+    },
+    "spr_barrier_capsule": {
+      "mesh": "barrier_capsule",
+      "image": "barrier_capsule.webp"
+    },
+    "spr_barrier_cone": {
+      "mesh": "barrier_cone",
+      "image": "barrier_cone.webp"
+    },
+    "spr_barrier_sphere": {
+      "mesh": "barrier_sphere",
+      "image": "barrier_sphere.webp"
+    },
+    "spr_mm_bird": {
+      "mesh": "birdmodel",
+      "image": "birdmodel.webp"
+    },
+    "spr_brazier_with_fire": {
+      "mesh": "brazier",
+      "image": "brazier.webp"
+    },
+    "spr_headquarters_flag_swadian": {
+      "mesh": "britflag",
+      "image": "britflag.webp"
+    },
+    "spr_candle_a": {
+      "mesh": "candle_a",
+      "image": "candle_a.webp"
+    },
+    "spr_candle_c": {
+      "mesh": "candle_a",
+      "image": "candle_a.webp"
+    },
+    "spr_candle_b": {
+      "mesh": "candle_b",
+      "image": "candle_b.webp"
+    },
+    "spr_mm_cannon_12pdr": {
+      "mesh": "cannon_12pdr",
+      "image": "cannon_12pdr.webp"
+    },
+    "spr_royale_cannon_spawn_field": {
+      "mesh": "cannon_12pdr",
+      "image": "cannon_12pdr.webp"
+    },
+    "spr_mm_cannon_12pdr_barrel": {
+      "mesh": "cannon_12pdr_barrel",
+      "image": "cannon_12pdr_barrel.webp"
+    },
+    "spr_mm_cannon_12pdr_limber": {
+      "mesh": "cannon_12pdr_limber",
+      "image": "cannon_12pdr_limber.webp"
+    },
+    "spr_mm_cannon_12pdr_limber_wheels": {
+      "mesh": "cannon_12pdr_limber_wheels",
+      "image": "cannon_12pdr_limber_wheels.webp"
+    },
+    "spr_mm_cannon_howitzer_limber_wheels": {
+      "mesh": "cannon_12pdr_limber_wheels",
+      "image": "cannon_12pdr_limber_wheels.webp"
+    },
+    "spr_mm_cannon_12pdr_wheels": {
+      "mesh": "cannon_12pdr_wheels",
+      "image": "cannon_12pdr_wheels.webp"
+    },
+    "spr_mm_cannon_howitzer_wheels": {
+      "mesh": "cannon_12pdr_wheels",
+      "image": "cannon_12pdr_wheels.webp"
+    },
+    "spr_mm_cannon_12pdr_wood": {
+      "mesh": "cannon_12pdr_wood",
+      "image": "cannon_12pdr_wood.webp"
+    },
+    "spr_mm_cannon_carronade": {
+      "mesh": "cannon_carronade",
+      "image": "cannon_carronade.webp"
+    },
+    "spr_mm_cannon_carronade_barrel": {
+      "mesh": "cannon_carronade_barrel",
+      "image": "cannon_carronade_barrel.webp"
+    },
+    "spr_mm_cannon_carronade_wood": {
+      "mesh": "cannon_carronade_wood",
+      "image": "cannon_carronade_wood.webp"
+    },
+    "spr_mm_cannon_fort": {
+      "mesh": "cannon_fort",
+      "image": "cannon_fort.webp"
+    },
+    "spr_royale_cannon_spawn_fort": {
+      "mesh": "cannon_fort",
+      "image": "cannon_fort.webp"
+    },
+    "spr_mm_cannon_fort_barrel": {
+      "mesh": "cannon_fort_barrel",
+      "image": "cannon_fort_barrel.webp"
+    },
+    "spr_mm_cannon_fort_wood": {
+      "mesh": "cannon_fort_movable",
+      "image": "cannon_fort_movable.webp"
+    },
+    "spr_mm_cannon_fort_wheels": {
+      "mesh": "cannon_fort_movable2",
+      "image": "cannon_fort_movable2.webp"
+    },
+    "spr_mm_cannon_fort_static": {
+      "mesh": "cannon_fort_static",
+      "image": "cannon_fort_static.webp"
+    },
+    "spr_mm_cannon_howitzer": {
+      "mesh": "cannon_howitzer",
+      "image": "cannon_howitzer.webp"
+    },
+    "spr_mm_cannon_howitzer_barrel": {
+      "mesh": "cannon_howitzer_barrel",
+      "image": "cannon_howitzer_barrel.webp"
+    },
+    "spr_mm_cannon_howitzer_limber": {
+      "mesh": "cannon_howitzer_limber",
+      "image": "cannon_howitzer_limber.webp"
+    },
+    "spr_mm_cannon_howitzer_wood": {
+      "mesh": "cannon_howitzer_wood",
+      "image": "cannon_howitzer_wood.webp"
+    },
+    "spr_mm_cannon_mortar": {
+      "mesh": "cannon_mortar",
+      "image": "cannon_mortar.webp"
+    },
+    "spr_mm_cannon_mortar_barrel": {
+      "mesh": "cannon_mortar_barrel",
+      "image": "cannon_mortar_barrel.webp"
+    },
+    "spr_mm_cannon_mortar_wood": {
+      "mesh": "cannon_mortar_wood",
+      "image": "cannon_mortar_wood.webp"
+    },
+    "spr_mm_cannon_mortar_static": {
+      "mesh": "cannon_mortar_wood_static",
+      "image": "cannon_mortar_wood_static.webp"
+    },
+    "spr_mm_cannon_naval": {
+      "mesh": "cannon_naval",
+      "image": "cannon_naval.webp"
+    },
+    "spr_royale_cannon_spawn_naval": {
+      "mesh": "cannon_naval",
+      "image": "cannon_naval.webp"
+    },
+    "spr_mm_cannon_naval_barrel": {
+      "mesh": "cannon_naval_barrel",
+      "image": "cannon_naval_barrel.webp"
+    },
+    "spr_mm_cannon_naval_wood": {
+      "mesh": "cannon_naval_wood",
+      "image": "cannon_naval_wood.webp"
+    },
+    "spr_mm_cannon_swievel": {
+      "mesh": "cannon_swievel",
+      "image": "cannon_swievel.webp"
+    },
+    "spr_royale_cannon_spawn_swievel": {
+      "mesh": "cannon_swievel",
+      "image": "cannon_swievel.webp"
+    },
+    "spr_mm_cannon_swievel_barrel": {
+      "mesh": "cannon_swievel_barrel",
+      "image": "cannon_swievel_barrel.webp"
+    },
+    "spr_mm_cannon_swievel_wood": {
+      "mesh": "cannon_swievel_wood",
+      "image": "cannon_swievel_wood.webp"
+    },
+    "spr_mm_cannonball_12pd": {
+      "mesh": "cannonball_12pd",
+      "image": "cannonball_12pd.webp"
+    },
+    "spr_mm_cannonball_code_only_12pd": {
+      "mesh": "cannonball_12pd",
+      "image": "cannonball_12pd.webp"
+    },
+    "spr_mm_cannonball_24pd": {
+      "mesh": "cannonball_24pd",
+      "image": "cannonball_24pd.webp"
+    },
+    "spr_mm_cannonball_code_only_24pd": {
+      "mesh": "cannonball_24pd",
+      "image": "cannonball_24pd.webp"
+    },
+    "spr_mm_cannonball_36pd": {
+      "mesh": "cannonball_36pd",
+      "image": "cannonball_36pd.webp"
+    },
+    "spr_mm_cannonball_code_only_36pd": {
+      "mesh": "cannonball_36pd",
+      "image": "cannonball_36pd.webp"
+    },
+    "spr_mm_cannonball_6pd": {
+      "mesh": "cannonball_6pd",
+      "image": "cannonball_6pd.webp"
+    },
+    "spr_mm_cannonball_code_only_6pd": {
+      "mesh": "cannonball_6pd",
+      "image": "cannonball_6pd.webp"
+    },
+    "spr_royale_ammo_spawn": {
+      "mesh": "cartridge_box_mesh",
+      "image": "cartridge_box_mesh.webp"
+    },
+    "spr_royale_ammo_spawn_musket": {
+      "mesh": "cartridge_box_mesh",
+      "image": "cartridge_box_mesh.webp"
+    },
+    "spr_royale_ammo_spawn_pistol": {
+      "mesh": "cartridge_box_mesh",
+      "image": "cartridge_box_mesh.webp"
+    },
+    "spr_castle_e_sally_door_a": {
+      "mesh": "castle_e_sally_door_a",
+      "image": "castle_e_sally_door_a.webp"
+    },
+    "spr_castle_f_door_b": {
+      "mesh": "castle_e_sally_door_a",
+      "image": "castle_e_sally_door_a.webp"
+    },
+    "spr_castle_f_door_a": {
+      "mesh": "castle_f_door_a",
+      "image": "castle_f_door_a.webp"
+    },
+    "spr_castle_f_sally_door_a": {
+      "mesh": "castle_f_sally_door_a",
+      "image": "castle_f_sally_door_a.webp"
+    },
+    "spr_headquarters_flag_sarranid": {
+      "mesh": "censoredconfederateflag",
+      "image": "censoredconfederateflag.webp"
+    },
+    "spr_ze_treasure": {
+      "mesh": "chest_b",
+      "image": "chest_b.webp"
+    },
+    "spr_chevaux_de_frise_tri_destructible": {
+      "mesh": "chevaux_de_frise_tri",
+      "image": "chevaux_de_frise_tri.webp"
+    },
+    "spr_chevaux_de_frise_tri_construct": {
+      "mesh": "chevaux_de_frise_tri_destroy",
+      "image": "chevaux_de_frise_tri_destroy.webp"
+    },
+    "spr_mm_build_church_rope": {
+      "mesh": "church_rope",
+      "image": "church_rope.webp"
+    },
+    "spr_royale_weapon_spawn_club": {
+      "mesh": "clubscrate",
+      "image": "clubscrate.webp"
+    },
+    "spr_coconut": {
+      "mesh": "coconut",
+      "image": "coconut.webp"
+    },
+    "spr_ctf_flag_kingdom_5": {
+      "mesh": "ctf_flag_austria",
+      "image": "ctf_flag_austria.webp"
+    },
+    "spr_formation_locator_5": {
+      "mesh": "ctf_flag_austria",
+      "image": "ctf_flag_austria.webp"
+    },
+    "spr_ctf_flag_kingdom_1": {
+      "mesh": "ctf_flag_britain",
+      "image": "ctf_flag_britain.webp"
+    },
+    "spr_formation_locator": {
+      "mesh": "ctf_flag_britain",
+      "image": "ctf_flag_britain.webp"
+    },
+    "spr_ctf_flag_kingdom_2": {
+      "mesh": "ctf_flag_france",
+      "image": "ctf_flag_france.webp"
+    },
+    "spr_formation_locator_2": {
+      "mesh": "ctf_flag_france",
+      "image": "ctf_flag_france.webp"
+    },
+    "spr_objectives_locator": {
+      "mesh": "ctf_flag_france",
+      "image": "ctf_flag_france.webp"
+    },
+    "spr_ctf_flag_kingdom_3": {
+      "mesh": "ctf_flag_prussia",
+      "image": "ctf_flag_prussia.webp"
+    },
+    "spr_formation_locator_3": {
+      "mesh": "ctf_flag_prussia",
+      "image": "ctf_flag_prussia.webp"
+    },
+    "spr_ctf_flag_kingdom_7": {
+      "mesh": "ctf_flag_rebel",
+      "image": "ctf_flag_rebel.webp"
+    },
+    "spr_ctf_flag_kingdom_6": {
+      "mesh": "ctf_flag_rhine",
+      "image": "ctf_flag_rhine.webp"
+    },
+    "spr_ctf_flag_kingdom_4": {
+      "mesh": "ctf_flag_russia",
+      "image": "ctf_flag_russia.webp"
+    },
+    "spr_formation_locator_4": {
+      "mesh": "ctf_flag_russia",
+      "image": "ctf_flag_russia.webp"
+    },
+    "spr_earth_sally_gate_left": {
+      "mesh": "earth_sally_gate_left",
+      "image": "earth_sally_gate_left.webp"
+    },
+    "spr_earth_sally_gate_right": {
+      "mesh": "earth_sally_gate_right",
+      "image": "earth_sally_gate_right.webp"
+    },
+    "spr_earthwork1_destructible": {
+      "mesh": "earthwork1",
+      "image": "earthwork1.webp"
+    },
+    "spr_earthwork1_construct_dummy": {
+      "mesh": "earthwork1",
+      "image": "earthwork1.webp"
+    },
+    "spr_cooking_fire": {
+      "mesh": "fire_floor",
+      "image": "fire_floor.webp"
+    },
+    "spr_headquarters_flag_vaegir": {
+      "mesh": "frenchie_flag",
+      "image": "frenchie_flag.webp"
+    },
+    "spr_gabiondeploy_destructible": {
+      "mesh": "gabiondeploy",
+      "image": "gabiondeploy.webp"
+    },
+    "spr_gourd": {
+      "mesh": "gourd",
+      "image": "gourd.webp"
+    },
+    "spr_mm_ship_gunboat": {
+      "mesh": "gunboat",
+      "image": "gunboat.webp"
+    },
+    "spr_gabiondeploy_construct": {
+      "mesh": "hanskopf",
+      "image": "hanskopf.webp"
+    },
+    "spr_door_teleport_horizontal": {
+      "mesh": "house_roof_door",
+      "image": "house_roof_door.webp"
+    },
+    "spr_mm_sp_ladder_sokolnitz_only": {
+      "mesh": "ladder",
+      "image": "ladder.webp"
+    },
+    "spr_light_sun": {
+      "mesh": "light_sphere",
+      "image": "light_sphere.webp"
+    },
+    "spr_light": {
+      "mesh": "light_sphere",
+      "image": "light_sphere.webp"
+    },
+    "spr_light_red": {
+      "mesh": "light_sphere",
+      "image": "light_sphere.webp"
+    },
+    "spr_light_night": {
+      "mesh": "light_sphere",
+      "image": "light_sphere.webp"
+    },
+    "spr_royale_weapon_spawn_lighter": {
+      "mesh": "lighter",
+      "image": "lighter.webp"
+    },
+    "spr_mm_limber_wheels": {
+      "mesh": "limber_wheels",
+      "image": "limber_wheels.webp"
+    },
+    "spr_mm_limber_wood": {
+      "mesh": "limber_wood",
+      "image": "limber_wood.webp"
+    },
+    "spr_mm_ship_longboat": {
+      "mesh": "longboat",
+      "image": "longboat.webp"
+    },
+    "spr_mm_ship_longboat_1_mast": {
+      "mesh": "longboat_1_mast",
+      "image": "longboat_1_mast.webp"
+    },
+    "spr_mm_ship_longboat_2_mast": {
+      "mesh": "longboat_2_masts",
+      "image": "longboat_2_masts.webp"
+    },
+    "spr_mm_ship_longboat_rudder": {
+      "mesh": "longboat_rudder",
+      "image": "longboat_rudder.webp"
+    },
+    "spr_mm_ship_longboat_rudder_control": {
+      "mesh": "longboat_rudder",
+      "image": "longboat_rudder.webp"
+    },
+    "spr_royale_weapon_spawn_bigsword": {
+      "mesh": "longsabrecrate",
+      "image": "longsabrecrate.webp"
+    },
+    "spr_mm_dummy": {
+      "mesh": "mm_dummy",
+      "image": "mm_dummy.webp"
+    },
+    "spr_plank_destructible2": {
+      "mesh": "mm_plank1",
+      "image": "mm_plank1.webp"
+    },
+    "spr_plank_destructible": {
+      "mesh": "mm_plank1",
+      "image": "mm_plank1.webp"
+    },
+    "spr_plank_construct_dummy": {
+      "mesh": "mm_plank1",
+      "image": "mm_plank1.webp"
+    },
+    "spr_mm_restroom_door": {
+      "mesh": "mm_restroom_door",
+      "image": "mm_restroom_door.webp"
+    },
+    "spr_mm_earth_dig1": {
+      "mesh": "mm_shovel_earth",
+      "image": "mm_shovel_earth.webp"
+    },
+    "spr_mm_earth_dig2": {
+      "mesh": "mm_shovel_earth1",
+      "image": "mm_shovel_earth1.webp"
+    },
+    "spr_mm_earth_dig3": {
+      "mesh": "mm_shovel_earth2",
+      "image": "mm_shovel_earth2.webp"
+    },
+    "spr_mm_tunnel_wall": {
+      "mesh": "mm_shovel_earth3",
+      "image": "mm_shovel_earth3.webp"
+    },
+    "spr_mm_earth_dig4": {
+      "mesh": "mm_shovel_earth4",
+      "image": "mm_shovel_earth4.webp"
+    },
+    "spr_mm_fence1": {
+      "mesh": "mmfence1",
+      "image": "mmfence1.webp"
+    },
+    "spr_mm_fence1d": {
+      "mesh": "mmfence1d",
+      "image": "mmfence1d.webp"
+    },
+    "spr_mm_palisadedd": {
+      "mesh": "mmpalisadedd",
+      "image": "mmpalisadedd.webp"
+    },
+    "spr_mm_ship_rudder": {
+      "mesh": "mmrudder",
+      "image": "mmrudder.webp"
+    },
+    "spr_mm_ship_rudder_control": {
+      "mesh": "mmrudder",
+      "image": "mmrudder.webp"
+    },
+    "spr_mm_stakes2_destructible": {
+      "mesh": "mmstackes",
+      "image": "mmstackes.webp"
+    },
+    "spr_mm_stakes2_construct": {
+      "mesh": "mmstackesd",
+      "image": "mmstackesd.webp"
+    },
+    "spr_mm_bomb_button": {
+      "mesh": "mortar_bomb_stack",
+      "image": "mortar_bomb_stack.webp"
+    },
+    "spr_mm_cannon_mortar_loaded_ammo": {
+      "mesh": "mortar_cartdridge",
+      "image": "mortar_cartdridge.webp"
+    },
+    "spr_headquarters_flag_blue": {
+      "mesh": "mp_flag_blue",
+      "image": "mp_flag_blue.webp"
+    },
+    "spr_headquarters_flag_blue_code_only": {
+      "mesh": "mp_flag_blue",
+      "image": "mp_flag_blue.webp"
+    },
+    "spr_headquarters_flag_attacker_no_capture": {
+      "mesh": "mp_flag_blue",
+      "image": "mp_flag_blue.webp"
+    },
+    "spr_headquarters_pole_code_only": {
+      "mesh": "mp_flag_pole",
+      "image": "mp_flag_pole.webp"
+    },
+    "spr_headquarters_flag_red": {
+      "mesh": "mp_flag_red",
+      "image": "mp_flag_red.webp"
+    },
+    "spr_headquarters_flag_red_code_only": {
+      "mesh": "mp_flag_red",
+      "image": "mp_flag_red.webp"
+    },
+    "spr_royale_weapon_spawn_musket": {
+      "mesh": "musketcrate",
+      "image": "musketcrate.webp"
+    },
+    "spr_mm_organ": {
+      "mesh": "organ",
+      "image": "organ.webp"
+    },
+    "spr_mm_piano": {
+      "mesh": "piano",
+      "image": "piano.webp"
+    },
+    "spr_royale_weapon_spawn": {
+      "mesh": "pikecrate",
+      "image": "pikecrate.webp"
+    },
+    "spr_royale_weapon_spawn_spear": {
+      "mesh": "pikecrate",
+      "image": "pikecrate.webp"
+    },
+    "spr_royale_weapon_spawn_pistol": {
+      "mesh": "pistolcrate",
+      "image": "pistolcrate.webp"
+    },
+    "spr_pointer_arrow": {
+      "mesh": "pointer_arrow",
+      "image": "pointer_arrow.webp"
+    },
+    "spr_mm_constr_pontoon_short": {
+      "mesh": "pontoon_construct",
+      "image": "pontoon_construct.webp"
+    },
+    "spr_mm_constr_pontoon_med": {
+      "mesh": "pontoon_construct",
+      "image": "pontoon_construct.webp"
+    },
+    "spr_mm_constr_pontoon_long": {
+      "mesh": "pontoon_construct",
+      "image": "pontoon_construct.webp"
+    },
+    "spr_headquarters_flag_khergit": {
+      "mesh": "prussiaflag",
+      "image": "prussiaflag.webp"
+    },
+    "spr_royale_horse_spawn_arty": {
+      "mesh": "prussian_cuirassier_horse1",
+      "image": "prussian_cuirassier_horse1.webp"
+    },
+    "spr_invalid_object": {
+      "mesh": "question_mark",
+      "image": "question_mark.webp"
+    },
+    "spr_royale_weapon_spawn_ramrod": {
+      "mesh": "ramrod",
+      "image": "ramrod.webp"
+    },
+    "spr_headquarters_flag_rebel": {
+      "mesh": "rebbleflag",
+      "image": "rebbleflag.webp"
+    },
+    "spr_royale_weapon_spawn_carabine": {
+      "mesh": "riflecrate",
+      "image": "riflecrate.webp"
+    },
+    "spr_mm_ship_rocket_boat": {
+      "mesh": "rocket_boat",
+      "image": "rocket_boat.webp"
+    },
+    "spr_mm_cannon_rocket": {
+      "mesh": "rocket_launcher",
+      "image": "rocket_launcher.webp"
+    },
+    "spr_mm_cannon_rocket_barrel": {
+      "mesh": "rocket_launcher_barrel",
+      "image": "rocket_launcher_barrel.webp"
+    },
+    "spr_mm_cannon_rocket_static": {
+      "mesh": "rocket_launcher_static",
+      "image": "rocket_launcher_static.webp"
+    },
+    "spr_mm_cannon_rocket_wood": {
+      "mesh": "rocket_launcher_wood",
+      "image": "rocket_launcher_wood.webp"
+    },
+    "spr_mm_rocket": {
+      "mesh": "rocket_projectile",
+      "image": "rocket_projectile.webp"
+    },
+    "spr_mm_cannon_rocket_loaded_ammo": {
+      "mesh": "rocket_projectile",
+      "image": "rocket_projectile.webp"
+    },
+    "spr_mm_rocket_code_only": {
+      "mesh": "rocket_projectile",
+      "image": "rocket_projectile.webp"
+    },
+    "spr_headquarters_flag_nord": {
+      "mesh": "russkieflag",
+      "image": "russkieflag.webp"
+    },
+    "spr_royale_weapon_spawn_smallsword": {
+      "mesh": "sabrebriquetcrate",
+      "image": "sabrebriquetcrate.webp"
+    },
+    "spr_sandbags_destructible": {
+      "mesh": "sandbags",
+      "image": "sandbags.webp"
+    },
+    "spr_sandbags_construct": {
+      "mesh": "sandbags_destroy",
+      "image": "sandbags_destroy.webp"
+    },
+    "spr_mm_ship_schooner": {
+      "mesh": "schooner",
+      "image": "schooner.webp"
+    },
+    "spr_mm_ship_schooner_rudder": {
+      "mesh": "schooner_rudder",
+      "image": "schooner_rudder.webp"
+    },
+    "spr_mm_ship_schooner_rudder_control": {
+      "mesh": "schooner_rudder",
+      "image": "schooner_rudder.webp"
+    },
+    "spr_siege_ladder_move_10m": {
+      "mesh": "siege_ladder_move_10m",
+      "image": "siege_ladder_move_10m.webp"
+    },
+    "spr_siege_ladder_move_12m": {
+      "mesh": "siege_ladder_move_12m",
+      "image": "siege_ladder_move_12m.webp"
+    },
+    "spr_siege_ladder_move_14m": {
+      "mesh": "siege_ladder_move_14m",
+      "image": "siege_ladder_move_14m.webp"
+    },
+    "spr_siege_ladder_move_6m": {
+      "mesh": "siege_ladder_move_6m",
+      "image": "siege_ladder_move_6m.webp"
+    },
+    "spr_siege_ladder_move_8m": {
+      "mesh": "siege_ladder_move_8m",
+      "image": "siege_ladder_move_8m.webp"
+    },
+    "spr_mm_stakes_destructible": {
+      "mesh": "stackes",
+      "image": "stackes.webp"
+    },
+    "spr_mm_stakes_construct": {
+      "mesh": "stackes_destroyed",
+      "image": "stackes_destroyed.webp"
+    },
+    "spr_mm_campaign_table": {
+      "mesh": "table_tavern",
+      "image": "table_tavern.webp"
+    },
+    "spr_door_teleport_vertical": {
+      "mesh": "tavern_door_b",
+      "image": "tavern_door_b.webp"
+    },
+    "spr_royale_weapon_spawn_tool": {
+      "mesh": "toolscrate",
+      "image": "toolscrate.webp"
+    },
+    "spr_torch": {
+      "mesh": "torch_a",
+      "image": "torch_a.webp"
+    },
+    "spr_torch_night": {
+      "mesh": "torch_a",
+      "image": "torch_a.webp"
+    },
+    "spr_door_destructible": {
+      "mesh": "tutorial_door_a",
+      "image": "tutorial_door_a.webp"
+    },
+    "spr_viking_keep_destroy_sally_door_left": {
+      "mesh": "viking_keep_destroy_sally_door_left",
+      "image": "viking_keep_destroy_sally_door_left.webp"
+    },
+    "spr_viking_keep_destroy_sally_door_right": {
+      "mesh": "viking_keep_destroy_sally_door_right",
+      "image": "viking_keep_destroy_sally_door_right.webp"
+    },
+    "spr_royale_weapon_spawn_bottle": {
+      "mesh": "vodkacrate",
+      "image": "vodkacrate.webp"
+    },
+    "spr_mm_constr_watchtower": {
+      "mesh": "watchtower_construct",
+      "image": "watchtower_construct.webp"
+    },
+    "spr_water_river": {
+      "mesh": "water_plane",
+      "image": "water_plane.webp"
+    },
+    "spr_headquarters_flag_gray": {
+      "mesh": "whiteflag",
+      "image": "whiteflag.webp"
+    },
+    "spr_headquarters_flag_gray_code_only": {
+      "mesh": "whiteflag",
+      "image": "whiteflag.webp"
+    },
+    "spr_winch_b": {
+      "mesh": "winch_b",
+      "image": "winch_b.webp"
+    },
+    "spr_mm_window1": {
+      "mesh": "window1",
+      "image": "window1.webp"
+    },
+    "spr_mm_window1_poor": {
+      "mesh": "window1_poor",
+      "image": "window1_poor.webp"
+    },
+    "spr_mm_window2": {
+      "mesh": "window2",
+      "image": "window2.webp"
+    },
+    "spr_mm_window2_poor": {
+      "mesh": "window2_poor",
+      "image": "window2_poor.webp"
+    },
+    "spr_mm_window3": {
+      "mesh": "window_old_walls1",
+      "image": "window_old_walls1.webp"
+    },
+    "spr_mm_window3_poor": {
+      "mesh": "window_old_walls1_poor",
+      "image": "window_old_walls1_poor.webp"
+    },
+    "spr_mm_window4": {
+      "mesh": "window_repos1",
+      "image": "window_repos1.webp"
+    },
+    "spr_mm_window4_poor": {
+      "mesh": "window_repos1_poor",
+      "image": "window_repos1_poor.webp"
     }
   }
 }

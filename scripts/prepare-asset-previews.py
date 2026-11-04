@@ -81,12 +81,15 @@ def main():
     for mesh_name in sorted({a['mesh'] for a in assets.values()}):
         # Warband multipart meshes use .1, .2, etc.; include every full-detail part.
         parts = [m for name, m in meshes.items() if name == mesh_name or re.fullmatch(re.escape(mesh_name) + r'\.\d+', name)]
+        parts = [part for part in parts if len(part['positions']) and len(part['faces'])]
         if not parts:
-            raise ValueError('Missing mesh: ' + mesh_name)
+            continue  # Meshless helpers use a selectable marker in the 3D editor.
+        for part in parts:
+            materials.setdefault(part['material'], dict(flags=0, diffuse=''))
         projected = np.concatenate([m['positions'] @ basis for m in parts])
         low, high = projected.min(axis=0), projected.max(axis=0)
         center = (low + high) / 2
-        span = max((high - low)[:2]) * 1.12
+        span = max(max((high - low)[:2]) * 1.12, 0.001)
         framebuffer.depth_mask = True
         framebuffer.clear(0.93, 0.95, 0.92, 1.0)
         parts.sort(key=lambda part: (material_rendering(materials[part['material']]['flags'])['blend_mode'] in (1, 2, 3, 4), material_rendering(materials[part['material']]['flags'])['render_order']))
@@ -94,15 +97,19 @@ def main():
             material = materials[part['material']]
             texture_name = material['diffuse']
             filename = texture_name if Path(texture_name).suffix else texture_name + '.dds'
-            path = textures[filename.lower()]
+            path = textures.get(filename.lower())
             if path not in texture_cache:
-                with Image.open(path) as source:
-                    image = source.convert('RGBA')
-                    image.thumbnail((512, 512), Image.Resampling.LANCZOS)
+                if path is None:
+                    image = Image.new('RGBA', (2, 2), (200, 200, 200, 255))
+                else:
+                    with Image.open(path) as source:
+                        image = source.convert('RGBA')
+                        image.thumbnail((512, 512), Image.Resampling.LANCZOS)
                 texture = context.texture(image.size, 4, image.tobytes())
                 texture.build_mipmaps()
                 texture_cache[path] = texture
-                inputs[str(path.relative_to(module)) if path.is_relative_to(module) else 'game/Textures/' + path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+                if path is not None:
+                    inputs[str(path.relative_to(module)) if path.is_relative_to(module) else 'game/Textures/' + path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
             texture_cache[path].use()
             flags = material['flags']
             rendering = material_rendering(flags)

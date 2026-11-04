@@ -38,6 +38,12 @@ export function createModelLibrary(manifest, baseURL) {
     if (models.has(mesh)) return models.get(mesh);
     const promise = (async () => {
       const meta = manifest.meshes[mesh];
+      if (!meta && manifest.preview_fallbacks?.[mesh]) {
+        const geometry = new THREE.OctahedronGeometry(1);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffaa33, wireframe: true });
+        resources.add(geometry); resources.add(material);
+        return new THREE.Mesh(geometry, material);
+      }
       if (!meta) throw new Error('Missing model: ' + mesh);
       const bytes = await checkedBuffer(new URL(meta.file, baseURL), meta.sha256, controller.signal);
       const parts = decodeMesh(bytes, meta);

@@ -3,6 +3,19 @@ import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { terrainGeometry } from '../src/terrain-geometry.js';
 import { groundHeight, placementTransform, decodeMesh } from '../src/editor-spatial.js';
+import { createModelLibrary } from '../src/editor-model-loader.js';
+
+test('meshless props have selectable editor markers without hiding broken model entries', async () => {
+  const library = createModelLibrary({schema_version:1, units:'metres', up_axis:'Z', vertex_stride:12,
+    assets:{helper:{mesh:'0'}, broken:{mesh:'missing'}}, meshes:{}, preview_fallbacks:{'0':'No native mesh'}}, 'http://localhost/');
+  const marker = await library.create('helper');
+  assert.ok(marker.isMesh);
+  assert.ok(marker.geometry.attributes.position.count > 0);
+  assert.equal(marker.material.wireframe, true);
+  assert.equal(library.dimensions('helper'), null);
+  await assert.rejects(library.create('broken'), /Missing model/);
+  library.dispose();
+});
 
 const data = {grid_size:2,xs:[10,20],ys:[30,40],heights_mm:[1000,3000,5000,12000],vertical_scale:1,height_order:'x-major, y-minor'};
 test('height offsets can sink assets below terrain independently of scale', () => {

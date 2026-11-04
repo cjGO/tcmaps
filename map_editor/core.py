@@ -75,9 +75,9 @@ def verify_source(source):
     return recipe
 
 
-ASSET_CATALOGUE_VERSION = 2
-# These are engine/editor helpers or multi-part gameplay systems, not standalone
-# static map props. Visible, unscripted scenery is otherwise included wholesale.
+ASSET_CATALOGUE_VERSION = 3
+# Version 2 excluded engine helpers and gameplay systems. Keep its exact rules
+# for validating old projects; version 3 includes every installed definition.
 PROP_HELPER_PREFIXES = ('spr_invalid_', 'spr_pointer_', 'spr_light', 'spr_barrier',
     'spr_exit_', 'spr_ai_', 'spr_mm_player_limiter', 'spr_mm_cannon', 'spr_mm_rocket',
     'spr_mm_limber', 'spr_mm_ship_', 'spr_royale_', 'spr_formation_', 'spr_objectives_',
@@ -100,7 +100,7 @@ def prop_group(name):
 
 
 def asset_catalogue(path, version=ASSET_CATALOGUE_VERSION):
-    if type(version) is not int or version not in (1, 2):
+    if type(version) is not int or version not in (1, 2, 3):
         raise ValueError('Unsupported asset catalogue version')
     lines = Path(path).read_text(encoding='utf-8').splitlines()
     records = [line.split() for line in lines if line.startswith('spr_')]
@@ -113,7 +113,7 @@ def asset_catalogue(path, version=ASSET_CATALOGUE_VERSION):
             raise ValueError('Invalid scene prop definition: ' + name)
         vegetation = name.startswith(('spr_mm_tree_', 'spr_flora_')) and int(fields[1]) & 0x1000000
         if not vegetation:
-            if (version == 1 or fields[3] == '0' or int(fields[1]) & 0x4000
+            if version < 3 and (version == 1 or fields[3] == '0' or int(fields[1]) & 0x4000
                     or int(fields[5]) != 0 or name.startswith(PROP_HELPER_PREFIXES)
                     or 'code_only' in name or name == 'spr_water_river'
                     # These shipped placeholder meshes contain no triangles.
@@ -122,6 +122,8 @@ def asset_catalogue(path, version=ASSET_CATALOGUE_VERSION):
             props.append(dict(name=name, prop_id=index, object_name=name[4:], kind='scene_prop',
                 group=prop_group(name), label=name.removeprefix('spr_').replace('_', ' '),
                 mesh=fields[3], collision=fields[4] != '0', ground_offset_m=0.0))
+            if version >= 3:
+                props[-1].update(invisible=bool(int(fields[1]) & 0x4000), scripted=int(fields[5]) != 0)
             continue
         group = ('Trees' if name.startswith('spr_mm_tree_') else
                  'Shrubs' if 'bush' in name else 'Other vegetation')
