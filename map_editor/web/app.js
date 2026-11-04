@@ -290,7 +290,7 @@
       const value=Number(input.value);
       if(!Number.isFinite(value)) return;
       input.value=yaw ? ((value+(key==='a'?1:-1))%360+360)%360
-        : Math.max(.1,Math.min(10,Math.round((value+(key==='q' ? .1 : -.1))*1000)/1000));
+        : Math.max(.1,Math.min(100,Math.round((value+(key==='q' ? .1 : -.1))*1000)/1000));
       if(Number(input.value)!==value) input.dispatchEvent(new Event('change'));
       return;
     }

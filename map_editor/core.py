@@ -263,8 +263,8 @@ def validate_placements(document, source, bounds, assets):
             number(p['z_offset_m'], 'height offset')
         if not in_bounds(x, y, bounds):
             raise ValueError('Placement lies outside the terrain')
-        if not 0 <= yaw < 360 or not 0.1 <= scale <= 10:
-            raise ValueError('Yaw must be in [0, 360); scale must be in [0.1, 10]')
+        if not 0 <= yaw < 360 or not 0.1 <= scale <= 100:
+            raise ValueError('Yaw must be in [0, 360); scale must be in [0.1, 100]')
         if abs(x * 1000 - round(x * 1000)) > 1e-6 or abs(y * 1000 - round(y * 1000)) > 1e-6:
             raise ValueError('Coordinates must have at most three decimal places')
         result.append(dict(p))

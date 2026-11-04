@@ -14,7 +14,7 @@ export function groundHeight(data, x, y) {
 }
 
 export function placementTransform(data, point, asset) {
-  if (![point.x_m, point.y_m, point.yaw_deg, point.scale, point.z_offset_m ?? 0, asset.ground_offset_m].every(Number.isFinite) || point.scale < .1 || point.scale > 10) throw new Error('Invalid placement transform');
+  if (![point.x_m, point.y_m, point.yaw_deg, point.scale, point.z_offset_m ?? 0, asset.ground_offset_m].every(Number.isFinite) || point.scale < .1 || point.scale > 100) throw new Error('Invalid placement transform');
   return { position: [point.x_m, point.y_m, groundHeight(data, point.x_m, point.y_m) + asset.ground_offset_m * point.scale + (point.z_offset_m ?? 0)],
     yaw: point.yaw_deg * Math.PI / 180, scale: point.scale };
 }

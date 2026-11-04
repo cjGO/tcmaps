@@ -83,7 +83,7 @@ class EditorTests(unittest.TestCase):
         doc=core.placement_document(self.source,[self.point]); path=self.root/'points.json'
         core.write_json(path,doc)
         self.assertEqual(core.validate_placements(core.read_json(path),self.source,self.bounds,self.assets),[self.point])
-        for update in [dict(x_m=-1),dict(y_m=101),dict(x_m=1.0001),dict(x_m=True),dict(scale=0),dict(scale=11),
+        for update in [dict(x_m=-1),dict(y_m=101),dict(x_m=1.0001),dict(x_m=True),dict(scale=0),dict(scale=100.1),
                        dict(yaw_deg=360),dict(yaw_deg=float('nan')),dict(asset='spr_invalid'),dict(id='../x'),dict(z_m=4)]:
             with self.subTest(update=update), self.assertRaises(ValueError):
                 core.validate_placements(core.placement_document(self.source,[dict(self.point,**update)]),self.source,self.bounds,self.assets)

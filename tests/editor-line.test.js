@@ -88,9 +88,10 @@ test('invalid line configurations are rejected', () => {
 });
 
 test('random scales interpolate within the entered range and validate limits', () => {
+  assert.deepEqual(lineScales(.1,100,[0,1]),[.1,100]);
   assert.deepEqual(lineScales(.8,1.2,[0,.5,1]),[.8,1,1.2]);
   assert.deepEqual(lineScales(2,2,[0,.5,1]),[2,2,2]);
-  for (const [low, high] of [[0,1],[1,11],[2,1],[NaN,1],[1,Infinity]])
+  for (const [low, high] of [[0,1],[1,100.1],[2,1],[NaN,1],[1,Infinity]])
     assert.throws(() => lineScales(low,high,[.5]));
 });
 

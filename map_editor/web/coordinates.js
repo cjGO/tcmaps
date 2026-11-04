@@ -50,7 +50,7 @@
       if (![p.x_m,p.y_m,p.yaw_deg,p.scale].every(n=>typeof n === 'number' && Number.isFinite(n))) throw new Error('Invalid placement numbers.');
       if (Object.hasOwn(p,'z_offset_m') && (typeof p.z_offset_m!=='number' || !Number.isFinite(p.z_offset_m))) throw new Error('Invalid height offset.');
       if (!inside(p.x_m,p.y_m,project.bounds)) throw new Error('A point lies outside the terrain.');
-      if (p.yaw_deg < 0 || p.yaw_deg >= 360 || p.scale < .1 || p.scale > 10) throw new Error('Invalid yaw or scale.');
+      if (p.yaw_deg < 0 || p.yaw_deg >= 360 || p.scale < .1 || p.scale > 100) throw new Error('Invalid yaw or scale.');
       if ([p.x_m,p.y_m].some(n=>Math.abs(n*1000-Math.round(n*1000))>1e-6)) throw new Error('Coordinates require millimetre precision.');
     }
     return document.placements.map(p=>({...p}));

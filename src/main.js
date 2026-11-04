@@ -153,7 +153,10 @@ function sortRotation(keepCurrent = false) {
   const images = rotationImages.filter(entry => rotationPool === 'all' || rotationPools.get(entry.filename) === rotationPool);
   const summaries = new Map(images.map(entry => {
     const mapName = publicMapId(identityRegistry, entry.filename);
-    return [entry.filename, summarizeRounds(roundStatsHeaders, roundStatsByMap.get(mapName) || [], ...rotationRange)];
+    return [entry.filename, {
+      ...summarizeRounds(roundStatsHeaders, roundStatsByMap.get(mapName) || [], ...rotationRange),
+      variants: mapVariants(mapName).length,
+    }];
   }));
   collection.images = orderMaps(images, summaries, $('rotation-sort').value, $('rotation-sort-direction').value);
   collection.index = keepCurrent ? Math.max(0, collection.images.findIndex(entry => entry.filename === filename)) : 0;

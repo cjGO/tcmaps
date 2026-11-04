@@ -194,7 +194,7 @@ test('editing hotkeys update props and placement settings with wrap, limits, and
     let point=api.getState().document.placements[0];
     assert.equal(point.yaw_deg,1); assert.equal(point.scale,1);
     key('z',{ctrlKey:true}); assert.equal(api.getState().document.placements[0].scale,1.1);
-    api.select(id); change('scale','10'); key('q'); assert.equal(api.getState().document.placements[0].scale,10);
+    api.select(id); change('scale','100'); key('q'); assert.equal(api.getState().document.placements[0].scale,100);
     change('scale','0.1'); key('e'); assert.equal(api.getState().document.placements[0].scale,.1);
     key('x',{ctrlKey:true}); assert.equal(api.getState().document.placements.length,1);
     $('search').dispatchEvent(new w.KeyboardEvent('keydown',{key:'x',bubbles:true}));
@@ -271,7 +271,7 @@ test('line batches preserve individual scales and reject invalid scales atomical
     api.placeBatch([{x_m:200,y_m:200,scale:.8},{x_m:220,y_m:210,scale:1.2},{x_m:240,y_m:220}]);
     const scales=()=>Array.from(api.getState().document.placements,p=>p.scale);
     assert.deepEqual(scales(),[.8,1.2,2]);
-    for(const scale of [0,10.1,NaN]) assert.throws(()=>api.placeBatch([{x_m:200,y_m:200,scale}]));
+    for(const scale of [0,100.1,NaN]) assert.throws(()=>api.placeBatch([{x_m:200,y_m:200,scale}]));
     assert.deepEqual(scales(),[.8,1.2,2]);
     $('undo').click(); assert.equal(api.getState().document.placements.length,0);
     $('redo').click(); assert.deepEqual(scales(),[.8,1.2,2]);

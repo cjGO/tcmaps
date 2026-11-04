@@ -28,8 +28,8 @@ export function pathPlacements(nodes, count, jitter, offsets, { alignToPath = fa
 }
 
 export function lineScales(low, high, fractions) {
-  if (![low, high].every(Number.isFinite) || low < .1 || high > 10 || low > high) {
-    throw new Error('Scale range must be between 0.1 and 10, with low no greater than high.');
+  if (![low, high].every(Number.isFinite) || low < .1 || high > 100 || low > high) {
+    throw new Error('Scale range must be between 0.1 and 100, with low no greater than high.');
   }
   return fractions.map(fraction => low + (high - low) * fraction);
 }

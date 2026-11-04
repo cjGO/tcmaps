@@ -97,7 +97,7 @@ Open the printed `editor.html` path in a browser, using the corresponding Window
 
 The HTML embeds the heatmap and metadata. Reopening it starts with no additions; load your saved JSON to resume. Unsaved changes trigger the browser's normal leave-page prompt. Downloads are the saved editing state.
 
-Assets start upright at native scale 1 and yaw 0. Yaw is counterclockwise around world +Z; zero faces +Y. Allowed scale is 0.1–10 and yaw is 0–359.999… degrees. X/Y accept three decimal places. Up to 10,000 additions are supported; practical performance depends on the browser and game.
+Assets start upright at native scale 1 and yaw 0. Yaw is counterclockwise around world +Z; zero faces +Y. Allowed scale is 0.1–100 and yaw is 0–359.999… degrees. X/Y accept three decimal places. Up to 10,000 additions are supported; practical performance depends on the browser and game.
 
 Only visible, unscripted scenery is offered. Invisible helpers, weather controls,
 spawn markers, flags and scripted gameplay systems are excluded. The preview

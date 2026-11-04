@@ -27,6 +27,10 @@ const project={source:{scene_id:'scn_a',sco_sha256:'hash'},bounds,assets:[{name:
 const point={id:'p1',asset:'spr_mm_tree_pine1',x_m:100.123,y_m:200.456,yaw_deg:123,scale:1.4};
 const document={version:1,source:project.source,placements:[point]};
 test('JSON round trip validates and returns independent objects',()=>{
+  for (const scale of [.1, 100]) {
+    const placement = {...point, scale};
+    assert.deepEqual(C.validate({...document, placements:[placement]}, project), [placement]);
+  }
   const decoded=C.validate(JSON.parse(JSON.stringify(document)),project);
   assert.deepEqual(decoded,[point]);decoded[0].x_m=300;assert.equal(point.x_m,100.123);
   assert.deepEqual(C.validate({...document,source:{sco_sha256:'hash',scene_id:'scn_a'}},project),[point]);
@@ -34,7 +38,7 @@ test('JSON round trip validates and returns independent objects',()=>{
 test('bad source, duplicates, invalid assets and transforms rejected',()=>{
   assert.throws(()=>C.validate({...document,source:{}},project));
   assert.throws(()=>C.validate({...document,placements:[point,point]},project));
-  for(const update of [{x_m:900},{y_m:0},{yaw_deg:360},{scale:0},{scale:11},{asset:'other'},{x_m:NaN},{x_m:1.1234},{z_m:42},{id:'../bad'},{x_m:true}])
+  for(const update of [{x_m:900},{y_m:0},{yaw_deg:360},{scale:0},{scale:100.1},{asset:'other'},{x_m:NaN},{x_m:1.1234},{z_m:42},{id:'../bad'},{x_m:true}])
     assert.throws(()=>C.validate({...document,placements:[{...point,...update}]},project));
 });
 

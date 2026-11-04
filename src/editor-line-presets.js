@@ -9,7 +9,7 @@ function cleanEntries(entries) {
     seen.add(entry.asset);
     const scale = entry.scale ?? {enabled:false, low:.8, high:1.2};
     if (typeof scale.enabled !== 'boolean' || !Number.isFinite(scale.low) || !Number.isFinite(scale.high)
-      || scale.low < .1 || scale.high > 10 || scale.high < scale.low) throw new Error('Scale ranges must run from 0.1 to 10, with low ≤ high.');
+      || scale.low < .1 || scale.high > 100 || scale.high < scale.low) throw new Error('Scale ranges must run from 0.1 to 100, with low ≤ high.');
     return {asset:entry.asset, ratio:entry.ratio, scale:{enabled:scale.enabled, low:scale.low, high:scale.high}};
   });
 }
