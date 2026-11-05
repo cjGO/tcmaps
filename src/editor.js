@@ -7,6 +7,7 @@ import styles from '../map_editor/web/style.css?raw';
 import coordinates from '../map_editor/web/coordinates.js?raw';
 import app from '../map_editor/web/app.js?raw';
 import { densityDefaults } from './rotation-density-controls.js';
+import { editorVariantDocument } from './editor-variant.js';
 // Keep editor code available with the page, even if a deployment removes old
 // chunks before this tab opens the editor. Terrain and models still load on demand.
 import { attachEditor3D } from './editor-3d.js';
@@ -17,12 +18,16 @@ export function setupEditor(selectTab) {
   const frames = new Map();
   const projects = new Map();
   const pendingLoadouts = new Map();
-  function loadPending(id) {
+  async function loadPending(id) {
     const api = frames.get(id)?.contentWindow?.MapEditor;
     if (!api || !pendingLoadouts.has(id)) return;
-    try { api.loadDocument(pendingLoadouts.get(id)); }
-    catch (error) { api.status(error.message, true); }
+    const variant = pendingLoadouts.get(id);
     pendingLoadouts.delete(id);
+    try {
+      const registration = topologyMaps.maps.find(entry => entry.id === id);
+      api.loadDocument(await editorVariantDocument(variant, registration, projects.get(id)));
+    }
+    catch (error) { api.status(error.message, true); }
   }
   const densitySettings = new Map();
   let current = '', request = 0;
@@ -148,7 +153,7 @@ export function setupEditor(selectTab) {
     edit: (filename, variant) => {
       const map = editorMaps.find(map => map.filename === filename);
       if (!map) return;
-      if (variant?.document) pendingLoadouts.set(map.id, variant.document);
+      if (variant?.document) pendingLoadouts.set(map.id, variant);
       open(map.id);
       selectTab('editor');
     },
