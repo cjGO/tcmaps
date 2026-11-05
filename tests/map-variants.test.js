@@ -21,8 +21,10 @@ test('included VarA matches measured terrain, assets, and its recorded rounds', 
   assert.equal(variants.length, 1);
   assert.equal(variants[0].id, 'vara');
   assert.equal(includedVariants({ [path]: document }, 'test_map_117').length, 0);
-  const terrain = JSON.parse(read('lib/rotation-topology.json')).maps.find(m => m.map_id === 'test_map_116');
+  const terrain = JSON.parse(read('lib/replay-topology.json')).maps.find(m => m.map_id === 'test_map_116');
   assertVariantSource(document, terrain);
+  const installed = JSON.parse(read('lib/rotation-topology.json')).maps.find(m => m.map_id === 'test_map_116');
+  assert.throws(() => assertVariantSource(document, installed), /revision/);
   assert.throws(() => assertVariantSource({ source: { ...document.source, sco_sha256: 'different' } }, terrain), /revision/);
   const models = JSON.parse(read('lib/editor-models.json'));
   const assets = JSON.parse(read('public' + models.manifest_url)).assets;
@@ -37,11 +39,16 @@ test('included VarA matches measured terrain, assets, and its recorded rounds', 
 });
 
 test('recorded VarA revision selects its assets and terrain for both replay versions', async () => {
-  const { replayVariantRegistry, recordingVariant } = await import('../src/replay-variants.js');
+  const { replayVariantRegistry, recordingVariant, replayTerrainManifest } = await import('../src/replay-variants.js');
   const { recordingTerrainOverlay, parseRecording } = await import('../src/tactical-replay.js');
   const { terrainOverlayCandidate, verifyExperimentalTerrain } = await import('../src/experimental-replay.js');
   const path = 'maps/small/test_map_116/variants/test_map_116_VarA.placements.json';
-  const registry = await replayVariantRegistry(JSON.parse(read('lib/rotation-topology.json')), { [path]: read(path.replace('VarA.placements', 'VarA_3l3ct.placements')) });
+  const current = JSON.parse(read('lib/rotation-topology.json'));
+  const archived = JSON.parse(read('lib/replay-topology.json'));
+  const files = { [path]: read(path.replace('VarA.placements', 'VarA_3l3ct.placements')) };
+  const currentOnly = await replayVariantRegistry(current, files);
+  assert.equal(currentOnly.variants.length, 0, 'An incompatible current terrain must not break replay loading or receive the old overlay');
+  const registry = await replayVariantRegistry(replayTerrainManifest(current, archived), files);
   const header = JSON.parse(read('experimental_replays/EXP-20261030T151732Z-1.jsonl').split('\n')[0]);
   const original = structuredClone(header.map);
   const variant = recordingVariant(header.map, registry.variants);
@@ -75,7 +82,7 @@ test('map 176 VarA is discoverable and matches its terrain and model assets', ()
   const document=JSON.parse(read(path));
   const [variant]=includedVariants({[path]:document},'test_map_176');
   assert.equal(variant.id,'vara_annafreud');
-  const terrain=JSON.parse(read('lib/rotation-topology.json')).maps.find(m=>m.map_id==='test_map_176');
+  const terrain=JSON.parse(read('lib/replay-topology.json')).maps.find(m=>m.map_id==='test_map_176');
   assertVariantSource(document,terrain);
   const models=JSON.parse(read('lib/editor-models.json'));
   const assets=JSON.parse(read('public'+models.manifest_url)).assets;

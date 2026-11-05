@@ -246,8 +246,10 @@ export function terrainOverlayCandidate(replay, entries) {
   if (map.available === false || map.kind === 'generated' || !str(map.map_id)) return null;
   // A scene slot or filename can be reused. Only the public map identity may
   // select a fallback, and ambiguous variants must stay on the neutral grid.
-  const matches = entries.filter(e => e.map_id === map.map_id &&
+  const matches = entries.filter(e => !e.exact_only && e.map_id === map.map_id &&
     ['variant_id', 'variant_revision'].every(k => map[k] === false || map[k] === e[k]));
+  const authored = matches.filter(e => e.placement_overlay);
+  if (authored.length === 1) return authored[0];
   return matches.length === 1 ? matches[0] : null;
 }
 export async function verifyExperimentalTerrain(replay, data, entry, manual = false) {

@@ -5,6 +5,7 @@ import { elevationRamp } from './terrain-palettes.js';
 import manifest from '../lib/rotation-topology.json';
 import './rotation-topology.css';
 import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
+import { assertVariantSource } from './map-variants.js';
 
 export function setupTopology({ prefix = 'rotation', recordings = false } = {}) {
   const maps = new Map(manifest.maps.map(map => [`${map.id}.png`, map]));
@@ -74,8 +75,13 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       info.classList.remove('natural-surface');
       info.querySelector('.topology-ramp').style.background = elevationRamp();
       applyControls();
+      let variantSourceMatches = true;
+      if (entry?.variant) {
+        try { assertVariantSource(entry.variant.document, data); }
+        catch { variantSourceMatches = false; }
+      }
       if (!recordings && prefix === 'rotation') {
-        if (entry?.variant) {
+        if (entry?.variant && variantSourceMatches) {
           const { createVariantLayer } = await import('./rotation-variant-layer.js');
           if (generation !== token) return;
           state.textContent = 'Loading variant assets…';
@@ -94,11 +100,13 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       query(info, '#topology-metrics').textContent = `${b.x_max_m-b.x_min_m} × ${b.y_max_m-b.y_min_m} m · ${data.relief_m.toFixed(1)} m relief · ${data.grid_size} × ${data.grid_size} measured points`;
       info.querySelector('p:last-child').textContent = recordings
         ? 'Measured terrain with preview lighting and haze. Original trees, structures and game weather are omitted.'
+        : !variantSourceMatches
+        ? 'Showing the installed terrain. This loadout was authored on a different terrain revision, so its asset overlay is unavailable. Statistics are filtered to the selected variant.'
         : entry?.variant
         ? `Variant assets loaded: ${entry.variant.label} · ${entry.variant.document.placements.length} placements. Terrain uses preview lighting and haze.`
         : entry?.variantId && !['all', 'source'].includes(entry.variantId)
-          ? 'No placement file is included for this variant. Showing source terrain; statistics are filtered to the selected variant.'
-          : 'Measured source terrain with preview lighting and haze. Select an included variant to see its placed assets.';
+          ? 'No placement file is included for this variant. Showing installed terrain; statistics are filtered to the selected variant.'
+          : 'Measured installed terrain with preview lighting and haze. Variant selection filters statistics; compatible loadouts also show placed assets.';
       state.hidden = true;
     } catch (error) {
       if (generation !== token || error.name === 'AbortError') return;

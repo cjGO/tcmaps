@@ -54,7 +54,7 @@ def registered_maps(module, source_identity, checksum):
             identity = identities[slot]
             if identity['sco_sha256'] != source['sco_sha256']:
                 raise ValueError('Public identity source mismatch: ' + slot)
-            result.append(dict(id=scene_id, map_id=identity['map_id'], variant_id=identity['variant_id'], variant_revision=identity['variant_revision'], filename=scene_id + '.png', pool=pool,
+            result.append(dict(id=scene_id, map_id=identity['map_id'], map_name=identity['map_name'], variant_id=identity['variant_id'], variant_revision=identity['variant_revision'], filename=scene_id + '.png', pool=pool,
                                imageSha256=checksum(image), source=source,
                                project=f'map_editor/projects/current_rotation/{scene_id}/{version}'))
     if not result:
@@ -134,6 +134,15 @@ def main():
         if names.exists():
             shutil.copyfile(names, ROOT / 'MAP_NAMES.md')
     write_json(ROOT / 'lib/editor-rotation.json', maps)
+    # This is the lookup consumed by Current rotation and Map stats, distinct
+    # from the source batch's descriptive MAP_NAMES.md.
+    names = ['# Installed map rotation', '',
+             '| Installed slot | Map | Size | Variants folder |',
+             '|---|---|---|---|']
+    for row in maps:
+        slot, map_id, pool = row['id'][4:], row['map_id'], row['pool']
+        names.append(f'| {slot} | {map_id} | {pool} | [variants](maps/{pool}/{map_id}/variants/) |')
+    (ROOT / 'MAPNAMES.md').write_text('\n'.join(names) + '\n')
     print('Synced registered rotation. Run npm run prepare:editor to publish website assets.', flush=True)
 
 

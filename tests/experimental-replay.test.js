@@ -107,8 +107,11 @@ test('terrain requires hashes, version and recorded variant; manual overlay stay
 });
 test('bundled recordings resolve available test maps without claiming exact historical terrain', async () => {
   const directory = new URL('../experimental_replays/', import.meta.url);
-  const base = JSON.parse(readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8'));
-  const variants = {};
+  const { replayTerrainManifest } = await import('../src/replay-variants.js');
+  const base = replayTerrainManifest(
+    JSON.parse(readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8')),
+    JSON.parse(readFileSync(new URL('../lib/replay-topology.json', import.meta.url), 'utf8')));
+  const variants = JSON.parse(readFileSync(new URL('../lib/replay-variant-archive.json', import.meta.url), 'utf8'));
   for (const pool of readdirSync(new URL('../maps/', import.meta.url), { withFileTypes: true }).filter(entry => entry.isDirectory()).map(entry => entry.name)) {
     for (const map of readdirSync(new URL(`../maps/${pool}/`, import.meta.url))) {
       const directory = new URL(`../maps/${pool}/${map}/variants/`, import.meta.url);
@@ -122,7 +125,7 @@ test('bundled recordings resolve available test maps without claiming exact hist
     const replay = { header: JSON.parse(readFileSync(new URL(filename, directory), 'utf8').split('\n')[0]) };
     const original = structuredClone(replay.header.map);
     const candidate = terrainOverlayCandidate(replay, maps);
-    if (replay.header.map.available === false) { assert.equal(candidate, null); continue; }
+    if (replay.header.map.available === false || !replay.header.map.map_id) { assert.equal(candidate, null); continue; }
     assert.ok(candidate, filename);
     assert.equal(candidate.map_id, replay.header.map.map_id);
     assert.equal(terrainCandidate(replay, maps), null, 'Current assets differ from recorded sources');

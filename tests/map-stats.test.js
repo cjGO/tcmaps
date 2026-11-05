@@ -49,27 +49,31 @@ test('sorts each statistic both ways with numeric ties and unavailable values la
 // Cross-map analytics use independent duration counts and preserve unknown sizes.
 const { analyticsRounds, filterAnalytics, durationSummary, histogram, DURATION_BINS } = await import('../src/map-analytics.js');
 
-test('restored medium maps retain slot and RAW statistics in the current rotation', () => {
+test('installed medium maps use permanent statistics without reassigning historical slot rounds', () => {
   const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
   const maps = parseMapNames(read('MAPNAMES.md'));
   const rotation = JSON.parse(read('lib/editor-rotation.json'));
   const medium = rotation.filter(map => map.pool === 'medium');
-  const archived = JSON.parse(read('docs/identity-refactor-20261025-230821/lib/editor-rotation.json'));
-  assert.deepEqual(medium.map(map => map.id), archived.filter(map => map.pool === 'medium').map(map => map.id));
-  assert.equal(medium.length, 26);
+  const legacy = JSON.parse(read('lib/round-stats-legacy-identities.json'));
+  assert.equal(medium.length, 31);
   for (const [slot, id] of [[6, 198], [77, 194], [87, 195], [91, 196]]) {
-    assert.equal(statsMapId(maps, `mp_custom_map_${slot}`), `test_map_${id}`);
+    assert.equal(statsMapId(legacy, `mp_custom_map_${slot}`), `test_map_${id}`);
   }
   const [headers, ...rows] = csvRows(read('map_round_stats.csv'));
   const mapColumn = headers.indexOf('map_name');
-  const normalized = rows.map(row => row.map((value, i) => i === mapColumn ? statsMapId(maps, value) : value));
+  const normalized = rows.map(row => row.map((value, i) => i === mapColumn ? statsMapId(legacy, value) : value));
   const rounds = analyticsRounds(headers, normalized, maps, new Set(rotation.map(map => map.map_id)));
   const selected = filterAnalytics(rounds, { scope: 'current', size: 'medium', min: 1, max: 30 });
-  assert.deepEqual(new Set(selected.map(round => round.map)), new Set(medium.map(map => map.map_id)));
+  const mediumIds = new Set(medium.map(map => map.map_id));
+  assert.ok(selected.every(round => mediumIds.has(round.map)));
   // Compare with the source CSV independently, including both recorded naming forms.
-  const recordedNames = new Set(medium.flatMap(map => [map.id.slice(4), map.map_id, map.map_id + '_RAW']));
+  const legacyIds = new Map(legacy.map(map => [map.id.slice(4), map.map_id]));
   const playersColumn = headers.indexOf('player_count');
-  const expected = rows.filter(row => recordedNames.has(row[mapColumn]) && Number(row[playersColumn]) >= 1 && Number(row[playersColumn]) <= 30);
+  const expected = rows.filter(row => {
+    const name = row[mapColumn];
+    const id = legacyIds.get(name) || name.match(/^(test_map_\d+)(?:_(?:RAW|Var[a-z0-9]+))?$/i)?.[1];
+    return mediumIds.has(id) && Number(row[playersColumn]) >= 1 && Number(row[playersColumn]) <= 30;
+  });
   assert.equal(selected.length, expected.length);
   const family = normalized.filter(row => row[mapColumn] === 'test_map_198');
   const familySummary = summarizeRounds(headers, family, 1, 30);

@@ -23,7 +23,7 @@ export function roundVariant(headers, row, mapId) {
 export function includedVariants(files, mapId) {
   return Object.entries(files).filter(([path]) => path.includes(`/${mapId}/variants/`)).map(([path, document]) => {
     const filename = path.split('/').pop();
-    return { filename, id: variantId(filename, mapId), label: filename.replace(/\.placements\.json$/i, '').replace(`${mapId}_`, ''), document };
+    return { path, filename, id: variantId(filename, mapId), label: filename.replace(/\.placements\.json$/i, '').replace(`${mapId}_`, ''), document };
   }).sort((a, b) => a.label.localeCompare(b.label, undefined, { numeric: true }));
 }
 

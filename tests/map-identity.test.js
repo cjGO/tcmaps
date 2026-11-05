@@ -22,18 +22,25 @@ test('installed names resolve slots and recorded variants without guessing unkno
  for (const name of ['mp_custom_map_2', 'legacy_mp_custom_map_1', 'test_map_107_unknown', 'random_multi_plain']) assert.equal(statsMapId(maps, name), name);
  assert.equal(statsMapId(maps, 'test_map_128_RAW'), 'test_map_128');
 });
-test('MAPNAMES agrees with all registered previews and restores stats for every active map', () => {
+test('MAPNAMES agrees with all registered previews', () => {
  const read = name => fs.readFileSync(new URL(`../${name}`, import.meta.url), 'utf8');
  const maps = parseMapNames(read('MAPNAMES.md'));
  const registry = JSON.parse(read('lib/editor-rotation.json'));
  assert.equal(maps.length, registry.length);
  assert.equal(new Set(maps.map(map => map.id)).size, maps.length);
- const [headers, ...rows] = csvRows(read('map_round_stats.csv'));
- const names = rows.map(row => statsMapId(maps, row[headers.indexOf('map_name')]));
  for (const map of maps) {
   const registered = registry.find(row => row.id === map.id);
   assert.equal(map.map_id, registered?.map_id);
   assert.equal(map.pool, registered?.pool);
-  assert.ok(names.includes(map.map_id), `Missing statistics for ${map.map_id}`);
  }
+});
+
+test('historical slot rounds retain their attribution when the live rotation reassigns slots', () => {
+ const legacy = JSON.parse(fs.readFileSync(new URL('../lib/round-stats-legacy-identities.json', import.meta.url), 'utf8'));
+ const live = [{ id: 'scn_mp_custom_map_6', map_id: 'test_map_194' }];
+ assert.equal(statsMapId(legacy, 'mp_custom_map_6'), 'test_map_198');
+ assert.equal(statsMapId(live, 'mp_custom_map_6'), 'test_map_194');
+ assert.equal(statsMapId(legacy, 'test_map_194_RAW'), 'test_map_194');
+ const main = fs.readFileSync(new URL('../src/main.js', import.meta.url), 'utf8');
+ assert.match(main, /statsMapId\(legacyRoundIdentities, value\)/);
 });

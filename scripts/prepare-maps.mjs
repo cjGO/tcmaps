@@ -18,7 +18,11 @@ await mkdir('public/maps', { recursive: true });
 const maps = new Map();
 const identities = JSON.parse(await readFile('lib/candidate-identities.json', 'utf8'));
 const files = sourceFiles.filter(f => f.endsWith('.png')).sort();
-if (!files.length && !process.argv.includes('--if-present')) throw new Error(`No PNG maps found in ${source}`);
+if (!files.length) {
+  if (!process.argv.includes('--if-present')) throw new Error(`No PNG maps found in ${source}`);
+  console.log('No source PNG maps; using the prepared maps.');
+  process.exit(0);
+}
 async function prepare(file) {
   const match = file.match(/^(scn_test_\d+).*?__(\d+)_(.+)\.png$/);
   if (!match) throw new Error(`Unexpected filename: ${file}`);

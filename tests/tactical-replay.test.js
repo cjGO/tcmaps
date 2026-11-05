@@ -400,7 +400,10 @@ test('raw v1 uses a unique public map and variant overlay without changing recor
 });
 
 test('every repository v1 JSONL recording resolves published terrain', async () => {
-  const manifest = JSON.parse(fs.readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8'));
+  const { replayTerrainManifest } = await import('../src/replay-variants.js');
+  const manifest = replayTerrainManifest(
+    JSON.parse(fs.readFileSync(new URL('../lib/rotation-topology.json', import.meta.url), 'utf8')),
+    JSON.parse(fs.readFileSync(new URL('../lib/replay-topology.json', import.meta.url), 'utf8')));
   const folder = new URL('../replays/', import.meta.url);
   const files = fs.readdirSync(folder).filter(name => name.endsWith('.jsonl'));
   assert.ok(files.length > 0);

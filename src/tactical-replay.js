@@ -156,8 +156,10 @@ async function validateReplayTerrain(replay, terrainJSON, terrainHash, overlayEn
 // slots and filenames may be reassigned, and ambiguous variants cannot align it.
 export function recordingTerrainOverlay(map, entries) {
   if (map.kind !== 'fixed' || !/^test_map_\d+$/.test(map.map_id)) return null;
-  const matches = entries.filter(entry => entry.map_id === map.map_id &&
+  const matches = entries.filter(entry => !entry.exact_only && entry.map_id === map.map_id &&
     ['variant_id', 'variant_revision'].every(key => map[key] === undefined || map[key] === false || map[key] === entry[key]));
+  const authored = matches.filter(entry => entry.placement_overlay);
+  if (authored.length === 1) return authored[0];
   return matches.length === 1 ? matches[0] : null;
 }
 

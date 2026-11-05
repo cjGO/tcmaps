@@ -334,16 +334,45 @@ verified `map_id`, `variant_id`, and `variant_revision` next to each resource ID
 Approval never renames a public ID. Editor downloads use the permanent ID while
 their source checksums still bind them to the exact measured source.
 
-The website rotation contains 94 map families: 39 tiny, 29 small, and the 26
-restored medium maps. `MAPNAMES.md` supplies their permanent IDs and size pools
-for Current rotation and Map stats, including old slot names in round statistics.
-Medium previews, editor projects, and topology reuse the verified measurements
-in `docs/identity-refactor-20261025-230821`; the saved deployment manifests bind
-their source checksums to catalogue IDs. The former `rated_good_015`, `016`,
-`017`, and `019` families retain public IDs `test_map_194`, `195`, `196`, and `198`.
-The website's restored medium roster is independent of the installed game's
-active pools: syncing from the installed rotation replaces the website snapshot.
-These previews are verified saved source measurements; installed biome/weather may differ.
+The website rotation is synchronized with the installed
+`population_rotation_20261105-032038-314198` batch: 99 map families, comprising
+39 tiny, 29 small, and 31 medium maps. `MAPNAMES.md` supplies the current permanent
+IDs and pools. Previews, editor projects, spawns, and topology use measured terrain
+from the installed scene revisions, including the seven installed variants.
+
+`lib/round-stats-legacy-identities.json` freezes the previous website mapping for
+historical slot-named rounds. These records retain their existing attribution when
+server slots are reassigned; permanent `test_map_#` records resolve directly.
+Maps without recorded rounds show the empty state rather than another slot
+occupant's statistics. Round data is imported from `MOD/lua/comms/map_round_stats.csv`.
+`lib/replay-topology.json` retains earlier measured terrain for archived replays;
+variant overlays require a matching source revision and never attach to a newly
+installed terrain merely because it occupies the same slot or map family.
+
+After preparing editor projects, refresh the shared preview scale and spawn export
+with `export_rotation_spawns.py` as described above. Run
+`scripts/prepare-topology.py --module-root <MOD> --output <fresh-output-directory>`
+using the same Python environment to publish topology under the installed public
+loadout names. Then run the module's `pythonHelpers/register_rotation_editor_models.py`
+with `--website-root /home/glect/rate_maps --output <fresh-output-directory> --publish`,
+followed by `npm run prepare:editor` and `npm run build`.
+
+Fresh game rotation refreshes include surviving maps plus eligible variant-bearing
+library families from tiny, small and medium, including families not yet installed. The population manifest records
+`variant_every: 4` and an ordered `variant_pool`; generated Lua uses that global
+queue for maps 4, 8, 12, etc., counting the initial configured map as map 1.
+The other automatic selections skip variant scenes and keep the existing
+population thresholds (0–6 micro, 7–20 tiny, 21+ small for this installation).
+Medium variants can therefore run at any population. Passed size votes wait across a
+scheduled variant, and retries do not consume a turn. Explicit manual map changes
+remain outside the automatic rotation counter; `/editanna` remains a one-shot
+request, deferred when a scheduled variant is due. The cadence restarts when the
+server runtime restarts.
+
+The synchronized module scripts are in `server/bigmap`; its preparation helper
+runs within the existing MOD module and uses that module's map pipeline. Verify
+the cadence with `uv run --with lupa python tests/population-variant-cadence.py`.
+These previews use measurements of the installed terrain; weather effects are not depicted.
 Older excluded previews and pre-refactor CSVs are preserved in the timestamped
 `docs/identity-refactor-*` backup. Unattributable historical slot-based rows use
 `legacy_mp_custom_map_*` and cannot contribute to a current map's totals.

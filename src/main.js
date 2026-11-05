@@ -2,6 +2,7 @@ import './style.css';
 import { inject } from '@vercel/analytics';
 import mapNames from '../MAPNAMES.md?raw';
 import identityRegistry from '../lib/editor-rotation.json';
+import legacyRoundIdentities from '../lib/round-stats-legacy-identities.json';
 import { publicMapId, mapLabel, csvRows, parseMapNames, statsMapId } from './map-identity.js';
 
 import maps from '../lib/maps.json';
@@ -59,7 +60,7 @@ let rotationPool = 'all';
 const [roundStatsHeaders, ...recordedRoundStatsRows] = csvRows(roundStatsCsv);
 const mapNameColumn = roundStatsHeaders.indexOf('map_name');
 const roundStatsRows = recordedRoundStatsRows.map(row => row.map((value, index) =>
-  index === mapNameColumn ? statsMapId(installedMaps, value) : value));
+  index === mapNameColumn ? statsMapId(legacyRoundIdentities, value) : value));
 const recordedRows = new Map(roundStatsRows.map((row, index) => [row, recordedRoundStatsRows[index]]));
 const roundStatsColumns = ['result', 'duration_seconds', 'player_count'].map(header => ({ header, index: roundStatsHeaders.indexOf(header) }));
 const roundRanges = new Map();
@@ -252,7 +253,8 @@ updateReplayList();
 $('rotation-replays').addEventListener('click', event => {
   event.preventDefault();
   const filename = collections.rotation.images[collections.rotation.index]?.filename;
-  const recording = recordings.find(item => `${item.map}.png` === filename);
+  const mapId = publicMapId(identityRegistry, filename);
+  const recording = recordings.find(item => mapId && item.map_id === mapId);
   if (recording) openRecording(recording);
 });
 $('rotation-edit').addEventListener('click', () => {
@@ -284,7 +286,8 @@ function renderCollection(name) {
         collections.rotation.index = collections.rotation.images.findIndex(map => map.filename === filename);
         renderCollection('rotation');
       });
-    const matches = recordings.filter(item => `${item.map}.png` === entry?.filename);
+    const mapId = publicMapId(identityRegistry, entry?.filename);
+    const matches = recordings.filter(item => mapId && item.map_id === mapId);
     $('rotation-replays').hidden = !matches.length;
     $('rotation-replays').textContent = `View replays (${matches.length})`;
     const available = editor.canEdit(entry?.filename);
