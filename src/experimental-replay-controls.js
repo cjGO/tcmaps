@@ -1,7 +1,8 @@
+import { createReplayVariantControl } from './replay-variant-control.js';
 import { createReplayFogControl } from './replay-fog.js';
 import { EFFECTS, eventIndex, neutralReference, terrainCandidate, terrainOverlayCandidate, verifyExperimentalTerrain } from './experimental-replay.js';
 import { sha256 } from './tactical-replay.js';
-import { replayAssets, replayVariantAssets } from './replay-variant-assets.js';
+import { replayAssets } from './replay-variant-assets.js';
 import './experimental-replay.css';
 import { resolveDisplayMetadata, UNIT_TYPES, displayMeta, movementAdapter, experimentalViewAt, experimentalStrengthAt } from './experimental-replay-presentation.js';
 import { createBotStrengthChart } from './replay-strength.js';
@@ -51,8 +52,9 @@ export function setupExperimentalReplay(root) {
     manifest = assets.manifest;
     for (const [i, map] of manifest.maps.entries()) el('terrain').append(new Option(`${map.map_id || map.id} · ${map.variant_id || 'source'} · unverified overlay`, String(i)));
   });
-  const assetNotice = document.createElement('p'); assetNotice.dataset.exp = 'assets'; assetNotice.setAttribute('role', 'status'); el('alignment').after(assetNotice);
-  let variantLayer, closeVideo;
+  const assetNotice = document.createElement('div'); assetNotice.dataset.exp = 'assets'; assetNotice.setAttribute('role', 'status'); el('alignment').after(assetNotice);
+  const variantControl = createReplayVariantControl(assetNotice);
+  let closeVideo;
   for (const name of [...Object.keys(EFFECTS), 'orientation', 'radii']) {
     const label = document.createElement('label'), checkbox = document.createElement('input'); checkbox.type = 'checkbox'; checkbox.checked = !['orientation', 'radii', 'trails'].includes(name); checkbox.dataset.layer = name;
     label.append(checkbox, name === 'trails' ? 'Full soldier trails / projectile paths' : name === 'deaths' ? 'Death event flashes' : name === 'radii' ? 'Recorded explosion radii' : name === 'orientation' ? 'Orientation ticks (not bullet paths)' : name[0].toUpperCase() + name.slice(1)); el('layers').append(label);
@@ -89,7 +91,7 @@ export function setupExperimentalReplay(root) {
     const url = URL.createObjectURL(new Blob([text], { type })), a = document.createElement('a'); a.href = url; a.download = filename; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   function stop() { playing = false; cancelAnimationFrame(raf); previousTime = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
-  function detach() { closeVideo?.(); closeVideo = null; variantLayer?.dispose(); variantLayer = null; assetNotice.textContent = ''; generation++; stop(); layer?.dispose(); viewer?.dispose(); layer = viewer = null; el('stage').replaceChildren(); el('play').disabled = el('mp4').disabled = true; }
+  function detach() { closeVideo?.(); closeVideo = null; variantControl.detach(); generation++; stop(); layer?.dispose(); viewer?.dispose(); layer = viewer = null; el('stage').replaceChildren(); el('play').disabled = el('mp4').disabled = true; }
   function update() {
     if (!replay) return;
     strengthChart?.update(t);
@@ -123,18 +125,8 @@ export function setupExperimentalReplay(root) {
       if (reference) for (const button of el('stage').querySelectorAll('[data-ui=explore], [data-ui=pick]')) {
         button.disabled = true; button.title = 'Walking needs measured terrain; this view is an unaligned reference grid.';
       }
-      const variant = !reference && await replayVariantAssets(replay.header.map);
+      await variantControl.attach(viewer, data, replay.header.map, replay.header.id, reference);
       if (token !== generation) return;
-      if (variant) {
-        assetNotice.textContent = `Loading ${variant.label} assets…`;
-        const { createVariantLayer } = await import('./rotation-variant-layer.js');
-        if (token !== generation) return;
-        // Manual overlays must also match the placement file's base terrain.
-        variantLayer = createVariantLayer(viewer, data, variant.document);
-        await variantLayer.ready;
-        if (token !== generation) return;
-        assetNotice.textContent = `Variant assets loaded: ${variant.label} · ${variant.document.placements.length} placements · recorded revision matched.`;
-      }
       layer = createExperimentalLayer(viewer, data, replay, { reference, metadata, select: ref => {
         if (ref.event) selectEvent(replay.records[ref.event - 1]);
         else { const kind = ref.entity ? 'entity' : 'projectile'; el('focus-type').value = kind; el('focus-id').value = ref[kind]; }
@@ -242,7 +234,7 @@ export function setupExperimentalReplay(root) {
     if (!viewer || !layer || !replay) return;
     stop(); viewer.pauseExplorer(); closeVideo?.();
     const token = generation;
-    const snapshot = { replay, data, reference, metadata, t: t >= replay.last ? replay.first : t, clipEnd: replay.last,
+    const snapshot = { placementDocument: variantControl.document, replay, data, reference, metadata, t: t >= replay.last ? replay.first : t, clipEnd: replay.last,
       cameraMode: el('camera').value === 'cinematic' ? 'cinematic' : 'current', cinematic: cinematicControls.value(),
       speed: Number(el('speed').value), overlays: { ...displayOptions(), layers: layers(), density: Number(el('density').value) },
       view: viewer.captureViewState(), mapLabel: `v2 · ${replay.header.map.map_id || replay.header.id} · ${alignment}` };

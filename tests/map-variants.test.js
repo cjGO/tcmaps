@@ -5,6 +5,29 @@ import { variantId, roundVariant, includedVariants, assertVariantSource } from '
 import { csvRows, parseMapNames, statsMapId } from '../src/map-identity.js';
 const read = path => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 
+test('replay inference uses recorded evidence and leaves ambiguous revisions for manual selection', async () => {
+  const { inferRecordingVariant, replayPlacementDocument, replayMapIdentity } = await import('../src/replay-variants.js');
+  const source = { sco_sha256: 'scene', recipe_sha256: 'recipe', terrain_code: 'terrain' };
+  const variant = { map_id: 'test_map_176', id: 'vara', revision: 'a', document: { source: {}, placements: [] }, registrations: [{ source }] };
+  const second = { ...variant, revision: 'b', registrations: [] };
+  const map = { map_id: 'test_map_176', kind: 'fixed' };
+  assert.equal(replayMapIdentity({ source }, [{ ...map, source }]).map_id, map.map_id);
+  assert.equal(replayMapIdentity({ source }, [{ ...map, source }, { map_id: 'test_map_177', source }]).map_id, undefined);
+  assert.equal(replayMapIdentity({ id: 'reused_scene_slot' }, [{ ...map, id: 'reused_scene_slot', source }]).map_id, undefined);
+  const infer = patch => inferRecordingVariant({ ...map, ...patch }, [variant, second]).variant;
+  assert.equal(infer({ variant_revision: 'a' }), variant);
+  assert.equal(infer({ source }), variant);
+  assert.equal(infer({ variant_id: 'VarA' }), null, 'Two revisions of the same name are ambiguous');
+  assert.equal(infer({}), null, 'Family alone does not identify placements');
+  assert.equal(infer({ variant_revision: 'missing', source }), null, 'Do not replace a missing recorded revision');
+  assert.equal(infer({ variant_id: 'RAW', source }), null);
+  assert.equal(inferRecordingVariant({ ...map, map_name: 'test_map_176_VarA' }, [variant]).variant, variant);
+  assert.deepEqual(replayPlacementDocument(variant, { source }).placements, []);
+  assert.throws(() => replayPlacementDocument(variant, { source: {} }), /differs/);
+  assert.deepEqual(replayPlacementDocument(variant, { source: {} }, true).source, {});
+  assert.deepEqual(variant.document.source, {}, 'Preview leaves saved placement provenance unchanged');
+});
+
 test('variant identity unifies exported filenames, recorded names, and source aliases', () => {
   for (const value of ['VarA', 'test_map_116_VarA', 'test_map_116_VarA.placements.json', 'test_map_116_VarA.placements', 'test_map_116_VarA.json']) assert.equal(variantId(value, 'test_map_116'), 'vara');
   for (const value of ['', 'source', 'RAW', 'test_map_116_RAW']) assert.equal(variantId(value, 'test_map_116'), 'source');
@@ -93,7 +116,8 @@ test('recorded VarA revision selects its assets and terrain for both replay vers
   const archived = JSON.parse(read('lib/replay-topology.json'));
   const files = { [path]: read(path.replace('VarA.placements', 'VarA_3l3ct.placements')) };
   const currentOnly = await replayVariantRegistry(current, files);
-  assert.equal(currentOnly.variants.length, 0, 'An incompatible current terrain must not break replay loading or receive the old overlay');
+  assert.equal(currentOnly.variants.length, 1, 'Installed checksum identifies placements on the compiled terrain');
+  assert.equal(currentOnly.manifest.maps.filter(m => m.placement_overlay).length, 0, 'Compiled terrain needs no historical overlay');
   const registry = await replayVariantRegistry(replayTerrainManifest(current, archived), files);
   const header = JSON.parse(read('experimental_replays/EXP-20261030T151732Z-1.jsonl').split('\n')[0]);
   const original = structuredClone(header.map);
@@ -106,10 +130,11 @@ test('recorded VarA revision selects its assets and terrain for both replay vers
   const result = await verifyExperimentalTerrain({ header }, JSON.parse(read('public' + entry.url)), entry, 'map-id');
   assert.equal(result.verified, false, 'Compiled map source differs; retain the overlay notice');
   assert.deepEqual(header.map, original);
-  for (const patch of [{ map_id: 'test_map_117' }, { variant_id: 'source' }, { variant_revision: '0'.repeat(64) }, { variant_revision: false }, { available: false }]) {
+  for (const patch of [{ map_id: 'test_map_117' }, { variant_id: 'source' }, { variant_revision: '0'.repeat(64) }, { available: false }]) {
     assert.equal(recordingVariant({ ...header.map, ...patch }, registry.variants), null);
   }
   assert.equal(recordingVariant({ ...header.map, variant_id: 'VarA' }, registry.variants), variant);
+  assert.equal(recordingVariant({ ...header.map, variant_revision: false }, registry.variants), variant);
   assert.equal(recordingVariant(header.map, []), null);
   // Exercise the stable parser with an explicitly synthetic variant journal.
   const bundle = JSON.parse(read('replays/20261024T191232Z-27-3-2.replay.json'));

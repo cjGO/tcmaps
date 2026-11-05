@@ -1,3 +1,4 @@
+import { replayPlacementDocument } from './replay-variants.js';
 import { createTopologyViewer } from './topology-viewer.js';
 import { createReplayLayer } from './replay-layer.js';
 import { soldierViewAt } from './tactical-replay.js';
@@ -9,7 +10,7 @@ import { createCinematicCamera } from './replay-cinematic-camera.js';
 import { videoStatsHistory, videoStatsAt, videoChartHistory, videoTeamColor, videoTeamLabel, videoClock, videoReplayModel, isExperimentalVideo } from './replay-video-model.js';
 
 // Both the preview and the encoder consume this exact composition.
-export function createVideoRenderer({ replay: recording, data, view, overlays, cameraMode, cinematic, width, height, speed, mapLabel, reference = false, metadata }, onError) {
+export function createVideoRenderer({ replay: recording, data, view, overlays, cameraMode, cinematic, width, height, speed, mapLabel, reference = false, metadata, placementDocument }, onError) {
   const experimental = isExperimentalVideo(recording), replay = videoReplayModel(recording);
   const host = document.createElement('div'); host.className = 'replay-video-offscreen';
   host.inert = true; host.setAttribute('aria-hidden', 'true'); document.body.append(host);
@@ -36,10 +37,11 @@ export function createVideoRenderer({ replay: recording, data, view, overlays, c
   // A separate export scene needs its own meshes and textures. Finish loading
   // the recorded placement revision before previewing or encoding any frames.
   const ready = (async () => {
-    const variant = !reference && await replayVariantAssets(recording.header.map);
+    const variant = !reference && placementDocument === undefined && await replayVariantAssets(recording.header.map);
+    const document = reference ? null : placementDocument === undefined ? replayPlacementDocument(variant, data) : placementDocument;
     if (disposed) return;
-    if (variant) {
-      variantLayer = createVariantLayer(viewer, data, variant.document);
+    if (document) {
+      variantLayer = createVariantLayer(viewer, data, document);
       await variantLayer.ready;
     }
     if (!disposed) loaded = true;

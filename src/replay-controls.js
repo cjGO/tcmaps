@@ -1,10 +1,11 @@
+import { createReplayVariantControl } from './replay-variant-control.js';
 import { createReplayFogControl } from './replay-fog.js';
 import { MAX_BYTES, parseRecording, movementHeatmap, sourceEqual, soldierViewAt } from './tactical-replay.js';
 import { squadKey } from './replay-history.js';
 import { createBotStrengthChart } from './replay-strength.js';
 import { replayLink, replayWindow } from './replay-link.js';
 import './replay.css';
-import { replayAssets, replayVariantAssets } from './replay-variant-assets.js';
+import { replayAssets } from './replay-variant-assets.js';
 import { createCinematicCamera } from './replay-cinematic-camera.js';
 import { createCinematicControls } from './replay-cinematic-controls.js';
 
@@ -24,8 +25,8 @@ export function setupReplay(panel, refresh, stage) {
   const terrainNotice = document.createElement('p');
   terrainNotice.setAttribute('role', 'status'); terrainNotice.hidden = true;
   root.append(terrainNotice);
-  const assetNotice = document.createElement('p'); assetNotice.dataset.replay = 'assets'; assetNotice.setAttribute('role', 'status'); root.append(assetNotice);
-  let variantLayer;
+  const assetNotice = document.createElement('div'); assetNotice.dataset.replay = 'assets'; assetNotice.setAttribute('role', 'status'); root.append(assetNotice);
+  const variantControl = createReplayVariantControl(assetNotice);
   // Keep the control hooks together while giving each task a clear visual group.
   const transport = el('transport');
   const group = (title, keys) => {
@@ -92,7 +93,7 @@ export function setupReplay(panel, refresh, stage) {
   function stop() { playing = false; cancelAnimationFrame(frame); frame = null; previousFrame = undefined; el('play').textContent = '▶ Play'; el('play').setAttribute('aria-pressed', 'false'); }
   function detach() {
     closeVideo?.(); closeVideo = null; el('mp4').disabled = true;
-    variantLayer?.dispose(); variantLayer = null; assetNotice.textContent = '';
+    variantControl.detach();
     attached++; stop(); unsubscribeFollow?.(); unsubscribeFollow = null;
     unsubscribeCinematic?.(); unsubscribeCinematic = null; viewer?.stopCinematic();
     el('follow').disabled = true;
@@ -252,7 +253,7 @@ export function setupReplay(panel, refresh, stage) {
     if (!viewer || !selected || !layer) return;
     stop(); viewer.pauseExplorer(); closeVideo?.();
     const token = attached;
-    const snapshot = { ...selected, t, clipEnd, speed: Number(el('speed').value), overlays: overlayOptions(),
+    const snapshot = { ...selected, placementDocument: variantControl.document, t, clipEnd, speed: Number(el('speed').value), overlays: overlayOptions(),
       cameraMode: el('cinematic').checked ? 'cinematic' : 'current', cinematic: cinematicControls.value(),
       view: viewer.captureViewState(), mapLabel: selected.terrainMatch ? `UNVERIFIED terrain · ${selected.replay.header.map.map_id}` : `${selected.replay.header.map.id} · ${selected.replay.header.map.version.slice(0, 10)}` };
     el('mp4').disabled = true;
@@ -289,17 +290,8 @@ export function setupReplay(panel, refresh, stage) {
     viewer = nextViewer;
     syncFog(selected.replay.header);
     unsubscribeCinematic = viewer.onCinematicEnd(() => { el('cinematic').checked = false; cinematicControls.element.hidden = true; });
-    const variant = await replayVariantAssets(selected.replay.header.map);
+    await variantControl.attach(viewer, selected.data, selected.replay.header.map, selected.replay.header.id);
     if (token !== attached) return;
-    if (variant) {
-      assetNotice.textContent = `Loading ${variant.label} assets…`;
-      const { createVariantLayer } = await import('./rotation-variant-layer.js');
-      if (token !== attached) return;
-      variantLayer = createVariantLayer(viewer, selected.data, variant.document);
-      await variantLayer.ready;
-      if (token !== attached) return;
-      assetNotice.textContent = `Variant assets loaded: ${variant.label} · ${variant.document.placements.length} placements · recorded revision matched.`;
-    }
     unsubscribeFollow = viewer.onFollowEnd(() => {
       if (syncingFollow) return;
       el('follow').value = ''; el('follow-status').textContent = '';
