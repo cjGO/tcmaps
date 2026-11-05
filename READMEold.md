@@ -349,6 +349,28 @@ occupant's statistics. Round data is imported from `MOD/lua/comms/map_round_stat
 variant overlays require a matching source revision and never attach to a newly
 installed terrain merely because it occupies the same slot or map family.
 
+To import every direct MOD library variant into this app, preserving app-only
+loadouts and previous revisions for replay playback, run:
+
+```sh
+npm run sync:variants -- --module-root '/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD'
+npm run check:variants
+npm run build
+```
+
+The sync accepts `.placements.json`, `.placements`, and `.json` exports in
+`custom_maps/random_maps/maps/<size>/<map-id>/variants/`. It copies their exact
+bytes and filenames, ignores generated builds, and archives replaced app files
+in `lib/replay-variant-archive.json`. Add `--check` to report pending imports
+without writing. The MOD library and installed rotation are read-only inputs.
+
+In **Current rotation**, **All variants** shows the installed loadout's placed
+assets while keeping family statistics. Select a named loadout to view its
+assets and filtered statistics. Installed overlays must match the saved loadout
+checksum; other loadouts use an exact matching archived measured terrain.
+Equivalent filename extensions produce one selector option. Build/dev checks
+verify every selectable rotation loadout's terrain and asset models.
+
 After preparing editor projects, refresh the shared preview scale and spawn export
 with `export_rotation_spawns.py` as described above. Run
 `scripts/prepare-topology.py --module-root <MOD> --output <fresh-output-directory>`

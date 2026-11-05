@@ -3,9 +3,9 @@ import models from '../lib/editor-models.json';
 import { checkedBuffer, createModelLibrary } from './editor-model-loader.js';
 import { groundHeight, placementTransform } from './editor-spatial.js';
 import { displayedHeight } from './terrain-geometry.js';
-import { assertVariantSource } from './map-variants.js';
+import { assertPlacementSource } from './rotation-variants.js';
 
-export function createVariantLayer(viewer, data, document) {
+export function createVariantLayer(viewer, data, document, provenance) {
   const controller = new AbortController(), group = new THREE.Group();
   let library, disposed = false;
   const records = [];
@@ -18,7 +18,7 @@ export function createVariantLayer(viewer, data, document) {
   viewer.addLayer(group);
   const unsubscribe = viewer.onHeightChange(update);
   const ready = (async () => {
-    assertVariantSource(document, data);
+    assertPlacementSource(document, data, provenance);
     const url = new URL(import.meta.env.BASE_URL + models.manifest_url.replace(/^\//, ''), location.href);
     const bytes = await checkedBuffer(url, models.manifest_sha256, controller.signal);
     if (disposed) return;

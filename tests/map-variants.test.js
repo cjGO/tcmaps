@@ -6,12 +6,58 @@ import { csvRows, parseMapNames, statsMapId } from '../src/map-identity.js';
 const read = path => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 
 test('variant identity unifies exported filenames, recorded names, and source aliases', () => {
-  for (const value of ['VarA', 'test_map_116_VarA', 'test_map_116_VarA.placements.json']) assert.equal(variantId(value, 'test_map_116'), 'vara');
+  for (const value of ['VarA', 'test_map_116_VarA', 'test_map_116_VarA.placements.json', 'test_map_116_VarA.placements', 'test_map_116_VarA.json']) assert.equal(variantId(value, 'test_map_116'), 'vara');
   for (const value of ['', 'source', 'RAW', 'test_map_116_RAW']) assert.equal(variantId(value, 'test_map_116'), 'source');
   const headers = ['map_name', 'variant_id'];
   assert.equal(roundVariant(headers, ['test_map_116_VarA', ''], 'test_map_116'), 'vara');
   assert.equal(roundVariant(headers, ['test_map_116', 'village.json'], 'test_map_116'), 'village');
   assert.equal(roundVariant(headers, ['mp_custom_map_21', 'source'], 'test_map_116'), 'source');
+});
+
+test('rotation variants use installed revision evidence or exact archived terrain, never family alone', async () => {
+  const { resolveVariantPreview, installedVariantPreview, assertPlacementSource } = await import('../src/rotation-variants.js');
+  const current = JSON.parse(read('lib/rotation-topology.json')).maps;
+  const archived = JSON.parse(read('lib/replay-topology.json')).maps;
+  const path = 'maps/medium/test_map_199/variants/test_map_199_AnnaFreud.placements.json';
+  const [variant] = includedVariants({ [path]: read(path) }, 'test_map_199');
+  const installed = current.find(m => m.map_id === variant.map_id);
+  assert.throws(() => assertVariantSource(variant.document, installed), /revision/);
+  const preview = await resolveVariantPreview(variant, installed, archived);
+  assert.equal(preview.terrain, installed);
+  assert.equal(preview.registration, installed);
+  assertPlacementSource(variant.document, installed, preview);
+  assert.throws(() => assertPlacementSource(variant.document, installed, { ...preview, revision: 'wrong' }), /revision/);
+  assert.throws(() => assertPlacementSource(variant.document, current[0], preview), /revision/);
+  assert.equal(await resolveVariantPreview(variant, { ...installed, variant_revision: 'wrong' }, archived), null);
+  assert.equal(await resolveVariantPreview({ ...variant, map_id: 'test_map_111' }, installed, archived), null);
+  assert.equal((await installedVariantPreview([variant], installed)).variant, variant);
+
+  const updated = 'maps/small/test_map_111/variants/test_map_111_AnnaFreud.placements.json';
+  const old = updated.replace('AnnaFreud.', 'AnnaFreud_OLD.');
+  const variants = includedVariants({ [updated]: read(updated), [old]: read(old) }, 'test_map_111');
+  const map111 = current.find(m => m.map_id === 'test_map_111');
+  const newer = variants.find(v => v.id === 'annafreud');
+  const updatedPreview = await resolveVariantPreview(newer, map111, archived);
+  assert.notEqual(updatedPreview.terrain, map111);
+  assert.equal(updatedPreview.registration, null);
+  assert.equal(newer.document.placements.length, 218);
+  assertPlacementSource(newer.document, updatedPreview.terrain, updatedPreview);
+  const active = await installedVariantPreview(variants, map111);
+  assert.equal(active.variant.id, 'annafreud_old');
+  assert.equal(active.variant.document.placements.length, 136);
+  const { replayVariantRegistry, recordingVariant } = await import('../src/replay-variants.js');
+  const replay = await replayVariantRegistry({ maps: archived }, {
+    [updated]: read(updated), ...JSON.parse(read('lib/replay-variant-archive.json')),
+  });
+  const saved = recordingVariant({ map_id: map111.map_id, variant_id: map111.variant_id, variant_revision: map111.variant_revision }, replay.variants);
+  assert.equal(saved.document.placements.length, 136, 'Replacing a file must preserve the original replay identity and revision');
+});
+
+test('equivalent filename extensions have one selector option and retain distinct replay revisions', () => {
+  const path = 'maps/tiny/test_map_176/variants/test_map_176_VarA_AnnaFreud.placements.json';
+  const raw = read(path), alternate = path.replace('.placements.json', '.json');
+  assert.equal(includedVariants({ [path]: raw, [alternate]: raw }, 'test_map_176').length, 1);
+  assert.equal(includedVariants({ [path]: raw, [alternate]: raw + '\n' }, 'test_map_176').length, 2);
 });
 
 test('included VarA matches measured terrain, assets, and its recorded rounds', () => {

@@ -1,6 +1,6 @@
 // Match identities across recorded map names and exported placement filenames.
 export function variantId(value, mapId) {
-  const name = String(value || '').trim().split(/[\\/]/).pop().replace(/\.placements\.json$/i, '').replace(/\.json$/i, '');
+  const name = String(value || '').trim().split(/[\\/]/).pop().replace(/\.(?:placements(?:\.json)?|json)$/i, '');
   if (!name || /^(source|raw)$/i.test(name) || name.toLowerCase() === `${mapId}_RAW`.toLowerCase() || name === mapId) return 'source';
   const prefix = `${mapId}_`;
   return (name.toLowerCase().startsWith(prefix.toLowerCase()) ? name.slice(prefix.length) : name).toLowerCase();
@@ -21,10 +21,16 @@ export function roundVariant(headers, row, mapId) {
 }
 
 export function includedVariants(files, mapId) {
-  return Object.entries(files).filter(([path]) => path.includes(`/${mapId}/variants/`)).map(([path, document]) => {
+  const variants = Object.entries(files).filter(([path]) => path.includes(`/${mapId}/variants/`)).map(([path, value]) => {
     const filename = path.split('/').pop();
-    return { path, filename, id: variantId(filename, mapId), label: filename.replace(/\.placements\.json$/i, '').replace(`${mapId}_`, ''), document };
+    const raw = typeof value === 'string' ? value : null;
+    return { path, filename, map_id: mapId, id: variantId(filename, mapId), label: filename.replace(/\.(?:placements(?:\.json)?|json)$/i, '').replace(`${mapId}_`, ''), document: raw === null ? value : JSON.parse(raw), raw };
   }).sort((a, b) => a.label.localeCompare(b.label, undefined, { numeric: true }));
+  // Windows exports can have either extension. Identical copies of one named
+  // loadout need only one option; distinct archived revisions remain available.
+  return variants.filter((variant, index) => !variants.slice(0, index).some(previous =>
+    previous.id === variant.id && (previous.raw !== null && variant.raw !== null
+      ? previous.raw === variant.raw : JSON.stringify(previous.document) === JSON.stringify(variant.document))));
 }
 
 export function assertVariantSource(document, terrain) {

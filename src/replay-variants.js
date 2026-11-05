@@ -15,11 +15,10 @@ export function replayTerrainManifest(current, archived) {
 // Keep the measured terrain provenance; compiled variants are overlays unless
 // the recording independently matches that measured source.
 export async function replayVariantRegistry(manifest, files) {
-  const documents = Object.fromEntries(Object.entries(files).map(([path, text]) => [path, JSON.parse(text)]));
   const variants = [];
   const overlays = [];
   for (const terrain of manifest.maps) {
-    for (const variant of includedVariants(documents, terrain.map_id)) {
+    for (const variant of includedVariants(files, terrain.map_id)) {
       if (!sourceEqual(variant.document.source, terrain.source)) continue;
       const revision = await digest(files[variant.path]);
       if (!variants.some(entry => entry.map_id === terrain.map_id && entry.filename === variant.filename && entry.revision === revision)) {

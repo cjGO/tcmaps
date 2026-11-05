@@ -25,11 +25,19 @@ export function recordedPlayerCount(replay) {
   return recordedPlayerRoster(replay).length;
 }
 
+// Full journals expand into many track/snapshot objects. Keep only one input
+// per directory in memory while preparing the small browser catalogue.
+async function catalogRows(filenames, readRow) {
+  const rows = [];
+  for (const filename of filenames) rows.push(await readRow(filename));
+  return rows;
+}
+
 // Keep recordings as separate assets so opening the app never downloads every round.
 export async function replayCatalog(directory) {
   const registry = JSON.parse(await readFile(new URL('../lib/editor-rotation.json', import.meta.url), 'utf8'));
   const files = await readdir(directory).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
-  return Promise.all(files.filter(name => name.endsWith('.replay.json') || name.endsWith('.jsonl')).sort().reverse().map(async filename => {
+  return catalogRows(files.filter(name => name.endsWith('.replay.json') || name.endsWith('.jsonl')).sort().reverse(), async filename => {
     const content = await readFile(new URL(filename, directory), 'utf8');
     if (filename.endsWith('.jsonl') && JSON.parse(content.split('\n', 1)[0]).schema === 'warband-experimental-replay') {
       return experimentalCatalogRow(parseExperimentalJournal(content), filename, 'replays');
@@ -50,15 +58,15 @@ export async function replayCatalog(directory) {
       bots_by_team: history.teams.map((team, i) => ({ team, count: counts[i] })),
       round_ended: end?.complete === true && end.reason === 'round_end', created: header.created_utc, synthetic: header.synthetic,
       url: `replays/${encodeURIComponent(filename)}` };
-  })).then(rows => rows.sort((a, b) => Date.parse(b.created) - Date.parse(a.created) || b.id.localeCompare(a.id)));
+  }).then(rows => rows.sort((a, b) => Date.parse(b.created) - Date.parse(a.created) || b.id.localeCompare(a.id)));
 }
 
 export async function experimentalReplayCatalog(directory) {
   const files = await readdir(directory).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
-  return Promise.all(files.filter(name => name.endsWith('.jsonl')).map(async filename => {
+  return catalogRows(files.filter(name => name.endsWith('.jsonl')), async filename => {
     const replay = parseExperimentalJournal(await readFile(new URL(filename, directory), 'utf8'));
     return experimentalCatalogRow(replay, filename, 'experimental_replays');
-  }));
+  });
 }
 
 function experimentalCatalogRow(replay, filename, folder) {

@@ -37,7 +37,7 @@ const rotationImages = collections.rotation.images.map(entry => ({
   ...entry, map_id: publicMapId(identityRegistry, entry.filename),
 }));
 const installedMaps = parseMapNames(mapNames);
-const variantFiles = import.meta.glob('../maps/*/test_map_*/variants/*.placements.json', { eager: true, import: 'default' });
+const variantFiles = import.meta.glob(['../maps/*/test_map_*/variants/*.json', '../maps/*/test_map_*/variants/*.placements'], { eager: true, query: '?raw', import: 'default' });
 const variantSelections = new Map();
 const variantLabel = document.createElement('label');
 variantLabel.className = 'rotation-variant-control';
@@ -313,7 +313,8 @@ function renderCollection(name) {
   if (name === 'rotation') {
     const mapId = publicMapId(identityRegistry, entry.filename);
     const variantId = selectedVariant(mapId);
-    topology.setMap({ ...entry, variantId, variant: mapVariants(mapId).find(item => item.id === variantId) });
+    const variants = mapVariants(mapId);
+    topology.setMap({ ...entry, variantId, variants, variant: variants.find(item => item.id === variantId) });
   }
 }
 function moveCollection(name, delta) {

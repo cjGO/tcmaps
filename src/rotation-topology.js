@@ -3,9 +3,10 @@ import { publicMapId } from './map-identity.js';
 import { setupReplay } from './replay-controls.js';
 import { elevationRamp } from './terrain-palettes.js';
 import manifest from '../lib/rotation-topology.json';
+import archived from '../lib/replay-topology.json';
 import './rotation-topology.css';
 import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
-import { assertVariantSource } from './map-variants.js';
+import { installedVariantPreview, resolveVariantPreview } from './rotation-variants.js';
 
 export function setupTopology({ prefix = 'rotation', recordings = false } = {}) {
   const maps = new Map(manifest.maps.map(map => [`${map.id}.png`, map]));
@@ -67,7 +68,15 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     state.textContent = 'Loading measured topology…'; state.hidden = false;
     request = new AbortController();
     try {
-      const [{ createTopologyViewer }, response] = await Promise.all([import('./topology-viewer.js'), replay.terrain() ? Promise.resolve(null) : fetch(current.url, { signal: request.signal })]);
+      const preview = !recordings && prefix === 'rotation'
+        ? entry?.variant
+          ? await resolveVariantPreview(entry.variant, current, archived.maps)
+          : entry?.variantId === 'all' ? await installedVariantPreview(entry.variants || [], current) : null
+        : null;
+      if (generation !== token) return;
+      const terrain = preview?.terrain || current;
+      const displayedVariant = preview?.variant;
+      const [{ createTopologyViewer }, response] = await Promise.all([import('./topology-viewer.js'), replay.terrain() ? Promise.resolve(null) : fetch(terrain.url, { signal: request.signal })]);
       if (response && !response.ok) throw new Error('Terrain file could not load');
       const data = replay.terrain() || await response.json();
       if (generation !== token) return;
@@ -75,25 +84,21 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       info.classList.remove('natural-surface');
       info.querySelector('.topology-ramp').style.background = elevationRamp();
       applyControls();
-      let variantSourceMatches = true;
-      if (entry?.variant) {
-        try { assertVariantSource(entry.variant.document, data); }
-        catch { variantSourceMatches = false; }
-      }
+      const variantSourceMatches = !entry?.variant || !!preview;
       if (!recordings && prefix === 'rotation') {
-        if (entry?.variant && variantSourceMatches) {
+        if (displayedVariant) {
           const { createVariantLayer } = await import('./rotation-variant-layer.js');
           if (generation !== token) return;
           state.textContent = 'Loading variant assets…';
-          variantLayer = createVariantLayer(viewer, data, entry.variant.document);
+          variantLayer = createVariantLayer(viewer, data, displayedVariant.document, preview);
           await variantLayer.ready;
           if (generation !== token) return;
         }
-        densityControls = setupDensityControls(live, viewer, data, densitySettings, { ...current, selectedVariant: entry?.variantId || 'all', variantLabel: entry?.variant?.label });
+        densityControls = setupDensityControls(live, viewer, data, densitySettings, { ...terrain, selectedVariant: entry?.variantId || 'all', variantLabel: entry?.variant?.label });
       }
       await replay.attach(viewer);
       if (generation !== token) return;
-      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'}${entry?.variant ? ' · ' + entry.variant.label : ''} · topology`;
+      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `${current.map_id || 'Unattributed map'}${displayedVariant ? ' · ' + displayedVariant.label : ''} · topology`;
       query(info, '#topology-low').textContent = `${data.min_height_m.toFixed(1)} m`;
       query(info, '#topology-high').textContent = `${data.max_height_m.toFixed(1)} m`;
       const b = data.bounds;
@@ -102,8 +107,8 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
         ? 'Measured terrain with preview lighting and haze. Original trees, structures and game weather are omitted.'
         : !variantSourceMatches
         ? 'Showing the installed terrain. This loadout was authored on a different terrain revision, so its asset overlay is unavailable. Statistics are filtered to the selected variant.'
-        : entry?.variant
-        ? `Variant assets loaded: ${entry.variant.label} · ${entry.variant.document.placements.length} placements. Terrain uses preview lighting and haze.`
+        : displayedVariant
+        ? `Variant assets loaded: ${displayedVariant.label} · ${displayedVariant.document.placements.length} placements. ${preview.registration ? 'Installed loadout' : terrain === current ? 'Measured source terrain' : 'Archived measured source terrain'}; preview lighting and haze.${entry?.variantId === 'all' ? ' Statistics include all variants.' : ''}`
         : entry?.variantId && !['all', 'source'].includes(entry.variantId)
           ? 'No placement file is included for this variant. Showing installed terrain; statistics are filtered to the selected variant.'
           : 'Measured installed terrain with preview lighting and haze. Variant selection filters statistics; compatible loadouts also show placed assets.';
