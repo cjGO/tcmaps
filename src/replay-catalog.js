@@ -14,18 +14,19 @@ function nameIndex(recording) {
   return nameIndexes.get(recording);
 }
 
-export function filterRecordings(recordings, minimumPlayers, playerNames = '') {
+export function filterRecordings(recordings, minimumPlayers, playerNames = '', mapId = '') {
   const queries = playerNames.split(',').map(name => normalizeName(name.trim())).filter(Boolean);
   return recordings.filter(recording => (recording.players ?? 0) >= minimumPlayers &&
+    (!mapId || (mapId === 'unverified' ? !recording.map_id : recording.map_id === mapId)) &&
     queries.every(query => nameIndex(recording).some(name => name.includes(query))));
 }
 
-export function renderReplayCatalog(container, recordings, openRecording, { minimumPlayers = 0, playerNames = '', selectedId } = {}) {
-  const visible = filterRecordings(recordings, minimumPlayers, playerNames);
+export function renderReplayCatalog(container, recordings, openRecording, { minimumPlayers = 0, playerNames = '', mapId = '', selectedId } = {}) {
+  const visible = filterRecordings(recordings, minimumPlayers, playerNames, mapId);
   container.replaceChildren();
   if (!visible.length) {
     container.textContent = recordings.length
-      ? 'No replays match these filters. Lower the minimum or clear the player names to see more.'
+      ? 'No replays match these filters. Choose All maps, lower the minimum, or clear the player names to see more.'
       : 'No published replays yet.';
     return 0;
   }

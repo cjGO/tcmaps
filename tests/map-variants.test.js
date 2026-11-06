@@ -1,9 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { variantId, roundVariant, includedVariants, assertVariantSource } from '../src/map-variants.js';
+import { variantId, roundVariant, includedVariants, assertVariantSource, defaultRotationVariant } from '../src/map-variants.js';
 import { csvRows, parseMapNames, statsMapId } from '../src/map-identity.js';
 const read = path => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+
+test('rotation defaults prefer installed placements, then another available variant', () => {
+  const variants = [{ id: 'stats-only' }, { id: 'a', document: {} }, { id: 'b', document: {} }];
+  assert.equal(defaultRotationVariant(variants, { map_id: 'test_map_176', variant_id: 'test_map_176_b.json' }), 'b');
+  assert.equal(defaultRotationVariant(variants, { variant_id: 'source' }), 'a');
+  assert.equal(defaultRotationVariant(variants), 'a');
+  assert.equal(defaultRotationVariant([{ id: 'stats-only' }]), 'source');
+  assert.equal(defaultRotationVariant([]), 'source');
+});
 
 test('replay inference uses recorded evidence and leaves ambiguous revisions for manual selection', async () => {
   const { inferRecordingVariant, replayPlacementDocument, replayMapIdentity } = await import('../src/replay-variants.js');

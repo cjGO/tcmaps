@@ -33,6 +33,11 @@ test('replay selector preserves manual choices per recording and exports the dis
     assert.match(host.textContent, /Manual variant overlay/);
     await control.attach(viewer, data, { ...map, variant_revision: 'a' }, 'two');
     assert.equal(control.document.placements[0].id, 'a');
+    assert.equal(host.querySelector('select').value, 'a', 'The inferred revision is visibly selected');
+    assert.match(host.textContent, /Recorded variant checksum matched/);
+    await control.attach(viewer, data, { ...map, variant_revision: 'b' }, 'three');
+    assert.equal(host.querySelector('select').value, 'b', 'Another replay selects its own recorded variant');
+    assert.equal(control.document.placements[0].id, 'b');
     await control.attach(viewer, data, map, 'one');
     assert.equal(control.document.placements[0].id, 'b');
     await change('none');

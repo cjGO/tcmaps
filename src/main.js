@@ -10,7 +10,7 @@ import roundStatsCsv from '../map_round_stats.csv?raw';
 import feedbackCsv from '../map_feedback.csv?raw';
 import feedbackIdentities from '../lib/map-feedback-identities.json';
 import { normalizeFeedback, summarizeFeedback, renderFeedback } from './map-feedback.js';
-import { includedVariants, roundVariant } from './map-variants.js';
+import { includedVariants, roundVariant, defaultRotationVariant } from './map-variants.js';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupMapAnalytics, renderDurationDistribution } from './map-analytics-view.js';
 import { analyticsRounds } from './map-analytics.js';
@@ -46,7 +46,9 @@ const variantSelect = document.createElement('select');
 variantSelect.id = 'rotation-variant';
 variantLabel.append(variantSelect);
 $('rotation-panel').querySelector('.viewer').before(variantLabel);
-function selectedVariant(mapId) { return variantSelections.get(mapId) || 'all'; }
+function selectedVariant(mapId) {
+  return variantSelections.get(mapId) || defaultRotationVariant(mapVariants(mapId), identityRegistry.find(map => map.map_id === mapId));
+}
 function mapVariants(mapId) { return includedVariants(variantFiles, mapId); }
 variantSelect.addEventListener('change', () => {
   const entry = collections.rotation.images[collections.rotation.index];
@@ -243,19 +245,32 @@ function updateReplayList() {
   $('replay-min-players-value').textContent = minimumPlayers === 0 ? '0 (all replays)' : String(minimumPlayers);
   $('replay-min-players').setAttribute('aria-valuetext', minimumPlayers === 0 ? 'All replays' : minimumPlayers + ' players minimum');
   const playerNames = $('replay-player-names').value;
-  const visible = renderReplayCatalog(replayCatalog, recordings, openCatalogRecording, { minimumPlayers, playerNames, selectedId: selectedReplayId });
+  const mapId = $('replay-map-filter').value;
+  const visible = renderReplayCatalog(replayCatalog, recordings, openCatalogRecording, { minimumPlayers, playerNames, mapId, selectedId: selectedReplayId });
   $('replay-filter-count').textContent = visible + ' of ' + recordings.length + ' replays';
   $('replay-browser-count').textContent = visible + ' of ' + recordings.length;
 }
 $('replay-min-players').addEventListener('input', updateReplayList);
 $('replay-player-names').addEventListener('input', updateReplayList);
+$('replay-map-filter').replaceChildren(new Option('All maps', ''),
+  ...[...new Set(recordings.map(recording => recording.map_id).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(id => new Option(id, id)), new Option('Unverified map identity', 'unverified'));
+$('replay-map-filter').addEventListener('change', updateReplayList);
 updateReplayList();
 $('rotation-replays').addEventListener('click', event => {
   event.preventDefault();
   const filename = collections.rotation.images[collections.rotation.index]?.filename;
   const mapId = publicMapId(identityRegistry, filename);
   const recording = recordings.find(item => mapId && item.map_id === mapId);
-  if (recording) openRecording(recording);
+  if (recording) {
+    $('replay-map-filter').value = mapId;
+    $('replay-min-players').value = '0';
+    $('replay-player-names').value = '';
+    updateReplayList();
+    $('replay-browser').open = true;
+    openRecording(recording);
+  }
 });
 $('rotation-edit').addEventListener('click', () => {
   const filename = collections.rotation.images[collections.rotation.index]?.filename;

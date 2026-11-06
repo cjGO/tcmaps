@@ -15,7 +15,7 @@ export function createReplayVariantControl(host) {
   async function render() {
     clear();
     const token = generation, { viewer, data, variants, inferred } = context;
-    const manual = select.value !== 'auto';
+    const manual = choices.has(context.key) && choices.get(context.key) !== 'auto';
     const variant = manual ? variants.find(v => v.revision === select.value) : inferred.variant;
     notice.textContent = manual ? 'Manual variant overlay · recording match unverified.' : inferred.reason;
     if (!variant) { if (select.value === 'none') notice.textContent = 'No variant placements shown.'; return; }
@@ -52,9 +52,9 @@ export function createReplayVariantControl(host) {
       const variants = [...new Map(assets.variants.filter(v => v.map_id === map.map_id).map(v => [v.revision, v])).values()];
       const inferred = inferRecordingVariant(map, variants);
       context = { viewer, data, key, variants, inferred };
-      select.replaceChildren(new Option('Automatic (from recording)', 'auto'), new Option('Source / RAW · no placements', 'none'),
+      select.replaceChildren(new Option(inferred.variant ? `Automatic · ${inferred.variant.label}` : 'Automatic (from recording)', 'auto'), new Option('Source / RAW · no placements', 'none'),
         ...variants.map(v => new Option(`${v.label} · ${v.revision.slice(0, 8)}`, v.revision)));
-      select.value = choices.get(key) || 'auto';
+      select.value = choices.get(key) || inferred.variant?.revision || 'auto';
       if (!select.value) select.value = 'auto';
       label.hidden = !variants.length;
       await render();

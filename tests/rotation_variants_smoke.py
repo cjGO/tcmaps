@@ -39,8 +39,8 @@ with sync_playwright() as pw:
     for map_id, loadouts in sorted(variants.items()):
         page.locator('#rotation-feedback .feedback-map-link').filter(has_text=re.compile('^' + map_id + '$')).evaluate('(button) => button.click()')
         expect(state).to_be_hidden(timeout=60000)
-        expect(note).to_contain_text('Installed loadout')
-        expect(note).to_contain_text('Statistics include all variants.')
+        expect(note).to_contain_text('placements')
+        assert page.locator('#rotation-variant').input_value() not in ('all', 'source')
         options = page.locator('#rotation-variant option').evaluate_all('(options) => options.map(o => o.value)')
         assert len(options) == len(set(options)), options
         for variant_id, count in sorted(loadouts.items()):

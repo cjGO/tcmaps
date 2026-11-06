@@ -1,4 +1,9 @@
 // Match identities across recorded map names and exported placement filenames.
+export function defaultRotationVariant(variants, installed) {
+  const available = variants.filter(v => v.id !== 'source' && v.document);
+  return available.find(v => v.id === variantId(installed?.variant_id, installed?.map_id))?.id || available[0]?.id || 'source';
+}
+
 export function variantId(value, mapId) {
   const name = String(value || '').trim().split(/[\\/]/).pop().replace(/\.(?:placements(?:\.json)?|json)$/i, '');
   if (!name || /^(source|raw)$/i.test(name) || name.toLowerCase() === `${mapId}_RAW`.toLowerCase() || name === mapId) return 'source';

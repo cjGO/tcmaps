@@ -65,6 +65,20 @@ test('minimum player filter includes the boundary and preserves chronology', () 
   assert.deepEqual(filterRecordings([{ players: 29 }], 30), []);
 });
 
+test('map filter combines with player filters and keeps different variants of the same map', () => {
+  const rows = [
+    { map_id: 'test_map_176', variant_id: 'vara', players: 20, roster: [{ names: ['Alice'] }] },
+    { map_id: 'test_map_177', variant_id: 'vara', players: 20, roster: [{ names: ['Alice'] }] },
+    { map_id: 'test_map_176', variant_id: 'source', players: 10, roster: [{ names: ['Bob'] }] },
+    { map_id: null, players: 20 },
+  ];
+  assert.deepEqual(filterRecordings(rows, 0, '', 'test_map_176'), [rows[0], rows[2]]);
+  assert.deepEqual(filterRecordings(rows, 15, 'alice', 'test_map_176'), [rows[0]]);
+  assert.deepEqual(filterRecordings(rows, 0, '', 'unverified'), [rows[3]]);
+  assert.deepEqual(filterRecordings(rows, 0, '', ''), rows);
+  assert.deepEqual(filterRecordings(rows, 0, '', 'test_map_17'), []);
+});
+
 test('rosters track aliases and reconnects without assigning controller names to owners', () => {
   const tracks = new Map([
     [1, { changes: [{ owner: 1, controller: 2, player_name: 'Alice' }, { owner: 1, controller: 2, player_name: 'New name' }] }],

@@ -136,6 +136,8 @@
       <summary>Browse replays <span id="replay-browser-count"></span></summary>
       <div class="replay-browser-content">
       <div class="replay-player-filter">
+        <label for="replay-map-filter">Map</label>
+        <select id="replay-map-filter" aria-controls="replay-catalog"><option value="">All maps</option></select>
         <label for="replay-player-names">Player names (optional)</label>
         <input id="replay-player-names" type="search" placeholder="e.g. Marechal_Ney, 7jacin" aria-describedby="replay-player-names-help" aria-controls="replay-catalog" />
         <p id="replay-player-names-help">Partial names, any letter case. Separate names with commas to require all of them in the same replay. Only recorded names can be searched; some older recordings have missing names.</p>
