@@ -1,0 +1,49 @@
+#replay3-panel { max-width: 1600px; margin: auto; }
+#replay3-panel [hidden] { display: none !important; }
+#replay3-panel :is(button,select,input) { font: inherit; }
+#replay3-panel :is(button,select,input:not([type=checkbox]):not([type=range])) { min-height: 40px; border: 1px solid #cbd4c5; border-radius: 7px; padding: 8px 11px; color: #304a35; background: #fff; max-width: 100%; }
+#replay3-panel button { cursor: pointer; }
+#replay3-panel button:disabled { opacity: .5; cursor: default; }
+#replay3-panel fieldset { min-width: 0; }
+#replay3-panel .exp-toolbar label { max-width: 100%; }
+#replay3-panel :is(button,input,select,summary,a):focus-visible { outline: 3px solid #bd862c; outline-offset: 3px; }
+#replay3-panel [role=status] { position: static; padding: 0; text-align: left; color: #536356; }
+#replay3-panel .exp-alignment { padding: 12px 16px; color: #76551d; font-size: .85rem; }
+#replay3-panel .exp-summary { background: #e9eee4; }
+#replay3-panel .exp-badge { background: #31533b; }
+#replay3-panel .exp-stage { height: clamp(420px,64vh,760px); border-radius: 12px 0 0 12px; }
+#replay3-panel .exp-transport { padding: 16px; margin: 12px 0; background: #e9eee4; border-radius: 10px; }
+#replay3-panel [data-v3=play] { color: white; background: #365b3e; min-width: 105px; }
+#replay3-panel details:not(.replay-roster):not(.replay-browser) { padding: 14px; border: 1px solid #d5dfcf; border-radius: 8px; margin: 16px 0; }
+#replay3-panel summary { cursor: pointer; font-weight: 600; }
+#replay3-panel pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 300px; overflow: auto; padding: 12px; background: #f1f4ee; font-size: 11px; }
+#replay3-panel .v3-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 16px 0; }
+#replay3-panel .v3-metrics > div { display: grid; gap: 6px; padding: 16px 20px; border: 1px solid #d4dbc9; border-radius: 10px; background: #fafbf6; }
+#replay3-panel .v3-metrics strong { font-size: clamp(1.4rem,2.5vw,2.1rem); color: #365b3e; font-variant-numeric: tabular-nums; }
+#replay3-panel .v3-metrics span { color: #536356; font-size: .8rem; }
+#replay3-panel .v3-evidence { border-left: 3px solid #b67a22; padding: 12px 16px; background: #fcf4e3; color: #70501d; font-size: .85rem; line-height: 1.6; }
+#replay3-panel .v3-scene { display: grid; grid-template-columns: minmax(0,1fr) 300px; border: 1px solid #ccd5c5; border-radius: 12px; overflow: hidden; }
+#replay3-panel .v3-inspector { min-width: 0; padding: 18px; background: #f4f6ef; overflow: auto; max-height: 760px; }
+#replay3-panel .v3-inspector h3 { margin: 8px 0; font-size: 1rem; overflow-wrap: anywhere; }
+#replay3-panel .v3-inspector > p:not(.eyebrow) { font-size: .8rem; line-height: 1.6; }
+#replay3-panel .v3-inspector dl { font-size: .8rem; }
+#replay3-panel .v3-inspector dt { color: #677361; margin-top: 12px; }
+#replay3-panel .v3-inspector dd { margin: 3px 0 0; font-weight: 600; }
+#replay3-panel .v3-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+#replay3-panel .v3-actions button { font-size: .8rem; }
+#replay3-panel .v3-combat-options { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin: 12px 0; font-size: .85rem; }
+#replay3-panel .v3-combat-options label { display: flex; align-items: center; gap: 6px; }
+#replay3-panel .v3-live { font-size: .85rem; color: #456147; font-variant-numeric: tabular-nums; }
+#replay3-panel .v3-table-scroll { overflow-x: auto; }
+#replay3-panel .v3-hits table { width: 100%; border-collapse: collapse; font-size: .82rem; text-align: left; }
+#replay3-panel .v3-hits th { color: #66735f; font-weight: 500; }
+#replay3-panel .v3-hits :is(td,th) { padding: 9px; border-bottom: 1px solid #e0e5d9; }
+#replay3-panel .v3-hits td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+#replay3-panel .v3-hits td:last-child { white-space: nowrap; }
+#replay3-panel .v3-hits td button { min-height: 32px; font-size: .78rem; margin: 0 3px; }
+#replay3-panel .v3-hits tr.v3-selected { background: #f7edcd; }
+#replay3-panel .v3-volley-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 10px; }
+#replay3-panel .v3-volley-grid button { display: grid; gap: 6px; text-align: left; padding: 14px; }
+#replay3-panel .v3-volley-grid span { font-size: .75rem; color: #66735f; }
+@media(max-width:1000px) { #replay3-panel .v3-scene { grid-template-columns: 1fr; } #replay3-panel .exp-stage { border-radius: 10px; } #replay3-panel .v3-inspector { max-height: none; } #replay3-panel .v3-inspector dl { display: grid; grid-template-columns: 140px 1fr; gap: 8px; } #replay3-panel .v3-inspector dt { margin: 3px 0; } }
+@media(max-width:600px) { #replay3-panel .v3-metrics { grid-template-columns: repeat(2,1fr); } #replay3-panel .exp-stage { height: 420px; } #replay3-panel .exp-transport { padding: 10px; gap: 8px; } #replay3-panel .v3-metrics > div { padding: 12px; } }

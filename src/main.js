@@ -21,6 +21,7 @@ import recordings from 'virtual:replays';
 import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
 import { readReplayLink, replayLink } from './replay-link.js';
 import { setupExperimentalReplay } from './experimental-replay-controls.js';
+import { setupReplayV3Tab } from './replay-v3-tab.js';
 import { setupTopology } from './rotation-topology.js';
 inject({ mode: import.meta.env.PROD ? 'production' : 'development' });
 
@@ -197,8 +198,9 @@ function showPlayerStats() {
     });
   }
 }
-const tabs = ['rotation', 'mapstats', 'playerstats', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
+const tabs = ['rotation', 'mapstats', 'playerstats', 'replays', 'replay3', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
+const replayV3 = setupReplayV3Tab($('replay3-panel'), recordings);
 const editor = setupEditor(selectTab);
 const topology = setupTopology();
 const replays = setupTopology({ prefix: 'replays', recordings: true });
@@ -349,15 +351,17 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   }
   editor.setVisible(name === 'editor');
   experimental.setVisible(name === 'replays' && replayVersion === 2);
+  replayV3.setVisible(name === 'replay3');
   if (name === 'editor') editor.show();
   if (name === 'playerstats') showPlayerStats();
-  $('collection-summary').textContent = name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? `${recordings.length} available replays` : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'replay3' ? 'Replay v3 · existing v2 recordings' : name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? `${recordings.length} available replays` : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
     url.searchParams.set('tab', name);
     history.pushState(null, '', url);
   }
+  if (autoOpen && name === 'replay3') replayV3.openDefault();
   if (autoOpen && name === 'replays' && !replayOpened && recordings.length) openRecording(recordings[0], { syncUrl: false });
 }
 for (const name of tabs) {
@@ -512,6 +516,11 @@ render(); message(maps.length ? 'Keep the setups you like, then copy your list t
 Object.keys(collections).forEach(renderCollection);
 sortRotation();
 function restoreLocation() {
+  if (new URL(location.href).searchParams.get('tab') === 'replay3') {
+    selectTab('replay3', { autoOpen: false, syncUrl: false });
+    replayV3.restoreLocation();
+    return;
+  }
   const link = readReplayLink(location.href);
   if (link.id) {
     const recording = recordings.find(item => item.id === link.id);
