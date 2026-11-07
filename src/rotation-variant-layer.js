@@ -5,7 +5,7 @@ import { groundHeight, placementTransform } from './editor-spatial.js';
 import { displayedHeight } from './terrain-geometry.js';
 import { assertPlacementSource } from './rotation-variants.js';
 
-export function createVariantLayer(viewer, data, document, provenance) {
+export function createVariantLayer(viewer, data, document, provenance, { updateSpawns = true } = {}) {
   const controller = new AbortController(), group = new THREE.Group();
   let library, disposed = false;
   const records = [];
@@ -33,7 +33,7 @@ export function createVariantLayer(viewer, data, document, provenance) {
     }));
     if (disposed) return;
     update(viewer.heightScale);
-    if (document.spawn_points?.length === 2) viewer.updateSpawns(document.spawn_points.map(p => ({ ...p, z_m: groundHeight(data, p.x_m, p.y_m) })));
+    if (updateSpawns && document.spawn_points?.length === 2) viewer.updateSpawns(document.spawn_points.map(p => ({ ...p, z_m: groundHeight(data, p.x_m, p.y_m) })));
     viewer.draw();
   })();
   return { ready, dispose() { disposed = true; controller.abort(); unsubscribe(); group.removeFromParent(); library?.dispose(); } };

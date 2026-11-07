@@ -8,6 +8,8 @@ import coordinates from '../map_editor/web/coordinates.js?raw';
 import app from '../map_editor/web/app.js?raw';
 import { densityDefaults } from './rotation-density-controls.js';
 import { editorVariantDocument } from './editor-variant.js';
+import variantArchive from '../lib/replay-variant-archive.json';
+import { includedVariants } from './map-variants.js';
 // Keep editor code available with the page, even if a deployment removes old
 // chunks before this tab opens the editor. Terrain and models still load on demand.
 import { attachEditor3D } from './editor-3d.js';
@@ -25,7 +27,7 @@ export function setupEditor(selectTab) {
     pendingLoadouts.delete(id);
     try {
       const registration = topologyMaps.maps.find(entry => entry.id === id);
-      api.loadDocument(await editorVariantDocument(variant, registration, projects.get(id)));
+      api.loadDocument(await editorVariantDocument(variant, registration, projects.get(id), includedVariants(variantArchive, variant.map_id)));
     }
     catch (error) { api.status(error.message, true); }
   }

@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
+import {editorVariantDocument} from '../src/editor-variant.js';
+import {includedVariants} from '../src/map-variants.js';
 
 const root=new URL('../',import.meta.url), read=path=>readFile(new URL(path,root),'utf8');
 const [template,coordinates,app,mapsText]=await Promise.all(['map_editor/web/index.html','map_editor/web/coordinates.js','map_editor/web/app.js','lib/editor-maps.json'].map(read));
@@ -290,11 +292,14 @@ test('line batches preserve individual scales and reject invalid scales atomical
   } finally {dom.window.close();}
 });
 
-for (const [mapId, pool, name] of [['test_map_116','small','3l3ct'], ['test_map_176','tiny','AnnaFreud']]) {
+for (const [mapId, pool, name] of [['test_map_111','small','AnnaFreud'], ['test_map_116','small','VarA_3l3ct'], ['test_map_176','tiny','VarA_AnnaFreud']]) {
   test(`${mapId} variant loads into editor, notifies 3D subscribers, and can reload and undo`, async()=>{
-    const variant=JSON.parse(await read(`maps/${pool}/${mapId}/variants/${mapId}_VarA_${name}.placements.json`));
+    const raw=await read(`maps/${pool}/${mapId}/variants/${mapId}_${name}.placements.json`);
     const map=JSON.parse(mapsText).find(m=>m.map_id===mapId);
     const data=JSON.parse(await read('public/'+map.project));
+    const registration=JSON.parse(await read('lib/rotation-topology.json')).maps.find(row=>row.id===map.id);
+    const archive=includedVariants(JSON.parse(await read('lib/replay-variant-archive.json')),mapId);
+    const variant=await editorVariantDocument({map_id:mapId,raw,document:JSON.parse(raw)},registration,data,archive);
     const {dom,api,$}=editor(data);
     try {
       let latest;

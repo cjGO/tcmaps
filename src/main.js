@@ -170,6 +170,11 @@ function sortRotation(keepCurrent = false) {
 for (const id of ['rotation-sort', 'rotation-sort-direction']) {
   $(id).addEventListener('change', () => sortRotation());
 }
+$('rotation-most-variants').addEventListener('click', () => {
+  $('rotation-sort').value = 'variants';
+  $('rotation-sort-direction').value = 'desc';
+  sortRotation();
+});
 document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
   input.addEventListener('change', () => {
     rotationPool = input.value;

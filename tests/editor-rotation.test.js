@@ -4,10 +4,41 @@ import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { editorVariantDocument } from '../src/editor-variant.js';
 import coordinates from '../map_editor/web/coordinates.js';
+import { includedVariants } from '../src/map-variants.js';
 
 const root = new URL('../', import.meta.url);
 const json = async path => JSON.parse(await readFile(new URL(path, root), 'utf8'));
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+
+test('latest map 111 loadout edits through checksum-verified archived input provenance', async () => {
+  const map = (await json('lib/editor-maps.json')).find(row => row.map_id === 'test_map_111');
+  const project = await json('public/' + map.project);
+  const registration = (await json('lib/rotation-topology.json')).maps.find(row => row.id === map.id);
+  const directory = 'maps/small/test_map_111/variants/';
+  const files = {};
+  for (const name of await readdir(new URL(directory, root))) {
+    if (/\.(json|placements)$/.test(name)) files[directory + name] = await readFile(new URL(directory + name, root), 'utf8');
+  }
+  const variants = includedVariants(files, map.map_id);
+  assert.equal(variants.length, 1, 'Only the latest loadout is selectable');
+  const [variant] = variants;
+  assert.equal(variant.id, 'annafreud');
+  const archive = includedVariants(await json('lib/replay-variant-archive.json'), map.map_id);
+  const document = await editorVariantDocument(variant, registration, project, archive);
+  assert.equal(document.placements.length, 218);
+  assert.deepEqual(coordinates.validate(document, project), variant.document.placements);
+  assert.deepEqual(coordinates.validateSettings(document), variant.document.settings);
+  assert.deepEqual(coordinates.validateSpawns(document, project), variant.document.spawn_points);
+  assert.deepEqual(document.default_spawn_points, project.default_spawn_points);
+  assert.notDeepEqual(variant.document.source, project.source, 'Original provenance is preserved');
+  await assert.rejects(editorVariantDocument(variant, registration, project), /different map/);
+  await assert.rejects(editorVariantDocument(variant, { ...registration, variant_revision: 'wrong' }, project, archive), /different map/);
+  await assert.rejects(editorVariantDocument({ ...variant, map_id: 'test_map_112' }, registration, project, archive), /different map/);
+  const changed = structuredClone(variant.document);
+  changed.source.sco_sha256 = 'different';
+  await assert.rejects(editorVariantDocument({ ...variant, raw: JSON.stringify(changed) }, registration, project, archive), /revision/);
+  await assert.rejects(editorVariantDocument(variant, registration, { ...project, source: {} }, archive), /revision/);
+});
 
 test('installed map 176 loadout keeps all placements, settings and spawns when opened for editing', async () => {
   const maps = await json('lib/editor-maps.json');

@@ -5,6 +5,46 @@ import { variantId, roundVariant, includedVariants, assertVariantSource, default
 import { csvRows, parseMapNames, statsMapId } from '../src/map-identity.js';
 const read = path => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 
+test('map 116 RAW retains original terrain and spawns across variant switches', async () => {
+  const { sourceTerrain, resolveVariantPreview } = await import('../src/rotation-variants.js');
+  const { rotationSpawns } = await import('../src/rotation-spawns.js');
+  const { groundHeight } = await import('../src/editor-spatial.js');
+  const installed = JSON.parse(read('lib/rotation-topology.json')).maps.find(m => m.map_id === 'test_map_116');
+  const archived = JSON.parse(read('lib/replay-topology.json')).maps;
+  const source = sourceTerrain(installed, archived);
+  assert.equal(source.variant_id, 'source');
+  assert.notEqual(source.url, installed.url);
+  const originalData = JSON.parse(read('public' + source.url));
+  const installedData = JSON.parse(read('public' + installed.url));
+  const originalSnapshot = structuredClone(originalData.spawns);
+  const path = 'maps/small/test_map_116/variants/test_map_116_VarA.placements.json';
+  const [variant] = includedVariants({ [path]: read(path) }, installed.map_id);
+  const preview = await resolveVariantPreview(variant, installed, archived);
+  for (let switchCount = 0; switchCount < 2; switchCount++) {
+    const active = rotationSpawns(installedData, preview, installed);
+    assert.equal(active.spawns[0].x_m, 252.352);
+    assert.equal(active.spawns[1].x_m, 284.122);
+    assert.equal(active.spawns[0].z_m, groundHeight(installedData, 252.352, 92.769));
+    assert.match(active.note, /Variant spawns · VarA/);
+    assert.match(active.note, /Original defaults saved with this variant/);
+    const raw = rotationSpawns(originalData, null, source, true);
+    assert.deepEqual(raw.spawns, originalSnapshot);
+    assert.equal(raw.spawns[0].x_m.toFixed(3), '124.800');
+    assert.equal(raw.spawns[1].x_m.toFixed(3), '595.200');
+    assert.match(raw.note, /Source \/ RAW original spawns/);
+    assert.doesNotMatch(raw.note, /Variant spawns/);
+  }
+  assert.deepEqual(originalData.spawns, originalSnapshot);
+  assert.deepEqual(variant.document, JSON.parse(read(path)));
+  const legacy = rotationSpawns(originalData, { variant: { document: { version: 2 } } }, source);
+  assert.deepEqual(legacy.spawns, originalSnapshot, 'Legacy files use the measured scene spawns');
+  assert.match(legacy.note, /Measured scene spawns/);
+  assert.equal(sourceTerrain(source, []), source);
+  assert.throws(() => sourceTerrain(installed, []), /unavailable or ambiguous/);
+  assert.throws(() => sourceTerrain(installed, [{ ...source, map_id: 'test_map_117' }]), /unavailable or ambiguous/);
+  assert.throws(() => sourceTerrain(installed, [source, { ...source, sha256: 'another-revision' }]), /ambiguous/);
+});
+
 test('rotation defaults prefer installed placements, then another available variant', () => {
   const variants = [{ id: 'stats-only' }, { id: 'a', document: {} }, { id: 'b', document: {} }];
   assert.equal(defaultRotationVariant(variants, { map_id: 'test_map_176', variant_id: 'test_map_176_b.json' }), 'b');
@@ -65,8 +105,8 @@ test('rotation variants use installed revision evidence or exact archived terrai
   assert.equal((await installedVariantPreview([variant], installed)).variant, variant);
 
   const updated = 'maps/small/test_map_111/variants/test_map_111_AnnaFreud.placements.json';
-  const old = updated.replace('AnnaFreud.', 'AnnaFreud_OLD.');
-  const variants = includedVariants({ [updated]: read(updated), [old]: read(old) }, 'test_map_111');
+  const variants = includedVariants({ [updated]: read(updated) }, 'test_map_111');
+  assert.equal(variants.length, 1);
   const map111 = current.find(m => m.map_id === 'test_map_111');
   const newer = variants.find(v => v.id === 'annafreud');
   const updatedPreview = await resolveVariantPreview(newer, map111, archived);
@@ -74,9 +114,7 @@ test('rotation variants use installed revision evidence or exact archived terrai
   assert.equal(updatedPreview.registration, null);
   assert.equal(newer.document.placements.length, 218);
   assertPlacementSource(newer.document, updatedPreview.terrain, updatedPreview);
-  const active = await installedVariantPreview(variants, map111);
-  assert.equal(active.variant.id, 'annafreud_old');
-  assert.equal(active.variant.document.placements.length, 136);
+  assert.equal(await installedVariantPreview(variants, map111), null, 'The installed older revision is archived, not selectable');
   const { replayVariantRegistry, recordingVariant } = await import('../src/replay-variants.js');
   const replay = await replayVariantRegistry({ maps: archived }, {
     [updated]: read(updated), ...JSON.parse(read('lib/replay-variant-archive.json')),

@@ -1,4 +1,4 @@
-import { assertVariantSource } from './map-variants.js';
+import { assertVariantSource, variantId } from './map-variants.js';
 
 const sourceMatches = (document, terrain) => {
   try { assertVariantSource(document, terrain); return true; } catch { return false; }
@@ -24,6 +24,15 @@ export async function installedVariantPreview(variants, installed) {
     if (preview?.registration) return preview;
   }
   return null;
+}
+
+// RAW is a separate registered scene, not the installed variant without assets.
+export function sourceTerrain(installed, archived = []) {
+  if (variantId(installed.variant_id, installed.map_id) === 'source') return installed;
+  const candidates = archived.filter(row => row.map_id === installed.map_id && variantId(row.variant_id, row.map_id) === 'source');
+  const unique = [...new Map(candidates.map(row => [row.sha256 || row.url, row])).values()];
+  if (unique.length !== 1) throw new Error('Source / RAW terrain and original spawns are unavailable or ambiguous for this map');
+  return unique[0];
 }
 
 export function assertPlacementSource(document, terrain, { registration, revision } = {}) {
