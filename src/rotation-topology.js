@@ -8,6 +8,10 @@ import './rotation-topology.css';
 import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
 import { installedVariantPreview, resolveVariantPreview, sourceTerrain } from './rotation-variants.js';
 import { rotationSpawns } from './rotation-spawns.js';
+// Keep viewer code with the page's initial module graph. An open tab must not
+// fetch an old hashed chunk after a deployment replaces the available assets.
+import { createTopologyViewer } from './topology-viewer.js';
+import { createVariantLayer } from './rotation-variant-layer.js';
 
 export function setupTopology({ prefix = 'rotation', recordings = false } = {}) {
   const maps = new Map(manifest.maps.map(map => [`${map.id}.png`, map]));
@@ -84,7 +88,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       const sourceSelected = !recordings && prefix === 'rotation' && entry?.variantId === 'source';
       const terrain = sourceSelected ? sourceTerrain(current, archived.maps) : preview?.terrain || current;
       const displayedVariant = preview?.variant;
-      const [{ createTopologyViewer }, response] = await Promise.all([import('./topology-viewer.js'), replay.terrain() ? Promise.resolve(null) : fetch(terrain.url, { signal: request.signal })]);
+      const response = replay.terrain() ? null : await fetch(terrain.url, { signal: request.signal });
       if (response && !response.ok) throw new Error('Terrain file could not load');
       let data = replay.terrain() || await response.json();
       if (generation !== token) return;
@@ -100,8 +104,6 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       const variantSourceMatches = !entry?.variant || !!preview;
       if (!recordings && prefix === 'rotation') {
         if (displayedVariant) {
-          const { createVariantLayer } = await import('./rotation-variant-layer.js');
-          if (generation !== token) return;
           state.textContent = 'Loading variant assets…';
           variantLayer = createVariantLayer(viewer, data, displayedVariant.document, preview, { updateSpawns: false });
           await variantLayer.ready;

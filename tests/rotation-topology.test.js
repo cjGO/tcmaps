@@ -8,11 +8,15 @@ import { includedVariants } from '../src/map-variants.js';
 const read = path => readFile(new URL('../' + path, import.meta.url), 'utf8');
 const json = async path => JSON.parse(await read(path));
 // Keep real preview resolution and DOM wiring; replace WebGL and asset loading.
+const viewerImports = [];
 const bundled = await build({
   entryPoints: [new URL('../src/rotation-topology.js', import.meta.url).pathname],
   bundle: true, write: false, platform: 'node', format: 'esm', loader: { '.css': 'empty' },
   plugins: [{ name: 'viewer-fixtures', setup(builder) {
-    builder.onResolve({ filter: /(?:topology-viewer|rotation-variant-layer|rotation-density-controls|replay-controls)\.js$/ }, args => ({ path: args.path, namespace: 'fixture' }));
+    builder.onResolve({ filter: /(?:topology-viewer|rotation-variant-layer|rotation-density-controls|replay-controls)\.js$/ }, args => {
+      if (/(?:topology-viewer|rotation-variant-layer)\.js$/.test(args.path)) viewerImports.push(args.kind);
+      return { path: args.path, namespace: 'fixture' };
+    });
     builder.onLoad({ filter: /.*/, namespace: 'fixture' }, args => ({ contents:
       args.path.endsWith('topology-viewer.js') ? `export function createTopologyViewer(root, data) {
         globalThis.rotationTestViews.push(data);
@@ -26,6 +30,10 @@ const bundled = await build({
   } }],
 });
 const { setupTopology } = await import('data:text/javascript;base64,' + Buffer.from(bundled.outputFiles[0].text).toString('base64'));
+
+test('rotation viewer code loads with the page without a late deployment-sensitive chunk request', () => {
+  assert.deepEqual(viewerImports, ['import-statement', 'import-statement']);
+});
 
 test('rotation switches VarA → RAW → VarA with matching viewer spawns and explicit labels', async () => {
   const dom = new JSDOM('<section id="rotation-panel"><div class="image-stage"><img id="rotation-image"><a id="rotation-full-image"></a><span id="rotation-state"></span></div></section>');

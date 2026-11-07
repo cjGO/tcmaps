@@ -1,5 +1,6 @@
 import { replayAssets } from './replay-variant-assets.js';
 import { inferRecordingVariant, replayPlacementDocument, replayMapIdentity } from './replay-variants.js';
+import { createVariantLayer } from './rotation-variant-layer.js';
 
 export function createReplayVariantControl(host) {
   const label = document.createElement('label'); label.textContent = 'Map variant ';
@@ -21,8 +22,6 @@ export function createReplayVariantControl(host) {
     if (!variant) { if (select.value === 'none') notice.textContent = 'No variant placements shown.'; return; }
     try {
       const document = replayPlacementDocument(variant, data, manual);
-      const { createVariantLayer } = await import('./rotation-variant-layer.js');
-      if (token !== generation) return;
       layer = createVariantLayer(viewer, data, document);
       await layer.ready;
       if (token !== generation) return;

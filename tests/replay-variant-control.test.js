@@ -3,12 +3,20 @@ import assert from 'node:assert/strict';
 import { build } from 'esbuild';
 import { JSDOM } from 'jsdom';
 
+const layerImports = [];
 const bundle = await build({ entryPoints: ['src/replay-variant-control.js'], bundle: true, write: false, format: 'esm', platform: 'node', plugins: [{ name: 'fixtures', setup(b) {
-  b.onResolve({ filter: /replay-variant-assets\.js$|rotation-variant-layer\.js$/ }, a => ({ path: a.path, namespace: 'fixture' }));
+  b.onResolve({ filter: /replay-variant-assets\.js$|rotation-variant-layer\.js$/ }, a => {
+    if (a.path.endsWith('rotation-variant-layer.js')) layerImports.push(a.kind);
+    return { path: a.path, namespace: 'fixture' };
+  });
   b.onLoad({ filter: /.*/, namespace: 'fixture' }, a => ({ contents: a.path.includes('assets')
     ? 'export const replayAssets = Promise.resolve(globalThis.variantFixture);'
     : 'export function createVariantLayer(viewer, data, doc) { viewer.documents.push(doc); return { ready: Promise.resolve(), dispose() { viewer.disposals++; } }; }' }));
 } }] });
+
+test('replay variant code is in the initial module graph', () => {
+  assert.deepEqual(layerImports, ['import-statement']);
+});
 
 test('replay selector preserves manual choices per recording and exports the displayed placements', async () => {
   const dom = new JSDOM('<section></section>');
