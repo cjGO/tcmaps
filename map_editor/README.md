@@ -30,8 +30,8 @@ The optional `window.MapEditor` bridge in `web/app.js` exposes cloned state,
 subscriptions, selection, modes, placement and transactional dragging. Both
 views validate changes with `MapCoordinates` and save through the existing JSON
 button. Native browser models load on demand; the standalone HTML remains an
-offline 2D editor. Final builds still measure exact-point ground height in the
-engine; browser Z is interpolated from the measured terrain triangles.
+offline 2D editor. Exact Python builds measure ground height in the engine. Browser previews and
+finished-file downloads interpolate the measured terrain triangles.
 
 The website catalogue now includes every installed scene-prop definition,
 including invisible props, scripted props and engine helpers. Invisible meshes
@@ -192,6 +192,33 @@ JSON, run this and reopen/reload `editor.html`:
 uv run --with matplotlib python map_editor/editor.py refresh \
   --project map_editor/projects/rotation_20260925_map_1
 ```
+
+## Download finished files from the website
+
+Click **Download files** beside **Save map loadout JSON**. The website builds the
+edited scene in your browser and downloads a ZIP containing the finished
+`SceneObj/<scene-id>.sco`, `scenes-snippet.txt`, `placements.json`, and
+map-specific `README.txt` installation instructions. No Python, commands, or
+additional software are required by the user.
+
+The download captures the current edits, including unsaved objects, height
+offsets, weather, and moved spawns. It uses the exact registered source snapshot,
+so installed variant scenery is retained without reapplying it. Grounding uses
+the same sampled terrain triangles and edge clamping as the 3D preview; it is
+approximate and is not engine-verified. **Biome must remain Keep source.**
+Use the exact build workflow below for biome changes or exact ground heights.
+
+Install into the same existing local scene slot in the matching game module,
+following the included backup and replacement instructions. The scene snippet
+is one four-line record, not a replacement for the entire module's scenes.txt.
+The browser never changes installed game files. Inspect the result in-game.
+
+For maintainers, `npm run prepare:editor` publishes verified source snapshots and
+resolved native prop/flora mappings under `public/editor-downloads/`. It reuses
+published projects and terrain instead of duplicating them. Commit these assets
+together with `lib/editor-maps.json`; prebuild checks verify all download
+checksums and registration identities. Preparation needs the registered source
+module and its unchanged prop/flora definitions; deployment checks do not.
 
 ## 3. Build the scene
 

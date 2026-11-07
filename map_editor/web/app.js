@@ -303,6 +303,11 @@
   assetOptions(); render();
   window.MapEditor = Object.freeze({
     getState:state, loadDocument,
+    exportDocument() {
+      const document=JSON.parse(JSON.stringify(documentData()));
+      C.validate(document,project); C.validateSettings(document); C.validateSpawns(document,project);
+      return document;
+    },
     subscribe(fn) { listeners.add(fn); fn(state()); return ()=>listeners.delete(fn); },
     select(id) { if(id!==null&&!points.some(p=>p.id===id)) throw new Error('Unknown placement'); choose(id); },
     setMode, placeAt, status,

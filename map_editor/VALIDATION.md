@@ -87,3 +87,34 @@ seed and non-biome terrain bits are retained. Selected weather props are
 replaced; all other original records and trailing terrain data are preserved.
 The weather demonstration is an exported test build, not an installed map.
 Rendered weather appearance and other vegetation assets remain client checks.
+
+## Browser-built local map downloads — 2026-11-07
+
+The website's Download files action now builds the edited SCO in the browser.
+The ZIP contains the completed SCO, a single-record scenes snippet, the current
+loadout, and map-specific local installation instructions. No Python is shipped
+or required. Biome changes are blocked; grounding uses the editor's terrain
+triangles and edge clamping.
+
+Validation:
+- All 99 registered sources, including installed variants, export byte-for-byte
+  unchanged with an empty loadout.
+- Tests cover prop/flora kinds and variants, yaw, scale, height offsets, weather,
+  moved spawns, preservation of untouched objects and terrain/AI bytes, and
+  repeat builds without accumulated additions.
+- All 1,641 published native asset mappings match the existing Python resolver.
+- Standard Python zipfile verifies the browser ZIP's CRCs and contents.
+- Chromium checks passed both in an isolated editor and the compiled application:
+  actual ZIP download, unsaved edits, weather/spawns, biome blocking, and failed
+  fetches without lost edits. The compiled UI check used an empty replay
+  catalogue to avoid processing unrelated replay archives.
+- The UI production build passed with an empty replay catalogue. The regular
+  production build passed prebuild checks and transformed 330 modules, but was
+  stopped after more than 16 minutes during archive-heavy packaging.
+- Full regression run: 223/225 pass. The unchanged feedback-data check still
+  finds legacy map-slot names; the unchanged replay-density test expects nine
+  linked recordings while current data contains nineteen.
+
+No graphical Warband playtest or local game installation was performed. Engine
+rendering, collision, and gameplay remain unverified for these approximate
+exports. No deployment or live-server change was made.

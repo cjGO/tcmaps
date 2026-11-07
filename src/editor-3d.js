@@ -25,7 +25,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   const info = doc.createElement('p'); info.className = 'editor-model-info'; info.setAttribute('role', 'status');
   const retry = doc.createElement('button'); retry.textContent = 'Retry models'; retry.hidden = true;
   const help = doc.createElement('p'); help.className = 'editor-three-help';
-  help.textContent = 'Open Keyboard & camera controls in the sidebar for shortcuts and navigation help. Infantry / Mounted explore at player height; Stand here starts from a point you choose. Exploration leaves your loadout unchanged. Existing procedural vegetation is not shown; build measures exact heights and applies biome/weather settings.';
+  help.textContent = 'Open Keyboard & camera controls in the sidebar for shortcuts and navigation help. Infantry / Mounted explore at player height; Stand here starts from a point you choose. Exploration leaves your loadout unchanged. Existing procedural vegetation is not shown. Downloads use approximate terrain heights; check object grounding in-game.';
   container.after(info, retry, help);
   const navigate = doc.createElement('button'); navigate.textContent = 'Navigate'; navigate.id = 'editor-navigate';
   doc.querySelector('.modes').prepend(navigate);

@@ -1,3 +1,4 @@
+import {publishDownload, checkDownload} from './editor-downloads.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, writeFile, copyFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -31,6 +32,7 @@ if (process.argv.includes('--check')) {
       if (hash(await readFile(path.join(root, 'public', map[key]))) !== expected) throw new Error(`Editor ${key} changed: ${map.filename}. Run npm run prepare:editor.`);
     }
     const project = JSON.parse(await readFile(path.join(root, 'public', map.project), 'utf8'));
+    await checkDownload(root, map, project);
     if (!isDeepStrictEqual(project.source, registered.source)) throw new Error('Published editor source differs from registered rotation: ' + map.id);
   }
   console.log(`Verified ${manifest.length} registered current-rotation editor projects.`);
@@ -51,7 +53,8 @@ if (process.argv.includes('--check')) {
     await mkdir(path.join(root, 'public', directory), { recursive: true });
     await copyFile(path.join(projectDir, 'project.json'), path.join(root, 'public', directory, 'project.json'));
     await copyFile(path.join(projectDir, 'heatmap.png'), path.join(root, 'public', directory, 'heatmap.png'));
-    manifest.push({ filename, id, map_id, variant_id, variant_revision, pool, imageSha256, projectSha256, heatmapSha256, project: `${directory}/project.json`, heatmap: `${directory}/heatmap.png` });
+    const download = await publishDownload(root, map, project, projectDir, `${directory}/project.json`);
+    manifest.push({ download, filename, id, map_id, variant_id, variant_revision, pool, imageSha256, projectSha256, heatmapSha256, project: `${directory}/project.json`, heatmap: `${directory}/heatmap.png` });
   }
   await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
   console.log(`Published ${manifest.length} registered current-rotation editor projects.`);

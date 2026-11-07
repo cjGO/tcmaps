@@ -1,3 +1,4 @@
+import { attachMapDownload } from './editor-download.js';
 import topologyMaps from '../lib/rotation-topology.json';
 import editorModels from '../lib/editor-models.json';
 import editorMaps from '../lib/editor-maps.json';
@@ -103,8 +104,9 @@ export function setupEditor(selectTab) {
         .replace('/* EDITOR_APP */', () => app)
         .replace('__EDITOR_DATA__', () => JSON.stringify(project).replaceAll('<', '\\u003c'))
         .replace('data:image/png;base64,__HEATMAP__', () => url(map.heatmap))
-        .replace('Save the JSON, then run the Python build command described in the README.', 'Click Save map loadout JSON, then send the downloaded file to the map organizer. You can reopen it with Open loadout to continue editing.');
+        .replace('Save the JSON, then run the Python build command described in the README.', 'Click Download files for a finished local map and installation instructions, or Save map loadout JSON to keep editing or send your changes to the map organizer.');
       frame.addEventListener('load', () => {
+        attachMapDownload(frame, map, url);
         // Fit the whole sidebar into the page; only the zoomable map scrolls.
         const resize = () => {
           if (frame.offsetWidth) frame.style.height = Math.ceil(frame.contentDocument.body.getBoundingClientRect().height) + 2 + 'px';
