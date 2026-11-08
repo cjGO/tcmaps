@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { variantId, roundVariant, includedVariants, assertVariantSource, defaultRotationVariant } from '../src/map-variants.js';
 import { csvRows, parseMapNames, statsMapId } from '../src/map-identity.js';
-const read = path => fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+// Freeze historical revisions used by replay tests; inbox updates replace active files.
+const historicalVariants = JSON.parse(fs.readFileSync(new URL('./fixtures/variant-import-baseline.json', import.meta.url), 'utf8'));
+const read = path => historicalVariants[path] ?? fs.readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 
 test('map 116 RAW retains original terrain and spawns across variant switches', async () => {
   const { sourceTerrain, resolveVariantPreview } = await import('../src/rotation-variants.js');
@@ -108,7 +110,7 @@ test('rotation variants use installed revision evidence or exact archived terrai
   const variants = includedVariants({ [updated]: read(updated) }, 'test_map_111');
   assert.equal(variants.length, 1);
   const map111 = current.find(m => m.map_id === 'test_map_111');
-  const newer = variants.find(v => v.id === 'annafreud');
+  const newer = variants.find(v => v.id === variantId(updated, 'test_map_111'));
   const updatedPreview = await resolveVariantPreview(newer, map111, archived);
   assert.notEqual(updatedPreview.terrain, map111);
   assert.equal(updatedPreview.registration, null);
@@ -199,7 +201,7 @@ test('map 176 VarA is discoverable and matches its terrain and model assets', ()
   const path='maps/tiny/test_map_176/variants/test_map_176_VarA_AnnaFreud.placements.json';
   const document=JSON.parse(read(path));
   const [variant]=includedVariants({[path]:document},'test_map_176');
-  assert.equal(variant.id,'vara_annafreud');
+  assert.equal(variant.id,variantId(path,'test_map_176'));
   const terrain=JSON.parse(read('lib/replay-topology.json')).maps.find(m=>m.map_id==='test_map_176');
   assertVariantSource(document,terrain);
   const models=JSON.parse(read('lib/editor-models.json'));

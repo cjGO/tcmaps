@@ -1,3 +1,4 @@
+import variantAliases from '../lib/map-variant-aliases.js';
 // Match identities across recorded map names and exported placement filenames.
 export function defaultRotationVariant(variants, installed) {
   const available = variants.filter(v => v.id !== 'source' && v.document);
@@ -8,7 +9,8 @@ export function variantId(value, mapId) {
   const name = String(value || '').trim().split(/[\\/]/).pop().replace(/\.(?:placements(?:\.json)?|json)$/i, '');
   if (!name || /^(source|raw)$/i.test(name) || name.toLowerCase() === `${mapId}_RAW`.toLowerCase() || name === mapId) return 'source';
   const prefix = `${mapId}_`;
-  return (name.toLowerCase().startsWith(prefix.toLowerCase()) ? name.slice(prefix.length) : name).toLowerCase();
+  const id = (name.toLowerCase().startsWith(prefix.toLowerCase()) ? name.slice(prefix.length) : name).toLowerCase();
+  return variantAliases[mapId]?.[id] || id;
 }
 
 export function recordedVariantId(map, mapId = map.map_id) {

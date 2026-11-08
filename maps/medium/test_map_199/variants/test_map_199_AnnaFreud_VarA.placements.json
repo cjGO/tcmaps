@@ -1,22 +1,23 @@
 {
   "version": 3,
   "source": {
-    "scene_id": "scn_mp_custom_map_26",
-    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261021-171051-249482/scn_mp_custom_map_26.sco",
-    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261021-171051-249482/scn_mp_custom_map_26.txt",
-    "sco_sha256": "98d796c43d4c5953d9421ad0cd452c8bbff1a5f30f44da90c0eeb1425ba73d26",
-    "recipe_file_sha256": "0a7ea4d0e4706b83106f12820554a895b4198be14531e1514a1687472fe6eff3",
-    "recipe_sha256": "0a7ea4d0e4706b83106f12820554a895b4198be14531e1514a1687472fe6eff3",
-    "terrain_code": "0x00000003a282088a000dc3707e35eade294ede2b2e93f092"
+    "scene_id": "scn_mp_custom_map_19",
+    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261105-032038-314198/scn_mp_custom_map_19.sco",
+    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261105-032038-314198/scn_mp_custom_map_19.txt",
+    "sco_sha256": "9e9a0afb00a3b9995c891762ce7c1c57dc3ab517380e62a71de6a865e5a34183",
+    "recipe_file_sha256": "6e96660d8e9b40b8cb292110ba44cea987f5fbf0014c2a91e153886a0f6e4cd6",
+    "recipe_sha256": "6e96660d8e9b40b8cb292110ba44cea987f5fbf0014c2a91e153886a0f6e4cd6",
+    "terrain_code": "0x00000003b282088a000dc3707e35eade294ede2b2e93f092"
   },
   "placements": [
     {
       "id": "61392d4f-8b14-4300-8eb3-4ab9892df73c",
       "asset": "spr_mm_tree_autumn1",
-      "x_m": 514.726,
-      "y_m": 426.113,
+      "x_m": 512.168,
+      "y_m": 437.936,
       "yaw_deg": 0,
-      "scale": 17
+      "scale": 25,
+      "z_offset_m": -1
     },
     {
       "id": "b4129f9f-e80a-47ab-bd5e-a94dbb1d1c9c",
@@ -120,7 +121,8 @@
       "x_m": 658.077,
       "y_m": 274.979,
       "yaw_deg": 0,
-      "scale": 2
+      "scale": 2,
+      "z_offset_m": -1
     },
     {
       "id": "1d3459c8-c55e-4663-9268-913abb9706b4",
@@ -181,10 +183,11 @@
     {
       "id": "179aaca2-598e-4515-9488-b08f5bf44b41",
       "asset": "spr_mm_sp_rich_street1",
-      "x_m": 424.091,
-      "y_m": 764.83,
+      "x_m": 530.219,
+      "y_m": 733.751,
       "yaw_deg": 0,
-      "scale": 2
+      "scale": 1.6,
+      "z_offset_m": -1
     },
     {
       "id": "374c9aa5-6f9e-49af-9f16-61a6cd784f1f",
@@ -253,17 +256,9 @@
     {
       "id": "82359be1-0d79-4214-b5f7-7ea0afadb73f",
       "asset": "spr_stone_heap",
-      "x_m": 413.833,
-      "y_m": 313.929,
+      "x_m": 352.498,
+      "y_m": 337.338,
       "yaw_deg": 17,
-      "scale": 5
-    },
-    {
-      "id": "b7757db5-7966-4051-91c0-e58ccc9ecfb0",
-      "asset": "spr_stone_heap",
-      "x_m": 510.276,
-      "y_m": 673.449,
-      "yaw_deg": 0,
       "scale": 5
     },
     {
@@ -333,8 +328,8 @@
     {
       "id": "bf7674b0-66a7-4b4a-9079-0ed354ebfda6",
       "asset": "spr_destroy_house_a",
-      "x_m": 428.2,
-      "y_m": 329.1,
+      "x_m": 426.129,
+      "y_m": 326.899,
       "yaw_deg": 31,
       "scale": 2
     },
@@ -464,7 +459,7 @@
       "x_m": 81.262,
       "y_m": 61.09,
       "yaw_deg": 0,
-      "scale": 10
+      "scale": 15
     },
     {
       "id": "f83c7f5a-10e9-4e5c-9c0e-08d9a4e1abbf",
@@ -472,7 +467,7 @@
       "x_m": 829.778,
       "y_m": 836.194,
       "yaw_deg": 0,
-      "scale": 10
+      "scale": 15
     },
     {
       "id": "6ffc4528-6819-457f-91bb-4c16672aa4ff",
@@ -512,7 +507,7 @@
       "x_m": 408.283,
       "y_m": 182.351,
       "yaw_deg": 131.7050550630824,
-      "scale": 10
+      "scale": 2.3
     },
     {
       "id": "89d14ba7-c9a7-403e-b572-8ca9ba09aa5b",
@@ -520,7 +515,7 @@
       "x_m": 393.547,
       "y_m": 207.927,
       "yaw_deg": 131.7050550630824,
-      "scale": 10
+      "scale": 2
     },
     {
       "id": "2b2d08ec-9f27-48ba-9ee3-99b9253231bf",
@@ -576,7 +571,7 @@
       "x_m": 374.34,
       "y_m": 228.833,
       "yaw_deg": 131.7050550630824,
-      "scale": 10
+      "scale": 2
     },
     {
       "id": "9e77a8bf-2830-4216-a1ad-173af7022ea1",
@@ -597,10 +592,10 @@
     {
       "id": "7e1c1bca-07f5-4952-9339-982e99dcab5a",
       "asset": "spr_flora_bush_orangee",
-      "x_m": 511.219,
-      "y_m": 402.323,
+      "x_m": 520.735,
+      "y_m": 364.334,
       "yaw_deg": 131.7050550630824,
-      "scale": 10
+      "scale": 3
     },
     {
       "id": "17daf6bb-8a37-4791-bd7b-21c5195d3205",
@@ -629,10 +624,10 @@
     {
       "id": "c2290805-76d0-4416-9398-f00660740dd2",
       "asset": "spr_flora_bush_orangeb",
-      "x_m": 309.164,
-      "y_m": 318.321,
+      "x_m": 370.94,
+      "y_m": 398.346,
       "yaw_deg": 130.7050550630824,
-      "scale": 10
+      "scale": 3
     },
     {
       "id": "e99f7de5-2049-4067-a523-a6d4cd944ab4",
@@ -673,6 +668,108 @@
       "y_m": 325.238,
       "yaw_deg": 131.7050550630824,
       "scale": 10
+    },
+    {
+      "id": "cef68a91-d0a6-4797-8c62-5fab370cfebd",
+      "asset": "spr_destroy_castle_a",
+      "x_m": 392.184,
+      "y_m": 333.945,
+      "yaw_deg": 0,
+      "scale": 2
+    },
+    {
+      "id": "dd5c8ce7-d35d-4b05-b634-6f30f01b4345",
+      "asset": "spr_village_house_e",
+      "x_m": 339.728,
+      "y_m": 235.235,
+      "yaw_deg": 130,
+      "scale": 1.6,
+      "z_offset_m": -0.5
+    },
+    {
+      "id": "d7e3d4e5-0ec5-4394-89e6-a3c9506ee848",
+      "asset": "spr_mm_sp_rich_street2",
+      "x_m": 504.027,
+      "y_m": 729.626,
+      "yaw_deg": 0,
+      "scale": 1.6,
+      "z_offset_m": -1
+    },
+    {
+      "id": "00bd952c-c46b-49a2-8668-c7b361cd8f96",
+      "asset": "spr_mm_sp_rich_street4",
+      "x_m": 512.04,
+      "y_m": 679.083,
+      "yaw_deg": 90,
+      "scale": 1.8,
+      "z_offset_m": -2
+    },
+    {
+      "id": "53e7e1dc-ce1c-429a-885d-622f70524293",
+      "asset": "spr_winery_wine_cart_empty",
+      "x_m": 550.57,
+      "y_m": 654.556,
+      "yaw_deg": 90,
+      "scale": 1
+    },
+    {
+      "id": "a12efe77-8375-4e50-a776-a7c609355ea1",
+      "asset": "spr_winery_wine_cart_loaded",
+      "x_m": 544.629,
+      "y_m": 654.175,
+      "yaw_deg": 0,
+      "scale": 1
+    },
+    {
+      "id": "66463942-83c9-4614-b8c7-bc07d566b4fe",
+      "asset": "spr_light_red",
+      "x_m": 512.995,
+      "y_m": 432.647,
+      "yaw_deg": 0,
+      "scale": 25,
+      "z_offset_m": 250
+    },
+    {
+      "id": "ae839b07-2df0-4c57-b01d-fb0daa7812fe",
+      "asset": "spr_ambience_sound_local_crow",
+      "x_m": 509.193,
+      "y_m": 433.558,
+      "yaw_deg": 0,
+      "scale": 4,
+      "z_offset_m": 100
+    },
+    {
+      "id": "25e741b0-dff0-4009-a35f-ad1ce780c34d",
+      "asset": "spr_mm_sp_czech1",
+      "x_m": 553.044,
+      "y_m": 718.007,
+      "yaw_deg": 270,
+      "scale": 1.6,
+      "z_offset_m": -1
+    },
+    {
+      "id": "d49a24d9-7e98-40a5-b4c1-cce390a45d70",
+      "asset": "spr_mm_tree_autumn1",
+      "x_m": 355.646,
+      "y_m": 787.434,
+      "yaw_deg": 0,
+      "scale": 2
+    },
+    {
+      "id": "ed92f8b9-b3b8-4d9a-99e7-9ae2c4512c60",
+      "asset": "spr_mm_tree_autumn1",
+      "x_m": 523.328,
+      "y_m": 688.177,
+      "yaw_deg": 0,
+      "scale": 2
+    },
+    {
+      "id": "93306b93-4317-4106-9fb1-483fcca1c0be",
+      "asset": "spr_mm_tree_autumn1",
+      "x_m": 789.87,
+      "y_m": 647.824,
+      "yaw_deg": 45,
+      "scale": 2
     }
   ],
   "settings": {
@@ -687,24 +784,24 @@
     {
       "team": 0,
       "entry": 0,
-      "x_m": 148.8000030517578,
-      "y_m": 440,
-      "z_m": 21.097000122070312,
+      "x_m": 684.8380126953125,
+      "y_m": 799.2769775390625,
+      "z_m": 17.8439998626709,
       "forward": [
-        1,
-        0,
+        -0.621205747127533,
+        -0.7836475372314453,
         0
       ]
     },
     {
       "team": 1,
       "entry": 32,
-      "x_m": 731.2000122070312,
-      "y_m": 440,
-      "z_m": 18.94700050354004,
+      "x_m": 131.3459930419922,
+      "y_m": 101.05000305175781,
+      "z_m": 27.31800079345703,
       "forward": [
-        -1,
-        0,
+        0.621205747127533,
+        0.7836475372314453,
         0
       ]
     }
@@ -713,14 +810,14 @@
     {
       "team": 0,
       "entry": 0,
-      "x_m": 684.838,
-      "y_m": 799.277
+      "x_m": 662.571,
+      "y_m": 672.037
     },
     {
       "team": 1,
       "entry": 32,
-      "x_m": 131.346,
-      "y_m": 101.05
+      "x_m": 105.898,
+      "y_m": 406.425
     }
   ]
 }

@@ -2,21 +2,22 @@
   "version": 3,
   "source": {
     "scene_id": "scn_mp_custom_map_2",
-    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261021-171051-249482/scn_mp_custom_map_2.sco",
-    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261021-171051-249482/scn_mp_custom_map_2.txt",
-    "sco_sha256": "583d473a2f0a8ee53092f5d33664991dc6df6af3112db31c7cbe85cc4c7e047b",
-    "recipe_file_sha256": "6c55bfa5dad40bb51a14c1e1c81a568c955a8455780429af593728690687d49c",
-    "recipe_sha256": "6c55bfa5dad40bb51a14c1e1c81a568c955a8455780429af593728690687d49c",
-    "terrain_code": "0x000000034284478a000b42d03ab15e3e7fb85ad77533c93f"
+    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261105-032038-314198/scn_mp_custom_map_2.sco",
+    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/population_rotation_20261105-032038-314198/scn_mp_custom_map_2.txt",
+    "sco_sha256": "b809267888dce69f6630976e8cae75382559e7020c6cd610b361720a43601916",
+    "recipe_file_sha256": "e0be663487a9adaee39f278294c017474f39a37462049183bca5a195456eb19c",
+    "recipe_sha256": "e0be663487a9adaee39f278294c017474f39a37462049183bca5a195456eb19c",
+    "terrain_code": "0x00000003b284478a000b42d03ab15e3e7fb85ad77533c93f"
   },
   "placements": [
     {
       "id": "08843d24-394a-4223-8e68-616a5d11385a",
       "asset": "spr_oim_church2",
-      "x_m": 204.047,
-      "y_m": 363.942,
-      "yaw_deg": 118,
-      "scale": 5
+      "x_m": 226.418,
+      "y_m": 390.332,
+      "yaw_deg": 35,
+      "scale": 3,
+      "z_offset_m": -1
     },
     {
       "id": "f7cb7629-9844-4f25-aeb0-41860bda0769",
@@ -24,7 +25,7 @@
       "x_m": 595.745,
       "y_m": 186.027,
       "yaw_deg": 0,
-      "scale": 4
+      "scale": 2
     },
     {
       "id": "66d402cd-b715-4fa0-a3b1-b206c8dd0ac7",
@@ -336,7 +337,7 @@
       "x_m": 494.173,
       "y_m": 285.634,
       "yaw_deg": 112.0922848721725,
-      "scale": 5
+      "scale": 3
     },
     {
       "id": "8652c3b0-345a-48c8-b066-e7d7efd3fa66",
@@ -344,7 +345,7 @@
       "x_m": 498.274,
       "y_m": 311.638,
       "yaw_deg": 200.58937182630478,
-      "scale": 5
+      "scale": 2
     },
     {
       "id": "33f4e82c-993b-4619-aebf-933772b3d546",
@@ -424,7 +425,7 @@
       "x_m": 515.081,
       "y_m": 319.501,
       "yaw_deg": 80.00611831803113,
-      "scale": 5
+      "scale": 1
     },
     {
       "id": "f4a8f708-2831-4bc7-9f63-6d1a15f6da43",
@@ -456,7 +457,7 @@
       "x_m": 606.384,
       "y_m": 298.176,
       "yaw_deg": 149.70096205806814,
-      "scale": 5
+      "scale": 2
     },
     {
       "id": "9e9cd0fc-8b83-4266-bd07-07f023e029ab",
@@ -549,10 +550,10 @@
     {
       "id": "4bbe97ee-c332-4ce5-9d29-65cc279f9289",
       "asset": "spr_destroy_house_a",
-      "x_m": 283.256,
-      "y_m": 504.004,
-      "yaw_deg": 273.05302762458155,
-      "scale": 5
+      "x_m": 614.433,
+      "y_m": 394.688,
+      "yaw_deg": 180,
+      "scale": 3
     },
     {
       "id": "5b960692-e7d8-46c9-b591-52ff30b5d117",
@@ -560,15 +561,17 @@
       "x_m": 403.029,
       "y_m": 610.317,
       "yaw_deg": 0,
-      "scale": 2
+      "scale": 2,
+      "z_offset_m": -0.5
     },
     {
       "id": "c730161f-d1cc-43a5-a8eb-1c2f791164e1",
       "asset": "spr_oim_rus_house3",
-      "x_m": 362.091,
-      "y_m": 127.688,
-      "yaw_deg": 90,
-      "scale": 2
+      "x_m": 294.523,
+      "y_m": 225.838,
+      "yaw_deg": 135,
+      "scale": 1.4,
+      "z_offset_m": -0.5
     },
     {
       "id": "250a6d02-3195-4875-aa33-2b31b0b8bbbd",
@@ -1317,16 +1320,16 @@
     {
       "id": "755bf31a-74fa-4c7d-8513-36b003b82a62",
       "asset": "spr_mm_tree_pine_snowy6",
-      "x_m": 404.263,
-      "y_m": 239.107,
+      "x_m": 565.511,
+      "y_m": 200.822,
       "yaw_deg": 222.87449401087017,
       "scale": 4
     },
     {
       "id": "90447119-5951-4811-b9ac-1eb6d14b6d96",
       "asset": "spr_mm_tree_pine_snowy7",
-      "x_m": 405.325,
-      "y_m": 233.982,
+      "x_m": 436.238,
+      "y_m": 110.852,
       "yaw_deg": 131.51869894836315,
       "scale": 4
     },
@@ -1617,6 +1620,136 @@
       "y_m": 74.336,
       "yaw_deg": 171.60631135822166,
       "scale": 4
+    },
+    {
+      "id": "d9a3ac2b-86fb-42fb-ba78-4ec88ec18fb5",
+      "asset": "spr_destroy_windmill",
+      "x_m": 130.407,
+      "y_m": 411.675,
+      "yaw_deg": 273.05302762458155,
+      "scale": 2.2
+    },
+    {
+      "id": "86d28924-32ab-4ea1-825e-83a0ceb859fb",
+      "asset": "spr_full_stable_d",
+      "x_m": 222.051,
+      "y_m": 611.595,
+      "yaw_deg": 0,
+      "scale": 2,
+      "z_offset_m": -0.5
+    },
+    {
+      "id": "e1dbb774-2eac-4135-810c-4c7fa764a1f7",
+      "asset": "spr_full_stable_d",
+      "x_m": 670.483,
+      "y_m": 450.005,
+      "yaw_deg": 270,
+      "scale": 2
+    },
+    {
+      "id": "7b418a85-09b0-4ebf-b344-ce8b252848a7",
+      "asset": "spr_mm_tree_pine_snowy7",
+      "x_m": 308.575,
+      "y_m": 375.659,
+      "yaw_deg": 231.09513287053954,
+      "scale": 3
+    },
+    {
+      "id": "e82f9d51-0a11-4318-a2da-3daac86a5f94",
+      "asset": "spr_mm_tree_pine_snowy7",
+      "x_m": 208.098,
+      "y_m": 302.285,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2.2
+    },
+    {
+      "id": "daad6478-40c1-4917-9848-6c83e4d6f140",
+      "asset": "spr_mm_tree_pine_snowy7",
+      "x_m": 81.269,
+      "y_m": 335.638,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
+    },
+    {
+      "id": "defaeae1-5ec8-4d0b-b260-92d6b17d96fe",
+      "asset": "spr_mm_tree_northern3",
+      "x_m": 91.532,
+      "y_m": 289.104,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
+    },
+    {
+      "id": "cc8c7c80-d168-4fee-a657-d2ef077f7c94",
+      "asset": "spr_mm_tree_pine_snowy4",
+      "x_m": 44.778,
+      "y_m": 375.113,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
+    },
+    {
+      "id": "696e1d41-e9a1-4e15-be72-2226e4c2124c",
+      "asset": "spr_mm_tree_pine_snowy4",
+      "x_m": 42.078,
+      "y_m": 489.499,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
+    },
+    {
+      "id": "5dd1c83e-dfbe-4236-90ac-44f614356148",
+      "asset": "spr_oim_rus_house4",
+      "x_m": 527.013,
+      "y_m": 338.967,
+      "yaw_deg": 90,
+      "scale": 1.2,
+      "z_offset_m": -0.3
+    },
+    {
+      "id": "5c855c2d-09ee-4501-8edd-2fcb2d8d3e6f",
+      "asset": "spr_destroy_castle_c",
+      "x_m": 616.117,
+      "y_m": 327.47,
+      "yaw_deg": 273.05302762458155,
+      "scale": 2
+    },
+    {
+      "id": "270d40e2-4a82-4d21-ad79-f1b708a0880c",
+      "asset": "spr_destroy_castle_d",
+      "x_m": 619.123,
+      "y_m": 356.091,
+      "yaw_deg": 90,
+      "scale": 2
+    },
+    {
+      "id": "df48a57f-bf3c-46ef-b124-e2446fa87d76",
+      "asset": "spr_mm_tree_winter7",
+      "x_m": 528.443,
+      "y_m": 509.405,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
+    },
+    {
+      "id": "96037d46-aca4-40df-b37b-67eb123a53cc",
+      "asset": "spr_mm_tree_winter6",
+      "x_m": 536.705,
+      "y_m": 434.084,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
+    },
+    {
+      "id": "c156a671-f834-4f81-951d-d688d007fd1d",
+      "asset": "spr_mm_tree_winter6",
+      "x_m": 544.337,
+      "y_m": 367.855,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
+    },
+    {
+      "id": "1cfc656a-0b66-4991-b6d0-441e77fa9df5",
+      "asset": "spr_mm_tree_winter4",
+      "x_m": 291.971,
+      "y_m": 559.809,
+      "yaw_deg": 231.09513287053954,
+      "scale": 2
     }
   ],
   "settings": {
@@ -1631,24 +1764,24 @@
     {
       "team": 0,
       "entry": 0,
-      "x_m": 124.80000305175781,
-      "y_m": 91.19999694824219,
-      "z_m": 4.611999988555908,
+      "x_m": 453.7409973144531,
+      "y_m": 60.12300109863281,
+      "z_m": 14.581000328063965,
       "forward": [
-        0.6585046052932739,
-        0.7525767087936401,
+        -0.4989107549190521,
+        0.8666533827781677,
         0
       ]
     },
     {
       "team": 1,
       "entry": 32,
-      "x_m": 595.2000122070312,
-      "y_m": 628.7999877929688,
-      "z_m": 9.746000289916992,
+      "x_m": 114.96600341796875,
+      "y_m": 648.6060180664062,
+      "z_m": 6.224999904632568,
       "forward": [
-        -0.6585046052932739,
-        -0.7525767087936401,
+        0.4989107549190521,
+        -0.8666533827781677,
         0
       ]
     }
@@ -1657,14 +1790,14 @@
     {
       "team": 0,
       "entry": 0,
-      "x_m": 453.741,
-      "y_m": 60.123
+      "x_m": 347.178,
+      "y_m": 92.861
     },
     {
       "team": 1,
       "entry": 32,
-      "x_m": 114.966,
-      "y_m": 648.606
+      "x_m": 315.368,
+      "y_m": 612.952
     }
   ]
 }
