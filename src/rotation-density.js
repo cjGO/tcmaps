@@ -2,9 +2,46 @@ import { sourceEqual, upperIndex } from './tactical-replay.js';
 import { recordedVariantId } from './map-variants.js';
 import { experimentalSamplesJoin } from './experimental-replay.js';
 
+// Captured Napoleonic Wars troop classes; dismounting does not change role.
+// Class 17 is ranged cavalry (dragoons); class 19 is heavy melee cavalry.
+export const DENSITY_UNITS = [
+  ['cavalry', 'Cav'], ['infantry', 'Inf'], ['light', 'Light'],
+  ['rifles', 'Rifles'], ['artillery', 'Arty'], ['dragoons', 'Dragoons'], ['unknown', 'Unknown'],
+];
+export function densityUnit(meta) {
+  const c = meta?.class;
+  if (c === 12) return 'light';
+  if (c === 13) return 'rifles';
+  if (c === 17) return 'dragoons';
+  if (c >= 14 && c <= 19) return 'cavalry';
+  if (c === 20 || c === 21) return 'artillery';
+  if ([10, 11, 22, 23].includes(c)) return 'infantry';
+  return 'unknown';
+}
+function unitGrid(size) {
+  return { movement: new Float64Array(size * size), deaths: new Float64Array(size * size), playerDeaths: new Float64Array(size * size), seconds: 0, deathCount: 0, playerDeathCount: 0 };
+}
+// Filter the cached grids without fetching or parsing recordings again.
+export function selectDensity(result, units = DENSITY_UNITS.map(([id]) => id), deathKind = 'bot') {
+  if (!result?.units) return result;
+  const selected = { ...result, ...unitGrid(result.size) };
+  for (const id of new Set(units)) {
+    const grid = result.units[id];
+    if (!grid) continue;
+    selected.seconds += grid.seconds;
+    selected.deathCount += (deathKind !== 'player' ? grid.deathCount : 0) + (deathKind !== 'bot' ? grid.playerDeathCount : 0);
+    for (let i = 0; i < selected.movement.length; i++) {
+      selected.movement[i] += grid.movement[i];
+      selected.deaths[i] += (deathKind !== 'player' ? grid.deaths[i] : 0) + (deathKind !== 'bot' ? grid.playerDeaths[i] : 0);
+    }
+  }
+  if (result.comparison) selected.comparison = Object.fromEntries(Object.entries(result.comparison).map(([key, grid]) => [key, selectDensity(grid, units, deathKind)]));
+  return selected;
+}
+
 export const DENSITY_SIZE = 128;
 export function createDensity(data, size = DENSITY_SIZE) {
-  return { size, bounds: data.bounds, movement: new Float64Array(size * size), deaths: new Float64Array(size * size), seconds: 0, deathCount: 0, rounds: 0 };
+  return { size, bounds: data.bounds, movement: new Float64Array(size * size), deaths: new Float64Array(size * size), seconds: 0, deathCount: 0, rounds: 0, units: Object.fromEntries(DENSITY_UNITS.map(([id]) => [id, unitGrid(size)])) };
 }
 
 // Weight observed intervals by elapsed time, splitting at control changes. Never
@@ -49,19 +86,29 @@ export function accumulateDensity(result, replay, data, experimental = false, li
       const distance = Math.hypot(z.x - a.x, z.y - a.y);
       for (let j = 0; j + 1 < cuts.length; j++) {
         const begin = cuts[j], end = cuts[j + 1];
-        if (track.changes[upperIndex(track.changes, begin)]?.kind !== 'player') continue;
+        const meta = track.changes[upperIndex(track.changes, begin)];
+        if (meta?.kind !== 'player') continue;
+        const grid = result.units[densityUnit(meta)];
         const steps = Math.max(1, Math.min(2000, Math.ceil(distance * (end - begin) / dt / (cell / 2))));
         const weight = (end - begin) / steps / 1000;
         for (let k = 0; k < steps; k++) {
           const u = (begin - a.t + (k + .5) * (end - begin) / steps) / dt;
-          if (add(result.movement, { x: a.x + (z.x - a.x) * u, y: a.y + (z.y - a.y) * u }, weight)) result.seconds += weight;
+          const point = { x: a.x + (z.x - a.x) * u, y: a.y + (z.y - a.y) * u };
+          if (add(result.movement, point, weight)) {
+            result.seconds += weight; grid.seconds += weight; add(grid.movement, point, weight);
+          }
         }
       }
     }
     const isDeath = experimental ? track.end.type === 'death' : track.removalReason === 'death';
     const meta = track.changes[upperIndex(track.changes, death)];
     const pose = track.samples[upperIndex(track.samples, death)];
-    if (isDeath && meta?.kind === 'bot' && pose && add(result.deaths, pose, 1)) result.deathCount++;
+    if (isDeath && pose && ['bot', 'player'].includes(meta?.kind)) {
+      const grid = result.units[densityUnit(meta)];
+      if (meta.kind === 'bot' && add(result.deaths, pose, 1)) {
+        result.deathCount++; grid.deathCount++; add(grid.deaths, pose, 1);
+      } else if (meta.kind === 'player' && add(grid.playerDeaths, pose, 1)) grid.playerDeathCount++;
+    }
   }
   result.rounds++;
   return true;

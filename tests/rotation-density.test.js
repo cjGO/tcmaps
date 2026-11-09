@@ -214,3 +214,62 @@ test('difference renderer switches metrics, restores normal layers, and hides mi
   assert.equal(layer.mesh.visible, false);
   layer.dispose(); geometry.dispose();
 });
+
+test('unit filters split role changes, player/bot deaths and empty selections', async () => {
+  const { selectDensity, densityUnit, DENSITY_UNITS } = await import('../src/rotation-density.js');
+  assert.deepEqual([10, 11, 12, 13, 14, 17, 19, 20, 21, 22, 23, -1].map(c => densityUnit({ class: c })),
+    ['infantry', 'infantry', 'light', 'rifles', 'cavalry', 'dragoons', 'cavalry', 'artillery', 'artillery', 'infantry', 'infantry', 'unknown']);
+  const result = createDensity(data, 10);
+  accumulateDensity(result, replay([
+    track([pose(0, 25, 1), pose(10000, 25, 2)], 'player', {
+      changes: [{ t: 0, kind: 'player', class: 12 }, { t: 4000, kind: 'player', class: 17 }], death: 10000, removalReason: 'death',
+    }),
+    track([pose(0, 75, 1)], 'bot', { changes: [{ t: 0, kind: 'bot', class: 13 }], death: 5000, removalReason: 'death' }),
+  ]), data);
+  const light = selectDensity(result, ['light'], 'all');
+  assert.equal(light.seconds, 4); assert.equal(light.deathCount, 0);
+  const dragoons = selectDensity(result, ['dragoons'], 'player');
+  assert.equal(dragoons.seconds, 6); assert.equal(dragoons.deathCount, 1);
+  assert.equal(sum(dragoons.deaths), 1);
+  assert.equal(selectDensity(result, ['dragoons'], 'bot').deathCount, 0);
+  assert.equal(selectDensity(result, ['rifles'], 'bot').deathCount, 1);
+  const all = selectDensity(result, DENSITY_UNITS.map(([id]) => id), 'all');
+  assert.equal(all.seconds, 10); assert.equal(all.deathCount, 2);
+  assert.equal(selectDensity(result, [], 'all').seconds, 0);
+  assert.equal(selectDensity(result, [], 'all').deathCount, 0);
+  assert.equal(selectDensity(result, [], 'all').rounds, 1);
+  result.comparison = { source: result, target: createDensity(data, 10) };
+  // Avoid a circular fixture: comparison groups are independent grids in production.
+  result.comparison.source = { ...result, comparison: undefined };
+  const compared = selectDensity(result, ['dragoons'], 'player');
+  assert.equal(compared.comparison.source.deathCount, 1);
+  assert.equal(compared.comparison.target.deathCount, 0);
+  assert.equal(result.deathCount, 1, 'Filtering preserves the cached bot totals');
+});
+
+test('heatmap controls update unit toggles and death selection', async () => {
+  const { JSDOM } = await import('jsdom');
+  const dom = new JSDOM('<div id="controls"><details class="terrain-graphics"><summary>Settings</summary></details></div>');
+  let source = await readFile(new URL('../src/rotation-density-controls.js', import.meta.url), 'utf8');
+  source = source.replace("import recordings from 'virtual:replays';", 'const recordings = [];')
+    .replaceAll("'./rotation-density.js'", JSON.stringify(new URL('../src/rotation-density.js', import.meta.url).href))
+    .replaceAll("'./map-variants.js'", JSON.stringify(new URL('../src/map-variants.js', import.meta.url).href));
+  const { setupDensityControls, densityDefaults } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+  const settings = densityDefaults();
+  const container = dom.window.document.querySelector('#controls');
+  let updates = 0;
+  const controls = setupDensityControls(container, { density() { updates++; } }, data, settings, {});
+  container.querySelector('[data-units-action=none]').click();
+  assert.deepEqual(settings.units, []);
+  container.querySelector('[data-units-action=all]').click();
+  assert.equal(settings.units.length, 7);
+  const light = container.querySelector('[data-density-unit=light]');
+  light.checked = false; light.dispatchEvent(new dom.window.Event('input', { bubbles: true }));
+  assert.equal(settings.units.includes('light'), false);
+  const deaths = container.querySelector('[data-density=deathKind]');
+  deaths.value = 'all'; deaths.dispatchEvent(new dom.window.Event('input', { bubbles: true }));
+  assert.equal(settings.deathKind, 'all');
+  assert.equal(updates, 5);
+  controls.dispose(); assert.equal(container.querySelector('.terrain-density'), null);
+  dom.window.close();
+});

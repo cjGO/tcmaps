@@ -40,3 +40,7 @@
 .terrain-density .density-comparison select{max-width:100%;width:100%;min-width:0}
 .terrain-density [data-comparison-controls] label{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
 .density-difference-ramp{background:linear-gradient(90deg,#1f66ff,transparent 50%,#ff6e14)}
+.terrain-density .density-units{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;border:1px solid #b8c6bb;margin:10px 0;padding:8px;min-width:0}
+.terrain-density .density-units label{margin:0;display:flex;justify-content:space-between;gap:6px}
+.terrain-density .density-death-kind{display:grid;gap:4px}
+.terrain-density select[data-density=deathKind]{max-width:100%;width:100%;min-width:0}

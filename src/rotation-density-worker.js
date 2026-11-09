@@ -6,6 +6,7 @@ self.onmessage = async ({ data: { recordings, terrain } }) => {
     if (!response.ok) throw new Error('Replay could not load');
     return response.text();
   }, (progress, total) => self.postMessage({ progress, total }));
-  const grids = [output.result, ...Object.values(output.result.comparison || {})];
-  self.postMessage(output, grids.flatMap(grid => [grid.movement.buffer, grid.deaths.buffer]));
+  const groups = [output.result, ...Object.values(output.result.comparison || {})];
+  const grids = groups.flatMap(grid => [grid, ...Object.values(grid.units)]);
+  self.postMessage(output, grids.flatMap(grid => [grid.movement.buffer, grid.deaths.buffer, ...(grid.playerDeaths ? [grid.playerDeaths.buffer] : [])]));
 };
