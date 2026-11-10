@@ -156,7 +156,7 @@
     return p.id;
   }
   function setMode(value) {
-    if(!['place','select','navigate','line'].includes(value)) throw new Error('Unknown editor mode');
+    if(!['place','select','navigate','line','scatter'].includes(value)) throw new Error('Unknown editor mode');
     mode=value;
     $('place').setAttribute('aria-pressed',value==='place'); $('select').setAttribute('aria-pressed',value==='select');
     svg.classList.toggle('select-mode',value!=='place'); choose(null);
@@ -319,7 +319,7 @@
         yaw_deg,scale,
       }));
       C.validate({...documentData(),placements:[...points,...batch]},project);
-      remember(); points.push(...batch); choose(null); status(`Placed ${batch.length} assets along the line.`);
+      remember(); points.push(...batch); choose(null); status(`Placed ${batch.length} assets.`);
     },
     beginMove(id) {
       if(externalMove||drag) throw new Error('A move is already in progress');

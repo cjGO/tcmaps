@@ -12,6 +12,23 @@ spawn cameras, click-to-place, selection/dragging, yaw, uniform scale and a
 maps or tabs; each map's loadout and undo history remain available. The three
 micro generators reroll and have no permanent height maps to edit.
 
+**Scatter with noise** fills the whole map or a polygon region with an asset mix.
+Choose a pattern preset, adjust patch size, coverage, density, stretch, direction,
+warp and edge softness, then click **Generate preview** to inspect the heatmap
+and assets. Draw regions
+by clicking corners and choosing **Finish region**; drag numbered corners to
+reshape them. Asset ratios, saved mixes and per-asset scales work alongside the
+line tool. Separate randomization controls change the pattern, positions, asset
+mix, rotation or scales independently. Minimum spacing can include existing
+editor placements; it measures centres rather than model outlines. The pattern
+ignores elevation while assets remain grounded on the terrain.
+
+**Place assets** commits the preview as one undoable batch. Settings and region
+remain available, but click **Generate preview** to create another batch. Scatters
+use the existing 1,000-assets-per-batch and 10,000-assets-per-loadout limits, and
+report when spacing or those limits reduce the count. Only committed placements
+are saved; generator settings are temporary.
+
 Both website 3D views include directional sunlight, soft sky fill, shadows and
 gentle distance haze. **Lighting & haze** changes the preview surface, sun
 direction and atmospheric effects. **Explore on foot** enters a

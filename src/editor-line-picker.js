@@ -1,16 +1,16 @@
 // Asset discovery stays independent of the map brush and the line's chosen mix.
-export function createLineAssetPicker(host, assets, { selection, onAdd }) {
+export function createLineAssetPicker(host, assets, { selection, onAdd, prefix = 'line' }) {
   const doc = host.ownerDocument;
   host.innerHTML = `<h4>Find assets</h4>
     <label>Search assets<input id="line-asset-search" type="search" placeholder="Try pine, rock, fence…" autocomplete="off"></label>
     <label>Category<select id="line-asset-category"><option value="">All categories</option></select></label>
-    <div class="asset-views" role="group" aria-label="Line asset collection"><button type="button" id="line-browse-all" aria-pressed="true">All assets</button><button type="button" id="line-browse-favorites" aria-pressed="false">★ Favorites</button></div>
+    <div class="asset-views" role="group" aria-label="Asset collection"><button type="button" id="line-browse-all" aria-pressed="true">All assets</button><button type="button" id="line-browse-favorites" aria-pressed="false">★ Favorites</button></div>
     <figure class="line-picker-preview"><div id="line-picker-image"></div><figcaption id="line-picker-caption">Hover or focus an asset to preview it.</figcaption></figure>
     <p class="hint">Hover to preview · Click Add to mix · Keep browsing</p>
     <p id="line-picker-count" role="status"></p>
-    <div id="line-picker-list" tabindex="0" role="region" aria-label="Available line assets"></div>
-    <p id="line-picker-status" class="hint" role="status"></p>`;
-  const $ = id => host.querySelector(`#${id}`);
+    <div id="line-picker-list" tabindex="0" role="region" aria-label="Available assets"></div>
+    <p id="line-picker-status" class="hint" role="status"></p>`.replaceAll('id="line-', `id="${prefix}-`);
+  const $ = id => host.querySelector(`#${id.replace(/^line-/, `${prefix}-`)}`);
   const byName = new Map(assets.map(a => [a.name, a]));
   let favorites = new Set(), favoritesOnly = false, signature = '', selectionSignature = '', previewName = '';
   for (const group of new Set(assets.map(a => a.group))) {

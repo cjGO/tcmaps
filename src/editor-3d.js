@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { createScatterController } from './editor-scatter-controller.js';
 import { createTopologyViewer } from './topology-viewer.js';
 import { checkedBuffer, createModelLibrary } from './editor-model-loader.js';
 import { groundHeight, placementTransform } from './editor-spatial.js';
@@ -119,11 +120,14 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   // Make the map asset palette visible immediately; other settings remain one click away.
   doc.querySelectorAll('aside > details').forEach(el => { el.open = false; });
   let viewer, library, data, manifest, unsubscribe, densityControls, disposed = false, ready = false, is3D = true, starting = false, modelError = false;
-  let state = api.getState(), gesture = null, hover = null, ghost = null, ghostAsset = '', ghostToken = 0, animation = 0;
+  let state = api.getState(), gesture = null, hover = null, ghost = null, ghostAsset = '', ghostToken = 0, animation = 0, modelDraw = 0;
   // Event listeners belong to the iframe, so use its AbortSignal implementation.
   const records = new Map(), controller = new win.AbortController(), pointers = new Set();
   const objects = new THREE.Group(), extras = new THREE.Group();
   const linePreview = new THREE.Group(), lineAssets = new THREE.Group(), pathHover = new THREE.Group(); extras.add(linePreview, lineAssets, pathHover);
+  const scatter = createScatterController({doc, project, api, extras, transform,
+    context: () => ({ready, is3D, viewer, data, library, state}),
+  });
   const lineMaterial = new THREE.LineBasicMaterial({ color: '#f5a623', depthTest: false });
   const markerMaterials = ['#258a59', '#287ed1', '#f5a623'].map(color => new THREE.MeshBasicMaterial({color, depthTest:false, side:THREE.DoubleSide}));
   function clearPathHover() {
@@ -300,15 +304,21 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
           const latest = state.document.placements.find(p => p.id === point.id);
           if (!latest) return;
           pending.object = object; object.userData.placementId = point.id;
-          transform(object, latest); objects.add(object); selectionBox(); viewer.draw();
+          transform(object, latest); objects.add(object);
+          // A scatter can resolve hundreds of cached models in one microtask queue.
+          // Render the completed batch once instead of redrawing after every object.
+          if (!modelDraw) modelDraw = win.requestAnimationFrame(() => {
+            modelDraw = 0;
+            if (!disposed && ready) { selectionBox(); viewer.draw(); }
+          });
         }).catch(error => { if (!disposed && records.get(point.id) === pending) { pending.failed = true; report(error); } });
       }
       if (record.object) transform(record.object, point);
     }
     viewer.navigation(state.mode === 'navigate'); navigate.setAttribute('aria-pressed', state.mode === 'navigate');
-    if (viewer.mode === 'orbit') viewer.canvas.style.cursor = ['place', 'line'].includes(state.mode) ? 'crosshair' : state.mode === 'select' ? 'pointer' : 'grab';
+    if (viewer.mode === 'orbit') viewer.canvas.style.cursor = ['place', 'line', 'scatter'].includes(state.mode) ? 'crosshair' : state.mode === 'select' ? 'pointer' : 'grab';
     viewer.updateSpawns(state.document.spawn_points.map(p => ({ ...p, z_m: groundHeight(data, p.x_m, p.y_m) })));
-    selectionBox(); loadGhost(); updateGhost(); refreshLine();
+    selectionBox(); loadGhost(); updateGhost(); refreshLine(); scatter.sync();
     const dimensions = library.dimensions(state.brush.asset, state.brush.scale);
     if (!modelError) {
       info.classList.remove('error');
@@ -321,6 +331,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   function cancelGesture(cancel = true) {
     if (gesture?.id) api.finishMove(cancel);
     if (cancel && gesture?.pathNode !== undefined) { pathNodes[gesture.pathNode] = gesture.original; refreshLine(); }
+    if (cancel && gesture?.scatterNode !== undefined) scatter.moveNode(gesture.scatterNode, gesture.original);
     gesture = null; viewer?.enabled(true);
   }
   function ground(event) { return viewer.pick(event.clientX, event.clientY)[0]?.point || null; }
@@ -336,7 +347,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
     if (pointers.size > 1) { cancelGesture(); return; }
     if (event.button !== 0 || (state.mode === 'navigate' && !event.altKey) || !ready) return;
     viewer.canvas.focus({ preventScroll: true });
-    const hit = ground(event), id = state.mode === 'line' ? null : objectAt(event);
+    const hit = ground(event), id = ['line', 'scatter'].includes(state.mode) ? null : objectAt(event);
     if (event.altKey && !id) return;
     gesture = { pointer: event.pointerId, x: event.clientX, y: event.clientY, mode: state.mode, id, moved: false };
     if (state.mode === 'line') {
@@ -344,6 +355,14 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
       if (marker) {
         gesture.pathNode=marker.userData.pathNode; gesture.original={...pathNodes[gesture.pathNode]};
         gesture.pathOffset=hit ? {x:gesture.original.x-hit.x,y:gesture.original.y-hit.y} : {x:0,y:0};
+        viewer.enabled(false);
+      }
+    }
+    if (state.mode === 'scatter') {
+      const marker = viewer.pick(event.clientX, event.clientY, scatter.markers)[0]?.object;
+      if (marker) {
+        gesture.scatterNode = marker.userData.scatterNode; gesture.original = scatter.getNode(gesture.scatterNode);
+        gesture.pathOffset = hit ? {x:gesture.original.x-hit.x,y:gesture.original.y-hit.y} : {x:0,y:0};
         viewer.enabled(false);
       }
     }
@@ -367,6 +386,9 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
           pathNodes=candidate; refreshLine();
         }
       }
+      if (gesture.scatterNode !== undefined && gesture.moved && hover) {
+        scatter.moveNode(gesture.scatterNode, {x:hover.x+gesture.pathOffset.x,y:hover.y+gesture.pathOffset.y});
+      }
       if (gesture.id && gesture.moved && (hover || gesture.vertical)) {
         try {
           if (gesture.vertical) {
@@ -384,8 +406,9 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
     const action = gesture;
     if (action.id) api.finishMove(event.type === 'pointercancel');
     if (action.pathNode !== undefined && event.type === 'pointercancel') { pathNodes[action.pathNode]=action.original; refreshLine(); }
+    if (action.scatterNode !== undefined && event.type === 'pointercancel') scatter.moveNode(action.scatterNode, action.original);
     gesture = null; viewer.enabled(true);
-    if (event.type !== 'pointercancel' && !action.id && action.pathNode === undefined && !action.moved) {
+    if (event.type !== 'pointercancel' && !action.id && action.pathNode === undefined && action.scatterNode === undefined && !action.moved) {
       const hit = ground(event);
       if (action.mode === 'line') {
         if (!hit || !pathDrawing) return;
@@ -394,6 +417,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
         pathNodes.push({x:hit.x,y:hit.y});
         refreshLine(); viewer.draw();
       }
+      else if (action.mode === 'scatter') scatter.click(hit);
       else if (action.mode === 'select') api.select(null);
       else if (hit) {
         if (!ghost || ghostAsset !== state.brush.asset) { api.status('Wait for the selected asset model to load, or retry models.', true); return; }
@@ -413,9 +437,9 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
     for (const element of [container, cameraRow, info, help, navigate, lineButton]) element.hidden = !three;
     retry.hidden = !three || !modelError;
     $('editor-view-3d').setAttribute('aria-pressed', three); $('editor-view-2d').setAttribute('aria-pressed', !three);
-    if (!three && ['navigate', 'line'].includes(api.getState().mode)) api.setMode('select');
+    if (!three && ['navigate', 'line', 'scatter'].includes(api.getState().mode)) api.setMode('select');
     if (three) { viewer?.resize(); if (!ready) start(); }
-    updateGhost(); refreshLine();
+    updateGhost(); refreshLine(); scatter.sync();
   }
   async function start() {
     if (starting || disposed) return; starting = true;
@@ -435,7 +459,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
       for (const asset of project.assets) if (manifest.assets[asset.name]?.mesh !== asset.mesh || manifest.assets[asset.name]?.ground_offset_m !== asset.ground_offset_m) throw new Error('3D asset definitions have changed.');
       library = createModelLibrary(manifest, assetURL(models.manifest_url));
       viewer = createTopologyViewer(container, data, message => {
-        ready = false; cancelGesture(); unsubscribe?.(); unsubscribe = null; densityControls?.dispose(); densityControls = null; viewer?.dispose(); library?.dispose();
+        ready = false; cancelGesture(); scatter.sync(); scatter.retry(); unsubscribe?.(); unsubscribe = null; densityControls?.dispose(); densityControls = null; viewer?.dispose(); library?.dispose();
         $('editor-three-loading').textContent = message; $('editor-three-message').hidden = false; $('editor-three-retry').hidden = false;
       }, { editing: true, onModeChange(mode) {
         cancelGesture(); hover = null; extras.visible = mode === 'orbit';
@@ -468,8 +492,8 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   }
   function blur() { pointers.clear(); cancelGesture(); }
   function dispose() {
-    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.(); densityControls?.dispose(); presets.dispose();
-    win.cancelAnimationFrame(animation); doc.removeEventListener('keydown', keys, true); win.removeEventListener('blur', blur);
+    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.(); densityControls?.dispose(); presets.dispose(); scatter.dispose();
+    win.cancelAnimationFrame(animation); win.cancelAnimationFrame(modelDraw); doc.removeEventListener('keydown', keys, true); win.removeEventListener('blur', blur);
     clearLinePreview(); lineMaterial.dispose(); markerMaterials.forEach(material => material.dispose()); discardGhost(); selection.dispose(); cursor.geometry.dispose(); cursor.material.dispose(); library?.dispose(); viewer?.dispose();
     doc.body.classList.remove('editing-3d'); $('viewport').hidden = false;
     for (const element of [style, row, cameraRow, container, info, retry, help, navigate, lineButton, linePanel]) element.remove();
@@ -508,9 +532,10 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   $('editor-focus').addEventListener('click', () => { viewer?.exitExplorer(); selectionBox(); if (selection.visible) viewer.focus(selection.box); });
   $('editor-contours').addEventListener('click', () => { const value = $('editor-contours').getAttribute('aria-pressed') !== 'true'; $('editor-contours').setAttribute('aria-pressed', value); viewer?.contours(value); });
   $('editor-three-retry').addEventListener('click', () => {
-    lineModels.clear(); records.clear(); objects.clear(); discardGhost(); ghostAsset = ''; ++ghostToken; start();
+    scatter.retry(); lineModels.clear(); records.clear(); objects.clear(); discardGhost(); ghostAsset = ''; ++ghostToken; start();
   });
   retry.addEventListener('click', () => {
+    scatter.retry();
     for (const [asset, record] of lineModels) if (record.error) lineModels.delete(asset);
     modelError = false; retry.hidden = true; ghostAsset = ''; ++ghostToken;
     for (const [id, record] of records) if (record.failed) records.delete(id);

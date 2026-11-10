@@ -14,7 +14,7 @@ function cleanEntries(entries) {
   });
 }
 
-export function createLinePresets(host, assets, { getMix, applyMix }) {
+export function createLinePresets(host, assets, { getMix, applyMix, prefix = 'line' }) {
   const doc = host.ownerDocument, win = doc.defaultView, byName = new Map(assets.map(a => [a.name, a]));
   host.innerHTML = `<h4>Preset mixes</h4>
     <label>Saved mixes<select id="line-preset-select"><option value="">Choose a preset…</option></select></label>
@@ -23,8 +23,8 @@ export function createLinePresets(host, assets, { getMix, applyMix }) {
     <label>Preset name<input id="line-preset-name" type="text" placeholder="e.g. Pine forest edge" autocomplete="off"></label>
     <div class="line-preset-actions"><button type="button" id="line-preset-save">Save as new</button><button type="button" id="line-preset-rename" disabled>Rename</button><button type="button" id="line-preset-delete" disabled>Delete</button></div>
     <p class="hint">Save as many mixes as you like in this browser. Includes assets, ratios and asset scale settings. Loading replaces the current mix.</p>
-    <p id="line-preset-status" role="status" class="hint"></p>`;
-  const $ = id => host.querySelector(`#${id}`);
+    <p id="line-preset-status" role="status" class="hint"></p>`.replaceAll('id="line-', `id="${prefix}-`);
+  const $ = id => host.querySelector(`#${id.replace(/^line-/, `${prefix}-`)}`);
   let presets = [];
   function status(message) { $('line-preset-status').textContent = message; }
   function read() {
@@ -56,7 +56,7 @@ export function createLinePresets(host, assets, { getMix, applyMix }) {
   function commit(next, id, message) {
     let persisted = true;
     try { win.localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch { persisted = false; }
-    presets = next; render(id);
+    presets = next; render(id); if (persisted) win.dispatchEvent(new win.Event('editor-mixes-changed'));
     status(message + (persisted ? '' : ' Browser storage is unavailable or full; this change is available for this session only.'));
   }
   function name() {
@@ -102,6 +102,7 @@ export function createLinePresets(host, assets, { getMix, applyMix }) {
   function sync(event) {
     if (event.key === STORAGE_KEY || event.key === null) { read(); render(); }
   }
-  read(); render(); win.addEventListener('storage', sync);
-  return {dispose() { win.removeEventListener('storage', sync); }};
+  const refresh = () => { read(); render(); };
+  read(); render(); win.addEventListener('storage', sync); win.addEventListener('editor-mixes-changed', refresh);
+  return {dispose() { win.removeEventListener('storage', sync); win.removeEventListener('editor-mixes-changed', refresh); }};
 }
