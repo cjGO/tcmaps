@@ -16,7 +16,12 @@ micro generators reroll and have no permanent height maps to edit.
 Choose a pattern preset, adjust patch size, coverage, density, stretch, direction,
 warp and edge softness, then click **Generate preview** to inspect the heatmap
 and assets. Patches contain continuous density gradients and smaller concentrations,
-even at 100% coverage. **Peak density** sets the density at maximum field intensity;
+even at 100% coverage. **Density contrast** adjusts variation within the current
+randomized pattern: 0% gives even patch interiors, 50% retains the standard gradient,
+and 80–100% emphasizes dense cores by thinning the sparser portions. It changes
+the preview without rerolling the noise. Higher contrast can reduce the total count;
+returning to the previous value restores the same preview with unchanged settings.
+**Peak density** sets the density at maximum field intensity;
 sparser portions receive fewer assets. Increase it for tighter cores, and lower
 minimum spacing if it prevents the desired clustering. **Randomize noise & preview**
 beside Generate preview immediately tries a new pattern, keeping the region,

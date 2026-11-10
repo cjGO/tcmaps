@@ -80,6 +80,24 @@ test('scale changes and view toggles retain positions; invalid input disables pl
     s.switchView(false);assert.equal(s.controller.panel.hidden,true);assert.equal(s.extras.children[0].visible,false);
   } finally {s.close();}
 });
+test('density contrast previews the same seed, restores previous results and leaves the document untouched',async()=>{
+  const s=setup();try {
+    s.change('patchSize',20);s.change('density',20);s.change('contrast',0);await pause();
+    const original=s.previews(),document=JSON.stringify(s.api.exportDocument());
+    const pixels=()=>Array.from(s.extras.children[0].children[0].children[0].material.map.image.data);
+    const even=pixels();assert.ok(original.length>0);
+    s.change('contrast',80);await pause();
+    assert.ok(s.previews().length>0&&s.previews().length<original.length);
+    assert.notDeepEqual(pixels(),even);
+    assert.equal(s.$('density').value,'20');assert.equal(s.$('coverage').value,'100');
+    s.change('contrast',0);await pause();
+    assert.deepEqual(s.previews(),original);assert.deepEqual(pixels(),even);
+    assert.equal(JSON.stringify(s.api.exportDocument()),document);
+    s.change('contrast',101);await pause();assert.equal(s.$('place').disabled,true);
+    assert.match(s.$('status').textContent,/contrast/);
+    s.change('preset','Broken woodland');assert.equal(s.$('contrast').value,'50');
+  } finally {s.close();}
+});
 test('region drawing, invalid crossings, corner dragging and cancellation remain preview-only',async()=>{
   const s=setup();try {
     s.change('area','region');

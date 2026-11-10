@@ -66,7 +66,8 @@ test('patch interiors retain density gradients and concentrate placements in the
 test('empty, invalid, tiny and capped scatters terminate with explicit counts',()=>{
   assert.equal(generateScatter({...base,settings:{coverage:0}}).points.length,0);
   assert.equal(generateScatter({...base,settings:{density:0}}).points.length,0);
-  for(const settings of [{patchSize:0},{density:NaN},{spacing:-1},{stretch:0},{softness:101},{feather:Infinity}]) assert.throws(()=>generateScatter({...base,settings}));
+  for(const settings of [{patchSize:0},{density:NaN},{spacing:-1},{stretch:0},{softness:101},{feather:Infinity},
+    {contrast:-1},{contrast:101},{contrast:NaN}]) assert.throws(()=>generateScatter({...base,settings}));
   const capped=generateScatter({...base,settings:{coverage:100,density:100,spacing:0}});
   assert.equal(capped.points.length,1000);assert.equal(capped.capped,true);
   const existing=Array.from({length:9998},()=>({x_m:0,y_m:0}));
@@ -74,6 +75,33 @@ test('empty, invalid, tiny and capped scatters terminate with explicit counts',(
   assert.equal(generateScatter({...base,existing:[...existing,...existing.slice(0,2)]}).points.length,0);
   const tiny=generateScatter({...base,bounds:{x_min_m:.0001,x_max_m:.004,y_min_m:.0001,y_max_m:.004}});
   assert.equal(tiny.points.length,0);
+});
+test('contrast strengthens the same density pattern and its placement concentrations without rerolling',()=>{
+  const args={...base,bounds:{x_min_m:0,x_max_m:600,y_min_m:0,y_max_m:600},
+    settings:{coverage:100,softness:0,density:20,spacing:2}};
+  const standard=generateScatter(args);
+  const strong=generateScatter({...args,settings:{...args.settings,contrast:80}});
+  const uniform=createScatterField(args.bounds,null,{...args.settings,contrast:0},args.fieldSeed);
+  const samples=[];
+  for(let x=3;x<600;x+=6) for(let y=3;y<600;y+=6) {
+    assert.equal(uniform.field(x,y),1);
+    const value=standard.field(x,y),enhanced=strong.field(x,y);
+    assert.ok(enhanced>=0&&enhanced<=value);
+    samples.push({value,enhanced});
+  }
+  samples.sort((a,b)=>a.value-b.value);
+  // The same locations remain relatively dense or sparse; contrast increases
+  // their density ratio rather than choosing new noise or moving the hotspots.
+  for(let i=1;i<samples.length;i++) assert.ok(samples[i].enhanced>=samples[i-1].enhanced);
+  const low=samples[2500],high=samples[7500];
+  assert.ok(high.enhanced/low.enhanced>3*high.value/low.value);
+  const coreShare=points=>points.filter(p=>standard.field(p.x_m,p.y_m)>=high.value).length/points.length;
+  assert.ok(strong.points.length>0&&strong.points.length<standard.points.length);
+  assert.ok(coreShare(strong.points)>coreShare(standard.points)+.2);
+  assert.deepEqual(generateScatter({...args,settings:{...args.settings,contrast:50}}).points,standard.points);
+  const feathered=createScatterField(bounds,null,{contrast:0,coverage:100,feather:20});
+  assert.equal(feathered.field(0,100),0);assert.equal(feathered.field(10,100),.5);
+  assert.equal(createScatterField(bounds,null,{contrast:0,coverage:0}).field(100,100),0);
 });
 test('mix ratios, scales and independent random streams preserve scatter positions',()=>{
   const points=generateScatter(base).points.slice(0,12),entries=[{asset:'pine',ratio:2,scale:{enabled:true,low:2,high:3}},{asset:'rock',ratio:1}];

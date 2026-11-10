@@ -20,6 +20,8 @@ export function createScatterController({doc, project, api, extras, context, tra
     <label>Pattern preset<select id="scatter-preset">${Object.keys(scatterPresets).map(name=>`<option>${name}</option>`).join('')}</select></label>
     <div class="pair">${number('patchSize','Patch size (m)',80,1,100000)}${number('coverage','Coverage (%)',45,0,100)}</div>
     ${number('density','Peak density (assets / 1,000 m²)',4,0,1000,.1)}
+    ${number('contrast','Density contrast (%)',50,0,100)}
+    <p>0%: even patch interiors. 50%: standard variation. 80–100%: stronger sparse-to-dense differences. Keeps the current noise pattern; higher contrast thins sparse areas and can reduce the total count.</p>
     <div class="pair">${number('stretch','Stretch',1.5,1,20,.1)}${number('direction','Direction (degrees)',0,-360,360)}</div>
     <div class="pair">${number('warp','Warp (%)',50,0,100)}${number('softness','Edge softness (%)',50,0,100)}</div>
     <p>Patches have dense cores and sparse interiors. Peak density controls the densest areas; increase it for tighter clusters. Coverage changes occupied area and is approximate.</p>

@@ -1,10 +1,10 @@
 import { lineAssetMix, lineScales } from './editor-line.js';
 
 export const scatterPresets = {
-  'Broken woodland': {patchSize:80, coverage:45, density:4, stretch:1.5, direction:0, warp:50, softness:50},
-  'Long thickets': {patchSize:60, coverage:35, density:6, stretch:4, direction:30, warp:35, softness:40},
-  'Winding bands': {patchSize:70, coverage:40, density:4, stretch:6, direction:0, warp:85, softness:45},
-  'Sparse scrub': {patchSize:35, coverage:60, density:1, stretch:1.3, direction:0, warp:50, softness:75},
+  'Broken woodland': {patchSize:80, coverage:45, density:4, contrast:50, stretch:1.5, direction:0, warp:50, softness:50},
+  'Long thickets': {patchSize:60, coverage:35, density:6, contrast:50, stretch:4, direction:30, warp:35, softness:40},
+  'Winding bands': {patchSize:70, coverage:40, density:4, contrast:50, stretch:6, direction:0, warp:85, softness:45},
+  'Sparse scrub': {patchSize:35, coverage:60, density:1, contrast:50, stretch:1.3, direction:0, warp:50, softness:75},
 };
 export const scatterDefaults = {...scatterPresets['Broken woodland'], spacing:2, feather:0, avoidExisting:true};
 const clamp = n => Math.max(0, Math.min(1, n));
@@ -83,11 +83,14 @@ function edgeDistance(x,y,polygon) {
 }
 export function createScatterField(bounds, polygon, settings = {}, seed = 1) {
   const s={...scatterDefaults,...settings}, region=scatterRegion(bounds,polygon);
-  for (const [key,min,max] of [['patchSize',1,100000],['coverage',0,100],['density',0,1000],['stretch',1,20],['direction',-360,360],['warp',0,100],['softness',0,100],['spacing',0,10000],['feather',0,10000]]) {
+  for (const [key,min,max] of [['patchSize',1,100000],['coverage',0,100],['density',0,1000],['contrast',0,100],['stretch',1,20],['direction',-360,360],['warp',0,100],['softness',0,100],['spacing',0,10000],['feather',0,10000]]) {
     if (!Number.isFinite(s[key]) || s[key]<min || s[key]>max) throw new Error(`${key} must be between ${min} and ${max}.`);
   }
   const angle=s.direction*Math.PI/180,cs=Math.cos(angle),sn=Math.sin(angle);
   const threshold=1-s.coverage/100, soft=s.softness/100*.35;
+  // 0: uniform interiors, 50: original gradient, 100: pronounced cores.
+  // Remap the same field, without changing its seed, coordinates or boundary.
+  const exponent=(2**(s.contrast/25)-1)/3;
   const field=(x,y)=>{
     if (!insideScatterRegion(x,y,region) || s.coverage===0) return 0;
     const rx=(x*cs+y*sn)/s.patchSize/s.stretch, ry=(-x*sn+y*cs)/s.patchSize;
@@ -102,7 +105,8 @@ export function createScatterField(bounds, polygon, settings = {}, seed = 1) {
     // broad field still makes their cores denser than their outskirts.
     const detail=layered(u*2.3+37,v*2.3-19,seed^65537);
     const concentration=smooth((value-.2)/.6);
-    const intensity=envelope*concentration*concentration*(.2+.8*smooth((detail-.25)/.5));
+    const gradient=concentration*concentration*(.2+.8*smooth((detail-.25)/.5));
+    const intensity=envelope*(s.contrast===0 ? 1 : gradient**exponent);
     return intensity*(s.feather ? smooth(edgeDistance(x,y,region)/s.feather) : 1);
   };
   return {field,region,settings:s};
