@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "map_count": 94,
+  "map_count": 97,
   "selection_mode": "all-fixed",
   "created_utc": "2026-10-22T20:53:20.507685+00:00",
   "maps": [
@@ -2353,6 +2353,81 @@
       "variant_id": "source",
       "variant_revision": "",
       "map_name": "test_map_082_RAW"
+    },
+    {
+      "id": "scn_mp_custom_map_5",
+      "map_id": "test_map_111",
+      "variant_id": "test_map_111_AnnaFreud.placements.json",
+      "pool": "small",
+      "source": {
+        "sco_sha256": "819fdab722f26b779afd80ffa6e977ca553232778302f0d8b1c54d9f2d2fa093",
+        "recipe_sha256": "ee8d13710b83ecfa6be3cbaee433b844420a36f69e3055b8ad8bbfa5ade81a3e",
+        "terrain_code": "0x00000003d283050a000b42d034f168551e2a04ba4d0389c9"
+      },
+      "height_data_sha256": "3878d906d8f5f4ca16fa5d69651f66d6c5c9da194e3eab1539c2d4d41bce35ac",
+      "sha256": "e2f216d13c9251966185fa1703a1d14e031fd00695aa8fa7f41edd3065221bac",
+      "url": "/topology/test_map_111_VarA/e2f216d13c9251966185/test_map_111_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 696.0,
+        "y_max_m": 696.0
+      },
+      "relief_m": 22.293,
+      "map_name": "test_map_111_VarA",
+      "variant_revision": "2cd4d035f7c1b7f8acdfcff38673e4499a8c80b50aaa3470355d8b0cb7355fea"
+    },
+    {
+      "id": "scn_mp_custom_map_12",
+      "map_id": "test_map_198",
+      "variant_id": "test_map_198_AnnaFreud.placements.json",
+      "pool": "medium",
+      "source": {
+        "sco_sha256": "07d38c472d8821b3218b7365c00f4a59ecebccb0abcad3a0d54e65b5a7970c56",
+        "recipe_sha256": "a0b0ca7fa55e201c27d250022a0a7eb70065fb1f9e6e58f55d5a9ed6837def2c",
+        "terrain_code": "0x00000003c282850a000dc370563fb7f5056d5a192b55890d"
+      },
+      "height_data_sha256": "ce8e099765cbe914f00477cfca49778241b8ec38518cdafbf7dd8f6ed0863bfc",
+      "sha256": "1e7254e564384cf246ea6655db183a3176660f5aa0e3c4db2c109588e81a310d",
+      "url": "/topology/test_map_198_VarA/1e7254e564384cf246ea/test_map_198_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 856.0,
+        "y_max_m": 856.0
+      },
+      "relief_m": 21.103,
+      "map_name": "test_map_198_VarA",
+      "variant_revision": "6815bce770b295612a5071060d1ad06e9e7a2fe31beed6d1702e35d32c4b07e2"
+    },
+    {
+      "id": "scn_mp_custom_map_55",
+      "map_id": "test_map_133",
+      "variant_id": "source",
+      "pool": "small",
+      "source": {
+        "sco_sha256": "818b3153c0f8cbfc6d3c023b61593b8ce6f216dfd13df0be871542be4c07e506",
+        "recipe_sha256": "fc69e883a52556f78f0178ebf8a89ffd8cf80da0137d799e8912b0fda7616b7b",
+        "terrain_code": "0x00000003d281498a000b42d04713bfa113a11b595f4c0b19"
+      },
+      "height_data_sha256": "6e21ccc6c39e88312bd6ef3d6070f6983772b72c95cb0379756ab4ce22b6dc60",
+      "sha256": "e3292a13fa7825a17042a18d53d67345306be4f9f549c6ffddb09bb4512134fe",
+      "url": "/topology/test_map_133_RAW/e3292a13fa7825a17042/test_map_133_RAW.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 696.0,
+        "y_max_m": 696.0
+      },
+      "relief_m": 33.507,
+      "map_name": "test_map_133_RAW",
+      "variant_revision": ""
     }
   ]
 }

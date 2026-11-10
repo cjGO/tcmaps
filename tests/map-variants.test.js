@@ -121,7 +121,9 @@ test('rotation variants use installed revision evidence or exact archived terrai
   const replay = await replayVariantRegistry({ maps: archived }, {
     [updated]: read(updated), ...JSON.parse(read('lib/replay-variant-archive.json')),
   });
-  const saved = recordingVariant({ map_id: map111.map_id, variant_id: map111.variant_id, variant_revision: map111.variant_revision }, replay.variants);
+  const historical = archived.find(row => row.map_id === map111.map_id && replay.variants.some(v => v.revision === row.variant_revision && v.document.placements.length === 136));
+  assert.ok(historical, 'The original installed revision remains archived');
+  const saved = recordingVariant(historical, replay.variants);
   assert.equal(saved.document.placements.length, 136, 'Replacing a file must preserve the original replay identity and revision');
 });
 
