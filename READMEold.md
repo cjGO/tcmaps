@@ -335,10 +335,14 @@ Approval never renames a public ID. Editor downloads use the permanent ID while
 their source checksums still bind them to the exact measured source.
 
 The website rotation is synchronized with the installed
-`population_rotation_20261105-032038-314198` batch: 99 map families, comprising
+`population_rotation_20261110-103524-838300_placements_108` batch: 99 map families, comprising
 39 tiny, 29 small, and 31 medium maps. `MAPNAMES.md` supplies the current permanent
 IDs and pools. Previews, editor projects, spawns, and topology use measured terrain
 from the installed scene revisions, including the seven installed variants.
+The November 10 refresh remeasured all 96 changed scenes and retained the three
+checksum-identical scenes. All eight direct library variant files match MOD;
+seven are installed, while test_map_141 remains an available pool variant.
+Previous terrain and placement revisions remain archived for replay playback.
 
 `lib/round-stats-legacy-identities.json` freezes the previous website mapping for
 historical slot-named rounds. These records retain their existing attribution when

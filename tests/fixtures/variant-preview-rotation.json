@@ -1,0 +1,79 @@
+{
+  "maps": [
+    {
+      "id": "scn_mp_custom_map_1",
+      "map_id": "test_map_107",
+      "variant_id": "source",
+      "pool": "small",
+      "source": {
+        "sco_sha256": "da67458ef75142ffb4e876cc782820e253e952a94883f91dba7f434ca9e4f80a",
+        "recipe_sha256": "8232ef3975783ce06b4cfb7343f12bb8095adfb7d30e9c098fee80fc0d77bf24",
+        "terrain_code": "0x000000033285060a000b42d077bd13001d1f97467d950ec9"
+      },
+      "height_data_sha256": "9d8e370aabaded898ca1a6227c8364984f14564e36aca45a365cc9d7590a58d7",
+      "sha256": "bdf8f272c0dc0b538e5f8955b9db598928a78ff5d907f941ff1a25b2d58179df",
+      "url": "/topology/test_map_107_RAW/bdf8f272c0dc0b538e5f/test_map_107_RAW.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 696.0,
+        "y_max_m": 696.0
+      },
+      "relief_m": 30.559,
+      "map_name": "test_map_107_RAW",
+      "variant_revision": ""
+    },
+    {
+      "id": "scn_mp_custom_map_5",
+      "map_id": "test_map_111",
+      "variant_id": "test_map_111_AnnaFreud_VarA.placements.json",
+      "pool": "small",
+      "source": {
+        "sco_sha256": "3409e7171832138746d32b831ca855d898aa142c10d89c9f0731f103444eb4a4",
+        "recipe_sha256": "ee8d13710b83ecfa6be3cbaee433b844420a36f69e3055b8ad8bbfa5ade81a3e",
+        "terrain_code": "0x00000003d283050a000b42d034f168551e2a04ba4d0389c9"
+      },
+      "height_data_sha256": "9971f3c16f6e7f99377bf3d7014c68f67cce46a4495139d483ee438f05ff5a40",
+      "sha256": "81f9f22c73d5178be53ff85132999e4200d226a1d3bc256ba091ab7d94eecce8",
+      "url": "/topology/test_map_111_VarA/81f9f22c73d5178be53f/test_map_111_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 696.0,
+        "y_max_m": 696.0
+      },
+      "relief_m": 22.293,
+      "map_name": "test_map_111_VarA",
+      "variant_revision": "5f61555418ff627444dc8d13b63bc34dea91db021368b1e22caf34eb1b6c52cb"
+    },
+    {
+      "id": "scn_mp_custom_map_19",
+      "map_id": "test_map_199",
+      "variant_id": "test_map_199_AnnaFreud.placements.json",
+      "pool": "medium",
+      "source": {
+        "sco_sha256": "9e9a0afb00a3b9995c891762ce7c1c57dc3ab517380e62a71de6a865e5a34183",
+        "recipe_sha256": "6e96660d8e9b40b8cb292110ba44cea987f5fbf0014c2a91e153886a0f6e4cd6",
+        "terrain_code": "0x00000003b282088a000dc3707e35eade294ede2b2e93f092"
+      },
+      "height_data_sha256": "3e8b2e49b0fdcd30e31fafb38dee7b79494e372b496b53f453bac7f1c301431b",
+      "sha256": "d843e88dcc5044d2a44b32f4b8907f45f143c3bdfc586ad3991d665b82faf81c",
+      "url": "/topology/test_map_199_VarA/d843e88dcc5044d2a44b/test_map_199_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 856.0,
+        "y_max_m": 856.0
+      },
+      "relief_m": 48.399,
+      "map_name": "test_map_199_VarA",
+      "variant_revision": "24971f3f284d4b71e776194d2032ee5788a930fac82042639d7c84a3102cc31c"
+    }
+  ]
+}

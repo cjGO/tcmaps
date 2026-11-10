@@ -90,7 +90,7 @@ test('variant identity unifies exported filenames, recorded names, and source al
 
 test('rotation variants use installed revision evidence or exact archived terrain, never family alone', async () => {
   const { resolveVariantPreview, installedVariantPreview, assertPlacementSource } = await import('../src/rotation-variants.js');
-  const current = JSON.parse(read('lib/rotation-topology.json')).maps;
+  const current = JSON.parse(fs.readFileSync(new URL('./fixtures/variant-preview-rotation.json', import.meta.url), 'utf8')).maps;
   const archived = JSON.parse(read('lib/replay-topology.json')).maps;
   const path = 'maps/medium/test_map_199/variants/test_map_199_AnnaFreud.placements.json';
   const [variant] = includedVariants({ [path]: read(path) }, 'test_map_199');

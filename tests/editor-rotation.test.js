@@ -10,7 +10,7 @@ const root = new URL('../', import.meta.url);
 const json = async path => JSON.parse(await readFile(new URL(path, root), 'utf8'));
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 
-test('latest map 111 loadout edits through checksum-verified archived input provenance', async () => {
+test('current map 111 loadout edits through its installed checksum', async () => {
   const map = (await json('lib/editor-maps.json')).find(row => row.map_id === 'test_map_111');
   const project = await json('public/' + map.project);
   const registration = (await json('lib/rotation-topology.json')).maps.find(row => row.id === map.id);
@@ -22,21 +22,21 @@ test('latest map 111 loadout edits through checksum-verified archived input prov
   const variants = includedVariants(files, map.map_id);
   assert.equal(variants.length, 1, 'Only the latest loadout is selectable');
   const [variant] = variants;
-  assert.equal(variant.id, 'annafreud');
+  assert.equal(variant.id, 'vara');
   const archive = includedVariants(await json('lib/replay-variant-archive.json'), map.map_id);
   const document = await editorVariantDocument(variant, registration, project, archive);
-  assert.equal(document.placements.length, 218);
+  assert.equal(document.placements.length, 285);
   assert.deepEqual(coordinates.validate(document, project), variant.document.placements);
   assert.deepEqual(coordinates.validateSettings(document), variant.document.settings);
   assert.deepEqual(coordinates.validateSpawns(document, project), variant.document.spawn_points);
   assert.deepEqual(document.default_spawn_points, project.default_spawn_points);
   assert.notDeepEqual(variant.document.source, project.source, 'Original provenance is preserved');
-  await assert.rejects(editorVariantDocument(variant, registration, project), /different map/);
+  assert.deepEqual(await editorVariantDocument(variant, registration, project), document);
   await assert.rejects(editorVariantDocument(variant, { ...registration, variant_revision: 'wrong' }, project, archive), /different map/);
   await assert.rejects(editorVariantDocument({ ...variant, map_id: 'test_map_112' }, registration, project, archive), /different map/);
   const changed = structuredClone(variant.document);
   changed.source.sco_sha256 = 'different';
-  await assert.rejects(editorVariantDocument({ ...variant, raw: JSON.stringify(changed) }, registration, project, archive), /revision/);
+  await assert.rejects(editorVariantDocument({ ...variant, raw: JSON.stringify(changed) }, registration, project, archive), /different map/);
   await assert.rejects(editorVariantDocument(variant, registration, { ...project, source: {} }, archive), /revision/);
 });
 
@@ -45,12 +45,12 @@ test('installed map 176 loadout keeps all placements, settings and spawns when o
   const map = maps.find(map => map.map_id === 'test_map_176');
   const project = await json('public/' + map.project);
   const registration = (await json('lib/rotation-topology.json')).maps.find(row => row.id === map.id);
-  const raw = await readFile(new URL('maps/tiny/test_map_176/variants/test_map_176_VarA_AnnaFreud.json', root), 'utf8');
+  const raw = await readFile(new URL('maps/tiny/test_map_176/variants/test_map_176_AnnaFreud_VarA.placements.json', root), 'utf8');
   const original = JSON.parse(raw);
   const variant = { map_id: map.map_id, raw, document: original };
   assert.throws(() => coordinates.validate(original, project), /different map/);
   const document = await editorVariantDocument(variant, registration, project);
-  assert.equal(document.placements.length, 62);
+  assert.equal(document.placements.length, 185);
   assert.deepEqual(coordinates.validate(document, project), original.placements);
   assert.deepEqual(coordinates.validateSettings(document), original.settings);
   assert.deepEqual(coordinates.validateSpawns(document, project), original.spawn_points);

@@ -292,7 +292,7 @@ test('line batches preserve individual scales and reject invalid scales atomical
   } finally {dom.window.close();}
 });
 
-for (const [mapId, pool, name] of [['test_map_111','small','AnnaFreud'], ['test_map_116','small','VarA_3l3ct'], ['test_map_176','tiny','VarA_AnnaFreud']]) {
+for (const [mapId, pool, name] of [['test_map_111','small','AnnaFreud_VarA'], ['test_map_116','small','VarA'], ['test_map_176','tiny','AnnaFreud_VarA']]) {
   test(`${mapId} variant loads into editor, notifies 3D subscribers, and can reload and undo`, async()=>{
     const raw=await read(`maps/${pool}/${mapId}/variants/${mapId}_${name}.placements.json`);
     const map=JSON.parse(mapsText).find(m=>m.map_id===mapId);

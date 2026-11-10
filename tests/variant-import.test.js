@@ -45,10 +45,12 @@ test('archived filename and checksum still select the exact old replay document'
  test('updated installed variants resolve to the exact current placement files', async () => {
   const { installedVariantPreview } = await import('../src/rotation-variants.js');
   const current = json('lib/rotation-topology.json');
-  for (const number of [111, 133, 198]) {
-    const id = `test_map_${number}`, size = number === 198 ? 'medium' : 'small';
-    const path = `maps/${size}/${id}/variants/${id}_AnnaFreud_VarA.placements.json`;
-    const raw = read(path), installed = current.maps.find(m => m.map_id === id);
+  const installedVariants = current.maps.filter(m => m.variant_revision);
+  assert.equal(installedVariants.length, 7);
+  for (const installed of installedVariants) {
+    const id = installed.map_id;
+    const path = `maps/${installed.pool}/${id}/variants/${installed.variant_id}`;
+    const raw = read(path);
     assert.equal(hash(raw), installed.variant_revision, id);
     const preview = await installedVariantPreview(includedVariants({ [path]: raw }, id), installed);
     assert.equal(preview?.registration, installed, id);
