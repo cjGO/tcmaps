@@ -95,7 +95,14 @@ export function createScatterField(bounds, polygon, settings = {}, seed = 1) {
     const u=rx+(noise(rx*.65+17,ry*.65-9,seed^3917)-.5)*bend;
     const v=ry+(noise(rx*.65-31,ry*.65+23,seed^8191)-.5)*bend;
     const value=layered(u,v,seed);
-    const intensity=s.coverage===100 ? 1 : soft===0 ? Number(value>=threshold) : smooth((value-threshold)/soft+.5);
+    const envelope=s.coverage===100 ? 1 : soft===0 ? Number(value>=threshold) : smooth((value-threshold)/soft+.5);
+    // Coverage and edge softness only mask the pattern. Keep a separate,
+    // continuous density gradient inside it, even at 100% coverage or hard edges.
+    // Warped, finer noise breaks large patches into uneven concentrations; the
+    // broad field still makes their cores denser than their outskirts.
+    const detail=layered(u*2.3+37,v*2.3-19,seed^65537);
+    const concentration=smooth((value-.2)/.6);
+    const intensity=envelope*concentration*concentration*(.2+.8*smooth((detail-.25)/.5));
     return intensity*(s.feather ? smooth(edgeDistance(x,y,region)/s.feather) : 1);
   };
   return {field,region,settings:s};

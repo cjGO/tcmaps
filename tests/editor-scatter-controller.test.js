@@ -11,7 +11,7 @@ const read=path=>readFile(new URL('../'+path,import.meta.url),'utf8');
 const [template,coordinates,app,maps]=await Promise.all(['map_editor/web/index.html','map_editor/web/coordinates.js','map_editor/web/app.js','lib/editor-maps.json'].map(read));
 const source=JSON.parse(await read('public/'+JSON.parse(maps)[0].project));
 const pause=()=>new Promise(resolve=>setTimeout(resolve,190));
-function setup(create=async()=>new THREE.Group()) {
+function setup(create=async()=>new THREE.Group(),autoGenerate=true) {
   const project={...source,default_spawn_points:source.default_spawn_points.map((p,i)=>({...p,x_m:20+i*150,y_m:100})),bounds:{x_min_m:0,x_max_m:200,y_min_m:0,y_max_m:200}};
   const dom=new JSDOM(template.replace('__EDITOR_DATA__',JSON.stringify(project)),{runScripts:'outside-only',url:'https://editor.test/',pretendToBeVisual:true});
   const win=dom.window,doc=win.document;
@@ -28,7 +28,7 @@ function setup(create=async()=>new THREE.Group()) {
     const element=$(id);if(element.type==='checkbox')element.checked=value;else element.value=value;
     element.dispatchEvent(new win.Event(element.tagName==='SELECT'||element.type==='checkbox'?'change':'input'));
   };
-  controller.button.click();change('coverage',100);$('generate').click();
+  controller.button.click();change('coverage',100);if(autoGenerate)$('generate').click();
   return {win,doc,api,controller,extras,$,change,project,
     previews:()=>extras.children[0].children[1].children.map(object=>object.userData.preview),
     switchView(value){is3D=value;controller.sync();},
@@ -40,16 +40,32 @@ test('scatter previews preserve the document and commit exactly once with undo/r
     const before=JSON.stringify(s.api.exportDocument());await pause();
     assert.equal(s.api.getState().mode,'scatter');assert.equal(s.$('place').disabled,false);
     assert.equal(JSON.stringify(s.api.exportDocument()),before);
-    const preview=s.previews();assert.equal(preview.length,160);
+    const preview=s.previews();assert.ok(preview.length>0);
     s.$('place').click();
     const committed=s.api.exportDocument();assert.equal(committed.placements.length,preview.length);
     assert.deepEqual(Array.from(committed.placements,({id,...p})=>({...p})),preview);
     assert.equal(s.$('place').disabled,true);assert.equal(s.previews().length,0);
     s.change('density',5);await pause();assert.equal(s.$('place').disabled,true);
     s.doc.getElementById('undo').click();assert.equal(s.api.getState().document.placements.length,0);
-    s.doc.getElementById('redo').click();assert.equal(s.api.getState().document.placements.length,160);
-    s.api.loadDocument(committed);assert.equal(s.api.exportDocument().placements.length,160);
+    s.doc.getElementById('redo').click();assert.equal(s.api.getState().document.placements.length,preview.length);
+    s.api.loadDocument(committed);assert.equal(s.api.exportDocument().placements.length,preview.length);
     s.$('generate').click();await pause();assert.equal(s.$('place').disabled,false);
+  } finally {s.close();}
+});
+test('randomize noise beside Generate preview starts and rerolls previews without changing settings or documents',async()=>{
+  const s=setup(undefined,false);try {
+    await pause();assert.equal(s.previews().length,0);
+    const before=JSON.stringify(s.api.exportDocument());
+    const controls=()=>Array.from(s.controller.panel.querySelectorAll('input,select'),e=>[e.id,e.value,e.checked]);
+    const settings=controls();
+    const noise=s.$('new-pattern');assert.equal(noise.previousElementSibling,s.$('generate'));
+    const pixels=()=>Array.from(s.extras.children[0].children[0].children[0].material.map.image.data);
+    noise.click();await pause();const first=s.previews(),heatmap=pixels();assert.ok(first.length>0);
+    s.$('generate').click();await pause();assert.deepEqual(s.previews(),first);assert.deepEqual(pixels(),heatmap);
+    noise.click();await pause();assert.notDeepEqual(s.previews(),first);assert.notDeepEqual(pixels(),heatmap);
+    assert.deepEqual(controls(),settings);assert.equal(JSON.stringify(s.api.exportDocument()),before);
+    s.$('place').click();const committed=JSON.stringify(s.api.exportDocument());assert.equal(s.previews().length,0);
+    noise.click();await pause();assert.ok(s.previews().length>0);assert.equal(JSON.stringify(s.api.exportDocument()),committed);
   } finally {s.close();}
 });
 test('scale changes and view toggles retain positions; invalid input disables placement',async()=>{

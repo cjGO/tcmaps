@@ -7,7 +7,7 @@ const base={bounds,settings:{coverage:100,density:4,spacing:2},fieldSeed:42,posi
 const xy=points=>points.map(({x_m,y_m})=>[x_m,y_m]);
 test('scatter repeats exactly and position rerolls preserve the density field',()=>{
   const a=generateScatter(base), b=generateScatter(base), c=generateScatter({...base,positionSeed:18});
-  assert.deepEqual(a.points,b.points);assert.equal(a.points.length,160);
+  assert.deepEqual(a.points,b.points);assert.equal(a.points.length,a.requested);assert.ok(a.points.length>0);
   assert.notDeepEqual(a.points,c.points);assert.equal(a.field(23,48),c.field(23,48));
   for(const p of a.points) {
     assert.ok(insideScatterRegion(p.x_m,p.y_m,a.region));
@@ -37,13 +37,31 @@ test('spacing is enforced after quantization against both new and existing objec
 });
 test('coverage, feathering, seeds and presets affect field shape without elevation inputs',()=>{
   const a=createScatterField(bounds,null,{coverage:100,feather:20});
-  assert.equal(a.field(0,100),0);assert.equal(a.field(10,100),.5);assert.equal(a.field(30,100),1);
+  const unfeathered=createScatterField(bounds,null,{coverage:100});
+  assert.equal(a.field(0,100),0);assert.equal(a.field(10,100),unfeathered.field(10,100)*.5);
+  assert.equal(a.field(30,100),unfeathered.field(30,100));
   const samples=field=>Array.from({length:100},(_,i)=>field((i%10)*20+5,Math.floor(i/10)*20+5));
   const fields=Object.values(scatterPresets).map(s=>samples(createScatterField(bounds,null,s,42).field));
   for(let i=1;i<fields.length;i++) assert.notDeepEqual(fields[0],fields[i]);
   assert.notDeepEqual(fields[0],samples(createScatterField(bounds,null,{},43).field));
   const low=createScatterField(bounds,null,{coverage:30},42),high=createScatterField(bounds,null,{coverage:60},42);
   assert.ok(samples(low.field).every((v,i)=>v<=samples(high.field)[i]));
+});
+test('patch interiors retain density gradients and concentrate placements in their denser portions',()=>{
+  // Full coverage with hard edges removes boundary thinning entirely. Density
+  // must still vary, and placements must follow it rather than fill uniformly.
+  const r=generateScatter({...base,bounds:{x_min_m:0,x_max_m:600,y_min_m:0,y_max_m:600},
+    settings:{coverage:100,softness:0,density:20,spacing:2}});
+  const values=[];
+  for(let x=3;x<600;x+=6) for(let y=3;y<600;y+=6) values.push(r.field(x,y));
+  values.sort((a,b)=>a-b);
+  assert.ok(values.every(v=>v>=0&&v<=1));
+  const low=values[2500],high=values[7500];
+  assert.ok(high>low*3,'equal-area portions of the field have distinctly different densities');
+  const sparse=r.points.filter(p=>r.field(p.x_m,p.y_m)<=low).length;
+  const dense=r.points.filter(p=>r.field(p.x_m,p.y_m)>=high).length;
+  assert.ok(sparse>0,'sparse interiors still receive some assets');
+  assert.ok(dense>sparse*3,'dense interiors receive more assets per unit area');
 });
 test('empty, invalid, tiny and capped scatters terminate with explicit counts',()=>{
   assert.equal(generateScatter({...base,settings:{coverage:0}}).points.length,0);

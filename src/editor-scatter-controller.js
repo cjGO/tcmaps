@@ -19,27 +19,28 @@ export function createScatterController({doc, project, api, extras, context, tra
     <p id="scatter-region-summary" role="status"></p>
     <label>Pattern preset<select id="scatter-preset">${Object.keys(scatterPresets).map(name=>`<option>${name}</option>`).join('')}</select></label>
     <div class="pair">${number('patchSize','Patch size (m)',80,1,100000)}${number('coverage','Coverage (%)',45,0,100)}</div>
-    ${number('density','Density (assets / 1,000 m² at full intensity)',4,0,1000,.1)}
+    ${number('density','Peak density (assets / 1,000 m²)',4,0,1000,.1)}
     <div class="pair">${number('stretch','Stretch',1.5,1,20,.1)}${number('direction','Direction (degrees)',0,-360,360)}</div>
     <div class="pair">${number('warp','Warp (%)',50,0,100)}${number('softness','Edge softness (%)',50,0,100)}</div>
-    <p>Coverage changes occupied area; density changes how tightly it fills. Coverage is approximate.</p>
+    <p>Patches have dense cores and sparse interiors. Peak density controls the densest areas; increase it for tighter clusters. Coverage changes occupied area and is approximate.</p>
     <details><summary>Spacing & boundaries</summary>
     ${number('spacing','Minimum spacing (m)',2,0,10000,.1)}
     <label><input id="scatter-avoidExisting" type="checkbox" checked> Avoid existing objects</label>
     ${number('feather','Boundary feathering (m)',0,0,10000,1)}
-    <p>Spacing uses object centres, including existing editor placements when enabled. It does not measure model outlines or source vegetation.</p></details>
+    <p>Minimum spacing also limits dense cores. Lower it to allow closer clusters. Spacing uses object centres, including existing editor placements when enabled. It does not measure model outlines or source vegetation.</p></details>
     <fieldset id="scatter-assets"><legend>Asset mix</legend><div id="scatter-presets"></div><div id="scatter-asset-picker"></div><div id="scatter-mix-rows"></div></fieldset>
     <label><input id="scatter-random-yaw" type="checkbox" checked> Random rotation</label>
     <label><input id="scatter-random-scale" type="checkbox" checked> Default random scale</label>
     <div class="pair">${number('scale-low','Low scale',.8,.1,100,.1)}${number('scale-high','High scale',1.2,.1,100,.1)}</div>
     <p>Per-asset ranges override default scales. Turn off randomization to use the current brush rotation or scale.</p>
     <details><summary>Randomization</summary>
-    <button id="scatter-new-pattern">New pattern</button><button id="scatter-reshuffle">Reshuffle placement</button>
+    <button id="scatter-reshuffle">Reshuffle placement</button>
     <button id="scatter-shuffle-assets">Shuffle assets</button><button id="scatter-reroll-yaw">Randomize rotation</button><button id="scatter-reroll-scale">Randomize scales</button></details>
     <label>Preview<select id="scatter-view"><option value="both">Both</option><option value="heatmap">Heatmap</option><option value="assets">Assets</option></select></label>
     <p class="scatter-legend"><span></span> Sparse → Dense</p>
     <p id="scatter-count" role="status"></p><p id="scatter-status" role="status"></p>
-    <button id="scatter-generate">Generate preview</button><button id="scatter-place" disabled>Place assets</button>`;
+    <button id="scatter-generate">Generate preview</button><button id="scatter-new-pattern">Randomize noise & preview</button>
+    <button id="scatter-place" disabled>Place assets</button>`;
   doc.querySelector('.modes').append(button); doc.querySelector('aside').prepend(panel);
   const $=id=>panel.querySelector(`#scatter-${id}`);
   const selection=new Map(), overrides=new Map(), models=new Map();
@@ -213,10 +214,11 @@ export function createScatterController({doc, project, api, extras, context, tra
   });
   $('remove').addEventListener('click',()=>{nodes.pop();if(nodes.length<3)drawing=true;drawBoundary();invalidate();});
   $('clear').addEventListener('click',()=>{nodes=[];drawing=true;drawBoundary();invalidate();});
-  for(const [id,seed,check] of [['new-pattern','fieldSeed'],['reshuffle','positionSeed'],['shuffle-assets','assetSeed'],['reroll-yaw','yawSeed','random-yaw'],['reroll-scale','scaleSeed','random-scale']]) {
+  for(const [id,seed,check] of [['reshuffle','positionSeed'],['shuffle-assets','assetSeed'],['reroll-yaw','yawSeed','random-yaw'],['reroll-scale','scaleSeed','random-scale']]) {
     $(id).addEventListener('click',()=>{seeds[seed]=(seeds[seed]+1)>>>0;if(check)$(check).checked=true;invalidate();});
   }
   $('generate').addEventListener('click',()=>{armed=true;models.clear();invalidate();});
+  $('new-pattern').addEventListener('click',()=>{seeds.fieldSeed=(seeds.fieldSeed+1)>>>0;armed=true;models.clear();invalidate();});
   $('place').addEventListener('click',()=>{
     if($('place').disabled || !points.length) return;
     try {

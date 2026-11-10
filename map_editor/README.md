@@ -15,7 +15,13 @@ micro generators reroll and have no permanent height maps to edit.
 **Scatter with noise** fills the whole map or a polygon region with an asset mix.
 Choose a pattern preset, adjust patch size, coverage, density, stretch, direction,
 warp and edge softness, then click **Generate preview** to inspect the heatmap
-and assets. Draw regions
+and assets. Patches contain continuous density gradients and smaller concentrations,
+even at 100% coverage. **Peak density** sets the density at maximum field intensity;
+sparser portions receive fewer assets. Increase it for tighter cores, and lower
+minimum spacing if it prevents the desired clustering. **Randomize noise & preview**
+beside Generate preview immediately tries a new pattern, keeping the region,
+asset mix and other settings. Generate preview alone retains the current pattern.
+Draw regions
 by clicking corners and choosing **Finish region**; drag numbered corners to
 reshape them. Asset ratios, saved mixes and per-asset scales work alongside the
 line tool. Separate randomization controls change the pattern, positions, asset

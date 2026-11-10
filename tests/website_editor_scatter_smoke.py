@@ -10,7 +10,8 @@ with sync_playwright() as pw:
     page = browser.new_page(viewport={'width': 1500, 'height': 1100})
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
-    page.goto(sys.argv[1] if len(sys.argv) > 1 else 'http://127.0.0.1:4173')
+    page.goto(sys.argv[1] if len(sys.argv) > 1 else 'http://127.0.0.1:4173', wait_until='domcontentloaded', timeout=240000)
+    page.wait_for_function("() => document.querySelector('#editor-map')?.options.length > 0", timeout=240000)
     page.locator('#editor-tab').click()
     frame = page.frame_locator('iframe:not([hidden])')
     frame.locator('#editor-three-message').wait_for(state='hidden', timeout=60000)
@@ -39,6 +40,15 @@ with sync_playwright() as pw:
     ready()
     print('Whole-map preview ready', flush=True)
     assert len(state()['document']['placements']) == 0
+    frame.locator('#scatter-view').select_option('heatmap')
+    first_pattern = canvas.screenshot()
+    frame.locator('#scatter-new-pattern').click()
+    ready()
+    assert canvas.screenshot() != first_pattern, 'Noise reroll should change the density field'
+    assert frame.locator('#scatter-density').input_value() == '0.05'
+    assert frame.locator('#scatter-coverage').input_value() == '100'
+    assert len(state()['document']['placements']) == 0
+    frame.locator('#scatter-view').select_option('both')
     ids = page.evaluate("() => Array.from(document.querySelector('iframe:not([hidden])').contentDocument.querySelectorAll('[id]'), el => el.id)")
     assert len(ids) == len(set(ids)), 'Duplicate control IDs'
     whole_count = int(frame.locator('#scatter-count').inner_text().split()[0])
@@ -63,7 +73,7 @@ with sync_playwright() as pw:
     frame.locator('#scatter-finish').click()
     frame.locator('#scatter-density').fill('3')
     assert frame.locator('#scatter-place').is_disabled()
-    frame.locator('#scatter-generate').click()
+    frame.locator('#scatter-new-pattern').click()
     ready()
     canvas.scroll_into_view_if_needed()
     box = canvas.bounding_box()
