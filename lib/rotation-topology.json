@@ -1,1 +1,2483 @@
-{"schema_version":1,"map_count":99,"selection_mode":"all-fixed","created_utc":"2026-11-10T11:51:08.380528+00:00","maps":[{"id":"scn_mp_custom_map_1","map_id":"test_map_107","variant_id":"source","pool":"small","source":{"sco_sha256":"a083965919eb18b54c9afe1e50bc126469a6f45e99854c23b51b5ea6b92a45ee","recipe_sha256":"7c989f018ab86af8ac01ab4608d8b2af1f7165f237259b999a11ba0588fc6765","terrain_code":"0x00000003d285060a000b42d077bd13001d1f97467d950ec9"},"height_data_sha256":"bf3b2bbd0a1ac0714ed1e60f44aa65b23a3d890f50962ddbe18c12c0e1be6984","sha256":"2b0f5454e6f395c2b04e8d9d2796e13dbba2c29e36dbc035506961095bed290d","url":"/topology/test_map_107_RAW/2b0f5454e6f395c2b04e/test_map_107_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":30.559,"map_name":"test_map_107_RAW","variant_revision":""},{"id":"scn_mp_custom_map_2","map_id":"test_map_108","variant_id":"test_map_108_AnnaFreud_VarA.placements.json","pool":"small","source":{"sco_sha256":"f6cd709603d894a65ed5b5ca1276ec7c3cbfb06dfd4f1bdddd950e5f22f31035","recipe_sha256":"e0be663487a9adaee39f278294c017474f39a37462049183bca5a195456eb19c","terrain_code":"0x00000003b284478a000b42d03ab15e3e7fb85ad77533c93f"},"height_data_sha256":"0e03e843fc395fc75b0a1597d8c98e45ca44c7b9db53a30d5d635ddcec1f4203","sha256":"835dba89faf186bb3c7b0928583a32919d15df1e66c451a172637158bcfbaaab","url":"/topology/test_map_108_VarA/835dba89faf186bb3c7b/test_map_108_VarA.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":39.689,"map_name":"test_map_108_VarA","variant_revision":"205210321216bfcd55bbe55945d221962df07b7666aa3d16d664737c5e4a925b"},{"id":"scn_mp_custom_map_3","map_id":"test_map_141","variant_id":"source","pool":"tiny","source":{"sco_sha256":"18b9d9e9e5bf8e6646f1c7ba2d2f3caca5adc3a2adb246916d45469e668d7f06","recipe_sha256":"47b760e25d8f78b13a55c8e8dec8c776483ebfd19ede06bbb324de87600d50c6","terrain_code":"0x00000003d2814a0a000962582f34faa51c7e52943bc0ff92"},"height_data_sha256":"27efb6253e452229a7e888088c649b938523df040c6e0e08b5951c7c23166a79","sha256":"955db5e3e987d16941e4a060196ceb6028ebcee4d9d14f27e6793b6c47e91754","url":"/topology/test_map_141_RAW/955db5e3e987d16941e4/test_map_141_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":28.007,"map_name":"test_map_141_RAW","variant_revision":""},{"id":"scn_mp_custom_map_4","map_id":"test_map_110","variant_id":"source","pool":"small","source":{"sco_sha256":"e093dd3e4561fd077e4bf4ac6b5f100bc159877f15da2fba9e17c62e340cdf84","recipe_sha256":"4454d2f6ef72dd729383907105aa3e241e79dace561f4c1294f15f091c8f4dfd","terrain_code":"0x000000034282058a000b42d006fc135d2f0316242e5f055b"},"height_data_sha256":"08ecf25c52df42b5b454a28ee773bf8766f42fa66ed7e0188f5f192f83ced22c","sha256":"288e7d4eab0a9aa7553609634fcc59eeef4d747c6cf120aa5187d3ec436652b4","url":"/topology/test_map_110_RAW/288e7d4eab0a9aa75536/test_map_110_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":22.846,"map_name":"test_map_110_RAW","variant_revision":""},{"id":"scn_mp_custom_map_5","map_id":"test_map_111","variant_id":"test_map_111_AnnaFreud_VarA.placements.json","pool":"small","source":{"sco_sha256":"3409e7171832138746d32b831ca855d898aa142c10d89c9f0731f103444eb4a4","recipe_sha256":"ee8d13710b83ecfa6be3cbaee433b844420a36f69e3055b8ad8bbfa5ade81a3e","terrain_code":"0x00000003d283050a000b42d034f168551e2a04ba4d0389c9"},"height_data_sha256":"9971f3c16f6e7f99377bf3d7014c68f67cce46a4495139d483ee438f05ff5a40","sha256":"81f9f22c73d5178be53ff85132999e4200d226a1d3bc256ba091ab7d94eecce8","url":"/topology/test_map_111_VarA/81f9f22c73d5178be53f/test_map_111_VarA.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":22.293,"map_name":"test_map_111_VarA","variant_revision":"5f61555418ff627444dc8d13b63bc34dea91db021368b1e22caf34eb1b6c52cb"},{"id":"scn_mp_custom_map_6","map_id":"test_map_194","variant_id":"source","pool":"medium","source":{"sco_sha256":"aa7abe85581ef0abaa2d3b05eea76e336707eaa632a71cdfa11b4a7caa08241d","recipe_sha256":"328e7d862438383b3459aed023c58ecfe8d25241260d408cb5497f5926d2802e","terrain_code":"0x000000034281c58a000dc37043b91e8b047168006a86d33d"},"height_data_sha256":"0ab570da6760b96ed44e51d4aede6a099fcee3bc35bcb83c2207551ad7d8f35d","sha256":"22b8b9f8299d7aed159163eae6bfe96067050193af22eb5f67282fdaa05aa8b2","url":"/topology/test_map_194_RAW/22b8b9f8299d7aed1591/test_map_194_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":36.115,"map_name":"test_map_194_RAW","variant_revision":""},{"id":"scn_mp_custom_map_7","map_id":"test_map_142","variant_id":"source","pool":"tiny","source":{"sco_sha256":"2aa27f5dc4a69e3381efe886ba299de53ddada5129907d69cd054b323c9745a9","recipe_sha256":"c2057a7072f769317c69dafae9dfa694e3ac3857e45a434b1851f40e836ae592","terrain_code":"0x00000003a282078a0009625803f290520393c4a34e8b15a1"},"height_data_sha256":"869e5a6b4397e54c2777bddbfe7866cfb09b89f01dd110b12f7d39b2a69f639d","sha256":"c898b5d5089b5c1da195022f71069aa24066d23ea5a1184dc559396b28135700","url":"/topology/test_map_142_RAW/c898b5d5089b5c1da195/test_map_142_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":30.919,"map_name":"test_map_142_RAW","variant_revision":""},{"id":"scn_mp_custom_map_8","map_id":"test_map_112","variant_id":"source","pool":"small","source":{"sco_sha256":"d628c2fa49df0f276d2855c08ac6822fce9cc0a3404168292a6aad389d327a1e","recipe_sha256":"0e212a01b91b794b7eb1ae063061c21d9b2bacf2a0428517c27ba220bc035d42","terrain_code":"0x000000033281498a000b42d0129da9234fb7357b0c2832bd"},"height_data_sha256":"b9278dda421043666e5607d80678be033dcb52c7162256dae4188972f3f8f0c4","sha256":"cd7e3f4fcf45a3b78cebae32b9dc90280ad40b702da1782354679a086e02232f","url":"/topology/test_map_112_RAW/cd7e3f4fcf45a3b78ceb/test_map_112_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":36.347,"map_name":"test_map_112_RAW","variant_revision":""},{"id":"scn_mp_custom_map_9","map_id":"test_map_113","variant_id":"source","pool":"small","source":{"sco_sha256":"035c2d68492f110a61b513358966ccc4299ae885493dd5c7acd627aa3e0c90bd","recipe_sha256":"c34fe00c681641e96253b446b0346cc1810a3baa9c37b6225e3d11bd802ebc21","terrain_code":"0x00000003b284478a000b42d010ebc45c0b1b0c003aa31df1"},"height_data_sha256":"563e57daa3a040af76c630c73f8770a5c7958ce329ffe8c7f96a248709b177ca","sha256":"9aafc993025032dac3beb08c70f69b17d9af7b7da92668932c6e94c5c4aa4e21","url":"/topology/test_map_113_RAW/9aafc993025032dac3be/test_map_113_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":28.157,"map_name":"test_map_113_RAW","variant_revision":""},{"id":"scn_mp_custom_map_10","map_id":"test_map_195","variant_id":"source","pool":"medium","source":{"sco_sha256":"7f4ddd99b5f30580f1bdc7d10db460dafa61f9446c778896e90bb829cb1330dd","recipe_sha256":"6aa2f6b254c7eab78bb8d63efaddf75437c4ce69f8dc8bbc84e028f1ce3e2c62","terrain_code":"0x000000033281460a000dc3705cc0ecaf399769176b4d539a"},"height_data_sha256":"5ec416d660e12aa0b58b3fb2771979a109d2071e3a7ee73f35077008affa770e","sha256":"f8a2a4c7862a6ad15130051119ee25513d88af0a9362fb2e6d23bd02df495bf2","url":"/topology/test_map_195_RAW/f8a2a4c7862a6ad15130/test_map_195_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":28.786,"map_name":"test_map_195_RAW","variant_revision":""},{"id":"scn_mp_custom_map_11","map_id":"test_map_196","variant_id":"source","pool":"medium","source":{"sco_sha256":"c2fafda912441f91cacd558bdfb3a10803af047767c961dd947175bb78abff1e","recipe_sha256":"a719a099b8a1cf81c04a9e4f7dd8ebb15eed573663ea7189d8babe1f00dc3901","terrain_code":"0x00000003d281c68a000dc370500c3bee7352eb34724852f5"},"height_data_sha256":"133d7c00726dba179aa64d1fdae0b553f50b16ab9c222f5177ff9c4c59bd4185","sha256":"605c868051e84ad22b00b03fc7a5dc092dd833dc903cd4acbac7edb8b2854806","url":"/topology/test_map_196_RAW/605c868051e84ad22b00/test_map_196_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":31.301,"map_name":"test_map_196_RAW","variant_revision":""},{"id":"scn_mp_custom_map_12","map_id":"test_map_198","variant_id":"test_map_198_AnnaFreud_VarA.placements.json","pool":"medium","source":{"sco_sha256":"5799f59f525a196de3c760a0ff77d8cae9fbd3e7e417189a26126b8944d66519","recipe_sha256":"a0b0ca7fa55e201c27d250022a0a7eb70065fb1f9e6e58f55d5a9ed6837def2c","terrain_code":"0x00000003c282850a000dc370563fb7f5056d5a192b55890d"},"height_data_sha256":"debfa15132b1f8d41993436f437d7a944e385d348d01a2f4bb9b1a5e544c63d9","sha256":"5abcf9295eed703278ad3d01b43946a84f245db25e2a396fd5bb3bed26b2db04","url":"/topology/test_map_198_VarA/5abcf9295eed703278ad/test_map_198_VarA.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":21.103,"map_name":"test_map_198_VarA","variant_revision":"359a23ba0e4e77e307fbdddbd6a15e7d383f82ae4ad95a74f4e69f200e14ca8a"},{"id":"scn_mp_custom_map_13","map_id":"test_map_114","variant_id":"source","pool":"small","source":{"sco_sha256":"129a94a8df4d8c6894cfe775b063ca47132fe30d3ff6263ff9ad79c7150b4f3a","recipe_sha256":"4abcb3d2c8f2d839f03b60a5f5969bf710c8b2c88ce0d7ad2156b8efba843f72","terrain_code":"0x00000003a282c80a000b42d0288ff6a15555c65419ac3ecd"},"height_data_sha256":"2c7b3d9cc6284f1a2ce1a76477f82230f2e10d8b4f2e0e8113e4a799a310113f","sha256":"628ca65c5f206aae23c57ba1725e730aa7718621b19577c8d6a65de88ae84d98","url":"/topology/test_map_114_RAW/628ca65c5f206aae23c5/test_map_114_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":29.516,"map_name":"test_map_114_RAW","variant_revision":""},{"id":"scn_mp_custom_map_14","map_id":"test_map_037","variant_id":"source","pool":"medium","source":{"sco_sha256":"c9ca156146d98b2bfb0f7f065fccf56f4ec6580a1f2709e303f334b3e415ba2a","recipe_sha256":"df480611fa032bc5c41083758ac52925e60e3da6425fafa27aa50d85a722f8f5","terrain_code":"0x00000003d282050a000dc3702469bb2422a732684f0a30f7"},"height_data_sha256":"ee3aabd74bb482c24a7583998cede978e5bf9c2064a368d8ec80724a75f46c22","sha256":"ca3c9e4f4c942cef1557dc8b7ff7aeba1f3705a3075b0252cafd539b0f3eaf6f","url":"/topology/test_map_037_RAW/ca3c9e4f4c942cef1557/test_map_037_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":22.273,"map_name":"test_map_037_RAW","variant_revision":""},{"id":"scn_mp_custom_map_15","map_id":"test_map_038","variant_id":"source","pool":"medium","source":{"sco_sha256":"c6ad7578c051664da1aadca8dcfb6ab8dbbfee880d18e33ffc0e892a6dba2e5e","recipe_sha256":"ad2ec612e3e2a9d3e52a258d732f5319fe108fc3f9fada6524d94d472325184c","terrain_code":"0x0000000332814a0a000dc3701f73f7f0361e7dd9223d6487"},"height_data_sha256":"fdbc27a8e08b514064ab76bbe8dccb5d588f928985e9d8882362e3aebbce6348","sha256":"533d839846e97a8c79ca8b600dc51ab2e8c602b46b31ea14351dd5597dc88b81","url":"/topology/test_map_038_RAW/533d839846e97a8c79ca/test_map_038_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":59.17,"map_name":"test_map_038_RAW","variant_revision":""},{"id":"scn_mp_custom_map_16","map_id":"test_map_039","variant_id":"source","pool":"medium","source":{"sco_sha256":"ceefd2c023a1cf9c836a1c661efeb0fe75808d5485bbecd80e2837dcb37f8622","recipe_sha256":"f4436ed1862a417a258076f8c9f43336b165cb08e04080860f565198ba3f99ca","terrain_code":"0x000000033282868a000dc3702c7edbd6071e3a062015ee1e"},"height_data_sha256":"606e106aac5040678657c3771bcb06a9715b464446b5f12217737dffb334c4cf","sha256":"0723b81f0a276a585c48c250c37d86f06afc1360a8532b34e3c748f2b624bbd5","url":"/topology/test_map_039_RAW/0723b81f0a276a585c48/test_map_039_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":36.556,"map_name":"test_map_039_RAW","variant_revision":""},{"id":"scn_mp_custom_map_17","map_id":"test_map_040","variant_id":"source","pool":"medium","source":{"sco_sha256":"70ebccc1f20c7e2a166c455ff43d50bcea376cd122ed75b748a383613af6475c","recipe_sha256":"d6b80e311cebf4a7c7dcfd1ceaeb547d34cde12d0e9e1634944aed9bf98954b3","terrain_code":"0x000000033281888a000dc37011fce9f60a521e1e385eb5ac"},"height_data_sha256":"c7b21b00dcf5a6c6991197c3bea2d9a9630dd44e370817f13a415a30ece1bbd9","sha256":"fe95257bb0a899d5e32cfc7c0ac4aa1727bda549adc413f2039c6f1df45421ed","url":"/topology/test_map_040_RAW/fe95257bb0a899d5e32c/test_map_040_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":40.858,"map_name":"test_map_040_RAW","variant_revision":""},{"id":"scn_mp_custom_map_18","map_id":"test_map_041","variant_id":"source","pool":"medium","source":{"sco_sha256":"08a1a50808ffdf03a0d7f49601b783c88c9adf46ff4a4acadf20ad95a8eab73c","recipe_sha256":"3f1bc4e70f4487cb900a96fc8a74796386da3d7e87f9ba1d759f218541c1aada","terrain_code":"0x000000034282040a000dc37006efc25977ae88c52427dbcd"},"height_data_sha256":"8e68441b07c86a46b9e27dcf8e1ab630ba7fc8e7522b2f6ccf9b46e4a5c68c47","sha256":"cbaf0deb7d478bedf1da3ee33ac1a3358cf9a0f05a109b2ea83b6f408bf308a4","url":"/topology/test_map_041_RAW/cbaf0deb7d478bedf1da/test_map_041_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":26.021,"map_name":"test_map_041_RAW","variant_revision":""},{"id":"scn_mp_custom_map_19","map_id":"test_map_199","variant_id":"test_map_199_AnnaFreud_VarA.placements.json","pool":"medium","source":{"sco_sha256":"fecc2603c83475c7cfa9698b4b45194e5255fc8c44acb81c9d98d310593ca1b7","recipe_sha256":"6e96660d8e9b40b8cb292110ba44cea987f5fbf0014c2a91e153886a0f6e4cd6","terrain_code":"0x00000003b282088a000dc3707e35eade294ede2b2e93f092"},"height_data_sha256":"04766a2c181249aa260a406b15bec855cc341a2f1b40480edc6cb0f4c285472e","sha256":"78ccd782dc79e5f24716439ffa787009a91f397a54dd0c666f7eb3ea33c9e84b","url":"/topology/test_map_199_VarA/78ccd782dc79e5f24716/test_map_199_VarA.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":48.399,"map_name":"test_map_199_VarA","variant_revision":"28e9dc1df4c64d9c96e9ea44986871a1f3f295ca1de6126bb5221e6542116e0c"},{"id":"scn_mp_custom_map_20","map_id":"test_map_115","variant_id":"source","pool":"small","source":{"sco_sha256":"e294419f817051c656cc3e7f7f89caaf16d21369f6067998d76f32216bb297d0","recipe_sha256":"2c08b19c3531093c02ec259bea586c6170a4fcadbf340d578300bc56ede26b11","terrain_code":"0x00000003a283860a000b42d005bd9f07153ac6af40f99588"},"height_data_sha256":"d43faff6d9642a4e05b36125600c7aa92ef5692344759dd92534997cad2935fe","sha256":"ffd14d86a1d576fe662165dc03e7029cd7436fdc1a417d83c311ab25b6eaf4ae","url":"/topology/test_map_115_RAW/ffd14d86a1d576fe6621/test_map_115_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":25.212,"map_name":"test_map_115_RAW","variant_revision":""},{"id":"scn_mp_custom_map_21","map_id":"test_map_116","variant_id":"test_map_116_VarA.placements.json","pool":"small","source":{"sco_sha256":"841eb1a7d9c6cabefed7de4662d7630258ec8ea5a39ce5dd4d1cc6426026df6e","recipe_sha256":"12069cc8050ff46d9ea9e29e7c2d125f6f6d9cb6b7ba866380eef04a551dbb94","terrain_code":"0x00000003b282868a000b42d03d6304d050e6321c4d5e179c"},"height_data_sha256":"a0c13e7a7595e9f449eb8542c3c80f5a7b247daaffe2fd7e6c996c9dd3c4efa4","sha256":"830ea4cd7106d213ea9ea487dbf0fd46066939140ea0c703a3540ec42cf0f245","url":"/topology/test_map_116_VarA/830ea4cd7106d213ea9e/test_map_116_VarA.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":25.557,"map_name":"test_map_116_VarA","variant_revision":"88f89ea42b1c3173d00953b61adbf3183247ebbacb3279cdfc4dc2b4f62ed9ad"},{"id":"scn_mp_custom_map_22","map_id":"test_map_043","variant_id":"source","pool":"medium","source":{"sco_sha256":"386aa8c47f91624698d41d825eb95509904164d6001ad28ac2ebf2da8975f1af","recipe_sha256":"8db0f39011aebf51e2d3a4b5c2feca24dd4376007e06b1496c13122500315392","terrain_code":"0x00000003a281440a000dc3701801b5b059d246317bf337c6"},"height_data_sha256":"9f8b41857c60e27e02744ca640a5d90f130ea8f62a1db1e349298e651ea27e49","sha256":"ea9f0b7baa97edae498ef3cdb14defd13a45724962d7b48deb1fda3b1bccf7c1","url":"/topology/test_map_043_RAW/ea9f0b7baa97edae498e/test_map_043_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":25.707,"map_name":"test_map_043_RAW","variant_revision":""},{"id":"scn_mp_custom_map_23","map_id":"test_map_044","variant_id":"source","pool":"medium","source":{"sco_sha256":"8684e51e90354689d25ae09f3bde2521f937e8b40e344bd2c8252fa0a35349ae","recipe_sha256":"93be9baeae9d7b3e9b7b13c0851624fa6ed8a878da5637838194c480735d4c64","terrain_code":"0x000000034282840a000dc370047d6bb55c64a3c6672b3574"},"height_data_sha256":"e6546476c62404d6c278ba23209c04131fe383337682685a2133d05fb05778c0","sha256":"3a8db895410ab0a212a89cdacccf23a5c27c60959e8d5315e746f3c2a09f2234","url":"/topology/test_map_044_RAW/3a8db895410ab0a212a8/test_map_044_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":20.016,"map_name":"test_map_044_RAW","variant_revision":""},{"id":"scn_mp_custom_map_24","map_id":"test_map_045","variant_id":"source","pool":"medium","source":{"sco_sha256":"33f43833c8c8db61012d99c20218464aa4ed552fd531cb997119e8bca89fa68b","recipe_sha256":"6ec509c7ad5a61453ce5f60220bd3b1fb9a59db0cf85d4e2d92fb2ca69d06eb1","terrain_code":"0x00000003c281468a000dc3706e8efc9942b1437565c29c92"},"height_data_sha256":"8712d6c971ace1d6ec4fba7b00349a0fa195ec41dc9b5313b2158f323597959d","sha256":"ab6e50f141f6b48effe93d1d702a82239aafb7c70244c075a887484f17196fcf","url":"/topology/test_map_045_RAW/ab6e50f141f6b48effe9/test_map_045_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":55.08,"map_name":"test_map_045_RAW","variant_revision":""},{"id":"scn_mp_custom_map_25","map_id":"test_map_046","variant_id":"source","pool":"medium","source":{"sco_sha256":"c664295f00ad9319e2ce1c28eb98bc2a2aced91f770c4020ec108c2cb46e06e9","recipe_sha256":"ab503db08f2f0daafdb5e9fc7b8f27fec21548fecd0be855b06a54c56625f007","terrain_code":"0x00000003b281c48a000dc3707c310d99517102cf6afcabfb"},"height_data_sha256":"f8d383493a4b5e5f86bec852db3e3eec8aefdff46fdd8f32c37068629ac019f0","sha256":"4b59fc0958bf3560a0e90006a34ddab184381148e54299465fcbb43811bc5461","url":"/topology/test_map_046_RAW/4b59fc0958bf3560a0e9/test_map_046_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":41.769,"map_name":"test_map_046_RAW","variant_revision":""},{"id":"scn_mp_custom_map_26","map_id":"test_map_047","variant_id":"source","pool":"medium","source":{"sco_sha256":"fdef084727f41a23d8b3d8a66e0a12e093a7ec3e1eb433dc9c85930264799ad9","recipe_sha256":"c5a5fab766f8c5451e3fe13aa4193b6445dd9225ced9e9bb42883e2000011079","terrain_code":"0x00000003c282470a000dc3704ac8fddf74e8d56900bd55fd"},"height_data_sha256":"77aa51d24c6e0e9d8dee578dbcf205d0f352c10c75a43997cea989ff0bd28296","sha256":"d97e82c393fae3272bc0765cd922d56acdaef546acf18b6dd26f7d48cad4fba1","url":"/topology/test_map_047_RAW/d97e82c393fae3272bc0/test_map_047_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":36.228,"map_name":"test_map_047_RAW","variant_revision":""},{"id":"scn_mp_custom_map_27","map_id":"test_map_048","variant_id":"source","pool":"medium","source":{"sco_sha256":"73841b4261e9915fe9de0e7091d753be6c5c517a9b8abec91aebba747a97975b","recipe_sha256":"cc147b99c249242bf097aeebba0445608c13121d2873f64f2c52d28a9799b648","terrain_code":"0x000000033281480a000dc3706fe3d1ca0e6ecef81894308d"},"height_data_sha256":"9d8f5661e59bd2935c4caa43c308f72bdc148043909a6286d3f136198e04871e","sha256":"e3c782eac034d73d6a51bb67cabde7df45ed61c8d6fe72aa7aeed41b799006f1","url":"/topology/test_map_048_RAW/e3c782eac034d73d6a51/test_map_048_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":48.067,"map_name":"test_map_048_RAW","variant_revision":""},{"id":"scn_mp_custom_map_28","map_id":"test_map_049","variant_id":"source","pool":"medium","source":{"sco_sha256":"a9a9248cc1affcf9a7d0e6b96f2fc0353d2d8da402ef9ea4037e57f1c51d5271","recipe_sha256":"a385251aa585d9dfa6df65235ceab7ca8f82ba7244e6b07e2bbf6712c964987f","terrain_code":"0x00000003c281c60a000dc3702fec81552ac27428550bcb20"},"height_data_sha256":"a098748e64a16e49b5619781f1b21c97e9fa9365b7905c6f5a24d68a8eb1102b","sha256":"5ed17bc8f2407bc9dc4fd83260f46289e2e3cfbfd877e8e792da0291103c0a2d","url":"/topology/test_map_049_RAW/5ed17bc8f2407bc9dc4f/test_map_049_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":26.796,"map_name":"test_map_049_RAW","variant_revision":""},{"id":"scn_mp_custom_map_29","map_id":"test_map_143","variant_id":"source","pool":"tiny","source":{"sco_sha256":"216524ff1e406776e048a026f62863aa3b3cd240b3cb3e7a69153a4932dcfa7e","recipe_sha256":"58a464edf658486bcaf770d1e9e83a0b9b35c3d8a5d9c54ffe05ac20c7171314","terrain_code":"0x00000003b281c78a000962583d1ece1404ed990e2c67c81c"},"height_data_sha256":"7b0a5b19090d7969e40cc8562bf0363c3a04eeb45ec94dc0a7ebb5cf8e836f3c","sha256":"df6abce242dcd9ab6cf171dc2e5af9dd109b81719ecd5022a3e6ede158a4efac","url":"/topology/test_map_143_RAW/df6abce242dcd9ab6cf1/test_map_143_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":23.757,"map_name":"test_map_143_RAW","variant_revision":""},{"id":"scn_mp_custom_map_30","map_id":"test_map_050","variant_id":"source","pool":"medium","source":{"sco_sha256":"e9e481428c3ededd86b826e6f2bf0f93e042d71bf3a89ce2c8b754453e871aa9","recipe_sha256":"ea8858e9ca2752df8c13480c52dbf86dee208a76e7c980ceb2388dcebe6559e3","terrain_code":"0x00000003d281c60a000dc3702fec81552ac27428550bcb20"},"height_data_sha256":"454d8a6960995c3ad47e6f515a29f8af703a9c5deec14d7398cfd24a82b4d40f","sha256":"ae73d13a3857a4376a6ab41a3ae30c74f28c78c4be8ecf16db6470984356a7ca","url":"/topology/test_map_050_RAW/ae73d13a3857a4376a6a/test_map_050_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":26.796,"map_name":"test_map_050_RAW","variant_revision":""},{"id":"scn_mp_custom_map_31","map_id":"test_map_051","variant_id":"source","pool":"medium","source":{"sco_sha256":"3b51def35b5f89b0c7b52b0262bbe61a1396ae9af393195e119e55d516ce447d","recipe_sha256":"b392fa669e571c2df320d747d6cc8a85649955eb187befda550667f6c66188cf","terrain_code":"0x00000003b282050a000dc3705ee724974d3f9e74437ec609"},"height_data_sha256":"7c718f1bb38f962ae85f9ffcb604d5af933e625786c3670f1df745284f1b3677","sha256":"adc53c73224bf7dfe774a6473b60af614bcf65e292afd43f1490faf5761a5833","url":"/topology/test_map_051_RAW/adc53c73224bf7dfe774/test_map_051_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":28.781,"map_name":"test_map_051_RAW","variant_revision":""},{"id":"scn_mp_custom_map_32","map_id":"test_map_117","variant_id":"source","pool":"small","source":{"sco_sha256":"8715d187eaaf543e24f94d6e8787644d293fa069e6c17f5cf40fa2accbbf6800","recipe_sha256":"ee5c1fdae4a571fd6bc1629117fcdfc58d6786287ff379a9ba2c5626e237eff0","terrain_code":"0x00000003c282088a000b42d00a56e3f6601e6ec25ef63cb1"},"height_data_sha256":"33f7c5ead069cc3b936c08984ad2d4ab1a106b206d9ec032a0741716df730ffd","sha256":"47e26e4f5b6bd286737e190181b0bcb60427c95d60c1b4c18483d2ed69c5d56c","url":"/topology/test_map_117_RAW/47e26e4f5b6bd286737e/test_map_117_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":29.372,"map_name":"test_map_117_RAW","variant_revision":""},{"id":"scn_mp_custom_map_33","map_id":"test_map_052","variant_id":"source","pool":"medium","source":{"sco_sha256":"95b5d12d1946a9d7c9cb422e2d9f5a8caefcaf27635b9b783379bb40038d15f2","recipe_sha256":"300b555ceaa9c86d2210a971a5f6c0ca7ece4369e08b1d23399b6d5a612d9ad5","terrain_code":"0x00000003b282060a000dc3705dd8adc76e8bbba1095ad586"},"height_data_sha256":"e17a4d4614bfc1c999f101a0b6f0f50a2646eb110c21a92cea99e67b27bc1b37","sha256":"65692065b862fc144212bdc4913455fa43c479b7da0725a311dea7f93cde6d81","url":"/topology/test_map_052_RAW/65692065b862fc144212/test_map_052_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":31.274,"map_name":"test_map_052_RAW","variant_revision":""},{"id":"scn_mp_custom_map_34","map_id":"test_map_144","variant_id":"source","pool":"tiny","source":{"sco_sha256":"6e71938ce6efd4643f868e1ffde6e8b1fa08c7b0a54497526566e5c8078f5926","recipe_sha256":"ad01bf822d6560ceda868327ee7f15d32862b0341c1fd6a0bbe35c1b527de32f","terrain_code":"0x00000003c281c48a000962580d5b84a2029d66b847ab8a9c"},"height_data_sha256":"9e1f45f06af585d07c77cff5b4ab9d48c45ff3b286533818e202a6704a7ed839","sha256":"fb991a449b3a7a899365a23286728529f569aa13e349b4896b01cc2692338469","url":"/topology/test_map_144_RAW/fb991a449b3a7a899365/test_map_144_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":16.243,"map_name":"test_map_144_RAW","variant_revision":""},{"id":"scn_mp_custom_map_35","map_id":"test_map_053","variant_id":"source","pool":"medium","source":{"sco_sha256":"0f59752244d0af97a01b4f2ca4e55ec78e88c02547fff1e9064d7324c403916e","recipe_sha256":"cca12696b2ac6b40f99ddf45498b5a1e10f15439f0841113e10dc6206d4801b3","terrain_code":"0x00000003d281450a000dc3702c2e33800c557ddb3948eb08"},"height_data_sha256":"fc04eefed9c2a8c6cff3b275074f141e74aaaf257dc43f6c81ddeb7f52aa7ad0","sha256":"f70a8a33398060cfb8a68ce10366c2329958a904b3845b633894e751aab5af4a","url":"/topology/test_map_053_RAW/f70a8a33398060cfb8a6/test_map_053_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":18.243,"map_name":"test_map_053_RAW","variant_revision":""},{"id":"scn_mp_custom_map_36","map_id":"test_map_054","variant_id":"source","pool":"medium","source":{"sco_sha256":"a6a3e718cbb60581bd1eed96f84330f69a71f174a5fd53f22846a467d7492b22","recipe_sha256":"1d6b4659d6b137badafadc187649cdb925e19622546141ded362abe6f6ce8eb6","terrain_code":"0x000000034281450a000dc3702c2e33800c557ddb3948eb08"},"height_data_sha256":"440ea4776bee29054d53121d3303689180d0255907eef4c491d6c8057e56de37","sha256":"d00a2c0f40945c32cd86847953c173fc9ef1d18d637005fb66ba2bda099dba8b","url":"/topology/test_map_054_RAW/d00a2c0f40945c32cd86/test_map_054_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":18.243,"map_name":"test_map_054_RAW","variant_revision":""},{"id":"scn_mp_custom_map_37","map_id":"test_map_055","variant_id":"source","pool":"medium","source":{"sco_sha256":"2e34f39056644f388acebcb5891e94ae9d566531bfe50b4253f33dbc810141e9","recipe_sha256":"771fe8d88a91a6bc45a2930348c7df8dca65fd94efb529b098934c2333dca611","terrain_code":"0x00000003a282440a000dc3703d0f403d65ca0c8562958df4"},"height_data_sha256":"a9c8761e1c3a8c0848c63c371e862aa98b2afa5f56873e51ae9529d6e75143e8","sha256":"9132db2e6f6657aa9b8e2db9abbe007ad5bc0a578064cd7482a70ce424ab7b19","url":"/topology/test_map_055_RAW/9132db2e6f6657aa9b8e/test_map_055_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":21.136,"map_name":"test_map_055_RAW","variant_revision":""},{"id":"scn_mp_custom_map_38","map_id":"test_map_056","variant_id":"source","pool":"medium","source":{"sco_sha256":"4c09379b2a5b798123b25eca1e36d1992c2efcd90c649eeb741bbee5aa281932","recipe_sha256":"4a1d568178cf24836e5bf3d86558bfe7f331fe8eec131887d44957c064fac94b","terrain_code":"0x00000003c282870a000dc37035cf27dd6970c3d60240e3ab"},"height_data_sha256":"816a5c82c4e254d59e3d840b3e3af7b96b02ea0c5c5915252c8dda887d77aa01","sha256":"7a6254d05274547a8a3d6d7b4d1504c8e0a6beb5d39ad7f5b0bd3e06eb5fcfbf","url":"/topology/test_map_056_RAW/7a6254d05274547a8a3d/test_map_056_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":43.819,"map_name":"test_map_056_RAW","variant_revision":""},{"id":"scn_mp_custom_map_39","map_id":"test_map_145","variant_id":"source","pool":"tiny","source":{"sco_sha256":"48a961e38fdac8127b53ff62c7f898158bc0332e311229ab4db329176084232e","recipe_sha256":"1f1f69edae64e8455873a6bafaff78c7d18ac9982c7f4600dd13aeef9ecb3967","terrain_code":"0x000000033282860a000962580ec83b267a3faff063a3d6c7"},"height_data_sha256":"55fe1d9283cd225bcbce6e307ceff809a05afe17f6a6126bc2998bae277168a1","sha256":"cc98fafafd9ce978442df536fe93d0e68a0f4454871f190e5d0dbf02116a8cec","url":"/topology/test_map_145_RAW/cc98fafafd9ce978442d/test_map_145_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":20.498,"map_name":"test_map_145_RAW","variant_revision":""},{"id":"scn_mp_custom_map_40","map_id":"test_map_120","variant_id":"source","pool":"small","source":{"sco_sha256":"cfa1a4c86256db536d4ce0358343344ebf66f850bc54ce86ada52c4206e1a9d9","recipe_sha256":"178081b04f9adbaa49482b8e8ea1fe84d3bb84602472a58fd3fa29fd7c66e062","terrain_code":"0x000000033283868a000b42d072e42ddc29fdf26f630c0889"},"height_data_sha256":"4c40071cb788d58357f8e89dd274b7c02eae28ee39adcb0bfbb2ed998fbfe46d","sha256":"79d11579f9ed0c749277587039b227bc78e80eea0fa1219d7c01fd60d42d99ae","url":"/topology/test_map_120_RAW/79d11579f9ed0c749277/test_map_120_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":32.001,"map_name":"test_map_120_RAW","variant_revision":""},{"id":"scn_mp_custom_map_41","map_id":"test_map_121","variant_id":"source","pool":"small","source":{"sco_sha256":"0aa580b82b617c95976b5cccf24ee3d3c78177007fb413e69b3e84f85f5e89c8","recipe_sha256":"3001dc861627d78f76c10f97ff8b5a664c9a743ff2c84b6945d7619807e4e25a","terrain_code":"0x00000003d282c68a000b42d01f82978a343de09b1f95deac"},"height_data_sha256":"413e2f0b4a1ca7cc059c1f8d053b3a91b0e411c8f03a7c2b9f334be844c4ebb8","sha256":"d5e912e83c28a82209336bf79bb15b015fe96787c6475847e0a3f338b705fe74","url":"/topology/test_map_121_RAW/d5e912e83c28a8220933/test_map_121_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":22.37,"map_name":"test_map_121_RAW","variant_revision":""},{"id":"scn_mp_custom_map_42","map_id":"test_map_122","variant_id":"source","pool":"small","source":{"sco_sha256":"f4e7208de15637d67705354cc6a841096bf237e8508d5fe436df0adbe11aced0","recipe_sha256":"0c3dc9ce87fe0b054c44271d0056fb6b9bcb633acad388132c1b3877405e5080","terrain_code":"0x000000034284050a000b42d073a21ef66ba27d185621c7d9"},"height_data_sha256":"d0a4875230922ac44e6e30e1f7c8d659e0d731b2da9fceb35d96f4e9a0868b79","sha256":"50ef785cef4aaa46b53795fad05acf9bd5bf87d01603f0612622a915892727f7","url":"/topology/test_map_122_RAW/50ef785cef4aaa46b537/test_map_122_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":25.397,"map_name":"test_map_122_RAW","variant_revision":""},{"id":"scn_mp_custom_map_43","map_id":"test_map_146","variant_id":"source","pool":"tiny","source":{"sco_sha256":"2a23e9ffdf5485c5526593699d3d41478a2289e433537588fddf4a60729a99a5","recipe_sha256":"3735c4ba78c785535e5c3bebcb8e4298cfea98d585cff5715ebdf15221a12101","terrain_code":"0x000000034282468a000962582590b53100c7c6c577d1cd0d"},"height_data_sha256":"3707d74cac14414351674cd7630defe9fffcbf5104e8f6249f00d2528dfcc1c3","sha256":"2d403e27e9d420ebf0907e175f81c9ab815cfd524c48deaa92cf36237319800e","url":"/topology/test_map_146_RAW/2d403e27e9d420ebf090/test_map_146_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":25.988,"map_name":"test_map_146_RAW","variant_revision":""},{"id":"scn_mp_custom_map_44","map_id":"test_map_124","variant_id":"source","pool":"small","source":{"sco_sha256":"27088fa516d536c6d0217ea718e52e79484dd6d1fec85b49bc841bc41e87f739","recipe_sha256":"8c779a2ef520696dcef811a0268b056ac9d60354de0933edecaf2687cfd61e3b","terrain_code":"0x00000003c284c70a000b42d0540e9a02079aa9c129d75d02"},"height_data_sha256":"8b4eda13e48a4f6507e7c000547758961fd9c63c627482685be91be46fa1789d","sha256":"31b7cf9bd3bfc0650ec3e5cc35d8869fb13efff660314c87655c42f5a2171e61","url":"/topology/test_map_124_RAW/31b7cf9bd3bfc0650ec3/test_map_124_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":31.398,"map_name":"test_map_124_RAW","variant_revision":""},{"id":"scn_mp_custom_map_45","map_id":"test_map_125","variant_id":"source","pool":"small","source":{"sco_sha256":"c8618f867cc1fbdd446874c1da29454f845594011ac36410dc1739c3b165545b","recipe_sha256":"d6ee468330261a342bc8f82e8ea96b47e06ed0a36e119abb3b6af0d86628a2b7","terrain_code":"0x00000003d281c58a000b42d05217f97a190e0f4e57229eee"},"height_data_sha256":"086a22010e1b2c52833c7dbda934f3ebbac897f8c9fa41fd31090132532abc2a","sha256":"e6a4c5747d34e45740b44b932edbb3b17d864fea13b3b14686661aeef64bea29","url":"/topology/test_map_125_RAW/e6a4c5747d34e45740b4/test_map_125_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":20.97,"map_name":"test_map_125_RAW","variant_revision":""},{"id":"scn_mp_custom_map_46","map_id":"test_map_057","variant_id":"source","pool":"medium","source":{"sco_sha256":"f62d96943d9bcd0f3b368de066bb371e402d2b2bd8a6d157a986447aab4ec5df","recipe_sha256":"8a1644870903a295d2259a5da7e2b87d37e537559d79e403d1bf7a2dc42300c9","terrain_code":"0x00000003d282840a000dc3704b7f5ce51a2b229764506e9f"},"height_data_sha256":"1bb727c400545e376aa15d55bc0f384a6ab419ab3c8da505307341fa2121e4fd","sha256":"2b9ae91c7dec72350019f1b336542c30851f6ac04666fccd444eb001e51c85f0","url":"/topology/test_map_057_RAW/2b9ae91c7dec72350019/test_map_057_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":23.635,"map_name":"test_map_057_RAW","variant_revision":""},{"id":"scn_mp_custom_map_47","map_id":"test_map_058","variant_id":"source","pool":"medium","source":{"sco_sha256":"2de967f0c91ffa95e738233f10930da716ea9634182b992ea85db60d753e84d2","recipe_sha256":"ec8ccc99eff3d978d44eac2d9b33bf445b3faca175142802cac12910dffcb562","terrain_code":"0x000000033282078a000dc370487ee7444a4eac524485777e"},"height_data_sha256":"33ca4038380103c27f84060af2d62928920a68d1530410458ff2fab812055640","sha256":"d33e1870ae2c93bce75187f0c5c0f754ff010f57d21890132792e85f4c89eff3","url":"/topology/test_map_058_RAW/d33e1870ae2c93bce751/test_map_058_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":43.772,"map_name":"test_map_058_RAW","variant_revision":""},{"id":"scn_mp_custom_map_48","map_id":"test_map_126","variant_id":"source","pool":"small","source":{"sco_sha256":"9604836fa22cc03ee6f6e04647b51a5e69a7423a279aab42c85ff965f5a2cec1","recipe_sha256":"4c62a9dbf2017d56c8a481df1bb3b0afc5e3db3d021ba8c554b52f233d72c2f2","terrain_code":"0x00000003c282858a000b42d02d62924a6ac16c09419786f6"},"height_data_sha256":"ea2b8856ae1b917e44d6ad208f68cef58c31a5608d9c7b324d5fc72f84141809","sha256":"730f0a18bdc2fa50a7baba39580e010767245173c8bc7cb4cf9066b86c2d8394","url":"/topology/test_map_126_RAW/730f0a18bdc2fa50a7ba/test_map_126_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":21.667,"map_name":"test_map_126_RAW","variant_revision":""},{"id":"scn_mp_custom_map_49","map_id":"test_map_127","variant_id":"source","pool":"small","source":{"sco_sha256":"3deec674f7292b55a06112f46128a2e786f14f86b7adf1a2147c43ecfc3ba028","recipe_sha256":"3d9e18d2ecd4e9f1f66314578a1829036e2a1529cbfddebbb6a99d646f6e83ed","terrain_code":"0x0000000332848a0a000b42d0066d93be7889cb833573e5da"},"height_data_sha256":"67f9c172ca87369c1614fb9d6cbc4d6a2169ef6e447c44fa0b132412210bc56c","sha256":"4f96cf127195c65f15be8c49016810d95c531c2db5c8cc2560385fd23e32145a","url":"/topology/test_map_127_RAW/4f96cf127195c65f15be/test_map_127_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":38.169,"map_name":"test_map_127_RAW","variant_revision":""},{"id":"scn_mp_custom_map_50","map_id":"test_map_128","variant_id":"source","pool":"small","source":{"sco_sha256":"648dde1b4447d282a0b4b63426acaf6c11d042b510b5f1291bcca58af3605c1d","recipe_sha256":"b27b7cfda96866571892e3965b5fee74721a909d45b61f93bcc2d316a81687db","terrain_code":"0x00000003d282070a000b42d05dbe82d16c6b4eb528eafc21"},"height_data_sha256":"e3c3a9721548a947c835304d153c2a93154166be6ec6dba6e2aa16ce2d8d3c0b","sha256":"d708e5309ec93d72641ee75255098bb5dc090932fd84e2d86a852b95fe71ffa5","url":"/topology/test_map_128_RAW/d708e5309ec93d72641e/test_map_128_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":31.36,"map_name":"test_map_128_RAW","variant_revision":""},{"id":"scn_mp_custom_map_51","map_id":"test_map_129","variant_id":"source","pool":"small","source":{"sco_sha256":"e4af778f0ae6990b4b6e54bb63a902bc86b98a472cc42b8f86dda2f18993e457","recipe_sha256":"8df279c5f1712cee82946f26cbf26d17a83ed92e8af728cdb2ceaec278a147e5","terrain_code":"0x00000003b281468a000b42d004bd82a01bc574590e2fe8dd"},"height_data_sha256":"a89ccfa55cc6be831e097f77518dc510bc12b5e594072a7eb4610f8744753b9a","sha256":"246bb8525e333924bc37da079bea9c693843b46e728eb33994383e1942745b78","url":"/topology/test_map_129_RAW/246bb8525e333924bc37/test_map_129_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":24.952,"map_name":"test_map_129_RAW","variant_revision":""},{"id":"scn_mp_custom_map_52","map_id":"test_map_130","variant_id":"source","pool":"small","source":{"sco_sha256":"0063b2d14139dbd1207598446b00880302f2511323907f40ddaf96e6fb408086","recipe_sha256":"e976bf9747f187443e3e8c3733f7c8359b07affb1fab0f624dd540751cfdc0b6","terrain_code":"0x00000003a283c68a000b42d04aa998695f1762db4f1cd71f"},"height_data_sha256":"430113f5e545301bf67dfa535ec3e685dd49bbf84377b8a0972dd7611a9c9c69","sha256":"f98c383b20fcf9a7ea7ab582b2088ab1fe6468a6371356ed0628c80501099938","url":"/topology/test_map_130_RAW/f98c383b20fcf9a7ea7a/test_map_130_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":25.688,"map_name":"test_map_130_RAW","variant_revision":""},{"id":"scn_mp_custom_map_53","map_id":"test_map_131","variant_id":"source","pool":"small","source":{"sco_sha256":"cb6ae9d1898aaf1a54a28bf55a88d5f31b598910c15f55f1c0ba915ac77d5bcc","recipe_sha256":"981803d60959d71d0996db3d57c1361a199d09bbfab2f4ae4e09abe0327210e8","terrain_code":"0x00000003a284878a000b42d0494ac5902ba96451248f512a"},"height_data_sha256":"2d92f0dee51491f57cd42c8b15cd943a660c83e9b3ec1b5179be67d775fb839b","sha256":"0ee6bdfd6f17d62b930d1aac7c93158d07eec13cf1d0b5b0364d6f26be82e38c","url":"/topology/test_map_131_RAW/0ee6bdfd6f17d62b930d/test_map_131_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":32.291,"map_name":"test_map_131_RAW","variant_revision":""},{"id":"scn_mp_custom_map_54","map_id":"test_map_132","variant_id":"source","pool":"small","source":{"sco_sha256":"0eae3b3fd740d6678345e9134fa08b9708731d1aefb477ef3afc071d5523e5d1","recipe_sha256":"292a66031132f99580a352bb625f3385c760a06b2e27313d688f8f9a5e248aea","terrain_code":"0x00000003c284060a000b42d0742686f14f2c90b049c6434d"},"height_data_sha256":"043caaebe343cf95bcf8d92ba2109cbfa7dd055249cfac08cc6bf02934375133","sha256":"f4f4d0ad898466aebfbdc3e073fa62d57c4fa67a447ead3e2b932d9fb6d29735","url":"/topology/test_map_132_RAW/f4f4d0ad898466aebfbd/test_map_132_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":29.456,"map_name":"test_map_132_RAW","variant_revision":""},{"id":"scn_mp_custom_map_55","map_id":"test_map_133","variant_id":"test_map_133_AnnaFreud_VarA.placements.json","pool":"small","source":{"sco_sha256":"f9634c8a8f89dd12248e196f0eaf9f431803c3b9fdc0d02a445067aa7ff4e868","recipe_sha256":"ba6ad6ebe0bf89288237a0fe9acd99667331b196793284c130e546fc815452c9","terrain_code":"0x00000003c281498a000b42d04713bfa113a11b595f4c0b19"},"height_data_sha256":"8df625468466a9c19e99dd554407403f03a9441e5b747c612114f531cab73869","sha256":"217bbb5a2d3db1d086a1175c0b6982d18b4b2e08300b25a1fb5e43dac11b047e","url":"/topology/test_map_133_VarA/217bbb5a2d3db1d086a1/test_map_133_VarA.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":33.507,"map_name":"test_map_133_VarA","variant_revision":"35cf9e1e8f300a7cc17dcc8194c3ccdb458cce6139c460980197c38d4318e7c2"},{"id":"scn_mp_custom_map_56","map_id":"test_map_134","variant_id":"source","pool":"small","source":{"sco_sha256":"5691f9c1ea323699009ed2f78bf7dd999d367448c585b68d2d43b3345b50b0d0","recipe_sha256":"3920a4467ed75792b21c9c5387c5b132de294e192deadc124b7a26fbc62083f4","terrain_code":"0x00000003c283c50a000b42d06b1fa29a3ad11baa1b0e74c1"},"height_data_sha256":"8bd46d7319e1acb7e0ec39214b1566978ed84a0f1ffd9461ef1b383332821961","sha256":"f7c6c23eb3d045f764dd1a3ebc8d41b221b91948deed14397105700f4485eaf4","url":"/topology/test_map_134_RAW/f7c6c23eb3d045f764dd/test_map_134_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":33.456,"map_name":"test_map_134_RAW","variant_revision":""},{"id":"scn_mp_custom_map_57","map_id":"test_map_147","variant_id":"source","pool":"tiny","source":{"sco_sha256":"7746473b1b57f1067d591aa003c1cf82c0800409ade241c162d76fd8aae51cdf","recipe_sha256":"b2a21bf6937bada4bc7a6f534660a0c7ef3f630a2bcfc8732e8914ada6955d8d","terrain_code":"0x000000033282888a00096258560f1c16511eab795b166185"},"height_data_sha256":"548139a7cef1bd82baf7e76a0bbbba7355d92ce422f38f23c5243570704c2776","sha256":"7eed68ba854759876df4136b2ec89c2d2a13591f88f0b325568708f811b1551b","url":"/topology/test_map_147_RAW/7eed68ba854759876df4/test_map_147_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":23.597,"map_name":"test_map_147_RAW","variant_revision":""},{"id":"scn_mp_custom_map_58","map_id":"test_map_136","variant_id":"source","pool":"small","source":{"sco_sha256":"3611f54d65425724cc5abddb4aa743b2eda82e9674f3ecc79af5930cdc6d14b9","recipe_sha256":"7ee29ad18b0a5e2cacaa56408c0d91cd3823f21a88b55965141df0beb94956a9","terrain_code":"0x00000003b281860a000b42d016b9464c70dd55e709520583"},"height_data_sha256":"292b23aafb98e158acf52af7437c6d479b3bf49213fde7fef6e0e5c6332cd545","sha256":"8de69e3fb309b8410b007a717b76cc549261aa25d9202a3e54c51e67fb0eb37f","url":"/topology/test_map_136_RAW/8de69e3fb309b8410b00/test_map_136_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":31.97,"map_name":"test_map_136_RAW","variant_revision":""},{"id":"scn_mp_custom_map_59","map_id":"test_map_137","variant_id":"source","pool":"small","source":{"sco_sha256":"e1053abee4a42ffcdb6129e4bd48d24dc3cc8ca9ee7e91f7ba427ea755d9031d","recipe_sha256":"45b80f7a7316a9cd2d75bb09721530ff5709ecbad7a6d9ce03772ebe8dbd80f4","terrain_code":"0x00000003d281c88a000b42d05c7faac26d781e8023c2a87d"},"height_data_sha256":"2dd990b2e83488f004e41f4c3cc79780cbf5a9fb0f4cf4345d5b7a171c3824ff","sha256":"d261df52775cd93d916b54330053bb36b40c0b1cb56cd5f794a16ce64f90442b","url":"/topology/test_map_137_RAW/d261df52775cd93d916b/test_map_137_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":42.979,"map_name":"test_map_137_RAW","variant_revision":""},{"id":"scn_mp_custom_map_60","map_id":"test_map_138","variant_id":"source","pool":"small","source":{"sco_sha256":"150d55911f7dc44c60e0b4a5b66ca8072b883d8769d59fa505a85f2845077394","recipe_sha256":"5c8cc42b9d21f3e509adbd7a5361a2a76d0cb2c6ac3f739cedecc3f6c9819d66","terrain_code":"0x000000034283480a000b42d042c9fd5f459dc90e5d9ded7a"},"height_data_sha256":"6fd1e054cda3c920c28e033c3250ee2e9265677ffa4e6e3955f53d73cf373020","sha256":"e08065e3d62cc276821c9a041a64d45eea3840d99b97ea586074159a4718bef3","url":"/topology/test_map_138_RAW/e08065e3d62cc276821c/test_map_138_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":41.951,"map_name":"test_map_138_RAW","variant_revision":""},{"id":"scn_mp_custom_map_61","map_id":"test_map_139","variant_id":"source","pool":"small","source":{"sco_sha256":"97e43654c127a00f2ebd0fc665ff3deb4a1d4722e83c58b307b654a5ddb24a70","recipe_sha256":"1deaee3c3ca2e89132852b76161ee5db3a6b9a2098d556162add79db73698ec0","terrain_code":"0x00000003b284890a000b42d02b40dc5b686aadd670659d7c"},"height_data_sha256":"66e4be16f6c90d3089568f7d139390ca630c6ee93b0b2551c32da788210993be","sha256":"4c612fa39e7a5cd401d706ba901788af88d1012a0addb6dc0c931b3d3d10a89a","url":"/topology/test_map_139_RAW/4c612fa39e7a5cd401d7/test_map_139_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":38.294,"map_name":"test_map_139_RAW","variant_revision":""},{"id":"scn_mp_custom_map_62","map_id":"test_map_140","variant_id":"source","pool":"small","source":{"sco_sha256":"900dc2a4bf1aa13747081ac63645d12f414e5af9e0ad031be5575095b5fb869e","recipe_sha256":"e5cbfd2df411bc8267710afe12ad01cc28ecd81e5838d8843ffc9578048405d1","terrain_code":"0x000000033285058a000b42d0125de8cc7f9997ec6a3c20b2"},"height_data_sha256":"4beaa1a9d3fdeb842214d9e8453810183a9c379a5c03b8ad8068869b9123885d","sha256":"69a9d0f8f8cf2ed204196c804e95e4b02f82b0d2227f29110ce986b443345d7b","url":"/topology/test_map_140_RAW/69a9d0f8f8cf2ed20419/test_map_140_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":696.0,"y_max_m":696.0},"relief_m":25.25,"map_name":"test_map_140_RAW","variant_revision":""},{"id":"scn_mp_custom_map_63","map_id":"test_map_148","variant_id":"source","pool":"tiny","source":{"sco_sha256":"a69b51f97b3611c89aca19d586c2d6a7dbe67e2b81473521884816d071fa5cfd","recipe_sha256":"1a61e100b29bc893e564aa0fc7bb6ac62fe0702625d9075f3c6e23462688fdfd","terrain_code":"0x00000003c281858a000962582c69e41b68bedc5269aecf1c"},"height_data_sha256":"cfe1c468e923e0f4d656fc84cd1959e444e45e262fc404fa26515f956d68c766","sha256":"2b2f4ce54b8cd4815f47103410e9d40dbeedc92399f50bba300248f1a2531d30","url":"/topology/test_map_148_RAW/2b2f4ce54b8cd4815f47/test_map_148_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":19.726,"map_name":"test_map_148_RAW","variant_revision":""},{"id":"scn_mp_custom_map_64","map_id":"test_map_149","variant_id":"source","pool":"tiny","source":{"sco_sha256":"530a4f21c02f5037f45e19c41e9bdba5f9be8c26b9d274a75b569b36078e0de9","recipe_sha256":"6f0fa40e3c57f5d7de5d7f8b6451d28c21bfc12d48bc37394d4563d1a5cb831c","terrain_code":"0x000000033282048a000962583d4eed4f2accb50d2a9bbba7"},"height_data_sha256":"4f0ea4e11a6cad62007980189a64530afa59401a365c05a0f09fc2364843ed90","sha256":"6d1d5bf7424f87749bcca30efddfd0dc32424f1fb85daf7bdacf927390408d75","url":"/topology/test_map_149_RAW/6d1d5bf7424f87749bcc/test_map_149_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":14.133,"map_name":"test_map_149_RAW","variant_revision":""},{"id":"scn_mp_custom_map_65","map_id":"test_map_150","variant_id":"source","pool":"tiny","source":{"sco_sha256":"62ed20b0211049911cb7f9b10ebd0743b3cbc3759209ea277ae920aff87de906","recipe_sha256":"964c2dd99bc7157c03ebf9d7e1099551da7199d4b427ebbb29a26d972937c9c9","terrain_code":"0x000000033281c88a000962580ba70c9e692e04034ace779f"},"height_data_sha256":"e0ca732908a76e6a3e2831e31695a32d29889966680beeb41c187d21cd48c28d","sha256":"c318fcda0a86567be958f8f79b0875ce2d19965506983596740ac059418394ea","url":"/topology/test_map_150_RAW/c318fcda0a86567be958/test_map_150_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":32.107,"map_name":"test_map_150_RAW","variant_revision":""},{"id":"scn_mp_custom_map_66","map_id":"test_map_151","variant_id":"source","pool":"tiny","source":{"sco_sha256":"114b3a864986f2896c6f8fdc1b1812f3bc8aa96291a15697546be422e1045804","recipe_sha256":"17c1c8f5cbd57b46b48480a75496ddde09a0e64451a61d1cb38cd22bd489054b","terrain_code":"0x000000033282440a0009625828d9af2311bc424d79b48abc"},"height_data_sha256":"5ece4ae8f867ae42ebe6c7a179801ba3735008157fea7bb1e65391a0a6ae3578","sha256":"a945e67cd1195faec27fce6e6d7aa7c2ae0cd172434ba729736a881555bb635c","url":"/topology/test_map_151_RAW/a945e67cd1195faec27f/test_map_151_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":15.476,"map_name":"test_map_151_RAW","variant_revision":""},{"id":"scn_mp_custom_map_67","map_id":"test_map_152","variant_id":"source","pool":"tiny","source":{"sco_sha256":"f97310b0cc0c34d18d416d1dec81b420376a4d578c831d1dc9686110ccdc0b0f","recipe_sha256":"b9a5157921538f2a7dcd36c6dfcf2df16ca091f604886a0ceb2d0bf31ed14755","terrain_code":"0x00000003a282058a000962583073c5cc210e9a4661ababcb"},"height_data_sha256":"13aa84c371937e3bbc0652f105ff7672f79cf9fcbc105f124b355165f193be85","sha256":"219c040fefaf040f0af57a74300c7ddcc5cf4762d4d8999749661a032a33884f","url":"/topology/test_map_152_RAW/219c040fefaf040f0af5/test_map_152_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":18.058,"map_name":"test_map_152_RAW","variant_revision":""},{"id":"scn_mp_custom_map_68","map_id":"test_map_153","variant_id":"source","pool":"tiny","source":{"sco_sha256":"88e0229a504ee1746448b8db487dda17186a38904a1cfeef91ce84fe78bb42ad","recipe_sha256":"51052296d2b958c0a7c3b987eaade54c23f743dbf43700eb2bd8a94832353e7a","terrain_code":"0x00000003d2828a0a0009625839b3c42b7bbd6b6d4580e5c5"},"height_data_sha256":"5002a4acf5cd82723fe067159bcf0b957c6a8fc88935cd8d5552a36186c73954","sha256":"580fd7e5019fac9e3479f4d835cb2df23e8b3b1b837d97c2203000cad3ce3056","url":"/topology/test_map_153_RAW/580fd7e5019fac9e3479/test_map_153_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":29.346,"map_name":"test_map_153_RAW","variant_revision":""},{"id":"scn_mp_custom_map_69","map_id":"test_map_154","variant_id":"source","pool":"tiny","source":{"sco_sha256":"5ff24756d3424b5273aec9fb34a91606705b4013fcb99802929b75902b265b01","recipe_sha256":"144772a2daaf89485a68c643ffc22b307751d67797d03f821a72757e92f9f86e","terrain_code":"0x00000003d281478a000962586246b21b69401ff04dd5b238"},"height_data_sha256":"4570909c8b72274dc559b7fe5dd599e3a6fa7ea040e7ea7148af9811cd2f6788","sha256":"809a847143cadd706195382cb0c0df5768ffe8fd61102de5ce30b4dc1997e941","url":"/topology/test_map_154_RAW/809a847143cadd706195/test_map_154_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":18.175,"map_name":"test_map_154_RAW","variant_revision":""},{"id":"scn_mp_custom_map_70","map_id":"test_map_155","variant_id":"source","pool":"tiny","source":{"sco_sha256":"cd3a1856b8bd6502d8fb629df09a49adcf20087b6562833e849de9439a1a80d7","recipe_sha256":"74e0fb9e99997c736e8835c15bc65127a0a0cd4072b3271c76e43340b968add0","terrain_code":"0x00000003b281860a000962582b5f542e7bdf490c6a4237ab"},"height_data_sha256":"a6631f426444097516493918600d0739b639f49fafdfa4d2f49a6c93b7100ffd","sha256":"b61f779ff1b185ddc42cbbcaa80341a19c134daba42032af2510b5713bf2e458","url":"/topology/test_map_155_RAW/b61f779ff1b185ddc42c/test_map_155_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":21.791,"map_name":"test_map_155_RAW","variant_revision":""},{"id":"scn_mp_custom_map_71","map_id":"test_map_156","variant_id":"source","pool":"tiny","source":{"sco_sha256":"7b3f90703e548abb0b191ac0924e7ee29a4faea1f409009fd52f357f2b34a100","recipe_sha256":"7032d575a06ecb9c95a2e19fdabaa35b39d00cdb6f71806cf4b7373bbb2198d3","terrain_code":"0x00000003c281c60a00096258531f45687d21f13d3fa09bcd"},"height_data_sha256":"2602775451cd72714f26cd772db83a04537faac5e2eeeebe903b533f0396acee","sha256":"e0328552fe7d2781f6cc78ecbc74144b59a8b1775ec1d86bb973cce26b62080a","url":"/topology/test_map_156_RAW/e0328552fe7d2781f6cc/test_map_156_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":17.326,"map_name":"test_map_156_RAW","variant_revision":""},{"id":"scn_mp_custom_map_72","map_id":"test_map_157","variant_id":"source","pool":"tiny","source":{"sco_sha256":"534166b0252c5930a2b9b8768d03fcdef9121750b0433ca929d76559f64ac2be","recipe_sha256":"0424d1c33bf8cfa285359021a94460fd16fb286fb36393a3214fd1b0787f7d2e","terrain_code":"0x00000003b281488a0009625815d4f947361dc30151b9f413"},"height_data_sha256":"2cafd405dd5e2a727f42f2159b7296954f551dab0720537c8e1693e6c5e1eaf4","sha256":"c57018519224721fb87da41839b5ff93aa1cab610753a2de78428b22be05ac25","url":"/topology/test_map_157_RAW/c57018519224721fb87d/test_map_157_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":46.883,"map_name":"test_map_157_RAW","variant_revision":""},{"id":"scn_mp_custom_map_73","map_id":"test_map_158","variant_id":"source","pool":"tiny","source":{"sco_sha256":"5d20870462ce0e218d0016c6d006f3ef25f157db40826f9e659c33b21616fbbd","recipe_sha256":"fe367834142d01fe4748a0c632ac79d3ee340762b107eecb377da9c4c0175758","terrain_code":"0x00000003b282098a000962587b74813369f4d402208e9ba3"},"height_data_sha256":"5e345ec2467af48932dfaed79c90f8caff3280662996e725bad90c867368ff67","sha256":"e961fdbfc8af78464826e8a5e30b51de8f4bc83d3663e3fa0b38e5ca3ffb2bf7","url":"/topology/test_map_158_RAW/e961fdbfc8af78464826/test_map_158_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":38.884,"map_name":"test_map_158_RAW","variant_revision":""},{"id":"scn_mp_custom_map_74","map_id":"test_map_159","variant_id":"source","pool":"tiny","source":{"sco_sha256":"f0429fc87ae14b76e663b0dd054cb1b7a0bf71c58f64e6e17110282bab967d2e","recipe_sha256":"dfc376447aff2f3d1cd5355d51a0c7e517db6d08a8ce32e6269d8f85f7de86e8","terrain_code":"0x000000033282850a000962583e1d87534e7b1a597e1442f1"},"height_data_sha256":"0c7b96eb6f72c57fe84590b64cfec2c43a46ba29ba0e1ba8a30ec2769a950820","sha256":"4ea7db7b6d683b736083cd211d381ffa574c8018d0fc1f4997d27e842ef5e79d","url":"/topology/test_map_159_RAW/4ea7db7b6d683b736083/test_map_159_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":18.347,"map_name":"test_map_159_RAW","variant_revision":""},{"id":"scn_mp_custom_map_75","map_id":"test_map_160","variant_id":"source","pool":"tiny","source":{"sco_sha256":"62ff42013dc0f3cf66546d1b3bc9e973b14b53106b449a15aeff16b91d81790f","recipe_sha256":"12cefa18ccea0e87f385d0b3abc67a44ffe50e9a1ec2b395dd983a745b822d05","terrain_code":"0x000000033282860a000962583f43c6cf43fe51fa788b7aa9"},"height_data_sha256":"28698237fa2619b2ea36cf084779319516fc60623e671bc30db31304143b861c","sha256":"8ec2fb5a05e5b9e40295c346767071d4ba4b168d0897bc4dadad1271f788bf4a","url":"/topology/test_map_160_RAW/8ec2fb5a05e5b9e40295/test_map_160_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":20.512,"map_name":"test_map_160_RAW","variant_revision":""},{"id":"scn_mp_custom_map_76","map_id":"test_map_161","variant_id":"source","pool":"tiny","source":{"sco_sha256":"cfc2a9b1b86822a54fcb5b76f6dc460a2cb81feac2ba269a59d65fb95436fbab","recipe_sha256":"8e9df249239b23b0c7d948e9790052e5f11eb303eab7fefb5d92d6d89869fa59","terrain_code":"0x00000003d282090a0009625857c019a646a7ffdf38ff3c07"},"height_data_sha256":"adec10dc2bd8e30101aebff343dbf76ec75889515d94cad3faab40d57f87023f","sha256":"e66691277b09b00a0897c21a6e682ff3ec5cbd44afd0428a4057797c163a8820","url":"/topology/test_map_161_RAW/e66691277b09b00a0897/test_map_161_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":26.771,"map_name":"test_map_161_RAW","variant_revision":""},{"id":"scn_mp_custom_map_77","map_id":"test_map_059","variant_id":"source","pool":"medium","source":{"sco_sha256":"f199942dcbc15dd52a3b65eb3ee32e6ee84276ed53c99c39dcca3a64d2f75c0d","recipe_sha256":"001d86cc819522dd093f502c9594448b5f6981734d6fca1d6230df0aa9ebaa30","terrain_code":"0x00000003a282488a000dc3702f1fab3002e2247f12e610d8"},"height_data_sha256":"049c415bfd3e3a00ee8f806af6320df49595df6d64e222a0e9604ca459258c3f","sha256":"899aafb3cadcf53d4d7d1696f586d5b8354a3283be14e01b230a090952428066","url":"/topology/test_map_059_RAW/899aafb3cadcf53d4d7d/test_map_059_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":51.033,"map_name":"test_map_059_RAW","variant_revision":""},{"id":"scn_mp_custom_map_78","map_id":"test_map_162","variant_id":"source","pool":"tiny","source":{"sco_sha256":"12f5c72fc5d44c6c96ed7939bab5fff68262f23804953edaa2fac5d0eb93d4c9","recipe_sha256":"7769c8938aba48e44e0a31d6f9dfad3dff1c098efc85e1fd5d67d2461ec5fb01","terrain_code":"0x00000003b282870a000962586ad53ca664475b324ec6a7e9"},"height_data_sha256":"d67c31b3913a9f4028d5157c74f8edfa55c543bf15b9c8d9c5bf5ac4a5d1338b","sha256":"860a850e0ea6148103a3d1fed2185345b94c5f0e07a41c3fb7bfa74d64c9d57a","url":"/topology/test_map_162_RAW/860a850e0ea6148103a3/test_map_162_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":19.017,"map_name":"test_map_162_RAW","variant_revision":""},{"id":"scn_mp_custom_map_79","map_id":"test_map_163","variant_id":"source","pool":"tiny","source":{"sco_sha256":"43c26e5324c926228d63f34941ba687463bda1086f3a6ca3dd7d1058ea7242bd","recipe_sha256":"ababca85de182ea47d92e5f36415fc279b4d8a53d879dbd486e2bbf4e4746401","terrain_code":"0x000000034282458a00096258643651e2751deae43bc8ef7d"},"height_data_sha256":"83c079e790b8abff736c302a32319aeca0e3a3264ebd2faf5ab8649414ed6739","sha256":"161a822ea5657f766c35bddc16bef7ce3613eb314beeca7ff022c7b03e8f03b2","url":"/topology/test_map_163_RAW/161a822ea5657f766c35/test_map_163_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":31.155,"map_name":"test_map_163_RAW","variant_revision":""},{"id":"scn_mp_custom_map_80","map_id":"test_map_164","variant_id":"source","pool":"tiny","source":{"sco_sha256":"ec7444e67fc805564ebf51e92535ee95d3579a776ee69c915682d084e4db106a","recipe_sha256":"64639089ac365401607fd2c2aa11634c4ddf9278b4dd12791b83862c44ccbfad","terrain_code":"0x000000034282868a000962585d91904d7ccd24bb03de66e7"},"height_data_sha256":"c8e6d13d5df985abc56442d9446e7d255f21cae9f077e77e930ec2971fbda552","sha256":"606a0c9f4ae808e3f7fb5fde7bd89220186b8469413d0f7cc0e99e0164a0ed1e","url":"/topology/test_map_164_RAW/606a0c9f4ae808e3f7fb/test_map_164_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":22.988,"map_name":"test_map_164_RAW","variant_revision":""},{"id":"scn_mp_custom_map_81","map_id":"test_map_165","variant_id":"source","pool":"tiny","source":{"sco_sha256":"d0cb39158fa70f6229fd18a41fd5ea795f49cec3c6ebb421bb3dbc5901c9a284","recipe_sha256":"f397d3d8e098f9f667e306ed09b773825e3c5479391b8b1c9808fa15dbaa31fc","terrain_code":"0x000000034282078a000962584e8c5ffc565537c1076a7a5b"},"height_data_sha256":"bd3fe10c9d7583233816f688dc9b85a5708e5dce45e9a734c3ec454f035fbccb","sha256":"b00d03e6daf567cbad97276a4f8263e23c3b1eb46969a8f1a1db8b53d4388cd1","url":"/topology/test_map_165_RAW/b00d03e6daf567cbad97/test_map_165_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":23.352,"map_name":"test_map_165_RAW","variant_revision":""},{"id":"scn_mp_custom_map_82","map_id":"test_map_166","variant_id":"source","pool":"tiny","source":{"sco_sha256":"ead5557f1e871c2ed52829d74636e35958efd3c0f077142646e044e92952e8d2","recipe_sha256":"a7b321bf8d60bff12f9c8fa5eebcb3afc2edd661ce0d755e807b19e405b7e7e5","terrain_code":"0x00000003a2828a0a00096258698790f8509f26fb028ed2d9"},"height_data_sha256":"3aeb6b6c3c186513bc903e557c195cdd84807936f1ca83bb11e4578c667d00e6","sha256":"c6a9bd4609c20c4f30f0c70e9bbe59146227a19feccc316cac48182aaa565d12","url":"/topology/test_map_166_RAW/c6a9bd4609c20c4f30f0/test_map_166_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":25.768,"map_name":"test_map_166_RAW","variant_revision":""},{"id":"scn_mp_custom_map_83","map_id":"test_map_167","variant_id":"source","pool":"tiny","source":{"sco_sha256":"0e424a3004931b00bcd535753110ce707542df20900aabf44617c4eb3d44e470","recipe_sha256":"f6f168dd92a192e503e33d093f8a7dcd5b95d9a899f088403695b43061c8c419","terrain_code":"0x00000003c281880a0009625804e8e0e1407472322d9011ac"},"height_data_sha256":"fef3c218e8f64d66d209f8fc052f9472352791c915329105a90ce2ca03101627","sha256":"22e01fdc268e9718801a6d0397cac6aed6c8fbfec65e0fcea051293a1f3af2ab","url":"/topology/test_map_167_RAW/22e01fdc268e9718801a/test_map_167_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":31.785,"map_name":"test_map_167_RAW","variant_revision":""},{"id":"scn_mp_custom_map_84","map_id":"test_map_168","variant_id":"source","pool":"tiny","source":{"sco_sha256":"2244fc2b028f36b9e7a736eaf6de33909f8263a9ffdd4fb3569b1c0e8567d31e","recipe_sha256":"b2210c15f768557b8126d7f6546adb99b875012893a634a2f6e83387c85c11e5","terrain_code":"0x00000003a282880a00096258021b4618675da47d14b59044"},"height_data_sha256":"97cdc964b3f897f2c97bf28520a292b60b9955a7d3af1194b07bafbc1b7ffc5c","sha256":"442fa6b3dbfde6fc1f3a50527dd3824dfad34b0f333168e6631504a78b68ad8b","url":"/topology/test_map_168_RAW/442fa6b3dbfde6fc1f3a/test_map_168_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":28.127,"map_name":"test_map_168_RAW","variant_revision":""},{"id":"scn_mp_custom_map_85","map_id":"test_map_169","variant_id":"source","pool":"tiny","source":{"sco_sha256":"fcdc4fdf2287b68d5c2ecc26f13ca48f60e81b80f0ec20baa411b0b0e2b01e51","recipe_sha256":"c4d2e233fc7c353d9becffde66ce233760f0c966f00264813c5febbc7d31aeed","terrain_code":"0x00000003c282858a000962580626aad85e69eb8d7aa08107"},"height_data_sha256":"78089402975baf4967e9140f9a4099a6be970e374d69620f54f62b6a2179515a","sha256":"38e4340f04549549e4059e1ad7fc5879877d3c97e95edd21d922940b400ded87","url":"/topology/test_map_169_RAW/38e4340f04549549e405/test_map_169_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":19.04,"map_name":"test_map_169_RAW","variant_revision":""},{"id":"scn_mp_custom_map_86","map_id":"test_map_170","variant_id":"source","pool":"tiny","source":{"sco_sha256":"86a727f0386805cc2eb80e4a311f576e2d209922d9a35e4e9fe419a56ff6dce7","recipe_sha256":"5c6544fcbe80bbc8176913bf3b7e64fb6be86744b9bbb64fd35c4ac198c67652","terrain_code":"0x000000034282068a0009625879c40be675efcaa5306a196c"},"height_data_sha256":"686702ef0fda83ef9b02f8e4b505f36a0673ad91868a372c0f4e7ddcf04601f5","sha256":"384e272bd427b80a2e779b764c82eba93f7d8cee55da087150875b8f86324a54","url":"/topology/test_map_170_RAW/384e272bd427b80a2e77/test_map_170_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":22.524,"map_name":"test_map_170_RAW","variant_revision":""},{"id":"scn_mp_custom_map_87","map_id":"test_map_060","variant_id":"source","pool":"medium","source":{"sco_sha256":"8c81c58fe9ef027ddadade474e5e58d3da6937b485ac58f72b2f7079550de3a9","recipe_sha256":"306701d8030ef218597421cb845fae34a6fa9912c8f3c2f03feff324fca51f2e","terrain_code":"0x00000003b281c88a000dc37031b149b655c682752d70f4ab"},"height_data_sha256":"a4a74d7c3b18330806a07a88226f8bd6e843b36b2cf6ff9ac27df40cebf9f8b8","sha256":"7269e1361b4bb90d59a3e279bc766869fd104f374ecfe0dc6643ab73facb586e","url":"/topology/test_map_060_RAW/7269e1361b4bb90d59a3/test_map_060_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":46.31,"map_name":"test_map_060_RAW","variant_revision":""},{"id":"scn_mp_custom_map_88","map_id":"test_map_171","variant_id":"source","pool":"tiny","source":{"sco_sha256":"a28e5e0efc691cd8e207948f239644fc9ac79b6b929ebc55555e34026019b9b6","recipe_sha256":"f0ad80c6c83a2e7c3e3554da4841069d8b059ad0e1ba2c4cfa3d76fb2c7ceb7b","terrain_code":"0x00000003c281860a00096258207f60bb3eda939c59303d26"},"height_data_sha256":"b5d2c33c9b2b14fe95bc16d2950511726917fe833fabe880857d1e7d8ee3f853","sha256":"42637743b0d0891c5f296cd6f9c6977f391da44a55659961f55e2f45efb27c51","url":"/topology/test_map_171_RAW/42637743b0d0891c5f29/test_map_171_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":19.275,"map_name":"test_map_171_RAW","variant_revision":""},{"id":"scn_mp_custom_map_89","map_id":"test_map_172","variant_id":"source","pool":"tiny","source":{"sco_sha256":"a24d6c490765a8a08468281206ed7554b04bd28d1c7a0d32266861a1a85e3458","recipe_sha256":"fa142475b2ad1626c66eafd6deb8a002ec43186b4262d4a09a63ca18f3e9815f","terrain_code":"0x00000003d281c60a0009625834ba61b3584c18cf776bc2dc"},"height_data_sha256":"3105f9e476fe6c46b7aa3606c1ac2b36d02669a3669579fc670aee29f49808c7","sha256":"d39343a3ddd6d6424893d1fd48cb1e743270ccb05b1bea2c31ecab099044bb0e","url":"/topology/test_map_172_RAW/d39343a3ddd6d6424893/test_map_172_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":20.597,"map_name":"test_map_172_RAW","variant_revision":""},{"id":"scn_mp_custom_map_90","map_id":"test_map_173","variant_id":"source","pool":"tiny","source":{"sco_sha256":"c5ac0aaaa82434d8ea5733f57436261c37cebea14fbad9f6d1462678bb43ac03","recipe_sha256":"70bd2b6cbfe9741f23829766c41ebbc6fa49088d36a335698ad2d3c03fe6f980","terrain_code":"0x000000034282070a00096258522fcccb0d71722214e33f53"},"height_data_sha256":"49bcef539a0f907d30f46a532b81d17135023b7aee6a66253fc01cd43f2744e3","sha256":"db34a7b56f4fae16842267f00b37289fa79488710bf99c87fed048dfcc3def36","url":"/topology/test_map_173_RAW/db34a7b56f4fae168422/test_map_173_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":25.312,"map_name":"test_map_173_RAW","variant_revision":""},{"id":"scn_mp_custom_map_91","map_id":"test_map_061","variant_id":"source","pool":"medium","source":{"sco_sha256":"05150684ae0c72b6402aabab43f5fb5b7f07c4c60477f0857f62c3bf8ac5f5a7","recipe_sha256":"0fd89d2ca3187f909c499ecf198aa0f0412edf37c90ddf48816d999df834b39b","terrain_code":"0x000000034281488a000dc3702d33ebaa52b4655b461e2b5f"},"height_data_sha256":"8c235ec46044407ff6b986f9856e77861c33343d3a65867ea47804a4c1ae0f5b","sha256":"b495365d8376dbbd8f0714658c1884949a8af0c34b46b53e57e87a15a8a91539","url":"/topology/test_map_061_RAW/b495365d8376dbbd8f07/test_map_061_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":50.184,"map_name":"test_map_061_RAW","variant_revision":""},{"id":"scn_mp_custom_map_92","map_id":"test_map_174","variant_id":"source","pool":"tiny","source":{"sco_sha256":"e3ac3e53b6d135a3b53203c58151cb50880ee1f3ba6caa72494272e1e6e85259","recipe_sha256":"7ad78eb13ea5e708ae5956173eafab9ee831ee760c6bbc59308ab92f935752fb","terrain_code":"0x00000003d282450a000962586e0f587e16f1db2e405e23e4"},"height_data_sha256":"d4478adb28424f4e7a50293da67e39fa485a66561095677bfc78ef2885e9aa6d","sha256":"709eba048aea80e1bd3f3507a5bc5dadc4a3384f609e0419ebb2586c13861aa4","url":"/topology/test_map_174_RAW/709eba048aea80e1bd3f/test_map_174_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":18.44,"map_name":"test_map_174_RAW","variant_revision":""},{"id":"scn_mp_custom_map_93","map_id":"test_map_175","variant_id":"source","pool":"tiny","source":{"sco_sha256":"2c438a875332445441b6bab223ff16de692d5cb81089d3c91c8ab0d775c8a07f","recipe_sha256":"2247984d08559e6487e6e4da1bc9c6ecdcf1e5f428782b383e2bcc6654a7e333","terrain_code":"0x00000003b282468a00096258653fcae97a8610d43cb7e9ed"},"height_data_sha256":"8c6539d3629c8af06e9c8e8a222895cc13f1ac85834be3f10e46b700d446effa","sha256":"da5a6d757ebc3fccbd47f1e9550fd3c47e53d956e9ba326ba3f088aceaf2b0c8","url":"/topology/test_map_175_RAW/da5a6d757ebc3fccbd47/test_map_175_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":23.603,"map_name":"test_map_175_RAW","variant_revision":""},{"id":"scn_mp_custom_map_94","map_id":"test_map_176","variant_id":"test_map_176_AnnaFreud_VarA.placements.json","pool":"tiny","source":{"sco_sha256":"d412e5e6adcb17d81254695e969af25ba6b23898b23c51f9cb37ec6cf2dec6ef","recipe_sha256":"ff80a329a612b291a632ff084dcb04845307b97141e8797ff518962b0fafda09","terrain_code":"0x000000034281460a0009625832814167106f00ae4344c00a"},"height_data_sha256":"6b4f8e1d41b172376ff7f3f240d6f5c5df724155314890df3bc29d07e4cf71d1","sha256":"8c246bbd08d2cf00f77f57043809d5139eef67fb6d1dc22377c834193e11d88e","url":"/topology/test_map_176_VarA/8c246bbd08d2cf00f77f/test_map_176_VarA.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":21.779,"map_name":"test_map_176_VarA","variant_revision":"eef1c3c0cfd174d3c59aa744b1656a75668e426cbfffa0dab7080bd59d1c4366"},{"id":"scn_mp_custom_map_95","map_id":"test_map_177","variant_id":"source","pool":"tiny","source":{"sco_sha256":"b661cc4478ada0a7b76c11cbecb140172133e9e6b706e8ff0425d20f85670b3e","recipe_sha256":"576b265b02dec531981971a96b4afc6da941606075926a6a85ad7d2016f822d4","terrain_code":"0x000000034281c90a0009625872104c4846b6650245d165c7"},"height_data_sha256":"2f03fc9d961285e1d2bf495d349013d9b4e102b88500d5ca32cc7f50c9cc10d4","sha256":"51fd4114ee787b26cd546d590aa1fe0ee6c0097c466f01e4b2c565b73c9988a9","url":"/topology/test_map_177_RAW/51fd4114ee787b26cd54/test_map_177_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":32.293,"map_name":"test_map_177_RAW","variant_revision":""},{"id":"scn_mp_custom_map_96","map_id":"test_map_178","variant_id":"source","pool":"tiny","source":{"sco_sha256":"dbcac33cac7edfef2a87fd0f0c9682fc4a9ba7b4eb22bd9a9ac19a49431b9a60","recipe_sha256":"17abb1b1bfc8101e8c6c1531624bc0afedd8a7a11da44ea0f20d6305351f2a8d","terrain_code":"0x00000003a282070a000962586ecdfffd5701d00e57203bea"},"height_data_sha256":"1691c8a5d4f5845b454c6db999951f5a8942a6eb426c36e32e14211ba7431055","sha256":"373f6c39ad7c2f658911e1f545df1f1b314247d8a6ca10d530af06e786c4c177","url":"/topology/test_map_178_RAW/373f6c39ad7c2f658911/test_map_178_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":24.685,"map_name":"test_map_178_RAW","variant_revision":""},{"id":"scn_mp_custom_map_97","map_id":"test_map_062","variant_id":"source","pool":"medium","source":{"sco_sha256":"1c0337dbf6685fcc113d53a41a8d8b10799cd15d212c2fbc112f0cd36b7d4c6d","recipe_sha256":"e1f64e74cd85574e54af6780f81e768ab2074c8b510635165ec9b04653e388d0","terrain_code":"0x00000003c282890a000dc3704658e25723ec89d440d0ee97"},"height_data_sha256":"cab43b515858a18da8e0451a11b2bf064cae3981e8f43a807ef1f6492cea9c96","sha256":"bcf71149d93a97b648ef9c51516479c3da93234b7f7b87486a80a97fb20b736a","url":"/topology/test_map_062_RAW/bcf71149d93a97b648ef/test_map_062_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":56.341,"map_name":"test_map_062_RAW","variant_revision":""},{"id":"scn_mp_custom_map_98","map_id":"test_map_179","variant_id":"source","pool":"tiny","source":{"sco_sha256":"5d7b91c63962df17e7ae906e993748a015402f50887371b89e50b4ae51156b4e","recipe_sha256":"1486b683cce420a9ebf17924c6be28c2e2ed0f1377eb30eb0a1e4941b49c09d4","terrain_code":"0x00000003b282490a0009625832f1047042c13d4611fb8727"},"height_data_sha256":"d05fcaed5965784b79a1cfa6b804aa1ff2836c13966bf14ac439845dcd23ec7f","sha256":"9064ceff370710873ce8b033be82fe548c2bc4920b3189b32ff69954dc2adaa0","url":"/topology/test_map_179_RAW/9064ceff370710873ce8/test_map_179_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":576.0,"y_max_m":576.0},"relief_m":33.372,"map_name":"test_map_179_RAW","variant_revision":""},{"id":"scn_mp_custom_map_99","map_id":"test_map_063","variant_id":"source","pool":"medium","source":{"sco_sha256":"d9646c614e77eb35c01c006666d87cdc6a093cc363977acb1dcce4cc2393bcf3","recipe_sha256":"5059f398f2345817bf8e045b2bd7d7329ccfac5d319b046c14d9b55d8fa0833b","terrain_code":"0x00000003b281c50a000dc3705ddc293c409cf81224a31d46"},"height_data_sha256":"9352ec6989a8c7c4fa3128b04762576d88f0b34353b4e40c1e79155796bbd642","sha256":"2c3236ec53d530cc2926e128ec63ec39dfeb337b0f95987f4b1596bbf136bb96","url":"/topology/test_map_063_RAW/2c3236ec53d530cc2926/test_map_063_RAW.json","vertices":40401,"triangles":80000,"bounds":{"x_min_m":24.0,"y_min_m":24.0,"x_max_m":856.0,"y_max_m":856.0},"relief_m":27.631,"map_name":"test_map_063_RAW","variant_revision":""}]}
+{
+  "schema_version": 1,
+  "map_count": 99,
+  "selection_mode": "all-fixed",
+  "created_utc": "2026-11-10T11:51:08.380528+00:00",
+  "maps": [
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "7be6f94c4c0237766762b278c59ee496d40f2f9bdf2104c3a3fb3e34e3e52246",
+      "id": "scn_mp_custom_map_1",
+      "map_id": "test_map_107",
+      "map_name": "test_map_107_WMS_078",
+      "pool": "small",
+      "relief_m": 30.559,
+      "sha256": "20dbfd811609aee6ea589d20115377e92bf441a67f5516dae92a96504989b15f",
+      "source": {
+        "recipe_sha256": "33551bba5eb6b1387a81f29ae394fe3ecf6933941345b2df24e76c55b0259cff",
+        "sco_sha256": "62c4a3c0bad8ae31b810fa220c7f738b9141e34f3d4e116aa9db3d10c7863d2a",
+        "terrain_code": "0x000000034285060a000b42d077bd13001d1f97467d950ec9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_107_WMS_078/20dbfd811609aee6ea58/test_map_107_WMS_078.json",
+      "variant_id": "test_map_107_WMS_078_VarA.placements.json",
+      "variant_revision": "be7aae5b698f1bfe8438caf5811237d7fa9ad85cbdab30c1a3d46def620a667c",
+      "vertices": 40401
+    },
+    {
+      "id": "scn_mp_custom_map_2",
+      "map_id": "test_map_108",
+      "variant_id": "test_map_108_AnnaFreud_VarA.placements.json",
+      "pool": "small",
+      "source": {
+        "sco_sha256": "f6cd709603d894a65ed5b5ca1276ec7c3cbfb06dfd4f1bdddd950e5f22f31035",
+        "recipe_sha256": "e0be663487a9adaee39f278294c017474f39a37462049183bca5a195456eb19c",
+        "terrain_code": "0x00000003b284478a000b42d03ab15e3e7fb85ad77533c93f"
+      },
+      "height_data_sha256": "0e03e843fc395fc75b0a1597d8c98e45ca44c7b9db53a30d5d635ddcec1f4203",
+      "sha256": "835dba89faf186bb3c7b0928583a32919d15df1e66c451a172637158bcfbaaab",
+      "url": "/topology/test_map_108_VarA/835dba89faf186bb3c7b/test_map_108_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 696.0,
+        "y_max_m": 696.0
+      },
+      "relief_m": 39.689,
+      "map_name": "test_map_108_VarA",
+      "variant_revision": "205210321216bfcd55bbe55945d221962df07b7666aa3d16d664737c5e4a925b"
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "87635cdf64e52a50a926e4dc38de516c8e740f478c51ae7cfc904bf2e6c982cf",
+      "id": "scn_mp_custom_map_3",
+      "map_id": "test_map_141",
+      "map_name": "test_map_141_WMS_006",
+      "pool": "tiny",
+      "relief_m": 28.007,
+      "sha256": "a4cc39908f0e56ceb780b591acf21eb387eef0323761aa2cc673b83463966cb8",
+      "source": {
+        "recipe_sha256": "dd0e7071fdf2110ed37dbd397c09b0c033eae4bc47db1769442315849db580b4",
+        "sco_sha256": "9c9a8f715638734f4b6b791a1c9b151df6c869de51e53a44ece42908370138b1",
+        "terrain_code": "0x0000000332814a0a000962582f34faa51c7e52943bc0ff92"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_141_WMS_006/a4cc39908f0e56ceb780/test_map_141_WMS_006.json",
+      "variant_id": "test_map_141_WMS_006_VarB.placements.json",
+      "variant_revision": "023102f2cf2005534523449bf208eaca412bbeb8a598e69b21a6e31f4a9d2e0f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f81fcce8b30ca9d683f3e53f7c2469fe1e2fcc6842c566cbb0b6fd4edd037b5c",
+      "id": "scn_mp_custom_map_4",
+      "map_id": "test_map_110",
+      "map_name": "test_map_110_WMS_077",
+      "pool": "small",
+      "relief_m": 22.846,
+      "sha256": "e7bd6fb3e65d79e64f38affdae34368b82d6d661e262001d95315f276d5ef744",
+      "source": {
+        "recipe_sha256": "1f0af629cfd9e61c4ff852aef694cdc06bbf16e69f5643c63953efcd1eb3bc8f",
+        "sco_sha256": "b78112dcdde7b0c9a00832e5f511286c9625488efbf6d94ade370d3002d6cb87",
+        "terrain_code": "0x000000033282058a000b42d006fc135d2f0316242e5f055b"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_110_WMS_077/e7bd6fb3e65d79e64f38/test_map_110_WMS_077.json",
+      "variant_id": "test_map_110_WMS_077_VarA.placements.json",
+      "variant_revision": "c8e4d2c587caf3277d15b375607fd8e6eaf7640d6fa054f9d395c9aa157ef66d",
+      "vertices": 40401
+    },
+    {
+      "id": "scn_mp_custom_map_5",
+      "map_id": "test_map_111",
+      "variant_id": "test_map_111_AnnaFreud_VarA.placements.json",
+      "pool": "small",
+      "source": {
+        "sco_sha256": "3409e7171832138746d32b831ca855d898aa142c10d89c9f0731f103444eb4a4",
+        "recipe_sha256": "ee8d13710b83ecfa6be3cbaee433b844420a36f69e3055b8ad8bbfa5ade81a3e",
+        "terrain_code": "0x00000003d283050a000b42d034f168551e2a04ba4d0389c9"
+      },
+      "height_data_sha256": "9971f3c16f6e7f99377bf3d7014c68f67cce46a4495139d483ee438f05ff5a40",
+      "sha256": "81f9f22c73d5178be53ff85132999e4200d226a1d3bc256ba091ab7d94eecce8",
+      "url": "/topology/test_map_111_VarA/81f9f22c73d5178be53f/test_map_111_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 696.0,
+        "y_max_m": 696.0
+      },
+      "relief_m": 22.293,
+      "map_name": "test_map_111_VarA",
+      "variant_revision": "5f61555418ff627444dc8d13b63bc34dea91db021368b1e22caf34eb1b6c52cb"
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f86fa355da883913b141ae4ea0d0f4ed9557ce03abeae2f64520602bb418fe5e",
+      "id": "scn_mp_custom_map_6",
+      "map_id": "test_map_194",
+      "map_name": "test_map_194_WMS_040",
+      "pool": "medium",
+      "relief_m": 36.115,
+      "sha256": "43a6908ef44c0da5381e6eb68459802e1d53c5dc587ae323b2b9c976c13140dd",
+      "source": {
+        "recipe_sha256": "8da76aa22760afd2d46bfdc380446dfb46e9e05e12ad25ae99e855a6f7dde63c",
+        "sco_sha256": "153cc996d0a42ea8b6cd371d56c6e0a8dc218b115362c3d27ad6b57b2d95d3d1",
+        "terrain_code": "0x00000003d281c58a000dc37043b91e8b047168006a86d33d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_194_WMS_040/43a6908ef44c0da5381e/test_map_194_WMS_040.json",
+      "variant_id": "test_map_194_WMS_040_VarA.placements.json",
+      "variant_revision": "5209471576a442e8186d9eb25293359f279c11b74ee1e34d050187397cc242c5",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "92405573e2e96a38fbeb2bd2a2a505f9c0b80da77f4ecc0afed6e0c7a4dc6679",
+      "id": "scn_mp_custom_map_7",
+      "map_id": "test_map_142",
+      "map_name": "test_map_142_WMS_064",
+      "pool": "tiny",
+      "relief_m": 30.919,
+      "sha256": "f7cb265df572d100b0b070a986851c6b20ee2b0d9bc248720f0842cb69a306f4",
+      "source": {
+        "recipe_sha256": "17adaa6674c246df1378ec05498211497dfd6ddc3709aef0ffaf01732e732bdc",
+        "sco_sha256": "b74261ad5c75fb4362248079c6494bd2e7a7cd6ec6663ab2d500847468c68f87",
+        "terrain_code": "0x000000034282078a0009625803f290520393c4a34e8b15a1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_142_WMS_064/f7cb265df572d100b0b0/test_map_142_WMS_064.json",
+      "variant_id": "test_map_142_WMS_064_VarB.placements.json",
+      "variant_revision": "8a31812ee4cbc5446411ada686ba12ef34384b09fdf75b5ace281a9377fb3cff",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "79c7041f0f71df8bf61460cb08e93240a36a5b28ec4c0fe11518b890c7378ec7",
+      "id": "scn_mp_custom_map_8",
+      "map_id": "test_map_112",
+      "map_name": "test_map_112_WMS_068",
+      "pool": "small",
+      "relief_m": 36.347,
+      "sha256": "d04207aff713b458e81b36337efb9fab2e642e437862fe39a354544850910c35",
+      "source": {
+        "recipe_sha256": "a6cf4c05cda563326c72a58bfb106bbb34fb4573ef2de1b8ca5e0f071d9b32ca",
+        "sco_sha256": "0cf0172d90f801c854d9cdb76de678f22b05ac46100a6faacea390b3a2e37cdd",
+        "terrain_code": "0x00000003d281498a000b42d0129da9234fb7357b0c2832bd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_112_WMS_068/d04207aff713b458e81b/test_map_112_WMS_068.json",
+      "variant_id": "test_map_112_WMS_068_VarA.placements.json",
+      "variant_revision": "64515706a33ea8ec66b3a0c6536aa465a1a1630ebb7d4c05c208e65b610cb29d",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "ffb887a67c560adff15d54acd57a5e1a82b1173721dacdadaf20a1aa13cd98ad",
+      "id": "scn_mp_custom_map_9",
+      "map_id": "test_map_113",
+      "map_name": "test_map_113_WMS_020",
+      "pool": "small",
+      "relief_m": 28.157,
+      "sha256": "a499ed5b2e2e4b90054b8f45805be720ba3b169f9e2a9e3d702bf999ee80b754",
+      "source": {
+        "recipe_sha256": "c172c733904c6dd39be313e6187824515a0eae14568932e6993aacbcaae39554",
+        "sco_sha256": "65b831da18a1c68c56b4efa3c29c5d655d5fd1579b22f9bd094a8c0b9f5b2fcd",
+        "terrain_code": "0x000000033284478a000b42d010ebc45c0b1b0c003aa31df1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_113_WMS_020/a499ed5b2e2e4b90054b/test_map_113_WMS_020.json",
+      "variant_id": "test_map_113_WMS_020_VarA.placements.json",
+      "variant_revision": "0b950872ec0a0443f2581874e44539ae833a7da356b8e27bd4737032844cf5c3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "47ae2c2e6a3b58bd56979ae7fbba81d4d051b2edeb2eaa9742f5837bd08842cd",
+      "id": "scn_mp_custom_map_10",
+      "map_id": "test_map_195",
+      "map_name": "test_map_195_WMS_090",
+      "pool": "medium",
+      "relief_m": 28.786,
+      "sha256": "d1d7993741beaf062efe2a55dd407aabba2f43eb75d178ddcd7d89f9d4823a1d",
+      "source": {
+        "recipe_sha256": "6ca929fbc01820bc37bb57d5a905b490eddd95e84824b15b332b3fbaa6fbecc7",
+        "sco_sha256": "f31ec41351886b7d05a482dc0ea69920e9978c9a73c421e0c47a152c369cf676",
+        "terrain_code": "0x00000003a281460a000dc3705cc0ecaf399769176b4d539a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_195_WMS_090/d1d7993741beaf062efe/test_map_195_WMS_090.json",
+      "variant_id": "test_map_195_WMS_090_VarA.placements.json",
+      "variant_revision": "3bc800de274c793fe096c982a4abb5c029a67dd54a1e49a559b800de84e7706b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "092175f628b9e1465bb6a16221fbf607dfd5581387ce9a4969ef974c84c84ce9",
+      "id": "scn_mp_custom_map_11",
+      "map_id": "test_map_196",
+      "map_name": "test_map_196_WMS_036",
+      "pool": "medium",
+      "relief_m": 31.301,
+      "sha256": "a1d1be48abdc82f35af7ba2156a38ce19f559d36a0e9897d661b50e7a66619c0",
+      "source": {
+        "recipe_sha256": "ecbe8575d5bb6eeb79585bd53a72333e5c1c2eaa9052343f992fd7fd4284157f",
+        "sco_sha256": "5c0777e1050f094f36b3dda66a74c3f16f0daf84dd1ddae8fcae58d19cd85bf6",
+        "terrain_code": "0x000000034281c68a000dc370500c3bee7352eb34724852f5"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_196_WMS_036/a1d1be48abdc82f35af7/test_map_196_WMS_036.json",
+      "variant_id": "test_map_196_WMS_036_VarA.placements.json",
+      "variant_revision": "acf8fa535eccb6bda3e67090f0b87254354e983c7b10bfd8f76130ca5c0686b4",
+      "vertices": 40401
+    },
+    {
+      "id": "scn_mp_custom_map_12",
+      "map_id": "test_map_198",
+      "variant_id": "test_map_198_AnnaFreud_VarA.placements.json",
+      "pool": "medium",
+      "source": {
+        "sco_sha256": "5799f59f525a196de3c760a0ff77d8cae9fbd3e7e417189a26126b8944d66519",
+        "recipe_sha256": "a0b0ca7fa55e201c27d250022a0a7eb70065fb1f9e6e58f55d5a9ed6837def2c",
+        "terrain_code": "0x00000003c282850a000dc370563fb7f5056d5a192b55890d"
+      },
+      "height_data_sha256": "debfa15132b1f8d41993436f437d7a944e385d348d01a2f4bb9b1a5e544c63d9",
+      "sha256": "5abcf9295eed703278ad3d01b43946a84f245db25e2a396fd5bb3bed26b2db04",
+      "url": "/topology/test_map_198_VarA/5abcf9295eed703278ad/test_map_198_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 856.0,
+        "y_max_m": 856.0
+      },
+      "relief_m": 21.103,
+      "map_name": "test_map_198_VarA",
+      "variant_revision": "359a23ba0e4e77e307fbdddbd6a15e7d383f82ae4ad95a74f4e69f200e14ca8a"
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a43e95a3d375611244dc6fe4d80a3a5229e5ca5ed0957e4d5c3dcb34c74febc1",
+      "id": "scn_mp_custom_map_13",
+      "map_id": "test_map_114",
+      "map_name": "test_map_114_WMS_066",
+      "pool": "small",
+      "relief_m": 29.516,
+      "sha256": "8fe120581b55584bfdc92955a106f01e30972fd53685592ee42604d221f92861",
+      "source": {
+        "recipe_sha256": "549754f5382dab2d8cbe343b41081d354cef84cd6480080ae0f9535196174ff6",
+        "sco_sha256": "551b712b976da37505ac7f95f99be68ba51cb09dd558d5760000e0f3aad23d21",
+        "terrain_code": "0x000000034282c80a000b42d0288ff6a15555c65419ac3ecd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_114_WMS_066/8fe120581b55584bfdc9/test_map_114_WMS_066.json",
+      "variant_id": "test_map_114_WMS_066_VarA.placements.json",
+      "variant_revision": "c0a07ad88484338d03a762e185b23c49799329a418f0393cfb93311717d9be3a",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "7fea90c8c7365e4b38f30eeea0736150358b4021de61dd1e15c23b1491cc576e",
+      "id": "scn_mp_custom_map_14",
+      "map_id": "test_map_037",
+      "map_name": "test_map_037_WMS_084",
+      "pool": "medium",
+      "relief_m": 22.273,
+      "sha256": "149fdcbfb106b6ee390ca74c30e455df8df1e76a5e04e7e8f1277878015c6066",
+      "source": {
+        "recipe_sha256": "e3116419ebaf8f300106933c1eb192252f41a485b2f83f4bab807cee5a79c1bd",
+        "sco_sha256": "22c44f7a828259639195138f87e173768b9e01595b8a14a70aeb89ebc868643b",
+        "terrain_code": "0x00000003c282050a000dc3702469bb2422a732684f0a30f7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_037_WMS_084/149fdcbfb106b6ee390c/test_map_037_WMS_084.json",
+      "variant_id": "test_map_037_WMS_084_VarA.placements.json",
+      "variant_revision": "380b8dfd5f468fdd2fc127b941e92745d5515657716e5e5dbec02b999e4b5660",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "66bd581d8f4713f70a15678e29079eb0d1170112474aa970ecbb483e3f21b4bb",
+      "id": "scn_mp_custom_map_15",
+      "map_id": "test_map_038",
+      "map_name": "test_map_038_WMS_083",
+      "pool": "medium",
+      "relief_m": 59.17,
+      "sha256": "5ee992665d4f37245d880aad77a1666f67493066a2be6a735fa669bf59c98c5c",
+      "source": {
+        "recipe_sha256": "7fc23c652a1b24fdaf8521fb5ce4b94859647b41ebb13c16d5bf32f027f16d01",
+        "sco_sha256": "ede0d9319233fcb6786a7d6e0e929fae651cb908fcaad180934976f924f71f9c",
+        "terrain_code": "0x00000003d2814a0a000dc3701f73f7f0361e7dd9223d6487"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_038_WMS_083/5ee992665d4f37245d88/test_map_038_WMS_083.json",
+      "variant_id": "test_map_038_WMS_083_VarA.placements.json",
+      "variant_revision": "2ce27366dcf2c790f67cc0a3a53bcae07db861aec7569dbcd0b0747883dcaa3c",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "70515f66312e6d3daf195a7219a53d7c23fbf74656089ccf3c293f54ee3c68f5",
+      "id": "scn_mp_custom_map_16",
+      "map_id": "test_map_039",
+      "map_name": "test_map_039_WMS_081",
+      "pool": "medium",
+      "relief_m": 36.556,
+      "sha256": "a186be3a5c04362777c7b8eee3ec227ea81bf0a62aad995bbdd8e1998882b799",
+      "source": {
+        "recipe_sha256": "459d54ee63b005b89d3667809b8d01fca51503706f98715b8ad3577e01728158",
+        "sco_sha256": "58530ca62d7bdf07ca27108a8a5ed2cda3bad6d6f5d0048c85fc94c5ada211c1",
+        "terrain_code": "0x00000003a282868a000dc3702c7edbd6071e3a062015ee1e"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_039_WMS_081/a186be3a5c04362777c7/test_map_039_WMS_081.json",
+      "variant_id": "test_map_039_WMS_081_VarA.placements.json",
+      "variant_revision": "15639b50edf99d9884e7a43fb452d8c16709b35116ba9a55d6b6fa49fb914bc5",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "2360b421d248853869a5c95a8cf09b7bf820a77f974fb15927a76396aeba0f39",
+      "id": "scn_mp_custom_map_17",
+      "map_id": "test_map_040",
+      "map_name": "test_map_040_WMS_033",
+      "pool": "medium",
+      "relief_m": 40.858,
+      "sha256": "a5ed17fcff23d987c18547f9516aac21d62b2cd03583675f3c2f135196046443",
+      "source": {
+        "recipe_sha256": "d597669bdfe1e7cac9190422225ccde0466698192e301926f01b3f0e079e3a8f",
+        "sco_sha256": "f21b1adbe9cadf7c92339968406755df7b5a83156c19ae7b67ca62502c6b52ee",
+        "terrain_code": "0x00000003b281888a000dc37011fce9f60a521e1e385eb5ac"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_040_WMS_033/a5ed17fcff23d987c185/test_map_040_WMS_033.json",
+      "variant_id": "test_map_040_WMS_033_VarA.placements.json",
+      "variant_revision": "0c83cf25d5748ba039e2acc04535f495ac45c70060b7676f5498a6b4e97469a7",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4fb87b9d81b8b4fdf019776bbc523205f2ead4a266da7c75edb8da88ade37a5d",
+      "id": "scn_mp_custom_map_18",
+      "map_id": "test_map_041",
+      "map_name": "test_map_041_WMS_039",
+      "pool": "medium",
+      "relief_m": 26.021,
+      "sha256": "094e59a26497b542522a468b479f744f50f98e0a2614330da1b1ab0bcf59f6b4",
+      "source": {
+        "recipe_sha256": "4fba1464a60f873796c41245fac49d23237956538221e8f35c3791701eb9151e",
+        "sco_sha256": "926ff6235d3654ad06682f91e576351940c268423a57bb059b086f8c6a9f1ae0",
+        "terrain_code": "0x00000003b282040a000dc37006efc25977ae88c52427dbcd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_041_WMS_039/094e59a26497b542522a/test_map_041_WMS_039.json",
+      "variant_id": "test_map_041_WMS_039_VarA.placements.json",
+      "variant_revision": "f131c196bd4b15f1a618562b9e6c83efa3253ecd600d2b2140e6b57895aa87b2",
+      "vertices": 40401
+    },
+    {
+      "id": "scn_mp_custom_map_19",
+      "map_id": "test_map_199",
+      "variant_id": "test_map_199_AnnaFreud_VarA.placements.json",
+      "pool": "medium",
+      "source": {
+        "sco_sha256": "fecc2603c83475c7cfa9698b4b45194e5255fc8c44acb81c9d98d310593ca1b7",
+        "recipe_sha256": "6e96660d8e9b40b8cb292110ba44cea987f5fbf0014c2a91e153886a0f6e4cd6",
+        "terrain_code": "0x00000003b282088a000dc3707e35eade294ede2b2e93f092"
+      },
+      "height_data_sha256": "04766a2c181249aa260a406b15bec855cc341a2f1b40480edc6cb0f4c285472e",
+      "sha256": "78ccd782dc79e5f24716439ffa787009a91f397a54dd0c666f7eb3ea33c9e84b",
+      "url": "/topology/test_map_199_VarA/78ccd782dc79e5f24716/test_map_199_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 856.0,
+        "y_max_m": 856.0
+      },
+      "relief_m": 48.399,
+      "map_name": "test_map_199_VarA",
+      "variant_revision": "28e9dc1df4c64d9c96e9ea44986871a1f3f295ca1de6126bb5221e6542116e0c"
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "e71706d849d34e035eddbb8a783fff9b45e20af7c8f0f0c009dd6cf64f55dac0",
+      "id": "scn_mp_custom_map_20",
+      "map_id": "test_map_115",
+      "map_name": "test_map_115_WMS_067",
+      "pool": "small",
+      "relief_m": 25.212,
+      "sha256": "0aee133dddcdbb2ea31037e2c17dfcbeb6b316ffda10953f49469657941dbd3c",
+      "source": {
+        "recipe_sha256": "a5ca56dca38604027b625c74585f04a8581b596829373abde23db608ee2a4ec6",
+        "sco_sha256": "21cd5813a363da2a5c608808d3314bdfe5721e84f49cb3e59099954878943776",
+        "terrain_code": "0x00000003b283860a000b42d005bd9f07153ac6af40f99588"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_115_WMS_067/0aee133dddcdbb2ea310/test_map_115_WMS_067.json",
+      "variant_id": "test_map_115_WMS_067_VarA.placements.json",
+      "variant_revision": "093a0725c93ff96c4d6d4ba44dff179a35ebaa984645face806c436ad44e2237",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a87aa894fcdd26665c525187af5cc0953634c973763f1b6480aafce0092a6379",
+      "id": "scn_mp_custom_map_21",
+      "map_id": "test_map_116",
+      "map_name": "test_map_116_WMS_024",
+      "pool": "small",
+      "relief_m": 25.557,
+      "sha256": "e8f5ec27e71d158d73cdca1ca8bfa79e62dd4aa73fa02648c46fcf4f92c4abcb",
+      "source": {
+        "recipe_sha256": "42356fd2e7069732d88f52dc60cf84488e0b114bc2bbd3c326b8275d7896aeb2",
+        "sco_sha256": "d7a1cdeab4bccbbfde58737ef5ff17cd32a9a7c1830fbb763f75d3a8559a4104",
+        "terrain_code": "0x00000003d282868a000b42d03d6304d050e6321c4d5e179c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_116_WMS_024/e8f5ec27e71d158d73cd/test_map_116_WMS_024.json",
+      "variant_id": "test_map_116_WMS_024_VarB.placements.json",
+      "variant_revision": "2b2ba70f93eb8ea8ef9d47b1b88630dc2a4a26db0dc43bac288c5d2dc25e0fa4",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "8869c8510101b51aaace3222071c1ba749ff1de72ce6d2bda4e7c67d22b552bf",
+      "id": "scn_mp_custom_map_22",
+      "map_id": "test_map_043",
+      "map_name": "test_map_043_WMS_043",
+      "pool": "medium",
+      "relief_m": 25.707,
+      "sha256": "5484dd28c28351c698f953c576977b8c595525681030a3a6b79a2067b3a3cc69",
+      "source": {
+        "recipe_sha256": "8aef236341e913d065dae1b23c60db16f5ad740c864ebc0e8b62629c51055569",
+        "sco_sha256": "b418efbebd5b59930661c74e5ed3627f6b432fab8d88245cec4dcfcdd8cb0c34",
+        "terrain_code": "0x00000003d281440a000dc3701801b5b059d246317bf337c6"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_043_WMS_043/5484dd28c28351c698f9/test_map_043_WMS_043.json",
+      "variant_id": "test_map_043_WMS_043_VarA.placements.json",
+      "variant_revision": "a32ba54c58a4a8118535a41da9ffe9f7b19c6eaac47f2bbc62dd2986899d0cd3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "48e7a25cf754140ba03f615e163143b0f8edf8ed1a91684a36b1f8ae3e39818b",
+      "id": "scn_mp_custom_map_23",
+      "map_id": "test_map_044",
+      "map_name": "test_map_044_WMS_085",
+      "pool": "medium",
+      "relief_m": 20.016,
+      "sha256": "f1d097dec1c61093afb8b72ad7ab94d6bbab28b7bce2e21c20d4cb11c54a4dbd",
+      "source": {
+        "recipe_sha256": "69db442bd5cebcae2a61d4343c2fc272cead244c8d080b15f651c056cc72c260",
+        "sco_sha256": "b0f3087547ed54cc841be9d8b39c77deccc14680b2d0152f301c7a2cfdace998",
+        "terrain_code": "0x000000033282840a000dc370047d6bb55c64a3c6672b3574"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_044_WMS_085/f1d097dec1c61093afb8/test_map_044_WMS_085.json",
+      "variant_id": "test_map_044_WMS_085_VarA.placements.json",
+      "variant_revision": "09af6a1065158b26f779251340a4514c18fbdf19d7bf99022024e57ea952be34",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "0c352cc4bd4ad842ac5a43f5e360e97482d9b2a3ed7b3c23127a2461f8ded090",
+      "id": "scn_mp_custom_map_24",
+      "map_id": "test_map_045",
+      "map_name": "test_map_045_WMS_092",
+      "pool": "medium",
+      "relief_m": 55.08,
+      "sha256": "81d805ad946010de2361ef3d976e8f30e1e50e2044860d4482796ffa94f88596",
+      "source": {
+        "recipe_sha256": "aaa50c3944dbe30c445fa8ba1096bbc9c1c088e77753410fe69656d724d06ca7",
+        "sco_sha256": "fe6478842341225792b0c316d35df130e9671f8f2a7511a937622713f46463cd",
+        "terrain_code": "0x00000003a281468a000dc3706e8efc9942b1437565c29c92"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_045_WMS_092/81d805ad946010de2361/test_map_045_WMS_092.json",
+      "variant_id": "test_map_045_WMS_092_VarA.placements.json",
+      "variant_revision": "099cf0ce8c14695ca3a1ce6347075a16e72f4fb383c5d433a7ab8ce52ab0b1fc",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "9da9859f4d0202dbfa1828997ad4a60c98e5defcb8b7655ed735e15de4279dff",
+      "id": "scn_mp_custom_map_25",
+      "map_id": "test_map_046",
+      "map_name": "test_map_046_WMS_035",
+      "pool": "medium",
+      "relief_m": 41.769,
+      "sha256": "2ffb9d8e8e651dda0dcea3075d85e03aa5f01677b98f2c9a40d0cb98873a50ba",
+      "source": {
+        "recipe_sha256": "d4d104f6a62409a7901d1105cf676a0c04dbcf898bce1a2f662586deae6411d4",
+        "sco_sha256": "028e610d9530d4c6de4bbec4a4ee6ee6b50d1799ec8282fcafa7f1702e3d68e2",
+        "terrain_code": "0x000000033281c48a000dc3707c310d99517102cf6afcabfb"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_046_WMS_035/2ffb9d8e8e651dda0dce/test_map_046_WMS_035.json",
+      "variant_id": "test_map_046_WMS_035_VarA.placements.json",
+      "variant_revision": "05afe1c5be23698e9e3021a9aa997a1e158b37b1f2b38788a329b86408f46ec2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6b217cc77bb901f807f9aba9cdda340b8776071df724c391b8f634d8e31be5f7",
+      "id": "scn_mp_custom_map_26",
+      "map_id": "test_map_047",
+      "map_name": "test_map_047_WMS_041",
+      "pool": "medium",
+      "relief_m": 36.228,
+      "sha256": "dd791995aa15a09cc0f64bb3b5669c957ab7c66785c8c62d8f85d6e39f685c60",
+      "source": {
+        "recipe_sha256": "35739abb57bda389a4b868cdc77fe1a08a476a7045a92743c37bb93dac2f9be3",
+        "sco_sha256": "f15f578d2415fa0e56221685eebf103f68f75c44bb194e6ca1b701356fbc71e6",
+        "terrain_code": "0x00000003a282470a000dc3704ac8fddf74e8d56900bd55fd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_047_WMS_041/dd791995aa15a09cc0f6/test_map_047_WMS_041.json",
+      "variant_id": "test_map_047_WMS_041_VarA.placements.json",
+      "variant_revision": "e4f06b519a15fc465aa07ca64855bb015f598383166fd1331dc65232414ce97d",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4c0fa33518112b18d1436f2f219f6f9f1dfec42b727b2530b283067dc62678f7",
+      "id": "scn_mp_custom_map_27",
+      "map_id": "test_map_048",
+      "map_name": "test_map_048_WMS_037",
+      "pool": "medium",
+      "relief_m": 48.067,
+      "sha256": "f1e1b058c26c3fa6a357a675a2083128eaac80ce6d1c1f93b3856daf1ffd8a21",
+      "source": {
+        "recipe_sha256": "2d4a30689563bec2a1f552be65ef60c600b8d3cd93bcd42e6daaa9b6fabcaa48",
+        "sco_sha256": "e6bb0c3c0ba7ff82334404c578c77101b7d44976a20095e2996920beee82e325",
+        "terrain_code": "0x00000003a281480a000dc3706fe3d1ca0e6ecef81894308d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_048_WMS_037/f1e1b058c26c3fa6a357/test_map_048_WMS_037.json",
+      "variant_id": "test_map_048_WMS_037_VarA.placements.json",
+      "variant_revision": "8e870bfa0cd5a9ff354d33aab6237b3a197fcf5f6a6a9608f73c371dc42daba7",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "233ce258a9659ce288cf0e3b8bdd9d16550349153b40f03b5ac52356c044da74",
+      "id": "scn_mp_custom_map_28",
+      "map_id": "test_map_049",
+      "map_name": "test_map_049_WMS_091",
+      "pool": "medium",
+      "relief_m": 26.796,
+      "sha256": "6e10dd3b304e4bb4d55c782674aeb5ca0d7f9cc2821321889d758d32c0e091d5",
+      "source": {
+        "recipe_sha256": "a385251aa585d9dfa6df65235ceab7ca8f82ba7244e6b07e2bbf6712c964987f",
+        "sco_sha256": "132b75a8d0c680c0f37b8940c7d8cd8c30a88ce29a45e9b632778bf8b81e29d9",
+        "terrain_code": "0x00000003c281c60a000dc3702fec81552ac27428550bcb20"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_049_WMS_091/6e10dd3b304e4bb4d55c/test_map_049_WMS_091.json",
+      "variant_id": "test_map_049_WMS_091_VarA.placements.json",
+      "variant_revision": "e00097696c76398f2a159c2537b1cadb59f0c17b138730209d1299ebb3951090",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a202989ee3aacb8ca6af80d57f495211d63c89a86637e8e64840f4934607d73b",
+      "id": "scn_mp_custom_map_29",
+      "map_id": "test_map_143",
+      "map_name": "test_map_143_WMS_065",
+      "pool": "tiny",
+      "relief_m": 23.757,
+      "sha256": "7c7f1e0a5f93299ad3953fc81eb6907fbbb3d999c114189ba44f6f51643802ae",
+      "source": {
+        "recipe_sha256": "58a464edf658486bcaf770d1e9e83a0b9b35c3d8a5d9c54ffe05ac20c7171314",
+        "sco_sha256": "435926135f556ff5ab3fdc41a22a51cee25f32e26b2218670ac1c56aaaac80e3",
+        "terrain_code": "0x00000003b281c78a000962583d1ece1404ed990e2c67c81c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_143_WMS_065/7c7f1e0a5f93299ad395/test_map_143_WMS_065.json",
+      "variant_id": "test_map_143_WMS_065_VarB.placements.json",
+      "variant_revision": "b9d4b7aec76c990ede0c7861a684588bcb6e4e70a50c512e4357356347adcc54",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a82c4cc31d7f92e51955c3af6fc2f01a84c57ca6ec8d871547c6de7c6898f706",
+      "id": "scn_mp_custom_map_30",
+      "map_id": "test_map_050",
+      "map_name": "test_map_050_WMS_034",
+      "pool": "medium",
+      "relief_m": 26.796,
+      "sha256": "f69597537229ddbb60da6f4e686a745aa95b2983f7e643256a08b06dd4de717e",
+      "source": {
+        "recipe_sha256": "0e2a190e47a69909d5c6e354a144b23ad9f286f1fe9d0e8ed2bfd3aa481e9f95",
+        "sco_sha256": "3514ece19d9c3cade06da054c9653e490a591a22e8e3a137c621862cfb5e7e45",
+        "terrain_code": "0x00000003c281c60a000dc3702fec81552ac27428550bcb20"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_050_WMS_034/f69597537229ddbb60da/test_map_050_WMS_034.json",
+      "variant_id": "test_map_050_WMS_034_VarA.placements.json",
+      "variant_revision": "320e4a40d5fd3d07e7b2b66665b95b921241f2f93ea71ca57f6c0ac2e9a9764f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "2b2aad551790fdd0a971fb4ca9b7fcd2c4aad8c27331a57747469e8b870b7694",
+      "id": "scn_mp_custom_map_31",
+      "map_id": "test_map_051",
+      "map_name": "test_map_051_WMS_089",
+      "pool": "medium",
+      "relief_m": 28.781,
+      "sha256": "929263108de08fd9c156eaf9628542e3a3c69cf67c9a5002c915f012915974cc",
+      "source": {
+        "recipe_sha256": "74a4b48a07c97af4521c5cd3f4b4882a7e8adf0cbde4196a3f280da6034c7104",
+        "sco_sha256": "962da05656aacd536150d2e4391ffa0de0449a0e8bf82d2a662b96281f16d454",
+        "terrain_code": "0x00000003c282050a000dc3705ee724974d3f9e74437ec609"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_051_WMS_089/929263108de08fd9c156/test_map_051_WMS_089.json",
+      "variant_id": "test_map_051_WMS_089_VarA.placements.json",
+      "variant_revision": "161705e7dcb3f77ec771638da9f94d1b1b846f1f9c564ceddb555a574c93a5f4",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "fd9473da798349685c6e122c4c0f60b8276726881ae38ba5b35b57794b2b6473",
+      "id": "scn_mp_custom_map_32",
+      "map_id": "test_map_117",
+      "map_name": "test_map_117_WMS_027",
+      "pool": "small",
+      "relief_m": 29.372,
+      "sha256": "5ba0ae9ec568e14a958e043147c8139624de78f4c198cd1e87974b3ed0535fb1",
+      "source": {
+        "recipe_sha256": "6d096e021e324b1ab8fb6f2a92eb6332298a3bc4881f5ed865145a96618fe42e",
+        "sco_sha256": "455889ef2c722a16f6542333781828faee2d2941b6486b8fdb44ab5819f73965",
+        "terrain_code": "0x00000003a282088a000b42d00a56e3f6601e6ec25ef63cb1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_117_WMS_027/5ba0ae9ec568e14a958e/test_map_117_WMS_027.json",
+      "variant_id": "test_map_117_WMS_027_VarA.placements.json",
+      "variant_revision": "fca4ec5c942491226821bf7e39f2ca14d1b1f51a3bd06e6111a1ed4737838435",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "5f6b2e1707a23b36112b07f013f3f8389aac964b2fc849fbb26f3d3697b8c821",
+      "id": "scn_mp_custom_map_33",
+      "map_id": "test_map_052",
+      "map_name": "test_map_052_WMS_087",
+      "pool": "medium",
+      "relief_m": 31.274,
+      "sha256": "9200b53092207ce9531418e1cb265513f3a4b15ed5431af914e3a35338b61dea",
+      "source": {
+        "recipe_sha256": "b7cd49db16093ad2b48cd33f6fb13db442ecaed29809e1531baf641de2804cde",
+        "sco_sha256": "c15986712f1599b648d96898e5b8f62be1d3e04eebbefe17d62a4cd2096d638b",
+        "terrain_code": "0x000000034282060a000dc3705dd8adc76e8bbba1095ad586"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_052_WMS_087/9200b53092207ce95314/test_map_052_WMS_087.json",
+      "variant_id": "test_map_052_WMS_087_VarA.placements.json",
+      "variant_revision": "ebbf475d301ad13d8cb3626967a47bd23ea6037828dcaf72e5fbebb83662c2fb",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f8e7cfa01a7d7773d45c1af74c0bd2a2626946e9b6d963141163d670f620ba03",
+      "id": "scn_mp_custom_map_34",
+      "map_id": "test_map_144",
+      "map_name": "test_map_144_WMS_007",
+      "pool": "tiny",
+      "relief_m": 16.243,
+      "sha256": "47651fac421a07a662123b964ef3201600d3611ca778795f038566ca5d58136d",
+      "source": {
+        "recipe_sha256": "3671a53b8d7132aeb5458ebf0c408c620899c571583383ffc03dd7fa60ddec02",
+        "sco_sha256": "f4a4101d3072bc863d5d2cb259072b05b8990ab1f4ad6c1d5d7e862899f612b4",
+        "terrain_code": "0x000000034281c48a000962580d5b84a2029d66b847ab8a9c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_144_WMS_007/47651fac421a07a66212/test_map_144_WMS_007.json",
+      "variant_id": "test_map_144_WMS_007_VarA.placements.json",
+      "variant_revision": "711f4a4b9c4808e2a733b31861db8c9380f48887387bf6da1231534b9ba6f98d",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "034b4584664ec5b6e29b9ccfc20567a4ded3cc077701d86d1c82776108ddc81e",
+      "id": "scn_mp_custom_map_35",
+      "map_id": "test_map_053",
+      "map_name": "test_map_053_WMS_082",
+      "pool": "medium",
+      "relief_m": 18.243,
+      "sha256": "1eebe4d9b8836027298f983c107fa520b9c430b0519992ca753fe7536110e457",
+      "source": {
+        "recipe_sha256": "309b94b221134542819647c92a0fcee960a834d22b8909c1dd2b477ab60196c0",
+        "sco_sha256": "8f4d2a41d545ce0b8b8082dea8574c07235936f4c6b1033fd7391a430f9fd0b4",
+        "terrain_code": "0x00000003b281450a000dc3702c2e33800c557ddb3948eb08"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_053_WMS_082/1eebe4d9b8836027298f/test_map_053_WMS_082.json",
+      "variant_id": "test_map_053_WMS_082_VarA.placements.json",
+      "variant_revision": "3d94c20c5ac31f607d56831baa975a64749cf1cf59000e786be709a3ba66f5ae",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c679724d83048a49a0833f4da26ec8f352028e25cb08b41c0367629e99689369",
+      "id": "scn_mp_custom_map_36",
+      "map_id": "test_map_054",
+      "map_name": "test_map_054_WMS_044",
+      "pool": "medium",
+      "relief_m": 18.243,
+      "sha256": "eb366ee836b779e44c94a34f1968b2dea65eed7c38c0541377c10ba26e2fb58e",
+      "source": {
+        "recipe_sha256": "1d6b4659d6b137badafadc187649cdb925e19622546141ded362abe6f6ce8eb6",
+        "sco_sha256": "0f4fbc7b67bb2a310ab3b5021ff7f182ebd7ad314dbd331ed3445ca9f636386c",
+        "terrain_code": "0x000000034281450a000dc3702c2e33800c557ddb3948eb08"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_054_WMS_044/eb366ee836b779e44c94/test_map_054_WMS_044.json",
+      "variant_id": "test_map_054_WMS_044_VarA.placements.json",
+      "variant_revision": "30173edbe0dc663e1aa3cff63f3397974181907c962b512fe4b771ae7f29d11e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a8bf7632b7d1bda1a244afd8a1c42cd73632a28a298b52c2b2fce8b39352946b",
+      "id": "scn_mp_custom_map_37",
+      "map_id": "test_map_055",
+      "map_name": "test_map_055_WMS_086",
+      "pool": "medium",
+      "relief_m": 21.136,
+      "sha256": "6cd68724f395fdcf399c0e878783e8c5ee5034f1302081d46b3509677ce80fa1",
+      "source": {
+        "recipe_sha256": "206e002cda12ef76b6c71cce90625a9d97110fad4e5358d411564a931831a6d6",
+        "sco_sha256": "1e7f85b2cc8d302b17bd943a44d03e888531554a2b01f085c48553123b79f393",
+        "terrain_code": "0x00000003c282440a000dc3703d0f403d65ca0c8562958df4"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_055_WMS_086/6cd68724f395fdcf399c/test_map_055_WMS_086.json",
+      "variant_id": "test_map_055_WMS_086_VarA.placements.json",
+      "variant_revision": "3ac3c8bdd8c533733d67f0511b18825413d7eba34c90c588a79e9062c5248792",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "281d30b623af6ddcee238f776f8537b6c51d185c65a2e3aa1cd87cb7bccc5947",
+      "id": "scn_mp_custom_map_38",
+      "map_id": "test_map_056",
+      "map_name": "test_map_056_WMS_045",
+      "pool": "medium",
+      "relief_m": 43.819,
+      "sha256": "186ea213f604e7dfb0f5098ab26f03e2e874293d7ee9cb316bf00c3644e9a245",
+      "source": {
+        "recipe_sha256": "3e0bca5daef994c9c8fa813983da472eacf1059325bc0da212326a733723151f",
+        "sco_sha256": "b637aa2b8f1cca5d9857e6d4c3fbeacf1ff0f984638583605252d458d56430c7",
+        "terrain_code": "0x00000003b282870a000dc37035cf27dd6970c3d60240e3ab"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_056_WMS_045/186ea213f604e7dfb0f5/test_map_056_WMS_045.json",
+      "variant_id": "test_map_056_WMS_045_VarA.placements.json",
+      "variant_revision": "7af43b61f8996d5ceca6a2f6ee9daab78c889f44fb9b3703ce2c29672bc40798",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f2293b9f5231fee9ce6d973efbf7109d4e298c10c7a04e4e33a148e63129589c",
+      "id": "scn_mp_custom_map_39",
+      "map_id": "test_map_145",
+      "map_name": "test_map_145_WMS_010",
+      "pool": "tiny",
+      "relief_m": 20.498,
+      "sha256": "45343dd811fae0672e7a4acd44becf997a0913015717b0cb9672b0fc7b5f3fc9",
+      "source": {
+        "recipe_sha256": "afc30480c3fb32320e90cea44320f49b45e7229854d804e71ba382edb01520e9",
+        "sco_sha256": "a0464443c3d9e51afbad52aa6c3160ca4c0c127bc15f65846a6f3630c7462e94",
+        "terrain_code": "0x000000034282860a000962580ec83b267a3faff063a3d6c7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_145_WMS_010/45343dd811fae0672e7a/test_map_145_WMS_010.json",
+      "variant_id": "test_map_145_WMS_010_VarB.placements.json",
+      "variant_revision": "1fa992cb7c3cc12fb25e06ac279197ecacebafa91b322757cd8d73b82671f39d",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "b57d56cd172174e24cdaa02f978b537a1ef4cd2b731face02fd25a02a745c912",
+      "id": "scn_mp_custom_map_40",
+      "map_id": "test_map_120",
+      "map_name": "test_map_120_WMS_072",
+      "pool": "small",
+      "relief_m": 32.001,
+      "sha256": "52e33e755b49bc313be460539288965c912c84004c85cc911b35d8d748612578",
+      "source": {
+        "recipe_sha256": "239e48e6fb38df15d92abc89a0832aeb24f39b1a9772a4380504c1ed643f3d01",
+        "sco_sha256": "ddc84adda84bbdbd71f83b655deaaeb4e7dd554b3a95676938e18d4f8719b0cc",
+        "terrain_code": "0x000000034283868a000b42d072e42ddc29fdf26f630c0889"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_120_WMS_072/52e33e755b49bc313be4/test_map_120_WMS_072.json",
+      "variant_id": "test_map_120_WMS_072_VarA.placements.json",
+      "variant_revision": "f039e070dab097deade4b92d4adb7de7fa68aa49887ce3df557b14ce3f7cce8b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "dc7386ecbf7717235bfe6460f05824c98d554d7bb6a5fe217e09d327bff0b688",
+      "id": "scn_mp_custom_map_41",
+      "map_id": "test_map_121",
+      "map_name": "test_map_121_WMS_029",
+      "pool": "small",
+      "relief_m": 22.37,
+      "sha256": "53797cdaa338410e49510560f059a3a4b10b71555825d5e57c2f826a6134f532",
+      "source": {
+        "recipe_sha256": "3001dc861627d78f76c10f97ff8b5a664c9a743ff2c84b6945d7619807e4e25a",
+        "sco_sha256": "c1205b6e7c0ac6dbeaec9741665f7488fb8c7f148c60759a4a4d873f3ff3d13a",
+        "terrain_code": "0x00000003d282c68a000b42d01f82978a343de09b1f95deac"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_121_WMS_029/53797cdaa338410e4951/test_map_121_WMS_029.json",
+      "variant_id": "test_map_121_WMS_029_VarA.placements.json",
+      "variant_revision": "2165af9ff0ccac2fab4126cbdea48892b80c15d65c60271f888506f314a8ee9a",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "b7c6954cfeb976b262568f06d21b6eb01556e91ee086bb9c88b105d955890683",
+      "id": "scn_mp_custom_map_42",
+      "map_id": "test_map_122",
+      "map_name": "test_map_122_WMS_023",
+      "pool": "small",
+      "relief_m": 25.397,
+      "sha256": "e55be46eec3bb9acc686b05e3a3f8b8cd2cb2c8c2973f7ad576d9988e975b62c",
+      "source": {
+        "recipe_sha256": "cf7a0fa96eecdf7405adcff482a0b2d8cd8ca43031f0a2b588b4889830a19784",
+        "sco_sha256": "1e822dab7a68a581c376fd4599f1273a89717e64f0216e4160d956a06b558a60",
+        "terrain_code": "0x00000003b284050a000b42d073a21ef66ba27d185621c7d9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_122_WMS_023/e55be46eec3bb9acc686/test_map_122_WMS_023.json",
+      "variant_id": "test_map_122_WMS_023_VarA.placements.json",
+      "variant_revision": "b920c59af406687a362493d73561866b0462650474b16830fe90ca10683c2f41",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "d0296d9ed2c8960f581942ab90da2a51731c47a31e60360fbd4c0567bbd40fe8",
+      "id": "scn_mp_custom_map_43",
+      "map_id": "test_map_146",
+      "map_name": "test_map_146_WMS_051",
+      "pool": "tiny",
+      "relief_m": 25.988,
+      "sha256": "f9191a917721968130a175a6a9a4141852e2d3c67a29571947b3c8aedac68da1",
+      "source": {
+        "recipe_sha256": "5d4a90b5a64c51ea4abb8ea81286e04405c7c744cf6b99adc9c7163bc3cfa679",
+        "sco_sha256": "253ffb0001239d086882cb6279aea7a22e8449149192e0d85363ea8734e892d1",
+        "terrain_code": "0x00000003a282468a000962582590b53100c7c6c577d1cd0d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_146_WMS_051/f9191a917721968130a1/test_map_146_WMS_051.json",
+      "variant_id": "test_map_146_WMS_051_VarB.placements.json",
+      "variant_revision": "7a81cad0897ac7cf2491b5d274b9ca1e1a80a96141045a7a27080657f687a5a2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4452581f8ca66775dcc66ea303663d9033984a2a4611a9ab71364b361eea5b58",
+      "id": "scn_mp_custom_map_44",
+      "map_id": "test_map_124",
+      "map_name": "test_map_124_WMS_025",
+      "pool": "small",
+      "relief_m": 31.398,
+      "sha256": "c7d13c4b2aa0ef568f52ecf961c6b668d6202b4b7486e5042f46219fe43de32d",
+      "source": {
+        "recipe_sha256": "8dc38e0e94bfa2f90a98c34b47fe8f4bf35c69f4a8531a0b9f1bf85de42a0c98",
+        "sco_sha256": "9db9920f509854fa840ad6fcff671af8228eaa54520a107de8a5b92d7247c4f6",
+        "terrain_code": "0x00000003a284c70a000b42d0540e9a02079aa9c129d75d02"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_124_WMS_025/c7d13c4b2aa0ef568f52/test_map_124_WMS_025.json",
+      "variant_id": "test_map_124_WMS_025_VarA.placements.json",
+      "variant_revision": "45f7e96dd4b80b66fc5cdc41808a4cf974a476ea7ef4e105b81d37844e271b58",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "e8d33469b09894b4f18e594c5c0ab2439a5e92b6a7803db810a508b53ddbf2fd",
+      "id": "scn_mp_custom_map_45",
+      "map_id": "test_map_125",
+      "map_name": "test_map_125_WMS_069",
+      "pool": "small",
+      "relief_m": 20.97,
+      "sha256": "134f890718c533effac8dc4b70c6602a2adb54e3173b6b7a696af8f87c8ea580",
+      "source": {
+        "recipe_sha256": "307afbd7c053e2150f73add364f2173f3221959475e194f1e6aa220ce32aee2f",
+        "sco_sha256": "adba3968daca278e93ec94c78b4c638369bb45e76504470efb40ad2709c25b50",
+        "terrain_code": "0x00000003a281c58a000b42d05217f97a190e0f4e57229eee"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_125_WMS_069/134f890718c533effac8/test_map_125_WMS_069.json",
+      "variant_id": "test_map_125_WMS_069_VarA.placements.json",
+      "variant_revision": "bafcbd7c3a5e479cc4e4c52b948cfab2f03a0b3ebab50d92a92bd1fd05e569e4",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "258d1885e71362c3da52181cce3d28f39e7c9bd0466675373ee124a238cc6abe",
+      "id": "scn_mp_custom_map_46",
+      "map_id": "test_map_057",
+      "map_name": "test_map_057_WMS_088",
+      "pool": "medium",
+      "relief_m": 23.635,
+      "sha256": "6c2988c87d554dd7120e6ebe8b8355727428892c4e6bbddf2c93672f110d5e31",
+      "source": {
+        "recipe_sha256": "7bd04f9f79d524f5455c0f412a6cc033c3f6d3d6c8fc0087ea2851c27d274afd",
+        "sco_sha256": "d3cb68f1b7ff8f97778cafb8149e75c4deb0d31a9f60a00ede4ab1468720e161",
+        "terrain_code": "0x00000003b282840a000dc3704b7f5ce51a2b229764506e9f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_057_WMS_088/6c2988c87d554dd7120e/test_map_057_WMS_088.json",
+      "variant_id": "test_map_057_WMS_088_VarA.placements.json",
+      "variant_revision": "725f8a172d67e7ecbb1148b2f46fc880b0fd143b4cd94fcd9eb2c2acd17db0b3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3329af8b36c2a7a355cc2a9a4306cf0edc2b57726d8bddfbaf7f3c95dd7743b6",
+      "id": "scn_mp_custom_map_47",
+      "map_id": "test_map_058",
+      "map_name": "test_map_058_WMS_042",
+      "pool": "medium",
+      "relief_m": 43.772,
+      "sha256": "195b6106218fb5a9cece9a62403c01e79313337e5d168dc89ac10799d4bcbed8",
+      "source": {
+        "recipe_sha256": "ec8ccc99eff3d978d44eac2d9b33bf445b3faca175142802cac12910dffcb562",
+        "sco_sha256": "fe42885ee6a73830edc499b1364568d1862ef856ac0f43b8656a125635d0c733",
+        "terrain_code": "0x000000033282078a000dc370487ee7444a4eac524485777e"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_058_WMS_042/195b6106218fb5a9cece/test_map_058_WMS_042.json",
+      "variant_id": "test_map_058_WMS_042_VarA.placements.json",
+      "variant_revision": "561af91c00d118b3035776c8e29bb6a3725160b8996deff12f6e1809c1a65e2b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a7f7f6ad6d4cf1fd844e0f4ef0b219c1de82aea1e9e6b65637670a32d1cc898e",
+      "id": "scn_mp_custom_map_48",
+      "map_id": "test_map_126",
+      "map_name": "test_map_126_WMS_076",
+      "pool": "small",
+      "relief_m": 21.667,
+      "sha256": "be0ad6d81bde19e7d0fe343d97038875292e665613fe3339bf02db18492cfeec",
+      "source": {
+        "recipe_sha256": "4c62a9dbf2017d56c8a481df1bb3b0afc5e3db3d021ba8c554b52f233d72c2f2",
+        "sco_sha256": "dab3177e06caf7e6d285cb1991e0cd2093caca8cfd0c2dd7cf169d7c7bd155a0",
+        "terrain_code": "0x00000003c282858a000b42d02d62924a6ac16c09419786f6"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_126_WMS_076/be0ad6d81bde19e7d0fe/test_map_126_WMS_076.json",
+      "variant_id": "test_map_126_WMS_076_VarA.placements.json",
+      "variant_revision": "03f17227a4a343931ce9849886cc2fed86bf2b4239a8b27ff9439308e228cab3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "ec5994f779202d89209b5d35b1a7ed003aebbb53dea2f19b71dc9ddf283fc6dd",
+      "id": "scn_mp_custom_map_49",
+      "map_id": "test_map_127",
+      "map_name": "test_map_127_WMS_022",
+      "pool": "small",
+      "relief_m": 38.169,
+      "sha256": "b4e21686cffe408239545a761b0b35d7456c4294e7b6012f4d30d132a49b628b",
+      "source": {
+        "recipe_sha256": "1f18d26a6d4b45a417df8cb0a20ed67c6f6a09fee2ce717c20553b6afc7400a4",
+        "sco_sha256": "d795e2855d56aad67e908e93d61be3642dbc49d898dd5b9f58c949b92b205cc5",
+        "terrain_code": "0x0000000342848a0a000b42d0066d93be7889cb833573e5da"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_127_WMS_022/b4e21686cffe40823954/test_map_127_WMS_022.json",
+      "variant_id": "test_map_127_WMS_022_VarA.placements.json",
+      "variant_revision": "31b52b0f66ab63946d4a8580a548064a9d9e6187efb0e53daf47019ca1988cd6",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "97879677f52baa92fe04370bf0fef0caaf2123af9b2f49f84f04f53b1b8477d5",
+      "id": "scn_mp_custom_map_50",
+      "map_id": "test_map_128",
+      "map_name": "test_map_128_WMS_071",
+      "pool": "small",
+      "relief_m": 31.36,
+      "sha256": "bc997fec175e3ee8c1d2c4966083e3fe624a7d5e234106c15a50986e791b700b",
+      "source": {
+        "recipe_sha256": "a67d13df6116a573fe191d929e7dd1573e41dbfd1feb42c09c8f5f8850a96468",
+        "sco_sha256": "007cd3d576d9a8970ded35ad590ba3ee73d82eca2037399b1bc270e38ea656bc",
+        "terrain_code": "0x00000003c282070a000b42d05dbe82d16c6b4eb528eafc21"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_128_WMS_071/bc997fec175e3ee8c1d2/test_map_128_WMS_071.json",
+      "variant_id": "test_map_128_WMS_071_VarA.placements.json",
+      "variant_revision": "efdb965a0c79e22d0fbcfdf62b1536f3bb0c3733bfaf9517277ec875ebd543c8",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "9b518a3a695842d4a2b5c1465732922ae1310456c5458d052e6f1ad5bfad325e",
+      "id": "scn_mp_custom_map_51",
+      "map_id": "test_map_129",
+      "map_name": "test_map_129_WMS_026",
+      "pool": "small",
+      "relief_m": 24.952,
+      "sha256": "93715eb9c6217acb2a046deddd91bf6fa3d5f27eeb6a0d21e07f8d049f07f0c8",
+      "source": {
+        "recipe_sha256": "5a00bebb8ea4774a88031772ffbb2aeabd1668dff2e7762f6896f08b496642d9",
+        "sco_sha256": "de95d0b9fd8f39cbddb51439cb0dee5d8e95ad32e0cbc29376f51b9870712d02",
+        "terrain_code": "0x000000033281468a000b42d004bd82a01bc574590e2fe8dd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_129_WMS_026/93715eb9c6217acb2a04/test_map_129_WMS_026.json",
+      "variant_id": "test_map_129_WMS_026_VarA.placements.json",
+      "variant_revision": "d3494a6df29f76a52d1a470baf4884af3f236454241363beea215878304d0ee8",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "39a9ed244961b515d7668f6c533fdd10c1dc30df2198d22d0c18d81a866179d7",
+      "id": "scn_mp_custom_map_52",
+      "map_id": "test_map_130",
+      "map_name": "test_map_130_WMS_028",
+      "pool": "small",
+      "relief_m": 25.688,
+      "sha256": "d9215fddb1d8d48759b0b525014e40d7e528d6a519452af65e76ee2b84af5311",
+      "source": {
+        "recipe_sha256": "22488b4ef6c66837c7712d6153473d865588560f78ea3c240ace8be5317aec26",
+        "sco_sha256": "23896d2e09e98a0c1a5ba969cb37f26b9d2c0550b32957ed9477c85a62901dd1",
+        "terrain_code": "0x000000033283c68a000b42d04aa998695f1762db4f1cd71f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_130_WMS_028/d9215fddb1d8d48759b0/test_map_130_WMS_028.json",
+      "variant_id": "test_map_130_WMS_028_VarA.placements.json",
+      "variant_revision": "97dd246728bb987df17bc761d4dc39d2fec28e3327322012dd218d25f8189fa2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6a58767aed4639eeddf2f4d86bd6bcd0cdf80d0f3f5a626aacd2870ca60632e2",
+      "id": "scn_mp_custom_map_53",
+      "map_id": "test_map_131",
+      "map_name": "test_map_131_WMS_070",
+      "pool": "small",
+      "relief_m": 32.291,
+      "sha256": "b5c5d63d601c0fb9c0fdfa64ce078edc55aa8f758ac7645e17e2427c106450cd",
+      "source": {
+        "recipe_sha256": "088ca11a833aa32ce695ed560b4322daccedf132490faae096468fc14ede3410",
+        "sco_sha256": "cde65f28bb090957e31e9b70137fff1f0ad4c735a365e7a99e53bbc7fa65d7dd",
+        "terrain_code": "0x000000033284878a000b42d0494ac5902ba96451248f512a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_131_WMS_070/b5c5d63d601c0fb9c0fd/test_map_131_WMS_070.json",
+      "variant_id": "test_map_131_WMS_070_VarA.placements.json",
+      "variant_revision": "352b229e12fb8002b8fa0bf958dea38d40c14afc4308f10222d6426c8bcd6210",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "279f055c85372593defa15446c1186a70a4919f33526eed96426f4ad06f30db5",
+      "id": "scn_mp_custom_map_54",
+      "map_id": "test_map_132",
+      "map_name": "test_map_132_WMS_074",
+      "pool": "small",
+      "relief_m": 29.456,
+      "sha256": "9297eabc7c4a693edc484f3116b58b54e3d234c9342f56ca3ef77628ed13e89e",
+      "source": {
+        "recipe_sha256": "932d16ab58d91a14ad241c11e529ecded7989e803918d31e3840fe33e7002e9e",
+        "sco_sha256": "8522fdeaafe215c9da57be8a7b083a99ee02c13f43806b03531f47fe59385b64",
+        "terrain_code": "0x000000034284060a000b42d0742686f14f2c90b049c6434d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_132_WMS_074/9297eabc7c4a693edc48/test_map_132_WMS_074.json",
+      "variant_id": "test_map_132_WMS_074_VarA.placements.json",
+      "variant_revision": "6fc5da6ef00f3caed728031742bbd2cc6b097fb254583bc0811e7caf9d1f64f7",
+      "vertices": 40401
+    },
+    {
+      "id": "scn_mp_custom_map_55",
+      "map_id": "test_map_133",
+      "variant_id": "test_map_133_AnnaFreud_VarA.placements.json",
+      "pool": "small",
+      "source": {
+        "sco_sha256": "f9634c8a8f89dd12248e196f0eaf9f431803c3b9fdc0d02a445067aa7ff4e868",
+        "recipe_sha256": "ba6ad6ebe0bf89288237a0fe9acd99667331b196793284c130e546fc815452c9",
+        "terrain_code": "0x00000003c281498a000b42d04713bfa113a11b595f4c0b19"
+      },
+      "height_data_sha256": "8df625468466a9c19e99dd554407403f03a9441e5b747c612114f531cab73869",
+      "sha256": "217bbb5a2d3db1d086a1175c0b6982d18b4b2e08300b25a1fb5e43dac11b047e",
+      "url": "/topology/test_map_133_VarA/217bbb5a2d3db1d086a1/test_map_133_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 696.0,
+        "y_max_m": 696.0
+      },
+      "relief_m": 33.507,
+      "map_name": "test_map_133_VarA",
+      "variant_revision": "35cf9e1e8f300a7cc17dcc8194c3ccdb458cce6139c460980197c38d4318e7c2"
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "46e050debc4ba911b5c0fb7a5472a64f462416173ea49d5c587cc8fc18d9fda5",
+      "id": "scn_mp_custom_map_56",
+      "map_id": "test_map_134",
+      "map_name": "test_map_134_WMS_030",
+      "pool": "small",
+      "relief_m": 33.456,
+      "sha256": "e2c82c983068b1d9a0aceae7ed198ed49f01af5a78b5d59c8a77d1652e9b62f1",
+      "source": {
+        "recipe_sha256": "19b57fee656d3d548992433e2c75c8c1be8d0f3ab99de8c8b07adbace0db47c6",
+        "sco_sha256": "bb7f2f8e3c09212beefdc2005b7db4f1766d11e80afbe02eac339b01b96e331c",
+        "terrain_code": "0x00000003b283c50a000b42d06b1fa29a3ad11baa1b0e74c1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_134_WMS_030/e2c82c983068b1d9a0ac/test_map_134_WMS_030.json",
+      "variant_id": "test_map_134_WMS_030_VarA.placements.json",
+      "variant_revision": "427edb350f6fbfd1db1faa1cf4398766ec7d9b447990fbe233eea6d5daf6a009",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "7de5b46d06933991a46ea0e033f9e33a585ccf7bd99f6f0b412094dac63d82ee",
+      "id": "scn_mp_custom_map_57",
+      "map_id": "test_map_147",
+      "map_name": "test_map_147_WMS_060",
+      "pool": "tiny",
+      "relief_m": 23.597,
+      "sha256": "f4d083e9ff9ff35addbf91bc3ebe4926b0603fbc9f0729c279f94278590aeefd",
+      "source": {
+        "recipe_sha256": "b2a21bf6937bada4bc7a6f534660a0c7ef3f630a2bcfc8732e8914ada6955d8d",
+        "sco_sha256": "720abf2cc3b16d080a9db07650b57ae074b4bc5e19b98d8409f24dd432d494ea",
+        "terrain_code": "0x000000033282888a00096258560f1c16511eab795b166185"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_147_WMS_060/f4d083e9ff9ff35addbf/test_map_147_WMS_060.json",
+      "variant_id": "test_map_147_WMS_060_VarA.placements.json",
+      "variant_revision": "5597d422c1b87b9f28b8acd3093a3654d25da49b97132eb0358d62afeed99d7b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "0f10268ca31d68d96ff08c1da9f2e47a23149261678bf1294c3fc0bace89d571",
+      "id": "scn_mp_custom_map_58",
+      "map_id": "test_map_136",
+      "map_name": "test_map_136_WMS_075",
+      "pool": "small",
+      "relief_m": 31.97,
+      "sha256": "44470b73d344691b8c1f60ded690a09e580a42c947a4a1bc1016c988e51cdfd8",
+      "source": {
+        "recipe_sha256": "7ee29ad18b0a5e2cacaa56408c0d91cd3823f21a88b55965141df0beb94956a9",
+        "sco_sha256": "be6167d4852f81b1d76c56fec87aa7f6950f3eb26b61af52443011d86bbb3622",
+        "terrain_code": "0x00000003b281860a000b42d016b9464c70dd55e709520583"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_136_WMS_075/44470b73d344691b8c1f/test_map_136_WMS_075.json",
+      "variant_id": "test_map_136_WMS_075_VarA.placements.json",
+      "variant_revision": "0bfb68d2f2a2f26be0549b5675df9bdd3fadb2e8525b622df880acffdcc9acab",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "d655b8f8d651461282d25271577fea058dc639cba33f344406b17db4c41b165a",
+      "id": "scn_mp_custom_map_59",
+      "map_id": "test_map_137",
+      "map_name": "test_map_137_WMS_021",
+      "pool": "small",
+      "relief_m": 42.979,
+      "sha256": "bba1a2f65a16bf613ca75459cf5bae6a54ea403b7ae020f050688ba8b190b4bf",
+      "source": {
+        "recipe_sha256": "4aeb515fede29542f4fb126d1e01f042fe17384b31cb5b64b275f823106b09b6",
+        "sco_sha256": "c0f613d6a841a5a3d2d0101fb807c1e64eec9d69e694647b65682c8898f48596",
+        "terrain_code": "0x00000003c281c88a000b42d05c7faac26d781e8023c2a87d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_137_WMS_021/bba1a2f65a16bf613ca7/test_map_137_WMS_021.json",
+      "variant_id": "test_map_137_WMS_021_VarA.placements.json",
+      "variant_revision": "dca0b538bf5d57e11af6bc89190e0eff1b9fe2d9a90f17c6506b424409addeae",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "eb4ed7d7616eafc0ec13f7b3cb767b161ff4758e7b866eb6c60ed8e32dae40e0",
+      "id": "scn_mp_custom_map_60",
+      "map_id": "test_map_138",
+      "map_name": "test_map_138_WMS_073",
+      "pool": "small",
+      "relief_m": 41.951,
+      "sha256": "3f3cced2225dfca0594d2088e82afe9cf24f1379c672c2927ea82527d89a51c6",
+      "source": {
+        "recipe_sha256": "fe23c24e53600797e4ab1c29b7c09c4eed166e77e3998d3e516d211c2abe8654",
+        "sco_sha256": "75399da535128e0afc958243355b4647b0d27dc89aff993ab5cd0c3a0a9e11b5",
+        "terrain_code": "0x00000003d283480a000b42d042c9fd5f459dc90e5d9ded7a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_138_WMS_073/3f3cced2225dfca0594d/test_map_138_WMS_073.json",
+      "variant_id": "test_map_138_WMS_073_VarA.placements.json",
+      "variant_revision": "5192b0c6a019b2ec5fb1da3a522262cc14899e93d86a51a16b752d9ee307346a",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "71bacc0f4d079847414163d119659387c2bf901213d923991e1b338ab0848e63",
+      "id": "scn_mp_custom_map_61",
+      "map_id": "test_map_139",
+      "map_name": "test_map_139_WMS_031",
+      "pool": "small",
+      "relief_m": 38.294,
+      "sha256": "562811a941f852e7c59cc5e0aa70a5a0e1c3fb41d69b8d5ccef02d72bffc5ac2",
+      "source": {
+        "recipe_sha256": "533dbef4c159b7e00e891df3a0f8be25b1f159bf3f0a76464845442f9b19bd0c",
+        "sco_sha256": "c9bb193abde99c604b15b12243e6b64d9a29eb82bfacf63f7d8f7ed19f23bc23",
+        "terrain_code": "0x00000003d284890a000b42d02b40dc5b686aadd670659d7c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_139_WMS_031/562811a941f852e7c59c/test_map_139_WMS_031.json",
+      "variant_id": "test_map_139_WMS_031_VarA.placements.json",
+      "variant_revision": "7176f0e5423360c7625543adf331e10e56f4bd849a66e25b982558b8b961c3a1",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "fd96f78a39eaf0251ba18bc09c872f6aa1e1aa8271a06f4033013afb6d96c406",
+      "id": "scn_mp_custom_map_62",
+      "map_id": "test_map_140",
+      "map_name": "test_map_140_WMS_032",
+      "pool": "small",
+      "relief_m": 25.25,
+      "sha256": "1453a379e7a07971fbf20950717bad047b68627b99fafb55055fc280f588418d",
+      "source": {
+        "recipe_sha256": "f795b482b966e7f4e4a3f891696e8a583dd9580e93d3966162d66207fcfd02ea",
+        "sco_sha256": "64ec14c6c262e5143c1ac34954c5be0f7594836c6c5f0f1cb186651eb5a26f10",
+        "terrain_code": "0x00000003c285058a000b42d0125de8cc7f9997ec6a3c20b2"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_140_WMS_032/1453a379e7a07971fbf2/test_map_140_WMS_032.json",
+      "variant_id": "test_map_140_WMS_032_VarA.placements.json",
+      "variant_revision": "23e9ec79323360dded827152eb77f1e1f8625e1c0780d6f05ba7d5fec968af22",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "645eeb3a759f82ed3ac149b92591f00b05994835b47f2ba6350c1903f38fee8f",
+      "id": "scn_mp_custom_map_63",
+      "map_id": "test_map_148",
+      "map_name": "test_map_148_WMS_052",
+      "pool": "tiny",
+      "relief_m": 19.726,
+      "sha256": "b55cf2103436b377133c64415f9656cf81205f8a97baf19a60a45e03e54f0878",
+      "source": {
+        "recipe_sha256": "ceb827f9a4709d38e66f97e74e970c45cc1eb88c1aa226ed44b900e76c9af018",
+        "sco_sha256": "1672d977254e09beaee59fcd5aaacd6b1bdaf9ee12971a48e6816b33dfe5de44",
+        "terrain_code": "0x000000034281858a000962582c69e41b68bedc5269aecf1c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_148_WMS_052/b55cf2103436b377133c/test_map_148_WMS_052.json",
+      "variant_id": "test_map_148_WMS_052_VarA.placements.json",
+      "variant_revision": "ced298512ee478d969b1c4c73729eb6c7c2eb432217e2ee895b2ef7cb5ffe74a",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "404fc2942c70ab0b542f4f3e10aac2867a21a43cb630eba6bb2fc4fa41642751",
+      "id": "scn_mp_custom_map_64",
+      "map_id": "test_map_149",
+      "map_name": "test_map_149_WMS_048",
+      "pool": "tiny",
+      "relief_m": 14.115,
+      "sha256": "8739776dc7cf02a413283664cb06ea74fbe6eb8b3f4a60e4cabd820050848032",
+      "source": {
+        "recipe_sha256": "f59993b718f25206cf67d02a262e6de2a81117c1f72176fd649895f8692f5691",
+        "sco_sha256": "f7198e1c41a4d7def51f6fdac28e74e02afe49f8f25ded817d68b3e0a21b1894",
+        "terrain_code": "0x000000034282048a000962583d4eed4f2accb50d2a9bbba7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_149_WMS_048/8739776dc7cf02a41328/test_map_149_WMS_048.json",
+      "variant_id": "test_map_149_WMS_048_VarA.placements.json",
+      "variant_revision": "057a1b491b5ee7de45b5616850af5ecd0617979e4e6bcda6a8fdc4038f9079cf",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "327990ab7f9d802d70f58eba18e7dfb19c0dedc03bf50e1f7a4738568d5a6371",
+      "id": "scn_mp_custom_map_65",
+      "map_id": "test_map_150",
+      "map_name": "test_map_150_WMS_057",
+      "pool": "tiny",
+      "relief_m": 32.107,
+      "sha256": "390e07b37f8d72dc795c9210868fae851fd1bb2eed18c099f2db098acd8e7db9",
+      "source": {
+        "recipe_sha256": "964c2dd99bc7157c03ebf9d7e1099551da7199d4b427ebbb29a26d972937c9c9",
+        "sco_sha256": "6cb6bede4d8a279f2479e22490f5e233f234eda54cae64192cfdd2ee411bfb22",
+        "terrain_code": "0x000000033281c88a000962580ba70c9e692e04034ace779f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_150_WMS_057/390e07b37f8d72dc795c/test_map_150_WMS_057.json",
+      "variant_id": "test_map_150_WMS_057_VarA.placements.json",
+      "variant_revision": "528d9f0dfae96dae36f96f311260c51943d2b401111b32f8788e937d842f7773",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "69abbb6fd057df55b107a2b582e670f36943ebd866701438c01d0ecf90451c86",
+      "id": "scn_mp_custom_map_66",
+      "map_id": "test_map_151",
+      "map_name": "test_map_151_WMS_058",
+      "pool": "tiny",
+      "relief_m": 15.476,
+      "sha256": "f12827e04f23fdcf3826194c711cc5eb3c6e6ed33ad2ea592d8c304df2a0dc97",
+      "source": {
+        "recipe_sha256": "9f475ae7123c454d4a6100cabaf199b155ca0ed3d73b40a478c3ebc73348a32f",
+        "sco_sha256": "bd2c92ef9ed025edda2f0630d07f18a5e444f53f5b297a02a7d6ea0a8227c49e",
+        "terrain_code": "0x000000034282440a0009625828d9af2311bc424d79b48abc"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_151_WMS_058/f12827e04f23fdcf3826/test_map_151_WMS_058.json",
+      "variant_id": "test_map_151_WMS_058_VarA.placements.json",
+      "variant_revision": "68773284bb44c631e1e6c8e335f4a8d2788442c8caee746199f72ec52d38d647",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "5003ff269604bb02a0d07dfeed876c383ff82398a8e3c9b4854a3fedb2c457c1",
+      "id": "scn_mp_custom_map_67",
+      "map_id": "test_map_152",
+      "map_name": "test_map_152_WMS_062",
+      "pool": "tiny",
+      "relief_m": 18.058,
+      "sha256": "295efba1f68d465b2c25d8b3c727325b366e88758b5a42248c46e8829097b89d",
+      "source": {
+        "recipe_sha256": "54a43030243d1db346de1e6a092dfb482e87b70cd098b30b8b72cf5285c5bb71",
+        "sco_sha256": "59ba97a831cf9e392dd8500933f2fb1d8431932573d92d78ff1e6d7992f186b3",
+        "terrain_code": "0x00000003d282058a000962583073c5cc210e9a4661ababcb"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_152_WMS_062/295efba1f68d465b2c25/test_map_152_WMS_062.json",
+      "variant_id": "test_map_152_WMS_062_VarD.placements.json",
+      "variant_revision": "532e1fad41dbb7be799c88f5051f0ab30bc4b1af64197b2fc3c14a4384bd88fd",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3e43d4faa66bbf624186f345e1c887a6d8d81c2d7f690a79061d652d3a8e7edc",
+      "id": "scn_mp_custom_map_68",
+      "map_id": "test_map_153",
+      "map_name": "test_map_153_WMS_008",
+      "pool": "tiny",
+      "relief_m": 29.346,
+      "sha256": "fe2061ddc3c11e132765773e9f0240a174890eff3ed1ec5987ea1c54372d94c0",
+      "source": {
+        "recipe_sha256": "a0125fdb8d548fdf14058e994ee2e65c6150efdf82fee02ad70abc45f9fcc169",
+        "sco_sha256": "a4d9ef7bd08f88838f9ff8e991c196c75e82c1f328ccd2c649305bdcf55c87d9",
+        "terrain_code": "0x00000003c2828a0a0009625839b3c42b7bbd6b6d4580e5c5"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_153_WMS_008/fe2061ddc3c11e132765/test_map_153_WMS_008.json",
+      "variant_id": "test_map_153_WMS_008_VarA.placements.json",
+      "variant_revision": "d1dd10cb3492b90da43e164521ac81f3fa20502ce4f8c66d27c888193c71e0c1",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "ad20574319885603a9e5d1b5375451fac65854d1521c2afb20d66cd82b23a274",
+      "id": "scn_mp_custom_map_69",
+      "map_id": "test_map_154",
+      "map_name": "test_map_154_WMS_061",
+      "pool": "tiny",
+      "relief_m": 18.175,
+      "sha256": "537f3ee718ef49f0434a71316df349d90723dd113b0b2622a431ef05d6169a01",
+      "source": {
+        "recipe_sha256": "a64edd7fa22ef0c0b9377cf112b4c877a572a96947b00c64a6a44f899e92ed3f",
+        "sco_sha256": "47c608a1f7de23e4f91b2f0239f07698a7d44127fff8a21e0dc0da4850381c15",
+        "terrain_code": "0x000000034281478a000962586246b21b69401ff04dd5b238"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_154_WMS_061/537f3ee718ef49f0434a/test_map_154_WMS_061.json",
+      "variant_id": "test_map_154_WMS_061_VarA.placements.json",
+      "variant_revision": "38e529cfba4b53b998bdcc028f5fb5e872c76500956c792e1eaf003e746556ac",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "762d329cb587232bdca8410beaf149154cc6839dc93105ea1f1dde31f54b9eaa",
+      "id": "scn_mp_custom_map_70",
+      "map_id": "test_map_155",
+      "map_name": "test_map_155_WMS_004",
+      "pool": "tiny",
+      "relief_m": 21.791,
+      "sha256": "f98456125ff3b3529d5d194154f7d3b81ccdf6c8d731de9efa5efeb154162527",
+      "source": {
+        "recipe_sha256": "e157e36a8f3264d1fe9f0f49b531c704f90afa6b75cec134a9315a856be0a720",
+        "sco_sha256": "ec62374ba9a788c17d4a6b1f4bdf4d5cb72df3f71bf58033a0ed065c96e40953",
+        "terrain_code": "0x00000003c281860a000962582b5f542e7bdf490c6a4237ab"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_155_WMS_004/f98456125ff3b3529d5d/test_map_155_WMS_004.json",
+      "variant_id": "test_map_155_WMS_004_VarE.placements.json",
+      "variant_revision": "bee80aa2ba16222e3d2c7adf595aafac0f507692f8c6b3aa1ad70342120985ae",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "0c654be6b7bd07642587dc609d546b8870ebd6154c7480a772a4e096d1435540",
+      "id": "scn_mp_custom_map_71",
+      "map_id": "test_map_156",
+      "map_name": "test_map_156_WMS_016",
+      "pool": "tiny",
+      "relief_m": 17.326,
+      "sha256": "4f21b4463925da450c2d1b17ae9f1e6881b22a1500a26cab2bc969b529aa3ad0",
+      "source": {
+        "recipe_sha256": "c8cf3a8554236dcafeb79c8a82189190b7d5725207e8f326d45c0842264c77d1",
+        "sco_sha256": "3eb5067fe354705bd384c7ebdf205ddd7f51141575b443f8551f428fd976004c",
+        "terrain_code": "0x00000003a281c60a00096258531f45687d21f13d3fa09bcd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_156_WMS_016/4f21b4463925da450c2d/test_map_156_WMS_016.json",
+      "variant_id": "test_map_156_WMS_016_VarB.placements.json",
+      "variant_revision": "0a33b5c9179150d02bdea1c72e7ad84755b68a065e9569048b73a42b5435c74d",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "67df54e1ec8f076af30221a47ee5a50aa1f6a650b1e0041ecffd8b108f0dab48",
+      "id": "scn_mp_custom_map_72",
+      "map_id": "test_map_157",
+      "map_name": "test_map_157_WMS_005",
+      "pool": "tiny",
+      "relief_m": 46.883,
+      "sha256": "466e505c84055ac00c462e5992139998545939a5ca9d81041415154813a92983",
+      "source": {
+        "recipe_sha256": "12366d4789374c9305f6baef8d2bd273c327e2abe1eaa2218bc9693d5ff5e265",
+        "sco_sha256": "71493f20e03681cf20b26cdc55e3e1860962bf1efd2d9ffea96ca221da5ca2ee",
+        "terrain_code": "0x00000003a281488a0009625815d4f947361dc30151b9f413"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_157_WMS_005/466e505c84055ac00c46/test_map_157_WMS_005.json",
+      "variant_id": "test_map_157_WMS_005_VarA.placements.json",
+      "variant_revision": "15482ff09370a26a862a89029a9f3330bc9f841d3c695d3d188dca500ab3b7b1",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f32e5c6f0395261e4d9173fc1a151226d648748bc0e8f59d282364c98a7733a2",
+      "id": "scn_mp_custom_map_73",
+      "map_id": "test_map_158",
+      "map_name": "test_map_158_WMS_018",
+      "pool": "tiny",
+      "relief_m": 38.884,
+      "sha256": "e0ab1399a94f5036da51aa39cde073fe20ca814ce5a18a72755549d6fa153a5c",
+      "source": {
+        "recipe_sha256": "7854997192c0a84faacc02b0cf326b59618da29d9900258ddef5b0326ae20c21",
+        "sco_sha256": "1690b2eee4796ade23405edaa203b9a61df488258c1d8478dcd17810159bcc15",
+        "terrain_code": "0x00000003a282098a000962587b74813369f4d402208e9ba3"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_158_WMS_018/e0ab1399a94f5036da51/test_map_158_WMS_018.json",
+      "variant_id": "test_map_158_WMS_018_VarB.placements.json",
+      "variant_revision": "8e12b925fd7af2ee533545b3414df06bf157110de02be736f0ca3eec9a8a9302",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "47745705e5c3234cce3ec212bbc66b317e3595f77525eaaa5476f8caaecfaf19",
+      "id": "scn_mp_custom_map_74",
+      "map_id": "test_map_159",
+      "map_name": "test_map_159_WMS_055",
+      "pool": "tiny",
+      "relief_m": 18.347,
+      "sha256": "7406f5a4e56ad2d9aab6e9ca8b45b46716ec6b8d158a445c83917a56e93727d8",
+      "source": {
+        "recipe_sha256": "dfc376447aff2f3d1cd5355d51a0c7e517db6d08a8ce32e6269d8f85f7de86e8",
+        "sco_sha256": "007fb29faa4cbae7eb0109af28660430e29663c8802c171a0cb1f8d9145a8fc5",
+        "terrain_code": "0x000000033282850a000962583e1d87534e7b1a597e1442f1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_159_WMS_055/7406f5a4e56ad2d9aab6/test_map_159_WMS_055.json",
+      "variant_id": "test_map_159_WMS_055_VarB.placements.json",
+      "variant_revision": "6670f7842e5940f4311e65d14a6ddf9ea88c329ddf7f33151c74b9034593cde8",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "1eabd6e31025ac8b2c6005751eeecb6f59b9626f11b7f0e765e11d49264b49f6",
+      "id": "scn_mp_custom_map_75",
+      "map_id": "test_map_160",
+      "map_name": "test_map_160_WMS_001",
+      "pool": "tiny",
+      "relief_m": 20.512,
+      "sha256": "40cd2f1992ce2683a02cdaa4ba7e24888596f5b94634351b29b07d70dbabde50",
+      "source": {
+        "recipe_sha256": "6a2b7e64a1b6cded7e191b128d5bcbc1a4ec8e547ea4a9aec01003fdb1846288",
+        "sco_sha256": "33166d20ce5b1ef43386de2a81f777534e24e716a6daf93cbd2ceceacabe1499",
+        "terrain_code": "0x00000003c282860a000962583f43c6cf43fe51fa788b7aa9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_160_WMS_001/40cd2f1992ce2683a02c/test_map_160_WMS_001.json",
+      "variant_id": "test_map_160_WMS_001_VarD.placements.json",
+      "variant_revision": "ac98176d9541fc7f7ecdb1869c9ad1d3b59839a4d167797597b29527d8ae6d06",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "fdd7808d6bbbdc03ecea15186fe6240837a4ce14009a7c5035d7c4a2a7ede2db",
+      "id": "scn_mp_custom_map_76",
+      "map_id": "test_map_161",
+      "map_name": "test_map_161_WMS_059",
+      "pool": "tiny",
+      "relief_m": 26.771,
+      "sha256": "533fc425a5818097e19155bdbc1a1643b6e5820c4c656a4ffd6146bc00044479",
+      "source": {
+        "recipe_sha256": "8e9df249239b23b0c7d948e9790052e5f11eb303eab7fefb5d92d6d89869fa59",
+        "sco_sha256": "92b9ce36a66f840f74c85becb3d0088561e029631b6953d80c7a1f3ede595aa5",
+        "terrain_code": "0x00000003d282090a0009625857c019a646a7ffdf38ff3c07"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_161_WMS_059/533fc425a5818097e191/test_map_161_WMS_059.json",
+      "variant_id": "test_map_161_WMS_059_VarD.placements.json",
+      "variant_revision": "2870d82e69cd18c9400be5a5bf47f38b8799613e671fb74ea6eab9b0364d2969",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c0eb085223cfcb16420d570b084f80a8adfcfd54adf846ddfd881bfcd0788f6d",
+      "id": "scn_mp_custom_map_77",
+      "map_id": "test_map_059",
+      "map_name": "test_map_059_WMS_093",
+      "pool": "medium",
+      "relief_m": 51.033,
+      "sha256": "4c6148d1a40f6f9c337bf346e2aa7ae439bbd8614619cb7e4a8dfd7fd8565169",
+      "source": {
+        "recipe_sha256": "b08df6fbf0ed648ef03d360568e018e02a69010b2df1fc833e1ada23c824d275",
+        "sco_sha256": "ddc24fc169326b25034420e9e0d562e6e23ffa4f884043be34190b5a35e5ff6e",
+        "terrain_code": "0x000000033282488a000dc3702f1fab3002e2247f12e610d8"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_059_WMS_093/4c6148d1a40f6f9c337b/test_map_059_WMS_093.json",
+      "variant_id": "test_map_059_WMS_093_VarA.placements.json",
+      "variant_revision": "0e6b88439a69360fbb66b1f94f091184cbf723ac77e6db202a2093b6e98a3d25",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "9c391c46409d6e1196f40b7a38c5b649f3095e4213534fb34e4c90ff4521d149",
+      "id": "scn_mp_custom_map_78",
+      "map_id": "test_map_162",
+      "map_name": "test_map_162_WMS_002",
+      "pool": "tiny",
+      "relief_m": 19.017,
+      "sha256": "c12cd1c81cd6cd582a78dbe59c2122f9e18602e5278028a67336e6ee109b2795",
+      "source": {
+        "recipe_sha256": "2b3d685a0996cbdbf2a371858042945a3bcb018836580bfe675595647899d1c5",
+        "sco_sha256": "a7703d6f69f030bf62d9b7c4e71ad3a085ac47b4695c881cc3615eb8665d465a",
+        "terrain_code": "0x000000033282870a000962586ad53ca664475b324ec6a7e9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_162_WMS_002/c12cd1c81cd6cd582a78/test_map_162_WMS_002.json",
+      "variant_id": "test_map_162_WMS_002_VarA.placements.json",
+      "variant_revision": "9674099b11e21946af8def22d14572cadfdd225896583ba221eed7f25d0eaec0",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4fea6b3c5e3e7d105374f4da930ac1cc79c34fd61259e2bdf1b0e40a290649d3",
+      "id": "scn_mp_custom_map_79",
+      "map_id": "test_map_163",
+      "map_name": "test_map_163_WMS_012",
+      "pool": "tiny",
+      "relief_m": 31.155,
+      "sha256": "58791ad2e4cf57a4410e967e8ac830c776d08bc9dfaebd7a2341d5b4e45cb2ab",
+      "source": {
+        "recipe_sha256": "196ad4e5fa836d1a94865ace08fc49d01f713432a1c704ae47fadace8d7bf8a0",
+        "sco_sha256": "35b972794fe54aba534df76078654efcc7f1bc1f88a35882df9128d68c5dfddd",
+        "terrain_code": "0x00000003c282458a00096258643651e2751deae43bc8ef7d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_163_WMS_012/58791ad2e4cf57a4410e/test_map_163_WMS_012.json",
+      "variant_id": "test_map_163_WMS_012_VarB.placements.json",
+      "variant_revision": "0d549a4836a610de472f7e632da1a0ef9033603104507f4d006fffad0a5f7f56",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "29319107d3cb109219dc361e61b26de3a4dc5a0c34ce69d6dbefe935ad9f0a59",
+      "id": "scn_mp_custom_map_80",
+      "map_id": "test_map_164",
+      "map_name": "test_map_164_WMS_050",
+      "pool": "tiny",
+      "relief_m": 22.988,
+      "sha256": "27bc6c90a9bc7748493c4ac41bb9f5d8622770db52b7b337cbec3fc2062fecc1",
+      "source": {
+        "recipe_sha256": "be7a38ccfeb012b0e89f94af83789aba1ea4a459404c31def68b373f9208279a",
+        "sco_sha256": "c93838b126599229f659542120dac7fb1c5fd8b4750709b3751cffaaf0c0f49d",
+        "terrain_code": "0x00000003d282868a000962585d91904d7ccd24bb03de66e7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_164_WMS_050/27bc6c90a9bc7748493c/test_map_164_WMS_050.json",
+      "variant_id": "test_map_164_WMS_050_VarD.placements.json",
+      "variant_revision": "fe0dfa2a5607e1014632b3f1a27d895dd034ca491dfc2a42be9a08f02cc7200f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3fbf058725c419bc88d8df4e44b142355836607b330368914739ec7c60ca48ff",
+      "id": "scn_mp_custom_map_81",
+      "map_id": "test_map_165",
+      "map_name": "test_map_165_WMS_019",
+      "pool": "tiny",
+      "relief_m": 23.352,
+      "sha256": "98b9d13f7a8481fdf41d93c4328ec2c1cf425bab77cadf8a341d8a2c16ca92d2",
+      "source": {
+        "recipe_sha256": "d13213702b6f30a46e9fedb8641aeaea4e7d634653d6d1cac01275976c5b966b",
+        "sco_sha256": "a0aa3bba4dad16a47c006589dc52f34ad9bca270aac0a2abf4c6de1979be6d90",
+        "terrain_code": "0x000000033282078a000962584e8c5ffc565537c1076a7a5b"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_165_WMS_019/98b9d13f7a8481fdf41d/test_map_165_WMS_019.json",
+      "variant_id": "test_map_165_WMS_019_VarA.placements.json",
+      "variant_revision": "536cafff0abafeb6cfc124bf6271e480ad376728af2424939531bd945e3a30ab",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3b0ff642490535b760c805cd950f16ded3746a6fc67e9d510285c26fdcb7856f",
+      "id": "scn_mp_custom_map_82",
+      "map_id": "test_map_166",
+      "map_name": "test_map_166_WMS_063",
+      "pool": "tiny",
+      "relief_m": 25.768,
+      "sha256": "cc95ce90f30b3b0de95693c2d395518b43d19ec825d078d680b9acbc280aacc9",
+      "source": {
+        "recipe_sha256": "2be8c8b76d8b505215f2e70e25cac6ab72c5864d206694c6d922ba2ecfdeff18",
+        "sco_sha256": "263efd25463de93a3193a4090d4f61c8e236f3dd5825e004b3a705712ebeb6f1",
+        "terrain_code": "0x00000003c2828a0a00096258698790f8509f26fb028ed2d9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_166_WMS_063/cc95ce90f30b3b0de956/test_map_166_WMS_063.json",
+      "variant_id": "test_map_166_WMS_063_VarD.placements.json",
+      "variant_revision": "26cd1ee59bd87f028dddce105b33156429a5bcaa47edabe977165dbb191d7ba1",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "b0c8593956f7b9ad60a212d85b04fed3940bc243b3189a76460810110dbcbf96",
+      "id": "scn_mp_custom_map_83",
+      "map_id": "test_map_167",
+      "map_name": "test_map_167_WMS_053",
+      "pool": "tiny",
+      "relief_m": 31.785,
+      "sha256": "bd0d1bd21ca622e54ee030356d1feb982d60a5df4d95dae9afe8dcdf35e78b14",
+      "source": {
+        "recipe_sha256": "01ad67fe28dba01caef40f898f7e18e1a172d9f38cc991f6d57486e03f46d761",
+        "sco_sha256": "07f586c6d834618545e703ecfb9ff27e70aa90de1c15c704a35d9629c57a1a99",
+        "terrain_code": "0x00000003b281880a0009625804e8e0e1407472322d9011ac"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_167_WMS_053/bd0d1bd21ca622e54ee0/test_map_167_WMS_053.json",
+      "variant_id": "test_map_167_WMS_053_VarA.placements.json",
+      "variant_revision": "b9cc6842891433d172bcc39eb4adab0cc20537e548a924647e5fdbf41e1a228e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "94f51acd9d5355537e2ca695ae63c535a48f0f103a2d64734a456c4e5a31c89d",
+      "id": "scn_mp_custom_map_84",
+      "map_id": "test_map_168",
+      "map_name": "test_map_168_WMS_049",
+      "pool": "tiny",
+      "relief_m": 28.127,
+      "sha256": "8df6caaac9d81c4843e7f15554c684d7dfb9908d936961bd4656ec9f63975a47",
+      "source": {
+        "recipe_sha256": "a4f8f54be2732add11cc4ff4c547cd495297d60c38a0ba4c9105a875ac17bdf3",
+        "sco_sha256": "ec796e15c93be002541ebe4714ee1fd8fb2f4245d823eaa9230b7b0c297f3341",
+        "terrain_code": "0x00000003b282880a00096258021b4618675da47d14b59044"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_168_WMS_049/8df6caaac9d81c4843e7/test_map_168_WMS_049.json",
+      "variant_id": "test_map_168_WMS_049_VarA.placements.json",
+      "variant_revision": "28282412be9d5b2516418c9cc5a20a664b0b32b597058e249ae137b98f0ba897",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "20b400bd06342d9a0a8f3a88d672d5da3c38b203b55dddc458e4f2ebb4a8e7b8",
+      "id": "scn_mp_custom_map_85",
+      "map_id": "test_map_169",
+      "map_name": "test_map_169_WMS_054",
+      "pool": "tiny",
+      "relief_m": 19.04,
+      "sha256": "b8196175c101a5e12c645b24b9bbc1aad034c9c2aed537c80a46962a02024e9e",
+      "source": {
+        "recipe_sha256": "ff000bc57b56c2c753606a56582dfa1fc3a2ca9b1eafd68d2d116d07b4c10eb3",
+        "sco_sha256": "fe1c319c336604a2eb5935091274bc1e3c619bf40b8486bc61b4b097a30c5aa5",
+        "terrain_code": "0x00000003b282858a000962580626aad85e69eb8d7aa08107"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_169_WMS_054/b8196175c101a5e12c64/test_map_169_WMS_054.json",
+      "variant_id": "test_map_169_WMS_054_VarB.placements.json",
+      "variant_revision": "47a2ee025710885654020ca6d8a60b5d31a9b3b5efd7b75932ee01dc81dcb2ba",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "28454c6795a94dc88fec29018aac1afaa9699895dbd6986454c0477321a40954",
+      "id": "scn_mp_custom_map_86",
+      "map_id": "test_map_170",
+      "map_name": "test_map_170_WMS_017",
+      "pool": "tiny",
+      "relief_m": 22.524,
+      "sha256": "e895d6fe0041191d87f961f75c2c5bc679c2bfe9cc2cf0f6784fe0bbdf273370",
+      "source": {
+        "recipe_sha256": "f2514afef76ad1da18bdfd47a0b87ffd3493185ee98435ed626854c6ae7237ea",
+        "sco_sha256": "9841c149000d36f4b2df59eef0ec7fa1be80a63e05b8cac525c38d52ac0657ad",
+        "terrain_code": "0x00000003b282068a0009625879c40be675efcaa5306a196c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_170_WMS_017/e895d6fe0041191d87f9/test_map_170_WMS_017.json",
+      "variant_id": "test_map_170_WMS_017_VarA.placements.json",
+      "variant_revision": "962065ad5a03075ca06e3241197a885f054be79c432210ed7b83f9db26660522",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "ac2e5a37729967d0df19762aaf8a9df7f2684ae3f3da63974a570a34b7a3c644",
+      "id": "scn_mp_custom_map_87",
+      "map_id": "test_map_060",
+      "map_name": "test_map_060_WMS_046",
+      "pool": "medium",
+      "relief_m": 46.31,
+      "sha256": "b471c4b6307c5a6920c199cd624e5db33bd42afe523cf562ef2d9cdf4e601a93",
+      "source": {
+        "recipe_sha256": "88610f5e28be3418661f89b2f603a161b4dc3d100ccdb39d190df24cdeda52d0",
+        "sco_sha256": "e83bc257a4bd996664e04a98ecc03bf25ce8d243ce273a394e0142305a4a12bb",
+        "terrain_code": "0x00000003d281c88a000dc37031b149b655c682752d70f4ab"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_060_WMS_046/b471c4b6307c5a6920c1/test_map_060_WMS_046.json",
+      "variant_id": "test_map_060_WMS_046_VarA.placements.json",
+      "variant_revision": "8613b28ead531ba61e5f3a03d2cdb7bf5626b0b11be6b31ee7d7f49e4b756074",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a3c710c1c1a07934318e67ed8f2044aa367527aa1ed649f9b6f98ebb2909758c",
+      "id": "scn_mp_custom_map_88",
+      "map_id": "test_map_171",
+      "map_name": "test_map_171_WMS_015",
+      "pool": "tiny",
+      "relief_m": 19.275,
+      "sha256": "46b09e4cd2e72e83642dfd81f5fe50188cc011c35960f4aa0180c62bea7586e3",
+      "source": {
+        "recipe_sha256": "f0ad80c6c83a2e7c3e3554da4841069d8b059ad0e1ba2c4cfa3d76fb2c7ceb7b",
+        "sco_sha256": "f811514ad3e6836a9fd46958c4501f93e93fc120282e1e37e68f43f1e08cb4ba",
+        "terrain_code": "0x00000003c281860a00096258207f60bb3eda939c59303d26"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_171_WMS_015/46b09e4cd2e72e83642d/test_map_171_WMS_015.json",
+      "variant_id": "test_map_171_WMS_015_VarD.placements.json",
+      "variant_revision": "063b1306988865ed399876d05a81567dac8eafcd80fe8faaff44e1fcd8abafc2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "20a2d93bf0b301d52a07cd393cc21b9883786cdff05f4f6abdac43a404e87e3b",
+      "id": "scn_mp_custom_map_89",
+      "map_id": "test_map_172",
+      "map_name": "test_map_172_WMS_003",
+      "pool": "tiny",
+      "relief_m": 20.597,
+      "sha256": "70b3362f97a0cced6a035418993186a9ff9267d36d2f4ef7c21d83a6232546a1",
+      "source": {
+        "recipe_sha256": "fa142475b2ad1626c66eafd6deb8a002ec43186b4262d4a09a63ca18f3e9815f",
+        "sco_sha256": "1d77c2d9caba6cc7d3eba21d1ee20e3b815907592bed9ffd489ab608b85d8bd8",
+        "terrain_code": "0x00000003d281c60a0009625834ba61b3584c18cf776bc2dc"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_172_WMS_003/70b3362f97a0cced6a03/test_map_172_WMS_003.json",
+      "variant_id": "test_map_172_WMS_003_VarA.placements.json",
+      "variant_revision": "765d9ad8cd7834b4f2db7ae0de519dbd5e1cbd5e244241230a7a494c407d270e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "049d67cba04d89073eb0b8aba7f90c52af3561a476ac10876bd5e3a0ca7f252c",
+      "id": "scn_mp_custom_map_90",
+      "map_id": "test_map_173",
+      "map_name": "test_map_173_WMS_013",
+      "pool": "tiny",
+      "relief_m": 25.312,
+      "sha256": "5aa06dd9452a83416dbecf94656b6db0b6706e4c635d8b0af9692d504ec6900a",
+      "source": {
+        "recipe_sha256": "8cb38d002500a0191cf2b00ceada862d94a35368d4dc9d514a54f0d2165a5a75",
+        "sco_sha256": "50d28d36e6247641fd65bcfb7b61e139e99cc0a575e39ffaab918dfdb49e7062",
+        "terrain_code": "0x00000003a282070a00096258522fcccb0d71722214e33f53"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_173_WMS_013/5aa06dd9452a83416dbe/test_map_173_WMS_013.json",
+      "variant_id": "test_map_173_WMS_013_VarA.placements.json",
+      "variant_revision": "0a6803af1dce6a9664b8e7841cf97cb02ba952f1d0a840985c73310ed4f3baad",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "cb7fe2107edf9709caf43382b5adab17cdb4567e10206a8b65f8576e774f47c7",
+      "id": "scn_mp_custom_map_91",
+      "map_id": "test_map_061",
+      "map_name": "test_map_061_WMS_038",
+      "pool": "medium",
+      "relief_m": 50.184,
+      "sha256": "084d8b437ab95fcc09b6dc4c6ea71e442b03f7ad010f2de6ec8da38f55109728",
+      "source": {
+        "recipe_sha256": "0fd89d2ca3187f909c499ecf198aa0f0412edf37c90ddf48816d999df834b39b",
+        "sco_sha256": "ad7db8423458e936bf02912e203f5f7af2c3e1eaf6d99eca8ba87cfd039b3cc9",
+        "terrain_code": "0x000000034281488a000dc3702d33ebaa52b4655b461e2b5f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_061_WMS_038/084d8b437ab95fcc09b6/test_map_061_WMS_038.json",
+      "variant_id": "test_map_061_WMS_038_VarA.placements.json",
+      "variant_revision": "c60d0f291fddca7aa2e4ee12ddbb20ec4fd719f11eafee7190fa3a729ca5a8a7",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "15c8d32374d434c471139d99e86efb744be5c31c0fe29519acfd5c2e7c1d572c",
+      "id": "scn_mp_custom_map_92",
+      "map_id": "test_map_174",
+      "map_name": "test_map_174_WMS_047",
+      "pool": "tiny",
+      "relief_m": 18.44,
+      "sha256": "ed4fc8fa211762edc7cf4ecdd2077a67883943714e8f1501a51ff3cf4340def9",
+      "source": {
+        "recipe_sha256": "43d177d29728af710c3fd271873379af0e11d35c5afcd8f8de325e39f6fc6102",
+        "sco_sha256": "e5d284aeb08ff3041429c3a997259ad532986f96965178d077574ef66f9483b2",
+        "terrain_code": "0x000000033282450a000962586e0f587e16f1db2e405e23e4"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_174_WMS_047/ed4fc8fa211762edc7cf/test_map_174_WMS_047.json",
+      "variant_id": "test_map_174_WMS_047_VarA.placements.json",
+      "variant_revision": "202598d8c8056a4bf8637353991d2b95230bbbba40323f52fe4175d334cfaecf",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "58f40ed7ef78fc8905697e1a06826c60280a33611038bac9bc3fee8ff098f97b",
+      "id": "scn_mp_custom_map_93",
+      "map_id": "test_map_175",
+      "map_name": "test_map_175_WMS_011",
+      "pool": "tiny",
+      "relief_m": 23.603,
+      "sha256": "50957a37b195f56037922d9990351e1d5a2e8cecf64b03e54e4407f44502cdeb",
+      "source": {
+        "recipe_sha256": "420921343f3c7f74149be1b24ccbfec617fb2f3a0f1733e1dfc2b82f5bdb2304",
+        "sco_sha256": "948f88cc88236c69e7c3cdec10cc2811eacc7dbbb87473ccf65fedf5ea79662f",
+        "terrain_code": "0x00000003d282468a00096258653fcae97a8610d43cb7e9ed"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_175_WMS_011/50957a37b195f5603792/test_map_175_WMS_011.json",
+      "variant_id": "test_map_175_WMS_011_VarD.placements.json",
+      "variant_revision": "52a801bfe32055fb690c8aaed1b4800689093e7290845876437a52a2837dd5de",
+      "vertices": 40401
+    },
+    {
+      "id": "scn_mp_custom_map_94",
+      "map_id": "test_map_176",
+      "variant_id": "test_map_176_AnnaFreud_VarA.placements.json",
+      "pool": "tiny",
+      "source": {
+        "sco_sha256": "d412e5e6adcb17d81254695e969af25ba6b23898b23c51f9cb37ec6cf2dec6ef",
+        "recipe_sha256": "ff80a329a612b291a632ff084dcb04845307b97141e8797ff518962b0fafda09",
+        "terrain_code": "0x000000034281460a0009625832814167106f00ae4344c00a"
+      },
+      "height_data_sha256": "6b4f8e1d41b172376ff7f3f240d6f5c5df724155314890df3bc29d07e4cf71d1",
+      "sha256": "8c246bbd08d2cf00f77f57043809d5139eef67fb6d1dc22377c834193e11d88e",
+      "url": "/topology/test_map_176_VarA/8c246bbd08d2cf00f77f/test_map_176_VarA.json",
+      "vertices": 40401,
+      "triangles": 80000,
+      "bounds": {
+        "x_min_m": 24.0,
+        "y_min_m": 24.0,
+        "x_max_m": 576.0,
+        "y_max_m": 576.0
+      },
+      "relief_m": 21.779,
+      "map_name": "test_map_176_VarA",
+      "variant_revision": "eef1c3c0cfd174d3c59aa744b1656a75668e426cbfffa0dab7080bd59d1c4366"
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "72792c8b7556c3b8eb90e0eff5707798a02cc0cbe8e391c7785da8e3d720cea7",
+      "id": "scn_mp_custom_map_95",
+      "map_id": "test_map_177",
+      "map_name": "test_map_177_WMS_009",
+      "pool": "tiny",
+      "relief_m": 32.293,
+      "sha256": "c9eacc748fd00a8a5689939f42bed1184d7ebcf0584978c42bc8df12e42df528",
+      "source": {
+        "recipe_sha256": "1ce8581455ab9df6c1e0982d7bb4d84d1995b07494559fa6da8f2420c47a21ad",
+        "sco_sha256": "41acc7e29a0affbe5436a4f744be819e6104f63a4d100c549356851a6cd89108",
+        "terrain_code": "0x00000003a281c90a0009625872104c4846b6650245d165c7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_177_WMS_009/c9eacc748fd00a8a5689/test_map_177_WMS_009.json",
+      "variant_id": "test_map_177_WMS_009_VarD.placements.json",
+      "variant_revision": "f2e1f1480971c3539359a5d3c2b580e6bc2cc5e2bb854de6fbe4f372c59abfef",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4525ff57a06111e17c31d078650874ebf29e50c453617de39a311701d0ac48e8",
+      "id": "scn_mp_custom_map_96",
+      "map_id": "test_map_178",
+      "map_name": "test_map_178_WMS_014",
+      "pool": "tiny",
+      "relief_m": 24.685,
+      "sha256": "ca07f40cd29eb0af9fabd1fdd46a8a1650aa7ab54275955037746b3076c0939b",
+      "source": {
+        "recipe_sha256": "49bff675942db532ed794191f8bf967ff4b49532bbf5fd7ec5a99447239d6b2e",
+        "sco_sha256": "8a6e793a9fc8a76a49b8ec340ace8f405b815fd9d413e673ffbc8c0af5b5a0a9",
+        "terrain_code": "0x00000003b282070a000962586ecdfffd5701d00e57203bea"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_178_WMS_014/ca07f40cd29eb0af9fab/test_map_178_WMS_014.json",
+      "variant_id": "test_map_178_WMS_014_VarA.placements.json",
+      "variant_revision": "f5760e1dc357b0d792e7c2915fd2daefd1094a919f05c88ae0de0478af038818",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6e5072c2951e0feb609a2abb969ec26dc3687d316f367f39cd86d7cd4316aff5",
+      "id": "scn_mp_custom_map_97",
+      "map_id": "test_map_062",
+      "map_name": "test_map_062_WMS_079",
+      "pool": "medium",
+      "relief_m": 56.341,
+      "sha256": "16f909a66b3f47f12c57b8e4bcd34aba1bf097b8f6f93e9021a9cf635912932c",
+      "source": {
+        "recipe_sha256": "66ae6725c1612f1b4bd3fc3ec80a4d3052ea84c5e1c072051165f3fb1569bd39",
+        "sco_sha256": "9ebcd9bb7fbb2c5e38f40c6980cd3f853e02ec1161d059696b10097406531b42",
+        "terrain_code": "0x000000034282890a000dc3704658e25723ec89d440d0ee97"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_062_WMS_079/16f909a66b3f47f12c57/test_map_062_WMS_079.json",
+      "variant_id": "test_map_062_WMS_079_VarA.placements.json",
+      "variant_revision": "90af14ecfe8b053e9a0c20e74376df69647a2423887677fa1dcb71696ae3668c",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "42a979d85c98e0b3d49815b9873b33760c3fd84aef8440cbf0c97967ec0baf29",
+      "id": "scn_mp_custom_map_98",
+      "map_id": "test_map_179",
+      "map_name": "test_map_179_WMS_056",
+      "pool": "tiny",
+      "relief_m": 33.372,
+      "sha256": "400fceb7e560fe301e3de6d7cfa936a8e45df916278cb06246cd348fee5b3cdc",
+      "source": {
+        "recipe_sha256": "1486b683cce420a9ebf17924c6be28c2e2ed0f1377eb30eb0a1e4941b49c09d4",
+        "sco_sha256": "7df8d8c40146869875244adcc4d10dcaf96379c28a20b19b02467c6b0132d903",
+        "terrain_code": "0x00000003b282490a0009625832f1047042c13d4611fb8727"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_179_WMS_056/400fceb7e560fe301e3d/test_map_179_WMS_056.json",
+      "variant_id": "test_map_179_WMS_056_VarD.placements.json",
+      "variant_revision": "f2ba4566e3aeee55a444fa6f4439079c64cfc31920aaa0dfb40c4af64c3d7b64",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "5191b6819344c62c6420a15358223731353957b822860a689cbec72d99d42175",
+      "id": "scn_mp_custom_map_99",
+      "map_id": "test_map_063",
+      "map_name": "test_map_063_WMS_080",
+      "pool": "medium",
+      "relief_m": 27.631,
+      "sha256": "0f53af70f36f9dd61c7570f49cf51e7d044c3b9ae88d22274eee27def0502c6e",
+      "source": {
+        "recipe_sha256": "be8e3d471e2df135c3ba2e552b2027386dfcabf8ab2dddb3a74409f57495aafe",
+        "sco_sha256": "03498032e530b06bd9eeca6d742120f98799cdcde09f438f44544705127061b6",
+        "terrain_code": "0x00000003d281c50a000dc3705ddc293c409cf81224a31d46"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_063_WMS_080/0f53af70f36f9dd61c75/test_map_063_WMS_080.json",
+      "variant_id": "test_map_063_WMS_080_VarA.placements.json",
+      "variant_revision": "9928d79792351c61b82f7de0c355eb32484d3f0ad5f1c0b1c53fe23692a3cc0e",
+      "vertices": 40401
+    }
+  ]
+}

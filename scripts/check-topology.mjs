@@ -28,7 +28,7 @@ for (const map of manifest.maps) {
   assert.equal(current.map_id, publicId, 'Rotation must follow MAPNAMES.md');
   assert.match(publicId || '', /^test_map_\d+$/);
   const mapName = current.map_name;
-  assert.match(mapName, new RegExp(`^${publicId}_(RAW|Var[a-z0-9]+)$`, 'i'));
+  assert.match(mapName, new RegExp(`^${publicId}_(RAW|Var[a-z0-9]+|WMS_[0-9]{3})$`, 'i'));
   assert.equal(map.map_name, mapName, 'Topology must use the installed loadout name');
   if (map.url !== `/topology/${mapName}/${map.sha256.slice(0,20)}/${mapName}.json`) throw new Error('Invalid topology path');
   const bytes = await readFile(path.join(root, 'public', map.url));

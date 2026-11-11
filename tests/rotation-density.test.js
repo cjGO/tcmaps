@@ -251,7 +251,7 @@ test('heatmap controls update unit toggles and death selection', async () => {
   const { JSDOM } = await import('jsdom');
   const dom = new JSDOM('<div id="controls"><details class="terrain-graphics"><summary>Settings</summary></details></div>');
   let source = await readFile(new URL('../src/rotation-density-controls.js', import.meta.url), 'utf8');
-  source = source.replace("import recordings from 'virtual:replays';", 'const recordings = [];')
+  source = source.replace("import { loadRecordings } from './replay-recordings.js';", 'const loadRecordings = async () => [];')
     .replaceAll("'./rotation-density.js'", JSON.stringify(new URL('../src/rotation-density.js', import.meta.url).href))
     .replaceAll("'./map-variants.js'", JSON.stringify(new URL('../src/map-variants.js', import.meta.url).href));
   const { setupDensityControls, densityDefaults } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
@@ -271,5 +271,27 @@ test('heatmap controls update unit toggles and death selection', async () => {
   assert.equal(settings.deathKind, 'all');
   assert.equal(updates, 5);
   controls.dispose(); assert.equal(container.querySelector('.terrain-density'), null);
+  dom.window.close();
+});
+
+test('heatmap controls defer catalogue loading and ignore completion after disposal', async () => {
+  const { JSDOM } = await import('jsdom');
+  const dom = new JSDOM('<div id="controls"><details class="terrain-graphics"><summary>Settings</summary></details></div>');
+  let source = await readFile(new URL('../src/rotation-density-controls.js', import.meta.url), 'utf8');
+  source = source.replace("import { loadRecordings } from './replay-recordings.js';",
+    'export let calls = 0, release; const loadRecordings = () => { calls++; return new Promise(resolve => { release = resolve; }); };')
+    .replaceAll("'./rotation-density.js'", JSON.stringify(new URL('../src/rotation-density.js', import.meta.url).href))
+    .replaceAll("'./map-variants.js'", JSON.stringify(new URL('../src/map-variants.js', import.meta.url).href));
+  const module = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
+  const container = dom.window.document.querySelector('#controls');
+  const graphics = container.querySelector('details');
+  let updates = 0;
+  const controls = module.setupDensityControls(container, { density() { updates++; } }, data, module.densityDefaults(), {});
+  assert.equal(module.calls, 0);
+  graphics.open = true; graphics.dispatchEvent(new dom.window.Event('toggle'));
+  assert.equal(module.calls, 1);
+  assert.match(container.querySelector('.density-status').textContent, /Loading available recordings/);
+  controls.dispose(); module.release([]); await Promise.resolve();
+  assert.equal(updates, 1); assert.equal(container.querySelector('.terrain-density'), null);
   dom.window.close();
 });

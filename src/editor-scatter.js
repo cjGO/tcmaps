@@ -7,6 +7,56 @@ export const scatterPresets = {
   'Sparse scrub': {patchSize:35, coverage:60, density:1, contrast:50, stretch:1.3, direction:0, warp:50, softness:75},
 };
 export const scatterDefaults = {...scatterPresets['Broken woodland'], spacing:2, feather:0, avoidExisting:true};
+// Exploration ranges are separate from the active settings and named presets.
+export const scatterLayoutParameters = {
+  patchSize: {label:'Patch size (m)', min:1, max:100000, low:30, high:140, step:1, proportional:true},
+  coverage: {label:'Coverage (%)', min:0, max:100, low:30, high:70, step:1},
+  density: {label:'Peak density / 1,000 m²', min:0, max:1000, low:2, high:12, step:.1, proportional:true},
+  contrast: {label:'Density contrast (%)', min:0, max:100, low:35, high:90, step:1},
+  stretch: {label:'Stretch', min:1, max:20, low:1, high:6, step:.1, proportional:true},
+  direction: {label:'Direction (degrees)', min:-360, max:360, low:0, high:180, step:1},
+  warp: {label:'Warp (%)', min:0, max:100, low:20, high:90, step:1},
+  softness: {label:'Edge softness (%)', min:0, max:100, low:25, high:80, step:1},
+  spacing: {label:'Minimum spacing (m)', min:0, max:10000, low:1, high:4, step:.1, enabled:false},
+  feather: {label:'Boundary feathering (m)', min:0, max:10000, low:0, high:20, step:1, enabled:false},
+};
+
+export function validateScatterRanges(ranges = {}) {
+  return Object.fromEntries(Object.entries(scatterLayoutParameters).map(([key,p])=>{
+    const range={enabled:p.enabled!==false,min:p.low,max:p.high,...ranges[key]};
+    if(range.enabled && (!Number.isFinite(range.min) || !Number.isFinite(range.max)
+      || range.min<p.min || range.max>p.max || range.min>range.max)) {
+      throw new Error(`${p.label}: enter a minimum ≤ maximum, between ${p.min} and ${p.max}.`);
+    }
+    return [key,range];
+  }));
+}
+
+export function sampleScatterLayout(settings = {}, ranges = {}, seed = 1) {
+  const next={...scatterDefaults,...settings}, valid=validateScatterRanges(ranges), random=scatterRandom(seed);
+  for(const [key,p] of Object.entries(scatterLayoutParameters)) {
+    // Consume each parameter's draw even when locked, so locking one does not
+    // change the other parameters' draws for the same seed.
+    const fraction=random(), {enabled,min,max}=valid[key];
+    if(!enabled) continue;
+    const value=p.proportional && min>0
+      ? Math.exp(Math.log(min)+(Math.log(max)-Math.log(min))*fraction)
+      : min+(max-min)*fraction;
+    // Keep values readable without collapsing narrow fractional ranges (e.g.
+    // densities 0.01–0.04) to the manual control's coarser increment.
+    const step=Math.min(p.step,(max-min)/100)||p.step;
+    next[key]=min===max ? min : Math.max(min,Math.min(max,Number((Math.round(value/step)*step).toPrecision(6))));
+  }
+  return validateScatterSettings(next);
+}
+
+function validateScatterSettings(settings) {
+  const s={...scatterDefaults,...settings};
+  for (const [key,min,max] of [['patchSize',1,100000],['coverage',0,100],['density',0,1000],['contrast',0,100],['stretch',1,20],['direction',-360,360],['warp',0,100],['softness',0,100],['spacing',0,10000],['feather',0,10000]]) {
+    if (!Number.isFinite(s[key]) || s[key]<min || s[key]>max) throw new Error(`${key} must be between ${min} and ${max}.`);
+  }
+  return s;
+}
 const clamp = n => Math.max(0, Math.min(1, n));
 const smooth = n => { const t = clamp(n); return t * t * (3 - 2 * t); };
 const quantize = n => Math.round(n * 1000) / 1000;
@@ -82,10 +132,7 @@ function edgeDistance(x,y,polygon) {
   return distance;
 }
 export function createScatterField(bounds, polygon, settings = {}, seed = 1) {
-  const s={...scatterDefaults,...settings}, region=scatterRegion(bounds,polygon);
-  for (const [key,min,max] of [['patchSize',1,100000],['coverage',0,100],['density',0,1000],['contrast',0,100],['stretch',1,20],['direction',-360,360],['warp',0,100],['softness',0,100],['spacing',0,10000],['feather',0,10000]]) {
-    if (!Number.isFinite(s[key]) || s[key]<min || s[key]>max) throw new Error(`${key} must be between ${min} and ${max}.`);
-  }
+  const s=validateScatterSettings(settings), region=scatterRegion(bounds,polygon);
   const angle=s.direction*Math.PI/180,cs=Math.cos(angle),sn=Math.sin(angle);
   const threshold=1-s.coverage/100, soft=s.softness/100*.35;
   // 0: uniform interiors, 50: original gradient, 100: pronounced cores.

@@ -1,4 +1,4 @@
-import recordings from 'virtual:replays';
+import { loadRecordings } from './replay-recordings.js';
 import { densityRecordingMatches, DENSITY_UNITS, selectDensity } from './rotation-density.js';
 import { recordedVariantId } from './map-variants.js';
 
@@ -43,17 +43,39 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
   graphics.querySelector('summary').after(root);
   const status = root.querySelector('.density-status');
   const baseTerrain = { id: data.id, map_id: mapEntry.map_id, source: data.source, bounds: data.bounds };
-  const mapRecordings = recordings.filter(row => densityRecordingMatches(row, baseTerrain));
-  const variants = [...new Set(mapRecordings.map(row => recordedVariantId(row, baseTerrain.map_id)))].filter(id => id !== 'source').sort();
-  const canCompare = variants.length > 0 && mapRecordings.some(row => recordedVariantId(row, baseTerrain.map_id) === 'source');
-  root.querySelector('.density-comparison').hidden = !canCompare;
-  if (!canCompare) settings.comparison = false;
-  if (!variants.includes(settings.compareVariant)) settings.compareVariant = variants.includes(mapEntry.selectedVariant) ? mapEntry.selectedVariant : variants[0] || '';
-  root.querySelector('[data-density=compareVariant]').replaceChildren(...variants.map(id => new document.defaultView.Option(variantLabel(id), id)));
+  let mapRecordings = [], catalogReady = false, catalogLoading = false;
+  root.querySelector('.density-comparison').hidden = true;
   const variantNote = !mapEntry.selectedVariant || mapEntry.selectedVariant === 'all' ? 'All variants combined.' : `${mapEntry.selectedVariant === 'source' ? 'Source / RAW' : mapEntry.variantLabel || mapEntry.selectedVariant} recordings only.`;
   let filtered, filterKey, filterSource;
   let terrain, candidates, key, worker, disposed = false, loaded, loading = false, generation = 0;
   const enabled = () => settings.comparison || settings.movement || settings.deaths;
+  async function discoverRecordings() {
+    if (disposed || catalogReady || catalogLoading) return;
+    catalogLoading = true;
+    status.textContent = 'Loading available recordings… The map remains editable.';
+    try {
+      const recordings = await loadRecordings();
+      if (disposed) return;
+      mapRecordings = recordings.filter(row => densityRecordingMatches(row, baseTerrain));
+      const variants = [...new Set(mapRecordings.map(row => recordedVariantId(row, baseTerrain.map_id)))].filter(id => id !== 'source').sort();
+      const canCompare = variants.length > 0 && mapRecordings.some(row => recordedVariantId(row, baseTerrain.map_id) === 'source');
+      root.querySelector('.density-comparison').hidden = !canCompare;
+      if (!canCompare) settings.comparison = false;
+      if (!variants.includes(settings.compareVariant)) settings.compareVariant = variants.includes(mapEntry.selectedVariant) ? mapEntry.selectedVariant : variants[0] || '';
+      root.querySelector('[data-density=compareVariant]').replaceChildren(...variants.map(id => new document.defaultView.Option(variantLabel(id), id)));
+      catalogReady = true; catalogLoading = false;
+      if (!mapRecordings.length) root.querySelectorAll('input').forEach(input => { input.disabled = true; });
+      context(); update(); start();
+    } catch {
+      if (disposed) return;
+      catalogLoading = false;
+      status.textContent = 'Available recordings could not load. ';
+      const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Retry';
+      retry.addEventListener('click', discoverRecordings); status.append(retry);
+    }
+  }
+  const onSettingsToggle = () => { if (graphics.open) discoverRecordings(); };
+  graphics.addEventListener('toggle', onSettingsToggle);
   function context() {
     terrain = { ...baseTerrain, selectedVariant: settings.comparison ? 'all' : mapEntry.selectedVariant || 'all', comparisonVariant: settings.comparison ? settings.compareVariant : undefined };
     candidates = mapRecordings.filter(row => densityRecordingMatches(row, terrain));
@@ -87,7 +109,9 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
       filtered = selectDensity(filterSource, settings.units, settings.deathKind);
     }
     viewer.density(filtered, settings);
-    if (loaded) {
+    if (!catalogReady) {
+      status.textContent = catalogLoading ? 'Loading available recordings… The map remains editable.' : 'Enable a layer to load available recordings.';
+    } else if (loaded) {
       const { skipped, failed } = loaded;
       const result = filtered;
       if (settings.comparison) {
@@ -110,6 +134,7 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
     else if (!loading) status.textContent = `${candidates.length} available recordings. ${settings.comparison ? 'Enable comparison to compare both groups.' : variantNote + ' Enable a layer to load density.'}`;
   }
   function start() {
+    if (!catalogReady) { if (enabled()) discoverRecordings(); return; }
     if (disposed || loaded || loading || !candidates.length || !enabled()) return;
     loading = true;
     status.textContent = 'Loading replay density…';
@@ -150,7 +175,7 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
   });
   settings.units ??= DENSITY_UNITS.map(([id]) => id);
   settings.deathKind ??= 'player';
-  if (!mapRecordings.length) root.querySelectorAll('input').forEach(input => { input.disabled = true; });
   context(); update(); start();
-  return { dispose() { disposed = true; cancel(); root.remove(); } };
+  onSettingsToggle();
+  return { dispose() { disposed = true; cancel(); graphics.removeEventListener('toggle', onSettingsToggle); root.remove(); } };
 }

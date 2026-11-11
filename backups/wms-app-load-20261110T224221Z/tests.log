@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: current map 111 loadout edits through its installed checksum
+ok 1 - current map 111 loadout edits through its installed checksum
+  ---
+  duration_ms: 1184.607024
+  type: 'test'
+  ...
+# Subtest: installed map 176 loadout keeps all placements, settings and spawns when opened for editing
+ok 2 - installed map 176 loadout keeps all placements, settings and spawns when opened for editing
+  ---
+  duration_ms: 260.324926
+  type: 'test'
+  ...
+# Subtest: editor options exactly match registered current rotation and source versions
+ok 3 - editor options exactly match registered current rotation and source versions
+  ---
+  duration_ms: 3524.180374
+  type: 'test'
+  ...
+# Subtest: map 116 RAW retains original terrain and spawns across variant switches
+ok 4 - map 116 RAW retains original terrain and spawns across variant switches
+  ---
+  duration_ms: 138.36665
+  type: 'test'
+  ...
+# Subtest: rotation defaults prefer installed placements, then another available variant
+ok 5 - rotation defaults prefer installed placements, then another available variant
+  ---
+  duration_ms: 0.766348
+  type: 'test'
+  ...
+# Subtest: replay inference uses recorded evidence and leaves ambiguous revisions for manual selection
+ok 6 - replay inference uses recorded evidence and leaves ambiguous revisions for manual selection
+  ---
+  duration_ms: 3.957075
+  type: 'test'
+  ...
+# Subtest: variant identity unifies exported filenames, recorded names, and source aliases
+ok 7 - variant identity unifies exported filenames, recorded names, and source aliases
+  ---
+  duration_ms: 0.569986
+  type: 'test'
+  ...
+# Subtest: rotation variants use installed revision evidence or exact archived terrain, never family alone
+ok 8 - rotation variants use installed revision evidence or exact archived terrain, never family alone
+  ---
+  duration_ms: 3455.761605
+  type: 'test'
+  ...
+# Subtest: equivalent filename extensions have one selector option and retain distinct replay revisions
+ok 9 - equivalent filename extensions have one selector option and retain distinct replay revisions
+  ---
+  duration_ms: 1.65699
+  type: 'test'
+  ...
+# Subtest: included VarA matches measured terrain, assets, and its recorded rounds
+ok 10 - included VarA matches measured terrain, assets, and its recorded rounds
+  ---
+  duration_ms: 188.20911
+  type: 'test'
+  ...
+# Subtest: recorded VarA revision selects its assets and terrain for both replay versions
+ok 11 - recorded VarA revision selects its assets and terrain for both replay versions
+  ---
+  duration_ms: 209.987694
+  type: 'test'
+  ...
+# Subtest: map 176 VarA is discoverable and matches its terrain and model assets
+ok 12 - map 176 VarA is discoverable and matches its terrain and model assets
+  ---
+  duration_ms: 26.220257
+  type: 'test'
+  ...
+# Subtest: sync imports direct exports, preserves app-only files and archives replaced revision bytes
+ok 13 - sync imports direct exports, preserves app-only files and archives replaced revision bytes
+  ---
+  duration_ms: 180.472291
+  type: 'test'
+  ...
+# Subtest: world coordinates preserve X/Y and convert millimetres to metres without exaggeration
+ok 14 - world coordinates preserve X/Y and convert millimetres to metres without exaggeration
+  ---
+  duration_ms: 8.105136
+  type: 'test'
+  ...
+# Subtest: corrupt grids and non-finite samples are rejected
+ok 15 - corrupt grids and non-finite samples are rejected
+  ---
+  duration_ms: 1.246803
+  type: 'test'
+  ...
+# Subtest: height exaggeration pivots at the measured minimum and leaves true scale unchanged
+ok 16 - height exaggeration pivots at the measured minimum and leaves true scale unchanged
+  ---
+  duration_ms: 0.779276
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5404.604804

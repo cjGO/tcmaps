@@ -3,7 +3,7 @@ import { groundHeight } from './editor-spatial.js';
 import { terrainGeometry } from './terrain-geometry.js';
 import { createLineAssetPicker } from './editor-line-picker.js';
 import { createLinePresets } from './editor-line-presets.js';
-import { scatterDefaults, scatterPresets, scatterRegion, generateScatter, decorateScatter } from './editor-scatter.js';
+import { scatterDefaults, scatterPresets, scatterRegion, generateScatter, decorateScatter, scatterLayoutParameters, validateScatterRanges, sampleScatterLayout } from './editor-scatter.js';
 
 // Owns temporary tool state and previews; only Place assets changes the document.
 export function createScatterController({doc, project, api, extras, context, transform}) {
@@ -17,7 +17,7 @@ export function createScatterController({doc, project, api, extras, context, tra
     <div id="scatter-region-controls" hidden><p>Click terrain to outline the region. Drag numbered corners to adjust it.</p>
     <button id="scatter-finish">Finish region</button><button id="scatter-remove">Remove last point</button><button id="scatter-clear">Clear region</button></div>
     <p id="scatter-region-summary" role="status"></p>
-    <label>Pattern preset<select id="scatter-preset">${Object.keys(scatterPresets).map(name=>`<option>${name}</option>`).join('')}</select></label>
+    <label>Pattern preset<select id="scatter-preset">${Object.keys(scatterPresets).map(name=>`<option>${name}</option>`).join('')}<option value="" disabled>Custom layout</option></select></label>
     <div class="pair">${number('patchSize','Patch size (m)',80,1,100000)}${number('coverage','Coverage (%)',45,0,100)}</div>
     ${number('density','Peak density (assets / 1,000 m²)',4,0,1000,.1)}
     ${number('contrast','Density contrast (%)',50,0,100)}
@@ -40,8 +40,16 @@ export function createScatterController({doc, project, api, extras, context, tra
     <button id="scatter-shuffle-assets">Shuffle assets</button><button id="scatter-reroll-yaw">Randomize rotation</button><button id="scatter-reroll-scale">Randomize scales</button></details>
     <label>Preview<select id="scatter-view"><option value="both">Both</option><option value="heatmap">Heatmap</option><option value="assets">Assets</option></select></label>
     <p class="scatter-legend"><span></span> Sparse → Dense</p>
+    <details id="scatter-exploration"><summary>Random layout ranges</summary>
+    <p>Choose which parameters to vary. Uncheck a parameter to keep its current value; set equal limits for a fixed value. Changing these ranges affects the next random layout, not the current preview.</p>
+    ${Object.entries(scatterLayoutParameters).map(([key,p])=>`<fieldset><legend><label><input id="scatter-range-${key}-enabled" type="checkbox" ${p.enabled===false?'':'checked'}> Vary ${p.label}</label></legend>
+      <div class="pair">${number(`range-${key}-min`,`${p.label} minimum`,p.low,p.min,p.max,'any')}${number(`range-${key}-max`,`${p.label} maximum`,p.high,p.min,p.max,'any')}</div></fieldset>`).join('')}
+    <p>Patch size, density and stretch sample proportionally when both limits are positive, balancing small and large values. Other ranges sample evenly. Spacing and boundary feathering stay fixed unless enabled.</p>
+    <p id="scatter-range-status" role="status"></p></details>
     <p id="scatter-count" role="status"></p><p id="scatter-status" role="status"></p>
     <button id="scatter-generate">Generate preview</button><button id="scatter-new-pattern">Randomize noise & preview</button>
+    <button id="scatter-random-layout">Random layout & preview</button><button id="scatter-previous-layout" disabled>Previous layout</button>
+    <div id="scatter-generation-summary" hidden><strong>Generated with</strong><dl></dl></div>
     <button id="scatter-place" disabled>Place assets</button>`;
   doc.querySelector('.modes').append(button); doc.querySelector('aside').prepend(panel);
   const $=id=>panel.querySelector(`#scatter-${id}`);
@@ -51,6 +59,8 @@ export function createScatterController({doc, project, api, extras, context, tra
   let nodes=[], drawing=true, disposed=false, initialized=false, active=false, armed=false, hasPlaced=false, token=0,timer=null;
   let points=[], result=null, generationKey='', stateKey='', rowKey='';
   const seeds={fieldSeed:Math.floor(Math.random()*4294967296),positionSeed:2,assetSeed:3,yawSeed:4,scaleSeed:5};
+  let layoutSeed=(seeds.fieldSeed^0x9e3779b9)>>>0;
+  const layoutHistory=[];
   function entries() { return [...selection].map(([asset,ratio])=>({asset,ratio,scale:overrides.get(asset)})); }
   function status(message) { $('status').textContent=message; }
   const picker=createLineAssetPicker($('asset-picker'),project.assets,{prefix:'scatter',selection,onAdd(asset){
@@ -94,7 +104,19 @@ export function createScatterController({doc, project, api, extras, context, tra
       child.geometry?.dispose();child.material?.map?.dispose();child.material?.dispose();group.remove(child);
     }
   }
-  function clearPreview() { assets.clear();clearOwned(heatmap);points=[];$('place').disabled=true; }
+  function clearPreview() { assets.clear();clearOwned(heatmap);points=[];$('place').disabled=true;$('generation-summary').hidden=true; }
+  function showGenerationSettings(args) {
+    const summary=$('generation-summary'), list=summary.querySelector('dl');
+    list.replaceChildren();
+    const values=[['Area',args.polygon?'Drawn region':'Whole map'],
+      ...Object.entries(scatterLayoutParameters).map(([key,p])=>[p.label,String(args.settings[key])]),
+      ['Avoid existing objects',args.settings.avoidExisting?'Yes':'No']];
+    for(const [label,value] of values) {
+      const term=doc.createElement('dt'),description=doc.createElement('dd');
+      term.textContent=label;description.textContent=value;list.append(term,description);
+    }
+    summary.hidden=false;
+  }
   function view() {
     heatmap.visible=$('view').value!=='assets';assets.visible=$('view').value!=='heatmap';context().viewer?.draw();
   }
@@ -133,9 +155,11 @@ export function createScatterController({doc, project, api, extras, context, tra
     const pixels=new Uint8Array(n*n*4);
     for(let j=0;j<n;j++) for(let i=0;i<n;i++) {
       const value=field(b.x_min_m+(i+.5)*width/n,b.y_min_m+(j+.5)*height/n),offset=(j*n+i)*4;
-      pixels[offset]=Math.round(35+220*value);pixels[offset+1]=Math.round(160+45*value);pixels[offset+2]=Math.round(200-170*value);pixels[offset+3]=Math.round(value*150);
+      // Blue → magenta contrasts with terrain greens and browns. Lift sparse
+      // intensities for visibility while keeping zero-density areas transparent.
+      pixels[offset]=Math.round(56+199*value);pixels[offset+1]=Math.round(80-48*value);pixels[offset+2]=Math.round(255-71*value);pixels[offset+3]=Math.round(Math.pow(value,.35)*230);
     }
-    const texture=new THREE.DataTexture(pixels,n,n,THREE.RGBAFormat);texture.needsUpdate=true;texture.magFilter=THREE.LinearFilter;texture.minFilter=THREE.LinearFilter;
+    const texture=new THREE.DataTexture(pixels,n,n,THREE.RGBAFormat);texture.colorSpace=THREE.SRGBColorSpace;texture.needsUpdate=true;texture.magFilter=THREE.LinearFilter;texture.minFilter=THREE.LinearFilter;
     // Match the terrain's exact grid and triangle diagonal, including steep slopes.
     const {positions,uv,indices}=terrainGeometry(data),geometry=new THREE.BufferGeometry();
     for(let i=0;i<positions.length/3;i++) {
@@ -145,7 +169,7 @@ export function createScatterController({doc, project, api, extras, context, tra
     geometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
     geometry.setAttribute('uv',new THREE.BufferAttribute(uv,2));geometry.setIndex(new THREE.BufferAttribute(indices,1));
     geometry.computeBoundingSphere();
-    const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({map:texture,transparent:true,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1}));
+    const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1}));
     mesh.renderOrder=9;heatmap.add(mesh);
   }
   function settings() {
@@ -153,6 +177,24 @@ export function createScatterController({doc, project, api, extras, context, tra
     for(const key of Object.keys(s)) s[key]=key==='avoidExisting'?$(key).checked:Number($(key).value);
     return s;
   }
+  function ranges() {
+    return Object.fromEntries(Object.keys(scatterLayoutParameters).map(key=>[key,{
+      enabled:$(`range-${key}-enabled`).checked,
+      min:$(`range-${key}-min`).valueAsNumber,max:$(`range-${key}-max`).valueAsNumber,
+    }]));
+  }
+  function updateRanges() {
+    for(const key of Object.keys(scatterLayoutParameters)) {
+      for(const end of ['min','max']) $(`range-${key}-${end}`).disabled=!$(`range-${key}-enabled`).checked;
+    }
+    try {validateScatterRanges(ranges());$('random-layout').disabled=false;$('random-layout').title='';$('range-status').textContent='';}
+    catch(error) {$('random-layout').disabled=true;$('random-layout').title=error.message;$('range-status').textContent=error.message;}
+  }
+  function layoutSnapshot() {
+    return {settings:Object.fromEntries(Object.keys(scatterLayoutParameters).map(key=>[key,$(key).value])),
+      fieldSeed:seeds.fieldSeed,positionSeed:seeds.positionSeed,preset:$('preset').value};
+  }
+  function previewLayout() {armed=true;models.clear();invalidate();}
   async function refresh(version) {
     const {ready,library,state,viewer}=context();
     if(disposed || !active || !ready || !armed || version!==token) return;
@@ -166,6 +208,7 @@ export function createScatterController({doc, project, api, extras, context, tra
       const decorated=decorateScatter(result.points,entries(),{...seeds,randomYaw:$('random-yaw').checked,yaw:state.brush.yaw_deg,
         randomScale:$('random-scale').checked,low:Number($('scale-low').value),high:Number($('scale-high').value),scale:state.brush.scale});
       drawHeatmap(result.field);view();
+      showGenerationSettings(args);
       const counts=new Map();for(const p of decorated) counts.set(p.asset,(counts.get(p.asset)??0)+1);
       $('count').textContent=`${decorated.length} assets`+[...counts].map(([asset,n])=>` · ${project.assets.find(a=>a.name===asset)?.label??asset} × ${n}`).join('');
       const notes=[result.capped?'Reached the batch or document limit.':null,result.limited?'Spacing or sampling reduced the attainable count.':null].filter(Boolean).join(' ');
@@ -221,6 +264,27 @@ export function createScatterController({doc, project, api, extras, context, tra
   }
   $('generate').addEventListener('click',()=>{armed=true;models.clear();invalidate();});
   $('new-pattern').addEventListener('click',()=>{seeds.fieldSeed=(seeds.fieldSeed+1)>>>0;armed=true;models.clear();invalidate();});
+  for(const key of Object.keys(scatterLayoutParameters)) {
+    $(`range-${key}-enabled`).addEventListener('change',updateRanges);
+    for(const end of ['min','max']) $(`range-${key}-${end}`).addEventListener('input',updateRanges);
+  }
+  updateRanges();
+  $('random-layout').addEventListener('click',()=>{
+    try {
+      const nextSeed=(layoutSeed+1)>>>0, next=sampleScatterLayout(settings(),ranges(),nextSeed);
+      layoutHistory.push(layoutSnapshot());if(layoutHistory.length>20)layoutHistory.shift();
+      layoutSeed=nextSeed;
+      for(const key of Object.keys(scatterLayoutParameters)) $(key).value=next[key];
+      seeds.fieldSeed=(seeds.fieldSeed+1)>>>0;seeds.positionSeed=(seeds.positionSeed+1)>>>0;
+      $('preset').value='';$('previous-layout').disabled=false;previewLayout();
+    } catch(error) {status(error.message);}
+  });
+  $('previous-layout').addEventListener('click',()=>{
+    const previous=layoutHistory.pop();if(!previous)return;
+    for(const [key,value] of Object.entries(previous.settings)) $(key).value=value;
+    seeds.fieldSeed=previous.fieldSeed;seeds.positionSeed=previous.positionSeed;$('preset').value=previous.preset;
+    $('previous-layout').disabled=!layoutHistory.length;previewLayout();
+  });
   $('place').addEventListener('click',()=>{
     if($('place').disabled || !points.length) return;
     try {

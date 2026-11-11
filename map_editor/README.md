@@ -26,6 +26,19 @@ sparser portions receive fewer assets. Increase it for tighter cores, and lower
 minimum spacing if it prevents the desired clustering. **Randomize noise & preview**
 beside Generate preview immediately tries a new pattern, keeping the region,
 asset mix and other settings. Generate preview alone retains the current pattern.
+For broader exploration, open **Random layout ranges** and set min/max values,
+then press **Random layout & preview** repeatedly. Each click samples the enabled
+parameters and rerolls noise and positions; the resulting values appear in the
+normal controls. Uncheck a parameter to keep its current value, or use identical
+limits for a fixed value. Patch size, peak density and stretch sample proportionally
+when both limits are positive; other ranges sample evenly. Minimum spacing and
+boundary feathering are excluded by default but can be enabled. Your region,
+asset mix, scale settings and existing-object avoidance are retained.
+**Previous layout** restores the settings and noise/position seeds from before
+the last random-layout draw (up to 20 steps). With unchanged assets and map contents,
+this restores the same preview. Range edits only affect future draws, and named
+pattern presets do not overwrite your ranges. Empty or capped results still show
+the normal generation status; sampling does not relax spacing or placement limits.
 Draw regions
 by clicking corners and choosing **Finish region**; drag numbered corners to
 reshape them. Asset ratios, saved mixes and per-asset scales work alongside the

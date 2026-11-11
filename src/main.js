@@ -1,4 +1,3 @@
-import './style.css';
 import { inject } from '@vercel/analytics';
 import mapNames from '../MAPNAMES.md?raw';
 import identityRegistry from '../lib/editor-rotation.json';
@@ -17,7 +16,7 @@ import { analyticsRounds } from './map-analytics.js';
 import { setupServerStats } from './server-stats.js';
 import dailyPlayers, { weeklyPlayers } from 'virtual:daily-players';
 import { setupEditor } from './editor.js';
-import recordings from 'virtual:replays';
+import { loadRecordings } from './replay-recordings.js';
 import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
 import { readReplayLink, replayLink } from './replay-link.js';
 import { setupExperimentalReplay } from './experimental-replay-controls.js';
@@ -205,7 +204,7 @@ function showPlayerStats() {
 }
 const tabs = ['rotation', 'mapstats', 'playerstats', 'replays', 'replay3', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
-const replayV3 = setupReplayV3Tab($('replay3-panel'), recordings);
+let recordings = [], recordingsReady = false, recordingsLoading, replayV3;
 const editor = setupEditor(selectTab);
 const topology = setupTopology();
 const replays = setupTopology({ prefix: 'replays', recordings: true });
@@ -248,6 +247,7 @@ async function openCatalogRecording(recording) {
   });
 }
 function updateReplayList() {
+  if (!recordingsReady) return;
   const minimumPlayers = Number($('replay-min-players').value);
   $('replay-min-players-value').textContent = minimumPlayers === 0 ? '0 (all replays)' : String(minimumPlayers);
   $('replay-min-players').setAttribute('aria-valuetext', minimumPlayers === 0 ? 'All replays' : minimumPlayers + ' players minimum');
@@ -259,16 +259,45 @@ function updateReplayList() {
 }
 $('replay-min-players').addEventListener('input', updateReplayList);
 $('replay-player-names').addEventListener('input', updateReplayList);
-$('replay-map-filter').replaceChildren(new Option('All maps', ''),
-  ...[...new Set(recordings.map(recording => recording.map_id).filter(Boolean))]
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-    .map(id => new Option(id, id)), new Option('Unverified map identity', 'unverified'));
 $('replay-map-filter').addEventListener('change', updateReplayList);
-updateReplayList();
-$('rotation-replays').addEventListener('click', event => {
+function updateRotationReplayLink() {
+  const filename = collections.rotation.images[collections.rotation.index]?.filename;
+  const mapId = publicMapId(identityRegistry, filename);
+  const count = recordings.filter(item => mapId && item.map_id === mapId).length;
+  $('rotation-replays').hidden = !mapId || (recordingsReady && !count);
+  $('rotation-replays').textContent = recordingsReady ? `View replays (${count})` : 'View replays';
+}
+function ensureRecordings() {
+  if (recordingsReady) return Promise.resolve(true);
+  if (recordingsLoading) return recordingsLoading;
+  replayCatalog.textContent = 'Loading available recordings… You can use other tabs while this finishes.';
+  $('replay3-panel').textContent = replayCatalog.textContent;
+  recordingsLoading = loadRecordings().then(rows => {
+    recordings = rows; recordingsReady = true;
+    replayV3 = setupReplayV3Tab($('replay3-panel'), recordings);
+    $('replay-map-filter').replaceChildren(new Option('All maps', ''),
+      ...[...new Set(recordings.map(recording => recording.map_id).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+        .map(id => new Option(id, id)), new Option('Unverified map identity', 'unverified'));
+    updateReplayList(); updateRotationReplayLink();
+    return true;
+  }).catch(error => {
+    console.error('Replay catalog could not load', error);
+    recordingsLoading = null;
+    for (const host of [replayCatalog, $('replay3-panel')]) {
+      host.textContent = 'Recordings could not load. Reopen this tab to retry.';
+    }
+    return false;
+  });
+  return recordingsLoading;
+}
+$('rotation-replays').addEventListener('click', async event => {
   event.preventDefault();
   const filename = collections.rotation.images[collections.rotation.index]?.filename;
   const mapId = publicMapId(identityRegistry, filename);
+  selectTab('replays', { autoOpen: false });
+  const href = location.href, visit = navigation;
+  if (!await ensureRecordings() || navigation !== visit || activeTab !== 'replays' || location.href !== href) return;
   const recording = recordings.find(item => mapId && item.map_id === mapId);
   if (recording) {
     $('replay-map-filter').value = mapId;
@@ -284,7 +313,7 @@ $('rotation-edit').addEventListener('click', () => {
   const mapId = publicMapId(identityRegistry, filename);
   editor.edit(filename, mapVariants(mapId).find(item => item.id === selectedVariant(mapId)));
 });
-let activeTab = 'rotation';
+let activeTab = 'rotation', navigation = 0;
 function renderCollection(name) {
   const { images, index } = collections[name];
   const entry = images[index];
@@ -308,10 +337,7 @@ function renderCollection(name) {
         collections.rotation.index = collections.rotation.images.findIndex(map => map.filename === filename);
         renderCollection('rotation');
       });
-    const mapId = publicMapId(identityRegistry, entry?.filename);
-    const matches = recordings.filter(item => mapId && item.map_id === mapId);
-    $('rotation-replays').hidden = !matches.length;
-    $('rotation-replays').textContent = `View replays (${matches.length})`;
+    updateRotationReplayLink();
     const available = editor.canEdit(entry?.filename);
     $('rotation-edit').disabled = !available;
     $('rotation-edit').textContent = available ? 'Edit this map' : 'Editor unavailable';
@@ -346,6 +372,7 @@ function moveCollection(name, delta) {
   renderCollection(name);
 }
 function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
+  const visit = ++navigation;
   activeTab = name;
   topology.setVisible(name === 'rotation');
   replays.setVisible(name === 'replays' && replayVersion === 1);
@@ -356,18 +383,27 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   }
   editor.setVisible(name === 'editor');
   experimental.setVisible(name === 'replays' && replayVersion === 2);
-  replayV3.setVisible(name === 'replay3');
+  if (name !== 'replay3') replayV3?.setVisible(false);
   if (name === 'editor') editor.show();
   if (name === 'playerstats') showPlayerStats();
-  $('collection-summary').textContent = name === 'replay3' ? 'Replay v3 · existing v2 recordings' : name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? `${recordings.length} available replays` : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'replay3' ? 'Replay v3 · existing v2 recordings' : name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? recordingsReady ? `${recordings.length} available replays` : 'Loading available recordings…' : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
     url.searchParams.set('tab', name);
     history.pushState(null, '', url);
   }
-  if (autoOpen && name === 'replay3') replayV3.openDefault();
-  if (autoOpen && name === 'replays' && !replayOpened && recordings.length) openRecording(recordings[0], { syncUrl: false });
+  if (name === 'replays' || name === 'replay3') {
+    const href = location.href;
+    ensureRecordings().then(ready => {
+      if (!ready || navigation !== visit || activeTab !== name || location.href !== href) return;
+      if (name === 'replay3') { replayV3.setVisible(true); if (autoOpen) replayV3.openDefault(); }
+      else {
+        $('collection-summary').textContent = `${recordings.length} available replays`;
+        if (autoOpen && !replayOpened && recordings.length) openRecording(recordings[0], { syncUrl: false });
+      }
+    });
+  }
 }
 for (const name of tabs) {
   $(name + '-tab').addEventListener('click', () => selectTab(name));
@@ -520,14 +556,19 @@ render(); message(maps.length ? 'Keep the setups you like, then copy your list t
 
 Object.keys(collections).forEach(renderCollection);
 sortRotation();
-function restoreLocation() {
+async function restoreLocation() {
+  const href = location.href;
   if (new URL(location.href).searchParams.get('tab') === 'replay3') {
     selectTab('replay3', { autoOpen: false, syncUrl: false });
-    replayV3.restoreLocation();
+    const visit = navigation;
+    if (await ensureRecordings() && navigation === visit && location.href === href && activeTab === 'replay3') replayV3.restoreLocation();
     return;
   }
   const link = readReplayLink(location.href);
   if (link.id) {
+    selectTab('replays', { autoOpen: false, syncUrl: false });
+    const visit = navigation;
+    if (!await ensureRecordings() || navigation !== visit || location.href !== href || activeTab !== 'replays') return;
     const recording = recordings.find(item => item.id === link.id);
     if (recording) {
       $('replay-browser').open = false;

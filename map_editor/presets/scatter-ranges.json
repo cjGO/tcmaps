@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "Preferred scatter ranges",
+  "description": "Ranges for random layout generation. Only explicitly chosen parameters are included; other parameters are left to the consuming pipeline. Coverage controls patch extent, not an exact occupied-area percentage.",
+  "ranges": {
+    "patchSize": { "enabled": true, "min": 30, "max": 140 },
+    "coverage": { "enabled": true, "min": 30, "max": 50 },
+    "density": { "enabled": true, "min": 10, "max": 100 },
+    "contrast": { "enabled": true, "min": 70, "max": 95 },
+    "stretch": { "enabled": true, "min": 1, "max": 6 }
+  }
+}

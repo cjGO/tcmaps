@@ -1,4 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
+import { Worker } from 'node:worker_threads';
+import { pathToFileURL } from 'node:url';
+import { resolve } from 'node:path';
 import { parseExperimentalJournal } from '../src/experimental-replay.js';
 import { experimentalStrengthAt } from '../src/experimental-replay-presentation.js';
 import { parseJournal, sourceEqual } from '../src/tactical-replay.js';
@@ -93,18 +96,34 @@ export async function combinedReplayCatalog(directory) {
 }
 
 export function replaysPlugin() {
-  let root, catalog;
+  let root, catalog, pending, worker, dev = false;
+  function loadCatalog() {
+    return pending ??= (dev ? new Promise((resolve, reject) => {
+      // Parsing thousands of journals must not block serving the editor, CSS,
+      // models, or HMR while a replay tab requests its catalogue.
+      const task = worker = new Worker(new URL('./replay-catalog-worker.mjs', import.meta.url), { workerData: root.href });
+      task.once('message', resolve);
+      task.once('error', reject);
+      task.once('exit', code => {
+        if (worker === task) worker = null;
+        // Ignored after a successful message; rejects if the server closes it early.
+        reject(new Error(`Replay catalog worker exited (${code}).`));
+      });
+    }) : combinedReplayCatalog(root)).then(rows => catalog = rows).catch(error => { pending = null; throw error; });
+  }
   return {
     name: 'replay-catalog',
-    configResolved(config) { root = new URL('./replays/', `file://${config.root}/`); },
+    configResolved(config) { root = pathToFileURL(resolve(config.root, 'replays') + '/'); dev = config.command === 'serve'; },
+    configureServer(server) { server.httpServer?.once('close', () => worker?.terminate()); },
+    closeBundle() { return worker?.terminate(); },
     resolveId(id) { if (id === 'virtual:replays') return '\0virtual:replays'; },
     async load(id) {
       if (id !== '\0virtual:replays') return;
-      catalog = await combinedReplayCatalog(root);
+      catalog = await loadCatalog();
       return `export default ${JSON.stringify(catalog)}`;
     },
     async generateBundle() {
-      for (const replay of catalog || await combinedReplayCatalog(root)) {
+      for (const replay of catalog || await loadCatalog()) {
         this.emitFile({ type: 'asset', fileName: decodeURIComponent(replay.url), source: await readFile(new URL('../' + replay.url, root)) });
       }
     },

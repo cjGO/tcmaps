@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -102,7 +103,10 @@ test('rotation variants use installed revision evidence or exact archived terrai
   assertPlacementSource(variant.document, installed, preview);
   assert.throws(() => assertPlacementSource(variant.document, installed, { ...preview, revision: 'wrong' }), /revision/);
   assert.throws(() => assertPlacementSource(variant.document, current[0], preview), /revision/);
-  assert.equal(await resolveVariantPreview(variant, { ...installed, variant_revision: 'wrong' }, archived), null);
+  assert.equal(await resolveVariantPreview(variant, { ...installed, variant_revision: 'wrong' }, []), null);
+  const archivedPreview = await resolveVariantPreview(variant, { ...installed, variant_revision: 'wrong' }, archived);
+  assert.equal(archivedPreview.registration.variant_revision, preview.revision);
+  assert.ok(archived.includes(archivedPreview.terrain));
   assert.equal(await resolveVariantPreview({ ...variant, map_id: 'test_map_111' }, installed, archived), null);
   assert.equal((await installedVariantPreview([variant], installed)).variant, variant);
 
@@ -166,7 +170,12 @@ test('recorded VarA revision selects its assets and terrain for both replay vers
   const current = JSON.parse(read('lib/rotation-topology.json'));
   const archived = JSON.parse(read('lib/replay-topology.json'));
   const files = { [path]: read(path.replace('VarA.placements', 'VarA_3l3ct.placements')) };
-  const currentOnly = await replayVariantRegistry(current, files);
+  // This fixture records the previous VarA rotation; its registration remains
+  // archived after a fresh WMS rotation becomes current.
+  const revision = createHash('sha256').update(Object.values(files)[0]).digest('hex');
+  const recorded = [...current.maps, ...archived.maps].find(map => map.map_id === 'test_map_116' && map.variant_revision === revision);
+  assert.ok(recorded, 'Recorded VarA registration is retained');
+  const currentOnly = await replayVariantRegistry({ ...current, maps: [recorded] }, files);
   assert.equal(currentOnly.variants.length, 1, 'Installed checksum identifies placements on the compiled terrain');
   assert.equal(currentOnly.manifest.maps.filter(m => m.placement_overlay).length, 0, 'Compiled terrain needs no historical overlay');
   const registry = await replayVariantRegistry(replayTerrainManifest(current, archived), files);

@@ -46,4 +46,7 @@
 .editor-scatter-panel details{margin:10px 0}
 .editor-scatter-panel #scatter-count{font-weight:650;overflow-wrap:anywhere}
 .editor-scatter-panel #scatter-status{min-height:36px}
-.scatter-legend span{display:inline-block;width:65px;height:10px;background:linear-gradient(90deg,#23a0c8,#ffcd1e);margin-right:6px}
+#scatter-generation-summary{margin:10px 0;padding:10px;border:1px solid var(--line);border-radius:6px;font-size:12px}
+#scatter-generation-summary dl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;margin:8px 0 0}
+#scatter-generation-summary dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.scatter-legend span{display:inline-block;width:65px;height:10px;background:linear-gradient(90deg,#3850ff,#ff20b8);margin-right:6px}

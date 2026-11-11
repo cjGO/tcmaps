@@ -1,10 +1,50 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createScatterField, scatterRegion, insideScatterRegion, generateScatter, decorateScatter, scatterPresets } from '../src/editor-scatter.js';
+import { createScatterField, scatterRegion, insideScatterRegion, generateScatter, decorateScatter, scatterPresets, scatterDefaults, scatterLayoutParameters, sampleScatterLayout, validateScatterRanges } from '../src/editor-scatter.js';
 
 const bounds={x_min_m:0,x_max_m:200,y_min_m:0,y_max_m:200};
 const base={bounds,settings:{coverage:100,density:4,spacing:2},fieldSeed:42,positionSeed:17};
 const xy=points=>points.map(({x_m,y_m})=>[x_m,y_m]);
+test('layout exploration is deterministic, bounded, independent of locks and preserves unrelated settings',()=>{
+  const current={...scatterDefaults,spacing:7,feather:9,avoidExisting:false};
+  const first=sampleScatterLayout(current,{},42);
+  assert.deepEqual(first,sampleScatterLayout(current,{},42));
+  assert.notDeepEqual(first,sampleScatterLayout(current,{},43));
+  assert.deepEqual(current,{...scatterDefaults,spacing:7,feather:9,avoidExisting:false});
+  for(let seed=0;seed<100;seed++) {
+    const sampled=sampleScatterLayout(current,{},seed);
+    for(const [key,p] of Object.entries(scatterLayoutParameters)) {
+      if(p.enabled===false) assert.equal(sampled[key],current[key]);
+      else assert.ok(sampled[key]>=p.low&&sampled[key]<=p.high,key);
+    }
+    assert.equal(sampled.avoidExisting,false);
+    createScatterField(bounds,null,sampled,seed);
+  }
+  const locked=sampleScatterLayout(current,{patchSize:{enabled:false}},42);
+  assert.equal(locked.patchSize,current.patchSize);
+  for(const key of Object.keys(first).filter(key=>key!=='patchSize')) assert.equal(locked[key],first[key]);
+  const fixed=sampleScatterLayout(current,{patchSize:{min:60.25,max:60.25},density:{min:0,max:0},spacing:{enabled:true,min:3,max:3}},42);
+  assert.equal(fixed.patchSize,60.25);assert.equal(fixed.density,0);assert.equal(fixed.spacing,3);
+});
+test('layout ranges reject invalid bounds and balance small and large proportional values',()=>{
+  for(const range of [{min:80,max:20},{min:0,max:100},{min:NaN},{max:Infinity},{max:100001}]) {
+    assert.throws(()=>sampleScatterLayout({}, {patchSize:range}),/Patch size/);
+  }
+  assert.throws(()=>sampleScatterLayout({spacing:NaN}),/spacing/);
+  assert.doesNotThrow(()=>validateScatterRanges({patchSize:{enabled:false,min:NaN}}));
+  const ranges={patchSize:{min:16,max:256},density:{min:0,max:.2}}, before=structuredClone(ranges);
+  let smaller=0;
+  for(let seed=0;seed<1000;seed++) {
+    const s=sampleScatterLayout({},ranges,seed);
+    if(s.patchSize<64)smaller++;
+    assert.ok(s.density>=0&&s.density<=.2);
+  }
+  assert.ok(smaller>400&&smaller<600,'roughly half of proportional draws lie below the geometric midpoint');
+  assert.deepEqual(ranges,before);
+  const narrow=Array.from({length:100},(_,seed)=>sampleScatterLayout({},{density:{min:.01,max:.04}},seed).density);
+  assert.ok(narrow.every(value=>value>=.01&&value<=.04));
+  assert.ok(new Set(narrow).size>40,'fine density ranges retain useful variation');
+});
 test('scatter repeats exactly and position rerolls preserve the density field',()=>{
   const a=generateScatter(base), b=generateScatter(base), c=generateScatter({...base,positionSeed:18});
   assert.deepEqual(a.points,b.points);assert.equal(a.points.length,a.requested);assert.ok(a.points.length>0);

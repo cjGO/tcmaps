@@ -49,6 +49,38 @@ with sync_playwright() as pw:
     assert frame.locator('#scatter-coverage').input_value() == '100'
     assert len(state()['document']['placements']) == 0
     frame.locator('#scatter-view').select_option('both')
+    # Explore bounded settings, then recover a previous draw without committing.
+    frame.locator('#scatter-density').fill('0.5')
+    frame.locator('#scatter-exploration > summary').click()
+    for key in ['density', 'coverage', 'contrast']:
+        frame.locator('#scatter-range-' + key + '-enabled').uncheck()
+    frame.locator('#scatter-range-patchSize-min').fill('30')
+    frame.locator('#scatter-range-patchSize-max').fill('100')
+    frame.locator('#scatter-exploration > summary').click()
+
+    def pattern():
+        return page.evaluate("""() => {
+          const doc = document.querySelector('iframe:not([hidden])').contentDocument;
+          return Object.fromEntries(['patchSize','coverage','density','contrast','stretch','direction','warp','softness','spacing','feather']
+            .map(key => [key, doc.getElementById('scatter-' + key).value]));
+        }""")
+
+    frame.locator('#scatter-random-layout').click()
+    ready()
+    sampled = pattern()
+    sample_count = frame.locator('#scatter-count').inner_text()
+    assert 30 <= float(sampled['patchSize']) <= 100
+    assert sampled['density'] == '0.5' and sampled['coverage'] == '100'
+    assert sampled['spacing'] == '2' and sampled['feather'] == '0'
+    frame.locator('#scatter-random-layout').click()
+    ready()
+    assert pattern() != sampled
+    frame.locator('#scatter-previous-layout').click()
+    ready()
+    assert pattern() == sampled
+    assert frame.locator('#scatter-count').inner_text() == sample_count
+    assert len(state()['document']['placements']) == 0
+    print('Random layout ranges, locks and previous-layout restoration passed', flush=True)
     ids = page.evaluate("() => Array.from(document.querySelector('iframe:not([hidden])').contentDocument.querySelectorAll('[id]'), el => el.id)")
     assert len(ids) == len(set(ids)), 'Duplicate control IDs'
     whole_count = int(frame.locator('#scatter-count').inner_text().split()[0])

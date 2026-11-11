@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import { createScatterController } from '../src/editor-scatter-controller.js';
 import { createLineAssetPicker } from '../src/editor-line-picker.js';
 import { createLinePresets } from '../src/editor-line-presets.js';
+import { scatterLayoutParameters } from '../src/editor-scatter.js';
 
 const read=path=>readFile(new URL('../'+path,import.meta.url),'utf8');
 const [template,coordinates,app,maps]=await Promise.all(['map_editor/web/index.html','map_editor/web/coordinates.js','map_editor/web/app.js','lib/editor-maps.json'].map(read));
@@ -78,6 +79,61 @@ test('scale changes and view toggles retain positions; invalid input disables pl
     s.change('scale-low',4);await pause();assert.equal(s.$('place').disabled,true);
     assert.match(s.$('status').textContent,/Scale range/);
     s.switchView(false);assert.equal(s.controller.panel.hidden,true);assert.equal(s.extras.children[0].visible,false);
+  } finally {s.close();}
+});
+test('random layouts use ranges, preserve locks and mix, and Previous layout restores the exact preview',async()=>{
+  const s=setup(undefined,false);try {
+    // Keep the test's layouts populated while sampling patch shape and bearing.
+    for(const key of Object.keys(scatterLayoutParameters)) s.change(`range-${key}-enabled`,false);
+    s.change('density',12);s.change('patchSize',30);s.change('spacing',3);
+    s.change('scale-low',2);s.change('scale-high',3);
+    s.change('range-patchSize-enabled',true);s.change('range-patchSize-min',20);s.change('range-patchSize-max',40);
+    s.change('range-direction-enabled',true);s.change('range-direction-min',0);s.change('range-direction-max',180);
+    const document=JSON.stringify(s.api.exportDocument()),mix=s.$('mix-rows').innerHTML;
+    const rangeValues=()=>Array.from(s.$('exploration').querySelectorAll('input'),e=>[e.id,e.value,e.checked]);
+    const ranges=rangeValues();
+    const pattern=()=>Object.fromEntries(Object.keys(scatterLayoutParameters).map(key=>[key,s.$(key).value]));
+    const summary=()=>s.$('generation-summary').textContent;
+    assert.equal(s.$('generation-summary').hidden,true);
+    s.$('random-layout').click();await pause();
+    const first=s.previews(),values=pattern();assert.ok(first.length>0);
+    assert.equal(s.$('generation-summary').hidden,false);
+    const firstSummary=summary();
+    const displayed=Array.from(s.$('generation-summary').querySelectorAll('dt'),term=>[term.textContent,term.nextElementSibling.textContent]);
+    for(const [key,p] of Object.entries(scatterLayoutParameters)) {
+      assert.deepEqual(displayed.find(([label])=>label===p.label),[p.label,values[key]]);
+    }
+    assert.ok(Number(values.patchSize)>=20&&Number(values.patchSize)<=40);
+    assert.equal(values.spacing,'3');assert.equal(values.coverage,'100');assert.equal(values.density,'12');
+    assert.ok(first.every(p=>p.scale>=2&&p.scale<=3));
+    assert.equal(s.$('preset').selectedOptions[0].textContent,'Custom layout');
+    s.$('random-layout').click();await pause();assert.notDeepEqual(s.previews(),first);
+    assert.deepEqual(rangeValues(),ranges);assert.equal(s.$('mix-rows').innerHTML,mix);
+    s.$('previous-layout').click();await pause();assert.deepEqual(s.previews(),first);assert.deepEqual(pattern(),values);
+    assert.equal(summary(),firstSummary);
+    s.$('generate').click();await pause();assert.deepEqual(s.previews(),first);
+    assert.equal(JSON.stringify(s.api.exportDocument()),document);
+    s.$('place').click();assert.equal(s.previews().length,0);
+    assert.equal(s.$('generation-summary').hidden,true);
+    const committed=JSON.stringify(s.api.exportDocument());
+    s.$('random-layout').click();await pause();assert.ok(s.previews().length>0);
+    assert.equal(JSON.stringify(s.api.exportDocument()),committed);
+    s.doc.getElementById('undo').click();assert.equal(s.api.getState().document.placements.length,0);
+  } finally {s.close();}
+});
+test('range editing leaves the current preview intact and invalid ranges only block new random layouts',async()=>{
+  const s=setup();try {
+    await pause();const preview=s.previews();assert.ok(preview.length>0);
+    const summary=s.$('generation-summary').textContent;
+    assert.equal(s.$('range-spacing-min').disabled,true);
+    s.change('range-patchSize-min',500);await pause();
+    assert.equal(s.$('random-layout').disabled,true);assert.match(s.$('range-status').textContent,/Patch size/);
+    assert.equal(s.$('place').disabled,false);assert.deepEqual(s.previews(),preview);
+    assert.equal(s.$('generation-summary').textContent,summary);
+    assert.equal(s.$('generation-summary').hidden,false);
+    s.change('range-patchSize-min','');assert.equal(s.$('random-layout').disabled,true);
+    s.change('range-patchSize-enabled',false);assert.equal(s.$('random-layout').disabled,false);
+    assert.equal(s.$('range-patchSize-min').disabled,true);assert.deepEqual(s.previews(),preview);
   } finally {s.close();}
 });
 test('density contrast previews the same seed, restores previous results and leaves the document untouched',async()=>{

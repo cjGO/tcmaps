@@ -26,7 +26,7 @@ export async function readVariantFiles(directory) {
       for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
         if (!entry.isFile() || !/\.(?:json|placements)$/i.test(entry.name)) continue;
         const relative = path.join(folder, entry.name);
-        if (!entry.name.startsWith(map.name + '_')) throw new Error(`Variant filename must identify its map: ${relative}`);
+        if (!entry.name.startsWith(map.name + '_') && !entry.name.startsWith(map.name + '.')) throw new Error(`Variant filename must identify its map: ${relative}`);
         const raw = await readFile(path.join(directory, relative), 'utf8');
         const document = JSON.parse(raw);
         if (!Array.isArray(document.placements) || !['sco_sha256', 'recipe_sha256', 'terrain_code'].every(key => document.source?.[key])) {

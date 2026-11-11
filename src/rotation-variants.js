@@ -10,8 +10,10 @@ const revision = async raw => [...new Uint8Array(await crypto.subtle.digest('SHA
 export async function resolveVariantPreview(variant, installed, archived = []) {
   if (!variant || !installed || variant.map_id !== installed.map_id) return null;
   const checksum = variant.raw === null || variant.raw === undefined ? null : await revision(variant.raw);
-  if (checksum && checksum === installed.variant_revision) {
-    return { variant, terrain: installed, registration: installed, revision: checksum };
+  const registered = checksum && [installed, ...archived].find(row =>
+    row.map_id === variant.map_id && row.variant_revision === checksum);
+  if (registered) {
+    return { variant, terrain: registered, registration: registered, revision: checksum };
   }
   const terrain = [installed, ...archived].find(row => row.map_id === variant.map_id && sourceMatches(variant.document, row));
   return terrain ? { variant, terrain, registration: null, revision: checksum } : null;
