@@ -27,3 +27,10 @@
 .rotation-variant-control{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:13px;font-weight:600;color:#536356}
 .rotation-variant-control select{font:inherit;min-height:40px;padding:8px 12px;border:1px solid #b5c3ae;border-radius:5px;color:#365431;background:#fff;max-width:100%}
 .rotation-variant-control select:focus-visible{outline:3px solid #e6ad4c;outline-offset:3px}
+
+.spawn-sweep { margin-top: 1rem; padding: 1rem; border: 1px solid #678499; border-radius: .5rem; }
+.spawn-sweep p { font-size: .85rem; margin: .5rem 0; }
+.spawn-sweep fieldset { display: flex; flex-wrap: wrap; gap: .5rem; min-width: 0; }
+.spawn-sweep input[type=number] { width: 8rem; }
+.spawn-sweep [data-notes] { width: min(28rem, 100%); }
+.spawn-sweep button { margin: .25rem; }
