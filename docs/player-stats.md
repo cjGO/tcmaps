@@ -13,7 +13,9 @@ The initial minimum is 20 completed rounds; lower it to inspect small samples.
 
 Keep the original server export in `stats/`, including `events/index.jsonl` and
 its referenced journals. Local development and builds use this export when it is
-present. To refresh the small, portable dataset used by Git-based deployments:
+present. `npm run dev` and `npm run build` also refresh the portable
+`lib/player-stats.json` aggregate when raw sources are present. To refresh it
+without starting development or a build:
 
 ```sh
 npm run prepare:player-stats
@@ -24,6 +26,11 @@ ignored by Git; they are never copied into browser assets. The aggregate contain
 display names, past aliases, daily counters, and opaque player keys. It does not
 contain raw account IDs. Data is loaded only when the tab is opened and is a
 static export, not a live server feed.
+
+Adding raw files alone does not update a deployed site: rebuild locally, include
+the refreshed aggregate in the source changes, and redeploy. Check preparation
+warnings: a valid recent snapshot can update lifetime totals even when an
+incomplete journal export prevents date filters and trends from updating.
 
 The importer follows the journal index rather than scanning all day files. It
 requires a contiguous sequence, reconciles cumulative counters at the snapshot
