@@ -17,6 +17,7 @@ export function setupReplayV3Tab(root, recordings) {
   return {
     setVisible(value) { if (value) ready().setVisible(true); else instance?.setVisible(false); },
     openDefault() { return ready().openDefault(); },
+    openMap(mapId) { return ready().openMap(mapId); },
     restoreLocation() { return ready().restoreLocation(); },
     diagnostics() { return instance?.diagnostics(); },
   };
@@ -52,6 +53,12 @@ function createReplayV3Tab(root, recordings) {
   for (const key of ['map', 'names', 'players']) el(key).addEventListener(key === 'names' || key === 'players' ? 'input' : 'change', render);
   render();
   return { setVisible(value) { visible = value; viewer.setVisible(value); }, diagnostics: viewer.diagnostics,
+    openMap(mapId) {
+      el('map').value = mapId; el('names').value = ''; el('players').value = '0'; render();
+      const recording = available.find(row => row.map_id === mapId);
+      el('browser').open = true;
+      if (recording) return open(recording);
+    },
     openDefault() { if (!started && available.length) return open(available.find(r => r.round_ended) || available[0]); },
     restoreLocation() {
       const params = new URL(location.href).searchParams, id = params.get('replay');

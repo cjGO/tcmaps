@@ -202,7 +202,7 @@ function showPlayerStats() {
     });
   }
 }
-const tabs = ['rotation', 'mapstats', 'playerstats', 'replays', 'replay3', 'review', 'good', 'bad', 'server', 'editor'];
+const tabs = ['rotation', 'mapstats', 'playerstats', 'replay3', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 const experimental = setupExperimentalReplay($('experimental-panel'));
 let recordings = [], recordingsReady = false, recordingsLoading, replayV3;
 const editor = setupEditor(selectTab);
@@ -295,18 +295,11 @@ $('rotation-replays').addEventListener('click', async event => {
   event.preventDefault();
   const filename = collections.rotation.images[collections.rotation.index]?.filename;
   const mapId = publicMapId(identityRegistry, filename);
-  selectTab('replays', { autoOpen: false });
+  selectTab('replay3', { autoOpen: false });
   const href = location.href, visit = navigation;
-  if (!await ensureRecordings() || navigation !== visit || activeTab !== 'replays' || location.href !== href) return;
-  const recording = recordings.find(item => mapId && item.map_id === mapId);
-  if (recording) {
-    $('replay-map-filter').value = mapId;
-    $('replay-min-players').value = '0';
-    $('replay-player-names').value = '';
-    updateReplayList();
-    $('replay-browser').open = true;
-    openRecording(recording);
-  }
+  if (!await ensureRecordings() || navigation !== visit || activeTab !== 'replay3' || location.href !== href) return;
+  replayV3.setVisible(true);
+  replayV3.openMap(mapId);
 });
 $('rotation-edit').addEventListener('click', () => {
   const filename = collections.rotation.images[collections.rotation.index]?.filename;
@@ -390,7 +383,7 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
-    url.searchParams.set('tab', name);
+    url.searchParams.set('tab', name === 'replays' ? 'legacy-replays' : name);
     history.pushState(null, '', url);
   }
   if (name === 'replays' || name === 'replay3') {
@@ -580,7 +573,7 @@ async function restoreLocation() {
     }
   } else {
     const requestedTab = new URL(location.href).searchParams.get('tab');
-    const tab = requestedTab === 'experimental' ? 'replays' : requestedTab;
+    const tab = ['experimental', 'legacy-replays'].includes(requestedTab) ? 'replays' : requestedTab === 'replays' ? 'replay3' : requestedTab;
     selectTab(tabs.includes(tab) ? tab : 'rotation', { syncUrl: false });
   }
 }
