@@ -7,7 +7,6 @@ import archived from '../lib/replay-topology.json';
 import './rotation-topology.css';
 import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
 import { installedVariantPreview, resolveVariantPreview, sourceTerrain } from './rotation-variants.js';
-import { setupSpawnSweep } from './spawn-sweep.js';
 import { rotationSpawns } from './rotation-spawns.js';
 // Keep viewer code with the page's initial module graph. An open tab must not
 // fetch an old hashed chunk after a deployment replaces the available assets.
@@ -42,8 +41,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
   const modes = [...panel.querySelectorAll('[data-mode]')];
   const replay = recordings ? setupReplay(panel, () => { current = replay.terrain() ? { id: replay.terrain().id } : null; panel.hidden = false; show('3d'); }, stage) : { detach() {}, terrain: () => null, async attach() {} };
   if (recordings) { panel.hidden = false; panel.querySelector('[role=group]').hidden = true; panel.querySelector('.topology-controls').hidden = true; }
-  const sweep = import.meta.env.DEV && !recordings && prefix === 'rotation' ? setupSpawnSweep(panel, () => show('3d'), () => [...manifest.maps, ...archived.maps].filter(row => row.variant_id === 'source' && manifest.maps.some(map => map.map_id === row.map_id))) : null;
-  function destroy() { sweep?.clear(); variantLayer?.dispose(); variantLayer = null; densityControls?.dispose(); densityControls = null; replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
+  function destroy() { variantLayer?.dispose(); variantLayer = null; densityControls?.dispose(); densityControls = null; replay.detach(); generation++; request?.abort(); viewer?.dispose(); viewer = null; live.replaceChildren(); }
   function scaleNote() { query(info, '#topology-scale-note').textContent = viewer?.mode === 'explore' ? 'Explorer · true scale · preview movement' : scale.value === '1' ? 'True height scale' : `Height exaggerated ${scale.value}×`; }
   function cameraHelp() { query(info, '#topology-help').textContent = viewer?.following ? 'Following the soldier’s recorded position and facing. Camera holds at the last recorded position after death. Escape or Exit soldier view returns to the free camera.' : viewer?.mode === 'explore' ? 'WASD to move · Shift to run/gallop · drag to look or use Mouse look. The minimap shows your position and facing; click it to relocate.' : camera.value.startsWith('team') ? 'Looking inward from 12 m above the displayed spawn. Infantry / Mounted switches to ground exploration.' : 'Drag to orbit · scroll to zoom · right-drag or arrow keys to pan. Infantry / Mounted explores the terrain; Stand here starts at a point you choose.'; }
   live.addEventListener('terrain-modechange', () => {
@@ -81,14 +79,14 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     state.textContent = 'Loading measured topology…'; state.hidden = false;
     request = new AbortController();
     try {
-      const preview = !sweep?.enabled() && !recordings && prefix === 'rotation'
+      const preview = !recordings && prefix === 'rotation'
         ? entry?.variant
           ? await resolveVariantPreview(entry.variant, current, archived.maps)
           : entry?.variantId === 'all' ? await installedVariantPreview(entry.variants || [], current) : null
         : null;
       if (generation !== token) return;
-      const sourceSelected = !recordings && prefix === 'rotation' && (sweep?.enabled() || entry?.variantId === 'source');
-      const terrain = sweep?.enabled() ? sweep.terrain() : sourceSelected ? sourceTerrain(current, archived.maps) : preview?.terrain || current;
+      const sourceSelected = !recordings && prefix === 'rotation' && entry?.variantId === 'source';
+      const terrain = sourceSelected ? sourceTerrain(current, archived.maps) : preview?.terrain || current;
       const displayedVariant = preview?.variant;
       const response = replay.terrain() ? null : await fetch(terrain.url, { signal: request.signal });
       if (response && !response.ok) throw new Error('Terrain file could not load');
@@ -97,13 +95,12 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       if (!recordings && prefix === 'rotation') {
         const selectedSpawns = rotationSpawns(data, preview, terrain, sourceSelected);
         data = { ...data, spawns: selectedSpawns.spawns };
-        spawnInfo.textContent = sweep?.enabled() ? 'SPAWNPOINT draft markers: blue = Team 1 / entry 0; red = Team 2 / entry 32. Coordinates below are scene X, Y metres.' : selectedSpawns.note;
+        spawnInfo.textContent = selectedSpawns.note;
       }
       viewer = createTopologyViewer(live, data, message => { if (generation === token) { state.textContent = message; state.hidden = false; } });
       info.classList.remove('natural-surface');
       info.querySelector('.topology-ramp').style.background = elevationRamp();
       applyControls();
-      sweep?.attach(terrain, data, viewer);
       const variantSourceMatches = !entry?.variant || !!preview;
       if (!recordings && prefix === 'rotation') {
         if (displayedVariant) {
@@ -124,7 +121,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       info.querySelector('p:last-child').textContent = recordings
         ? 'Measured terrain with preview lighting and haze. Original trees, structures and game weather are omitted.'
         : sourceSelected
-        ? sweep?.enabled() ? 'Source / RAW terrain with your custom SPAWNPOINT draft. Export JSON to back up the sweep.' : 'Source / RAW measured terrain and original spawn points. Variant placements and spawn edits are not displayed.'
+        ? 'Source / RAW measured terrain and original spawn points. Variant placements and spawn edits are not displayed.'
         : !variantSourceMatches
         ? 'Showing the installed terrain. This loadout was authored on a different terrain revision, so its asset overlay is unavailable. Statistics are filtered to the selected variant.'
         : displayedVariant
@@ -141,7 +138,6 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
   }
   function setMap(next) {
     entry = next; current = maps.get(next?.filename); panel.hidden = !current;
-    sweep?.configure(current ? [current, ...archived.maps].filter(row => row.map_id === current.map_id && row.variant_id === 'source') : []);
     if (!current) { destroy(); live.hidden = info.hidden = true; stage.classList.remove('is-topology'); return; }
     panel.querySelector('.topology-heading strong').textContent = `${publicMapId(identityRegistry, current.id + '.png') || 'Unattributed map'}${entry?.variant ? ' · ' + entry.variant.label : ''} · topology`;
     show(selected);

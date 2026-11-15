@@ -109,3 +109,10 @@
 .population-week-swatch::before,.population-average-swatch::before{content:'';display:inline-block;width:28px;border-top:2px solid #426842;margin-right:8px;vertical-align:middle}
 .population-average-swatch::before{border-top:2px dashed #8056ac}
 .population-controls select:disabled,.population-controls input:disabled{opacity:.45;cursor:default}
+
+#spawnsweep-panel .sweep-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+#spawnsweep-panel .sweep-toolbar :is(button,select,input){font:inherit;max-width:100%}
+#spawnsweep-panel .sweep-toolbar :is(button,select){padding:10px;border:1px solid #b5c3ae;border-radius:5px;background:white;color:#365431}
+#spawnsweep-panel [data-sweep=progress]{font-weight:700;margin:20px 0 10px}
+#spawnsweep-panel [data-sweep=status]{position:static;display:block;margin:12px 0;color:#365431}
+#spawnsweep-panel .map-editor-frame{width:100%;border:1px solid #dce1d7;border-radius:8px}

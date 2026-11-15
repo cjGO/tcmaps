@@ -44,3 +44,9 @@ test('historical slot rounds retain their attribution when the live rotation rea
  const main = fs.readFileSync(new URL('../src/main.js', import.meta.url), 'utf8');
  assert.match(main, /statsMapId\(legacyRoundIdentities, value\)/);
 });
+
+test('WMS refresh labels remain distinct while family statistics aggregate', () => {
+ assert.equal(statsMapId([], 'test_map_107_WMS_200'), 'test_map_107');
+ assert.equal(statsMapId([], 'test_map_107_WMS_201'), 'test_map_107');
+ assert.equal(mapLabel([{id:'scn_mp_custom_map_1',map_id:'test_map_107',map_name:'test_map_107_WMS_201',variant_id:'test_map_107_WMS_201_VarD.placements.json'}], 'scn_mp_custom_map_1.png'), 'test_map_107_WMS_201');
+});

@@ -1,0 +1,35 @@
+Highpool manual review
+
+Review maps loads public/review/highpool/manifest.json in production and development.
+All 500 candidates are separate pool/scene identities, not rotation/public map IDs.
+Earlier review selections remain available under the collapsed earlier-maps section.
+
+Choose a candidate, tag Keep / export, place team 1 and team 2 by clicking the
+terrain, and drag either numbered marker to adjust it. Notes and decisions save
+in browser localStorage. Export kept CSV refuses incomplete kept maps. Unkept
+maps are never exported. Team 1 corresponds to entry 0; team 2 to entry 32.
+Measurement spots show horizontal XY distances from both spawns. They are
+session-only, clear when switching maps, and are excluded from storage and CSV.
+
+The interactive terrain is rendered from compacted engine samples, using actual
+bounds with Y upward and bilinear elevation interpolation. The source PNG has
+plot margins, so it is linked separately instead of used for coordinate picking.
+Z is approximate (boundary samples have a 1 metre inset). Validate ground height
+in engine before building final explicit-entry maps. The original SCO/TXT pairs
+remain immutable, with their engine auto-entry flags intact.
+
+CSV matches the archive's kept_maps.csv schema. Its asset paths and hashes refer
+to the original review package, including height_data_file. Deployment stores
+lossless compact height grids rather than the original verbose sample JSON.
+Keep the source ZIP for the downstream map-building workflow.
+
+Reimport (from repository root):
+  python3 scripts/import-review-pool.py /path/to/highpool_review.zip
+Validate:
+  npm run check:review
+  node --test tests/review-pool.test.js
+  npm run build
+The project specifies Node 24; Node 20 cannot run the installed jsdom/undici tests.
+The production prebuild checks every candidate's required assets and checksums.
+public/review/highpool must be included in the deployed checkout. Vite copies it
+to dist/review/highpool; no Windows paths are used at runtime.

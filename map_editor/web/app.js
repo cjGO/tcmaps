@@ -157,6 +157,7 @@
   }
   function setMode(value) {
     if(!['place','select','navigate','line','scatter'].includes(value)) throw new Error('Unknown editor mode');
+    if(project.spawn_sweep) value='select';
     mode=value;
     $('place').setAttribute('aria-pressed',value==='place'); $('select').setAttribute('aria-pressed',value==='select');
     svg.classList.toggle('select-mode',value!=='place'); choose(null);
@@ -170,6 +171,7 @@
       drag={team,before:snapshot(),pointer:event.pointerId};
       svg.setPointerCapture(event.pointerId); event.preventDefault(); return;
     }
+    if(project.spawn_sweep) { choose(null); return; }
     const marker=event.target.closest('[data-id]');
     if(marker) {
       choose(marker.getAttribute('data-id'));
@@ -303,6 +305,7 @@
   assetOptions(); render();
   window.MapEditor = Object.freeze({
     getState:state, loadDocument,
+    markSaved() { dirty=false; },
     exportDocument() {
       const document=JSON.parse(JSON.stringify(documentData()));
       C.validate(document,project); C.validateSettings(document); C.validateSpawns(document,project);

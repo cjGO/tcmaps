@@ -4,7 +4,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { editorVariantDocument } from '../src/editor-variant.js';
 import coordinates from '../map_editor/web/coordinates.js';
-import { includedVariants } from '../src/map-variants.js';
+import { includedVariants, variantId } from '../src/map-variants.js';
 
 const root = new URL('../', import.meta.url);
 const json = async path => JSON.parse(await readFile(new URL(path, root), 'utf8'));
@@ -20,9 +20,8 @@ test('current map 111 loadout edits through its installed checksum', async () =>
     if (/\.(json|placements)$/.test(name)) files[directory + name] = await readFile(new URL(directory + name, root), 'utf8');
   }
   const variants = includedVariants(files, map.map_id);
-  assert.equal(variants.length, 1, 'Only the latest loadout is selectable');
-  const [variant] = variants;
-  assert.equal(variant.id, 'vara');
+  const variant = variants.find(item => item.id === variantId(registration.variant_id, map.map_id));
+  assert.ok(variant, 'The installed authored loadout is selectable');
   const archive = includedVariants(await json('lib/replay-variant-archive.json'), map.map_id);
   const document = await editorVariantDocument(variant, registration, project, archive);
   assert.equal(document.placements.length, 285);
@@ -36,7 +35,7 @@ test('current map 111 loadout edits through its installed checksum', async () =>
   await assert.rejects(editorVariantDocument({ ...variant, map_id: 'test_map_112' }, registration, project, archive), /different map/);
   const changed = structuredClone(variant.document);
   changed.source.sco_sha256 = 'different';
-  await assert.rejects(editorVariantDocument({ ...variant, raw: JSON.stringify(changed) }, registration, project, archive), /different map/);
+  await assert.rejects(editorVariantDocument({ ...variant, raw: JSON.stringify(changed) }, registration, project, archive), /different (?:map|terrain revision)/);
   await assert.rejects(editorVariantDocument(variant, registration, { ...project, source: {} }, archive), /revision/);
 });
 

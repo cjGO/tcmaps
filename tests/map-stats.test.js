@@ -71,7 +71,7 @@ test('installed medium maps use permanent statistics without reassigning histori
   const playersColumn = headers.indexOf('player_count');
   const expected = rows.filter(row => {
     const name = row[mapColumn];
-    const id = legacyIds.get(name) || name.match(/^(test_map_\d+)(?:_(?:RAW|Var[a-z0-9]+))?$/i)?.[1];
+    const id = legacyIds.get(name) || name.match(/^(test_map_\d+)(?:_(?:RAW|Var[a-z0-9]+|WMS_\d+))?$/i)?.[1];
     return mediumIds.has(id) && Number(row[playersColumn]) >= 1 && Number(row[playersColumn]) <= 30;
   });
   assert.equal(selected.length, expected.length);

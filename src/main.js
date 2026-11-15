@@ -203,6 +203,24 @@ function showPlayerStats() {
   }
 }
 const tabs = ['rotation', 'mapstats', 'playerstats', 'replay3', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
+let spawnSweep;
+if (import.meta.env.DEV) {
+  tabs.push('spawnsweep');
+  const button = document.createElement('button');
+  button.id = 'spawnsweep-tab'; button.textContent = 'Spawn sweep';
+  button.setAttribute('role', 'tab'); button.setAttribute('aria-selected', 'false');
+  button.setAttribute('aria-controls', 'spawnsweep-panel'); button.tabIndex = -1;
+  document.querySelector('.page-tabs').append(button);
+  const panel = document.createElement('section'); panel.id = 'spawnsweep-panel'; panel.hidden = true;
+  panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', button.id);
+  document.querySelector('main').append(panel);
+}
+function showSpawnSweep() {
+  spawnSweep ??= import('./spawn-sweep-tab.js').then(({ setupSpawnSweepTab }) => setupSpawnSweepTab($('spawnsweep-panel'), { headers: roundStatsHeaders, rowsByMap: roundStatsByMap })).catch(error => {
+    spawnSweep = null; $('spawnsweep-panel').textContent = `Spawn sweep could not load: ${error.message}. Reopen the tab to retry.`;
+  });
+  spawnSweep.then(tab => tab?.show());
+}
 const experimental = setupExperimentalReplay($('experimental-panel'));
 let recordings = [], recordingsReady = false, recordingsLoading, replayV3;
 const editor = setupEditor(selectTab);
@@ -378,8 +396,13 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   experimental.setVisible(name === 'replays' && replayVersion === 2);
   if (name !== 'replay3') replayV3?.setVisible(false);
   if (name === 'editor') editor.show();
+  if (import.meta.env.DEV && name === 'spawnsweep') showSpawnSweep();
+  if (name === 'review' && !$('candidate-review').dataset.started) {
+    $('candidate-review').dataset.started = 'true';
+    import('./review-pool.js').then(({ setupReviewPool }) => setupReviewPool($('candidate-review')));
+  }
   if (name === 'playerstats') showPlayerStats();
-  $('collection-summary').textContent = name === 'replay3' ? 'Replay v3 · existing v2 recordings' : name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? recordingsReady ? `${recordings.length} available replays` : 'Loading available recordings…' : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `${maps.length} maps to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'spawnsweep' ? 'Local development · spawn sweep' : name === 'replay3' ? 'Replay v3 · existing v2 recordings' : name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? recordingsReady ? `${recordings.length} available replays` : 'Loading available recordings…' : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `500 Highpool candidates to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
@@ -540,7 +563,7 @@ document.addEventListener('keydown', event => {
     }
     return;
   }
-  if (activeTab !== 'review' || !maps.length) return;
+  if (activeTab !== 'review' || !$('legacy-review').open || !maps.length) return;
   event.preventDefault();
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') moveMap(event.key === 'ArrowLeft' ? -1 : 1);
   else { spawnIndex = (spawnIndex + (event.key === 'ArrowUp' ? -1 : 1) + currentMap().spawns.length) % currentMap().spawns.length; render(); }

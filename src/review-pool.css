@@ -1,0 +1,5 @@
+.review-canvas-wrap {max-width:850px;margin:16px auto;background:#17241d;}
+.review-canvas-wrap canvas {display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;}
+#candidate-review [aria-pressed="true"] {background:#164e63;color:white;}
+#candidate-review select {max-width: min(420px,75vw);}
+#candidate-review .sweep-toolbar {display:flex;flex-wrap:wrap;gap:12px;align-items:center;}

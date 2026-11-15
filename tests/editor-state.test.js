@@ -318,3 +318,93 @@ for (const [mapId, pool, name] of [['test_map_111','small','AnnaFreud_VarA'], ['
     } finally {dom.window.close();}
   });
 }
+
+test('spawn sweep uses editor spawn controls and undo while disabling asset placement', () => {
+  const {dom,w,$,api,change}=editor({...project, spawn_sweep:true});
+  try {
+    const original=api.exportDocument().spawn_points[0].x_m;
+    api.setMode('place'); assert.equal(api.getState().mode,'select');
+    change('spawn-x',String(original+10));
+    assert.equal(api.exportDocument().spawn_points[0].x_m,original+10);
+    $('undo').click(); assert.equal(api.exportDocument().spawn_points[0].x_m,original);
+    $('redo').click(); assert.equal(api.exportDocument().spawn_points[0].x_m,original+10);
+    api.markSaved();
+    const event=new w.Event('beforeunload',{cancelable:true}); w.dispatchEvent(event);
+    assert.equal(event.defaultPrevented,false);
+    assert.equal(api.exportDocument().placements.length,0);
+  } finally {dom.window.close();}
+});
+
+test('spawn measurements show calibrated distances, survive redraw, and never change exported edits', async () => {
+  const {attachSpawnMeasurements}=await import('../src/spawn-measurements.js');
+  const {dom,w,$,api,change}=editor({...project,spawn_sweep:true});
+  let tools;
+  try {
+    const svg=$('overlay');
+    svg.getBoundingClientRect=()=>({left:0,top:0,width:1000,height:1000});
+    const before=JSON.stringify(api.exportDocument());
+    let saved=[];
+    tools=attachSpawnMeasurements({contentDocument:w.document,contentWindow:w},[],rows=>{saved=rows;});
+    const button=[...w.document.querySelectorAll('button')].find(b=>b.textContent==='Measure distance');
+    button.click();
+    const click=(target,x=0,y=0)=>target.dispatchEvent(new w.MouseEvent('pointerdown',{bubbles:true,cancelable:true,button:0,clientX:x,clientY:y}));
+    const origin=api.exportDocument().spawn_points[0];
+    const p=w.MapCoordinates.worldToImage(origin.x_m+30,origin.y_m+40,project.calibration);
+    click(svg,p.u*1000,p.v*1000);
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 50.0 m');
+    assert.equal(saved.length,1);
+    assert.equal(svg.querySelectorAll('[data-measurements] text').length,2);
+    const team2=api.exportDocument().spawn_points[1];
+    assert.equal(svg.querySelectorAll('[data-measurements] text')[1].textContent,`T2: ${Math.hypot(origin.x_m+30-team2.x_m,origin.y_m+40-team2.y_m).toFixed(1)} m`);
+    assert.equal(JSON.stringify(api.exportDocument()),before);
+    assert.equal($('undo').disabled,true);
+    api.setMode('select');
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 50.0 m');
+    button.click();
+    change('spawn-x',String(origin.x_m+30));
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 40.0 m');
+    tools.dispose();
+    tools=attachSpawnMeasurements({contentDocument:w.document,contentWindow:w},saved);
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 40.0 m');
+    const clear=[...w.document.querySelectorAll('button')].filter(b=>b.textContent==='Clear measurements').at(-1);
+    // A captured click can land on the SVG after the endpoint is redrawn.
+    svg.dispatchEvent(new w.MouseEvent('dblclick',{bubbles:true,cancelable:true,clientX:p.u*1000,clientY:p.v*1000}));
+    assert.equal(svg.querySelectorAll('[data-measurement-end]').length,0);
+    assert.equal(svg.querySelectorAll('[data-measurements] text').length,0);
+    clear.click(); assert.equal(svg.querySelector('[data-measurements]').children.length,0);
+  } finally {tools?.dispose();dom.window.close();}
+});
+
+test('measurement endpoint drags update live without editing spawns and cancellation restores the guide', async () => {
+  const {attachSpawnMeasurements}=await import('../src/spawn-measurements.js');
+  const {dom,w,$,api}=editor({...project,spawn_sweep:true});
+  let tools;
+  try {
+    const svg=$('overlay'); svg.getBoundingClientRect=()=>({left:0,top:0,width:1000,height:1000});
+    const origin=api.exportDocument().spawn_points[0], before=JSON.stringify(api.exportDocument());
+    let saved;
+    tools=attachSpawnMeasurements({contentDocument:w.document,contentWindow:w},[{team:0,target:{x_m:origin.x_m+30,y_m:origin.y_m+40}}],rows=>{saved=rows;});
+    const pointer=(type,target,x,y,id=1)=>{
+      const p=w.MapCoordinates.worldToImage(x,y,project.calibration);
+      const event=new w.MouseEvent(type,{bubbles:true,cancelable:true,button:0,clientX:p.u*1000,clientY:p.v*1000});
+      Object.defineProperty(event,'pointerId',{value:id}); target.dispatchEvent(event);
+    };
+    const start=()=>pointer('pointerdown',svg.querySelector('[data-measurement-end]'),origin.x_m+30,origin.y_m+40);
+    start(); pointer('pointermove',svg,origin.x_m+60,origin.y_m+80,2);
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 50.0 m');
+    pointer('pointermove',svg,origin.x_m+60,origin.y_m+80);
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 100.0 m');
+    pointer('pointermove',svg,project.bounds.x_min_m-10,origin.y_m);
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 100.0 m');
+    pointer('pointerup',svg,origin.x_m+60,origin.y_m+80);
+    assert.equal(saved[0].target.x_m,origin.x_m+60);
+    start(); pointer('pointermove',svg,origin.x_m+30,origin.y_m+40);
+    pointer('pointercancel',svg,origin.x_m+30,origin.y_m+40);
+    assert.equal(svg.querySelector('[data-measurements] text').textContent,'T1: 100.0 m');
+    start(); pointer('pointermove',svg,origin.x_m+30,origin.y_m+40);
+    w.document.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+    assert.equal(saved[0].target.x_m,origin.x_m+60);
+    assert.equal(JSON.stringify(api.exportDocument()),before);
+    assert.equal($('undo').disabled,true);
+  } finally {tools?.dispose();dom.window.close();}
+});

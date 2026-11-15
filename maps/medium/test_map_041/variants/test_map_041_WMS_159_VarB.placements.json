@@ -1,0 +1,5686 @@
+{
+  "default_spawn_points": [
+    {
+      "entry": 0,
+      "forward": [
+        0.6585046052932739,
+        0.7525767087936401,
+        0.0
+      ],
+      "team": 0,
+      "x_m": 148.8000030517578,
+      "y_m": 107.19999694824219,
+      "z_m": 4.4079999923706055
+    },
+    {
+      "entry": 32,
+      "forward": [
+        -0.6585046052932739,
+        -0.7525767087936401,
+        0.0
+      ],
+      "team": 1,
+      "x_m": 731.2000122070312,
+      "y_m": 772.7999877929688,
+      "z_m": 14.486000061035156
+    }
+  ],
+  "placements": [
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_1",
+      "scale": 1.24066201900132,
+      "x_m": 649.124,
+      "y_m": 664.626,
+      "yaw_deg": 75.88218346238136
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_2",
+      "scale": 2.2812962437747046,
+      "x_m": 601.784,
+      "y_m": 841.675,
+      "yaw_deg": 176.62981543689966
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_3",
+      "scale": 1.6660919392015785,
+      "x_m": 67.715,
+      "y_m": 746.173,
+      "yaw_deg": 315.4144168831408
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_4",
+      "scale": 1.451074627111666,
+      "x_m": 670.721,
+      "y_m": 415.085,
+      "yaw_deg": 16.44331807270646
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_5",
+      "scale": 2.4712277074577287,
+      "x_m": 635.754,
+      "y_m": 112.355,
+      "yaw_deg": 197.64973947778344
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_6",
+      "scale": 2.1866502665216103,
+      "x_m": 704.885,
+      "y_m": 665.593,
+      "yaw_deg": 274.26311985589564
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_7",
+      "scale": 1.2888577666599303,
+      "x_m": 346.659,
+      "y_m": 274.952,
+      "yaw_deg": 106.25681184232235
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_8",
+      "scale": 2.3790296042570844,
+      "x_m": 612.177,
+      "y_m": 398.34,
+      "yaw_deg": 35.85262899287045
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_9",
+      "scale": 2.3538205823861063,
+      "x_m": 742.452,
+      "y_m": 61.052,
+      "yaw_deg": 323.6579197458923
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_10",
+      "scale": 2.199034534394741,
+      "x_m": 215.341,
+      "y_m": 163.781,
+      "yaw_deg": 299.55918981693685
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_11",
+      "scale": 2.3742446802789345,
+      "x_m": 715.147,
+      "y_m": 433.965,
+      "yaw_deg": 293.0111605580896
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_12",
+      "scale": 2.0104455687105656,
+      "x_m": 333.519,
+      "y_m": 155.774,
+      "yaw_deg": 215.71485481224954
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_13",
+      "scale": 2.047574319411069,
+      "x_m": 273.99,
+      "y_m": 305.01,
+      "yaw_deg": 197.71321420557797
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_14",
+      "scale": 1.9606531582539901,
+      "x_m": 362.774,
+      "y_m": 300.968,
+      "yaw_deg": 237.76973409578204
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_15",
+      "scale": 1.3815123074455187,
+      "x_m": 275.251,
+      "y_m": 307.481,
+      "yaw_deg": 259.087444441393
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_16",
+      "scale": 1.5921645744238049,
+      "x_m": 563.536,
+      "y_m": 352.76,
+      "yaw_deg": 240.78752442263067
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_17",
+      "scale": 1.8363423998234794,
+      "x_m": 632.311,
+      "y_m": 57.118,
+      "yaw_deg": 95.44418231584132
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_18",
+      "scale": 2.328349580988288,
+      "x_m": 662.154,
+      "y_m": 652.391,
+      "yaw_deg": 75.44382845051587
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_19",
+      "scale": 1.6530795807484537,
+      "x_m": 319.626,
+      "y_m": 306.858,
+      "yaw_deg": 193.5100840497762
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_20",
+      "scale": 1.7344698617234826,
+      "x_m": 740.355,
+      "y_m": 72.065,
+      "yaw_deg": 232.13001153431833
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_21",
+      "scale": 1.66659945610445,
+      "x_m": 321.978,
+      "y_m": 299.289,
+      "yaw_deg": 5.270912619307637
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_22",
+      "scale": 1.2222732560476288,
+      "x_m": 368.32,
+      "y_m": 291.11,
+      "yaw_deg": 85.93658384867013
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_23",
+      "scale": 1.3155800147214904,
+      "x_m": 700.93,
+      "y_m": 96.56,
+      "yaw_deg": 30.036150366067886
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_24",
+      "scale": 1.4499397408217192,
+      "x_m": 497.767,
+      "y_m": 27.104,
+      "yaw_deg": 341.7767988704145
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_25",
+      "scale": 1.2779360287822783,
+      "x_m": 355.241,
+      "y_m": 285.271,
+      "yaw_deg": 216.15419863723218
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_26",
+      "scale": 2.427726304391399,
+      "x_m": 704.086,
+      "y_m": 65.315,
+      "yaw_deg": 78.06671689264476
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_27",
+      "scale": 1.7312306001549587,
+      "x_m": 250.062,
+      "y_m": 309.875,
+      "yaw_deg": 43.165748650208116
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_28",
+      "scale": 1.650597689091228,
+      "x_m": 696.927,
+      "y_m": 71.773,
+      "yaw_deg": 250.77431025914848
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_29",
+      "scale": 1.6167766717262566,
+      "x_m": 586.655,
+      "y_m": 384.868,
+      "yaw_deg": 345.2691652625799
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_30",
+      "scale": 1.2853534399764612,
+      "x_m": 413.366,
+      "y_m": 292.184,
+      "yaw_deg": 61.55475463718176
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_31",
+      "scale": 2.4720734243746847,
+      "x_m": 316.839,
+      "y_m": 277.328,
+      "yaw_deg": 209.60843961685896
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_32",
+      "scale": 1.9283671830780804,
+      "x_m": 734.088,
+      "y_m": 86.186,
+      "yaw_deg": 189.9965262785554
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_33",
+      "scale": 1.9456456379266456,
+      "x_m": 232.195,
+      "y_m": 518.178,
+      "yaw_deg": 352.23344335332513
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_34",
+      "scale": 1.9802896740147844,
+      "x_m": 604.741,
+      "y_m": 396.979,
+      "yaw_deg": 69.69454385340214
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_35",
+      "scale": 2.1339343149447814,
+      "x_m": 269.936,
+      "y_m": 281.626,
+      "yaw_deg": 219.7885124757886
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_36",
+      "scale": 1.4432622180320323,
+      "x_m": 313.221,
+      "y_m": 838.617,
+      "yaw_deg": 129.83580409549177
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_37",
+      "scale": 2.0429729210445657,
+      "x_m": 272.494,
+      "y_m": 282.573,
+      "yaw_deg": 85.31174967996776
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_38",
+      "scale": 2.075998204178177,
+      "x_m": 782.593,
+      "y_m": 70.997,
+      "yaw_deg": 210.56964215822518
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_39",
+      "scale": 1.7995080732507631,
+      "x_m": 489.652,
+      "y_m": 443.591,
+      "yaw_deg": 159.8714471887797
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_40",
+      "scale": 1.1870989357121289,
+      "x_m": 823.774,
+      "y_m": 69.203,
+      "yaw_deg": 337.52295543439686
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_41",
+      "scale": 2.071289991028607,
+      "x_m": 335.038,
+      "y_m": 295.214,
+      "yaw_deg": 36.518259812146425
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_42",
+      "scale": 1.5974820310948417,
+      "x_m": 499.706,
+      "y_m": 134.511,
+      "yaw_deg": 15.214239628985524
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_43",
+      "scale": 2.350512900738977,
+      "x_m": 587.897,
+      "y_m": 388.165,
+      "yaw_deg": 131.33019433356822
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_44",
+      "scale": 1.7729142844909802,
+      "x_m": 247.657,
+      "y_m": 828.119,
+      "yaw_deg": 8.943872479721904
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_45",
+      "scale": 1.3031665062298998,
+      "x_m": 365.377,
+      "y_m": 279.976,
+      "yaw_deg": 28.533075638115406
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_46",
+      "scale": 1.1654031365178525,
+      "x_m": 845.763,
+      "y_m": 70.2,
+      "yaw_deg": 170.6874070968479
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_47",
+      "scale": 1.2886720002861694,
+      "x_m": 727.777,
+      "y_m": 660.902,
+      "yaw_deg": 37.2498778346926
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_48",
+      "scale": 2.4571261391974986,
+      "x_m": 793.501,
+      "y_m": 844.455,
+      "yaw_deg": 272.91499139741063
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_49",
+      "scale": 2.346912444452755,
+      "x_m": 359.504,
+      "y_m": 291.105,
+      "yaw_deg": 339.1558035649359
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_50",
+      "scale": 1.4465270901564509,
+      "x_m": 144.849,
+      "y_m": 154.726,
+      "yaw_deg": 348.54261830449104
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_51",
+      "scale": 2.0082666367525235,
+      "x_m": 322.078,
+      "y_m": 302.753,
+      "yaw_deg": 107.16878763400018
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_52",
+      "scale": 1.5829741776688024,
+      "x_m": 698.408,
+      "y_m": 852.01,
+      "yaw_deg": 263.0411836411804
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_53",
+      "scale": 1.1378708679694682,
+      "x_m": 736.928,
+      "y_m": 62.48,
+      "yaw_deg": 100.02552799880505
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_54",
+      "scale": 1.2768017470370978,
+      "x_m": 154.186,
+      "y_m": 142.429,
+      "yaw_deg": 147.51354432664812
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_55",
+      "scale": 2.0129902149783447,
+      "x_m": 670.836,
+      "y_m": 79.009,
+      "yaw_deg": 6.004887297749519
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_56",
+      "scale": 1.2279369415482506,
+      "x_m": 607.685,
+      "y_m": 405.743,
+      "yaw_deg": 84.74588831886649
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_57",
+      "scale": 2.1909947162494063,
+      "x_m": 484.992,
+      "y_m": 449.307,
+      "yaw_deg": 223.90498246997595
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_58",
+      "scale": 2.4959288970567286,
+      "x_m": 650.682,
+      "y_m": 662.639,
+      "yaw_deg": 344.7138793487102
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_59",
+      "scale": 2.0656104783993214,
+      "x_m": 305.728,
+      "y_m": 157.181,
+      "yaw_deg": 265.58008801192045
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_60",
+      "scale": 1.3866759306984022,
+      "x_m": 314.102,
+      "y_m": 307.35,
+      "yaw_deg": 168.249869691208
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_61",
+      "scale": 1.9478865530109033,
+      "x_m": 360.182,
+      "y_m": 297.26,
+      "yaw_deg": 46.25501833856106
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_62",
+      "scale": 1.7688400173792616,
+      "x_m": 795.084,
+      "y_m": 66.535,
+      "yaw_deg": 41.09819666482508
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_63",
+      "scale": 1.2742945504141971,
+      "x_m": 564.077,
+      "y_m": 393.077,
+      "yaw_deg": 47.036156728863716
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_64",
+      "scale": 2.002168760285713,
+      "x_m": 249.982,
+      "y_m": 273.132,
+      "yaw_deg": 200.21266914904118
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_65",
+      "scale": 2.4830714103300124,
+      "x_m": 584.646,
+      "y_m": 371.447,
+      "yaw_deg": 196.97003250941634
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_66",
+      "scale": 1.9292646278627217,
+      "x_m": 216.996,
+      "y_m": 519.681,
+      "yaw_deg": 17.54984177649021
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_67",
+      "scale": 1.5759006214793772,
+      "x_m": 416.917,
+      "y_m": 281.982,
+      "yaw_deg": 164.13747020065784
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_68",
+      "scale": 2.385517055517994,
+      "x_m": 678.354,
+      "y_m": 70.621,
+      "yaw_deg": 182.38004526123405
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_69",
+      "scale": 1.962670072563924,
+      "x_m": 683.731,
+      "y_m": 52.05,
+      "yaw_deg": 126.06949305161834
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_70",
+      "scale": 2.416926519712433,
+      "x_m": 624.354,
+      "y_m": 406.651,
+      "yaw_deg": 140.21195825189352
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_71",
+      "scale": 2.4771488204132766,
+      "x_m": 715.535,
+      "y_m": 418.88,
+      "yaw_deg": 72.13348070159554
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_72",
+      "scale": 1.266154370852746,
+      "x_m": 559.828,
+      "y_m": 410.766,
+      "yaw_deg": 140.37797827273607
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_73",
+      "scale": 1.8165443120524287,
+      "x_m": 511.614,
+      "y_m": 133.227,
+      "yaw_deg": 50.33172399736941
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_74",
+      "scale": 1.331020014709793,
+      "x_m": 643.334,
+      "y_m": 396.516,
+      "yaw_deg": 302.2268406394869
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_75",
+      "scale": 1.770542129757814,
+      "x_m": 657.53,
+      "y_m": 62.053,
+      "yaw_deg": 235.28074278496206
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_76",
+      "scale": 1.9133198675699532,
+      "x_m": 744.137,
+      "y_m": 85.748,
+      "yaw_deg": 187.80097584240139
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_77",
+      "scale": 1.9162989946780726,
+      "x_m": 337.987,
+      "y_m": 283.167,
+      "yaw_deg": 174.5283833798021
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_78",
+      "scale": 2.0692863061558455,
+      "x_m": 629.076,
+      "y_m": 394.551,
+      "yaw_deg": 51.97237475775182
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_79",
+      "scale": 2.447513513499871,
+      "x_m": 787.699,
+      "y_m": 448.118,
+      "yaw_deg": 66.14469218999147
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_80",
+      "scale": 2.1551333079114556,
+      "x_m": 274.531,
+      "y_m": 520.37,
+      "yaw_deg": 109.8778943438083
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_81",
+      "scale": 2.48666581872385,
+      "x_m": 734.783,
+      "y_m": 81.604,
+      "yaw_deg": 226.95209068246186
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_82",
+      "scale": 1.7923825349425897,
+      "x_m": 369.939,
+      "y_m": 280.296,
+      "yaw_deg": 203.81726729683578
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_83",
+      "scale": 1.4609494279138744,
+      "x_m": 172.433,
+      "y_m": 312.818,
+      "yaw_deg": 23.635127870365977
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_84",
+      "scale": 2.426356169511564,
+      "x_m": 344.373,
+      "y_m": 286.096,
+      "yaw_deg": 198.3323677070439
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_85",
+      "scale": 1.5860144923208281,
+      "x_m": 420.92,
+      "y_m": 286.468,
+      "yaw_deg": 94.61494370363653
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_86",
+      "scale": 1.9212228993419558,
+      "x_m": 278.273,
+      "y_m": 291.923,
+      "yaw_deg": 353.72161782346666
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_87",
+      "scale": 1.6706561306491494,
+      "x_m": 675.227,
+      "y_m": 657.2,
+      "yaw_deg": 202.1463509928435
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_88",
+      "scale": 1.1005528748501092,
+      "x_m": 680.667,
+      "y_m": 59.715,
+      "yaw_deg": 26.16294264793396
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_89",
+      "scale": 1.6136707805562764,
+      "x_m": 405.844,
+      "y_m": 285.912,
+      "yaw_deg": 98.37934124283493
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_90",
+      "scale": 2.1384784945985302,
+      "x_m": 575.269,
+      "y_m": 389.214,
+      "yaw_deg": 13.758416958153248
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_91",
+      "scale": 1.4616806316189468,
+      "x_m": 564.34,
+      "y_m": 438.403,
+      "yaw_deg": 207.0063306670636
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_92",
+      "scale": 1.5300397409591824,
+      "x_m": 82.248,
+      "y_m": 420.175,
+      "yaw_deg": 313.2150494121015
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_93",
+      "scale": 1.375143839046359,
+      "x_m": 516.42,
+      "y_m": 441.713,
+      "yaw_deg": 183.7216970231384
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_94",
+      "scale": 1.11103026708588,
+      "x_m": 621.246,
+      "y_m": 400.594,
+      "yaw_deg": 180.54098152555525
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_95",
+      "scale": 2.4901526907924563,
+      "x_m": 308.892,
+      "y_m": 290.656,
+      "yaw_deg": 359.1137743368745
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_97",
+      "scale": 2.2524592195404693,
+      "x_m": 759.11,
+      "y_m": 73.474,
+      "yaw_deg": 78.75113449059427
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_98",
+      "scale": 1.4275478891795501,
+      "x_m": 561.727,
+      "y_m": 380.491,
+      "yaw_deg": 312.6827532146126
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_99",
+      "scale": 1.4922171209473163,
+      "x_m": 667.738,
+      "y_m": 400.842,
+      "yaw_deg": 154.20969447121024
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_100",
+      "scale": 1.5049721710383892,
+      "x_m": 398.907,
+      "y_m": 305.975,
+      "yaw_deg": 45.50035838037729
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_101",
+      "scale": 1.8530874303542078,
+      "x_m": 493.421,
+      "y_m": 413.645,
+      "yaw_deg": 263.47583963535726
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_102",
+      "scale": 1.984488598885946,
+      "x_m": 709.197,
+      "y_m": 60.492,
+      "yaw_deg": 155.0645988062024
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_103",
+      "scale": 2.4581985799595714,
+      "x_m": 731.646,
+      "y_m": 90.056,
+      "yaw_deg": 60.07643477059901
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_104",
+      "scale": 1.6549995157402009,
+      "x_m": 716.876,
+      "y_m": 424.275,
+      "yaw_deg": 178.5396185796708
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_105",
+      "scale": 1.7383479200070724,
+      "x_m": 685.59,
+      "y_m": 63.053,
+      "yaw_deg": 137.87519437260926
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_106",
+      "scale": 1.1278518083272502,
+      "x_m": 679.734,
+      "y_m": 416.622,
+      "yaw_deg": 29.74574969150126
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_107",
+      "scale": 2.236155541264452,
+      "x_m": 685.962,
+      "y_m": 415.007,
+      "yaw_deg": 316.8707855511457
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_108",
+      "scale": 1.7160582465585321,
+      "x_m": 496.034,
+      "y_m": 412.661,
+      "yaw_deg": 340.72616058401763
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_109",
+      "scale": 2.241954456549138,
+      "x_m": 340.975,
+      "y_m": 169.443,
+      "yaw_deg": 286.78733040578663
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_110",
+      "scale": 1.9227917946409434,
+      "x_m": 598.486,
+      "y_m": 448.106,
+      "yaw_deg": 239.48797655291855
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_111",
+      "scale": 2.018145543290302,
+      "x_m": 632.827,
+      "y_m": 410.522,
+      "yaw_deg": 222.53836059942842
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_112",
+      "scale": 2.3426311359507963,
+      "x_m": 715.642,
+      "y_m": 653.284,
+      "yaw_deg": 42.474280949682
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_113",
+      "scale": 1.477301645791158,
+      "x_m": 589.924,
+      "y_m": 373.319,
+      "yaw_deg": 10.896014291793108
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_114",
+      "scale": 1.3971337690018117,
+      "x_m": 650.763,
+      "y_m": 398.933,
+      "yaw_deg": 93.98580743931234
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_115",
+      "scale": 1.615591490524821,
+      "x_m": 260.574,
+      "y_m": 835.133,
+      "yaw_deg": 16.761383889243007
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_116",
+      "scale": 1.5226348655996844,
+      "x_m": 328.829,
+      "y_m": 297.498,
+      "yaw_deg": 280.10269951075315
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_117",
+      "scale": 1.9109131594887003,
+      "x_m": 664.278,
+      "y_m": 55.693,
+      "yaw_deg": 54.05008686706424
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_118",
+      "scale": 1.3840220437850803,
+      "x_m": 759.692,
+      "y_m": 439.631,
+      "yaw_deg": 332.4537131655961
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_119",
+      "scale": 1.9603031236911193,
+      "x_m": 776.453,
+      "y_m": 68.349,
+      "yaw_deg": 17.367373192682862
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_120",
+      "scale": 2.1411139717092738,
+      "x_m": 508.631,
+      "y_m": 432.364,
+      "yaw_deg": 211.6934878192842
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_121",
+      "scale": 1.5670670472318307,
+      "x_m": 592.53,
+      "y_m": 376.122,
+      "yaw_deg": 209.6235872246325
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_122",
+      "scale": 1.7801552471937612,
+      "x_m": 700.763,
+      "y_m": 70.519,
+      "yaw_deg": 192.13012321852148
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_123",
+      "scale": 1.3361207705456764,
+      "x_m": 525.262,
+      "y_m": 403.061,
+      "yaw_deg": 163.248352361843
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_124",
+      "scale": 1.1266414265846834,
+      "x_m": 364.146,
+      "y_m": 294.619,
+      "yaw_deg": 82.94477792456746
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_125",
+      "scale": 1.5700321975164115,
+      "x_m": 228.226,
+      "y_m": 295.928,
+      "yaw_deg": 124.58029464818537
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_126",
+      "scale": 1.098695435677655,
+      "x_m": 767.069,
+      "y_m": 446.819,
+      "yaw_deg": 262.3212673421949
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_127",
+      "scale": 2.3487242113333195,
+      "x_m": 309.241,
+      "y_m": 309.915,
+      "yaw_deg": 340.5980618018657
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_128",
+      "scale": 2.0921948549803346,
+      "x_m": 716.962,
+      "y_m": 63.385,
+      "yaw_deg": 131.43865616060793
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_129",
+      "scale": 1.7352975194808096,
+      "x_m": 620.678,
+      "y_m": 55.11,
+      "yaw_deg": 326.95185522548854
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_130",
+      "scale": 1.9548360779881477,
+      "x_m": 785.382,
+      "y_m": 447.194,
+      "yaw_deg": 158.08481996878982
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_131",
+      "scale": 1.9127963087521493,
+      "x_m": 217.07,
+      "y_m": 509.296,
+      "yaw_deg": 186.67526780627668
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_132",
+      "scale": 1.9491824301658198,
+      "x_m": 204.554,
+      "y_m": 311.911,
+      "yaw_deg": 220.8183154463768
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_133",
+      "scale": 1.579591485671699,
+      "x_m": 318.384,
+      "y_m": 301.93,
+      "yaw_deg": 275.7267381157726
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_134",
+      "scale": 1.1587655367329717,
+      "x_m": 254.122,
+      "y_m": 313.328,
+      "yaw_deg": 292.53995577804744
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_135",
+      "scale": 2.4682117488700897,
+      "x_m": 171.117,
+      "y_m": 296.377,
+      "yaw_deg": 19.235698403790593
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_136",
+      "scale": 2.04164199042134,
+      "x_m": 671.018,
+      "y_m": 400.319,
+      "yaw_deg": 105.71310611441731
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_137",
+      "scale": 2.4443260559346527,
+      "x_m": 258.417,
+      "y_m": 510.473,
+      "yaw_deg": 341.32214734330773
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_138",
+      "scale": 1.8827380534494296,
+      "x_m": 549.046,
+      "y_m": 405.059,
+      "yaw_deg": 161.54489004984498
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_139",
+      "scale": 2.0130396629683673,
+      "x_m": 271.125,
+      "y_m": 293.714,
+      "yaw_deg": 213.13474383205175
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_140",
+      "scale": 2.493030459037982,
+      "x_m": 195.402,
+      "y_m": 131.293,
+      "yaw_deg": 354.5968254748732
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_141",
+      "scale": 1.6388911431422457,
+      "x_m": 673.549,
+      "y_m": 414.809,
+      "yaw_deg": 144.24242170527577
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_142",
+      "scale": 2.2559357043355703,
+      "x_m": 251.592,
+      "y_m": 306.691,
+      "yaw_deg": 22.142275627702475
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_143",
+      "scale": 1.2956490465439856,
+      "x_m": 145.494,
+      "y_m": 132.312,
+      "yaw_deg": 134.2802710365504
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_144",
+      "scale": 1.5911437864415348,
+      "x_m": 341.871,
+      "y_m": 835.355,
+      "yaw_deg": 121.32130969315767
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_145",
+      "scale": 1.0583544683177024,
+      "x_m": 731.751,
+      "y_m": 423.63,
+      "yaw_deg": 216.63906633853912
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_146",
+      "scale": 1.9332529748789966,
+      "x_m": 319.615,
+      "y_m": 169.191,
+      "yaw_deg": 141.14104460924864
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_147",
+      "scale": 1.841735172783956,
+      "x_m": 295.71,
+      "y_m": 299.877,
+      "yaw_deg": 99.28630792535841
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_148",
+      "scale": 1.29148031224031,
+      "x_m": 572.03,
+      "y_m": 362.91,
+      "yaw_deg": 291.3988330028951
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_149",
+      "scale": 1.1151028571184725,
+      "x_m": 214.667,
+      "y_m": 301.533,
+      "yaw_deg": 15.082236304879189
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_150",
+      "scale": 1.9912903645308688,
+      "x_m": 255.156,
+      "y_m": 292.488,
+      "yaw_deg": 64.74102809093893
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_151",
+      "scale": 1.6590291251195595,
+      "x_m": 528.602,
+      "y_m": 28.887,
+      "yaw_deg": 4.288971070200205
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_152",
+      "scale": 1.8428286741254851,
+      "x_m": 756.501,
+      "y_m": 437.086,
+      "yaw_deg": 347.0455003436655
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_153",
+      "scale": 2.3753784608561546,
+      "x_m": 442.913,
+      "y_m": 294.02,
+      "yaw_deg": 323.2059067580849
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_154",
+      "scale": 1.5337257530773059,
+      "x_m": 827.896,
+      "y_m": 850.904,
+      "yaw_deg": 139.06205425970256
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_155",
+      "scale": 1.6075320440577343,
+      "x_m": 338.105,
+      "y_m": 174.702,
+      "yaw_deg": 126.71150559559464
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_156",
+      "scale": 2.0112256926950067,
+      "x_m": 664.839,
+      "y_m": 853.046,
+      "yaw_deg": 53.35819412022829
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_157",
+      "scale": 1.1910488796420395,
+      "x_m": 334.568,
+      "y_m": 158.719,
+      "yaw_deg": 297.1894486807287
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_158",
+      "scale": 1.6214389740489423,
+      "x_m": 292.855,
+      "y_m": 312.184,
+      "yaw_deg": 34.68262075446546
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_159",
+      "scale": 2.1603112516459078,
+      "x_m": 697.571,
+      "y_m": 662.596,
+      "yaw_deg": 319.37690729275346
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_160",
+      "scale": 2.2830667172092944,
+      "x_m": 313.84,
+      "y_m": 276.49,
+      "yaw_deg": 246.1061069369316
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_161",
+      "scale": 2.321292855660431,
+      "x_m": 369.219,
+      "y_m": 293.776,
+      "yaw_deg": 330.80315918661654
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_162",
+      "scale": 1.4526169409509748,
+      "x_m": 294.575,
+      "y_m": 297.033,
+      "yaw_deg": 128.19674229249358
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_163",
+      "scale": 1.7834495977731422,
+      "x_m": 783.179,
+      "y_m": 67.395,
+      "yaw_deg": 346.98311635293067
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_164",
+      "scale": 1.818037229590118,
+      "x_m": 688.226,
+      "y_m": 847.748,
+      "yaw_deg": 353.1692723650485
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_165",
+      "scale": 1.2072210015030578,
+      "x_m": 288.011,
+      "y_m": 270.272,
+      "yaw_deg": 332.2745736222714
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_166",
+      "scale": 2.154586799093522,
+      "x_m": 744.615,
+      "y_m": 81.733,
+      "yaw_deg": 159.86212994903326
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_167",
+      "scale": 2.3569999063620344,
+      "x_m": 544.301,
+      "y_m": 438,
+      "yaw_deg": 265.07553809322417
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_168",
+      "scale": 1.9678204300580546,
+      "x_m": 312.181,
+      "y_m": 286.544,
+      "yaw_deg": 131.7234057560563
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_169",
+      "scale": 1.6661932327551767,
+      "x_m": 268.322,
+      "y_m": 172.766,
+      "yaw_deg": 254.61983875371516
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_170",
+      "scale": 1.4559140669880435,
+      "x_m": 346.137,
+      "y_m": 293.487,
+      "yaw_deg": 104.43609215319157
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_171",
+      "scale": 2.2454606614774093,
+      "x_m": 550.085,
+      "y_m": 442.023,
+      "yaw_deg": 297.9914311040193
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_172",
+      "scale": 2.0502592801349238,
+      "x_m": 600.473,
+      "y_m": 37.016,
+      "yaw_deg": 124.02544979006052
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_173",
+      "scale": 1.672877379693091,
+      "x_m": 232.471,
+      "y_m": 293.235,
+      "yaw_deg": 254.04016602784395
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_174",
+      "scale": 1.384499650564976,
+      "x_m": 426.339,
+      "y_m": 290.365,
+      "yaw_deg": 39.659954281523824
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_175",
+      "scale": 2.386561810853891,
+      "x_m": 299.873,
+      "y_m": 307.823,
+      "yaw_deg": 268.11704124324024
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_176",
+      "scale": 2.279122468433343,
+      "x_m": 597.649,
+      "y_m": 421.809,
+      "yaw_deg": 348.52152683772147
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_177",
+      "scale": 1.3044422091916203,
+      "x_m": 527.08,
+      "y_m": 390.579,
+      "yaw_deg": 188.80578900687397
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_178",
+      "scale": 2.313461743062362,
+      "x_m": 487.926,
+      "y_m": 419.453,
+      "yaw_deg": 326.9695362634957
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_179",
+      "scale": 1.808215306024067,
+      "x_m": 685.687,
+      "y_m": 652.811,
+      "yaw_deg": 118.5354470461607
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_180",
+      "scale": 1.0279167027911171,
+      "x_m": 254.234,
+      "y_m": 281.76,
+      "yaw_deg": 57.32921135611832
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_181",
+      "scale": 1.649197768769227,
+      "x_m": 760.802,
+      "y_m": 434.424,
+      "yaw_deg": 133.16168862394989
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_182",
+      "scale": 2.087299233302474,
+      "x_m": 626.302,
+      "y_m": 61.492,
+      "yaw_deg": 198.66078106686473
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_183",
+      "scale": 1.0726687968708575,
+      "x_m": 769.848,
+      "y_m": 73.397,
+      "yaw_deg": 298.2187328953296
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_184",
+      "scale": 2.2248266091337427,
+      "x_m": 289.593,
+      "y_m": 274.062,
+      "yaw_deg": 32.95213577337563
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_185",
+      "scale": 1.3797035646857694,
+      "x_m": 636.393,
+      "y_m": 406,
+      "yaw_deg": 40.78319418244064
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_186",
+      "scale": 1.6939430417260155,
+      "x_m": 317.751,
+      "y_m": 152.886,
+      "yaw_deg": 243.85728648863733
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_187",
+      "scale": 1.5975573431933299,
+      "x_m": 394.819,
+      "y_m": 282.087,
+      "yaw_deg": 254.39346601255238
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_188",
+      "scale": 1.4497968395007774,
+      "x_m": 692.591,
+      "y_m": 432.446,
+      "yaw_deg": 114.51790974475443
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_189",
+      "scale": 1.7153353901812807,
+      "x_m": 298.664,
+      "y_m": 151.282,
+      "yaw_deg": 306.40403165481985
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_190",
+      "scale": 2.2774588922038674,
+      "x_m": 394.888,
+      "y_m": 138.741,
+      "yaw_deg": 272.31186895631254
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_191",
+      "scale": 1.0627211451064795,
+      "x_m": 223.298,
+      "y_m": 307.823,
+      "yaw_deg": 102.5340602081269
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_192",
+      "scale": 1.8853037732187659,
+      "x_m": 602.915,
+      "y_m": 52.784,
+      "yaw_deg": 126.91217196173966
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_193",
+      "scale": 1.7060385020449758,
+      "x_m": 502.47,
+      "y_m": 454.848,
+      "yaw_deg": 28.948958264663815
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_194",
+      "scale": 1.9126794321928173,
+      "x_m": 271.232,
+      "y_m": 497.388,
+      "yaw_deg": 344.3260157480836
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_195",
+      "scale": 1.0031185946427286,
+      "x_m": 175.875,
+      "y_m": 297.112,
+      "yaw_deg": 193.1605068873614
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_196",
+      "scale": 2.059231639839709,
+      "x_m": 336.012,
+      "y_m": 302.932,
+      "yaw_deg": 43.78914121538401
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_197",
+      "scale": 1.9667101670056581,
+      "x_m": 694.763,
+      "y_m": 79.147,
+      "yaw_deg": 69.62494706735015
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_198",
+      "scale": 2.3013718808069825,
+      "x_m": 686.824,
+      "y_m": 53.165,
+      "yaw_deg": 338.8236154988408
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_199",
+      "scale": 2.094473603530787,
+      "x_m": 285.726,
+      "y_m": 169.082,
+      "yaw_deg": 308.40782216750085
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_200",
+      "scale": 1.6122402813052759,
+      "x_m": 439.07,
+      "y_m": 275.438,
+      "yaw_deg": 182.3854817636311
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_201",
+      "scale": 1.0736893117427826,
+      "x_m": 720.919,
+      "y_m": 54.511,
+      "yaw_deg": 183.89468902722
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_202",
+      "scale": 1.48357178887818,
+      "x_m": 667.097,
+      "y_m": 409.291,
+      "yaw_deg": 230.3936652559787
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_203",
+      "scale": 1.0826560381101444,
+      "x_m": 850.355,
+      "y_m": 69.329,
+      "yaw_deg": 231.91547194495797
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_204",
+      "scale": 1.9636042576748878,
+      "x_m": 241.133,
+      "y_m": 148.073,
+      "yaw_deg": 258.6202073190361
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_205",
+      "scale": 1.7182781136361882,
+      "x_m": 795.778,
+      "y_m": 440.787,
+      "yaw_deg": 318.74140991829336
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_206",
+      "scale": 1.4545210177311674,
+      "x_m": 818.469,
+      "y_m": 451.369,
+      "yaw_deg": 133.0452605523169
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_207",
+      "scale": 1.5804728312650695,
+      "x_m": 556.387,
+      "y_m": 403.293,
+      "yaw_deg": 261.7396710533649
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_208",
+      "scale": 1.824942767387256,
+      "x_m": 686.757,
+      "y_m": 89.461,
+      "yaw_deg": 247.535543711856
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_209",
+      "scale": 2.053216859465465,
+      "x_m": 259.816,
+      "y_m": 275.483,
+      "yaw_deg": 158.96874329075217
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_210",
+      "scale": 2.3683716172818094,
+      "x_m": 676.699,
+      "y_m": 411.384,
+      "yaw_deg": 21.930078780278563
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_211",
+      "scale": 2.2813616250641644,
+      "x_m": 291.65,
+      "y_m": 298.51,
+      "yaw_deg": 121.6258104890585
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_212",
+      "scale": 1.153105766279623,
+      "x_m": 733.789,
+      "y_m": 429.789,
+      "yaw_deg": 87.47214247472584
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_213",
+      "scale": 1.7089714284520596,
+      "x_m": 179.703,
+      "y_m": 158.85,
+      "yaw_deg": 145.3274246212095
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_214",
+      "scale": 2.3770100919064134,
+      "x_m": 550.674,
+      "y_m": 403.375,
+      "yaw_deg": 260.981723042205
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_215",
+      "scale": 1.7236311972374097,
+      "x_m": 814.555,
+      "y_m": 855.951,
+      "yaw_deg": 214.4319105707109
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_216",
+      "scale": 1.8735306320013478,
+      "x_m": 627.316,
+      "y_m": 846.055,
+      "yaw_deg": 142.3674588650465
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_217",
+      "scale": 1.6288700522854924,
+      "x_m": 336.406,
+      "y_m": 288.456,
+      "yaw_deg": 31.464488608762622
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_218",
+      "scale": 1.0180978288408369,
+      "x_m": 714.923,
+      "y_m": 421.513,
+      "yaw_deg": 141.19738206267357
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_219",
+      "scale": 1.7000821763649583,
+      "x_m": 729.264,
+      "y_m": 95.179,
+      "yaw_deg": 358.155832439661
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_220",
+      "scale": 2.4538215483771637,
+      "x_m": 772.937,
+      "y_m": 845.801,
+      "yaw_deg": 231.0656722728163
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_221",
+      "scale": 1.4079130896134302,
+      "x_m": 626.602,
+      "y_m": 664.359,
+      "yaw_deg": 60.042598033323884
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_222",
+      "scale": 1.3569937794236466,
+      "x_m": 257.618,
+      "y_m": 272.49,
+      "yaw_deg": 329.40067207440734
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_223",
+      "scale": 1.4371389381121844,
+      "x_m": 498.839,
+      "y_m": 387.878,
+      "yaw_deg": 74.96942262165248
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_224",
+      "scale": 1.9056622788775712,
+      "x_m": 289.441,
+      "y_m": 312.295,
+      "yaw_deg": 25.63499682582915
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_225",
+      "scale": 2.018304116674699,
+      "x_m": 698.067,
+      "y_m": 408.647,
+      "yaw_deg": 29.57524132914841
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_226",
+      "scale": 1.95096255291719,
+      "x_m": 788.472,
+      "y_m": 855.504,
+      "yaw_deg": 332.75350718759
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_227",
+      "scale": 2.485928894369863,
+      "x_m": 711.864,
+      "y_m": 74.069,
+      "yaw_deg": 83.14009672030807
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_228",
+      "scale": 1.7403962723910809,
+      "x_m": 677.605,
+      "y_m": 68.737,
+      "yaw_deg": 94.14738421328366
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_229",
+      "scale": 2.4336723908782005,
+      "x_m": 503.297,
+      "y_m": 128.727,
+      "yaw_deg": 1.227026805281639
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_230",
+      "scale": 2.246754695661366,
+      "x_m": 251.582,
+      "y_m": 505.485,
+      "yaw_deg": 213.37509448640049
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_232",
+      "scale": 1.0745994477765635,
+      "x_m": 828.51,
+      "y_m": 445.787,
+      "yaw_deg": 15.00399668700993
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_233",
+      "scale": 2.081913770060055,
+      "x_m": 204.136,
+      "y_m": 116.321,
+      "yaw_deg": 93.76412621699274
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_234",
+      "scale": 1.638751923921518,
+      "x_m": 193.049,
+      "y_m": 165.466,
+      "yaw_deg": 191.4821960683912
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_235",
+      "scale": 2.1134975076420233,
+      "x_m": 603.895,
+      "y_m": 369.553,
+      "yaw_deg": 2.6023053377866745
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_236",
+      "scale": 1.5694046426797286,
+      "x_m": 330.518,
+      "y_m": 171.478,
+      "yaw_deg": 113.4404227975756
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_237",
+      "scale": 1.7326109483838081,
+      "x_m": 543.432,
+      "y_m": 369.577,
+      "yaw_deg": 327.6865145377815
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_238",
+      "scale": 1.9904368164716288,
+      "x_m": 378.503,
+      "y_m": 297.079,
+      "yaw_deg": 251.76164598204195
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_239",
+      "scale": 1.461495258146897,
+      "x_m": 697.092,
+      "y_m": 405.046,
+      "yaw_deg": 238.4256756864488
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_240",
+      "scale": 2.4328311359276995,
+      "x_m": 383.877,
+      "y_m": 297.725,
+      "yaw_deg": 228.5367406066507
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_241",
+      "scale": 1.4431042432552204,
+      "x_m": 394.896,
+      "y_m": 275.478,
+      "yaw_deg": 184.1441684961319
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_242",
+      "scale": 1.2421628033043817,
+      "x_m": 706.369,
+      "y_m": 854.714,
+      "yaw_deg": 74.11180137656629
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_243",
+      "scale": 2.4176765208831057,
+      "x_m": 275.223,
+      "y_m": 281.14,
+      "yaw_deg": 314.39323738217354
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_244",
+      "scale": 1.6951642989879474,
+      "x_m": 218.388,
+      "y_m": 288.42,
+      "yaw_deg": 149.46492606773973
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_245",
+      "scale": 1.6277711942093447,
+      "x_m": 362.418,
+      "y_m": 276.792,
+      "yaw_deg": 60.34154925495386
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_246",
+      "scale": 1.4399634442524984,
+      "x_m": 345.306,
+      "y_m": 266.864,
+      "yaw_deg": 232.6142767444253
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_247",
+      "scale": 1.7531274403445423,
+      "x_m": 381.206,
+      "y_m": 295.346,
+      "yaw_deg": 273.2643145881593
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_248",
+      "scale": 1.1492358468240127,
+      "x_m": 699.242,
+      "y_m": 854.535,
+      "yaw_deg": 207.06737346947193
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_249",
+      "scale": 2.2094206707552075,
+      "x_m": 353.17,
+      "y_m": 163.133,
+      "yaw_deg": 225.30144651420414
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_250",
+      "scale": 2.0887665800983086,
+      "x_m": 254.222,
+      "y_m": 310.058,
+      "yaw_deg": 289.17963554151356
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_251",
+      "scale": 1.288441305165179,
+      "x_m": 285.623,
+      "y_m": 150.41,
+      "yaw_deg": 191.75747210159898
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_252",
+      "scale": 1.5205550454556942,
+      "x_m": 624.845,
+      "y_m": 846.014,
+      "yaw_deg": 73.24318332597613
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_253",
+      "scale": 2.4987632805714384,
+      "x_m": 560.981,
+      "y_m": 402.358,
+      "yaw_deg": 270.73399965651333
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_254",
+      "scale": 1.7688413661671802,
+      "x_m": 214.067,
+      "y_m": 288.921,
+      "yaw_deg": 208.5226912982762
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_255",
+      "scale": 1.7303403274854645,
+      "x_m": 662.875,
+      "y_m": 75.58,
+      "yaw_deg": 178.77638454549015
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_256",
+      "scale": 1.9688573891762644,
+      "x_m": 714.633,
+      "y_m": 425.303,
+      "yaw_deg": 302.92677825316787
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_257",
+      "scale": 1.088398207910359,
+      "x_m": 680.393,
+      "y_m": 403.232,
+      "yaw_deg": 233.6184892617166
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_258",
+      "scale": 1.85773562383838,
+      "x_m": 674.92,
+      "y_m": 410.104,
+      "yaw_deg": 255.97016176208854
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_259",
+      "scale": 2.3818331378279254,
+      "x_m": 626.809,
+      "y_m": 391.447,
+      "yaw_deg": 123.55914481915534
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_260",
+      "scale": 2.1628402820788324,
+      "x_m": 774.414,
+      "y_m": 68.862,
+      "yaw_deg": 253.50912183523178
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_261",
+      "scale": 2.3236254994990304,
+      "x_m": 615.302,
+      "y_m": 32.125,
+      "yaw_deg": 242.23880636505783
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_262",
+      "scale": 2.1743070773081854,
+      "x_m": 487.835,
+      "y_m": 136.827,
+      "yaw_deg": 40.01935553736985
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_263",
+      "scale": 1.947283587534912,
+      "x_m": 581.385,
+      "y_m": 430.785,
+      "yaw_deg": 1.6563744563609362
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_264",
+      "scale": 2.463427745155059,
+      "x_m": 247.624,
+      "y_m": 303.74,
+      "yaw_deg": 23.497951151803136
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_265",
+      "scale": 1.4248355835443363,
+      "x_m": 497.659,
+      "y_m": 855.506,
+      "yaw_deg": 346.90694438293576
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_266",
+      "scale": 1.5777733939466998,
+      "x_m": 680.726,
+      "y_m": 70.244,
+      "yaw_deg": 147.79543787240982
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_267",
+      "scale": 1.1254135608905926,
+      "x_m": 654.834,
+      "y_m": 405.677,
+      "yaw_deg": 218.79446108825505
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_268",
+      "scale": 1.9544384845066816,
+      "x_m": 201.469,
+      "y_m": 137.04,
+      "yaw_deg": 30.992061579599977
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_269",
+      "scale": 1.360778153524734,
+      "x_m": 693.483,
+      "y_m": 110.778,
+      "yaw_deg": 281.528823338449
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_270",
+      "scale": 1.005592062836513,
+      "x_m": 732.305,
+      "y_m": 87.641,
+      "yaw_deg": 18.33375072106719
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_271",
+      "scale": 1.6089718475705013,
+      "x_m": 689.413,
+      "y_m": 407.794,
+      "yaw_deg": 14.266629852354527
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_272",
+      "scale": 1.30783149425406,
+      "x_m": 575.026,
+      "y_m": 379.422,
+      "yaw_deg": 241.89849958755076
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_273",
+      "scale": 1.0251248378772289,
+      "x_m": 277.621,
+      "y_m": 284.571,
+      "yaw_deg": 151.06946381740272
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_274",
+      "scale": 1.8328222666168585,
+      "x_m": 252.099,
+      "y_m": 296.263,
+      "yaw_deg": 355.9589486941695
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_275",
+      "scale": 2.0154290288919583,
+      "x_m": 406.615,
+      "y_m": 290.167,
+      "yaw_deg": 146.6664827708155
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_276",
+      "scale": 1.9825845923041925,
+      "x_m": 725.578,
+      "y_m": 84.976,
+      "yaw_deg": 88.33691247738898
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_277",
+      "scale": 1.4008310125209391,
+      "x_m": 348.267,
+      "y_m": 299.333,
+      "yaw_deg": 8.414822174236178
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_278",
+      "scale": 2.3540958437370136,
+      "x_m": 182.075,
+      "y_m": 131.483,
+      "yaw_deg": 11.269749943166971
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_279",
+      "scale": 2.390943149337545,
+      "x_m": 454.154,
+      "y_m": 126.733,
+      "yaw_deg": 98.28844453208148
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_280",
+      "scale": 1.94455193716567,
+      "x_m": 519.362,
+      "y_m": 132.632,
+      "yaw_deg": 44.60885873995721
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_281",
+      "scale": 2.015996851841919,
+      "x_m": 221.463,
+      "y_m": 295.895,
+      "yaw_deg": 205.41116438806057
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_282",
+      "scale": 2.402527278289199,
+      "x_m": 273.157,
+      "y_m": 296.809,
+      "yaw_deg": 304.25421472638845
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_283",
+      "scale": 2.301455181208439,
+      "x_m": 726.66,
+      "y_m": 74.807,
+      "yaw_deg": 160.17384043894708
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_284",
+      "scale": 1.3340451427502558,
+      "x_m": 730.063,
+      "y_m": 440.868,
+      "yaw_deg": 347.200518026948
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_285",
+      "scale": 2.2553344424813986,
+      "x_m": 306.071,
+      "y_m": 301.799,
+      "yaw_deg": 4.562477935105562
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_286",
+      "scale": 1.4520243826555088,
+      "x_m": 275.934,
+      "y_m": 303.352,
+      "yaw_deg": 30.114784352481365
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_287",
+      "scale": 1.4478327776305377,
+      "x_m": 680.311,
+      "y_m": 56.401,
+      "yaw_deg": 96.6547514218837
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_288",
+      "scale": 1.7096517236204818,
+      "x_m": 711.437,
+      "y_m": 89.439,
+      "yaw_deg": 41.17858246900141
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_289",
+      "scale": 2.049066541250795,
+      "x_m": 299.455,
+      "y_m": 300.279,
+      "yaw_deg": 142.53309532999992
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_290",
+      "scale": 1.1801492354134098,
+      "x_m": 281.757,
+      "y_m": 289.357,
+      "yaw_deg": 283.674997324124
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_291",
+      "scale": 1.5228690629592165,
+      "x_m": 687.468,
+      "y_m": 65.69,
+      "yaw_deg": 8.176630111411214
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_292",
+      "scale": 2.0081738494336605,
+      "x_m": 306.773,
+      "y_m": 186.086,
+      "yaw_deg": 313.91564793884754
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_293",
+      "scale": 1.514399009407498,
+      "x_m": 652.398,
+      "y_m": 408.498,
+      "yaw_deg": 182.28118607774377
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_294",
+      "scale": 1.2205845033749938,
+      "x_m": 294.935,
+      "y_m": 312.993,
+      "yaw_deg": 32.056205878034234
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_295",
+      "scale": 1.2191974171437323,
+      "x_m": 792.873,
+      "y_m": 66.383,
+      "yaw_deg": 275.33639112487435
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_296",
+      "scale": 1.7684447289211676,
+      "x_m": 182.177,
+      "y_m": 306.84,
+      "yaw_deg": 209.7163670975715
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_297",
+      "scale": 1.665382842766121,
+      "x_m": 307.116,
+      "y_m": 160.478,
+      "yaw_deg": 95.07697750814259
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_298",
+      "scale": 1.3293072681408376,
+      "x_m": 170.691,
+      "y_m": 134.636,
+      "yaw_deg": 279.54523832537234
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_299",
+      "scale": 1.1174226679140702,
+      "x_m": 567.445,
+      "y_m": 389.086,
+      "yaw_deg": 324.46053131483495
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_300",
+      "scale": 2.052727558882907,
+      "x_m": 310.158,
+      "y_m": 164.464,
+      "yaw_deg": 257.08619490265846
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_301",
+      "scale": 2.269970550551079,
+      "x_m": 585.209,
+      "y_m": 365.558,
+      "yaw_deg": 307.55687618628144
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_302",
+      "scale": 2.1067498496267945,
+      "x_m": 707.688,
+      "y_m": 62.216,
+      "yaw_deg": 180.695566451177
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_303",
+      "scale": 2.3470428878208622,
+      "x_m": 636.677,
+      "y_m": 854.88,
+      "yaw_deg": 253.0058325547725
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_304",
+      "scale": 1.9716194669017568,
+      "x_m": 484.52,
+      "y_m": 434.628,
+      "yaw_deg": 333.2446033973247
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_305",
+      "scale": 1.9969210874987766,
+      "x_m": 791.717,
+      "y_m": 54.737,
+      "yaw_deg": 69.51818458735943
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_306",
+      "scale": 2.4027558164671063,
+      "x_m": 416.917,
+      "y_m": 298.039,
+      "yaw_deg": 185.55434298701584
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_307",
+      "scale": 2.331869185436517,
+      "x_m": 673.931,
+      "y_m": 62.499,
+      "yaw_deg": 142.3247686587274
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_308",
+      "scale": 1.9865783519344404,
+      "x_m": 349.59,
+      "y_m": 295.67,
+      "yaw_deg": 323.1100785546005
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_309",
+      "scale": 1.9027763023041189,
+      "x_m": 581.696,
+      "y_m": 419.122,
+      "yaw_deg": 245.18569702282548
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_310",
+      "scale": 2.4412494238931686,
+      "x_m": 512.197,
+      "y_m": 424.029,
+      "yaw_deg": 156.27524284645915
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_311",
+      "scale": 2.257002732134424,
+      "x_m": 764.009,
+      "y_m": 76.774,
+      "yaw_deg": 303.77620669081807
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_312",
+      "scale": 2.125708006788045,
+      "x_m": 625.896,
+      "y_m": 388.864,
+      "yaw_deg": 22.443339256569743
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_313",
+      "scale": 1.921323990332894,
+      "x_m": 213.173,
+      "y_m": 315.89,
+      "yaw_deg": 337.48448844999075
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_314",
+      "scale": 1.3336548781953752,
+      "x_m": 524.458,
+      "y_m": 441.809,
+      "yaw_deg": 19.045767076313496
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_315",
+      "scale": 1.7343868466559798,
+      "x_m": 645.285,
+      "y_m": 851.055,
+      "yaw_deg": 129.9161928333342
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_316",
+      "scale": 1.8149957467103377,
+      "x_m": 547.134,
+      "y_m": 437.688,
+      "yaw_deg": 313.5545319132507
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_317",
+      "scale": 2.080969731672667,
+      "x_m": 751.355,
+      "y_m": 845.728,
+      "yaw_deg": 222.29161757044494
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_318",
+      "scale": 1.0637186177773401,
+      "x_m": 669.118,
+      "y_m": 408.097,
+      "yaw_deg": 341.9037800934166
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_319",
+      "scale": 2.0536971313413233,
+      "x_m": 740.1,
+      "y_m": 63.398,
+      "yaw_deg": 235.8253483939916
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_320",
+      "scale": 2.115119156194851,
+      "x_m": 204.192,
+      "y_m": 153.596,
+      "yaw_deg": 54.202595595270395
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_321",
+      "scale": 1.3461273722350597,
+      "x_m": 321.864,
+      "y_m": 836.707,
+      "yaw_deg": 341.49180192500353
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_322",
+      "scale": 2.4898935984820127,
+      "x_m": 261.589,
+      "y_m": 274.106,
+      "yaw_deg": 123.45581020228565
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_323",
+      "scale": 1.886226067203097,
+      "x_m": 655.068,
+      "y_m": 656.617,
+      "yaw_deg": 247.262109098956
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_324",
+      "scale": 1.8186308611184359,
+      "x_m": 258.696,
+      "y_m": 506.578,
+      "yaw_deg": 301.76601198501885
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_325",
+      "scale": 1.1822099668206647,
+      "x_m": 204.651,
+      "y_m": 291.135,
+      "yaw_deg": 37.234588488936424
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_326",
+      "scale": 2.363079047179781,
+      "x_m": 357.395,
+      "y_m": 292.741,
+      "yaw_deg": 179.63564042933285
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_327",
+      "scale": 1.8604700294090435,
+      "x_m": 770.976,
+      "y_m": 68.996,
+      "yaw_deg": 51.74770136363804
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_328",
+      "scale": 2.0597031645011157,
+      "x_m": 286.757,
+      "y_m": 305.735,
+      "yaw_deg": 3.282805820927024
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_329",
+      "scale": 2.0100403050892055,
+      "x_m": 546.612,
+      "y_m": 377.859,
+      "yaw_deg": 53.27384954318404
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_330",
+      "scale": 2.2899223254062235,
+      "x_m": 630.181,
+      "y_m": 660.153,
+      "yaw_deg": 83.39469032362103
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_331",
+      "scale": 2.2003038716502488,
+      "x_m": 248.681,
+      "y_m": 840.474,
+      "yaw_deg": 51.044093649834394
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_332",
+      "scale": 2.458024774910882,
+      "x_m": 501.464,
+      "y_m": 432.012,
+      "yaw_deg": 144.1037302929908
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_333",
+      "scale": 1.7515715268673375,
+      "x_m": 197.536,
+      "y_m": 288.86,
+      "yaw_deg": 30.033017797395587
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_334",
+      "scale": 1.7890626331791282,
+      "x_m": 627.381,
+      "y_m": 368.83,
+      "yaw_deg": 354.7864972986281
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_335",
+      "scale": 2.4771851412951946,
+      "x_m": 662.485,
+      "y_m": 413.675,
+      "yaw_deg": 54.776945393532515
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_336",
+      "scale": 1.799637424875982,
+      "x_m": 690.285,
+      "y_m": 63.021,
+      "yaw_deg": 133.31338439136744
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_337",
+      "scale": 2.324427846702747,
+      "x_m": 741.992,
+      "y_m": 446.092,
+      "yaw_deg": 296.2526667304337
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_338",
+      "scale": 2.2145741526037455,
+      "x_m": 252.875,
+      "y_m": 523.306,
+      "yaw_deg": 75.14709206297994
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_339",
+      "scale": 1.7769917611731216,
+      "x_m": 640.759,
+      "y_m": 668.765,
+      "yaw_deg": 67.19910719431937
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_340",
+      "scale": 1.9968278597807512,
+      "x_m": 528.49,
+      "y_m": 381.568,
+      "yaw_deg": 228.89828293584287
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_341",
+      "scale": 2.275151837267913,
+      "x_m": 448.572,
+      "y_m": 132.891,
+      "yaw_deg": 244.52882319688797
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_342",
+      "scale": 1.5664826064603403,
+      "x_m": 699.119,
+      "y_m": 431.996,
+      "yaw_deg": 185.4915999993682
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_343",
+      "scale": 1.9597212736262009,
+      "x_m": 69.3,
+      "y_m": 617.339,
+      "yaw_deg": 248.38109945878386
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_344",
+      "scale": 2.3986845584586263,
+      "x_m": 667.903,
+      "y_m": 853.832,
+      "yaw_deg": 208.1556863989681
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_345",
+      "scale": 2.305415404844098,
+      "x_m": 313.094,
+      "y_m": 154.789,
+      "yaw_deg": 339.54296668991446
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_346",
+      "scale": 1.7351770687382668,
+      "x_m": 685.928,
+      "y_m": 71.943,
+      "yaw_deg": 254.39695271663368
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_347",
+      "scale": 1.6408150095958263,
+      "x_m": 745.069,
+      "y_m": 849.536,
+      "yaw_deg": 196.78152149543166
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_348",
+      "scale": 1.3016353982966393,
+      "x_m": 710.658,
+      "y_m": 72.405,
+      "yaw_deg": 191.11316735856235
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_349",
+      "scale": 1.3207198400050402,
+      "x_m": 242.931,
+      "y_m": 293.5,
+      "yaw_deg": 316.7933423817158
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_350",
+      "scale": 1.51399315695744,
+      "x_m": 216.079,
+      "y_m": 279.62,
+      "yaw_deg": 93.95543477497995
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_351",
+      "scale": 1.512605177005753,
+      "x_m": 670.952,
+      "y_m": 665.15,
+      "yaw_deg": 49.3126726616174
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_352",
+      "scale": 1.0991319089662284,
+      "x_m": 739.962,
+      "y_m": 59.836,
+      "yaw_deg": 6.331353457644582
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_353",
+      "scale": 2.3532583864871413,
+      "x_m": 693.073,
+      "y_m": 58.802,
+      "yaw_deg": 335.8571847807616
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_354",
+      "scale": 1.783029259298928,
+      "x_m": 188.907,
+      "y_m": 298.415,
+      "yaw_deg": 190.30895836651325
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_355",
+      "scale": 2.3675880539231002,
+      "x_m": 316.617,
+      "y_m": 156.559,
+      "yaw_deg": 48.8855320494622
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_356",
+      "scale": 2.335218805936165,
+      "x_m": 715.74,
+      "y_m": 850.348,
+      "yaw_deg": 284.6440171636641
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_357",
+      "scale": 1.948343632160686,
+      "x_m": 778.334,
+      "y_m": 71.452,
+      "yaw_deg": 221.2696550320834
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_358",
+      "scale": 1.3504327409900725,
+      "x_m": 381.178,
+      "y_m": 289.143,
+      "yaw_deg": 98.24133169837296
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_359",
+      "scale": 2.202914158347994,
+      "x_m": 562.731,
+      "y_m": 371.059,
+      "yaw_deg": 51.98696513660252
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_360",
+      "scale": 1.9754249022807926,
+      "x_m": 401.707,
+      "y_m": 289.038,
+      "yaw_deg": 291.867550117895
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_361",
+      "scale": 1.4752694537164643,
+      "x_m": 185.147,
+      "y_m": 303.077,
+      "yaw_deg": 246.0812532529235
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_362",
+      "scale": 2.217137593892403,
+      "x_m": 272.184,
+      "y_m": 517.094,
+      "yaw_deg": 208.40710300952196
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_363",
+      "scale": 1.3466068097623065,
+      "x_m": 733.006,
+      "y_m": 664.249,
+      "yaw_deg": 0.4773396626114845
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_364",
+      "scale": 1.7117806250462309,
+      "x_m": 655.962,
+      "y_m": 416.622,
+      "yaw_deg": 90.04209391772747
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_365",
+      "scale": 2.0255505789536983,
+      "x_m": 818.28,
+      "y_m": 852.575,
+      "yaw_deg": 16.03457079268992
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_366",
+      "scale": 2.1079070810228586,
+      "x_m": 366.31,
+      "y_m": 296.386,
+      "yaw_deg": 325.67633994854987
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_367",
+      "scale": 2.3660533854272217,
+      "x_m": 556.216,
+      "y_m": 396.026,
+      "yaw_deg": 210.34062752500176
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_368",
+      "scale": 2.2237314893864095,
+      "x_m": 76.52,
+      "y_m": 433.71,
+      "yaw_deg": 359.74996665492654
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_369",
+      "scale": 1.9829918731702492,
+      "x_m": 235.892,
+      "y_m": 287.583,
+      "yaw_deg": 155.52505471743643
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_370",
+      "scale": 2.3563819418195635,
+      "x_m": 365.524,
+      "y_m": 276.532,
+      "yaw_deg": 333.7073635775596
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_371",
+      "scale": 1.9104978379327804,
+      "x_m": 582.607,
+      "y_m": 453.206,
+      "yaw_deg": 9.926243098452687
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_372",
+      "scale": 2.479701103991829,
+      "x_m": 516.485,
+      "y_m": 391.085,
+      "yaw_deg": 142.04571339301765
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_373",
+      "scale": 2.213217702577822,
+      "x_m": 272.629,
+      "y_m": 315.497,
+      "yaw_deg": 259.62843937799335
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_374",
+      "scale": 2.2715119179338217,
+      "x_m": 658.92,
+      "y_m": 59.549,
+      "yaw_deg": 42.59320305660367
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_375",
+      "scale": 2.28270455962047,
+      "x_m": 397.465,
+      "y_m": 286.538,
+      "yaw_deg": 179.63564420118928
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_376",
+      "scale": 2.476562318392098,
+      "x_m": 268.879,
+      "y_m": 306.449,
+      "yaw_deg": 286.21622557751834
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_377",
+      "scale": 1.2921533130574971,
+      "x_m": 639.033,
+      "y_m": 78.181,
+      "yaw_deg": 222.85806524567306
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_378",
+      "scale": 1.6516383152920753,
+      "x_m": 94.506,
+      "y_m": 437.1,
+      "yaw_deg": 80.19356933422387
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_379",
+      "scale": 1.2131707634544,
+      "x_m": 322.229,
+      "y_m": 296.479,
+      "yaw_deg": 269.3745144736022
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_380",
+      "scale": 2.388900800491683,
+      "x_m": 658.362,
+      "y_m": 410.893,
+      "yaw_deg": 29.24613654613495
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_381",
+      "scale": 1.2777824136428535,
+      "x_m": 161.234,
+      "y_m": 310.452,
+      "yaw_deg": 304.5267572533339
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_382",
+      "scale": 1.4701998981181532,
+      "x_m": 480.209,
+      "y_m": 442.278,
+      "yaw_deg": 68.74340076930821
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_383",
+      "scale": 1.7555442762095481,
+      "x_m": 654.511,
+      "y_m": 47.402,
+      "yaw_deg": 118.24994475580752
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_384",
+      "scale": 1.147144861286506,
+      "x_m": 576.156,
+      "y_m": 356.185,
+      "yaw_deg": 88.04621852003038
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_385",
+      "scale": 1.6637066447874531,
+      "x_m": 355.491,
+      "y_m": 295.225,
+      "yaw_deg": 240.21428681910038
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_386",
+      "scale": 2.127442472614348,
+      "x_m": 287.636,
+      "y_m": 298.317,
+      "yaw_deg": 26.907160934060812
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_387",
+      "scale": 1.9675497501157224,
+      "x_m": 257.173,
+      "y_m": 286.795,
+      "yaw_deg": 216.00582118146122
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_388",
+      "scale": 1.4096071326639503,
+      "x_m": 603.183,
+      "y_m": 378.585,
+      "yaw_deg": 276.07036664150655
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_389",
+      "scale": 1.2137780752964318,
+      "x_m": 306.464,
+      "y_m": 175.3,
+      "yaw_deg": 290.67764391191304
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_390",
+      "scale": 1.9101461454993114,
+      "x_m": 436.322,
+      "y_m": 287.673,
+      "yaw_deg": 159.9128034990281
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_391",
+      "scale": 2.4515049600740895,
+      "x_m": 521.316,
+      "y_m": 44.16,
+      "yaw_deg": 156.78894437849522
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_392",
+      "scale": 1.030908440821804,
+      "x_m": 554.029,
+      "y_m": 434.787,
+      "yaw_deg": 287.6119040697813
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_393",
+      "scale": 1.28348332492169,
+      "x_m": 522.13,
+      "y_m": 37.505,
+      "yaw_deg": 151.25395763665438
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_394",
+      "scale": 1.3697080592392012,
+      "x_m": 146.103,
+      "y_m": 112.737,
+      "yaw_deg": 290.88461615145206
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_395",
+      "scale": 1.741390502662398,
+      "x_m": 155.829,
+      "y_m": 148.827,
+      "yaw_deg": 269.03128534555435
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_396",
+      "scale": 2.26626395911444,
+      "x_m": 576.37,
+      "y_m": 430.072,
+      "yaw_deg": 283.9109594654292
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_397",
+      "scale": 1.114259198307991,
+      "x_m": 264.624,
+      "y_m": 839.012,
+      "yaw_deg": 6.226496351882815
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_398",
+      "scale": 1.9899491982068866,
+      "x_m": 713.533,
+      "y_m": 431.231,
+      "yaw_deg": 238.81459096446633
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_399",
+      "scale": 1.763937605312094,
+      "x_m": 173.938,
+      "y_m": 126.954,
+      "yaw_deg": 209.01909509673715
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_400",
+      "scale": 1.5799590188544244,
+      "x_m": 326.806,
+      "y_m": 171.841,
+      "yaw_deg": 236.4902818389237
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_401",
+      "scale": 1.8282901677303016,
+      "x_m": 316.62,
+      "y_m": 288.85,
+      "yaw_deg": 59.373528538271785
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_402",
+      "scale": 1.228766811778769,
+      "x_m": 641.969,
+      "y_m": 846.323,
+      "yaw_deg": 310.83180838264525
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_403",
+      "scale": 2.489525333279744,
+      "x_m": 186.296,
+      "y_m": 128.359,
+      "yaw_deg": 118.77549561671913
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_404",
+      "scale": 2.426192700746469,
+      "x_m": 737.957,
+      "y_m": 433.444,
+      "yaw_deg": 29.27394107915461
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_405",
+      "scale": 1.1368977607926354,
+      "x_m": 235.511,
+      "y_m": 302.074,
+      "yaw_deg": 47.05372746102512
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_406",
+      "scale": 2.42688737786375,
+      "x_m": 234.971,
+      "y_m": 504.658,
+      "yaw_deg": 91.27795399166644
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_407",
+      "scale": 2.161566004389897,
+      "x_m": 506.565,
+      "y_m": 425.341,
+      "yaw_deg": 98.54959186166525
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_408",
+      "scale": 1.5234474198659882,
+      "x_m": 560.313,
+      "y_m": 368.409,
+      "yaw_deg": 257.66991089098155
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_409",
+      "scale": 2.2611212986521423,
+      "x_m": 612.452,
+      "y_m": 379.805,
+      "yaw_deg": 228.9400503784418
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_410",
+      "scale": 2.0623339149169624,
+      "x_m": 741.624,
+      "y_m": 437.042,
+      "yaw_deg": 324.61769342422485
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_411",
+      "scale": 1.0538996261311695,
+      "x_m": 268.111,
+      "y_m": 298.049,
+      "yaw_deg": 321.02938768453896
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_412",
+      "scale": 2.4955918753985316,
+      "x_m": 480.81,
+      "y_m": 437.121,
+      "yaw_deg": 306.31604639813304
+    },
+    {
+      "asset": "spr_flora_flower_bushf",
+      "id": "scatter_413",
+      "scale": 1.9192246791208163,
+      "x_m": 669.116,
+      "y_m": 62.91,
+      "yaw_deg": 199.22735857777297
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_414",
+      "scale": 1.531515576178208,
+      "x_m": 304.953,
+      "y_m": 135.408,
+      "yaw_deg": 148.09602390043437
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_415",
+      "scale": 1.6087950599612668,
+      "x_m": 403.52,
+      "y_m": 285.428,
+      "yaw_deg": 54.272890258580446
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_416",
+      "scale": 1.0298490255372599,
+      "x_m": 583.485,
+      "y_m": 385.41,
+      "yaw_deg": 194.1069472208619
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_417",
+      "scale": 1.2508105968590826,
+      "x_m": 760.501,
+      "y_m": 854.816,
+      "yaw_deg": 327.26108090020716
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_418",
+      "scale": 1.1320456810062751,
+      "x_m": 771.025,
+      "y_m": 79.55,
+      "yaw_deg": 73.96011457778513
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_419",
+      "scale": 1.5507884884718806,
+      "x_m": 496.804,
+      "y_m": 376.356,
+      "yaw_deg": 270.19838724285364
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_420",
+      "scale": 1.2354125853162259,
+      "x_m": 306.739,
+      "y_m": 289.067,
+      "yaw_deg": 112.37979864701629
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_421",
+      "scale": 2.2512064162874594,
+      "x_m": 607.279,
+      "y_m": 391.348,
+      "yaw_deg": 169.3180098105222
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_422",
+      "scale": 1.2122290248516947,
+      "x_m": 555.516,
+      "y_m": 381.082,
+      "yaw_deg": 311.94141981191933
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_423",
+      "scale": 1.6184213624801487,
+      "x_m": 535.467,
+      "y_m": 30.4,
+      "yaw_deg": 20.26093072257936
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_424",
+      "scale": 1.405792880570516,
+      "x_m": 327.65,
+      "y_m": 168.702,
+      "yaw_deg": 209.40584851428866
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_425",
+      "scale": 1.5992233934812248,
+      "x_m": 529.404,
+      "y_m": 406.096,
+      "yaw_deg": 84.21978701837361
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_426",
+      "scale": 2.1612526305252686,
+      "x_m": 144.086,
+      "y_m": 302.544,
+      "yaw_deg": 231.01838962174952
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_427",
+      "scale": 2.393045444157906,
+      "x_m": 248.23,
+      "y_m": 317.826,
+      "yaw_deg": 232.45621542446315
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_428",
+      "scale": 1.7608672038186342,
+      "x_m": 236.916,
+      "y_m": 283.934,
+      "yaw_deg": 325.72016573511064
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_429",
+      "scale": 1.8813657619757578,
+      "x_m": 352.818,
+      "y_m": 298.666,
+      "yaw_deg": 159.64758834801614
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_430",
+      "scale": 1.8385780074167997,
+      "x_m": 324.331,
+      "y_m": 296.479,
+      "yaw_deg": 68.02318163216114
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_431",
+      "scale": 1.2128803308587521,
+      "x_m": 387.933,
+      "y_m": 294.387,
+      "yaw_deg": 118.44751275144517
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_432",
+      "scale": 1.1495931572280824,
+      "x_m": 197.088,
+      "y_m": 148.241,
+      "yaw_deg": 151.40244950540364
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_433",
+      "scale": 1.0608976194635034,
+      "x_m": 193.623,
+      "y_m": 289.998,
+      "yaw_deg": 19.289319617673755
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_434",
+      "scale": 1.3348087421618402,
+      "x_m": 619.902,
+      "y_m": 40.458,
+      "yaw_deg": 312.19285318627954
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_435",
+      "scale": 2.079515237477608,
+      "x_m": 576.644,
+      "y_m": 369.311,
+      "yaw_deg": 267.02818256802857
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_436",
+      "scale": 2.1210524449124932,
+      "x_m": 250.651,
+      "y_m": 499.039,
+      "yaw_deg": 35.57793273590505
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_437",
+      "scale": 2.4510841347509995,
+      "x_m": 238.555,
+      "y_m": 282.137,
+      "yaw_deg": 304.25318107008934
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_438",
+      "scale": 1.394949663663283,
+      "x_m": 729.556,
+      "y_m": 74.552,
+      "yaw_deg": 186.22125783003867
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_439",
+      "scale": 1.932251446065493,
+      "x_m": 645.978,
+      "y_m": 398.207,
+      "yaw_deg": 34.68729986809194
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_440",
+      "scale": 1.3542787961196154,
+      "x_m": 464.456,
+      "y_m": 124.484,
+      "yaw_deg": 37.608462357893586
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_441",
+      "scale": 1.3253578945295885,
+      "x_m": 708.497,
+      "y_m": 70.42,
+      "yaw_deg": 349.9487329367548
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_442",
+      "scale": 2.151125965407118,
+      "x_m": 278.775,
+      "y_m": 159.859,
+      "yaw_deg": 249.69332571141422
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_443",
+      "scale": 1.875149450614117,
+      "x_m": 256.105,
+      "y_m": 297.486,
+      "yaw_deg": 319.6467761602253
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_444",
+      "scale": 1.2467105232644826,
+      "x_m": 585.852,
+      "y_m": 440.146,
+      "yaw_deg": 51.66487969458103
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_445",
+      "scale": 1.0577661194838583,
+      "x_m": 52.859,
+      "y_m": 420.715,
+      "yaw_deg": 350.5922952108085
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_446",
+      "scale": 1.6637638540705666,
+      "x_m": 749.149,
+      "y_m": 62.558,
+      "yaw_deg": 127.33039448037744
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_447",
+      "scale": 2.349592131213285,
+      "x_m": 699.075,
+      "y_m": 413.888,
+      "yaw_deg": 322.254742551595
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_448",
+      "scale": 2.016838057548739,
+      "x_m": 753.609,
+      "y_m": 66.686,
+      "yaw_deg": 120.80409488640726
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_449",
+      "scale": 1.994669609819539,
+      "x_m": 328.648,
+      "y_m": 176.169,
+      "yaw_deg": 252.73989664390683
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_450",
+      "scale": 1.9581757257692516,
+      "x_m": 172.681,
+      "y_m": 307.554,
+      "yaw_deg": 230.75360597111285
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_451",
+      "scale": 1.972297324682586,
+      "x_m": 315.247,
+      "y_m": 187.437,
+      "yaw_deg": 251.22257041744888
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_452",
+      "scale": 1.2465699831955135,
+      "x_m": 236.362,
+      "y_m": 304.379,
+      "yaw_deg": 38.16074931062758
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_454",
+      "scale": 2.2789262536680326,
+      "x_m": 637.668,
+      "y_m": 109.663,
+      "yaw_deg": 228.28789631836116
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_455",
+      "scale": 1.9954014166723937,
+      "x_m": 351.341,
+      "y_m": 177.613,
+      "yaw_deg": 277.50092131085694
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_456",
+      "scale": 2.2220897536026314,
+      "x_m": 428.249,
+      "y_m": 283.316,
+      "yaw_deg": 99.51788046397269
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_457",
+      "scale": 1.9645796918775886,
+      "x_m": 239.283,
+      "y_m": 296.172,
+      "yaw_deg": 209.62117223069072
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_458",
+      "scale": 1.2296396193560213,
+      "x_m": 215.823,
+      "y_m": 281.819,
+      "yaw_deg": 156.8177146743983
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_459",
+      "scale": 1.6395592681365088,
+      "x_m": 559.441,
+      "y_m": 444.422,
+      "yaw_deg": 270.00180973671377
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_460",
+      "scale": 1.105536952498369,
+      "x_m": 224.919,
+      "y_m": 513.349,
+      "yaw_deg": 150.07743263617158
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_461",
+      "scale": 2.497772554634139,
+      "x_m": 582.629,
+      "y_m": 50.645,
+      "yaw_deg": 28.948977291584015
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_462",
+      "scale": 1.4295627115061507,
+      "x_m": 239.487,
+      "y_m": 285.308,
+      "yaw_deg": 180.68377914838493
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_463",
+      "scale": 1.765575720462948,
+      "x_m": 560.052,
+      "y_m": 372.41,
+      "yaw_deg": 251.02106493897736
+    },
+    {
+      "asset": "spr_flora_flower_bushh",
+      "id": "scatter_464",
+      "scale": 1.7074066423811018,
+      "x_m": 742.364,
+      "y_m": 79.536,
+      "yaw_deg": 286.2821297161281
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_466",
+      "scale": 1.001814412418753,
+      "x_m": 653.416,
+      "y_m": 403.542,
+      "yaw_deg": 247.2516841068864
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_467",
+      "scale": 2.4610115190735087,
+      "x_m": 637.052,
+      "y_m": 42.518,
+      "yaw_deg": 343.3689755760133
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_468",
+      "scale": 1.1303576240316033,
+      "x_m": 647.492,
+      "y_m": 847.407,
+      "yaw_deg": 279.75571135059
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_469",
+      "scale": 1.6284450807143003,
+      "x_m": 644.04,
+      "y_m": 661.106,
+      "yaw_deg": 195.1416843663901
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_470",
+      "scale": 1.9786121670622379,
+      "x_m": 332.183,
+      "y_m": 166.738,
+      "yaw_deg": 347.3573652282357
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_471",
+      "scale": 1.9624080783687532,
+      "x_m": 769.767,
+      "y_m": 438.426,
+      "yaw_deg": 130.4727622680366
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_472",
+      "scale": 1.2897096812957898,
+      "x_m": 352.013,
+      "y_m": 165.998,
+      "yaw_deg": 2.1788510866463184
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_473",
+      "scale": 2.291668460238725,
+      "x_m": 564.853,
+      "y_m": 442.993,
+      "yaw_deg": 2.8429227881133556
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_474",
+      "scale": 1.9513944640057161,
+      "x_m": 691.491,
+      "y_m": 414.441,
+      "yaw_deg": 32.004112182185054
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_475",
+      "scale": 1.629993963520974,
+      "x_m": 549.081,
+      "y_m": 470.644,
+      "yaw_deg": 254.89162196405232
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_476",
+      "scale": 2.16526462638285,
+      "x_m": 740.43,
+      "y_m": 75.684,
+      "yaw_deg": 74.48449247516692
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_477",
+      "scale": 1.9078284727875143,
+      "x_m": 755.768,
+      "y_m": 73.356,
+      "yaw_deg": 99.08378052525222
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_478",
+      "scale": 1.2401990630896762,
+      "x_m": 664.049,
+      "y_m": 71.896,
+      "yaw_deg": 237.95112526975572
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_479",
+      "scale": 1.0595054957084358,
+      "x_m": 33.456,
+      "y_m": 621.452,
+      "yaw_deg": 193.68961033411324
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_480",
+      "scale": 1.8684886661358178,
+      "x_m": 662.506,
+      "y_m": 426.719,
+      "yaw_deg": 208.06459774263203
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_481",
+      "scale": 1.6745199997676536,
+      "x_m": 407.108,
+      "y_m": 292.732,
+      "yaw_deg": 47.617362923920155
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_482",
+      "scale": 1.7541455251630396,
+      "x_m": 724.587,
+      "y_m": 87.545,
+      "yaw_deg": 127.73837339133024
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_483",
+      "scale": 1.9819788091117516,
+      "x_m": 722.057,
+      "y_m": 61.538,
+      "yaw_deg": 185.665504289791
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_484",
+      "scale": 1.8232959657907486,
+      "x_m": 554.783,
+      "y_m": 388.879,
+      "yaw_deg": 344.76880881004035
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_486",
+      "scale": 1.787982850917615,
+      "x_m": 657.135,
+      "y_m": 405.407,
+      "yaw_deg": 41.613112231716514
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_487",
+      "scale": 2.4217818062752485,
+      "x_m": 557.577,
+      "y_m": 50.31,
+      "yaw_deg": 122.88891493342817
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_488",
+      "scale": 2.4891095800558105,
+      "x_m": 282.542,
+      "y_m": 311.181,
+      "yaw_deg": 98.95649428479373
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_489",
+      "scale": 1.3922368348576128,
+      "x_m": 600.363,
+      "y_m": 386.099,
+      "yaw_deg": 5.120325107127428
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_490",
+      "scale": 2.221379251801409,
+      "x_m": 508.447,
+      "y_m": 442.596,
+      "yaw_deg": 151.1938717123121
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_491",
+      "scale": 1.5267134280875325,
+      "x_m": 743.652,
+      "y_m": 55.338,
+      "yaw_deg": 127.13139301165938
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_492",
+      "scale": 1.74251819238998,
+      "x_m": 704.276,
+      "y_m": 401.252,
+      "yaw_deg": 84.38165858387947
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_493",
+      "scale": 1.0669393700081855,
+      "x_m": 336.896,
+      "y_m": 300.29,
+      "yaw_deg": 109.142359290272
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_494",
+      "scale": 2.064796360908076,
+      "x_m": 292.072,
+      "y_m": 283.744,
+      "yaw_deg": 36.50389926508069
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_495",
+      "scale": 1.1612670930335298,
+      "x_m": 709.542,
+      "y_m": 663.326,
+      "yaw_deg": 276.1294465698302
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_496",
+      "scale": 1.5292744532926008,
+      "x_m": 210.789,
+      "y_m": 312.499,
+      "yaw_deg": 200.45504705049098
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_497",
+      "scale": 1.610037834965624,
+      "x_m": 692.558,
+      "y_m": 72.823,
+      "yaw_deg": 149.13886098191142
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_498",
+      "scale": 2.1520122699439526,
+      "x_m": 729.595,
+      "y_m": 69.304,
+      "yaw_deg": 216.31064384244382
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_499",
+      "scale": 1.1989698266843334,
+      "x_m": 646.398,
+      "y_m": 74.242,
+      "yaw_deg": 152.6290698722005
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_500",
+      "scale": 1.9591642238665372,
+      "x_m": 595.907,
+      "y_m": 385.353,
+      "yaw_deg": 147.6779060717672
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_501",
+      "scale": 2.4889872283674777,
+      "x_m": 689.573,
+      "y_m": 67.486,
+      "yaw_deg": 257.58755592629313
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_502",
+      "scale": 2.445366885047406,
+      "x_m": 355.364,
+      "y_m": 153.798,
+      "yaw_deg": 302.171473139897
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_503",
+      "scale": 1.4384346972219646,
+      "x_m": 223.537,
+      "y_m": 276.204,
+      "yaw_deg": 224.29793732240796
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_504",
+      "scale": 1.1411487980512902,
+      "x_m": 541.953,
+      "y_m": 438.479,
+      "yaw_deg": 233.99512345902622
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_505",
+      "scale": 1.2295025727944449,
+      "x_m": 243.159,
+      "y_m": 510.438,
+      "yaw_deg": 204.89404345862567
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_506",
+      "scale": 1.3618903566384688,
+      "x_m": 199.447,
+      "y_m": 149.084,
+      "yaw_deg": 263.1111647374928
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_507",
+      "scale": 1.8884594494011253,
+      "x_m": 752.051,
+      "y_m": 76.866,
+      "yaw_deg": 208.43169626779854
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_508",
+      "scale": 2.012819124269299,
+      "x_m": 506.715,
+      "y_m": 447.048,
+      "yaw_deg": 246.9604798592627
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_509",
+      "scale": 1.761481545981951,
+      "x_m": 586.121,
+      "y_m": 394.778,
+      "yaw_deg": 175.66903869621456
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_510",
+      "scale": 2.369710686383769,
+      "x_m": 536.186,
+      "y_m": 376.697,
+      "yaw_deg": 202.9638748895377
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_511",
+      "scale": 2.2838152473559603,
+      "x_m": 812.416,
+      "y_m": 438.873,
+      "yaw_deg": 250.0518679060042
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_512",
+      "scale": 2.2193845509318635,
+      "x_m": 300.623,
+      "y_m": 835.718,
+      "yaw_deg": 48.07636097073555
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_513",
+      "scale": 2.076760977623053,
+      "x_m": 258.229,
+      "y_m": 315.275,
+      "yaw_deg": 245.01627596095204
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_514",
+      "scale": 1.5030207228846848,
+      "x_m": 555.414,
+      "y_m": 376.14,
+      "yaw_deg": 186.67807792313397
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_515",
+      "scale": 1.3143409948097542,
+      "x_m": 497.604,
+      "y_m": 421.789,
+      "yaw_deg": 215.02041924744844
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_516",
+      "scale": 2.0340420838911086,
+      "x_m": 183.413,
+      "y_m": 120.785,
+      "yaw_deg": 13.010749351233244
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_517",
+      "scale": 1.4288619791623205,
+      "x_m": 219.305,
+      "y_m": 279.729,
+      "yaw_deg": 203.9580794982612
+    },
+    {
+      "asset": "spr_flora_bush_greeng",
+      "id": "scatter_518",
+      "scale": 2.3927609159145504,
+      "x_m": 646.301,
+      "y_m": 403.6,
+      "yaw_deg": 335.6932018138468
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_519",
+      "scale": 2.235704837949015,
+      "x_m": 578.634,
+      "y_m": 382.783,
+      "yaw_deg": 280.1417099777609
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_520",
+      "scale": 2.439595428179018,
+      "x_m": 286.384,
+      "y_m": 836.854,
+      "yaw_deg": 326.39406714588404
+    },
+    {
+      "asset": "spr_flora_bush_greenc",
+      "id": "scatter_521",
+      "scale": 1.3037992421304807,
+      "x_m": 596.666,
+      "y_m": 52.882,
+      "yaw_deg": 167.86287445575
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_522",
+      "scale": 1.2704012618632987,
+      "x_m": 125.107,
+      "y_m": 150.613,
+      "yaw_deg": 48.081714576110244
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_523",
+      "scale": 1.2934950940543786,
+      "x_m": 537.279,
+      "y_m": 403.364,
+      "yaw_deg": 228.4732032660395
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_524",
+      "scale": 1.562882247613743,
+      "x_m": 549.951,
+      "y_m": 394.174,
+      "yaw_deg": 139.261358063668
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_525",
+      "scale": 1.803387567284517,
+      "x_m": 599.562,
+      "y_m": 357.221,
+      "yaw_deg": 150.58396571315825
+    },
+    {
+      "asset": "spr_flora_flower_bushr",
+      "id": "scatter_526",
+      "scale": 1.0614857461769134,
+      "x_m": 250.63,
+      "y_m": 270.874,
+      "yaw_deg": 357.67428196035326
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_527",
+      "scale": 1.1684477716917172,
+      "x_m": 238.249,
+      "y_m": 298.056,
+      "yaw_deg": 289.0664439741522
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_528",
+      "scale": 1.5217824382707477,
+      "x_m": 188.756,
+      "y_m": 314.519,
+      "yaw_deg": 110.00052938237786
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_529",
+      "scale": 2.010420656646602,
+      "x_m": 813.146,
+      "y_m": 448.91,
+      "yaw_deg": 83.99753012694418
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_530",
+      "scale": 1.9866657895036042,
+      "x_m": 816.825,
+      "y_m": 68.681,
+      "yaw_deg": 333.8926712796092
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_531",
+      "scale": 2.0186228828970343,
+      "x_m": 781.113,
+      "y_m": 66.605,
+      "yaw_deg": 277.3309232387692
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_532",
+      "scale": 1.1171301600988954,
+      "x_m": 657.172,
+      "y_m": 383.898,
+      "yaw_deg": 306.8595143314451
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_533",
+      "scale": 2.2284672314999625,
+      "x_m": 386.028,
+      "y_m": 308.392,
+      "yaw_deg": 285.909360665828
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_534",
+      "scale": 1.9601134604308754,
+      "x_m": 662.316,
+      "y_m": 67.23,
+      "yaw_deg": 102.61246302165091
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_535",
+      "scale": 2.287897810805589,
+      "x_m": 326.562,
+      "y_m": 300.562,
+      "yaw_deg": 330.7231011148542
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_536",
+      "scale": 2.4880699432687834,
+      "x_m": 616.85,
+      "y_m": 855.428,
+      "yaw_deg": 290.12481205165386
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_537",
+      "scale": 1.4993886133888736,
+      "x_m": 358.915,
+      "y_m": 306.206,
+      "yaw_deg": 37.9480329528451
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_538",
+      "scale": 1.4981718708295375,
+      "x_m": 649.724,
+      "y_m": 656.329,
+      "yaw_deg": 154.15678219869733
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_539",
+      "scale": 1.129754941444844,
+      "x_m": 575.521,
+      "y_m": 440.985,
+      "yaw_deg": 204.9242872092873
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_540",
+      "scale": 1.4264991451054811,
+      "x_m": 476.203,
+      "y_m": 443.677,
+      "yaw_deg": 149.81810191646218
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_541",
+      "scale": 2.076259010238573,
+      "x_m": 277.013,
+      "y_m": 294.909,
+      "yaw_deg": 164.55240718089044
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_542",
+      "scale": 2.187741336761974,
+      "x_m": 248.378,
+      "y_m": 297.389,
+      "yaw_deg": 194.78290722705424
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_543",
+      "scale": 1.527929883915931,
+      "x_m": 266.71,
+      "y_m": 278.843,
+      "yaw_deg": 157.5068087875843
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_544",
+      "scale": 1.9423381242668256,
+      "x_m": 755.864,
+      "y_m": 62.443,
+      "yaw_deg": 49.032224491238594
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_545",
+      "scale": 1.61082673096098,
+      "x_m": 708.084,
+      "y_m": 67.442,
+      "yaw_deg": 211.5304030571133
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_546",
+      "scale": 2.344014447880909,
+      "x_m": 190.866,
+      "y_m": 293.222,
+      "yaw_deg": 339.84221924096346
+    },
+    {
+      "asset": "spr_flora_flower_bushn",
+      "id": "scatter_547",
+      "scale": 1.989525577519089,
+      "x_m": 746.582,
+      "y_m": 78.473,
+      "yaw_deg": 126.51758096180856
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_548",
+      "scale": 1.3854772134218365,
+      "x_m": 335.068,
+      "y_m": 166.678,
+      "yaw_deg": 93.75821948982775
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_549",
+      "scale": 1.3459470177767798,
+      "x_m": 182.719,
+      "y_m": 156.493,
+      "yaw_deg": 140.94104929827154
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_550",
+      "scale": 2.0514718673657626,
+      "x_m": 581.674,
+      "y_m": 403.275,
+      "yaw_deg": 189.3702530208975
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_551",
+      "scale": 1.7591540936846286,
+      "x_m": 192.526,
+      "y_m": 153.136,
+      "yaw_deg": 78.33121840842068
+    },
+    {
+      "asset": "spr_flora_bush_green_newa",
+      "id": "scatter_552",
+      "scale": 2.057240757276304,
+      "x_m": 384.724,
+      "y_m": 292.827,
+      "yaw_deg": 134.40675169229507
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_553",
+      "scale": 1.9033305207267404,
+      "x_m": 550.188,
+      "y_m": 364.652,
+      "yaw_deg": 220.0848119147122
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_554",
+      "scale": 1.7523545164149255,
+      "x_m": 816.024,
+      "y_m": 85.278,
+      "yaw_deg": 266.3382906652987
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_555",
+      "scale": 1.2790519744157791,
+      "x_m": 459.326,
+      "y_m": 136.765,
+      "yaw_deg": 113.17168314009905
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_556",
+      "scale": 1.0726133938878775,
+      "x_m": 677.489,
+      "y_m": 663.324,
+      "yaw_deg": 42.22351670265198
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_557",
+      "scale": 2.251150368247181,
+      "x_m": 659.545,
+      "y_m": 56.226,
+      "yaw_deg": 356.8583800457418
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_558",
+      "scale": 1.556908070575446,
+      "x_m": 391.203,
+      "y_m": 280.423,
+      "yaw_deg": 114.34935989789665
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_559",
+      "scale": 1.0121328425593674,
+      "x_m": 285.171,
+      "y_m": 317.372,
+      "yaw_deg": 108.2674247212708
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_560",
+      "scale": 1.1253797116223723,
+      "x_m": 581.918,
+      "y_m": 447.845,
+      "yaw_deg": 279.7843270841986
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_561",
+      "scale": 2.117447034223005,
+      "x_m": 427.799,
+      "y_m": 292.63,
+      "yaw_deg": 253.71839775703847
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_562",
+      "scale": 2.3583894369658083,
+      "x_m": 235.734,
+      "y_m": 527.309,
+      "yaw_deg": 58.705643992871046
+    },
+    {
+      "asset": "spr_mm_tree_aspen4",
+      "id": "scatter_563",
+      "scale": 1.2546961695188656,
+      "x_m": 356.776,
+      "y_m": 305.185,
+      "yaw_deg": 308.3582040667534
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_564",
+      "scale": 1.546750320121646,
+      "x_m": 628.276,
+      "y_m": 401.948,
+      "yaw_deg": 186.56309598125517
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_565",
+      "scale": 2.2169694487238303,
+      "x_m": 638.841,
+      "y_m": 415.305,
+      "yaw_deg": 133.3829354122281
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_566",
+      "scale": 1.2458519247593358,
+      "x_m": 322.633,
+      "y_m": 118.86,
+      "yaw_deg": 176.88281279057264
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_567",
+      "scale": 1.486010801512748,
+      "x_m": 202.61,
+      "y_m": 303.066,
+      "yaw_deg": 276.89945362508297
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_568",
+      "scale": 1.7184604685753584,
+      "x_m": 465.896,
+      "y_m": 432.187,
+      "yaw_deg": 179.07417722046375
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_569",
+      "scale": 1.1828708882676437,
+      "x_m": 775.5,
+      "y_m": 437.213,
+      "yaw_deg": 145.95821522176266
+    },
+    {
+      "asset": "spr_flora_flower_bushm",
+      "id": "scatter_570",
+      "scale": 2.080932093434967,
+      "x_m": 717.876,
+      "y_m": 658.136,
+      "yaw_deg": 342.3531087767333
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_571",
+      "scale": 1.9403649750165641,
+      "x_m": 430.897,
+      "y_m": 128.639,
+      "yaw_deg": 88.14981440082192
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_572",
+      "scale": 2.22180352313444,
+      "x_m": 733.507,
+      "y_m": 425.906,
+      "yaw_deg": 53.07481865398586
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_573",
+      "scale": 2.437616844661534,
+      "x_m": 568.25,
+      "y_m": 387.15,
+      "yaw_deg": 49.14551488123834
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_574",
+      "scale": 1.817148534115404,
+      "x_m": 791.754,
+      "y_m": 438.635,
+      "yaw_deg": 235.15765923075378
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_575",
+      "scale": 1.0283816434675828,
+      "x_m": 736.319,
+      "y_m": 73.405,
+      "yaw_deg": 347.28907006792724
+    },
+    {
+      "asset": "spr_mm_tree_aspen7",
+      "id": "scatter_576",
+      "scale": 1.5435279086232185,
+      "x_m": 406.786,
+      "y_m": 279.362,
+      "yaw_deg": 287.9625885654241
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_577",
+      "scale": 1.348127860459499,
+      "x_m": 550.325,
+      "y_m": 842.161,
+      "yaw_deg": 128.9567935746163
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_578",
+      "scale": 1.4235748255159706,
+      "x_m": 217.088,
+      "y_m": 157.919,
+      "yaw_deg": 87.24787426181138
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_579",
+      "scale": 1.2910492613445967,
+      "x_m": 605.639,
+      "y_m": 381.731,
+      "yaw_deg": 283.1396072823554
+    },
+    {
+      "asset": "spr_flora_flower_bushe",
+      "id": "scatter_580",
+      "scale": 2.0286669925553724,
+      "x_m": 260.863,
+      "y_m": 518.26,
+      "yaw_deg": 51.332839485257864
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_581",
+      "scale": 2.1845689764013514,
+      "x_m": 599.847,
+      "y_m": 421.451,
+      "yaw_deg": 270.67247732542455
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_582",
+      "scale": 2.1655570552684367,
+      "x_m": 735.588,
+      "y_m": 76.467,
+      "yaw_deg": 332.111727995798
+    },
+    {
+      "asset": "spr_mm_tree_pine7",
+      "id": "scatter_583",
+      "scale": 1.0374034598935395,
+      "x_m": 500.432,
+      "y_m": 439.714,
+      "yaw_deg": 215.38701435551047
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_584",
+      "scale": 2.3224518531933427,
+      "x_m": 770.801,
+      "y_m": 440.75,
+      "yaw_deg": 82.40908747538924
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_585",
+      "scale": 1.8135603052796796,
+      "x_m": 669.974,
+      "y_m": 66.675,
+      "yaw_deg": 156.37740961275995
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_586",
+      "scale": 1.215821108664386,
+      "x_m": 719.666,
+      "y_m": 653.29,
+      "yaw_deg": 132.87942945957184
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_587",
+      "scale": 2.1065166193293408,
+      "x_m": 571.03,
+      "y_m": 406.393,
+      "yaw_deg": 63.688108418136835
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_588",
+      "scale": 1.1576558446977288,
+      "x_m": 681.956,
+      "y_m": 420.936,
+      "yaw_deg": 233.59391301870346
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_589",
+      "scale": 1.2725383478682488,
+      "x_m": 408.946,
+      "y_m": 294.511,
+      "yaw_deg": 11.768721034750342
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_590",
+      "scale": 1.425008037360385,
+      "x_m": 732.453,
+      "y_m": 92.604,
+      "yaw_deg": 301.9618434179574
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_591",
+      "scale": 1.4497409730684012,
+      "x_m": 527.657,
+      "y_m": 441.246,
+      "yaw_deg": 276.09910768456757
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_592",
+      "scale": 2.246637931908481,
+      "x_m": 194.725,
+      "y_m": 159.193,
+      "yaw_deg": 224.47129804641008
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_593",
+      "scale": 1.466723556513898,
+      "x_m": 217.31,
+      "y_m": 286.361,
+      "yaw_deg": 199.13065035827458
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_594",
+      "scale": 2.1901791200507432,
+      "x_m": 610.932,
+      "y_m": 395.372,
+      "yaw_deg": 112.06249005161226
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_595",
+      "scale": 1.102929392363876,
+      "x_m": 302.17,
+      "y_m": 310.742,
+      "yaw_deg": 27.834943989291787
+    },
+    {
+      "asset": "spr_mm_tree_aspen3",
+      "id": "scatter_596",
+      "scale": 1.006503643700853,
+      "x_m": 580.639,
+      "y_m": 364.877,
+      "yaw_deg": 53.62661484628916
+    },
+    {
+      "asset": "spr_flora_bush_green_newg",
+      "id": "scatter_597",
+      "scale": 1.4273615018464625,
+      "x_m": 633.195,
+      "y_m": 383.347,
+      "yaw_deg": 164.59489655680954
+    },
+    {
+      "asset": "spr_flora_bush_green_newd",
+      "id": "scatter_598",
+      "scale": 1.5946273190202191,
+      "x_m": 330.675,
+      "y_m": 299.02,
+      "yaw_deg": 288.6734407581389
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_599",
+      "scale": 2.1170753282494843,
+      "x_m": 602.875,
+      "y_m": 366.836,
+      "yaw_deg": 189.66331033967435
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_600",
+      "scale": 1.052830358967185,
+      "x_m": 525.681,
+      "y_m": 439.117,
+      "yaw_deg": 56.67391031049192
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_601",
+      "scale": 1.0856284219771624,
+      "x_m": 175.946,
+      "y_m": 152.388,
+      "yaw_deg": 260.6600362434983
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_602",
+      "scale": 1.7715954744489864,
+      "x_m": 54.008,
+      "y_m": 619.702,
+      "yaw_deg": 174.7570316400379
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_603",
+      "scale": 1.2592385575408116,
+      "x_m": 310.192,
+      "y_m": 177.681,
+      "yaw_deg": 176.55588068068027
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_604",
+      "scale": 1.8921074111713096,
+      "x_m": 685.062,
+      "y_m": 70.083,
+      "yaw_deg": 113.12965384684503
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_605",
+      "scale": 2.4379504520911723,
+      "x_m": 775.465,
+      "y_m": 63.879,
+      "yaw_deg": 85.61704692430794
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_606",
+      "scale": 1.6265609846450388,
+      "x_m": 226.076,
+      "y_m": 508.949,
+      "yaw_deg": 25.227974876761436
+    },
+    {
+      "asset": "spr_mm_tree_northern7",
+      "id": "scatter_607",
+      "scale": 2.0228937681531534,
+      "x_m": 278.417,
+      "y_m": 308.463,
+      "yaw_deg": 278.6872295010835
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_608",
+      "scale": 1.0847396363969892,
+      "x_m": 214.603,
+      "y_m": 130.694,
+      "yaw_deg": 276.69891910627484
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_609",
+      "scale": 1.7880934361601248,
+      "x_m": 185.798,
+      "y_m": 297.009,
+      "yaw_deg": 153.03703880868852
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_610",
+      "scale": 1.8970545417396352,
+      "x_m": 192.027,
+      "y_m": 149.885,
+      "yaw_deg": 291.95044822990894
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_611",
+      "scale": 2.3534700016025454,
+      "x_m": 548.536,
+      "y_m": 435.276,
+      "yaw_deg": 327.3453115671873
+    },
+    {
+      "asset": "spr_mm_tree_pine6",
+      "id": "scatter_612",
+      "scale": 1.9106550492579117,
+      "x_m": 487.238,
+      "y_m": 129.522,
+      "yaw_deg": 309.06741022132337
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_613",
+      "scale": 2.3730540274409577,
+      "x_m": 225.765,
+      "y_m": 281.557,
+      "yaw_deg": 65.27985806576908
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_614",
+      "scale": 1.4040507026948035,
+      "x_m": 663.955,
+      "y_m": 94.555,
+      "yaw_deg": 289.7130861785263
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_615",
+      "scale": 1.9603761758189648,
+      "x_m": 261.591,
+      "y_m": 305.422,
+      "yaw_deg": 177.5201098434627
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_616",
+      "scale": 1.1832854505628347,
+      "x_m": 524.63,
+      "y_m": 50.704,
+      "yaw_deg": 34.3598791770637
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_617",
+      "scale": 1.4605408321367577,
+      "x_m": 591.475,
+      "y_m": 392.927,
+      "yaw_deg": 28.832931434735656
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_618",
+      "scale": 1.53662638226524,
+      "x_m": 679.768,
+      "y_m": 412.798,
+      "yaw_deg": 55.630553383380175
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_619",
+      "scale": 2.463166390429251,
+      "x_m": 560.587,
+      "y_m": 52.034,
+      "yaw_deg": 191.749078463763
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_620",
+      "scale": 2.3114801284391433,
+      "x_m": 708.26,
+      "y_m": 658.567,
+      "yaw_deg": 208.77130500040948
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_621",
+      "scale": 1.4277930029202253,
+      "x_m": 272.044,
+      "y_m": 300.702,
+      "yaw_deg": 93.03898430429399
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_622",
+      "scale": 1.5476536430651322,
+      "x_m": 656.436,
+      "y_m": 69.783,
+      "yaw_deg": 160.77628193423152
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_623",
+      "scale": 1.4764864927856252,
+      "x_m": 190.657,
+      "y_m": 160.505,
+      "yaw_deg": 235.57246981188655
+    },
+    {
+      "asset": "spr_flora_flower_bushb",
+      "id": "scatter_624",
+      "scale": 1.3805230696452782,
+      "x_m": 665.623,
+      "y_m": 60.247,
+      "yaw_deg": 107.58943579159677
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_625",
+      "scale": 1.3001970720943063,
+      "x_m": 285.505,
+      "y_m": 309.818,
+      "yaw_deg": 155.06600570864975
+    },
+    {
+      "asset": "spr_mm_tree_pine3",
+      "id": "scatter_626",
+      "scale": 1.0178277695085853,
+      "x_m": 724.062,
+      "y_m": 76.835,
+      "yaw_deg": 59.564768113195896
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_627",
+      "scale": 1.7668182059423998,
+      "x_m": 415.651,
+      "y_m": 288.187,
+      "yaw_deg": 302.0456570852548
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_628",
+      "scale": 1.4224928674520925,
+      "x_m": 723.376,
+      "y_m": 432.357,
+      "yaw_deg": 53.73633169569075
+    },
+    {
+      "asset": "spr_flora_bush_greenf",
+      "id": "scatter_629",
+      "scale": 1.2841802990296856,
+      "x_m": 536.005,
+      "y_m": 440.902,
+      "yaw_deg": 312.5822035688907
+    },
+    {
+      "asset": "spr_flora_flower_bushc",
+      "id": "scatter_630",
+      "scale": 1.3250849633477628,
+      "x_m": 239.721,
+      "y_m": 308.718,
+      "yaw_deg": 337.3088621813804
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_631",
+      "scale": 2.014982459601015,
+      "x_m": 246.653,
+      "y_m": 301.325,
+      "yaw_deg": 208.4343162830919
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_632",
+      "scale": 1.511874353280291,
+      "x_m": 275.003,
+      "y_m": 169.587,
+      "yaw_deg": 125.57007235474885
+    },
+    {
+      "asset": "spr_mm_tree_aspen2",
+      "id": "scatter_633",
+      "scale": 2.4327269184868783,
+      "x_m": 640.976,
+      "y_m": 38.913,
+      "yaw_deg": 52.203551502898335
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_634",
+      "scale": 1.9519828526536003,
+      "x_m": 270.36,
+      "y_m": 302.276,
+      "yaw_deg": 351.8014096375555
+    },
+    {
+      "asset": "spr_mm_tree_pine5",
+      "id": "scatter_635",
+      "scale": 1.4834309917641804,
+      "x_m": 183.186,
+      "y_m": 159.948,
+      "yaw_deg": 235.44069204479456
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_636",
+      "scale": 1.4752711611799896,
+      "x_m": 668.489,
+      "y_m": 850.253,
+      "yaw_deg": 95.65079279243946
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_637",
+      "scale": 1.307021605083719,
+      "x_m": 470.146,
+      "y_m": 414.743,
+      "yaw_deg": 234.2324334103614
+    },
+    {
+      "asset": "spr_flora_flower_busho",
+      "id": "scatter_638",
+      "scale": 1.886397650348954,
+      "x_m": 722.448,
+      "y_m": 66.752,
+      "yaw_deg": 147.5922367349267
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_639",
+      "scale": 2.3338626985205337,
+      "x_m": 181.061,
+      "y_m": 304.92,
+      "yaw_deg": 203.79751861095428
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_640",
+      "scale": 1.9178350053261966,
+      "x_m": 535.091,
+      "y_m": 384.856,
+      "yaw_deg": 244.1559372190386
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_641",
+      "scale": 1.316195917665027,
+      "x_m": 641.662,
+      "y_m": 661.706,
+      "yaw_deg": 235.10009449906647
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_642",
+      "scale": 2.0588175846496597,
+      "x_m": 365.262,
+      "y_m": 269.779,
+      "yaw_deg": 284.2848424706608
+    },
+    {
+      "asset": "spr_mm_tree_aspen1",
+      "id": "scatter_643",
+      "scale": 2.0709566986188293,
+      "x_m": 684.198,
+      "y_m": 662.335,
+      "yaw_deg": 204.89814464002848
+    },
+    {
+      "asset": "spr_flora_giant_busha",
+      "id": "scatter_644",
+      "scale": 1.3604859502520412,
+      "x_m": 314.945,
+      "y_m": 262.818,
+      "yaw_deg": 95.12486231513321
+    },
+    {
+      "asset": "spr_flora_bush_greenb",
+      "id": "scatter_645",
+      "scale": 1.96039312123321,
+      "x_m": 178.807,
+      "y_m": 150.604,
+      "yaw_deg": 268.2145039178431
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_646",
+      "scale": 2.0976440409431234,
+      "x_m": 518.776,
+      "y_m": 446.947,
+      "yaw_deg": 250.81449972465634
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_647",
+      "scale": 2.4684747338760644,
+      "x_m": 695.71,
+      "y_m": 94.497,
+      "yaw_deg": 347.86198471672833
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_648",
+      "scale": 1.8656640590634197,
+      "x_m": 628.368,
+      "y_m": 59.706,
+      "yaw_deg": 133.4449594002217
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_649",
+      "scale": 1.618055937695317,
+      "x_m": 473.602,
+      "y_m": 417.751,
+      "yaw_deg": 195.1393144670874
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_650",
+      "scale": 1.0511649111285806,
+      "x_m": 776.664,
+      "y_m": 78.633,
+      "yaw_deg": 20.39731082506478
+    },
+    {
+      "asset": "spr_mm_tree_northern2",
+      "id": "scatter_651",
+      "scale": 1.2318885531276464,
+      "x_m": 324.233,
+      "y_m": 293.66,
+      "yaw_deg": 354.8322681058198
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_652",
+      "scale": 2.467385607538745,
+      "x_m": 222.634,
+      "y_m": 312.541,
+      "yaw_deg": 164.7347111441195
+    },
+    {
+      "asset": "spr_mm_tree_pine2",
+      "id": "scatter_653",
+      "scale": 1.9695806754752994,
+      "x_m": 665.686,
+      "y_m": 63.13,
+      "yaw_deg": 2.5601193867623806
+    },
+    {
+      "asset": "spr_mm_tree_aspen14",
+      "id": "scatter_654",
+      "scale": 2.142710098414682,
+      "x_m": 208.674,
+      "y_m": 509.62,
+      "yaw_deg": 316.47935511544347
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_655",
+      "scale": 1.0337463367031887,
+      "x_m": 607.599,
+      "y_m": 674.595,
+      "yaw_deg": 246.3400482852012
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_656",
+      "scale": 1.4612859553890303,
+      "x_m": 335.335,
+      "y_m": 291.867,
+      "yaw_deg": 58.344157403334975
+    },
+    {
+      "asset": "spr_flora_flower_busha",
+      "id": "scatter_657",
+      "scale": 1.0065211321925744,
+      "x_m": 513.297,
+      "y_m": 394.14,
+      "yaw_deg": 114.19323672540486
+    },
+    {
+      "asset": "spr_mm_tree_aspen5",
+      "id": "scatter_658",
+      "scale": 2.0472222700482234,
+      "x_m": 296.33,
+      "y_m": 277.656,
+      "yaw_deg": 32.82066092826426
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_659",
+      "scale": 1.178721782984212,
+      "x_m": 543.695,
+      "y_m": 44.013,
+      "yaw_deg": 107.11122684180737
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_660",
+      "scale": 1.537107798969373,
+      "x_m": 292.506,
+      "y_m": 161.265,
+      "yaw_deg": 322.652692431584
+    },
+    {
+      "asset": "spr_flora_bush_greene",
+      "id": "scatter_661",
+      "scale": 2.263071195804514,
+      "x_m": 582.456,
+      "y_m": 443.322,
+      "yaw_deg": 102.11603734642267
+    },
+    {
+      "asset": "spr_flora_flower_bushs",
+      "id": "scatter_662",
+      "scale": 2.160492029739544,
+      "x_m": 541.245,
+      "y_m": 409.037,
+      "yaw_deg": 80.48879035748541
+    },
+    {
+      "asset": "spr_flora_flower_bushp",
+      "id": "scatter_663",
+      "scale": 1.7329306973842904,
+      "x_m": 111.535,
+      "y_m": 413.282,
+      "yaw_deg": 358.71954560279846
+    },
+    {
+      "asset": "spr_flora_flower_bushi",
+      "id": "scatter_664",
+      "scale": 1.0484076481079683,
+      "x_m": 261.251,
+      "y_m": 283.108,
+      "yaw_deg": 117.94164611957967
+    },
+    {
+      "asset": "spr_mm_tree_big2",
+      "id": "scatter_665",
+      "scale": 1.5012181436177343,
+      "x_m": 773.565,
+      "y_m": 449.915,
+      "yaw_deg": 102.6906712912023
+    },
+    {
+      "asset": "spr_flora_giant_bushb",
+      "id": "scatter_666",
+      "scale": 1.4171502535464242,
+      "x_m": 780.793,
+      "y_m": 440.576,
+      "yaw_deg": 32.569748908281326
+    },
+    {
+      "asset": "spr_flora_flower_bushq",
+      "id": "scatter_667",
+      "scale": 1.7908841342432424,
+      "x_m": 768.999,
+      "y_m": 68.324,
+      "yaw_deg": 249.0928817074746
+    },
+    {
+      "asset": "spr_flora_bush_greend",
+      "id": "scatter_668",
+      "scale": 2.3139573601074517,
+      "x_m": 527.057,
+      "y_m": 394.382,
+      "yaw_deg": 164.69660340808332
+    },
+    {
+      "asset": "spr_mm_tree_aspen11",
+      "id": "scatter_669",
+      "scale": 1.374334039632231,
+      "x_m": 663.374,
+      "y_m": 80.173,
+      "yaw_deg": 341.7867381311953
+    },
+    {
+      "asset": "spr_mm_tree_aspen12",
+      "id": "scatter_670",
+      "scale": 1.4554764883359894,
+      "x_m": 273.845,
+      "y_m": 153.965,
+      "yaw_deg": 118.0716847255826
+    },
+    {
+      "asset": "spr_flora_giant_bushf",
+      "id": "scatter_671",
+      "scale": 1.846949276747182,
+      "x_m": 696.477,
+      "y_m": 62.602,
+      "yaw_deg": 241.23170100152493
+    },
+    {
+      "asset": "spr_flora_giant_bushd",
+      "id": "scatter_672",
+      "scale": 1.183163411798887,
+      "x_m": 331.066,
+      "y_m": 293.075,
+      "yaw_deg": 49.12954291328788
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_673",
+      "scale": 1.7580249675083905,
+      "x_m": 400.369,
+      "y_m": 284.124,
+      "yaw_deg": 71.38019529171288
+    },
+    {
+      "asset": "spr_flora_bush_green_newe",
+      "id": "scatter_674",
+      "scale": 1.2086578605230898,
+      "x_m": 566.215,
+      "y_m": 379.183,
+      "yaw_deg": 284.1277107875794
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_675",
+      "scale": 1.1100447288481519,
+      "x_m": 196.595,
+      "y_m": 303.962,
+      "yaw_deg": 81.31997692398727
+    },
+    {
+      "asset": "spr_mm_tree_northern3",
+      "id": "scatter_676",
+      "scale": 1.9329143823124468,
+      "x_m": 224.032,
+      "y_m": 310.825,
+      "yaw_deg": 27.303684214130044
+    },
+    {
+      "asset": "spr_mm_tree_northern4",
+      "id": "scatter_677",
+      "scale": 1.7062583251390606,
+      "x_m": 199.829,
+      "y_m": 296.098,
+      "yaw_deg": 272.37355473451316
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_678",
+      "scale": 2.3387667045462877,
+      "x_m": 705.713,
+      "y_m": 407.18,
+      "yaw_deg": 220.25546327233315
+    },
+    {
+      "asset": "spr_flora_bush_green_newb",
+      "id": "scatter_679",
+      "scale": 1.7391250834334642,
+      "x_m": 227.683,
+      "y_m": 278.38,
+      "yaw_deg": 265.58416723273695
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_680",
+      "scale": 1.9476777912350371,
+      "x_m": 313.535,
+      "y_m": 831.323,
+      "yaw_deg": 126.84849489480257
+    },
+    {
+      "asset": "spr_flora_flower_bushd",
+      "id": "scatter_681",
+      "scale": 1.3851060655433685,
+      "x_m": 652.518,
+      "y_m": 78.768,
+      "yaw_deg": 324.77083129808307
+    },
+    {
+      "asset": "spr_mm_tree_aspen13",
+      "id": "scatter_682",
+      "scale": 1.4922922392142937,
+      "x_m": 317.173,
+      "y_m": 169.919,
+      "yaw_deg": 298.7868175562471
+    },
+    {
+      "asset": "spr_mm_tree_aspen6",
+      "id": "scatter_683",
+      "scale": 2.3520382216665894,
+      "x_m": 364.76,
+      "y_m": 292.092,
+      "yaw_deg": 307.27112227119505
+    },
+    {
+      "asset": "spr_mm_tree_aspen8",
+      "id": "scatter_684",
+      "scale": 1.7583801621804014,
+      "x_m": 591.044,
+      "y_m": 365.316,
+      "yaw_deg": 53.51867361925542
+    },
+    {
+      "asset": "spr_mm_tree_pine1",
+      "id": "scatter_685",
+      "scale": 1.1029181288322434,
+      "x_m": 358.362,
+      "y_m": 300.392,
+      "yaw_deg": 141.77666125819087
+    },
+    {
+      "asset": "spr_mm_tree_northern6",
+      "id": "scatter_686",
+      "scale": 1.441100355121307,
+      "x_m": 543.311,
+      "y_m": 389.746,
+      "yaw_deg": 59.21308415941894
+    },
+    {
+      "asset": "spr_mm_tree_big4",
+      "id": "scatter_687",
+      "scale": 1.7133182432735339,
+      "x_m": 726.997,
+      "y_m": 665.356,
+      "yaw_deg": 12.53997690975666
+    },
+    {
+      "asset": "spr_flora_flower_bushk",
+      "id": "scatter_688",
+      "scale": 1.730844423174858,
+      "x_m": 365.662,
+      "y_m": 285.147,
+      "yaw_deg": 251.50404067710042
+    },
+    {
+      "asset": "spr_mm_tree_aspen10",
+      "id": "scatter_689",
+      "scale": 2.277009074226953,
+      "x_m": 527.45,
+      "y_m": 377.676,
+      "yaw_deg": 303.743583234027
+    },
+    {
+      "asset": "spr_flora_flower_bushg",
+      "id": "scatter_690",
+      "scale": 1.1883076410740614,
+      "x_m": 708.395,
+      "y_m": 75.097,
+      "yaw_deg": 275.5064250715077
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_691",
+      "scale": 2.3063658522441983,
+      "x_m": 598.452,
+      "y_m": 854.594,
+      "yaw_deg": 324.6728691458702
+    },
+    {
+      "asset": "spr_flora_giant_bushg",
+      "id": "scatter_692",
+      "scale": 1.937092379317619,
+      "x_m": 788.483,
+      "y_m": 846.068,
+      "yaw_deg": 12.579930759966373
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_693",
+      "scale": 2.1504538991721347,
+      "x_m": 463.588,
+      "y_m": 131.871,
+      "yaw_deg": 201.23224016278982
+    },
+    {
+      "asset": "spr_mm_tree_northern5",
+      "id": "scatter_694",
+      "scale": 1.96719050523825,
+      "x_m": 317.303,
+      "y_m": 178.715,
+      "yaw_deg": 172.446580985561
+    },
+    {
+      "asset": "spr_mm_tree_northern1",
+      "id": "scatter_695",
+      "scale": 2.2985150096938014,
+      "x_m": 384.246,
+      "y_m": 847.799,
+      "yaw_deg": 45.658200765028596
+    },
+    {
+      "asset": "spr_mm_tree_pine4",
+      "id": "scatter_696",
+      "scale": 1.9299208659213036,
+      "x_m": 517.808,
+      "y_m": 129.697,
+      "yaw_deg": 165.7898119557649
+    },
+    {
+      "asset": "spr_flora_flower_bushl",
+      "id": "scatter_697",
+      "scale": 1.2993535386631265,
+      "x_m": 587.853,
+      "y_m": 449.499,
+      "yaw_deg": 217.95048910193145
+    },
+    {
+      "asset": "spr_mm_tree_big3",
+      "id": "scatter_698",
+      "scale": 1.3305723431985825,
+      "x_m": 340.857,
+      "y_m": 149.502,
+      "yaw_deg": 126.14816132001579
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_699",
+      "scale": 2.471134207677096,
+      "x_m": 353.335,
+      "y_m": 159.871,
+      "yaw_deg": 213.24334991164505
+    },
+    {
+      "asset": "spr_flora_bush_green_newc",
+      "id": "scatter_700",
+      "scale": 2.094966829288751,
+      "x_m": 223.099,
+      "y_m": 293.995,
+      "yaw_deg": 308.8808158133179
+    },
+    {
+      "asset": "spr_flora_bush_greena",
+      "id": "scatter_701",
+      "scale": 1.236325674224645,
+      "x_m": 282.743,
+      "y_m": 268.9,
+      "yaw_deg": 285.7334041502327
+    },
+    {
+      "asset": "spr_flora_giant_bushe",
+      "id": "scatter_702",
+      "scale": 2.301709607243538,
+      "x_m": 61.748,
+      "y_m": 420.822,
+      "yaw_deg": 64.11925901658833
+    },
+    {
+      "asset": "spr_mm_tree_big1",
+      "id": "scatter_703",
+      "scale": 2.360470202518627,
+      "x_m": 314.868,
+      "y_m": 153.483,
+      "yaw_deg": 259.84553972259164
+    },
+    {
+      "asset": "spr_flora_bush_green_newf",
+      "id": "scatter_704",
+      "scale": 1.0875121080316603,
+      "x_m": 299.806,
+      "y_m": 313.573,
+      "yaw_deg": 103.39830927550793
+    },
+    {
+      "asset": "spr_flora_flower_busht",
+      "id": "scatter_705",
+      "scale": 1.733102739439346,
+      "x_m": 77.149,
+      "y_m": 612.916,
+      "yaw_deg": 269.2568527534604
+    },
+    {
+      "asset": "spr_mm_tree_aspen15",
+      "id": "scatter_706",
+      "scale": 1.5750324365217239,
+      "x_m": 296.112,
+      "y_m": 155.4,
+      "yaw_deg": 22.956462185829878
+    },
+    {
+      "asset": "spr_flora_giant_bushc",
+      "id": "scatter_707",
+      "scale": 1.6601484748534858,
+      "x_m": 274.995,
+      "y_m": 164.404,
+      "yaw_deg": 211.76596714183688
+    },
+    {
+      "asset": "spr_mm_tree_aspen9",
+      "id": "scatter_708",
+      "scale": 2.130940274335444,
+      "x_m": 421.42,
+      "y_m": 297.334,
+      "yaw_deg": 67.81549600884318
+    }
+  ],
+  "settings": {
+    "biome": "source",
+    "fog": "source",
+    "precipitation": "source",
+    "precipitation_intensity": 10,
+    "thunder": "source",
+    "thunder_frequency": 50
+  },
+  "source": {
+    "recipe_file_sha256": "19c0a3a419fb5072bb552779051e02957422dc73bb5d265efccb3775f241322f",
+    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/maps/medium/test_map_041/source/scn_test_017_desert__03_bottom_left.txt",
+    "recipe_sha256": "19c0a3a419fb5072bb552779051e02957422dc73bb5d265efccb3775f241322f",
+    "scene_id": "scn_test_017_desert__03_bottom_left",
+    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/maps/medium/test_map_041/source/scn_test_017_desert__03_bottom_left.sco",
+    "sco_sha256": "e1d30b62d921791f1d81c454f2234c1beb1d0564b30d39d93f60097a56c3bf2c",
+    "terrain_code": "0x000000035282040a000dc37006efc25977ae88c52427dbcd"
+  },
+  "spawn_points": [
+    {
+      "entry": 0,
+      "team": 0,
+      "x_m": 601.522,
+      "y_m": 95.727
+    },
+    {
+      "entry": 32,
+      "team": 1,
+      "x_m": 110.559,
+      "y_m": 781.789
+    }
+  ],
+  "version": 3
+}

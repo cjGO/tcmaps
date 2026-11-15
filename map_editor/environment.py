@@ -4,11 +4,13 @@ import struct
 
 from helpers import split_objects
 from make_weather_variants import WEATHER, weather_prop
-from weatherize_selected_rotation import BIOME_MASK, SAVED_BIOME_CYCLE
+from weatherize_selected_rotation import BIOME_MASK
+from random_map_settings import LEGACY_SAVED_BIOME_CYCLE as SAVED_BIOME_CYCLE
 
 BIOMES = {name: (region, outer) for name, region, outer in SAVED_BIOME_CYCLE
           if name != 'steppe_forest'}
 BIOMES['steppe'] = (2, 'outer_terrain_steppe')
+BIOMES['steppe_forest'] = (10, 'outer_terrain_steppe')
 # An explicit zero-distance prop overrides source fog and desert/thunder defaults.
 FOG = {'none': 0, 'low': 600, 'medium': 450, 'dense': 300,
        **{str(distance): distance for distance in (100, 150, 200, 250, 350, 400, 500)}}

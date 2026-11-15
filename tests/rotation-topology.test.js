@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { build } from 'esbuild';
 import { JSDOM } from 'jsdom';
 import { includedVariants } from '../src/map-variants.js';
@@ -22,6 +22,7 @@ const bundled = await build({
         globalThis.rotationTestViews.push(data);
         return { canvas: root.ownerDocument.createElement('canvas'), updateSpawns(spawns) { data.spawns = spawns; }, exaggeration() {}, contours() {}, wireframe() {}, preset() {}, dispose() {} };
       }` : args.path.endsWith('rotation-variant-layer.js') ? `export function createVariantLayer(viewer, data, document, provenance, options) {
+        globalThis.rotationTestPlacements = document.placements;
         if (options.updateSpawns !== false) throw new Error('Late spawn override must be disabled');
         return { ready: Promise.resolve(), dispose() {} };
       }` : args.path.endsWith('rotation-density-controls.js') ? 'export const densityDefaults = () => ({}); export function setupDensityControls() { return { dispose() {} }; }'
@@ -113,5 +114,48 @@ test('sweep loads an explicitly chosen RAW revision and restores its saved marke
     assert.equal(globalThis.rotationTestViews.at(-1).spawns[0].x_m,200);
   } finally {
     topology?.setVisible(false); Object.assign(globalThis,previous); delete globalThis.rotationTestViews; dom.window.close();
+  }
+});
+
+
+test('current WMS selection renders its installed revision, placements and spawns', async () => {
+  const dom = new JSDOM('<section id="rotation-panel"><div class="image-stage"><img id="rotation-image"><a id="rotation-full-image"></a><span id="rotation-state"></span></div></section>');
+  const previous = { document: globalThis.document, fetch: globalThis.fetch };
+  globalThis.document = dom.window.document; globalThis.rotationTestViews = [];
+  const urls = [];
+  globalThis.fetch = async url => { urls.push(url); return { ok: true, json: () => json('public' + url) }; };
+  let topology;
+  try {
+    const installed = (await json('lib/rotation-topology.json')).maps.find(map => map.map_name?.includes('_WMS_'));
+    assert.ok(installed, 'Current rotation explicitly identifies WMS');
+    const registry = (await json('lib/editor-rotation.json')).find(map => map.id === installed.id);
+    const directory = `maps/${registry.pool}/${installed.map_id}/variants/`;
+    const files = {};
+    for (const name of await readdir(new URL('../' + directory, import.meta.url))) {
+      if (/\.(json|placements)$/.test(name)) files[directory + name] = await read(directory + name);
+    }
+    const variants = includedVariants(files, installed.map_id);
+    const { installedVariantPreview } = await import('../src/rotation-variants.js');
+    const preview = await installedVariantPreview(variants, installed);
+    assert.ok(preview, 'Installed placement checksum resolves');
+    assert.equal(preview.revision, installed.variant_revision);
+    assert.ok(preview.variant.document.placements.length > 0);
+    topology = setupTopology();
+    for (const selection of ['all', preview.variant.id]) {
+      topology.setMap({ filename: installed.id + '.png', variantId: selection, variants, variant: selection === 'all' ? undefined : preview.variant });
+      const state = document.getElementById('rotation-state');
+      for (let i = 0; !state.hidden && i < 100; i++) await new Promise(resolve => setTimeout(resolve, 10));
+      assert.equal(state.hidden, true, state.textContent);
+      assert.equal(urls.at(-1), installed.url);
+      assert.deepEqual(globalThis.rotationTestPlacements, preview.variant.document.placements);
+      const displayed = globalThis.rotationTestViews.at(-1).spawns;
+      for (let i = 0; i < 2; i++) for (const key of ['x_m', 'y_m']) {
+        assert.ok(Math.abs(displayed[i][key] - preview.variant.document.spawn_points[i][key]) < .002);
+      }
+      assert.match(document.querySelector('.topology-heading strong').textContent, /WMS_/);
+    }
+  } finally {
+    topology?.setVisible(false); Object.assign(globalThis, previous);
+    delete globalThis.rotationTestViews; delete globalThis.rotationTestPlacements; dom.window.close();
   }
 });

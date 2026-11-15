@@ -1,0 +1,45 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {pointAt,exportKept,complete} from '../src/review-pool-state.js';
+const grid={bounds:{x_min_m:24,x_max_m:648,y_min_m:24,y_max_m:648},inset_m:1,grid_size:2,heights:[0,10,20,30]};
+test('engine coordinates use upward Y, real bounds and bilinear heights',()=>{
+ assert.deepEqual(pointAt(grid,0,0),{x_m:24,y_m:648,z_m:20});
+ assert.deepEqual(pointAt(grid,1,1),{x_m:648,y_m:24,z_m:10});
+ assert.deepEqual(pointAt(grid,.5,.5),{x_m:336,y_m:336,z_m:15});
+});
+const manifest={pool_id:'highpool',maps:[{candidate_id:'highpool/a',name:'a'},{candidate_id:'highpool/b',name:'b'}]};
+test('export includes only kept maps and rejects missing spawns',()=>{
+ assert.equal(complete({spawns:[null,null]}),false);
+ assert.throws(()=>exportKept(manifest,{'highpool/a':{keep:true,spawns:[null,null]}}),/Place both/);
+ const p={x_m:0,y_m:1,z_m:2};
+ const csv=exportKept(manifest,{'highpool/a':{keep:true,spawns:[p,p],notes:'hello, "map"',measurements:[123]},'highpool/b':{keep:false,spawns:[p,p]}});
+ assert.equal(csv.trim().split('\r\n').length,2);assert.match(csv,/"0.000"/);assert.match(csv,/hello, ""map""/);assert.doesNotMatch(csv,/123|measurements|highpool\/b/);
+});
+
+test('review UI loads all candidates, saves spawn/keep edits and excludes measurements', async () => {
+ const {JSDOM}=await import('jsdom');const {readFile}=await import('node:fs/promises');
+ const dom=new JSDOM('<section id="root"></section>',{url:'https://example.test'});
+ const saved={};for(const key of ['document','localStorage','Option','fetch']){saved[key]=globalThis[key];globalThis[key]=dom.window[key];}
+ const context={clearRect(){},drawImage(){},beginPath(){},arc(){},fill(){},stroke(){},fillText(){},strokeText(){},moveTo(){},lineTo(){},putImageData(){},createImageData(w,h){return {data:new Uint8ClampedArray(w*h*4)}}};
+ dom.window.HTMLCanvasElement.prototype.getContext=()=>context;
+ dom.window.HTMLCanvasElement.prototype.setPointerCapture=()=>{};
+ dom.window.HTMLCanvasElement.prototype.getBoundingClientRect=()=>({left:0,top:0,width:804,height:804});
+ const source=await readFile(new URL('../src/review-pool.js',import.meta.url),'utf8');
+ const module=source.replace("'./review-pool-state.js'",JSON.stringify(new URL('../src/review-pool-state.js',import.meta.url).href)).replace("import './review-pool.css';",'').replace('import.meta.env.BASE_URL',"'/'");
+ const real=JSON.parse(await readFile(new URL('../public/review/highpool/manifest.json',import.meta.url),'utf8'));
+ globalThis.fetch=async url=>({ok:true,json:async()=>url.endsWith('manifest.json')?real:{...grid,colour_scale:{min_m:0,max_m:30}}});
+ try {
+ const {setupReviewPool}=await import('data:text/javascript;base64,'+Buffer.from(module).toString('base64'));
+ const root=document.getElementById('root');await setupReviewPool(root);const el=n=>root.querySelector(`[data-r="${n}"]`);
+ assert.equal(el('map').options.length,500);
+ el('keep').checked=true;el('keep').dispatchEvent(new dom.window.Event('change'));
+ el('canvas').onpointerdown({button:0,clientX:200,clientY:300,pointerId:1});el('canvas').onpointerup();
+ el('team2').click();el('canvas').onpointerdown({button:0,clientX:600,clientY:500,pointerId:1});el('canvas').onpointerup();
+ el('measure').click();el('canvas').onpointerdown({button:0,clientX:400,clientY:400,pointerId:1});
+ const progress=JSON.parse(localStorage.getItem(localStorage.key(0)));const r=progress[real.maps[0].candidate_id];
+ assert.equal(r.keep,true);assert.equal(complete(r),true);assert.deepEqual(Object.keys(r).sort(),['keep','notes','spawns']);
+ assert.match(el('progress').textContent,/1 kept · 0 kept maps need spawns/);
+ el('next').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,false);
+ el('prev').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,true);assert.match(el('coords').textContent,/Team 2: X/);
+ } finally {for(const key of Object.keys(saved))globalThis[key]=saved[key];dom.window.close();}
+});

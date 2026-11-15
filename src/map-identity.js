@@ -8,7 +8,7 @@ export function parseMapNames(markdown) {
 // named variants share their permanent map family's statistics.
 export function statsMapId(mapNames, recordedName) {
   const name = recordedName?.trim().replace(/^scn_/, '').replace(/\.png$/i, '');
-  const permanent = /^(test_map_\d+)(?:_(?:RAW|Var[a-z0-9]+))?$/i.exec(name || '');
+  const permanent = /^(test_map_\d+)(?:_(?:RAW|Var[a-z0-9]+|WMS_\d+))?$/i.exec(name || '');
   if (permanent) return permanent[1];
   return mapNames.find(row => row.id === `scn_${name}`)?.map_id || name;
 }
@@ -21,6 +21,7 @@ export function publicMapId(registry, filename) {
 export function mapLabel(registry, filename) {
   const id = publicMapId(registry, filename);
   const row = registry.find(row => row.id === filename?.replace(/\.png$/i, ''));
+  if (id && row?.map_name) return row.map_name;
   return id ? id + (row?.variant_id && row.variant_id !== 'source' ? ` · ${row.variant_id}` : '') : 'Unattributed archived map';
 }
 export function csvRows(text) {
