@@ -49,3 +49,14 @@ button again or press Escape to cancel placement. In neutral mode, empty-map
 clicks do nothing; drag any existing spawn or measurement point to adjust it.
 Existing handles take priority over an armed placement tool. Measurement guides
 remain session-only and never enter browser storage or CSV exports.
+
+3D terrain preview:
+Use 3D terrain in Review maps to orbit, zoom, pan, choose aerial/opposite/overhead
+cameras, show 2-metre contours, or exaggerate heights 2x/4x (1x is the default).
+The same shared elevation range and terrain palette apply; preview lighting
+changes apparent brightness. Numbered markers show only placed spawns, including
+partially reviewed maps. Return to 2D to edit spawns and measurements. Switching
+maps rebuilds the mesh from that candidate's existing grid. Leaving 3D or the
+Review tab releases the graphics resources. WebGL failures leave 2D available.
+No additional terrain downloads are needed beyond the existing height grids;
+this preview contains measured ground, not trees or scene objects.

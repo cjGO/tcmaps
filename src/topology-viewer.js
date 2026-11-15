@@ -228,12 +228,13 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     const edgeGeometry = new THREE.BufferGeometry(), edgeMaterial = new THREE.LineBasicMaterial({ color: '#365449' });
     boundary = new THREE.LineLoop(edgeGeometry, edgeMaterial); resources.push(edgeGeometry, edgeMaterial); scene.add(boundary);
     for (const [index] of data.spawns.entries()) {
-      const marker = new THREE.Group(), color = index === 0 ? '#2e7be5' : '#e75a4d';
+      const team = data.spawns[index].team ?? index;
+      const marker = new THREE.Group(), color = team === 0 ? '#2e7be5' : '#e75a4d';
       const poleGeometry = new THREE.CylinderGeometry(.55, .55, 12, 8), poleMaterial = new THREE.MeshBasicMaterial({ color });
       const pole = new THREE.Mesh(poleGeometry, poleMaterial); pole.rotation.x = Math.PI / 2; pole.position.z = 6; marker.add(pole); resources.push(poleGeometry, poleMaterial);
       const label = document.createElement('canvas'); label.width = label.height = 96;
       const ctx = label.getContext('2d'); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(48, 48, 43, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = '#fff'; ctx.lineWidth = 4; ctx.stroke(); ctx.fillStyle = '#fff'; ctx.font = 'bold 52px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(index + 1), 48, 50);
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 4; ctx.stroke(); ctx.fillStyle = '#fff'; ctx.font = 'bold 52px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(team + 1), 48, 50);
       const texture = new THREE.CanvasTexture(label), spriteMaterial = new THREE.SpriteMaterial({ map: texture, depthTest: false, toneMapped: false });
       const sprite = new THREE.Sprite(spriteMaterial); sprite.position.z = 18; sprite.scale.set(17, 17, 1); marker.add(sprite);
       resources.push(texture, spriteMaterial); markers.push(marker); scene.add(marker);
@@ -251,7 +252,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
     if (!options.renderOnly) { observer = new ResizeObserver(resize); observer.observe(container); }
     exaggeration(1);
     applyGraphics(graphics);
-    if (!options.renderOnly) experience = createTerrainExperience(container, data, {
+    if (!options.renderOnly && options.explorer !== false) experience = createTerrainExperience(container, data, {
       canvas, pick, spawns: () => activeSpawns, graphics: applyGraphics,
       followEnded() { for (const listener of followEndListeners) listener(); },
       begin() {
@@ -317,7 +318,7 @@ export function createTopologyViewer(container, data, onError, options = {}) {
         }
         camera.updateProjectionMatrix(); controls.update(); draw();
       },
-      contours(enabled) { contoursEnabled = enabled; surface.contours(enabled && experience.mode !== 'explore'); draw(false); },
+      contours(enabled) { contoursEnabled = enabled; surface.contours(enabled && experience?.mode !== 'explore'); draw(false); },
       wireframe(enabled) { material.wireframe = enabled; draw(); } };
   } catch (error) { dispose(); throw error; }
 }

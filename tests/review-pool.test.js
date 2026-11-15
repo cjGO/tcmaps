@@ -31,12 +31,14 @@ test('review UI loads all candidates, saves spawn/keep edits and excludes measur
  globalThis.fetch=async url=>({ok:true,json:async()=>url.endsWith('manifest.json')?real:{...grid,colour_scale:{min_m:0,max_m:30}}});
  try {
  const {setupReviewPool}=await import('data:text/javascript;base64,'+Buffer.from(module).toString('base64'));
- const root=document.getElementById('root');await setupReviewPool(root);const el=n=>root.querySelector(`[data-r="${n}"]`);
+ let destroyed=0, built=[], fail3D=false;
+ const load3D=async()=>{if(fail3D)throw new Error('WebGL unavailable');return {createReviewTerrain:(container,g,c,spawns,scale)=>{built.push({g,c,spawns,scale});return {dispose(){destroyed++;},preset(){},exaggeration(){},contours(){}};}};};
+ const root=document.getElementById('root');await setupReviewPool(root,{load3D});const el=n=>root.querySelector(`[data-r="${n}"]`);
  assert.equal(el('map').options.length,500);
  const {terrainColor}=await import('../src/review-heatmap.js');
  assert.deepEqual([...renderedImage.data.slice(0,3)],terrainColor(pointAt(grid,.5/402,.5/402).z_m,real.colour_scale));
  el('keep').checked=true;el('keep').dispatchEvent(new dom.window.Event('change'));
- assert.equal(root.querySelectorAll('[aria-pressed="true"]').length,0);
+ assert.equal(['team1','team2','measure'].filter(name=>el(name).getAttribute('aria-pressed')==='true').length,0);
  el('canvas').onpointerdown({button:0,clientX:100,clientY:100,pointerId:1});
  assert.equal(circles.length,0);
  el('team1').click();
@@ -77,6 +79,18 @@ test('review UI loads all candidates, saves spawn/keep edits and excludes measur
  assert.match(el('progress').textContent,/1 kept · 0 kept maps need spawns/);
  el('next').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,false);
  el('prev').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,true);assert.match(el('coords').textContent,/Team 2: X/);
+ el('view3d').click();await new Promise(resolve=>setTimeout(resolve,0));
+ assert.equal(built.length,1);assert.equal(built[0].spawns.filter(Boolean).length,2);
+ assert.equal(el('heatmap').hidden,true);assert.equal(el('team1').disabled,true);
+ assert.equal(built[0].scale,real.colour_scale);
+ el('next').click();await new Promise(resolve=>setTimeout(resolve,0));
+ assert.equal(destroyed,1);assert.equal(built.length,2);assert.equal(built[1].c.candidate_id,real.maps[1].candidate_id);
+ assert.deepEqual(built[1].spawns,[null,null]);
+ el('view2d').click();assert.equal(destroyed,2);assert.equal(el('team1').disabled,false);
+ fail3D=true;el('view3d').click();await new Promise(resolve=>setTimeout(resolve,0));
+ assert.match(el('three-status').textContent,/WebGL unavailable/);
+ el('view2d').click();assert.equal(el('heatmap').hidden,false);assert.equal(el('team1').disabled,false);
+ fail3D=false;el('view3d').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(built.length,3);el('view2d').click();
  } finally {for(const key of Object.keys(saved))globalThis[key]=saved[key];dom.window.close();}
 });
 
@@ -98,4 +112,17 @@ test('heatmap colours and legend use a fixed pool scale regardless of map relief
  assert.match(svg.textContent,/Elevation \(m\)/);assert.match(svg.textContent,/X \(m\)/);assert.match(svg.textContent,/Y \(m\)/);
  assert.equal(svg.querySelectorAll('linearGradient stop').length,6);
  dom.window.close();
+});
+
+
+test('3D adapter preserves engine axes, heights, missing spawns and shared colour range', async()=>{
+ const {reviewTerrainData}=await import('../src/review-terrain-data.js');
+ const {terrainGeometry}=await import('../src/terrain-geometry.js');
+ const data=reviewTerrainData(grid,{candidate_id:'highpool/test',terrain_code:'0x0'},[null,{x_m:100,y_m:200,z_m:30}],{min_m:0,max_m:124});
+ assert.deepEqual(data.heights_mm,[0,20000,10000,30000]);
+ assert.deepEqual(data.xs,[25,647]);assert.deepEqual(data.ys,[25,647]);
+ assert.equal(data.spawns.length,1);assert.equal(data.spawns[0].team,1);
+ assert.deepEqual([...terrainGeometry(data).positions],[25,25,0,25,647,20,647,25,10,647,647,30]);
+ assert.equal(data.min_height_m,0);assert.equal(data.max_height_m,30);assert.equal(data.colour_scale.max_m,124);
+ assert.deepEqual(reviewTerrainData(grid,{terrain_code:'0x0'},[null,null],data.colour_scale).spawns,[]);
 });

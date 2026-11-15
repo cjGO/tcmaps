@@ -6,3 +6,8 @@
 #candidate-review [aria-pressed="true"] {background:#164e63;color:white;}
 #candidate-review select {max-width: min(420px,75vw);}
 #candidate-review .sweep-toolbar {display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+#candidate-review [hidden] {display:none!important;}
+.review-three-stage {position:relative;height:65vh;min-height:360px;max-height:800px;background:#c4d5df;overflow:hidden;border:1px solid #dce1d7;border-radius:8px;margin:12px 0;}
+.review-three-stage canvas {display:block;width:100%;height:100%;touch-action:none;}
+.review-three-legend {display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;margin:12px 0;}
+.review-three-legend [data-r="legend-ramp"] {width:220px;height:16px;border:1px solid #738478;}
