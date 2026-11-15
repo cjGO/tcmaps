@@ -33,3 +33,11 @@ The project specifies Node 24; Node 20 cannot run the installed jsdom/undici tes
 The production prebuild checks every candidate's required assets and checksums.
 public/review/highpool must be included in the deployed checkout. Vite copies it
 to dist/review/highpool; no Windows paths are used at runtime.
+
+Interactive elevation display:
+The renderer and vertical legend both use the manifest's fixed colour_scale
+(0.048–123.681 metres for this batch), with the rotation plots' Matplotlib
+terrain palette. Individual map minima/maxima never rescale the colours.
+The frame includes X/Y metre axes, 100-metre grid lines and map identity.
+The caption reports each map's measured minimum, maximum, relief and bounds.
+The plot canvas retains its coordinate mapping; axes and legend sit outside it.

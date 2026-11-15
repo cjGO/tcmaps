@@ -20,18 +20,21 @@ test('review UI loads all candidates, saves spawn/keep edits and excludes measur
  const {JSDOM}=await import('jsdom');const {readFile}=await import('node:fs/promises');
  const dom=new JSDOM('<section id="root"></section>',{url:'https://example.test'});
  const saved={};for(const key of ['document','localStorage','Option','fetch']){saved[key]=globalThis[key];globalThis[key]=dom.window[key];}
- const context={clearRect(){},drawImage(){},beginPath(){},arc(){},fill(){},stroke(){},fillText(){},strokeText(){},moveTo(){},lineTo(){},putImageData(){},createImageData(w,h){return {data:new Uint8ClampedArray(w*h*4)}}};
+ let renderedImage;
+ const context={clearRect(){},drawImage(){},beginPath(){},arc(){},fill(){},stroke(){},fillText(){},strokeText(){},moveTo(){},lineTo(){},putImageData(image){renderedImage=image;},createImageData(w,h){return {data:new Uint8ClampedArray(w*h*4)}}};
  dom.window.HTMLCanvasElement.prototype.getContext=()=>context;
  dom.window.HTMLCanvasElement.prototype.setPointerCapture=()=>{};
  dom.window.HTMLCanvasElement.prototype.getBoundingClientRect=()=>({left:0,top:0,width:804,height:804});
  const source=await readFile(new URL('../src/review-pool.js',import.meta.url),'utf8');
- const module=source.replace("'./review-pool-state.js'",JSON.stringify(new URL('../src/review-pool-state.js',import.meta.url).href)).replace("import './review-pool.css';",'').replace('import.meta.env.BASE_URL',"'/'");
+ const module=source.replace("'./review-heatmap.js'",JSON.stringify(new URL('../src/review-heatmap.js',import.meta.url).href)).replace("'./review-pool-state.js'",JSON.stringify(new URL('../src/review-pool-state.js',import.meta.url).href)).replace("import './review-pool.css';",'').replace('import.meta.env.BASE_URL',"'/'");
  const real=JSON.parse(await readFile(new URL('../public/review/highpool/manifest.json',import.meta.url),'utf8'));
  globalThis.fetch=async url=>({ok:true,json:async()=>url.endsWith('manifest.json')?real:{...grid,colour_scale:{min_m:0,max_m:30}}});
  try {
  const {setupReviewPool}=await import('data:text/javascript;base64,'+Buffer.from(module).toString('base64'));
  const root=document.getElementById('root');await setupReviewPool(root);const el=n=>root.querySelector(`[data-r="${n}"]`);
  assert.equal(el('map').options.length,500);
+ const {terrainColor}=await import('../src/review-heatmap.js');
+ assert.deepEqual([...renderedImage.data.slice(0,3)],terrainColor(pointAt(grid,.5/402,.5/402).z_m,real.colour_scale));
  el('keep').checked=true;el('keep').dispatchEvent(new dom.window.Event('change'));
  el('canvas').onpointerdown({button:0,clientX:200,clientY:300,pointerId:1});el('canvas').onpointerup();
  el('team2').click();el('canvas').onpointerdown({button:0,clientX:600,clientY:500,pointerId:1});el('canvas').onpointerup();
@@ -42,4 +45,24 @@ test('review UI loads all candidates, saves spawn/keep edits and excludes measur
  el('next').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,false);
  el('prev').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,true);assert.match(el('coords').textContent,/Team 2: X/);
  } finally {for(const key of Object.keys(saved))globalThis[key]=saved[key];dom.window.close();}
+});
+
+test('heatmap colours and legend use a fixed pool scale regardless of map relief', async () => {
+ const {terrainColor,renderHeatmapFrame}=await import('../src/review-heatmap.js');
+ const {JSDOM}=await import('jsdom');
+ const {readFile}=await import('node:fs/promises');
+ const pool=JSON.parse(await readFile(new URL('../public/review/highpool/manifest.json',import.meta.url),'utf8'));
+ const scale=pool.colour_scale, midpoint=(scale.min_m+scale.max_m)/2;
+ assert.deepEqual(terrainColor(scale.min_m,scale),[51,51,153]);
+ assert.deepEqual(terrainColor(midpoint,scale),[255,255,153]);
+ assert.deepEqual(terrainColor(scale.max_m,scale),[255,255,255]);
+ const dom=new JSDOM('<svg xmlns="http://www.w3.org/2000/svg"></svg>');const svg=dom.window.document.querySelector('svg');
+ renderHeatmapFrame(svg,grid,scale,'First map');
+ const ticks=()=>[...svg.querySelectorAll('[data-elevation-tick]')].map(n=>n.textContent);
+ const original=ticks();
+ renderHeatmapFrame(svg,{...grid,heights:[60,70,80,90],colour_scale:{min_m:60,max_m:90}},scale,'Different relief');
+ assert.deepEqual(ticks(),original);
+ assert.match(svg.textContent,/Elevation \(m\)/);assert.match(svg.textContent,/X \(m\)/);assert.match(svg.textContent,/Y \(m\)/);
+ assert.equal(svg.querySelectorAll('linearGradient stop').length,6);
+ dom.window.close();
 });

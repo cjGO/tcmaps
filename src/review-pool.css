@@ -1,5 +1,8 @@
-.review-canvas-wrap {max-width:850px;margin:16px auto;background:#17241d;}
-.review-canvas-wrap canvas {display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;}
+.review-canvas-wrap {max-width:1040px;margin:16px auto;background:white;overflow-x:auto;border:1px solid #dce1d7;}
+.review-figure {position:relative;min-width:600px;}
+.review-figure svg {position:relative;display:block;width:100%;height:auto;pointer-events:none;font:18px Arial,sans-serif;fill:#303a40;}
+.review-elevation-summary {text-align:center;font-size:13px;line-height:1.6;}
+.review-canvas-wrap canvas {position:absolute;left:7.6923076923%;top:4.8387096774%;display:block;width:77.3076923077%;height:auto;touch-action:none;cursor:crosshair;}
 #candidate-review [aria-pressed="true"] {background:#164e63;color:white;}
 #candidate-review select {max-width: min(420px,75vw);}
 #candidate-review .sweep-toolbar {display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
