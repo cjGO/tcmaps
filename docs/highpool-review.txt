@@ -41,3 +41,11 @@ terrain palette. Individual map minima/maxima never rescale the colours.
 The frame includes X/Y metre axes, 100-metre grid lines and map identity.
 The caption reports each map's measured minimum, maximum, relief and bounds.
 The plot canvas retains its coordinate mapping; axes and legend sit outside it.
+
+Point placement and dragging:
+The canvas starts in neutral mode. Each Place team / Measure from spawns button
+arms a single placement, then switches off after that click. Click an active
+button again or press Escape to cancel placement. In neutral mode, empty-map
+clicks do nothing; drag any existing spawn or measurement point to adjust it.
+Existing handles take priority over an armed placement tool. Measurement guides
+remain session-only and never enter browser storage or CSV exports.
