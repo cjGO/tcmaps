@@ -19,13 +19,6 @@ must own it. Events are retained indefinitely; monitor disk space. Do not prune
 the journals without retaining a complete backup/recovery chain. Data collection
 begins on installation. IDs are kept as decimal strings; names are display data.
 
-The website's unit matchup matrix is generated separately from the v2 battle
-recordings in `experimental_replays/`. Run `npm run prepare:player-matchups` after
-importing new recordings to refresh `lib/player-matchups.json`. The export
-contains daily counts keyed by public profile ID, with attribution by unique
-recorded name or alias. Each cell counts enemy kills and losses between
-classified soldiers in the captured portions of rounds.
-
 Counters: personal enemy kills (human/bot split), deaths, personal teamkills,
 squad enemy kills (human/bot split), squad teamkills, squad casualties, completed
 rounds, wins, losses, and draws. Deaths/casualties include friendly and environmental
