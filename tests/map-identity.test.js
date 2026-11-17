@@ -50,3 +50,9 @@ test('WMS refresh labels remain distinct while family statistics aggregate', () 
  assert.equal(statsMapId([], 'test_map_107_WMS_201'), 'test_map_107');
  assert.equal(mapLabel([{id:'scn_mp_custom_map_1',map_id:'test_map_107',map_name:'test_map_107_WMS_201',variant_id:'test_map_107_WMS_201_VarD.placements.json'}], 'scn_mp_custom_map_1.png'), 'test_map_107_WMS_201');
 });
+
+test('WMS batch versions retain family totals and distinct labels', () => {
+ assert.equal(statsMapId([], 'test_map_107_WMS_batch2'), 'test_map_107');
+ assert.equal(statsMapId([], 'test_map_107_WMS_batch3'), 'test_map_107');
+ assert.equal(mapLabel([{id:'scn_mp_custom_map_1',map_id:'test_map_107',map_name:'test_map_107_WMS_batch2',variant_id:'WMS_batch2.placements.json'}], 'scn_mp_custom_map_1.png'), 'test_map_107_WMS_batch2');
+});

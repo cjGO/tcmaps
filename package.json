@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "prepare:player-stats": "node scripts/prepare-player-stats.mjs",
+    "prepare:player-matchups": "node scripts/prepare-player-matchups.mjs",
     "prepare:maps": "node scripts/prepare-maps.mjs",
     "predev": "node scripts/prepare-player-stats.mjs --if-present && node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check && node scripts/check-topology.mjs && node scripts/check-editor-models.mjs && node scripts/check-map-variants.mjs",
     "prebuild": "node scripts/prepare-player-stats.mjs --if-present && node scripts/prepare-maps.mjs --if-present && node scripts/prepare-editor.mjs --check && node scripts/check-topology.mjs && node scripts/check-editor-models.mjs && node scripts/check-map-variants.mjs && node scripts/check-review-pool.mjs",

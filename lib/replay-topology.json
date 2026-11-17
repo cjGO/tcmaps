@@ -1,6 +1,6 @@
 {
   "created_utc": "2026-10-22T20:53:20.507685+00:00",
-  "map_count": 627,
+  "map_count": 733,
   "maps": [
     {
       "bounds": {
@@ -15675,6 +15675,2656 @@
       "url": "/topology/test_map_158_WMS_230/9dd5c0a9dd48fd93b948/terrain.json",
       "variant_id": "test_map_158_WMS_230_VarD.placements.json",
       "variant_revision": "fc8ae61ff6e027c34c4ca9eb5ea87b95d5e7af480904eaa8382a1e205df69a79",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "bff12d8bf88d6734bf4ab7529ac671b54afa073a292b5bf4ad3dbaa10df85a2f",
+      "id": "scn_mp_custom_map_6",
+      "map_id": "test_map_194",
+      "map_name": "test_map_194_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 36.115,
+      "sha256": "ee8bb42b6ae9540066cddb71117cd3c33e21f0934aca4ffc6f42dfd0a9889dbf",
+      "source": {
+        "recipe_sha256": "a9bb1bcf62ca68547cd19e173d69ead40e4edaa41ac46f7deb376fc1fc8c2997",
+        "sco_sha256": "12d00d7249b5188148c6a5694869c3bfc6b0fe0843831958101e9ef82d6ea89d",
+        "terrain_code": "0x000000033281c58a000dc37043b91e8b047168006a86d33d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_194_WMS_batch2/ee8bb42b6ae9540066cd/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "00a255b9f26a55ea9d8fc864798158d6b3ebe5c42e78af05b70211486b8492cc",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "fb85b08f6e5d9c23003bab7b16afe1165ddfde191abec72f4f3cf020c7fd96a4",
+      "id": "scn_mp_custom_map_17",
+      "map_id": "test_map_040",
+      "map_name": "test_map_040_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 40.858,
+      "sha256": "7178fff0ebba08d1057a032c23aae16c0ef9c77c736b37492ae168df0fa33652",
+      "source": {
+        "recipe_sha256": "d7ef94b107f8a19d75b1f1bd9fa57dde529aab15225a982a0a9eca73bc9b5b9c",
+        "sco_sha256": "85f0e4dc5a09ef1ed9e002f87957acbfa683bb34cd4a9fabf9cffd9bc51f81d7",
+        "terrain_code": "0x000000034281888a000dc37011fce9f60a521e1e385eb5ac"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_040_WMS_batch2/7178fff0ebba08d1057a/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "10c0f3c245ac1242ce0fb545363ffa3e1517e1f06816c83b74a049faf8b11692",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f288640bb4a89830e76ba885440dbfc34685bc97d893127f5c1e006072953dcf",
+      "id": "scn_mp_custom_map_37",
+      "map_id": "test_map_055",
+      "map_name": "test_map_055_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 21.136,
+      "sha256": "f18d184b9d99c9c4f201606c46c173836f1809dfeddad7786b34b4c74e67ab11",
+      "source": {
+        "recipe_sha256": "0c057fa94f890e1a1784fd21d84111c97b52f9d31896f6881db864dc76da70ab",
+        "sco_sha256": "d4c7abfea65b2c6c37e436ea506586f794e2b500820cafbf7675d9d4625a8373",
+        "terrain_code": "0x00000003b282440a000dc3703d0f403d65ca0c8562958df4"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_055_WMS_batch2/f18d184b9d99c9c4f201/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "e396065cd6190e80d62ccf383ac4e1e5d9d3b52f5434622c13a5a386af47480e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6554efafe2ca81c4de81431f53f485231f919e9e26d8aa6a459fe308f5ee00be",
+      "id": "scn_mp_custom_map_91",
+      "map_id": "test_map_061",
+      "map_name": "test_map_061_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 50.184,
+      "sha256": "8f1d9728f6833802402b470ccb91b9d6d06bc1cd36e60c9eec70c2b3cdfcbf42",
+      "source": {
+        "recipe_sha256": "02bc5aef00193cc0a5f31ca1bd43979d0bfb949db50c26323e949ad8307e7af0",
+        "sco_sha256": "081a6ff4b757da3bc18dd159b2bfdf1a600638b7e57054e0ba87f3a0697a9e3c",
+        "terrain_code": "0x00000003d281488a000dc3702d33ebaa52b4655b461e2b5f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_061_WMS_batch2/8f1d9728f6833802402b/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "45834f1e4eaf89bd671da8152cd7554aba77ba75f27fec3b487568e1dba68a02",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4ae6f899d21c239d7cd676d5a4718f05020360ff04c5a7bb0a0a5432bd0d549b",
+      "id": "scn_mp_custom_map_28",
+      "map_id": "test_map_049",
+      "map_name": "test_map_049_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 26.796,
+      "sha256": "ef249d2eeb33791a7419587dfbde3d8d4c3a599a5cd1ebce56efdedd1b135ef2",
+      "source": {
+        "recipe_sha256": "a385251aa585d9dfa6df65235ceab7ca8f82ba7244e6b07e2bbf6712c964987f",
+        "sco_sha256": "02888d409139e5c61cd3d800b9068dda583203529651d312f6e902b2177637ae",
+        "terrain_code": "0x00000003c281c60a000dc3702fec81552ac27428550bcb20"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_049_WMS_batch2/ef249d2eeb33791a7419/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "f7558bbc2769a2433cf4d4cedcde2b0fe341c9962c87673ee78849b144f3c9e7",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3654a065ae1cb98fd845f9843c51cc0e9916095251768841142cb9f1b835a134",
+      "id": "scn_mp_custom_map_18",
+      "map_id": "test_map_041",
+      "map_name": "test_map_041_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 26.021,
+      "sha256": "ce6cf6672280d8353d187daae85b779c280d09f24ef09b1b01fb566ef2750bc3",
+      "source": {
+        "recipe_sha256": "2dbec0b17da7bfd808c183a16417e297b243a2e362abfa03860f2d44ecbb0d06",
+        "sco_sha256": "857f6a98e140d22f4fa168d12a1cdf5f765778e8e32c9a15de3e2e954e0f7099",
+        "terrain_code": "0x00000003a282040a000dc37006efc25977ae88c52427dbcd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_041_WMS_batch2/ce6cf6672280d8353d18/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "a58a7c47744be45ad298dbfec084e4a779140a7b44828faf91a4447ddc9d61e2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "596440c3a77b0e930f392ab0f5bc31c7f1252ad18631d5575189333860436a35",
+      "id": "scn_mp_custom_map_19",
+      "map_id": "test_map_199",
+      "map_name": "test_map_199_VarC",
+      "pool": "medium",
+      "relief_m": 48.399,
+      "sha256": "8992a65bfa8cf7d813e09e8fdc21e9a5ed40c43409ddf5f04dfe8d0809ca1469",
+      "source": {
+        "recipe_sha256": "6e96660d8e9b40b8cb292110ba44cea987f5fbf0014c2a91e153886a0f6e4cd6",
+        "sco_sha256": "82da9dd16d55d0096e33f5f3796b2f240d2c0ed142c5b0af07a9e37100630638",
+        "terrain_code": "0x00000003b282088a000dc3707e35eade294ede2b2e93f092"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_199_VarC/8992a65bfa8cf7d813e0/terrain.json",
+      "variant_id": "test_map_199_AnnaFreud_VarC.placements.json",
+      "variant_revision": "36ccd615697acda48539bff9bfebba580345e7740bbf4280d84e4041f2f79f5b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c82080dce6dca0e40adec635ca42e1491049f6041e967e07f7314339de8df4d1",
+      "id": "scn_mp_custom_map_12",
+      "map_id": "test_map_198",
+      "map_name": "test_map_198_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 21.103,
+      "sha256": "5e57b68d7eec7451a314dfeb96b860025f2ca5b393e2b92e5976dd50361ce897",
+      "source": {
+        "recipe_sha256": "c59223b18d321c01d652807a2d6f0e9f2e98af430307e2bf3720a5a0b45c5196",
+        "sco_sha256": "307e2521a49e45cc2558e1955b3579a5bd0269e17bf4b165ff849f0d44e34e7f",
+        "terrain_code": "0x000000034282850a000dc370563fb7f5056d5a192b55890d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_198_WMS_batch2/5e57b68d7eec7451a314/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "077f6e1c1904262d7e6149c4f99a34bccfa1b8d5b7b6a7ba17fa2b2cd28eb07a",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "cba467adeb5abebb3d8758dae30dd118bf63de903779c7cd5a30b33d585b5ebc",
+      "id": "scn_mp_custom_map_33",
+      "map_id": "test_map_052",
+      "map_name": "test_map_052_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 31.274,
+      "sha256": "2db05d6afa41ae05e70b71b38d70273ed704d8021962d38470a7e6f0ab9133a7",
+      "source": {
+        "recipe_sha256": "300b555ceaa9c86d2210a971a5f6c0ca7ece4369e08b1d23399b6d5a612d9ad5",
+        "sco_sha256": "82ec6428888b6cf1940a90453c8ae5d99131c9b7a4223c856a694eb31a1d23c7",
+        "terrain_code": "0x00000003b282060a000dc3705dd8adc76e8bbba1095ad586"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_052_WMS_batch2/2db05d6afa41ae05e70b/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "e9065230d0a52ec9a74bfd5458b2ee34201da0cea9a4d3123e10ddb1f5141b6e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "038577799f24e7a182e48bdfddc9d736efa4692f66fecc497245df0c6dc4f280",
+      "id": "scn_mp_custom_map_30",
+      "map_id": "test_map_050",
+      "map_name": "test_map_050_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 26.796,
+      "sha256": "b13447aeac2b9c75d3880f07c5ef26d9087661face173010e2b0cc88f6ce0f8e",
+      "source": {
+        "recipe_sha256": "ea8858e9ca2752df8c13480c52dbf86dee208a76e7c980ceb2388dcebe6559e3",
+        "sco_sha256": "cc6e877182cb21e9ec88a56f6a451a9ca2c86361ea3d140c93050a9b910e4cc8",
+        "terrain_code": "0x00000003d281c60a000dc3702fec81552ac27428550bcb20"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_050_WMS_batch2/b13447aeac2b9c75d388/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "565934e57d54a0ca735ad3500ea92e46ff733212a12f0f16e74554182d86dd9d",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "ab97696d434be64c2e35459aebea71e4570bc66674090f39a2a5241b186a0cf2",
+      "id": "scn_mp_custom_map_16",
+      "map_id": "test_map_039",
+      "map_name": "test_map_039_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 36.556,
+      "sha256": "8ee7bd7b7894bf0370544726d38f772da6041d63190bd416ba14d2df11b0fe55",
+      "source": {
+        "recipe_sha256": "2b29a2d145b1910e6c1bb1b6d38b2423de752ae4e59d61580a2f03bcbf72d1d9",
+        "sco_sha256": "2b6704716baaf6fbf062f413ff4651eddab4f7fa395b0867877baabac01e6954",
+        "terrain_code": "0x00000003c282868a000dc3702c7edbd6071e3a062015ee1e"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_039_WMS_batch2/8ee7bd7b7894bf037054/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "c442f54c029a8f075222f7a31ce069caf672d4757391fab14c8a53f4918e6f7f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "e2458dfb6e6fa22b3ce7d5d7063be48fa509595be7ec6d022098c361ac224284",
+      "id": "scn_mp_custom_map_46",
+      "map_id": "test_map_057",
+      "map_name": "test_map_057_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 23.635,
+      "sha256": "22cd693041d37b379174b368dc647d2e57aafa2c88519e02a2d605e09cc025fd",
+      "source": {
+        "recipe_sha256": "569b257ac706c196c3d874645ffb653a6415fd18ce4e3f1e18dce5de5a0a4c4c",
+        "sco_sha256": "2df31ed72d03f768f4c17fb3d598f67e066874dc25e633f5e1d4395610f1122d",
+        "terrain_code": "0x00000003a282840a000dc3704b7f5ce51a2b229764506e9f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_057_WMS_batch2/22cd693041d37b379174/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "89a1847299a29476e7cbeb100dde5ac669151caa06957845c58b31958ef3d5d2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c3033e5bee4b3b1cdc301c680b6382b896049332777ff705510f0e1ff6c6a35b",
+      "id": "scn_mp_custom_map_77",
+      "map_id": "test_map_059",
+      "map_name": "test_map_059_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 51.033,
+      "sha256": "a5dddc1ef42a667305f67a045d35db7ead444665ef8fd65573cf007f3229ae9b",
+      "source": {
+        "recipe_sha256": "b08df6fbf0ed648ef03d360568e018e02a69010b2df1fc833e1ada23c824d275",
+        "sco_sha256": "abeca515a3da5ab826e2aa4da89657da6f8429b3e4a286776b99a278b9cd12cb",
+        "terrain_code": "0x000000033282488a000dc3702f1fab3002e2247f12e610d8"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_059_WMS_batch2/a5dddc1ef42a667305f6/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "18bcb5ca36737f190734dff7044e453c1da1631bae4ab93ed621b3f7ec837d2e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "75a4683495393702a90bbe85520dca3daecc60af59f13b8401b6c876d61e83b1",
+      "id": "scn_mp_custom_map_24",
+      "map_id": "test_map_045",
+      "map_name": "test_map_045_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 55.08,
+      "sha256": "c107a754141f60c6b9bac51358855e2aa9008415ad9992b69d592027ae2ca031",
+      "source": {
+        "recipe_sha256": "33f62846894bd98f104b3402244258c146712aea55dd4fc63efe0643ea59052c",
+        "sco_sha256": "4b03009b6c9c7d1ad57f499bbbc133943176ca0ef2c997547bfd5cbc4e290f34",
+        "terrain_code": "0x000000034281468a000dc3706e8efc9942b1437565c29c92"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_045_WMS_batch2/c107a754141f60c6b9ba/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "f13be873474d4e39751bec20d9d6d896b3da79a6c94044fcc126e0a761dc059f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "12076d20c675783e4924ada21fc295ce97bf7a31f1e14fa33a54a277a48f4160",
+      "id": "scn_mp_custom_map_38",
+      "map_id": "test_map_056",
+      "map_name": "test_map_056_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 43.819,
+      "sha256": "85dffbe8d1349cf5067f748ccaeff34823e3185a05e1c054f1f833ed7a493fbb",
+      "source": {
+        "recipe_sha256": "3e0bca5daef994c9c8fa813983da472eacf1059325bc0da212326a733723151f",
+        "sco_sha256": "e0d4076e8cab2c909cd9e70ac5f37f732739439f8583c3a992663ff0626a09e0",
+        "terrain_code": "0x00000003b282870a000dc37035cf27dd6970c3d60240e3ab"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_056_WMS_batch2/85dffbe8d1349cf5067f/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "e825cd530165315513af0f0db3b2e2aa1e8d8cb8c68177c2cf42d79a40dae1be",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "e2c0511302fd641d1f24775fe23733ac3f41ec6e43df5d54bfab6fe8170d3b7c",
+      "id": "scn_mp_custom_map_10",
+      "map_id": "test_map_195",
+      "map_name": "test_map_195_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 28.786,
+      "sha256": "11397f6b91679855bb3d9f91f64bd4cea7040795eb776ceedd53e233c0976e83",
+      "source": {
+        "recipe_sha256": "94c2b673d744890385f99b7417a08cb09a9c9a8eac53a84641e2b7845e154306",
+        "sco_sha256": "60ad691c615a3cb48de64273ef73709a2660eba599e982cd5638623fa4e8ac53",
+        "terrain_code": "0x00000003d281460a000dc3705cc0ecaf399769176b4d539a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_195_WMS_batch2/11397f6b91679855bb3d/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "722bbfe5e08c3e46bd6f0625cd9af68d3e85f6ac791b97de2d7b27c5a0173989",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "29eb4b5d4da194e8cb37312c88256bc190c5e2fd3d0ded8eafa898701f2276c9",
+      "id": "scn_mp_custom_map_36",
+      "map_id": "test_map_054",
+      "map_name": "test_map_054_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 18.243,
+      "sha256": "716c41c19fb46e7d3a448f48f0002e9cb5e56003c1f2bf59a5900a23e9ddfde7",
+      "source": {
+        "recipe_sha256": "c6fd64f44db42940756ece81ffc504984d3db74c3b98abe10efe13d755294f8b",
+        "sco_sha256": "a909d379fe053eeb19d3dcb473bdd59baa17313505ab0ab6adb1268c6dcab06a",
+        "terrain_code": "0x00000003c281450a000dc3702c2e33800c557ddb3948eb08"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_054_WMS_batch2/716c41c19fb46e7d3a44/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "d5e0ab9c462ebee31d439d366ad674cad9ed5b32c915c601e104bd0fd1159f7e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "62e58186b0bc6d3e6027b53cdaafa25206763a09abebf5e07c48fa1fab9fb100",
+      "id": "scn_mp_custom_map_23",
+      "map_id": "test_map_044",
+      "map_name": "test_map_044_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 20.016,
+      "sha256": "4a78d24e9c27f0c2a2453db7dfca91450282ae6baaa8aba973f12101985ecaa6",
+      "source": {
+        "recipe_sha256": "9c00eed97634adcd49ae035455422859ef444eb9cbd40eca5b81c74248944d1d",
+        "sco_sha256": "675b129c518b308f1cd1254be1a5901f12e850cee105fb2bf6c044ac6c5b74c7",
+        "terrain_code": "0x00000003a282840a000dc370047d6bb55c64a3c6672b3574"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_044_WMS_batch2/4a78d24e9c27f0c2a245/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "0fef7eda6c5ce1218a3e7bad0163d44941b0f0ca8707746f57e553708d64b999",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "dbd37288fc5f90488adf71d2649715dc2b41f4ca940d32fcb625cf410e2be7c5",
+      "id": "scn_mp_custom_map_35",
+      "map_id": "test_map_053",
+      "map_name": "test_map_053_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 18.243,
+      "sha256": "7dae08a69d7afd21fed17b0585847869db96a09203c916d9b9fbd7480b1e4a0b",
+      "source": {
+        "recipe_sha256": "c4d6aa3054f568efd0ee9e56387886f7b629114fedfcdcd711d8b78b7905482d",
+        "sco_sha256": "440c0093d5d0707333893fb754e73db9845fd32c5d7bc55dbc676a6f3dae6f48",
+        "terrain_code": "0x000000033281450a000dc3702c2e33800c557ddb3948eb08"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_053_WMS_batch2/7dae08a69d7afd21fed1/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "d011b68978c50973ee3e6b199dcb50a938f5b56e4ec40c05a43b004e646695ee",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "7283568e377a347aa8753620d10d6a761fb26c8e47bce1937dd77e6fe47ecaa3",
+      "id": "scn_mp_custom_map_87",
+      "map_id": "test_map_060",
+      "map_name": "test_map_060_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 46.31,
+      "sha256": "ad8300291ad19b094487be5e236920eb120b9dee564d6c5063370a05c5a86cea",
+      "source": {
+        "recipe_sha256": "285803f1dc39127dc51b9eaf32ac8ae8e027d274530333f5e10fa3d4ff6460ea",
+        "sco_sha256": "621527c7cadd3883b50de7341a2014babcdf8e770e6460c5cf30e9c746ba2399",
+        "terrain_code": "0x000000034281c88a000dc37031b149b655c682752d70f4ab"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_060_WMS_batch2/ad8300291ad19b094487/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "25c2f0c69a657925ef9ff6a865cfeeded230e049a5bf86cdaf105b7082efb0fe",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c1026f910c805b4b591dab13b38f72ab665c31fa3c041b38787333ba8ef79656",
+      "id": "scn_mp_custom_map_47",
+      "map_id": "test_map_058",
+      "map_name": "test_map_058_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 43.772,
+      "sha256": "6d574982fc0afebb5abd553c27ddd1fc42ede9d3cfcf92034735af8057153acf",
+      "source": {
+        "recipe_sha256": "b77b69fd887ce85b04653a8bd07070f6c212204010468e51428b73d2a7531f42",
+        "sco_sha256": "affa98ac513cfa2a831e9459c23bf70e63445a38291e80ee240feb52ec6e82af",
+        "terrain_code": "0x00000003b282078a000dc370487ee7444a4eac524485777e"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_058_WMS_batch2/6d574982fc0afebb5abd/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "8b3396f54e69e66fcc65f5b64cafbc41b20ed33adda012ac08db5483bfbe6fd6",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "fc0c999836a5190715968437624613c9cc42f340ac277fb3e2145ecdd12443d8",
+      "id": "scn_mp_custom_map_14",
+      "map_id": "test_map_037",
+      "map_name": "test_map_037_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 22.273,
+      "sha256": "42a92512129a3cd1997cf2c03c37dc9bd8be7d4109776812035251f29bea1098",
+      "source": {
+        "recipe_sha256": "df480611fa032bc5c41083758ac52925e60e3da6425fafa27aa50d85a722f8f5",
+        "sco_sha256": "6d5a29db582345ea24f4d22197210327c2963103065ba86e0163286e4cfee9ea",
+        "terrain_code": "0x00000003d282050a000dc3702469bb2422a732684f0a30f7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_037_WMS_batch2/42a92512129a3cd1997c/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "f553d2f4d6db8ff20649b44d6f410dcc5702105a3c8058414685355955e9f213",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4aa6f65fc66de3e8c81308d32015d97b8f023e6ebc51993cda9bddb41767d3cc",
+      "id": "scn_mp_custom_map_15",
+      "map_id": "test_map_038",
+      "map_name": "test_map_038_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 59.17,
+      "sha256": "864e444cef118961ad1996b53fa414c113a84d3bc115ee399fee19f5ebf959d6",
+      "source": {
+        "recipe_sha256": "cd8efd36ccae08e2c143d54599c04c0b64bceaaa4d78e9d8d45dc74853ab13d6",
+        "sco_sha256": "1a6b6c50378a290379e2c002724ae973cb78f8989d2f867007db48e91a5a502b",
+        "terrain_code": "0x00000003c2814a0a000dc3701f73f7f0361e7dd9223d6487"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_038_WMS_batch2/864e444cef118961ad19/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "ef251def21cf9975efb7f7cf7a1692efec3d600941452d3f02a7d19b4aab7c5b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4a783caed62a94ca51e0d3cefcc9b9c4e37c77d2972b1f1066aa4f80f71adb4a",
+      "id": "scn_mp_custom_map_11",
+      "map_id": "test_map_196",
+      "map_name": "test_map_196_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 31.301,
+      "sha256": "9bfd656dd645e256ffabdf8192b5f513d12431dbc683b577bc5be76752123af0",
+      "source": {
+        "recipe_sha256": "652faa7d691a5bcad9801ed9d3c95b26aab7c9f575a8d81ebfa5156929a85cea",
+        "sco_sha256": "ef53befccc5df3049b90fdc0b89d60d72acc6361d0fdce9f00b3b180289f7ded",
+        "terrain_code": "0x00000003a281c68a000dc370500c3bee7352eb34724852f5"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_196_WMS_batch2/9bfd656dd645e256ffab/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "8f5b92cfe4d00e500e25cfc2525424c52c06674b939c9de208569823a0a8f4d8",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6598bb353db6eed336a7d52d6c35a9f475dde5b1c49cf6256b65368afef7a1fc",
+      "id": "scn_mp_custom_map_31",
+      "map_id": "test_map_051",
+      "map_name": "test_map_051_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 28.781,
+      "sha256": "7d5de19af475c08414f51bf70659aab5e2c7194ac3c4388399c7acbb0de8522b",
+      "source": {
+        "recipe_sha256": "0fd63cba3d097b96af8d81a45089ab5d6b92ec76446d9d8da6c5792153c1d043",
+        "sco_sha256": "78e6f765b8d4b7cf4d4e3341c1d3da7ea05817d8eed2038b8a8fea2485b21d99",
+        "terrain_code": "0x000000033282050a000dc3705ee724974d3f9e74437ec609"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_051_WMS_batch2/7d5de19af475c08414f5/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "32b6028db10f89774b7891dfacaad4a79e633c973e2e591892be10b37281295b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "0d790f6e5a05ee95cfd7117b5c9803ba12b2c6bf956f8dc3f14596398d7a7581",
+      "id": "scn_mp_custom_map_27",
+      "map_id": "test_map_048",
+      "map_name": "test_map_048_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 48.067,
+      "sha256": "8707e7e1f7406429370a375e5d6f373ac9c5f0417e9ca7c4a48698d705c9e227",
+      "source": {
+        "recipe_sha256": "640ba8b0f31f6693383192875f2f44789d67f80243f238d44a8cbb1ff7ebdf32",
+        "sco_sha256": "cca88f1be47b9c15ca609cd43db5828b5154af0abcee6595cf01f0859603ed70",
+        "terrain_code": "0x000000034281480a000dc3706fe3d1ca0e6ecef81894308d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_048_WMS_batch2/8707e7e1f7406429370a/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "d807d3503d64ab355dd7deacd3765a976b6ff6f869cda2920fed83845ee79261",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "052597e68d00778bba0c46efabb0421a1aec0744d9a7eec01623f51f305614cd",
+      "id": "scn_mp_custom_map_97",
+      "map_id": "test_map_062",
+      "map_name": "test_map_062_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 56.341,
+      "sha256": "12d0893fb0943319ae501170119f97a7e7d5bd1bbc6c30aeadf337392adcbbe3",
+      "source": {
+        "recipe_sha256": "35561e258ef6e19978ba9b57039dd76fd314988f5ab87406eca976b6608dc4c9",
+        "sco_sha256": "f7dadd41062cd601618d4fe16a5b3aaf7731d93d4c9b417f2513168ead32ead6",
+        "terrain_code": "0x00000003b282890a000dc3704658e25723ec89d440d0ee97"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_062_WMS_batch2/12d0893fb0943319ae50/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "29280a0b34f30b2f09cd0d8c9a93618640372137fdca9458d541b9573b2fd3a3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "db3773b86416c9af2f0e48d45414be9a14437b6b35b8d9a3586631f634953299",
+      "id": "scn_mp_custom_map_25",
+      "map_id": "test_map_046",
+      "map_name": "test_map_046_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 41.769,
+      "sha256": "3569a788bbe4e7e182cfe33b0fc141ed494bbddf26665e43e7a6ad39805fed56",
+      "source": {
+        "recipe_sha256": "35a345930094b0194e298f410447e236b40a768303caf2b39f61272030179301",
+        "sco_sha256": "f8282238611c7c42cb4f3b39026bedcc59a0353c2af5c798462fc1b5d904f041",
+        "terrain_code": "0x00000003d281c48a000dc3707c310d99517102cf6afcabfb"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_046_WMS_batch2/3569a788bbe4e7e182cf/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "1d932c35b9ac33d9d4304e22b6afbade60357d54b3df69423276b971f36ed7e7",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "9a76356ff7d2109826a6470af306eac6e421ebb8f6c77bf2c6512a49d9818288",
+      "id": "scn_mp_custom_map_26",
+      "map_id": "test_map_047",
+      "map_name": "test_map_047_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 36.228,
+      "sha256": "eda707a5ceb0bad236525ea6dd8ed2f77241caac4c835193f0b79ad4c36e1231",
+      "source": {
+        "recipe_sha256": "c5a5fab766f8c5451e3fe13aa4193b6445dd9225ced9e9bb42883e2000011079",
+        "sco_sha256": "e984cec446468e0611f31c1cc163da6fea1ed2a521295d7e9d4b0e0ad1559414",
+        "terrain_code": "0x00000003c282470a000dc3704ac8fddf74e8d56900bd55fd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_047_WMS_batch2/eda707a5ceb0bad23652/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "8354a97569cec5b178400ea89dced897da7ce5151e20da5878f7bd3fa4ed965e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "990d520de12f9bed3b584567978e214f0aa72f5a375a3283ced6e9ae4a18e84c",
+      "id": "scn_mp_custom_map_99",
+      "map_id": "test_map_063",
+      "map_name": "test_map_063_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 27.631,
+      "sha256": "414e8ddd001557769de5a62b5cfa7dfa72c7f0a68a7f7cf9652d785f2ea70b15",
+      "source": {
+        "recipe_sha256": "7eb08c9de388e0e4885ed141530760c022cb2efb127e7cc8a5fcdfaea2e03e8a",
+        "sco_sha256": "c7c75505ceea6a7ff05a35db94eaf63561ac421b15d51a4e2267c5323b2a9b1f",
+        "terrain_code": "0x00000003a281c50a000dc3705ddc293c409cf81224a31d46"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_063_WMS_batch2/414e8ddd001557769de5/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "03116d3b916554480496c8358635152de76cfd6d758ce116cf317de7e0ea80dc",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 856.0,
+        "x_min_m": 24.0,
+        "y_max_m": 856.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f74471838d31b7760391afc2ae6d98859abcbbc8642927603004e673f34dca30",
+      "id": "scn_mp_custom_map_22",
+      "map_id": "test_map_043",
+      "map_name": "test_map_043_WMS_batch2",
+      "pool": "medium",
+      "relief_m": 25.707,
+      "sha256": "c5dafed31a8a5a5597fbc9573f7e0d8a7ed78b9b6ff805c64359b8a737376bce",
+      "source": {
+        "recipe_sha256": "006040559fc0df74af14fddf9357f54003eb5914c8fa88a6e8a6d9d5fb46376d",
+        "sco_sha256": "ddc779584de8eb3b7d534e2866236c126000065145240afe79a934c4d72585b1",
+        "terrain_code": "0x000000033281440a000dc3701801b5b059d246317bf337c6"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_043_WMS_batch2/c5dafed31a8a5a5597fb/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "62d4967cb7702998643985bc73cb77ab22d531bd8db14fc2a842266dddf8a71a",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "ddb9797c430e4bbd34d4651a27edb4608afac53d00bb797042af04e2d6fe785a",
+      "id": "scn_mp_custom_map_20",
+      "map_id": "test_map_115",
+      "map_name": "test_map_115_WMS_batch2",
+      "pool": "small",
+      "relief_m": 25.212,
+      "sha256": "998fa047d4a87663c600e915d84e9ecc870a40e8db4c601f2ea7cc89368ada5f",
+      "source": {
+        "recipe_sha256": "25b4b16ecd68eea9963a6ecc1d872fbf326bc1b8017b8df82fb884547bec3fb1",
+        "sco_sha256": "e7b845f261cdf22cb68dcf4a8a65a383cfc2149a949973b0e7121c091a122a78",
+        "terrain_code": "0x000000033283860a000b42d005bd9f07153ac6af40f99588"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_115_WMS_batch2/998fa047d4a87663c600/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "323b4e78d0e25ad098ef3f320e43bbbb4fb3a88f0dd58a30a026003adaa76f52",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f0a7033d22b1ae8d0e4f195d1bed68d83d4da2163b1b23fe4400b400e51f6eb7",
+      "id": "scn_mp_custom_map_51",
+      "map_id": "test_map_129",
+      "map_name": "test_map_129_WMS_batch2",
+      "pool": "small",
+      "relief_m": 24.952,
+      "sha256": "a49ed82d3c33c483845f48abddf272240ebd90b9a8a67a33ed8cf223154b1c68",
+      "source": {
+        "recipe_sha256": "862169a14e127eb0415677242498afeb03dcc0138e6dc29abb20abcc7037b92e",
+        "sco_sha256": "47d4f58a0dffaaefc895c60c28f6657ae5cf21a2c944cd2aa96339c85d720d12",
+        "terrain_code": "0x000000034281468a000b42d004bd82a01bc574590e2fe8dd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_129_WMS_batch2/a49ed82d3c33c483845f/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "3045dd1e6fdd068d940dd6f8dd52ce488a43b363637232bb88eb6f3787bce1a4",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c91fe6a44708371f058a0a1e461c9b41861fa93c958785a2673ffc2b6b7cc9f8",
+      "id": "scn_mp_custom_map_49",
+      "map_id": "test_map_127",
+      "map_name": "test_map_127_WMS_batch2",
+      "pool": "small",
+      "relief_m": 38.169,
+      "sha256": "4c117e35d0506e07fb1521553a11d267ffae28443a5900d09280bc9c2838540e",
+      "source": {
+        "recipe_sha256": "b0f077c123ecd429f746e1636514f1cb8de30717fa2848d5d31a39894fe42192",
+        "sco_sha256": "4205b5711f572cb0e0581d6195a8fff7bbfc4571e8c952868bf5c22f2fab2328",
+        "terrain_code": "0x00000003b2848a0a000b42d0066d93be7889cb833573e5da"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_127_WMS_batch2/4c117e35d0506e07fb15/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "0e0d4c8ef7285d33c88521f174e26f84679c7cdfc4ec8f422ad9d02abccc9af1",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "98645b00a57d157e82b9f51acc6df831c6b1933d490bde3fc9252ba32d372b35",
+      "id": "scn_mp_custom_map_32",
+      "map_id": "test_map_117",
+      "map_name": "test_map_117_WMS_batch2",
+      "pool": "small",
+      "relief_m": 29.372,
+      "sha256": "d70d764fbee41b8775c8d1f1f261061f25774e404837d2477d4fda8587a26e89",
+      "source": {
+        "recipe_sha256": "692e93cd379d62427d2c762114c3cc48e8118b5cbd8dd59decc03e9ba6550290",
+        "sco_sha256": "1045ac6ecf334c8c63c46af6e8baa6fc41c9a82151498e24aedd3b9cfa970e40",
+        "terrain_code": "0x00000003d282088a000b42d00a56e3f6601e6ec25ef63cb1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_117_WMS_batch2/d70d764fbee41b8775c8/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "888334e569a2920a450c6ec63af384b4a101c511e88fa7e23a1a007bd96ebc35",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a855a7f10e80b90401636fa63143a70d73edc588f26925932e93e3eefa76bf56",
+      "id": "scn_mp_custom_map_2",
+      "map_id": "test_map_108",
+      "map_name": "test_map_108_WMS_batch2",
+      "pool": "small",
+      "relief_m": 39.689,
+      "sha256": "1b8166efbee4ac96dcea90789dd2b01e2400d564bc20507e1d86b67f43f32dd5",
+      "source": {
+        "recipe_sha256": "6db0e982c243f1fe068203790051def94e25abe9eb4bdf2a8981e3675ddbba65",
+        "sco_sha256": "2344681174d776924def8d05e12b0d6bf0f97a5b8fee2692803e68b817a5305c",
+        "terrain_code": "0x00000003c284478a000b42d03ab15e3e7fb85ad77533c93f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_108_WMS_batch2/1b8166efbee4ac96dcea/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "240fd47191fd481f4f025524e6cc93269c14d69308ca1be7377476910705fa38",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "2e6269413420d269954d4ba4815c6541e01642c9db183d45d6c0f3fe30e35d14",
+      "id": "scn_mp_custom_map_56",
+      "map_id": "test_map_134",
+      "map_name": "test_map_134_WMS_batch2",
+      "pool": "small",
+      "relief_m": 33.456,
+      "sha256": "b351b868420aec73737880886a9fa0a808b695e49ab644240b5f1c4d97601272",
+      "source": {
+        "recipe_sha256": "de8b1aa7ac2e7715d9493024a57e7c4211edb96ca9b918254cf8760e1be9abf9",
+        "sco_sha256": "7841d98b5bfdaf9c42a3ff77846531040d2b12db60a416e10ad652fdc8782d98",
+        "terrain_code": "0x00000003a283c50a000b42d06b1fa29a3ad11baa1b0e74c1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_134_WMS_batch2/b351b868420aec737378/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "05efef3359cd2b745e145a607e625de45184a972d96761ed0f8d10b367330af2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "247b308197f18021a6695d02c46cce91f4dcf6afd0b7164e149608986df2fd41",
+      "id": "scn_mp_custom_map_58",
+      "map_id": "test_map_136",
+      "map_name": "test_map_136_WMS_batch2",
+      "pool": "small",
+      "relief_m": 31.97,
+      "sha256": "e21187e7f74adc85186bc24ab8a81e946de8797a13391763744169d22df1c120",
+      "source": {
+        "recipe_sha256": "88981c3255da454d2e945ee39506dd7ab43c2db8ee8954f5026a29b1ddcaf991",
+        "sco_sha256": "af7b631a833f5533878c0f0d3708912cf2f8908dbd9bcefb76d4a04f321d36e8",
+        "terrain_code": "0x000000033281860a000b42d016b9464c70dd55e709520583"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_136_WMS_batch2/e21187e7f74adc85186b/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "8ef64d071966f6d5be99fc0f43c380a05f218e380403b7c2c51bcb0ccc0b74d5",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "d8664d8d1737ceae7234b99244cf01763349be2dc0ae9fc0e2b2856f24c81a99",
+      "id": "scn_mp_custom_map_48",
+      "map_id": "test_map_126",
+      "map_name": "test_map_126_WMS_batch2",
+      "pool": "small",
+      "relief_m": 21.667,
+      "sha256": "851a0e747cddf7e520b6bb567d94ee64da5b0c374cca9c4f98d6ce7ecdeac4cb",
+      "source": {
+        "recipe_sha256": "570a40ce8b1bef3543619eb02900f6ba33a83789385150d4a4a94647ef21c541",
+        "sco_sha256": "65b98a0f0fb219b669da4f00e2da2d22e042664f1145cfdf63b1b5497ae4237c",
+        "terrain_code": "0x000000034282858a000b42d02d62924a6ac16c09419786f6"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_126_WMS_batch2/851a0e747cddf7e520b6/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "ee4e068b38f18b2e11b802c53634489b32d8a83ef5530b65dc37fcfefd0e571b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "618f4bf65344384c1155dd3e36e2b70259d3bf608739a0c26b20f5e1de080318",
+      "id": "scn_mp_custom_map_55",
+      "map_id": "test_map_133",
+      "map_name": "test_map_133_WMS_batch2",
+      "pool": "small",
+      "relief_m": 33.507,
+      "sha256": "7ffb2f40502b9c52b1be0cedd2a953dec4b7a76145a7fc6ecc25395549225881",
+      "source": {
+        "recipe_sha256": "375b96551716655cb89b301c3d0480d7d284f734a5e08c788cdb22450532b677",
+        "sco_sha256": "85bfbfa589ac67b89d15bad6d4c9a07993df244b636ebd405294d6ccc6c9d70a",
+        "terrain_code": "0x00000003b281498a000b42d04713bfa113a11b595f4c0b19"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_133_WMS_batch2/7ffb2f40502b9c52b1be/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "d17a7fdfca9c871fbe6e861e93833b8ac89d24ef348c7ec0b37507883787bce3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f981992f280e9665c16b55856022e6ff61c23b6317568e9edcfda4231508242a",
+      "id": "scn_mp_custom_map_41",
+      "map_id": "test_map_121",
+      "map_name": "test_map_121_WMS_batch2",
+      "pool": "small",
+      "relief_m": 22.37,
+      "sha256": "2b1990f5adbbd525fdd512483fd3d56b18117f3c96d5e911122d1e78f4ea0511",
+      "source": {
+        "recipe_sha256": "3001dc861627d78f76c10f97ff8b5a664c9a743ff2c84b6945d7619807e4e25a",
+        "sco_sha256": "442f6f44799188f5db16519f4db25ffa01e34a17dfa438044a7cedc3c745c10f",
+        "terrain_code": "0x00000003d282c68a000b42d01f82978a343de09b1f95deac"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_121_WMS_batch2/2b1990f5adbbd525fdd5/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "b042f8165e3778342cec95151407c66f1db2b4af5dc5c40dbdc1a274e9e1bfeb",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "931d9f1dad315658123438bc99803fd28c73cbfd7b0ae2c1aa76cd66c226dbcb",
+      "id": "scn_mp_custom_map_52",
+      "map_id": "test_map_130",
+      "map_name": "test_map_130_WMS_batch2",
+      "pool": "small",
+      "relief_m": 25.688,
+      "sha256": "63e5bde6d3888eabce2c8d9d17beaf7bd24ae2e327311f605e14746a62fe4730",
+      "source": {
+        "recipe_sha256": "16a92a3ba3badf4aaa0a11b5138d9fe93b118f80da1a274830f37cd59784b53d",
+        "sco_sha256": "e411d57c565c2d2fa00d678af619061c3a6244fd72f71d514cbd702eb6ea34e7",
+        "terrain_code": "0x00000003c283c68a000b42d04aa998695f1762db4f1cd71f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_130_WMS_batch2/63e5bde6d3888eabce2c/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "6cdb36d125099fd15d50ccdcf1d46d6685d4bb5ff5ed8989d309b7ebbc424e9c",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6c2e4d77e7820bae443783d606d9cca1462c9e87f1183241b9aa1440e73451ec",
+      "id": "scn_mp_custom_map_50",
+      "map_id": "test_map_128",
+      "map_name": "test_map_128_WMS_batch2",
+      "pool": "small",
+      "relief_m": 31.36,
+      "sha256": "32ac25812af7390154e68ca298ed2193852301873cdeb62313f38c5f0c8a260b",
+      "source": {
+        "recipe_sha256": "bde6f9cc472772f3c0a5bccce57fab5b467b2a4c983eef315c8f3f4b4b6f9e68",
+        "sco_sha256": "8e31cd86a4ed6016a77313334b208dce2932a13d46b1b635225768f31d3ad8e3",
+        "terrain_code": "0x00000003a282070a000b42d05dbe82d16c6b4eb528eafc21"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_128_WMS_batch2/32ac25812af7390154e6/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "c9cb0b24270e3cfec4c2876bee1e64f37026086f488a2638a9e3fc94574f3f5f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c2677ab0bbd1535c3e1429b7699c4fec9cf542b6ad49b666615e6fcc164519ab",
+      "id": "scn_mp_custom_map_61",
+      "map_id": "test_map_139",
+      "map_name": "test_map_139_WMS_batch2",
+      "pool": "small",
+      "relief_m": 38.294,
+      "sha256": "073464dd0854ededfd1a39bbe1fc35fcefcc4b787a8e750faf5d758d06c587b9",
+      "source": {
+        "recipe_sha256": "a7200f97a32dada1ced2a42463ac8e4dc83df44c825f3118c2bbc21409b38b9b",
+        "sco_sha256": "7cd6d2ec60a9457c2c46efc7c3ed7c595601d85e06f4824d2e01708b759d6bf6",
+        "terrain_code": "0x000000033284890a000b42d02b40dc5b686aadd670659d7c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_139_WMS_batch2/073464dd0854ededfd1a/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "c3ff8ba44134f3e871054ee5c1b6302ee8b1a91fbf427bd2f3a85d145d0c4af3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "e46bbbcef0e0f393de6342f10e35006c32877d1c3fbae1580ce3e9a49ddbc689",
+      "id": "scn_mp_custom_map_53",
+      "map_id": "test_map_131",
+      "map_name": "test_map_131_WMS_batch2",
+      "pool": "small",
+      "relief_m": 32.291,
+      "sha256": "b4d7ad055f8c9ddb49e9c7e13a9339fb285f693d1abe304d9733602cef2ed2ce",
+      "source": {
+        "recipe_sha256": "73d1fe575e5388470816074c0db5cc03f21231e7997c024778fd4dfe10e534d1",
+        "sco_sha256": "bb54164278bf2435a7055cdf30ca9e01dda456687fd8307c1e7a60adf3ab7135",
+        "terrain_code": "0x000000034284878a000b42d0494ac5902ba96451248f512a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_131_WMS_batch2/b4d7ad055f8c9ddb49e9/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "5a209f407df67856efedbe03d500e619897d305a84b68148fe6a72cc513aa736",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "feb30585d55f420d59b2428525cc323a920669db905597467b292503e511ad43",
+      "id": "scn_mp_custom_map_9",
+      "map_id": "test_map_113",
+      "map_name": "test_map_113_WMS_batch2",
+      "pool": "small",
+      "relief_m": 28.157,
+      "sha256": "4e044ed0e4b02c844e8de5d2b37112fd56b54894347cd223c34b335cefa6beb2",
+      "source": {
+        "recipe_sha256": "c34fe00c681641e96253b446b0346cc1810a3baa9c37b6225e3d11bd802ebc21",
+        "sco_sha256": "b76a873040632ab82d5ecda1eba32a9e867a0aa6bd8bc45d5f1b5def90f91889",
+        "terrain_code": "0x00000003b284478a000b42d010ebc45c0b1b0c003aa31df1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_113_WMS_batch2/4e044ed0e4b02c844e8d/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "155a8d3d60c18a5b4551ab54050f1a1128d5e9947bd2b9352086aae455a8bc0b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a075819ce8b7a80175477eb1e85035466e967d9131086513268238463f9a68f0",
+      "id": "scn_mp_custom_map_54",
+      "map_id": "test_map_132",
+      "map_name": "test_map_132_WMS_batch2",
+      "pool": "small",
+      "relief_m": 29.456,
+      "sha256": "2451a9bcdc690b93ce715ea9b38f38c9902485d965f0efeea2e302c622d541ab",
+      "source": {
+        "recipe_sha256": "1c31e833abf82bb5ef70366b3ae2fdc0a1f5a275d871f1076eb4407a52c1c126",
+        "sco_sha256": "e6f889bae6e90994aece49bba5f947c57bdc6f0fb3735b81a8f52aa3473b37f4",
+        "terrain_code": "0x00000003d284060a000b42d0742686f14f2c90b049c6434d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_132_WMS_batch2/2451a9bcdc690b93ce71/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "417fb23affd5e86957a374dee5b5de4d4ba9983c810a52232b2e49989946e73e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "dfc76a41483e812f0c864c5214a27b2de8bb16917acbe69e1a99eea67d9bcdf4",
+      "id": "scn_mp_custom_map_62",
+      "map_id": "test_map_140",
+      "map_name": "test_map_140_WMS_batch2",
+      "pool": "small",
+      "relief_m": 25.25,
+      "sha256": "07ac6d3551f152462d6c58feae6ba00e7ab85e8cb8eafe1538d022fd38d344e1",
+      "source": {
+        "recipe_sha256": "f795b482b966e7f4e4a3f891696e8a583dd9580e93d3966162d66207fcfd02ea",
+        "sco_sha256": "93a0db90bec48c83dd1b07e6609a4c82908e35034a3f408ded1f85bd30c8c42c",
+        "terrain_code": "0x00000003c285058a000b42d0125de8cc7f9997ec6a3c20b2"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_140_WMS_batch2/07ac6d3551f152462d6c/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "4130972e1f94a8874f8ebec4dece86439fbb489006cc6e654e47d51de03580b0",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "cfe5f4556c015b99ba2d772573a569625587e54683801164ee5fc9a920421f7f",
+      "id": "scn_mp_custom_map_13",
+      "map_id": "test_map_114",
+      "map_name": "test_map_114_WMS_batch2",
+      "pool": "small",
+      "relief_m": 29.516,
+      "sha256": "429ea522fdc28cb2134c053149a4ef515545157684c00d1a5379a5dbd219b743",
+      "source": {
+        "recipe_sha256": "4abcb3d2c8f2d839f03b60a5f5969bf710c8b2c88ce0d7ad2156b8efba843f72",
+        "sco_sha256": "36cb19b96be1255caef3544165b6eba8ceabffedf633fa0254d547ca05f3017d",
+        "terrain_code": "0x00000003a282c80a000b42d0288ff6a15555c65419ac3ecd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_114_WMS_batch2/429ea522fdc28cb2134c/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "3db22035077622127c36e291319a15c80794fea94ce8d8d0f6a0f3a500bcf98b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "875499249cf2b45fafe44a17d061a708197242f171e703c0771c5a00a4000d60",
+      "id": "scn_mp_custom_map_5",
+      "map_id": "test_map_111",
+      "map_name": "test_map_111_VarC",
+      "pool": "small",
+      "relief_m": 22.293,
+      "sha256": "48fdd09c390e5a8c44c909ec03ef24003ce5d68e55decefeac3a4c4ff869b9c2",
+      "source": {
+        "recipe_sha256": "ee8d13710b83ecfa6be3cbaee433b844420a36f69e3055b8ad8bbfa5ade81a3e",
+        "sco_sha256": "25c5227face957e730ba672a5342e39a227780398fe315e38bc5fa71d05b74f9",
+        "terrain_code": "0x00000003d283050a000b42d034f168551e2a04ba4d0389c9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_111_VarC/48fdd09c390e5a8c44c9/terrain.json",
+      "variant_id": "test_map_111_AnnaFreud_VarC.placements.json",
+      "variant_revision": "27a658ebb22864ccf7e3b7dfc877664e8f1b594f3e876dc48f5c91dacc55f177",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "7ca54e0375a602d4da076e47a03ca140cb4226af5554155df467f46003d78c05",
+      "id": "scn_mp_custom_map_45",
+      "map_id": "test_map_125",
+      "map_name": "test_map_125_WMS_batch2",
+      "pool": "small",
+      "relief_m": 20.97,
+      "sha256": "9f124b21457dc57c8b256d254b9446f45f4673e87b0658b06e6e86a82525ff0f",
+      "source": {
+        "recipe_sha256": "1565685860307edc932d419bf2ae5f757152e5ee01e42e51b748324ffd45eb04",
+        "sco_sha256": "b4b414f52789db6e9e835942fe2124ec82cc8cd5cb79f9c85c5eabd2cfe9c4fd",
+        "terrain_code": "0x000000034281c58a000b42d05217f97a190e0f4e57229eee"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_125_WMS_batch2/9f124b21457dc57c8b25/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "d9f7b624dc10875d08a5cb0d6e3b907c21ed81679e0da793101cd9079922bfb6",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "af9fa6ea6df1de7070d84d5a4409900f2e1fc31a19fd85ae97f1d117019dd16b",
+      "id": "scn_mp_custom_map_59",
+      "map_id": "test_map_137",
+      "map_name": "test_map_137_WMS_batch2",
+      "pool": "small",
+      "relief_m": 42.979,
+      "sha256": "41f6bbf18fe0761d37ff7ffdf1a65b4b1840682b7d74b55244ad6e5a2495cb6a",
+      "source": {
+        "recipe_sha256": "7875ffe3061f8df98c190dd04ec94aef95ee7206de830fb6636650a4add00f2d",
+        "sco_sha256": "7b584a0284f9615a26e8d99893c6d2de2ca1a65c1997d5b51d660bc0cce06265",
+        "terrain_code": "0x00000003b281c88a000b42d05c7faac26d781e8023c2a87d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_137_WMS_batch2/41f6bbf18fe0761d37ff/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "5b1f6dce3d3549ede314c2de3f84f40937fe3f696059a99a8cdbdbb9a8cd8818",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "984a94a51275a28b53d0ffd5b08c13e78ad08f9fc24953bff54769827ca37f6e",
+      "id": "scn_mp_custom_map_42",
+      "map_id": "test_map_122",
+      "map_name": "test_map_122_WMS_batch2",
+      "pool": "small",
+      "relief_m": 25.397,
+      "sha256": "51bc9297a658f000fd6ceeb15dd1a544b88f5045ca1e2521f21167384a212509",
+      "source": {
+        "recipe_sha256": "36af4e11cf863f722695005112d8a8f52fe074770fe4dd2d1a401cb7c145a8ee",
+        "sco_sha256": "62476f59a970393e933e3c9e0aadb8fa0ee035631759084edc755e542b20216c",
+        "terrain_code": "0x00000003d284050a000b42d073a21ef66ba27d185621c7d9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_122_WMS_batch2/51bc9297a658f000fd6c/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "5922288cfbc2bc501ed334d0c7ddcfa13e558376f4858e01361a2ba1e7dfe689",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "c8ea00a9148f54947b5ce08013cefb79515b8c1b6193ae6236a0b46c866cae10",
+      "id": "scn_mp_custom_map_44",
+      "map_id": "test_map_124",
+      "map_name": "test_map_124_WMS_batch2",
+      "pool": "small",
+      "relief_m": 31.398,
+      "sha256": "760a9c90fc2e5d02f0368925ff34c5bb5e5fb5531ae92b912929192e7c1be3c8",
+      "source": {
+        "recipe_sha256": "8c779a2ef520696dcef811a0268b056ac9d60354de0933edecaf2687cfd61e3b",
+        "sco_sha256": "77489a252f4b528721f69a141feb8a9a131698664366efb21bec726fddaf5e80",
+        "terrain_code": "0x00000003c284c70a000b42d0540e9a02079aa9c129d75d02"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_124_WMS_batch2/760a9c90fc2e5d02f036/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "27304ccea8eea981a6be97c9bab1893b2c784cdbb7feb984cfaf27fddde84f9e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6ea437d56b3b49567d9576f609d9882024465a4cd3d0929fdaf296febeaa5335",
+      "id": "scn_mp_custom_map_60",
+      "map_id": "test_map_138",
+      "map_name": "test_map_138_WMS_batch2",
+      "pool": "small",
+      "relief_m": 41.951,
+      "sha256": "efcf55083b078fd7cf74e916b8eed7fcd87815809ab9917481966021b5af7aff",
+      "source": {
+        "recipe_sha256": "742e287429cab8a6b269ca4afbfc4281d62b408d718fb7bb69434dd6c20c8c66",
+        "sco_sha256": "2f31c6e5b329c4a503b10337ca166332b16864f7509d0b9846311929560578a4",
+        "terrain_code": "0x00000003a283480a000b42d042c9fd5f459dc90e5d9ded7a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_138_WMS_batch2/efcf55083b078fd7cf74/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "ffff08e8b7b23e6ae15643d2262bd52923b8a7f512509a5eb3e4d94258ea219b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "102cd93f3052a1ba27c5ddb540e4956812c9d50221d9b180b21abcbc2d3e11c7",
+      "id": "scn_mp_custom_map_4",
+      "map_id": "test_map_110",
+      "map_name": "test_map_110_WMS_batch2",
+      "pool": "small",
+      "relief_m": 22.846,
+      "sha256": "ae2a7ab10003ba6edf143d0c7fa96409ce2751e1873d7e29f2e80b3144dda755",
+      "source": {
+        "recipe_sha256": "1f0af629cfd9e61c4ff852aef694cdc06bbf16e69f5643c63953efcd1eb3bc8f",
+        "sco_sha256": "1d4a9cd5913e5509a2c46dcea7b29e639a7ed669930dd5a8bad077b9b4e5251d",
+        "terrain_code": "0x000000033282058a000b42d006fc135d2f0316242e5f055b"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_110_WMS_batch2/ae2a7ab10003ba6edf14/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "d6ae6f1d875e5110bb31fceba807e2d8ef81b24f014167ed03ee1813e65b95f2",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "2dd53e1f1f4041ac524a077fd9de6bf4f97f842921087e23b9fc3499c9e8e99d",
+      "id": "scn_mp_custom_map_40",
+      "map_id": "test_map_120",
+      "map_name": "test_map_120_WMS_batch2",
+      "pool": "small",
+      "relief_m": 32.001,
+      "sha256": "46b5604d887d3a550b64f12945825a8bf3c17df20aa68932c3b2ad8acab0f8e7",
+      "source": {
+        "recipe_sha256": "239e48e6fb38df15d92abc89a0832aeb24f39b1a9772a4380504c1ed643f3d01",
+        "sco_sha256": "3a537b6194d259095996973657ef3a138154cd7e80a1dd2d28b40fc214f68ce1",
+        "terrain_code": "0x000000034283868a000b42d072e42ddc29fdf26f630c0889"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_120_WMS_batch2/46b5604d887d3a550b64/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "4890f01fd3c517456220fc0d6da741e1ac26e595bb6720b4da3f05e596b89fc5",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "46b42bf7bff48730401a28bfd17e2bc211a03ca09c26d6df5c76d76c17918ce6",
+      "id": "scn_mp_custom_map_1",
+      "map_id": "test_map_107",
+      "map_name": "test_map_107_WMS_batch2",
+      "pool": "small",
+      "relief_m": 30.559,
+      "sha256": "2acb3cd5166cc3bc8ee7411fd5c4cd54852bdb757ba3da195c9488be357dc64e",
+      "source": {
+        "recipe_sha256": "2820ea1bac7b52113128f0861ac999265be7f5372d6c8c1d0f2919bba7a8d3fb",
+        "sco_sha256": "a5dc0b066f681d1e586e06d26f2719d6f35f2597af5116ed8441a6dbb30a7fc0",
+        "terrain_code": "0x00000003b285060a000b42d077bd13001d1f97467d950ec9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_107_WMS_batch2/2acb3cd5166cc3bc8ee7/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "42a6f6ab0ad7c888063fcb073eb88bd70c4cc150b80fa76276d5014e167ca7a4",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "99645a937d0111d35661e8f29b778eedc65fd8f1dcde1f5526e36f6c8ae8ffa0",
+      "id": "scn_mp_custom_map_21",
+      "map_id": "test_map_116",
+      "map_name": "test_map_116_WMS_batch2",
+      "pool": "small",
+      "relief_m": 25.557,
+      "sha256": "d04f6ec119b4de53298621b4d04a7491df41fa9c073afbb99c769b4d2bfa1cff",
+      "source": {
+        "recipe_sha256": "42356fd2e7069732d88f52dc60cf84488e0b114bc2bbd3c326b8275d7896aeb2",
+        "sco_sha256": "046e32f966c091cd6ff32f0e23960e9745b5fd5f2ed6f4712924b83e16b4f86c",
+        "terrain_code": "0x00000003d282868a000b42d03d6304d050e6321c4d5e179c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_116_WMS_batch2/d04f6ec119b4de532986/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "aa2fcea0febbb1e75dd3172ee76ab17502eefd0d2d6e867859e6f95f0a59823b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "016a5a6b3ba48eb88368cd013382cbb59444429b91e70ead22974752bbac03a3",
+      "id": "scn_mp_custom_map_8",
+      "map_id": "test_map_112",
+      "map_name": "test_map_112_WMS_batch2",
+      "pool": "small",
+      "relief_m": 36.347,
+      "sha256": "9fa7453c7e98d21b29654c9edb745015e58fb229f8fc1d7b68a580903f14c89e",
+      "source": {
+        "recipe_sha256": "11654dd317fb6fc6978e450751958fecc7bbceaa6ededfd69078380487ed9277",
+        "sco_sha256": "921ca6a809094760368d9884c94ee8914c0f4783f2686bdd4af3c4d99da80df3",
+        "terrain_code": "0x00000003c281498a000b42d0129da9234fb7357b0c2832bd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_112_WMS_batch2/9fa7453c7e98d21b2965/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "e78c3e150e3cd38c029919f3d500f0c78cc3de30ed11af22de21d2181414cda6",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6d474c6ed51d7c8a9bfc887c38357ba883e2becb6478c91a60a7efa93c299ed5",
+      "id": "scn_mp_custom_map_73",
+      "map_id": "test_map_158",
+      "map_name": "test_map_158_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 38.884,
+      "sha256": "0675faf98fcc5f76b3efd4ad7cd2491e6c967f740914a0f4a0e708c22871eea9",
+      "source": {
+        "recipe_sha256": "a1d0cabb31a24af8d9a2e4c664a16b5bbf5fcdf813fe59e41765bcad44c9c485",
+        "sco_sha256": "5471b3da59fb2415ad3a90b2d048fda4fa94432dcf2cdf65b1ec04583020c9a8",
+        "terrain_code": "0x000000033282098a000962587b74813369f4d402208e9ba3"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_158_WMS_batch2/0675faf98fcc5f76b3ef/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "644c4be7f8bbdee00d74992ed99b6491923e4a7ea570be1353bc8d1fbb6baec6",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "b3f332bb925357142710009d79a884605ef6753a2229a9ab765ec2dd97ee8b45",
+      "id": "scn_mp_custom_map_64",
+      "map_id": "test_map_149",
+      "map_name": "test_map_149_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 14.115,
+      "sha256": "70b45d6ef402bc7f09b83b6f20e9a7dd2d194e5a58d717a6cc672b4eac92daac",
+      "source": {
+        "recipe_sha256": "f59993b718f25206cf67d02a262e6de2a81117c1f72176fd649895f8692f5691",
+        "sco_sha256": "c8c814fd9ebc134598bf0782de272de4b382e18187c25dfe3aa7c7ec4240e455",
+        "terrain_code": "0x000000034282048a000962583d4eed4f2accb50d2a9bbba7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_149_WMS_batch2/70b45d6ef402bc7f09b8/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "66efea6eadfa128d3c9408cfbfaf9f9211b2599e0967e38f6629f89d54993f42",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3f6a9ef0f246e8e1a7b11eef981a483effd8206de8ed1f641c78706691509aa9",
+      "id": "scn_mp_custom_map_89",
+      "map_id": "test_map_172",
+      "map_name": "test_map_172_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 20.597,
+      "sha256": "d8c73ef0c6673e6d83bdd2496b48c32e1934949bb3d1dcbf1a372824d09a9082",
+      "source": {
+        "recipe_sha256": "0334154f6538c6c52c0246d1116410023a7b1fc6d78c56300ba216d7b834e585",
+        "sco_sha256": "acfb56d0fc8e72474551139497e9185b168dd597654151adcd333661f9ad9a66",
+        "terrain_code": "0x00000003b281c60a0009625834ba61b3584c18cf776bc2dc"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_172_WMS_batch2/d8c73ef0c6673e6d83bd/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "65a054d0667bff98be96d04d6e865ca3de3bd2ad22b2079614245bf123ca45d3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "9a24ad7f872fb369e1cfc515c95d438876ab8d81c12100304aeef8ea794df916",
+      "id": "scn_mp_custom_map_84",
+      "map_id": "test_map_168",
+      "map_name": "test_map_168_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 28.127,
+      "sha256": "3c839a5e2653bb8c66d86a0ea3d902697729f258b9a4dc8c8c28505722a6a979",
+      "source": {
+        "recipe_sha256": "f406cfe065e8a289039aa44e544c3dde24840fa5e2edeac31138a27baad0684b",
+        "sco_sha256": "969368d37cf052d8ef7961b55a89ba1d24031683241d1510e658ed79e864730b",
+        "terrain_code": "0x00000003d282880a00096258021b4618675da47d14b59044"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_168_WMS_batch2/3c839a5e2653bb8c66d8/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "9f9db4cbb987d19eb34f228f93ab1b79d7d08e056a53b931d0572075e6784153",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "2a8996f761cc51cf7b48541b6c4367556f580c84aaa9af5350926af342224017",
+      "id": "scn_mp_custom_map_85",
+      "map_id": "test_map_169",
+      "map_name": "test_map_169_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 19.04,
+      "sha256": "c80a91f5b5c09601dfdbed50d66a62faf8770da0228d706d8bc2a079b5a2a259",
+      "source": {
+        "recipe_sha256": "c4d2e233fc7c353d9becffde66ce233760f0c966f00264813c5febbc7d31aeed",
+        "sco_sha256": "8d64a7a32c9cb8849008bd9fbbf4ade2b040545b4e7b5724d4d3cc37900f033b",
+        "terrain_code": "0x00000003c282858a000962580626aad85e69eb8d7aa08107"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_169_WMS_batch2/c80a91f5b5c09601dfdb/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "2c6ce86b43ac6af4dcbfaea6feb081e87474f99118871dcd38b718a02f7ec060",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "90f890059f6850f5550f9b24297ec17359ff5c81c1650805be9bac033badf549",
+      "id": "scn_mp_custom_map_63",
+      "map_id": "test_map_148",
+      "map_name": "test_map_148_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 19.726,
+      "sha256": "3c7bc41ff2bfb698fc34894bba65c4d37b146fff6bdf6ff259a0196e0bb376dd",
+      "source": {
+        "recipe_sha256": "33b755979cf893dda7d227c0291c44447e8f8d8d6e7dd6da4d382a33794cb7ce",
+        "sco_sha256": "3bb669246bd3aeb9d492754727eb7775b898b5544ac7c8d7e5a9d65258a1af63",
+        "terrain_code": "0x00000003a281858a000962582c69e41b68bedc5269aecf1c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_148_WMS_batch2/3c7bc41ff2bfb698fc34/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "8ac3628471956c95651eef4b880bf8564e71a5c1b54f2c237b9091d15083dcd8",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4a5766c0b43b46eef37a5ffc1f76fdc179edb5844985e611df1be5f3f85f7292",
+      "id": "scn_mp_custom_map_76",
+      "map_id": "test_map_161",
+      "map_name": "test_map_161_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 26.771,
+      "sha256": "4e6df074b9a70bfb7b522ff0bffe59d61503af19e77744d7e5fdc1b203c714d4",
+      "source": {
+        "recipe_sha256": "0fb11dfd7931d789e9a12f2ada2a64ec65a13243e7e4d1f7d90b4902e24c1ed6",
+        "sco_sha256": "5a70df51b477d6eea174f1b4fc93c0a61d74f9639079eb72c936b5b54644f642",
+        "terrain_code": "0x000000033282090a0009625857c019a646a7ffdf38ff3c07"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_161_WMS_batch2/4e6df074b9a70bfb7b52/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "f78892898cc8c204ae416655360e81af1b5d957cb061e93b3180e2127e5f990a",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "624917d0ef71b1e3f4cb206730ed2d5f3483f2ce7cabe125a205222060c78f7b",
+      "id": "scn_mp_custom_map_82",
+      "map_id": "test_map_166",
+      "map_name": "test_map_166_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 25.768,
+      "sha256": "c08c6a9f26da3f02ab1410aaf54d1ff801115baecfae7de313bc514b96ae775b",
+      "source": {
+        "recipe_sha256": "11bc4a582ef192fffc91968ffb11cb9f39667cec8febc897be553a40e5cd52b3",
+        "sco_sha256": "5124fbc6fb27be7e3255ab60140373bb84c934aa84f4cddf4b00be4b03ef8d4c",
+        "terrain_code": "0x0000000342828a0a00096258698790f8509f26fb028ed2d9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_166_WMS_batch2/c08c6a9f26da3f02ab14/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "ca5cc5f3ffceff80f974b424cfc1c03b2657927f0d5f82eab8ae7ed5a040d073",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3cf6607ecd7c60cf48844d93923777decb62c1eb1cb0a94210b8bd9cf7fb284e",
+      "id": "scn_mp_custom_map_92",
+      "map_id": "test_map_174",
+      "map_name": "test_map_174_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 18.44,
+      "sha256": "3e8577bd2ccd6a638e500d9022645c42cc8378bf14e6c75151f67f6ef1b25451",
+      "source": {
+        "recipe_sha256": "ea4ccf2c2aa1713e65292cc0fc2f508e240d5bd2022cc702dcf1a613e5d39cc6",
+        "sco_sha256": "f848ad5a363a54609b24113b80c1911bac151fb31542ed4d3ea9452af482151f",
+        "terrain_code": "0x00000003b282450a000962586e0f587e16f1db2e405e23e4"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_174_WMS_batch2/3e8577bd2ccd6a638e50/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "2969ef29ca3ea141f1e9c104acca49e041850b3feda1a8adb236dcedd1e781ed",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "4d7781327475a801cc1860913c3f92554c9387fda0f6138d544ce7fa302d530c",
+      "id": "scn_mp_custom_map_34",
+      "map_id": "test_map_144",
+      "map_name": "test_map_144_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 16.243,
+      "sha256": "ce55abed5fd0654dbfc4221b2eaf3ac2e940807c3b312b047594d5aba535d8ff",
+      "source": {
+        "recipe_sha256": "90e5ee6dd4be7faab9b7127acabd9e48498ca5c181303917c824fbe127118b89",
+        "sco_sha256": "5d33d6d5ae652b38b50d45c864eb5182dd038a8a0cc854ee6c35f1fa88403eef",
+        "terrain_code": "0x00000003d281c48a000962580d5b84a2029d66b847ab8a9c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_144_WMS_batch2/ce55abed5fd0654dbfc4/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "04fde22a834a4986ed89e1ffa6fb357b43a043511f6f4a7767bfc4dae3057964",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "0cfd9cb9f49efc757fe3d2bdbcf7c73e3d16403668bbfb99be6622a40d367df3",
+      "id": "scn_mp_custom_map_90",
+      "map_id": "test_map_173",
+      "map_name": "test_map_173_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 25.312,
+      "sha256": "32234cbd569d9d5ae4b23916655d5b12eb5019cfa5eb359f068c1b49da27086d",
+      "source": {
+        "recipe_sha256": "76d88c5266a416251cc7089029a60f5a4e764a5ef11888e0dd975f8e0eaf5f47",
+        "sco_sha256": "7a5835436a13ae595d35a3e242b127f6ee90c1c1bfc7562acef09c39cafcfe62",
+        "terrain_code": "0x00000003c282070a00096258522fcccb0d71722214e33f53"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_173_WMS_batch2/32234cbd569d9d5ae4b2/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "7f7491d23441eb4d3ee57831155161eb92be29cdb44903ac50dd32a40ab109e9",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "21587d44442d80b4977b041c2b6127e585153529ea3d67a0d76db4aca4cca857",
+      "id": "scn_mp_custom_map_74",
+      "map_id": "test_map_159",
+      "map_name": "test_map_159_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 18.347,
+      "sha256": "5e465ef5abb3460d8b2bb6b78eac05eff2cdbd2356e9afc11e959f9926ca0ef1",
+      "source": {
+        "recipe_sha256": "e6139598e08563e755135ebc58afcdddce221c14b8a85f6654171fefd7ef02b2",
+        "sco_sha256": "e185f84f18c363a490a458fa1e8914c84713544a0fac33471588c877588f91a8",
+        "terrain_code": "0x00000003a282850a000962583e1d87534e7b1a597e1442f1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_159_WMS_batch2/5e465ef5abb3460d8b2b/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "b12d16c26639c1b96e15b1c3b481cd5887f501235c99649d2082cc31987688a5",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "277b350420aff657ff93b3d88f631f0a281404962b0cd5207bb78a61f37bf0e9",
+      "id": "scn_mp_custom_map_65",
+      "map_id": "test_map_150",
+      "map_name": "test_map_150_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 32.107,
+      "sha256": "749b474d055bd375b31faf2854602ef8def20bd6a2eac6e20a07a58ea3b9ccf8",
+      "source": {
+        "recipe_sha256": "964c2dd99bc7157c03ebf9d7e1099551da7199d4b427ebbb29a26d972937c9c9",
+        "sco_sha256": "79ce9094e5c9920768c7ba5cab4d3d1d21993e80070501ba4f7f7890bd7c48b7",
+        "terrain_code": "0x000000033281c88a000962580ba70c9e692e04034ace779f"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_150_WMS_batch2/749b474d055bd375b31f/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "4f86c2c3659ce44202ce97375cffddb56aacacffffc0f9dad302ff2fbfd693e8",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "26e2ff45b692d8e714090a5ea1d399acdb1bd748a132b648097e402c2511d332",
+      "id": "scn_mp_custom_map_86",
+      "map_id": "test_map_170",
+      "map_name": "test_map_170_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 22.524,
+      "sha256": "2f4a4b655e3408e9f3fd072403fe7cb2118c87216171068ffdc0ea616bd49c34",
+      "source": {
+        "recipe_sha256": "5c6544fcbe80bbc8176913bf3b7e64fb6be86744b9bbb64fd35c4ac198c67652",
+        "sco_sha256": "fb2250b120807ac809b87e00806fd117072e8ab647094a136cf7724da2e7fd51",
+        "terrain_code": "0x000000034282068a0009625879c40be675efcaa5306a196c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_170_WMS_batch2/2f4a4b655e3408e9f3fd/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "acbf9ed2c17ab0f0507eb3e6ae4ba7ea6c38a9432bdab07be3cd40617bd84114",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "7c02fe90592fb3564ed238e1f9d8d71289e0e20ed86c0e13302bbeb455283be9",
+      "id": "scn_mp_custom_map_67",
+      "map_id": "test_map_152",
+      "map_name": "test_map_152_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 18.058,
+      "sha256": "b25b9327be4fc8b3295e396331fa7619ad0a790d9ee7d4317030f0016d910eeb",
+      "source": {
+        "recipe_sha256": "a8dd26e79a21947b16fe553329de0adea9389b1a7c7e718f6edcb463a675e7c0",
+        "sco_sha256": "0e411c03f8e64c5efc9df898d4b7aa6fe6ee0fcc64bcedb808c50630588b2010",
+        "terrain_code": "0x00000003b282058a000962583073c5cc210e9a4661ababcb"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_152_WMS_batch2/b25b9327be4fc8b3295e/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "8fcea4ba3f6b5b727fffc3a7b1b0c4882ef0e223059d80e0ae4e6b17a08b9de0",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "17fd0758739334e0b93452323fb3e4b523015f2aa5e6142e34422d61ef210e2d",
+      "id": "scn_mp_custom_map_83",
+      "map_id": "test_map_167",
+      "map_name": "test_map_167_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 31.785,
+      "sha256": "462a57068a1ec6f431f7a1f02bc6af53547bd1d3435b5692e63f976aff15a8df",
+      "source": {
+        "recipe_sha256": "64f00bf5b95afe9286e69c325ddea4558b3818a266939c6740e6d547eb07108b",
+        "sco_sha256": "7f742d8fb0be55e8bee9baf8e774b8bde82e215fb24fd6101910180a59c9415f",
+        "terrain_code": "0x00000003d281880a0009625804e8e0e1407472322d9011ac"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_167_WMS_batch2/462a57068a1ec6f431f7/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "795e86365905335e744db254700106ba3dd5e6e2a78d8871d6a8e9ef99eca736",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "67b3580a2160eeaf2b4ecb8c70be472286fdd7ffb8107ed8f55bb6648935eeb2",
+      "id": "scn_mp_custom_map_43",
+      "map_id": "test_map_146",
+      "map_name": "test_map_146_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 25.988,
+      "sha256": "22247f7d622e6c921ae0ecc615988da8b88cddd2d6dd021a0acdede76bee1953",
+      "source": {
+        "recipe_sha256": "ac221039f9c9109ee61a129ae1e3c76203184be60c7eb6d93ddfc3716bf83a92",
+        "sco_sha256": "c6cd26b4fd69970e2472607a58998cbfef92455d02147e6d43d97a167a58a71a",
+        "terrain_code": "0x00000003c282468a000962582590b53100c7c6c577d1cd0d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_146_WMS_batch2/22247f7d622e6c921ae0/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "eb9e77eed811167bdf87343fd0d7e92339d44000bc4b54fde5488d40d87b8846",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "006ddf92e601e5435bc60a0860c9ca232f89cad8df4e2e5975169e6082c3afbf",
+      "id": "scn_mp_custom_map_57",
+      "map_id": "test_map_147",
+      "map_name": "test_map_147_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 23.597,
+      "sha256": "44960555c26516c8302c364e13bc1de9d40a66745c7d0c0fe4dde151689aa6c3",
+      "source": {
+        "recipe_sha256": "dd30abe977818f1932dab81edbc95d63e7166a7c751bc17eea61f1ecc5fbf0d7",
+        "sco_sha256": "5827e463f84a72a5bf93dd64b089630aff6dac5133d94ebfb09d0f3a58507cc3",
+        "terrain_code": "0x00000003a282888a00096258560f1c16511eab795b166185"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_147_WMS_batch2/44960555c26516c8302c/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "65db6b54bad9f0c8a2df6eb9d5f7816b2414e153b3b5ed3c827327994ff3009c",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "ca046ba533e9c2230054ba220065525d76d60f1d7db8a434ddedcd28ce8a63bf",
+      "id": "scn_mp_custom_map_79",
+      "map_id": "test_map_163",
+      "map_name": "test_map_163_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 31.155,
+      "sha256": "e60ab1fce9131d70e15ba5d42d13eb3a8d888f3a42f8f49a1be0123a57536269",
+      "source": {
+        "recipe_sha256": "9ac199d7715664dfbe4d058fd4731b69d3e9482b49a142a480b0e264365debe7",
+        "sco_sha256": "cb4abd54b78e15f6324f4253a60e77afd491fd8e03d57fd98aa9d9afc466c2cd",
+        "terrain_code": "0x000000033282458a00096258643651e2751deae43bc8ef7d"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_163_WMS_batch2/e60ab1fce9131d70e15b/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "765856e6258d0f5bbafd6865e1ce34a2d75717defd6bbabb9542afc4527d4047",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "cf2d3cf5f1736513eef763fb9a748035d63ac50a0988f0fc83847f8e11ca6e1c",
+      "id": "scn_mp_custom_map_94",
+      "map_id": "test_map_176",
+      "map_name": "test_map_176_VarA",
+      "pool": "tiny",
+      "relief_m": 21.779,
+      "sha256": "76b14504de60f9fa9bbb9240c1dc61ab96b974d8936ac0d366b2e972a75c30e2",
+      "source": {
+        "recipe_sha256": "ff80a329a612b291a632ff084dcb04845307b97141e8797ff518962b0fafda09",
+        "sco_sha256": "07d31984062e2bc077db08dfca2a7924224cdceadcb323782dca227d94231d79",
+        "terrain_code": "0x000000034281460a0009625832814167106f00ae4344c00a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_176_VarA/76b14504de60f9fa9bbb/terrain.json",
+      "variant_id": "test_map_176_AnnaFreud_VarA.placements.json",
+      "variant_revision": "eef1c3c0cfd174d3c59aa744b1656a75668e426cbfffa0dab7080bd59d1c4366",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "8f39366af0387ecaefc4bc833dcdccf425eba25afb3da39b7812587e1918e76d",
+      "id": "scn_mp_custom_map_72",
+      "map_id": "test_map_157",
+      "map_name": "test_map_157_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 46.883,
+      "sha256": "4bf32806b9ac65d262e0cf551942182b3c6984a1ef79da92e8a68a9d0e0e7868",
+      "source": {
+        "recipe_sha256": "0424d1c33bf8cfa285359021a94460fd16fb286fb36393a3214fd1b0787f7d2e",
+        "sco_sha256": "a3dc98c5b5c2e1061655dd391e0b00db864236c683ad278d91802520c92dd4ce",
+        "terrain_code": "0x00000003b281488a0009625815d4f947361dc30151b9f413"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_157_WMS_batch2/4bf32806b9ac65d262e0/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "492614e8d0028cf465089701a52ea4008cbf178d2e0eca5881634c4575ba419e",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a3284c2aa6a6237036aa1fbeab2843ce48f24806db82b411efcc93d88d550b5f",
+      "id": "scn_mp_custom_map_39",
+      "map_id": "test_map_145",
+      "map_name": "test_map_145_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 20.498,
+      "sha256": "cc23e678ca46f8fb83fcc5f888aab09a174fdcedc2c48c2946443c3f6649ac12",
+      "source": {
+        "recipe_sha256": "a7779e847d11f6aff46f6e004d056e5678922cff297606f243adac9ca0a51015",
+        "sco_sha256": "f66e27ab417f20d5da3f9f578bc7c6c223515cc5e2825c884ad74ba65b44864f",
+        "terrain_code": "0x00000003d282860a000962580ec83b267a3faff063a3d6c7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_145_WMS_batch2/cc23e678ca46f8fb83fc/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "6eb93bb4220383f9648bfe4e44c2721303d9d7e1b34c4453277e0017d941b42b",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "94547a874de27d83ef8ff692ffdb0bdbd7dbbfbe4cb65e0ccdce9fd78edc4f15",
+      "id": "scn_mp_custom_map_71",
+      "map_id": "test_map_156",
+      "map_name": "test_map_156_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 17.326,
+      "sha256": "1c59d2bec0cbfdef1716d2e4b1bfddc06e860dee370ccc8d0b71111d8228eba8",
+      "source": {
+        "recipe_sha256": "7032d575a06ecb9c95a2e19fdabaa35b39d00cdb6f71806cf4b7373bbb2198d3",
+        "sco_sha256": "121f1ee267d6f767536088c9fc10d638fbeef1c0fe40b0ec61b3888e6a93609d",
+        "terrain_code": "0x00000003c281c60a00096258531f45687d21f13d3fa09bcd"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_156_WMS_batch2/1c59d2bec0cbfdef1716/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "5dec9e933f3547f073e50f558058a82ea30ff122f0c5e4ebae343e9bcc7df430",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "24d1ccc8478440429c62fddefa87d6aa1325cbca1df27baf2a1a9051c7527432",
+      "id": "scn_mp_custom_map_81",
+      "map_id": "test_map_165",
+      "map_name": "test_map_165_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 23.352,
+      "sha256": "b18caf60988da7ceaa7e5dea3adbb79a4ea63e8fc8dd0f93fdf957e19b06ac16",
+      "source": {
+        "recipe_sha256": "02631689b4ea00c64e3a766901a520847fd445e068ae3ee8a2d3c2eeabedbae8",
+        "sco_sha256": "f27d1a47ba46072214af8656c5ad89a0cded2765838f72d8e2c6fb78faedfdb8",
+        "terrain_code": "0x00000003a282078a000962584e8c5ffc565537c1076a7a5b"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_165_WMS_batch2/b18caf60988da7ceaa7e/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "25863a2670e41d75c3de46c1738a5e876ab284f2a96b0755ea9ea846f744e962",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "bacc708b8e9b55398b743478ca9a7a9488d4baa9cd9264914176b66048955cc6",
+      "id": "scn_mp_custom_map_98",
+      "map_id": "test_map_179",
+      "map_name": "test_map_179_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 33.372,
+      "sha256": "dce328bca0a44bcbe3eca4bfc6a027cadf92208c15ed1fece6aeb9db84733b6e",
+      "source": {
+        "recipe_sha256": "2437c5f1b5f7f360b17f2b5ddeab4c33995832050638277f8cc0e9546c2341cd",
+        "sco_sha256": "b4195589792bb2c7390c7f9ccb166923eec81b44f2a9e98b789db8d875720a90",
+        "terrain_code": "0x000000033282490a0009625832f1047042c13d4611fb8727"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_179_WMS_batch2/dce328bca0a44bcbe3ec/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "3d4eaf0b51d7b936a96f0fca69e62129b2537df86b93a28a4288724dcb23bb19",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "aec6e5f9f04b4a2b0d0364d3af30665c07aa51550e9c149d46c89e84f09f9ba0",
+      "id": "scn_mp_custom_map_88",
+      "map_id": "test_map_171",
+      "map_name": "test_map_171_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 19.275,
+      "sha256": "c2f729d44742dc5111e88bfa6cd46e86058288f78be09f6b53fa9dff304024b4",
+      "source": {
+        "recipe_sha256": "b2c41a1732c662921ff868e1d8581a85030eab75171db4dde7fad03b4cc7a41e",
+        "sco_sha256": "06d32d578ef611541e0c4ec009647e2153244ad48ec70ebd4e9f0ac6d9f67923",
+        "terrain_code": "0x000000034281860a00096258207f60bb3eda939c59303d26"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_171_WMS_batch2/c2f729d44742dc5111e8/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "cc796888509192314aee288c7489b81f69553338313959ef28815ebf82d63a11",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "411a4ff01a8f5ae3c93197e640239f082a5620e05b6813ef10ddcd376553e751",
+      "id": "scn_mp_custom_map_80",
+      "map_id": "test_map_164",
+      "map_name": "test_map_164_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 22.988,
+      "sha256": "7f843666d2cdde55115c9e915b820c89aaa5b7ab81980d4319a21858bbbd5a24",
+      "source": {
+        "recipe_sha256": "23f8f3f43b2d9cedb88ef8cbab3bd302cfa238654e0745e46a8ff35bb4adc9e8",
+        "sco_sha256": "81c8a1fabb6025d3a05bf6485fd8d884ca39513afb108d1c9b6009c6cb90d3e5",
+        "terrain_code": "0x00000003b282868a000962585d91904d7ccd24bb03de66e7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_164_WMS_batch2/7f843666d2cdde55115c/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "2208e9325de417ebf1b12ffc9d7327c8e4d40d27dfdb99da834a4609643659c1",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "befdeebf51aca40e99e657cd3affe18ecb616d0f69ea16d175d991492a5d3298",
+      "id": "scn_mp_custom_map_29",
+      "map_id": "test_map_143",
+      "map_name": "test_map_143_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 23.757,
+      "sha256": "2f2081f8ef55aaa9b6a3032a8c98fa07969cf6ccb7123a878ba656d66b16e678",
+      "source": {
+        "recipe_sha256": "680082a123c3597bab72fc5bed5b6557c689afc18abd65ee6ae53f93f36db42b",
+        "sco_sha256": "cc1336e59c912c5d11ba6195b8d5192282b59e644d894e9b509b87ea1dfeab53",
+        "terrain_code": "0x00000003d281c78a000962583d1ece1404ed990e2c67c81c"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_143_WMS_batch2/2f2081f8ef55aaa9b6a3/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "aa38491c0ab8f1f2f002f77c5f1aa31bc56d613bc451baeccfc823cbd56e7e49",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "079dbd1f5886e5558e0f37c34eb25f2c7d9f13dadaff48f2d7c3e05decba0490",
+      "id": "scn_mp_custom_map_96",
+      "map_id": "test_map_178",
+      "map_name": "test_map_178_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 24.685,
+      "sha256": "db8fc749634ef74468baa29e68329eec506a4ddf86833d8a27c744afbd6427a6",
+      "source": {
+        "recipe_sha256": "b7214acc37450236a99bcdfa19cb7f9ce2313f488e6f89fc7b76ccb5a8868256",
+        "sco_sha256": "88ae3689140ada166b261ece5dac9a3bff5964e41a39683e07d9fb8ae1663032",
+        "terrain_code": "0x00000003c282070a000962586ecdfffd5701d00e57203bea"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_178_WMS_batch2/db8fc749634ef74468ba/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "e4adee3f4f71f27f0b5ab44998c0b4c3ac0b69fe3d44cc4786bc1309ac32a43f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "04fa4bfba50bbbfc21a77c93aebaad45803e1f3bc081d10ea0e130cc8d477dc2",
+      "id": "scn_mp_custom_map_95",
+      "map_id": "test_map_177",
+      "map_name": "test_map_177_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 32.293,
+      "sha256": "667cdecf70825639b397b4665fb6dbcb6e1d0ab3540ca2f8e3dd00bc99461c74",
+      "source": {
+        "recipe_sha256": "1ce8581455ab9df6c1e0982d7bb4d84d1995b07494559fa6da8f2420c47a21ad",
+        "sco_sha256": "e34b109361ca51fda8404b8f4fb496d7fd14ff1b4397fdad7fcaf3522158ba3a",
+        "terrain_code": "0x00000003a281c90a0009625872104c4846b6650245d165c7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_177_WMS_batch2/667cdecf70825639b397/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "5eaa12f1983310565ffcf9b12f3abea98ae2b679a9ebc0456d00bde9a43e71c1",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a8b748b4fd7ac53b2375b395fea50a49e86b7694d9963aa09f49d72793cf573c",
+      "id": "scn_mp_custom_map_68",
+      "map_id": "test_map_153",
+      "map_name": "test_map_153_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 29.346,
+      "sha256": "583913a0d85d8ce10823bd0277d51009069522fdaf96c6f005d3fad6ae46993e",
+      "source": {
+        "recipe_sha256": "b4007a35b5d747e88a22f31763b8490a12aa512914e95dd90e303b2b1ca8dabb",
+        "sco_sha256": "c410a8f78a35b02d1706b34134fa7fc5515ccff7a8c2455044de047652e1ec64",
+        "terrain_code": "0x0000000332828a0a0009625839b3c42b7bbd6b6d4580e5c5"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_153_WMS_batch2/583913a0d85d8ce10823/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "7e2d42f1ad393e4b5a91d7b30b21ea2736e1795d3cae92a9af7d21bc9149ef0f",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "9b89c03b513da1613c2a485317f1f0289135503a6cbcda5ab72bccc46d485397",
+      "id": "scn_mp_custom_map_93",
+      "map_id": "test_map_175",
+      "map_name": "test_map_175_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 23.603,
+      "sha256": "b2a4ef91b9b32afa66775f5a1c3a5f624fdf77b1edb1973f3fff66ef3ce3a94f",
+      "source": {
+        "recipe_sha256": "1dbeb96af19b5db5183561a977f6b47346bd74f83fdaa808aab596713cd3dda0",
+        "sco_sha256": "d1c573dac9c1939789e3e50f8f172ef4c9e52a223918d453d7084b1e75c3fe14",
+        "terrain_code": "0x000000034282468a00096258653fcae97a8610d43cb7e9ed"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_175_WMS_batch2/b2a4ef91b9b32afa6677/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "3bc6787a74357746d41cb522a84f89a9295dc9dc5578e6d546434cdac1f69601",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "e8f3230bd75d2e2a50d98becc992e67f5ef9d874a255f2b36ab7147603f904f4",
+      "id": "scn_mp_custom_map_75",
+      "map_id": "test_map_160",
+      "map_name": "test_map_160_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 20.512,
+      "sha256": "08378927043838e13b3225eaac0549837d8e9d18e07d4062ba7da67a71c6456c",
+      "source": {
+        "recipe_sha256": "4d46dfd2216d1b70d8bb7a70d0b34eba91fdefc9dd621e88b951629236264ae3",
+        "sco_sha256": "510a4b042cf915b1fbf936852bd3e6ae6a2532d7ba0b9fb55d296de690f32548",
+        "terrain_code": "0x00000003b282860a000962583f43c6cf43fe51fa788b7aa9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_160_WMS_batch2/08378927043838e13b32/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "e330e8ac46d8749c7d085d940b85c27678332c90bb294d0d0dea2edfbf362010",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a7178e7c20c3554da01e8e8ce863e9348f876eebf44b002bf2c0450380acac20",
+      "id": "scn_mp_custom_map_78",
+      "map_id": "test_map_162",
+      "map_name": "test_map_162_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 19.017,
+      "sha256": "d7197ac6f22c5a96a4d4072313f45a56e6d34e86bb98ba20ae19e4b6d7fcffd9",
+      "source": {
+        "recipe_sha256": "f4460e59d7d9078f255eda46cb55cc8f4e4152a6fdddb82d46110f992ae811ce",
+        "sco_sha256": "14c9a0f4c35aae9f8f601dca4d8800a0c74ebaa8de3b7d1364696e1c22ecd5c0",
+        "terrain_code": "0x00000003d282870a000962586ad53ca664475b324ec6a7e9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_162_WMS_batch2/d7197ac6f22c5a96a4d4/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "69fd174c7a3af2838faaeb6e1b0e9fdd6040fc5e86b373ca5aab99ca64ee2155",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "584010eb49ed028e18b4d3362f0b05509bcec05134922df81e4447a17d0c723e",
+      "id": "scn_mp_custom_map_7",
+      "map_id": "test_map_142",
+      "map_name": "test_map_142_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 30.919,
+      "sha256": "9df71b15133d9e645a9745694f5e271d6b3b6d5e3085c81868a3a435066367cf",
+      "source": {
+        "recipe_sha256": "5934788fd0d5e8649925fbf848a7bf909cafe25a2761bd748cd3284c1e6ff6f7",
+        "sco_sha256": "b5d8577a5370c72957813296d58d3b00d91914fa670521c24a1af4f4fac9505c",
+        "terrain_code": "0x00000003c282078a0009625803f290520393c4a34e8b15a1"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_142_WMS_batch2/9df71b15133d9e645a97/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "c0839027fba49fba260973c3c835f1a236a973f1a28b3def78f213297a27aec8",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "0fb91bf4eabd08effbdfb6588f014857257878d70fa8b3c93f1d0ba73f342585",
+      "id": "scn_mp_custom_map_69",
+      "map_id": "test_map_154",
+      "map_name": "test_map_154_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 18.175,
+      "sha256": "b4191f449cf81bda3caf0b265d5233acd010b9c3b8fed4400c753db1fbe91e58",
+      "source": {
+        "recipe_sha256": "051d26ee0ddbaf7d93f07fe8935115044ab0d61901545ab077c3fce1d46fb6c7",
+        "sco_sha256": "d8f037b4136a6c6a1d90aa7b51808fa99f125d12285c4b6b0ca3073d8383cf41",
+        "terrain_code": "0x00000003a281478a000962586246b21b69401ff04dd5b238"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_154_WMS_batch2/b4191f449cf81bda3caf/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "18b2fd72cb10c23d4738c7970e2b172a1e188bd60b8272cbb706695c88da7166",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "130de5c05a3485b1e0784873f54c623008c7bbbd28806d31ca1fa1af48077cb2",
+      "id": "scn_mp_custom_map_70",
+      "map_id": "test_map_155",
+      "map_name": "test_map_155_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 21.791,
+      "sha256": "5262d1bcfcdbabb65005c21b350f6b712f6666546c0f01f72ecdc0d30bb8b783",
+      "source": {
+        "recipe_sha256": "578ca2c0974cc2ccb66015c930b1ccac403921b4b0fdec6704505f2594adc377",
+        "sco_sha256": "4c37dad8f5fe5324a5b4b02b4693a52a856b3a1c91d802c216e7e2e313e83d25",
+        "terrain_code": "0x000000033281860a000962582b5f542e7bdf490c6a4237ab"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_155_WMS_batch2/5262d1bcfcdbabb65005/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "8b0ad063838b3e6d0dc91212cfca9da95557085ed176a21b14502b5fc1d41b55",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "f13bdbc0af6fcd85397957d6cfc1382143068e8c9c231c15f26358ec5b6f1ef7",
+      "id": "scn_mp_custom_map_3",
+      "map_id": "test_map_141",
+      "map_name": "test_map_141_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 28.007,
+      "sha256": "313b946705844ab41128c99e1868dcc5c43f715b3ec99c0f54adb9eaf2c41adf",
+      "source": {
+        "recipe_sha256": "fdcccbf4fc02955195d54d6ffb61a899a1870ef8d1333a55d37ca50e38bc72f9",
+        "sco_sha256": "49cff162ffd9fc1ee82f59ba7e1afe1b5a1a7a3d819a2bd708e2820d2971dac0",
+        "terrain_code": "0x0000000342814a0a000962582f34faa51c7e52943bc0ff92"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_141_WMS_batch2/313b946705844ab41128/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "d31ee54290689df096a15fd9b341653c0bebccc20da1ca01fad110004e6b3dea",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "a8597b525fb587b4650c314a4720ff8f67ed4a1a4dcb3a6793b110a7e4546322",
+      "id": "scn_mp_custom_map_66",
+      "map_id": "test_map_151",
+      "map_name": "test_map_151_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 15.476,
+      "sha256": "8bc14b5d1e4746db6b5fa58b54adc43661ae9264be24033ef583cd3d34d82718",
+      "source": {
+        "recipe_sha256": "ada8b889beed9bc18cc60010215ec61c5770ddc546ddfd0dfde025897c0889db",
+        "sco_sha256": "c14eb764f3cedbc888b350256196893900fcbafcbbb7dd23dba8b7eafd54beb0",
+        "terrain_code": "0x00000003b282440a0009625828d9af2311bc424d79b48abc"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_151_WMS_batch2/8bc14b5d1e4746db6b5f/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "e98e4913aaf77cab2a15520191b9fa4b7573366f56263516198bebaa43c2b356",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "64a68bcbb2a9af47c26c2a9c771e77b57ed8f9e4a7880ac569a8110277895ee2",
+      "id": "scn_mp_custom_map_94",
+      "map_id": "test_map_176",
+      "map_name": "test_map_176_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 21.779,
+      "sha256": "459b6169a3cd2392fb50e48fa2e3800773f7feebe8967f8d779d7e5ca9faac2b",
+      "source": {
+        "recipe_sha256": "ff80a329a612b291a632ff084dcb04845307b97141e8797ff518962b0fafda09",
+        "sco_sha256": "34946636d118d9950bb0834bb72f919182ffdd711794cddee3e4d82641b12e84",
+        "terrain_code": "0x000000034281460a0009625832814167106f00ae4344c00a"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_176_WMS_batch2/459b6169a3cd2392fb50/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "7d5ea3ee07b988ec19d6537f674443a3a761d6519a3de28de0e7ac18c6b0f6f3",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 696.0,
+        "x_min_m": 24.0,
+        "y_max_m": 696.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "426680e5b10ebbed7b69154b930502d1f5c5491e5434538d6bd62ab2c198791d",
+      "id": "scn_mp_custom_map_5",
+      "map_id": "test_map_111",
+      "map_name": "test_map_111_WMS_batch2",
+      "pool": "small",
+      "relief_m": 22.293,
+      "sha256": "29ff7fbd52448146854a38dc4f65daaed5b43cf225dc12187526da83c15472e8",
+      "source": {
+        "recipe_sha256": "ee8d13710b83ecfa6be3cbaee433b844420a36f69e3055b8ad8bbfa5ade81a3e",
+        "sco_sha256": "5cb3dbe9b0ddfec653a5ed0b232227d54c75e21be63d95e9de61e6abb0884545",
+        "terrain_code": "0x00000003d283050a000b42d034f168551e2a04ba4d0389c9"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_111_WMS_batch2/29ff7fbd52448146854a/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "64ab31f7960753b985e22e36ad39917e6ba088ad1c47cf3071dabd304b065c84",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "b3f332bb925357142710009d79a884605ef6753a2229a9ab765ec2dd97ee8b45",
+      "id": "scn_mp_custom_map_64",
+      "map_id": "test_map_149",
+      "map_name": "test_map_149_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 14.115,
+      "sha256": "929f3bc9268c57e63fad0ee5e934b3680d892412d3151f5374a0770ebde33e55",
+      "source": {
+        "recipe_sha256": "f59993b718f25206cf67d02a262e6de2a81117c1f72176fd649895f8692f5691",
+        "sco_sha256": "5a9a750301bdc8fd3542108e205ccbf426de6c3a3566ac4b17f71c4b78d20262",
+        "terrain_code": "0x000000034282048a000962583d4eed4f2accb50d2a9bbba7"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_149_WMS_batch2/929f3bc9268c57e63fad/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "66efea6eadfa128d3c9408cfbfaf9f9211b2599e0967e38f6629f89d54993f42",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "6d474c6ed51d7c8a9bfc887c38357ba883e2becb6478c91a60a7efa93c299ed5",
+      "id": "scn_mp_custom_map_73",
+      "map_id": "test_map_158",
+      "map_name": "test_map_158_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 38.884,
+      "sha256": "f41f87e7f1dc2764a66b369ea79578c42b90431c807c73cbb0bc7ad10c247538",
+      "source": {
+        "recipe_sha256": "a1d0cabb31a24af8d9a2e4c664a16b5bbf5fcdf813fe59e41765bcad44c9c485",
+        "sco_sha256": "ae1aeb68860284f2e38987583af1ab02ec023ac59f24a2fea109a8ef913018da",
+        "terrain_code": "0x000000033282098a000962587b74813369f4d402208e9ba3"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_158_WMS_batch2/f41f87e7f1dc2764a66b/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "644c4be7f8bbdee00d74992ed99b6491923e4a7ea570be1353bc8d1fbb6baec6",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "9a24ad7f872fb369e1cfc515c95d438876ab8d81c12100304aeef8ea794df916",
+      "id": "scn_mp_custom_map_84",
+      "map_id": "test_map_168",
+      "map_name": "test_map_168_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 28.127,
+      "sha256": "f708b896558d1bd321eac2304a916e8a3800b727ca65207f14b2f69567293bc0",
+      "source": {
+        "recipe_sha256": "f406cfe065e8a289039aa44e544c3dde24840fa5e2edeac31138a27baad0684b",
+        "sco_sha256": "4d896635a9f481d1d2f52eed19a3b320c7fc2b012f99c97cc4d34579684e28ce",
+        "terrain_code": "0x00000003d282880a00096258021b4618675da47d14b59044"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_168_WMS_batch2/f708b896558d1bd321ea/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "9f9db4cbb987d19eb34f228f93ab1b79d7d08e056a53b931d0572075e6784153",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "2a8996f761cc51cf7b48541b6c4367556f580c84aaa9af5350926af342224017",
+      "id": "scn_mp_custom_map_85",
+      "map_id": "test_map_169",
+      "map_name": "test_map_169_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 19.04,
+      "sha256": "4be8b51a6921a8a63d0b83007567ed97c21d0cfe274b1eea4e56aa107fd06d89",
+      "source": {
+        "recipe_sha256": "c4d2e233fc7c353d9becffde66ce233760f0c966f00264813c5febbc7d31aeed",
+        "sco_sha256": "f3014606f950575f76bd509f133cbccb0df940500bfc7cef69a53d345200443d",
+        "terrain_code": "0x00000003c282858a000962580626aad85e69eb8d7aa08107"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_169_WMS_batch2/4be8b51a6921a8a63d0b/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "2c6ce86b43ac6af4dcbfaea6feb081e87474f99118871dcd38b718a02f7ec060",
+      "vertices": 40401
+    },
+    {
+      "bounds": {
+        "x_max_m": 576.0,
+        "x_min_m": 24.0,
+        "y_max_m": 576.0,
+        "y_min_m": 24.0
+      },
+      "height_data_sha256": "3f6a9ef0f246e8e1a7b11eef981a483effd8206de8ed1f641c78706691509aa9",
+      "id": "scn_mp_custom_map_89",
+      "map_id": "test_map_172",
+      "map_name": "test_map_172_WMS_batch2",
+      "pool": "tiny",
+      "relief_m": 20.597,
+      "sha256": "d7c939b2d962d3f431272baaa9ea495369eb116dc3b185cadbeaaa54ce826799",
+      "source": {
+        "recipe_sha256": "0334154f6538c6c52c0246d1116410023a7b1fc6d78c56300ba216d7b834e585",
+        "sco_sha256": "9b7ef150ab0656e38ea2b86bd03722047091500971b09586a0d391d302e421d2",
+        "terrain_code": "0x00000003b281c60a0009625834ba61b3584c18cf776bc2dc"
+      },
+      "triangles": 80000,
+      "url": "/topology/test_map_172_WMS_batch2/d7c939b2d962d3f43127/terrain.json",
+      "variant_id": "WMS_batch2.placements.json",
+      "variant_revision": "65a054d0667bff98be96d04d6e865ca3de3bd2ad22b2079614245bf123ca45d3",
       "vertices": 40401
     }
   ],

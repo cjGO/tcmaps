@@ -1,0 +1,7862 @@
+{
+  "default_spawn_points": [
+    {
+      "entry": 0,
+      "forward": [
+        0.6585046052932739,
+        0.7525767087936401,
+        0.0
+      ],
+      "team": 0,
+      "x_m": 124.80000305175781,
+      "y_m": 91.19999694824219,
+      "z_m": 12.458999633789062
+    },
+    {
+      "entry": 32,
+      "forward": [
+        -0.6585046052932739,
+        -0.7525767087936401,
+        0.0
+      ],
+      "team": 1,
+      "x_m": 595.2000122070312,
+      "y_m": 628.7999877929688,
+      "z_m": 5.354000091552734
+    }
+  ],
+  "placements": [
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_1",
+      "scale": 1.7452306146733463,
+      "x_m": 447.093,
+      "y_m": 458.694,
+      "yaw_deg": 213.67064114660025
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_2",
+      "scale": 1.5662773395888507,
+      "x_m": 242.582,
+      "y_m": 217.845,
+      "yaw_deg": 100.93394014053047
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_3",
+      "scale": 1.3187722185393795,
+      "x_m": 154.639,
+      "y_m": 626.72,
+      "yaw_deg": 93.72409768402576
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_4",
+      "scale": 1.1356258240994066,
+      "x_m": 589.892,
+      "y_m": 457.077,
+      "yaw_deg": 335.72758169844747
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_5",
+      "scale": 1.525039926636964,
+      "x_m": 485.719,
+      "y_m": 460.583,
+      "yaw_deg": 193.4412494301796
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_6",
+      "scale": 2.4051300244173035,
+      "x_m": 227.267,
+      "y_m": 519.515,
+      "yaw_deg": 225.209498712793
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_7",
+      "scale": 1.1340295266127214,
+      "x_m": 555.012,
+      "y_m": 263.999,
+      "yaw_deg": 137.57134719751775
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_8",
+      "scale": 1.094810196897015,
+      "x_m": 154.82,
+      "y_m": 43.571,
+      "yaw_deg": 6.978756319731474
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_9",
+      "scale": 1.6265794688370079,
+      "x_m": 144.975,
+      "y_m": 601.34,
+      "yaw_deg": 247.49454773962498
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_10",
+      "scale": 2.363910843501799,
+      "x_m": 545.979,
+      "y_m": 281.447,
+      "yaw_deg": 76.30252425558865
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_11",
+      "scale": 2.443042613682337,
+      "x_m": 695.34,
+      "y_m": 471.995,
+      "yaw_deg": 225.61300914734602
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_12",
+      "scale": 1.8100274371681735,
+      "x_m": 374.091,
+      "y_m": 652.453,
+      "yaw_deg": 11.492803953588009
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_13",
+      "scale": 1.78115815971978,
+      "x_m": 600.462,
+      "y_m": 324.136,
+      "yaw_deg": 205.44535048305988
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_14",
+      "scale": 1.103703681495972,
+      "x_m": 691.074,
+      "y_m": 161.744,
+      "yaw_deg": 4.432393396273255
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_15",
+      "scale": 1.2957548492122442,
+      "x_m": 80.032,
+      "y_m": 226.597,
+      "yaw_deg": 105.00374807976186
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_16",
+      "scale": 1.368820600095205,
+      "x_m": 490.161,
+      "y_m": 300.622,
+      "yaw_deg": 318.8515447732061
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_17",
+      "scale": 1.3488216616678983,
+      "x_m": 371.245,
+      "y_m": 514.212,
+      "yaw_deg": 164.14432441815734
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_18",
+      "scale": 1.7004238084191456,
+      "x_m": 26.9,
+      "y_m": 218.615,
+      "yaw_deg": 156.6781833115965
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_19",
+      "scale": 1.1646275216480717,
+      "x_m": 246.866,
+      "y_m": 599.964,
+      "yaw_deg": 295.0254886317998
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_20",
+      "scale": 1.8137164597865194,
+      "x_m": 252.898,
+      "y_m": 509.5,
+      "yaw_deg": 162.7346307132393
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_21",
+      "scale": 2.2745635631727055,
+      "x_m": 421.974,
+      "y_m": 374.446,
+      "yaw_deg": 173.48539014346898
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_22",
+      "scale": 1.213661853224039,
+      "x_m": 399.079,
+      "y_m": 471.488,
+      "yaw_deg": 348.6057156790048
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_23",
+      "scale": 1.485240449779667,
+      "x_m": 320.647,
+      "y_m": 157.811,
+      "yaw_deg": 353.4219805430621
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_24",
+      "scale": 1.5964041546685621,
+      "x_m": 346.84,
+      "y_m": 453,
+      "yaw_deg": 150.03118246793747
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_25",
+      "scale": 1.6538477109279484,
+      "x_m": 476.609,
+      "y_m": 288.811,
+      "yaw_deg": 67.22935739904642
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_26",
+      "scale": 2.3732068040408194,
+      "x_m": 113.569,
+      "y_m": 318.973,
+      "yaw_deg": 205.24457942694426
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_27",
+      "scale": 1.960932349669747,
+      "x_m": 134.113,
+      "y_m": 634.221,
+      "yaw_deg": 78.2792615890503
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_28",
+      "scale": 1.2245132892858237,
+      "x_m": 353.639,
+      "y_m": 368.951,
+      "yaw_deg": 85.07275253534317
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_29",
+      "scale": 2.2195109880995005,
+      "x_m": 298.06,
+      "y_m": 469.02,
+      "yaw_deg": 183.58482347801328
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_30",
+      "scale": 1.8116093429271132,
+      "x_m": 649.602,
+      "y_m": 73.747,
+      "yaw_deg": 32.09489246830344
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_31",
+      "scale": 1.2758322283625603,
+      "x_m": 347.476,
+      "y_m": 356.985,
+      "yaw_deg": 48.58469950966537
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_32",
+      "scale": 1.87373989878688,
+      "x_m": 157.038,
+      "y_m": 592.348,
+      "yaw_deg": 176.15941314026713
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_33",
+      "scale": 2.269639925681986,
+      "x_m": 46.94,
+      "y_m": 544.596,
+      "yaw_deg": 164.93154354393482
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_34",
+      "scale": 2.4382109337020665,
+      "x_m": 513.453,
+      "y_m": 415.995,
+      "yaw_deg": 10.573599189519882
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_35",
+      "scale": 1.2911424328340217,
+      "x_m": 496.422,
+      "y_m": 282.948,
+      "yaw_deg": 109.03872686438262
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_36",
+      "scale": 1.907241362030618,
+      "x_m": 62.067,
+      "y_m": 528.006,
+      "yaw_deg": 236.02766088210046
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_37",
+      "scale": 1.6342027895152569,
+      "x_m": 336.131,
+      "y_m": 452.906,
+      "yaw_deg": 328.2525707781315
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_38",
+      "scale": 2.0167724523926154,
+      "x_m": 326.798,
+      "y_m": 378.456,
+      "yaw_deg": 199.704805361107
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_39",
+      "scale": 1.7068643084494397,
+      "x_m": 53.085,
+      "y_m": 123.537,
+      "yaw_deg": 35.34085529856384
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_40",
+      "scale": 1.2141129124211147,
+      "x_m": 65.369,
+      "y_m": 305.101,
+      "yaw_deg": 306.9821315165609
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_41",
+      "scale": 1.4328807895071805,
+      "x_m": 186.753,
+      "y_m": 26.469,
+      "yaw_deg": 53.37410137988627
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_42",
+      "scale": 1.1943889810936525,
+      "x_m": 593.151,
+      "y_m": 112.545,
+      "yaw_deg": 63.76462857238948
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_43",
+      "scale": 1.877147635561414,
+      "x_m": 169.601,
+      "y_m": 58.015,
+      "yaw_deg": 4.248318672180176
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_44",
+      "scale": 1.115935111301951,
+      "x_m": 350.856,
+      "y_m": 493.623,
+      "yaw_deg": 173.0848588887602
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_45",
+      "scale": 2.2855114665580913,
+      "x_m": 338.879,
+      "y_m": 446.023,
+      "yaw_deg": 10.484387995675206
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_46",
+      "scale": 1.0333947088802233,
+      "x_m": 581.015,
+      "y_m": 314.526,
+      "yaw_deg": 252.42080312222242
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_47",
+      "scale": 1.50905566487927,
+      "x_m": 549.275,
+      "y_m": 271.418,
+      "yaw_deg": 302.435861248523
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_48",
+      "scale": 1.2109213602961972,
+      "x_m": 466.286,
+      "y_m": 364.424,
+      "yaw_deg": 141.96291016414762
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_49",
+      "scale": 1.5558425829512998,
+      "x_m": 340.834,
+      "y_m": 662.46,
+      "yaw_deg": 331.28778263926506
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_50",
+      "scale": 1.4284440770279616,
+      "x_m": 61.795,
+      "y_m": 591.639,
+      "yaw_deg": 284.99355090782046
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_51",
+      "scale": 1.4611713202903047,
+      "x_m": 530.081,
+      "y_m": 296.963,
+      "yaw_deg": 40.90448518283665
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_52",
+      "scale": 2.3351851745974272,
+      "x_m": 65.97,
+      "y_m": 174.665,
+      "yaw_deg": 141.75253696739674
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_53",
+      "scale": 2.3281186553649604,
+      "x_m": 466.469,
+      "y_m": 282.102,
+      "yaw_deg": 301.4504178240895
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_54",
+      "scale": 2.1325477194041014,
+      "x_m": 49.654,
+      "y_m": 589.222,
+      "yaw_deg": 253.76315678469837
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_55",
+      "scale": 1.6312984813703224,
+      "x_m": 655.532,
+      "y_m": 459.886,
+      "yaw_deg": 118.04843625985086
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_56",
+      "scale": 1.5243489902932197,
+      "x_m": 410.91,
+      "y_m": 445.816,
+      "yaw_deg": 167.97193475067616
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_57",
+      "scale": 2.4689275403507054,
+      "x_m": 99.675,
+      "y_m": 423.72,
+      "yaw_deg": 252.31215429492295
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_58",
+      "scale": 1.9527931385673583,
+      "x_m": 272.002,
+      "y_m": 189.185,
+      "yaw_deg": 21.75117703154683
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_59",
+      "scale": 2.004403436440043,
+      "x_m": 463.744,
+      "y_m": 246.064,
+      "yaw_deg": 145.09861207567155
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_60",
+      "scale": 1.5893907176796347,
+      "x_m": 331.762,
+      "y_m": 659.304,
+      "yaw_deg": 172.80210661701858
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_61",
+      "scale": 2.242157337721437,
+      "x_m": 605.91,
+      "y_m": 362.281,
+      "yaw_deg": 239.01569067500532
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_62",
+      "scale": 1.8608171970117837,
+      "x_m": 446.712,
+      "y_m": 252.897,
+      "yaw_deg": 336.9686295837164
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_63",
+      "scale": 1.795916159870103,
+      "x_m": 155.641,
+      "y_m": 601.112,
+      "yaw_deg": 252.81150173395872
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_64",
+      "scale": 1.1430678113829345,
+      "x_m": 493.019,
+      "y_m": 162.403,
+      "yaw_deg": 10.907441088929772
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_65",
+      "scale": 1.824886565678753,
+      "x_m": 614.865,
+      "y_m": 457.902,
+      "yaw_deg": 51.75572703592479
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_66",
+      "scale": 2.290882052620873,
+      "x_m": 42.943,
+      "y_m": 565.167,
+      "yaw_deg": 260.4000071436167
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_67",
+      "scale": 2.264133507036604,
+      "x_m": 54.631,
+      "y_m": 626.366,
+      "yaw_deg": 290.4288808442652
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_68",
+      "scale": 2.064283997169696,
+      "x_m": 38.414,
+      "y_m": 310.797,
+      "yaw_deg": 155.19692692905664
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_69",
+      "scale": 2.201260806294158,
+      "x_m": 600.78,
+      "y_m": 451.924,
+      "yaw_deg": 14.252975732088089
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_70",
+      "scale": 1.2070544527377933,
+      "x_m": 128.969,
+      "y_m": 44.726,
+      "yaw_deg": 76.70740764588118
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_71",
+      "scale": 1.3424943529535085,
+      "x_m": 334.419,
+      "y_m": 509.271,
+      "yaw_deg": 145.03050500527024
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_72",
+      "scale": 1.3453862178139389,
+      "x_m": 493.751,
+      "y_m": 395.521,
+      "yaw_deg": 223.77145875245333
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_73",
+      "scale": 2.3111922170501202,
+      "x_m": 120.073,
+      "y_m": 40.861,
+      "yaw_deg": 111.85820588842034
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_74",
+      "scale": 1.1164786361623555,
+      "x_m": 250.642,
+      "y_m": 246.538,
+      "yaw_deg": 86.6898341383785
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_75",
+      "scale": 2.3397649755934253,
+      "x_m": 102.61,
+      "y_m": 317.748,
+      "yaw_deg": 46.08124262653291
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_76",
+      "scale": 2.363214480224997,
+      "x_m": 133.215,
+      "y_m": 31.669,
+      "yaw_deg": 129.5217889174819
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_77",
+      "scale": 1.9652195534436032,
+      "x_m": 63.669,
+      "y_m": 231.746,
+      "yaw_deg": 41.50087754242122
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_78",
+      "scale": 1.9475570272188634,
+      "x_m": 618.993,
+      "y_m": 61.821,
+      "yaw_deg": 171.71450732275844
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_79",
+      "scale": 2.4680339872138575,
+      "x_m": 67.659,
+      "y_m": 559.427,
+      "yaw_deg": 336.3688334170729
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_80",
+      "scale": 1.2031353391939774,
+      "x_m": 247.088,
+      "y_m": 217.594,
+      "yaw_deg": 80.00716561451554
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_81",
+      "scale": 2.12817398365587,
+      "x_m": 637.154,
+      "y_m": 466.565,
+      "yaw_deg": 242.44094710797071
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_82",
+      "scale": 1.8556170765077695,
+      "x_m": 369.094,
+      "y_m": 493.522,
+      "yaw_deg": 241.89267005771399
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_83",
+      "scale": 1.0683868502965197,
+      "x_m": 351.181,
+      "y_m": 663.327,
+      "yaw_deg": 287.9070123564452
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_84",
+      "scale": 1.2824173581320792,
+      "x_m": 417.785,
+      "y_m": 448.134,
+      "yaw_deg": 317.1250161342323
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_85",
+      "scale": 2.295692864456214,
+      "x_m": 229.406,
+      "y_m": 594.45,
+      "yaw_deg": 80.20466839894652
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_86",
+      "scale": 1.782416194677353,
+      "x_m": 411.68,
+      "y_m": 367.222,
+      "yaw_deg": 195.23533788509667
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_87",
+      "scale": 2.342577860923484,
+      "x_m": 531.98,
+      "y_m": 256.12,
+      "yaw_deg": 234.37142338603735
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_88",
+      "scale": 2.014429651084356,
+      "x_m": 547.097,
+      "y_m": 289.556,
+      "yaw_deg": 281.8711007013917
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_89",
+      "scale": 1.1562692323932424,
+      "x_m": 596.584,
+      "y_m": 387.429,
+      "yaw_deg": 31.99428079649806
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_90",
+      "scale": 1.4130027240607888,
+      "x_m": 412.19,
+      "y_m": 372.178,
+      "yaw_deg": 349.1513822693378
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_91",
+      "scale": 2.2289547097170725,
+      "x_m": 606.869,
+      "y_m": 384.209,
+      "yaw_deg": 57.64065454714
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_92",
+      "scale": 1.5224938896717504,
+      "x_m": 470.745,
+      "y_m": 389.219,
+      "yaw_deg": 339.6235311124474
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_93",
+      "scale": 2.494821793981828,
+      "x_m": 298.512,
+      "y_m": 175.281,
+      "yaw_deg": 227.27910711430013
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_94",
+      "scale": 1.3254660511156544,
+      "x_m": 329.902,
+      "y_m": 458.267,
+      "yaw_deg": 190.05992355756462
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_95",
+      "scale": 1.1560824497137219,
+      "x_m": 414.939,
+      "y_m": 379.712,
+      "yaw_deg": 75.27097810059786
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_97",
+      "scale": 1.7532492992468178,
+      "x_m": 90.518,
+      "y_m": 644.814,
+      "yaw_deg": 195.1904404722154
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_98",
+      "scale": 2.335453817038797,
+      "x_m": 204.132,
+      "y_m": 583.993,
+      "yaw_deg": 171.09696599654853
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_99",
+      "scale": 1.617064245394431,
+      "x_m": 681.853,
+      "y_m": 378.873,
+      "yaw_deg": 127.70808840170503
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_100",
+      "scale": 1.0946478390833363,
+      "x_m": 232.219,
+      "y_m": 210.921,
+      "yaw_deg": 159.687135592103
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_101",
+      "scale": 2.3549912178423256,
+      "x_m": 373.096,
+      "y_m": 332.716,
+      "yaw_deg": 51.589437033981085
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_102",
+      "scale": 2.112305566086434,
+      "x_m": 647.433,
+      "y_m": 455.026,
+      "yaw_deg": 195.23219919763505
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_103",
+      "scale": 2.249753445852548,
+      "x_m": 41.906,
+      "y_m": 520.172,
+      "yaw_deg": 79.84608714468777
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_104",
+      "scale": 2.104818717809394,
+      "x_m": 312.216,
+      "y_m": 469.459,
+      "yaw_deg": 214.350407961756
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_105",
+      "scale": 1.9394202542025596,
+      "x_m": 318.934,
+      "y_m": 443.698,
+      "yaw_deg": 98.13246184028685
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_106",
+      "scale": 1.4082586643053219,
+      "x_m": 417.135,
+      "y_m": 377.81,
+      "yaw_deg": 60.297158947214484
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_107",
+      "scale": 1.1523996639298275,
+      "x_m": 442.234,
+      "y_m": 379.72,
+      "yaw_deg": 100.89258248917758
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_108",
+      "scale": 1.2184681266080588,
+      "x_m": 352.145,
+      "y_m": 552.313,
+      "yaw_deg": 283.8579553272575
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_109",
+      "scale": 1.9402121753664687,
+      "x_m": 153.651,
+      "y_m": 603.598,
+      "yaw_deg": 72.40963230840862
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_110",
+      "scale": 1.0636777587933466,
+      "x_m": 342.897,
+      "y_m": 499.681,
+      "yaw_deg": 330.1774289086461
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_111",
+      "scale": 2.2274593509500846,
+      "x_m": 101.587,
+      "y_m": 280.152,
+      "yaw_deg": 41.95272012613714
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_113",
+      "scale": 2.1278979616472498,
+      "x_m": 616.307,
+      "y_m": 447.68,
+      "yaw_deg": 317.37136110663414
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_114",
+      "scale": 1.2375395155977458,
+      "x_m": 324.266,
+      "y_m": 513.037,
+      "yaw_deg": 262.21954230219126
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_115",
+      "scale": 1.6463002796517685,
+      "x_m": 322.604,
+      "y_m": 368.802,
+      "yaw_deg": 102.83426485955715
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_116",
+      "scale": 1.2924881795188412,
+      "x_m": 332.357,
+      "y_m": 679.075,
+      "yaw_deg": 85.45596049167216
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_117",
+      "scale": 1.2291782196843997,
+      "x_m": 313.307,
+      "y_m": 189.737,
+      "yaw_deg": 340.3252577595413
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_118",
+      "scale": 2.251552941277623,
+      "x_m": 451.956,
+      "y_m": 289.723,
+      "yaw_deg": 264.4082652591169
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_119",
+      "scale": 1.3507287653628737,
+      "x_m": 236.407,
+      "y_m": 596.886,
+      "yaw_deg": 27.761298241093755
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_120",
+      "scale": 2.3307677324628457,
+      "x_m": 330.632,
+      "y_m": 448.88,
+      "yaw_deg": 350.37988102063537
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_121",
+      "scale": 1.226713496958837,
+      "x_m": 631.735,
+      "y_m": 450.968,
+      "yaw_deg": 188.2459866721183
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_122",
+      "scale": 1.8651323820231482,
+      "x_m": 134.031,
+      "y_m": 84.212,
+      "yaw_deg": 174.8412391729653
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_123",
+      "scale": 1.2486175420926884,
+      "x_m": 319.004,
+      "y_m": 541.81,
+      "yaw_deg": 8.292666664347053
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_124",
+      "scale": 1.5932398779550567,
+      "x_m": 261.8,
+      "y_m": 519.963,
+      "yaw_deg": 316.84788946062326
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_125",
+      "scale": 1.8985999603755772,
+      "x_m": 341.498,
+      "y_m": 506.448,
+      "yaw_deg": 356.0086172539741
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_126",
+      "scale": 1.5513848538976163,
+      "x_m": 124.406,
+      "y_m": 330.168,
+      "yaw_deg": 350.33744897693396
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_127",
+      "scale": 2.0057518248213455,
+      "x_m": 203.87,
+      "y_m": 513.819,
+      "yaw_deg": 297.7076961379498
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_128",
+      "scale": 1.7479657452786341,
+      "x_m": 645.319,
+      "y_m": 490.546,
+      "yaw_deg": 11.975248362869024
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_129",
+      "scale": 1.2858849808108062,
+      "x_m": 212.522,
+      "y_m": 501.13,
+      "yaw_deg": 90.08766456507146
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_130",
+      "scale": 2.264611901366152,
+      "x_m": 647.006,
+      "y_m": 66.081,
+      "yaw_deg": 269.27007084712386
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_131",
+      "scale": 1.1557357113342732,
+      "x_m": 433.465,
+      "y_m": 278.948,
+      "yaw_deg": 228.84942750446498
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_132",
+      "scale": 2.3942736521130428,
+      "x_m": 541.031,
+      "y_m": 284.039,
+      "yaw_deg": 297.9660209454596
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_133",
+      "scale": 1.0095844405004755,
+      "x_m": 475.949,
+      "y_m": 281.716,
+      "yaw_deg": 345.15580077655613
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_134",
+      "scale": 2.0952056964160874,
+      "x_m": 118.772,
+      "y_m": 620.501,
+      "yaw_deg": 108.82928573526442
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_135",
+      "scale": 2.003723111236468,
+      "x_m": 472.587,
+      "y_m": 274.41,
+      "yaw_deg": 199.14535456337035
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_136",
+      "scale": 1.4757328276755288,
+      "x_m": 339.264,
+      "y_m": 374.917,
+      "yaw_deg": 275.373797044158
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_137",
+      "scale": 2.4831603901693597,
+      "x_m": 147.501,
+      "y_m": 27.566,
+      "yaw_deg": 190.66613221541047
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_138",
+      "scale": 2.005908344988711,
+      "x_m": 191.962,
+      "y_m": 508.946,
+      "yaw_deg": 73.38091375306249
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_139",
+      "scale": 2.284813589649275,
+      "x_m": 351.735,
+      "y_m": 359.166,
+      "yaw_deg": 350.56890525855124
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_141",
+      "scale": 1.0283560472307727,
+      "x_m": 530.643,
+      "y_m": 341.123,
+      "yaw_deg": 175.38458447903395
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_142",
+      "scale": 1.5471784509718418,
+      "x_m": 450.585,
+      "y_m": 432.214,
+      "yaw_deg": 256.44087720662355
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_144",
+      "scale": 2.348367314087227,
+      "x_m": 345.735,
+      "y_m": 459.161,
+      "yaw_deg": 317.14777886867523
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_145",
+      "scale": 2.170126788550988,
+      "x_m": 38.134,
+      "y_m": 584.221,
+      "yaw_deg": 289.3469552602619
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_146",
+      "scale": 1.1961250429740176,
+      "x_m": 96.487,
+      "y_m": 37,
+      "yaw_deg": 234.28600232116878
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_147",
+      "scale": 1.8748399739852175,
+      "x_m": 559.7,
+      "y_m": 24.121,
+      "yaw_deg": 211.39965182170272
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_148",
+      "scale": 2.0029322447953746,
+      "x_m": 628.311,
+      "y_m": 461.738,
+      "yaw_deg": 230.0470057502389
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_149",
+      "scale": 1.3393008104758337,
+      "x_m": 48.902,
+      "y_m": 222.483,
+      "yaw_deg": 202.12638865225017
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_150",
+      "scale": 1.4956934412475675,
+      "x_m": 78.163,
+      "y_m": 613.946,
+      "yaw_deg": 89.9098679702729
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_151",
+      "scale": 1.7469654318410903,
+      "x_m": 85.345,
+      "y_m": 526.361,
+      "yaw_deg": 99.14414883591235
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_152",
+      "scale": 2.420225010951981,
+      "x_m": 122.941,
+      "y_m": 616.122,
+      "yaw_deg": 5.616380050778389
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_153",
+      "scale": 1.8325697059044614,
+      "x_m": 516.493,
+      "y_m": 241.159,
+      "yaw_deg": 132.24758558906615
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_154",
+      "scale": 2.115563109633513,
+      "x_m": 61.335,
+      "y_m": 594.646,
+      "yaw_deg": 65.4950950294733
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_155",
+      "scale": 1.50585456576664,
+      "x_m": 521.676,
+      "y_m": 283.965,
+      "yaw_deg": 178.1106404028833
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_156",
+      "scale": 1.7394675962859765,
+      "x_m": 224.119,
+      "y_m": 204.457,
+      "yaw_deg": 156.36533573269844
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_157",
+      "scale": 2.247324105235748,
+      "x_m": 620.197,
+      "y_m": 453.609,
+      "yaw_deg": 336.36477439664304
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_158",
+      "scale": 1.3618505275808275,
+      "x_m": 319.312,
+      "y_m": 155.304,
+      "yaw_deg": 339.0736312419176
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_159",
+      "scale": 1.6306218532845378,
+      "x_m": 70.43,
+      "y_m": 526.017,
+      "yaw_deg": 147.27706192061305
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_160",
+      "scale": 1.9936211531748995,
+      "x_m": 412.952,
+      "y_m": 356.252,
+      "yaw_deg": 323.1405501253903
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_161",
+      "scale": 2.1741194801870733,
+      "x_m": 638.081,
+      "y_m": 175.536,
+      "yaw_deg": 123.2768365368247
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_162",
+      "scale": 1.554342740564607,
+      "x_m": 642.056,
+      "y_m": 378.386,
+      "yaw_deg": 67.62487585656345
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_163",
+      "scale": 2.493982429848984,
+      "x_m": 624.313,
+      "y_m": 470.48,
+      "yaw_deg": 177.34841435216367
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_164",
+      "scale": 1.954665202065371,
+      "x_m": 69.219,
+      "y_m": 237.134,
+      "yaw_deg": 64.33561446145177
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_165",
+      "scale": 1.425149003509432,
+      "x_m": 304.782,
+      "y_m": 157.299,
+      "yaw_deg": 4.346900414675474
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_166",
+      "scale": 1.6878065781202167,
+      "x_m": 557.42,
+      "y_m": 287.989,
+      "yaw_deg": 265.1490409299731
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_167",
+      "scale": 2.1512199359713122,
+      "x_m": 99.425,
+      "y_m": 277.992,
+      "yaw_deg": 327.23161356523633
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_168",
+      "scale": 2.1594729621428996,
+      "x_m": 217.469,
+      "y_m": 421.378,
+      "yaw_deg": 345.1634721457958
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_169",
+      "scale": 2.3312749703181908,
+      "x_m": 96.932,
+      "y_m": 215.767,
+      "yaw_deg": 346.63801236078143
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_170",
+      "scale": 1.8936811746098101,
+      "x_m": 586.513,
+      "y_m": 313.944,
+      "yaw_deg": 140.60491293668747
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_171",
+      "scale": 1.0817537262337282,
+      "x_m": 475.787,
+      "y_m": 325.719,
+      "yaw_deg": 185.18521646037698
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_172",
+      "scale": 2.426995086367242,
+      "x_m": 36.665,
+      "y_m": 591.397,
+      "yaw_deg": 49.22512209042907
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_173",
+      "scale": 1.6227439336944371,
+      "x_m": 61.15,
+      "y_m": 172.845,
+      "yaw_deg": 208.45900006592274
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_174",
+      "scale": 2.2955680994782597,
+      "x_m": 342.41,
+      "y_m": 388.955,
+      "yaw_deg": 181.2729189824313
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_175",
+      "scale": 2.2331750395242125,
+      "x_m": 487.941,
+      "y_m": 412.472,
+      "yaw_deg": 162.3587534017861
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_176",
+      "scale": 1.4932167854858562,
+      "x_m": 554.057,
+      "y_m": 297.39,
+      "yaw_deg": 310.19362561404705
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_177",
+      "scale": 2.178390562417917,
+      "x_m": 444.157,
+      "y_m": 257.922,
+      "yaw_deg": 0.6735468562692404
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_178",
+      "scale": 2.353984101791866,
+      "x_m": 342.171,
+      "y_m": 365.448,
+      "yaw_deg": 51.08269415795803
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_179",
+      "scale": 1.3137766105355695,
+      "x_m": 615.673,
+      "y_m": 284.969,
+      "yaw_deg": 97.12707686237991
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_180",
+      "scale": 1.546370702679269,
+      "x_m": 587.011,
+      "y_m": 115.221,
+      "yaw_deg": 343.4059325605631
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_181",
+      "scale": 1.4896361960563809,
+      "x_m": 421.96,
+      "y_m": 380.239,
+      "yaw_deg": 104.14793455973268
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_182",
+      "scale": 1.8982232018606737,
+      "x_m": 422.361,
+      "y_m": 391.731,
+      "yaw_deg": 115.47151409089565
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_183",
+      "scale": 2.021882756962441,
+      "x_m": 101.868,
+      "y_m": 322.288,
+      "yaw_deg": 268.07639798149467
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_184",
+      "scale": 1.072550346958451,
+      "x_m": 95.3,
+      "y_m": 192.058,
+      "yaw_deg": 163.46849743276834
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_185",
+      "scale": 1.7245774592738599,
+      "x_m": 565.724,
+      "y_m": 43.684,
+      "yaw_deg": 306.95756474509835
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_186",
+      "scale": 1.2457220272626728,
+      "x_m": 624.979,
+      "y_m": 77.072,
+      "yaw_deg": 263.0663114134222
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_187",
+      "scale": 1.145282615092583,
+      "x_m": 177.852,
+      "y_m": 145.38,
+      "yaw_deg": 61.141040828078985
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_188",
+      "scale": 2.394730310072191,
+      "x_m": 276.56,
+      "y_m": 513.762,
+      "yaw_deg": 98.88923001475632
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_189",
+      "scale": 2.477392658009194,
+      "x_m": 668.656,
+      "y_m": 460.26,
+      "yaw_deg": 216.29315382800996
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_190",
+      "scale": 2.1953618390252814,
+      "x_m": 88.56,
+      "y_m": 327.718,
+      "yaw_deg": 38.5218345746398
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_191",
+      "scale": 1.6215736478334293,
+      "x_m": 54.233,
+      "y_m": 535.992,
+      "yaw_deg": 124.73572245799005
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_192",
+      "scale": 1.4224959121784195,
+      "x_m": 499.133,
+      "y_m": 694.734,
+      "yaw_deg": 111.91674627363682
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_193",
+      "scale": 2.0384108491707593,
+      "x_m": 588.723,
+      "y_m": 373.704,
+      "yaw_deg": 117.9684748314321
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_194",
+      "scale": 1.7887972457101569,
+      "x_m": 184.631,
+      "y_m": 594.552,
+      "yaw_deg": 239.0776482783258
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_195",
+      "scale": 1.556829306180589,
+      "x_m": 64.943,
+      "y_m": 186.423,
+      "yaw_deg": 284.33053457178175
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_196",
+      "scale": 2.2717025039019063,
+      "x_m": 128.226,
+      "y_m": 215.94,
+      "yaw_deg": 265.9511446394026
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_197",
+      "scale": 1.016743183368817,
+      "x_m": 632.547,
+      "y_m": 471.665,
+      "yaw_deg": 280.9149691276252
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_198",
+      "scale": 1.046085768379271,
+      "x_m": 154.017,
+      "y_m": 30.116,
+      "yaw_deg": 61.25894084572792
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_199",
+      "scale": 1.9159051507012919,
+      "x_m": 110.648,
+      "y_m": 612.83,
+      "yaw_deg": 97.17498505488038
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_200",
+      "scale": 1.7045052665052935,
+      "x_m": 264.471,
+      "y_m": 168.039,
+      "yaw_deg": 317.218767805025
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_201",
+      "scale": 2.3327448561321944,
+      "x_m": 544.484,
+      "y_m": 263.328,
+      "yaw_deg": 3.1811117101460695
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_202",
+      "scale": 2.1933977481676266,
+      "x_m": 501.677,
+      "y_m": 456.338,
+      "yaw_deg": 3.324492461979389
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_203",
+      "scale": 1.1571443711873144,
+      "x_m": 325.74,
+      "y_m": 412.576,
+      "yaw_deg": 85.71878705173731
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_204",
+      "scale": 1.600183070055209,
+      "x_m": 142.737,
+      "y_m": 609.033,
+      "yaw_deg": 355.132911298424
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_205",
+      "scale": 1.3039227264234796,
+      "x_m": 409.265,
+      "y_m": 670.696,
+      "yaw_deg": 89.87399510107934
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_206",
+      "scale": 2.360344179207459,
+      "x_m": 553.776,
+      "y_m": 310.727,
+      "yaw_deg": 100.22469894960523
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_207",
+      "scale": 1.0142463918309659,
+      "x_m": 177.733,
+      "y_m": 42.27,
+      "yaw_deg": 209.7177675459534
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_208",
+      "scale": 1.934597902232781,
+      "x_m": 673.855,
+      "y_m": 470.89,
+      "yaw_deg": 3.233808232471347
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_209",
+      "scale": 2.2945136916823685,
+      "x_m": 310.34,
+      "y_m": 480.253,
+      "yaw_deg": 121.03149298578501
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_210",
+      "scale": 2.2581298749428242,
+      "x_m": 442.559,
+      "y_m": 464.065,
+      "yaw_deg": 271.44943909719586
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_211",
+      "scale": 1.7461914982413873,
+      "x_m": 54.949,
+      "y_m": 214.983,
+      "yaw_deg": 23.0093739554286
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_212",
+      "scale": 1.7784787359414622,
+      "x_m": 133.44,
+      "y_m": 24.236,
+      "yaw_deg": 51.04267165996134
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_213",
+      "scale": 2.4527146932668984,
+      "x_m": 532.614,
+      "y_m": 275.34,
+      "yaw_deg": 7.877097353339195
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_214",
+      "scale": 1.1326747288694605,
+      "x_m": 468.067,
+      "y_m": 42.175,
+      "yaw_deg": 165.557341882959
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_215",
+      "scale": 1.0203636325895786,
+      "x_m": 526.512,
+      "y_m": 449.067,
+      "yaw_deg": 123.60951636917889
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_216",
+      "scale": 1.431767451344058,
+      "x_m": 507.175,
+      "y_m": 694.431,
+      "yaw_deg": 94.12432878278196
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_217",
+      "scale": 1.5635462682694197,
+      "x_m": 275.685,
+      "y_m": 163.812,
+      "yaw_deg": 170.75184356421232
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_218",
+      "scale": 1.4543605262879282,
+      "x_m": 98.401,
+      "y_m": 220.89,
+      "yaw_deg": 333.2616313174367
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_219",
+      "scale": 1.5313060006592423,
+      "x_m": 576.271,
+      "y_m": 341.945,
+      "yaw_deg": 61.087606279179454
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_220",
+      "scale": 1.4504683298291638,
+      "x_m": 364.467,
+      "y_m": 511.734,
+      "yaw_deg": 146.54573843814433
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_221",
+      "scale": 1.1116405496140942,
+      "x_m": 607.886,
+      "y_m": 98.944,
+      "yaw_deg": 311.710772048682
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_222",
+      "scale": 1.1076812242390588,
+      "x_m": 498.963,
+      "y_m": 329.244,
+      "yaw_deg": 0.9636840876191854
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_223",
+      "scale": 2.3575119582237676,
+      "x_m": 88.064,
+      "y_m": 183.179,
+      "yaw_deg": 243.27415480278432
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_224",
+      "scale": 1.3932271434459835,
+      "x_m": 64.285,
+      "y_m": 110.972,
+      "yaw_deg": 172.70043689757586
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_225",
+      "scale": 1.0796429513720796,
+      "x_m": 85.147,
+      "y_m": 326.473,
+      "yaw_deg": 116.15380419418216
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_226",
+      "scale": 2.3670994368148968,
+      "x_m": 62.979,
+      "y_m": 234.795,
+      "yaw_deg": 339.59116037003696
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_227",
+      "scale": 1.8921639376785606,
+      "x_m": 600.447,
+      "y_m": 107.703,
+      "yaw_deg": 166.3638242147863
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_228",
+      "scale": 1.496066437335685,
+      "x_m": 28.297,
+      "y_m": 317.351,
+      "yaw_deg": 256.2805453129113
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_229",
+      "scale": 1.5987352003576234,
+      "x_m": 637.863,
+      "y_m": 469.299,
+      "yaw_deg": 326.0579284373671
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_230",
+      "scale": 2.018889470375143,
+      "x_m": 51.63,
+      "y_m": 620.617,
+      "yaw_deg": 295.0139553844929
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_231",
+      "scale": 1.65652616659645,
+      "x_m": 275.618,
+      "y_m": 155.725,
+      "yaw_deg": 4.8404955212026834
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_232",
+      "scale": 1.7793710038531572,
+      "x_m": 473.539,
+      "y_m": 308.116,
+      "yaw_deg": 165.98672641441226
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_233",
+      "scale": 1.0303957229480147,
+      "x_m": 79.08,
+      "y_m": 531.409,
+      "yaw_deg": 215.605492265895
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_234",
+      "scale": 1.0495782608631998,
+      "x_m": 626.136,
+      "y_m": 482.071,
+      "yaw_deg": 32.58060045540333
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_235",
+      "scale": 1.388714143075049,
+      "x_m": 42.743,
+      "y_m": 567.22,
+      "yaw_deg": 347.3943095561117
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_236",
+      "scale": 1.4753146852599457,
+      "x_m": 541.366,
+      "y_m": 466.912,
+      "yaw_deg": 230.48363668844104
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_238",
+      "scale": 1.7986712184501812,
+      "x_m": 261.32,
+      "y_m": 513.133,
+      "yaw_deg": 17.714588502421975
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_239",
+      "scale": 1.8974101342028007,
+      "x_m": 600.174,
+      "y_m": 304.975,
+      "yaw_deg": 176.7687462363392
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_240",
+      "scale": 1.5112590842181817,
+      "x_m": 684.574,
+      "y_m": 52.297,
+      "yaw_deg": 39.26658309996128
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_241",
+      "scale": 2.320931583060883,
+      "x_m": 535.287,
+      "y_m": 296.873,
+      "yaw_deg": 298.0746574513614
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_242",
+      "scale": 1.4277283016126603,
+      "x_m": 33.759,
+      "y_m": 227.023,
+      "yaw_deg": 98.05211869999766
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_243",
+      "scale": 1.333739238558337,
+      "x_m": 53.894,
+      "y_m": 597.036,
+      "yaw_deg": 266.19384340010583
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_244",
+      "scale": 1.5121620495337993,
+      "x_m": 165.443,
+      "y_m": 26.51,
+      "yaw_deg": 185.87173188105226
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_245",
+      "scale": 1.3399901972152293,
+      "x_m": 130.515,
+      "y_m": 623.085,
+      "yaw_deg": 89.88890583626926
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_246",
+      "scale": 1.5476588730234653,
+      "x_m": 243.552,
+      "y_m": 500.134,
+      "yaw_deg": 311.9809853285551
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_247",
+      "scale": 1.6259045084007084,
+      "x_m": 677.842,
+      "y_m": 162.18,
+      "yaw_deg": 110.92063436284661
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_248",
+      "scale": 2.2996343031991273,
+      "x_m": 610.49,
+      "y_m": 473.005,
+      "yaw_deg": 62.10052692331374
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_249",
+      "scale": 1.7405629873974249,
+      "x_m": 134.961,
+      "y_m": 627.931,
+      "yaw_deg": 309.44829697720706
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_250",
+      "scale": 1.1959070953307673,
+      "x_m": 191.154,
+      "y_m": 602.51,
+      "yaw_deg": 107.09314732812345
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_251",
+      "scale": 1.1829184024827555,
+      "x_m": 446.746,
+      "y_m": 425.512,
+      "yaw_deg": 262.26382163353264
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_252",
+      "scale": 2.0363248934736475,
+      "x_m": 236.549,
+      "y_m": 514.537,
+      "yaw_deg": 77.22392667084932
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_253",
+      "scale": 1.6892934058560058,
+      "x_m": 490.042,
+      "y_m": 282.243,
+      "yaw_deg": 68.61494072712958
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_254",
+      "scale": 1.1355884607182816,
+      "x_m": 140.513,
+      "y_m": 597.712,
+      "yaw_deg": 26.00924159400165
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_255",
+      "scale": 2.066153555875644,
+      "x_m": 621.221,
+      "y_m": 55.719,
+      "yaw_deg": 22.688930528238416
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_256",
+      "scale": 1.222023858455941,
+      "x_m": 611.273,
+      "y_m": 278.381,
+      "yaw_deg": 320.7305709924549
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_257",
+      "scale": 1.40601592999883,
+      "x_m": 346.554,
+      "y_m": 549.558,
+      "yaw_deg": 167.59414955042303
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_258",
+      "scale": 2.1616703716572374,
+      "x_m": 367.611,
+      "y_m": 454.416,
+      "yaw_deg": 69.76397216320038
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_259",
+      "scale": 1.7715487530222163,
+      "x_m": 336.356,
+      "y_m": 386.067,
+      "yaw_deg": 104.26482606679201
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_260",
+      "scale": 2.1037366347154602,
+      "x_m": 217.698,
+      "y_m": 208.426,
+      "yaw_deg": 104.6314194984734
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_261",
+      "scale": 1.9425751547096297,
+      "x_m": 84.795,
+      "y_m": 554.617,
+      "yaw_deg": 122.62512152083218
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_262",
+      "scale": 1.2025122145423666,
+      "x_m": 625.867,
+      "y_m": 321.632,
+      "yaw_deg": 262.70964056253433
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_263",
+      "scale": 2.4271032143151388,
+      "x_m": 382.943,
+      "y_m": 400.245,
+      "yaw_deg": 324.5535510778427
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_264",
+      "scale": 1.969157142098993,
+      "x_m": 400.622,
+      "y_m": 448.007,
+      "yaw_deg": 352.11543093435466
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_265",
+      "scale": 1.541571079287678,
+      "x_m": 268.394,
+      "y_m": 179.658,
+      "yaw_deg": 185.50784655846655
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_266",
+      "scale": 2.0891461971914396,
+      "x_m": 618.588,
+      "y_m": 480.079,
+      "yaw_deg": 32.82457829453051
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_267",
+      "scale": 2.118530552717857,
+      "x_m": 621.054,
+      "y_m": 458.837,
+      "yaw_deg": 219.37024318613112
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_268",
+      "scale": 1.765476723201573,
+      "x_m": 542.824,
+      "y_m": 255.086,
+      "yaw_deg": 305.69383836351335
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_269",
+      "scale": 2.1014875881373882,
+      "x_m": 345.042,
+      "y_m": 472.023,
+      "yaw_deg": 267.10592438466847
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_270",
+      "scale": 2.1952315168455243,
+      "x_m": 515.447,
+      "y_m": 334.069,
+      "yaw_deg": 17.55878359079361
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_271",
+      "scale": 1.9241976042976603,
+      "x_m": 124.959,
+      "y_m": 38.066,
+      "yaw_deg": 234.1609178390354
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_272",
+      "scale": 1.6100123536307365,
+      "x_m": 204.755,
+      "y_m": 515.619,
+      "yaw_deg": 1.589484354481101
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_273",
+      "scale": 2.099569436744787,
+      "x_m": 327.143,
+      "y_m": 374.662,
+      "yaw_deg": 155.5545351281762
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_274",
+      "scale": 1.758223578101024,
+      "x_m": 439.072,
+      "y_m": 420.141,
+      "yaw_deg": 265.53552822209895
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_276",
+      "scale": 1.2375702146673575,
+      "x_m": 74.947,
+      "y_m": 226.017,
+      "yaw_deg": 271.12786310724914
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_277",
+      "scale": 2.264330766396597,
+      "x_m": 488.535,
+      "y_m": 153.735,
+      "yaw_deg": 144.32866788469255
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_278",
+      "scale": 2.400519783841446,
+      "x_m": 452.185,
+      "y_m": 261.423,
+      "yaw_deg": 215.35288718529046
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_279",
+      "scale": 2.0787784884450957,
+      "x_m": 207.707,
+      "y_m": 514.937,
+      "yaw_deg": 85.27472103014588
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_280",
+      "scale": 2.3016713683027774,
+      "x_m": 477.386,
+      "y_m": 690.515,
+      "yaw_deg": 115.03568580374122
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_281",
+      "scale": 1.1166617458220571,
+      "x_m": 596.819,
+      "y_m": 456.308,
+      "yaw_deg": 90.29137046076357
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_282",
+      "scale": 1.6660558187868446,
+      "x_m": 207.182,
+      "y_m": 506.414,
+      "yaw_deg": 175.75895497575402
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_283",
+      "scale": 1.989729272434488,
+      "x_m": 650.282,
+      "y_m": 449.406,
+      "yaw_deg": 5.461259773001075
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_284",
+      "scale": 1.4391242536948994,
+      "x_m": 89.157,
+      "y_m": 609.363,
+      "yaw_deg": 268.15017096698284
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_285",
+      "scale": 1.1538475598208606,
+      "x_m": 477.346,
+      "y_m": 272.961,
+      "yaw_deg": 50.437362967059016
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_286",
+      "scale": 1.4209608224919066,
+      "x_m": 642.778,
+      "y_m": 469.196,
+      "yaw_deg": 341.46172983571887
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_287",
+      "scale": 2.125634789816104,
+      "x_m": 529.878,
+      "y_m": 269.754,
+      "yaw_deg": 137.71439401432872
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_288",
+      "scale": 2.4651473816484213,
+      "x_m": 501.86,
+      "y_m": 432.178,
+      "yaw_deg": 354.88069840706885
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_289",
+      "scale": 2.4491721304366365,
+      "x_m": 329.874,
+      "y_m": 370.105,
+      "yaw_deg": 87.7908259537071
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_290",
+      "scale": 1.9574208204867318,
+      "x_m": 305.771,
+      "y_m": 515.864,
+      "yaw_deg": 7.098491387441754
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_291",
+      "scale": 1.2486228516791016,
+      "x_m": 62.157,
+      "y_m": 324.436,
+      "yaw_deg": 189.81115512549877
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_292",
+      "scale": 1.7562950296560302,
+      "x_m": 291.173,
+      "y_m": 178.911,
+      "yaw_deg": 327.42738808505237
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_293",
+      "scale": 1.4913064491702244,
+      "x_m": 625.281,
+      "y_m": 86.455,
+      "yaw_deg": 180.49921894446015
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_294",
+      "scale": 1.3532897685654461,
+      "x_m": 61.438,
+      "y_m": 381.734,
+      "yaw_deg": 196.22401538304985
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_295",
+      "scale": 2.109958914690651,
+      "x_m": 607.442,
+      "y_m": 451.777,
+      "yaw_deg": 154.63001389056444
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_296",
+      "scale": 2.19844868616201,
+      "x_m": 201.929,
+      "y_m": 26.262,
+      "yaw_deg": 77.93777916580439
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_298",
+      "scale": 2.464934380725026,
+      "x_m": 633.472,
+      "y_m": 66.798,
+      "yaw_deg": 108.64276232197881
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_299",
+      "scale": 2.181930211838335,
+      "x_m": 101.895,
+      "y_m": 311.453,
+      "yaw_deg": 133.31143911927938
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_300",
+      "scale": 2.2941023246385157,
+      "x_m": 488.791,
+      "y_m": 276.295,
+      "yaw_deg": 306.2181172706187
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_301",
+      "scale": 1.5230263469275087,
+      "x_m": 166.503,
+      "y_m": 34.926,
+      "yaw_deg": 133.09868646785617
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_302",
+      "scale": 1.6264508324675262,
+      "x_m": 58.828,
+      "y_m": 226.925,
+      "yaw_deg": 298.11638625338674
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_303",
+      "scale": 2.4691008809022605,
+      "x_m": 627.307,
+      "y_m": 76.481,
+      "yaw_deg": 180.0314520020038
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_304",
+      "scale": 1.7538854993181303,
+      "x_m": 58.164,
+      "y_m": 535.308,
+      "yaw_deg": 260.916169853881
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_305",
+      "scale": 2.203172060777433,
+      "x_m": 25.148,
+      "y_m": 191.158,
+      "yaw_deg": 74.04237340204418
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_306",
+      "scale": 2.467280284385197,
+      "x_m": 327.141,
+      "y_m": 360.013,
+      "yaw_deg": 24.155598459765315
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_307",
+      "scale": 1.1333368314662948,
+      "x_m": 157.289,
+      "y_m": 32.535,
+      "yaw_deg": 39.047665474936366
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_308",
+      "scale": 2.1527814702130854,
+      "x_m": 133.823,
+      "y_m": 72.929,
+      "yaw_deg": 197.6055427081883
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_309",
+      "scale": 1.0903626815415919,
+      "x_m": 445.977,
+      "y_m": 250.23,
+      "yaw_deg": 273.4266862180084
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_310",
+      "scale": 1.3141043757786974,
+      "x_m": 649.552,
+      "y_m": 471.817,
+      "yaw_deg": 137.00690053403378
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_311",
+      "scale": 2.1111354426248,
+      "x_m": 471.123,
+      "y_m": 267.765,
+      "yaw_deg": 162.2811701707542
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_312",
+      "scale": 1.849095681332983,
+      "x_m": 49.314,
+      "y_m": 309.759,
+      "yaw_deg": 116.91657439805567
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_313",
+      "scale": 2.4535378887085244,
+      "x_m": 489.497,
+      "y_m": 303.039,
+      "yaw_deg": 317.77300304733217
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_314",
+      "scale": 1.7045782833592966,
+      "x_m": 348.776,
+      "y_m": 675.218,
+      "yaw_deg": 173.2184689398855
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_315",
+      "scale": 2.360772358253598,
+      "x_m": 535.413,
+      "y_m": 274.862,
+      "yaw_deg": 345.7399295736104
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_316",
+      "scale": 2.492922982783057,
+      "x_m": 227.292,
+      "y_m": 508.225,
+      "yaw_deg": 283.63137387670577
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_317",
+      "scale": 1.6575066997902468,
+      "x_m": 380.038,
+      "y_m": 488.173,
+      "yaw_deg": 78.67385485209525
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_318",
+      "scale": 1.456395855289884,
+      "x_m": 638.358,
+      "y_m": 454.002,
+      "yaw_deg": 273.7238701991737
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_319",
+      "scale": 1.98702645895537,
+      "x_m": 141.169,
+      "y_m": 614.022,
+      "yaw_deg": 214.19100059196353
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_320",
+      "scale": 1.8056795306038111,
+      "x_m": 516.865,
+      "y_m": 274.827,
+      "yaw_deg": 221.15727474913
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_321",
+      "scale": 1.5074678498785943,
+      "x_m": 237.295,
+      "y_m": 511.907,
+      "yaw_deg": 166.11850501969457
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_322",
+      "scale": 2.422427232377231,
+      "x_m": 211.74,
+      "y_m": 423.338,
+      "yaw_deg": 358.3449893631041
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_323",
+      "scale": 2.4522255313349888,
+      "x_m": 449.104,
+      "y_m": 276.702,
+      "yaw_deg": 173.99410938844085
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_324",
+      "scale": 1.4882723772898316,
+      "x_m": 340.987,
+      "y_m": 460.669,
+      "yaw_deg": 35.27461445890367
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_325",
+      "scale": 1.180499104433693,
+      "x_m": 150.843,
+      "y_m": 56.004,
+      "yaw_deg": 323.8964345958084
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_326",
+      "scale": 1.8616316553670913,
+      "x_m": 663.549,
+      "y_m": 454.15,
+      "yaw_deg": 212.98478135839105
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_327",
+      "scale": 1.1986634779023007,
+      "x_m": 90.939,
+      "y_m": 293.066,
+      "yaw_deg": 335.2655381709337
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_328",
+      "scale": 2.297715393942781,
+      "x_m": 121.691,
+      "y_m": 296.456,
+      "yaw_deg": 230.50186766311526
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_329",
+      "scale": 1.099224538425915,
+      "x_m": 456.721,
+      "y_m": 263.264,
+      "yaw_deg": 109.79616165161133
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_330",
+      "scale": 2.2652031059842557,
+      "x_m": 366.017,
+      "y_m": 354.482,
+      "yaw_deg": 205.32725332304835
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_331",
+      "scale": 1.9602037251461297,
+      "x_m": 519.728,
+      "y_m": 272.089,
+      "yaw_deg": 179.2913139425218
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_332",
+      "scale": 1.6903392934473231,
+      "x_m": 164.72,
+      "y_m": 600.709,
+      "yaw_deg": 235.78636843711138
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_333",
+      "scale": 2.0038700941950083,
+      "x_m": 381.719,
+      "y_m": 382.612,
+      "yaw_deg": 218.16491645760834
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_334",
+      "scale": 2.212676487979479,
+      "x_m": 571.578,
+      "y_m": 253.487,
+      "yaw_deg": 209.55148215405643
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_335",
+      "scale": 1.0053930362919345,
+      "x_m": 517.904,
+      "y_m": 450.283,
+      "yaw_deg": 280.43522075749934
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_336",
+      "scale": 2.441465620766394,
+      "x_m": 565.685,
+      "y_m": 445.533,
+      "yaw_deg": 112.87634678184986
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_337",
+      "scale": 2.1594095865730196,
+      "x_m": 392.692,
+      "y_m": 263.003,
+      "yaw_deg": 41.308589139953256
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_338",
+      "scale": 1.859567589010112,
+      "x_m": 243.742,
+      "y_m": 615.59,
+      "yaw_deg": 3.3974240720272064
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_339",
+      "scale": 1.2976650374475867,
+      "x_m": 324.973,
+      "y_m": 157.697,
+      "yaw_deg": 127.12266342714429
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_340",
+      "scale": 1.9228979249019176,
+      "x_m": 86.131,
+      "y_m": 109.447,
+      "yaw_deg": 18.786095967516303
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_341",
+      "scale": 1.0000046117929742,
+      "x_m": 98.8,
+      "y_m": 608.615,
+      "yaw_deg": 109.89696501754224
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_342",
+      "scale": 2.4365736106410623,
+      "x_m": 569.358,
+      "y_m": 30.054,
+      "yaw_deg": 7.300994982942939
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_343",
+      "scale": 2.2486335320863873,
+      "x_m": 623.82,
+      "y_m": 53.998,
+      "yaw_deg": 167.69222158938646
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_344",
+      "scale": 1.732666898984462,
+      "x_m": 107.881,
+      "y_m": 248.014,
+      "yaw_deg": 270.84287001751363
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_345",
+      "scale": 1.0288280573440716,
+      "x_m": 590.484,
+      "y_m": 470.029,
+      "yaw_deg": 237.13189381174743
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_346",
+      "scale": 2.098905346938409,
+      "x_m": 472.234,
+      "y_m": 262.222,
+      "yaw_deg": 86.07096805237234
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_347",
+      "scale": 1.9210646570427343,
+      "x_m": 483.612,
+      "y_m": 292.732,
+      "yaw_deg": 186.90030246041715
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_348",
+      "scale": 1.9155517504550517,
+      "x_m": 178.86,
+      "y_m": 27.612,
+      "yaw_deg": 337.7936584688723
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_349",
+      "scale": 1.6662417995976284,
+      "x_m": 528.589,
+      "y_m": 692.528,
+      "yaw_deg": 248.20931687951088
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_350",
+      "scale": 1.7237651753239334,
+      "x_m": 679.794,
+      "y_m": 523.34,
+      "yaw_deg": 7.732101073488593
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_351",
+      "scale": 2.286162637756206,
+      "x_m": 49.209,
+      "y_m": 217.444,
+      "yaw_deg": 248.2268337160349
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_352",
+      "scale": 2.099172974471003,
+      "x_m": 644.984,
+      "y_m": 60.281,
+      "yaw_deg": 140.9186626598239
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_353",
+      "scale": 2.4634809538256377,
+      "x_m": 601.001,
+      "y_m": 356.007,
+      "yaw_deg": 72.78114977292717
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_354",
+      "scale": 1.551967450301163,
+      "x_m": 309.279,
+      "y_m": 183.16,
+      "yaw_deg": 228.9156048092991
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_355",
+      "scale": 2.456570335198194,
+      "x_m": 164.1,
+      "y_m": 41.008,
+      "yaw_deg": 20.08331903256476
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_356",
+      "scale": 2.1957519128918648,
+      "x_m": 595.506,
+      "y_m": 280.748,
+      "yaw_deg": 315.93645337969065
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_357",
+      "scale": 1.6167317716171965,
+      "x_m": 44.84,
+      "y_m": 229.142,
+      "yaw_deg": 354.73891826346517
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_358",
+      "scale": 2.4195479553891346,
+      "x_m": 458.067,
+      "y_m": 248.914,
+      "yaw_deg": 73.94589476287365
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_359",
+      "scale": 1.295680609997362,
+      "x_m": 328.802,
+      "y_m": 167.103,
+      "yaw_deg": 282.39633849821985
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_360",
+      "scale": 1.5129481089534238,
+      "x_m": 652.032,
+      "y_m": 60.778,
+      "yaw_deg": 297.47700470499694
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_361",
+      "scale": 1.6589646672364324,
+      "x_m": 508.959,
+      "y_m": 279.137,
+      "yaw_deg": 283.66105352528393
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_362",
+      "scale": 2.134368669008836,
+      "x_m": 444.286,
+      "y_m": 426.467,
+      "yaw_deg": 359.9150281213224
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_363",
+      "scale": 1.1293073502602056,
+      "x_m": 601.028,
+      "y_m": 308.597,
+      "yaw_deg": 17.98180114477873
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_364",
+      "scale": 2.2634111958323047,
+      "x_m": 359.948,
+      "y_m": 653.034,
+      "yaw_deg": 337.14226104319096
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_365",
+      "scale": 1.5019457965390757,
+      "x_m": 81.031,
+      "y_m": 172.757,
+      "yaw_deg": 305.452901981771
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_366",
+      "scale": 2.079423977760598,
+      "x_m": 604.213,
+      "y_m": 301.343,
+      "yaw_deg": 84.7252344712615
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_367",
+      "scale": 1.996443682932295,
+      "x_m": 362.709,
+      "y_m": 474.096,
+      "yaw_deg": 338.71335642412305
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_368",
+      "scale": 1.2500977407908067,
+      "x_m": 378.008,
+      "y_m": 478.466,
+      "yaw_deg": 165.10057191364467
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_369",
+      "scale": 1.4065404935972765,
+      "x_m": 534.343,
+      "y_m": 334.976,
+      "yaw_deg": 172.32284515164793
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_370",
+      "scale": 1.8109445214504376,
+      "x_m": 356.237,
+      "y_m": 359.515,
+      "yaw_deg": 149.6375093702227
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_371",
+      "scale": 2.390101785422303,
+      "x_m": 322.601,
+      "y_m": 474.975,
+      "yaw_deg": 122.99586575478315
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_372",
+      "scale": 1.6690276550361887,
+      "x_m": 555.708,
+      "y_m": 458.409,
+      "yaw_deg": 18.764274772256613
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_373",
+      "scale": 1.2821371518075466,
+      "x_m": 381.061,
+      "y_m": 662.548,
+      "yaw_deg": 230.436985027045
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_374",
+      "scale": 1.4637512358604,
+      "x_m": 592.309,
+      "y_m": 310.529,
+      "yaw_deg": 358.7263172585517
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_375",
+      "scale": 1.3657680125907063,
+      "x_m": 103.35,
+      "y_m": 181.421,
+      "yaw_deg": 7.8277126885950565
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_376",
+      "scale": 2.244154814397916,
+      "x_m": 59.472,
+      "y_m": 327.059,
+      "yaw_deg": 136.85620958916843
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_377",
+      "scale": 1.1732626456068829,
+      "x_m": 31.566,
+      "y_m": 589.717,
+      "yaw_deg": 316.26666457392275
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_378",
+      "scale": 1.6361075972672552,
+      "x_m": 680.163,
+      "y_m": 452.849,
+      "yaw_deg": 68.56649466790259
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_379",
+      "scale": 1.6532232790486887,
+      "x_m": 494.044,
+      "y_m": 309.916,
+      "yaw_deg": 185.0879419595003
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_380",
+      "scale": 1.406675454461947,
+      "x_m": 480.897,
+      "y_m": 299.077,
+      "yaw_deg": 183.6973926052451
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_381",
+      "scale": 1.010536556947045,
+      "x_m": 155.289,
+      "y_m": 619.637,
+      "yaw_deg": 354.9961198121309
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_382",
+      "scale": 1.6892406491097063,
+      "x_m": 425.785,
+      "y_m": 452.532,
+      "yaw_deg": 78.96200314164162
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_383",
+      "scale": 1.1288109400775284,
+      "x_m": 602.135,
+      "y_m": 44.365,
+      "yaw_deg": 227.2000252828002
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_384",
+      "scale": 1.5971743013942614,
+      "x_m": 310.618,
+      "y_m": 365.083,
+      "yaw_deg": 263.76913944259286
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_385",
+      "scale": 1.5429933457635343,
+      "x_m": 551.767,
+      "y_m": 457.503,
+      "yaw_deg": 209.47826656512916
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_386",
+      "scale": 1.4345116403419524,
+      "x_m": 478.241,
+      "y_m": 264.358,
+      "yaw_deg": 354.9188348092139
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_387",
+      "scale": 2.432942717568949,
+      "x_m": 643.63,
+      "y_m": 467.256,
+      "yaw_deg": 84.0167733002454
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_388",
+      "scale": 1.7238659830763936,
+      "x_m": 350.182,
+      "y_m": 449.834,
+      "yaw_deg": 321.6830590367317
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_389",
+      "scale": 1.032166030840017,
+      "x_m": 335.518,
+      "y_m": 355.29,
+      "yaw_deg": 235.16533822752535
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_390",
+      "scale": 2.184825113741681,
+      "x_m": 94.32,
+      "y_m": 181.176,
+      "yaw_deg": 287.8896242659539
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_391",
+      "scale": 1.4040282744681463,
+      "x_m": 613.95,
+      "y_m": 37.911,
+      "yaw_deg": 255.30051995068789
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_392",
+      "scale": 1.4961332299280912,
+      "x_m": 680.88,
+      "y_m": 376.158,
+      "yaw_deg": 184.7367015760392
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_393",
+      "scale": 1.1573435807367787,
+      "x_m": 495.929,
+      "y_m": 260.273,
+      "yaw_deg": 140.60226920060813
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_394",
+      "scale": 1.9112490597181022,
+      "x_m": 472.019,
+      "y_m": 277.454,
+      "yaw_deg": 196.6444945614785
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_396",
+      "scale": 1.9315756236901507,
+      "x_m": 350.479,
+      "y_m": 363.329,
+      "yaw_deg": 84.3633659183979
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_397",
+      "scale": 1.082521813805215,
+      "x_m": 346.225,
+      "y_m": 455.122,
+      "yaw_deg": 213.2646656781435
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_398",
+      "scale": 2.48143415118102,
+      "x_m": 71.524,
+      "y_m": 114.979,
+      "yaw_deg": 125.42701388709247
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_399",
+      "scale": 2.3030137220630422,
+      "x_m": 126.181,
+      "y_m": 310.965,
+      "yaw_deg": 147.24208901636302
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_400",
+      "scale": 1.067830590880476,
+      "x_m": 504.399,
+      "y_m": 320.594,
+      "yaw_deg": 27.229017550125718
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_401",
+      "scale": 1.483840872417204,
+      "x_m": 135.187,
+      "y_m": 630.627,
+      "yaw_deg": 345.39607054553926
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_402",
+      "scale": 1.3441911763511598,
+      "x_m": 502.963,
+      "y_m": 695.703,
+      "yaw_deg": 58.950204541906714
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_403",
+      "scale": 1.0550346538657323,
+      "x_m": 443.571,
+      "y_m": 394.578,
+      "yaw_deg": 123.42375000938773
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_404",
+      "scale": 2.0161502001574263,
+      "x_m": 487.085,
+      "y_m": 279.34,
+      "yaw_deg": 131.31702636368573
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_405",
+      "scale": 1.3641669035423547,
+      "x_m": 515.038,
+      "y_m": 296.856,
+      "yaw_deg": 237.72573681548238
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_406",
+      "scale": 1.6764893478248268,
+      "x_m": 469.503,
+      "y_m": 242.877,
+      "yaw_deg": 70.52055585198104
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_408",
+      "scale": 1.0105086693074554,
+      "x_m": 204.372,
+      "y_m": 519.528,
+      "yaw_deg": 262.83837494440377
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_409",
+      "scale": 1.4355031063314527,
+      "x_m": 489.381,
+      "y_m": 469.71,
+      "yaw_deg": 174.00991816073656
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_410",
+      "scale": 1.4366352398646995,
+      "x_m": 635.835,
+      "y_m": 366.422,
+      "yaw_deg": 43.88105356134474
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_411",
+      "scale": 1.0604652934707701,
+      "x_m": 163.328,
+      "y_m": 606.1,
+      "yaw_deg": 273.89103719964623
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_412",
+      "scale": 1.6104727844940498,
+      "x_m": 584.51,
+      "y_m": 34.975,
+      "yaw_deg": 62.00525905005634
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_413",
+      "scale": 2.3552869491977617,
+      "x_m": 62.264,
+      "y_m": 315.661,
+      "yaw_deg": 63.42497390694916
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_414",
+      "scale": 2.2802309293765575,
+      "x_m": 668.023,
+      "y_m": 452.931,
+      "yaw_deg": 132.23851192742586
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_415",
+      "scale": 2.023833103245124,
+      "x_m": 62.378,
+      "y_m": 620.229,
+      "yaw_deg": 233.5297756176442
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_416",
+      "scale": 2.4921414967393503,
+      "x_m": 456.579,
+      "y_m": 386.012,
+      "yaw_deg": 87.39859680645168
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_417",
+      "scale": 2.0992455729283392,
+      "x_m": 623.201,
+      "y_m": 323.154,
+      "yaw_deg": 180.4264717362821
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_418",
+      "scale": 1.1067727925255895,
+      "x_m": 308.02,
+      "y_m": 383.247,
+      "yaw_deg": 57.327069360762835
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_419",
+      "scale": 2.246548136230558,
+      "x_m": 126.924,
+      "y_m": 623.245,
+      "yaw_deg": 187.48021348379552
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_420",
+      "scale": 1.3978100691456348,
+      "x_m": 290.472,
+      "y_m": 506.029,
+      "yaw_deg": 3.4645668882876635
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_421",
+      "scale": 2.107769337366335,
+      "x_m": 542.899,
+      "y_m": 260.787,
+      "yaw_deg": 288.014842774719
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_422",
+      "scale": 1.6560328922932968,
+      "x_m": 525.542,
+      "y_m": 269.986,
+      "yaw_deg": 42.93238380923867
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_423",
+      "scale": 1.793441534973681,
+      "x_m": 49.442,
+      "y_m": 326.692,
+      "yaw_deg": 235.91542434878647
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_424",
+      "scale": 1.6534380248049274,
+      "x_m": 592.142,
+      "y_m": 269.152,
+      "yaw_deg": 85.98252413794398
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_425",
+      "scale": 2.4700924289645627,
+      "x_m": 363.548,
+      "y_m": 487.04,
+      "yaw_deg": 39.12550720386207
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_426",
+      "scale": 1.7786613971693441,
+      "x_m": 380.879,
+      "y_m": 485.883,
+      "yaw_deg": 237.5610029976815
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_427",
+      "scale": 2.11975331697613,
+      "x_m": 593.904,
+      "y_m": 307.35,
+      "yaw_deg": 47.6843077596277
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_428",
+      "scale": 1.5048858276568353,
+      "x_m": 610.333,
+      "y_m": 363.824,
+      "yaw_deg": 129.27885185927153
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_429",
+      "scale": 1.0558728532632813,
+      "x_m": 518.904,
+      "y_m": 325.921,
+      "yaw_deg": 292.9211463779211
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_430",
+      "scale": 1.4459248556522653,
+      "x_m": 88.713,
+      "y_m": 162.044,
+      "yaw_deg": 312.03199801035225
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_431",
+      "scale": 1.1263997473288327,
+      "x_m": 164.257,
+      "y_m": 28.323,
+      "yaw_deg": 256.674128388986
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_432",
+      "scale": 1.7672270856564865,
+      "x_m": 636.155,
+      "y_m": 476.213,
+      "yaw_deg": 307.14480858296156
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_433",
+      "scale": 2.1408867341233417,
+      "x_m": 563.882,
+      "y_m": 302.198,
+      "yaw_deg": 20.828206362202764
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_434",
+      "scale": 2.0414475051220506,
+      "x_m": 511.243,
+      "y_m": 442.507,
+      "yaw_deg": 249.0696463175118
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_435",
+      "scale": 1.1545115218032151,
+      "x_m": 318.506,
+      "y_m": 373.053,
+      "yaw_deg": 85.68389545194805
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_436",
+      "scale": 2.437499491730705,
+      "x_m": 594.681,
+      "y_m": 53.229,
+      "yaw_deg": 198.5846520960331
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_437",
+      "scale": 1.2624112102203071,
+      "x_m": 671.719,
+      "y_m": 453.079,
+      "yaw_deg": 311.56606108881533
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_438",
+      "scale": 1.8643835993716493,
+      "x_m": 533.497,
+      "y_m": 340.015,
+      "yaw_deg": 133.68968339636922
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_439",
+      "scale": 1.003196352510713,
+      "x_m": 579.833,
+      "y_m": 364.048,
+      "yaw_deg": 336.01445619016886
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_440",
+      "scale": 1.8814042946323752,
+      "x_m": 266.97,
+      "y_m": 414.996,
+      "yaw_deg": 100.9014403168112
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_441",
+      "scale": 2.3622211733600125,
+      "x_m": 149.211,
+      "y_m": 620.802,
+      "yaw_deg": 314.40748368389904
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_442",
+      "scale": 2.3257916811853647,
+      "x_m": 454.198,
+      "y_m": 264.078,
+      "yaw_deg": 296.6713161394
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_443",
+      "scale": 1.1548490844434127,
+      "x_m": 231.723,
+      "y_m": 501.43,
+      "yaw_deg": 50.13570330105722
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_444",
+      "scale": 2.1469815665623173,
+      "x_m": 423.767,
+      "y_m": 388.545,
+      "yaw_deg": 286.30475398153067
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_445",
+      "scale": 1.074668037937954,
+      "x_m": 401.632,
+      "y_m": 264.36,
+      "yaw_deg": 181.07692200690508
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_446",
+      "scale": 1.1886511775664985,
+      "x_m": 179.723,
+      "y_m": 31.803,
+      "yaw_deg": 271.25614679418504
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_447",
+      "scale": 1.786687444895506,
+      "x_m": 130.081,
+      "y_m": 615.291,
+      "yaw_deg": 134.51439125463367
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_448",
+      "scale": 2.259281485225074,
+      "x_m": 599.342,
+      "y_m": 29.327,
+      "yaw_deg": 106.79187431931496
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_449",
+      "scale": 1.3143803513376042,
+      "x_m": 613.923,
+      "y_m": 60.029,
+      "yaw_deg": 277.7454633358866
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_450",
+      "scale": 1.896766944322735,
+      "x_m": 371.197,
+      "y_m": 490.017,
+      "yaw_deg": 300.85214925929904
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_452",
+      "scale": 2.228425754001364,
+      "x_m": 184.913,
+      "y_m": 27.499,
+      "yaw_deg": 267.69894369877875
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_453",
+      "scale": 1.8923693166580051,
+      "x_m": 107.379,
+      "y_m": 279.398,
+      "yaw_deg": 19.439163571223617
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_454",
+      "scale": 1.690383406006731,
+      "x_m": 211.848,
+      "y_m": 508.902,
+      "yaw_deg": 281.89331844449043
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_455",
+      "scale": 1.8979083258891478,
+      "x_m": 130.342,
+      "y_m": 313.522,
+      "yaw_deg": 77.680623549968
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_456",
+      "scale": 1.583965378231369,
+      "x_m": 116.638,
+      "y_m": 474.828,
+      "yaw_deg": 349.0000910963863
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_457",
+      "scale": 1.7176901280181482,
+      "x_m": 634.725,
+      "y_m": 75.26,
+      "yaw_deg": 102.5130942184478
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_458",
+      "scale": 1.1200380759546533,
+      "x_m": 601.744,
+      "y_m": 321.94,
+      "yaw_deg": 301.8633519485593
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_459",
+      "scale": 2.220717072370462,
+      "x_m": 586.773,
+      "y_m": 293.079,
+      "yaw_deg": 303.4531403146684
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_460",
+      "scale": 2.2215968201635405,
+      "x_m": 673.079,
+      "y_m": 394.905,
+      "yaw_deg": 265.2845032978803
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_461",
+      "scale": 1.0417463352205232,
+      "x_m": 164.552,
+      "y_m": 87.216,
+      "yaw_deg": 32.0233728736639
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_462",
+      "scale": 1.8990643366705626,
+      "x_m": 625.546,
+      "y_m": 71.943,
+      "yaw_deg": 292.1514093875885
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_463",
+      "scale": 2.3383848204975948,
+      "x_m": 678.08,
+      "y_m": 456.089,
+      "yaw_deg": 3.9084546267986298
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_464",
+      "scale": 2.0961369164288044,
+      "x_m": 661.782,
+      "y_m": 455.556,
+      "yaw_deg": 299.8571876809001
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_465",
+      "scale": 1.6732396759325638,
+      "x_m": 104.935,
+      "y_m": 415.229,
+      "yaw_deg": 247.44651365093887
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_466",
+      "scale": 1.897676482796669,
+      "x_m": 508.986,
+      "y_m": 471.185,
+      "yaw_deg": 56.90428893081844
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_468",
+      "scale": 1.6107120340457186,
+      "x_m": 505.098,
+      "y_m": 335.219,
+      "yaw_deg": 308.77688239328563
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_469",
+      "scale": 1.254190800478682,
+      "x_m": 641.827,
+      "y_m": 359.197,
+      "yaw_deg": 1.187532702460885
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_470",
+      "scale": 2.05110730312299,
+      "x_m": 49.798,
+      "y_m": 25.997,
+      "yaw_deg": 321.09009814448655
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_471",
+      "scale": 1.8033313777996227,
+      "x_m": 213.482,
+      "y_m": 515.763,
+      "yaw_deg": 91.97364860214293
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_472",
+      "scale": 1.7352484581060708,
+      "x_m": 474.154,
+      "y_m": 413.609,
+      "yaw_deg": 336.2528849579394
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_474",
+      "scale": 1.7767604464897886,
+      "x_m": 524.217,
+      "y_m": 265.208,
+      "yaw_deg": 18.576587615534663
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_475",
+      "scale": 1.2558529381640255,
+      "x_m": 84.738,
+      "y_m": 536.67,
+      "yaw_deg": 98.12516245990992
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_476",
+      "scale": 2.3201012696372345,
+      "x_m": 527.931,
+      "y_m": 457.166,
+      "yaw_deg": 61.93373300135136
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_477",
+      "scale": 1.0023760362528265,
+      "x_m": 339.185,
+      "y_m": 543.354,
+      "yaw_deg": 349.01718305423856
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_478",
+      "scale": 2.0731370362918824,
+      "x_m": 470.901,
+      "y_m": 381.87,
+      "yaw_deg": 151.214107722044
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_479",
+      "scale": 2.1743741967948154,
+      "x_m": 32.084,
+      "y_m": 215.864,
+      "yaw_deg": 341.2249146681279
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_480",
+      "scale": 2.1525774819310755,
+      "x_m": 37.952,
+      "y_m": 578.329,
+      "yaw_deg": 18.25075278058648
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_481",
+      "scale": 1.4171213684603572,
+      "x_m": 552.918,
+      "y_m": 350.422,
+      "yaw_deg": 285.6012253090739
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_482",
+      "scale": 1.6722190475557,
+      "x_m": 334.326,
+      "y_m": 541.665,
+      "yaw_deg": 27.14185170829296
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_483",
+      "scale": 2.0902046464616433,
+      "x_m": 466.297,
+      "y_m": 433.68,
+      "yaw_deg": 204.61154918186367
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_484",
+      "scale": 1.7663251446792856,
+      "x_m": 206.713,
+      "y_m": 587.505,
+      "yaw_deg": 323.38090220466256
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_485",
+      "scale": 2.391587732359767,
+      "x_m": 437.475,
+      "y_m": 390.915,
+      "yaw_deg": 60.40388974361122
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_486",
+      "scale": 2.3595577251398936,
+      "x_m": 397.657,
+      "y_m": 456.268,
+      "yaw_deg": 266.44581564702094
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_487",
+      "scale": 1.8300066550727934,
+      "x_m": 671.794,
+      "y_m": 461.522,
+      "yaw_deg": 21.48205926641822
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_488",
+      "scale": 1.165021451888606,
+      "x_m": 620.986,
+      "y_m": 455.58,
+      "yaw_deg": 129.21216619201005
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_489",
+      "scale": 1.8028242873260751,
+      "x_m": 472.472,
+      "y_m": 288.959,
+      "yaw_deg": 302.0517967455089
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_490",
+      "scale": 1.970258496934548,
+      "x_m": 682.064,
+      "y_m": 163.371,
+      "yaw_deg": 163.94953401759267
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_491",
+      "scale": 1.6849446495762095,
+      "x_m": 39.008,
+      "y_m": 221.126,
+      "yaw_deg": 67.31104868464172
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_492",
+      "scale": 2.0273272626800463,
+      "x_m": 614.715,
+      "y_m": 467.824,
+      "yaw_deg": 136.20692373253405
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_493",
+      "scale": 2.1379318488761783,
+      "x_m": 131.735,
+      "y_m": 606.227,
+      "yaw_deg": 231.90535347908735
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_494",
+      "scale": 1.3827014215057716,
+      "x_m": 587.565,
+      "y_m": 377.933,
+      "yaw_deg": 17.749469205737114
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_495",
+      "scale": 1.9372435071272776,
+      "x_m": 349.834,
+      "y_m": 510.369,
+      "yaw_deg": 134.11694085225463
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_496",
+      "scale": 1.064417956629768,
+      "x_m": 624.419,
+      "y_m": 108.852,
+      "yaw_deg": 148.03065511398017
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_497",
+      "scale": 1.5142585517605767,
+      "x_m": 465.177,
+      "y_m": 268.06,
+      "yaw_deg": 138.905818015337
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_498",
+      "scale": 1.832601013011299,
+      "x_m": 274.188,
+      "y_m": 191.308,
+      "yaw_deg": 289.56321037374437
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_499",
+      "scale": 1.3677801394369453,
+      "x_m": 670.349,
+      "y_m": 183.067,
+      "yaw_deg": 220.75625466182828
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_500",
+      "scale": 2.2386748612625524,
+      "x_m": 156.34,
+      "y_m": 36.574,
+      "yaw_deg": 288.4683497529477
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_501",
+      "scale": 1.8469052944565192,
+      "x_m": 628.132,
+      "y_m": 84.978,
+      "yaw_deg": 92.76962254196405
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_502",
+      "scale": 1.7438015920342878,
+      "x_m": 552.391,
+      "y_m": 280.531,
+      "yaw_deg": 277.31905127875507
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_503",
+      "scale": 1.3539599761134014,
+      "x_m": 380.711,
+      "y_m": 450.58,
+      "yaw_deg": 235.56113060563803
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_504",
+      "scale": 2.1438214811496437,
+      "x_m": 47.586,
+      "y_m": 537.866,
+      "yaw_deg": 170.98810854367912
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_506",
+      "scale": 2.339455902692862,
+      "x_m": 506.631,
+      "y_m": 690.98,
+      "yaw_deg": 339.35760743916035
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_507",
+      "scale": 1.6470422506099567,
+      "x_m": 213.771,
+      "y_m": 426.39,
+      "yaw_deg": 192.16202658601105
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_508",
+      "scale": 2.299685258185491,
+      "x_m": 575.72,
+      "y_m": 265.69,
+      "yaw_deg": 225.26447385549545
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_509",
+      "scale": 2.2455446656094864,
+      "x_m": 626.064,
+      "y_m": 59.507,
+      "yaw_deg": 155.19271141849458
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_510",
+      "scale": 2.353141675819643,
+      "x_m": 687.547,
+      "y_m": 52.194,
+      "yaw_deg": 115.76987715438008
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_511",
+      "scale": 1.4731083057122305,
+      "x_m": 472.288,
+      "y_m": 299.922,
+      "yaw_deg": 225.0012754742056
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_512",
+      "scale": 2.277693477924913,
+      "x_m": 490.122,
+      "y_m": 262.809,
+      "yaw_deg": 41.83060619048774
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_513",
+      "scale": 2.4318959481315687,
+      "x_m": 485.558,
+      "y_m": 421.183,
+      "yaw_deg": 31.9833701569587
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_514",
+      "scale": 2.209959512227215,
+      "x_m": 354.64,
+      "y_m": 378.768,
+      "yaw_deg": 288.2356204278767
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_515",
+      "scale": 2.4023454611888155,
+      "x_m": 137.491,
+      "y_m": 67.182,
+      "yaw_deg": 336.79603018797934
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_517",
+      "scale": 1.520703469752334,
+      "x_m": 467.13,
+      "y_m": 239.343,
+      "yaw_deg": 269.2637780494988
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_518",
+      "scale": 1.8019451870350167,
+      "x_m": 581.222,
+      "y_m": 298.185,
+      "yaw_deg": 108.43172167427838
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_519",
+      "scale": 1.6366946207126603,
+      "x_m": 53.396,
+      "y_m": 24.876,
+      "yaw_deg": 50.645296946167946
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_520",
+      "scale": 2.209174671326764,
+      "x_m": 595.403,
+      "y_m": 372.846,
+      "yaw_deg": 209.36024442315102
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_521",
+      "scale": 1.9631798616610467,
+      "x_m": 478.858,
+      "y_m": 454.886,
+      "yaw_deg": 267.9196584876627
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_522",
+      "scale": 1.2064859295496717,
+      "x_m": 156.739,
+      "y_m": 27.732,
+      "yaw_deg": 62.87093278951943
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_523",
+      "scale": 1.6005476060090587,
+      "x_m": 364.27,
+      "y_m": 492.185,
+      "yaw_deg": 98.02390362136066
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_524",
+      "scale": 1.5913991397246718,
+      "x_m": 648.215,
+      "y_m": 461.768,
+      "yaw_deg": 123.50718774832785
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_525",
+      "scale": 1.702510508010164,
+      "x_m": 234.351,
+      "y_m": 199.703,
+      "yaw_deg": 219.91636005230248
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_526",
+      "scale": 1.1617510155774653,
+      "x_m": 326.5,
+      "y_m": 470.338,
+      "yaw_deg": 258.31625394523144
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_527",
+      "scale": 1.722731834393926,
+      "x_m": 639.884,
+      "y_m": 384.452,
+      "yaw_deg": 330.04773932509124
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_528",
+      "scale": 1.041534619522281,
+      "x_m": 527.495,
+      "y_m": 292.533,
+      "yaw_deg": 268.66204088553786
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_529",
+      "scale": 1.7680035781813785,
+      "x_m": 539.019,
+      "y_m": 270.195,
+      "yaw_deg": 295.7143755443394
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_530",
+      "scale": 1.5802211974514648,
+      "x_m": 573.091,
+      "y_m": 443.115,
+      "yaw_deg": 132.71899924613535
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_531",
+      "scale": 1.8900103071937338,
+      "x_m": 309.555,
+      "y_m": 356.712,
+      "yaw_deg": 97.38245869986713
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_532",
+      "scale": 1.458814956014976,
+      "x_m": 477.093,
+      "y_m": 302.566,
+      "yaw_deg": 77.38399260677397
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_533",
+      "scale": 1.756298268563114,
+      "x_m": 72.307,
+      "y_m": 195.962,
+      "yaw_deg": 268.4193464834243
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_534",
+      "scale": 2.3102522348053753,
+      "x_m": 659.898,
+      "y_m": 459.209,
+      "yaw_deg": 28.362879334017634
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_535",
+      "scale": 1.7870484000304714,
+      "x_m": 311.102,
+      "y_m": 381.401,
+      "yaw_deg": 203.63378391601145
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_536",
+      "scale": 1.09437491488643,
+      "x_m": 685.52,
+      "y_m": 492.746,
+      "yaw_deg": 269.9438151810318
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_537",
+      "scale": 1.6080976894591004,
+      "x_m": 347.516,
+      "y_m": 648.752,
+      "yaw_deg": 61.20835597626865
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_538",
+      "scale": 1.0576566769741476,
+      "x_m": 656.475,
+      "y_m": 528.13,
+      "yaw_deg": 333.12348439358175
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_539",
+      "scale": 2.14784607256297,
+      "x_m": 553.856,
+      "y_m": 299.59,
+      "yaw_deg": 67.3971201851964
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_540",
+      "scale": 1.3042710095178336,
+      "x_m": 486.23,
+      "y_m": 281.332,
+      "yaw_deg": 217.74162758141756
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_541",
+      "scale": 2.0587371243163943,
+      "x_m": 295.926,
+      "y_m": 506.248,
+      "yaw_deg": 262.9774796683341
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_542",
+      "scale": 2.487400891375728,
+      "x_m": 329.158,
+      "y_m": 444.509,
+      "yaw_deg": 264.0559633076191
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_543",
+      "scale": 1.3241416597738862,
+      "x_m": 382.778,
+      "y_m": 486.647,
+      "yaw_deg": 218.19915535859764
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_544",
+      "scale": 1.3481434445129707,
+      "x_m": 220.673,
+      "y_m": 294.533,
+      "yaw_deg": 240.95361275598407
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_545",
+      "scale": 2.049762826994993,
+      "x_m": 612.207,
+      "y_m": 357.043,
+      "yaw_deg": 350.05751352757215
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_546",
+      "scale": 2.0371560503263026,
+      "x_m": 299.413,
+      "y_m": 170.43,
+      "yaw_deg": 27.19157500192523
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_547",
+      "scale": 2.116281811380759,
+      "x_m": 225.424,
+      "y_m": 213.84,
+      "yaw_deg": 140.64891180954874
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_548",
+      "scale": 1.8636549486545846,
+      "x_m": 520.598,
+      "y_m": 333,
+      "yaw_deg": 12.081229146569967
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_549",
+      "scale": 1.417169791762717,
+      "x_m": 402.438,
+      "y_m": 455.665,
+      "yaw_deg": 241.77721487358212
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_550",
+      "scale": 1.8551000674488023,
+      "x_m": 593.353,
+      "y_m": 43.371,
+      "yaw_deg": 102.36071691848338
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_551",
+      "scale": 2.0930981744313613,
+      "x_m": 640.548,
+      "y_m": 454.873,
+      "yaw_deg": 289.3937046546489
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_552",
+      "scale": 1.5481098169693723,
+      "x_m": 329.024,
+      "y_m": 687.812,
+      "yaw_deg": 86.71614694409072
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_553",
+      "scale": 1.4208771836711094,
+      "x_m": 74.547,
+      "y_m": 174.016,
+      "yaw_deg": 147.40330444648862
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_554",
+      "scale": 1.5496415720554069,
+      "x_m": 155.289,
+      "y_m": 606.187,
+      "yaw_deg": 119.66383988969028
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_555",
+      "scale": 2.2592019985895604,
+      "x_m": 160.163,
+      "y_m": 611.52,
+      "yaw_deg": 221.80567799136043
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_556",
+      "scale": 1.4555114544928074,
+      "x_m": 364.215,
+      "y_m": 365.071,
+      "yaw_deg": 168.56181546114385
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_557",
+      "scale": 1.223151691723615,
+      "x_m": 250.002,
+      "y_m": 500.598,
+      "yaw_deg": 177.08799172192812
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_558",
+      "scale": 1.3755369300488383,
+      "x_m": 623.632,
+      "y_m": 291.921,
+      "yaw_deg": 74.6794290561229
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_559",
+      "scale": 1.9934336091391742,
+      "x_m": 691.213,
+      "y_m": 35.421,
+      "yaw_deg": 358.500311980024
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_560",
+      "scale": 2.0180158731527627,
+      "x_m": 554.128,
+      "y_m": 283.605,
+      "yaw_deg": 233.93774069845676
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_561",
+      "scale": 2.075787992682308,
+      "x_m": 40.075,
+      "y_m": 593.837,
+      "yaw_deg": 47.079753605648875
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_562",
+      "scale": 1.1307517599780113,
+      "x_m": 411.716,
+      "y_m": 465.64,
+      "yaw_deg": 108.86473674327135
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_563",
+      "scale": 1.0614940184168518,
+      "x_m": 461.078,
+      "y_m": 40.979,
+      "yaw_deg": 267.29477050714195
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_564",
+      "scale": 1.8717231304617599,
+      "x_m": 281.188,
+      "y_m": 504.828,
+      "yaw_deg": 350.3751615062356
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_566",
+      "scale": 2.3200112665072083,
+      "x_m": 340.126,
+      "y_m": 386.799,
+      "yaw_deg": 240.3410141542554
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_567",
+      "scale": 1.4573176589328796,
+      "x_m": 248.974,
+      "y_m": 227.323,
+      "yaw_deg": 218.48340815864503
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_568",
+      "scale": 1.6586320177884772,
+      "x_m": 354.902,
+      "y_m": 444.086,
+      "yaw_deg": 168.1419901549816
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_569",
+      "scale": 1.8411585610592738,
+      "x_m": 173.927,
+      "y_m": 394.601,
+      "yaw_deg": 31.510860230773687
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_570",
+      "scale": 1.95791030023247,
+      "x_m": 30.487,
+      "y_m": 652.626,
+      "yaw_deg": 130.76322186738253
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_571",
+      "scale": 1.6801838448736817,
+      "x_m": 493.585,
+      "y_m": 257.45,
+      "yaw_deg": 294.36468813568354
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_572",
+      "scale": 1.2795952572487295,
+      "x_m": 456.347,
+      "y_m": 428.39,
+      "yaw_deg": 222.6144080143422
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_573",
+      "scale": 1.480975857237354,
+      "x_m": 315.72,
+      "y_m": 175.453,
+      "yaw_deg": 174.41959365271032
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_574",
+      "scale": 2.013332959031686,
+      "x_m": 135.102,
+      "y_m": 27.26,
+      "yaw_deg": 52.2010562941432
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_575",
+      "scale": 1.324567241128534,
+      "x_m": 620.7,
+      "y_m": 310.214,
+      "yaw_deg": 80.74313543736935
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_576",
+      "scale": 1.3055566265247762,
+      "x_m": 532.566,
+      "y_m": 298.172,
+      "yaw_deg": 117.17328711412847
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_577",
+      "scale": 2.477367243380286,
+      "x_m": 229.881,
+      "y_m": 203.397,
+      "yaw_deg": 242.7135826740414
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_578",
+      "scale": 2.078038325882517,
+      "x_m": 614.836,
+      "y_m": 472.438,
+      "yaw_deg": 354.71098775044084
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_579",
+      "scale": 1.4614048439543694,
+      "x_m": 651.875,
+      "y_m": 518.292,
+      "yaw_deg": 28.375583281740546
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_580",
+      "scale": 2.0936869786819443,
+      "x_m": 140.375,
+      "y_m": 627.509,
+      "yaw_deg": 324.4771351106465
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_581",
+      "scale": 1.0687136743217707,
+      "x_m": 351.504,
+      "y_m": 457.441,
+      "yaw_deg": 176.76340729929507
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_582",
+      "scale": 2.2537562645738944,
+      "x_m": 661.418,
+      "y_m": 533.219,
+      "yaw_deg": 193.91111847013235
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_583",
+      "scale": 1.5030571866082028,
+      "x_m": 60.456,
+      "y_m": 570.215,
+      "yaw_deg": 201.02378910407424
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_584",
+      "scale": 2.0297462925082073,
+      "x_m": 63.977,
+      "y_m": 561.512,
+      "yaw_deg": 76.46418183110654
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_585",
+      "scale": 2.4432918855454773,
+      "x_m": 68.89,
+      "y_m": 512.283,
+      "yaw_deg": 211.09642918221653
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_586",
+      "scale": 1.7172669515712187,
+      "x_m": 592.141,
+      "y_m": 27.107,
+      "yaw_deg": 212.7412381209433
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_587",
+      "scale": 2.398348349146545,
+      "x_m": 246.112,
+      "y_m": 611.585,
+      "yaw_deg": 349.9042505118996
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_588",
+      "scale": 1.5234296132111922,
+      "x_m": 442.363,
+      "y_m": 371.526,
+      "yaw_deg": 263.1283647380769
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_589",
+      "scale": 1.53321190783754,
+      "x_m": 108.682,
+      "y_m": 421.23,
+      "yaw_deg": 143.48950644023716
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_590",
+      "scale": 2.0358844181755558,
+      "x_m": 693.487,
+      "y_m": 42.463,
+      "yaw_deg": 155.59962566010654
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_591",
+      "scale": 1.6722820909926668,
+      "x_m": 161.562,
+      "y_m": 42.322,
+      "yaw_deg": 203.5234136134386
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_592",
+      "scale": 1.4217250068904832,
+      "x_m": 57.779,
+      "y_m": 594.531,
+      "yaw_deg": 230.60740236192942
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_593",
+      "scale": 1.8877648550551385,
+      "x_m": 92.506,
+      "y_m": 305.602,
+      "yaw_deg": 45.7349769026041
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_594",
+      "scale": 1.6548052368452772,
+      "x_m": 344.499,
+      "y_m": 518.328,
+      "yaw_deg": 223.6659661307931
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_595",
+      "scale": 1.5396113788010553,
+      "x_m": 139.721,
+      "y_m": 194.954,
+      "yaw_deg": 193.70077243074775
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_596",
+      "scale": 2.3706278241006657,
+      "x_m": 621.883,
+      "y_m": 467.459,
+      "yaw_deg": 199.89868079312146
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_597",
+      "scale": 1.9701483328826725,
+      "x_m": 368.544,
+      "y_m": 658.531,
+      "yaw_deg": 329.4493826664984
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_598",
+      "scale": 1.5515206780983135,
+      "x_m": 339.84,
+      "y_m": 475.918,
+      "yaw_deg": 338.4901176765561
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_599",
+      "scale": 1.8230041819624603,
+      "x_m": 633.054,
+      "y_m": 465.564,
+      "yaw_deg": 61.88459870405495
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_600",
+      "scale": 1.2542659477330744,
+      "x_m": 543.671,
+      "y_m": 332.077,
+      "yaw_deg": 16.50850555859506
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_601",
+      "scale": 1.8618420823477209,
+      "x_m": 489.706,
+      "y_m": 316.596,
+      "yaw_deg": 14.721505427733064
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_603",
+      "scale": 1.2866297436412424,
+      "x_m": 59.939,
+      "y_m": 619.84,
+      "yaw_deg": 337.2166925948113
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_604",
+      "scale": 1.4178199648158625,
+      "x_m": 334.141,
+      "y_m": 359.244,
+      "yaw_deg": 301.62962978705764
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_605",
+      "scale": 1.929352059494704,
+      "x_m": 330.452,
+      "y_m": 437.248,
+      "yaw_deg": 233.65028341300786
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_606",
+      "scale": 1.5403946253936738,
+      "x_m": 164.179,
+      "y_m": 584.768,
+      "yaw_deg": 259.15558596141636
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_607",
+      "scale": 1.8645890038460493,
+      "x_m": 71.764,
+      "y_m": 185.256,
+      "yaw_deg": 244.02703016996384
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_608",
+      "scale": 1.1003773913253099,
+      "x_m": 592.527,
+      "y_m": 271.467,
+      "yaw_deg": 333.0684024654329
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_609",
+      "scale": 1.344458852079697,
+      "x_m": 454.324,
+      "y_m": 414.769,
+      "yaw_deg": 89.02428863570094
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_610",
+      "scale": 1.4493725140346214,
+      "x_m": 358.837,
+      "y_m": 521.787,
+      "yaw_deg": 143.1969152390957
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_611",
+      "scale": 1.5522011768771335,
+      "x_m": 52.777,
+      "y_m": 228.303,
+      "yaw_deg": 310.20633534528315
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_612",
+      "scale": 1.224379908409901,
+      "x_m": 469.091,
+      "y_m": 274.185,
+      "yaw_deg": 160.93716016039252
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_613",
+      "scale": 2.3201445129234344,
+      "x_m": 506.209,
+      "y_m": 453.811,
+      "yaw_deg": 201.82450301013887
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_614",
+      "scale": 2.0220610533142462,
+      "x_m": 314.102,
+      "y_m": 163.169,
+      "yaw_deg": 250.42972954921424
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_615",
+      "scale": 1.3039646614342928,
+      "x_m": 414.279,
+      "y_m": 651.329,
+      "yaw_deg": 246.37233604677022
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_616",
+      "scale": 2.48732630291488,
+      "x_m": 405.221,
+      "y_m": 374.884,
+      "yaw_deg": 53.215985829010606
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_617",
+      "scale": 2.0076592232799158,
+      "x_m": 227.188,
+      "y_m": 418.047,
+      "yaw_deg": 226.71888258308172
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_618",
+      "scale": 1.0708431446691975,
+      "x_m": 62.392,
+      "y_m": 601.523,
+      "yaw_deg": 40.8011969178915
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_619",
+      "scale": 1.2984471556264907,
+      "x_m": 313.371,
+      "y_m": 684.591,
+      "yaw_deg": 224.1085914708674
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_620",
+      "scale": 2.0020245276391506,
+      "x_m": 297.762,
+      "y_m": 373.116,
+      "yaw_deg": 212.99181788228452
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_621",
+      "scale": 2.298106372356415,
+      "x_m": 85.216,
+      "y_m": 84.147,
+      "yaw_deg": 116.86686065979302
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_622",
+      "scale": 2.023456970229745,
+      "x_m": 76.041,
+      "y_m": 233.012,
+      "yaw_deg": 124.11222411319613
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_623",
+      "scale": 2.3648123821476474,
+      "x_m": 123.534,
+      "y_m": 212.067,
+      "yaw_deg": 36.537134014070034
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_624",
+      "scale": 2.3971635203342885,
+      "x_m": 338.197,
+      "y_m": 652.154,
+      "yaw_deg": 349.34792415238917
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_625",
+      "scale": 2.4202303851488978,
+      "x_m": 363.359,
+      "y_m": 369.398,
+      "yaw_deg": 329.26882951520383
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_626",
+      "scale": 1.9360424694605172,
+      "x_m": 145.165,
+      "y_m": 620.644,
+      "yaw_deg": 176.27439826726913
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_627",
+      "scale": 1.8218884787056595,
+      "x_m": 52.786,
+      "y_m": 591.493,
+      "yaw_deg": 344.3667217902839
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_628",
+      "scale": 2.4593734852969646,
+      "x_m": 312.804,
+      "y_m": 474.859,
+      "yaw_deg": 335.9498224966228
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_629",
+      "scale": 1.9592517029959708,
+      "x_m": 354.402,
+      "y_m": 462.478,
+      "yaw_deg": 274.4655839726329
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_630",
+      "scale": 1.3665411261608824,
+      "x_m": 484.287,
+      "y_m": 297.875,
+      "yaw_deg": 289.0513702109456
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_631",
+      "scale": 1.258909018128179,
+      "x_m": 78.508,
+      "y_m": 337.358,
+      "yaw_deg": 164.72786069847643
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_632",
+      "scale": 1.0630925123114139,
+      "x_m": 647.109,
+      "y_m": 458.014,
+      "yaw_deg": 319.17244736105204
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_633",
+      "scale": 1.4804958696477115,
+      "x_m": 182.34,
+      "y_m": 594.256,
+      "yaw_deg": 45.34160228446126
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_634",
+      "scale": 1.6250161988427863,
+      "x_m": 687.378,
+      "y_m": 247.095,
+      "yaw_deg": 242.94650964438915
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_635",
+      "scale": 2.073222522623837,
+      "x_m": 59.739,
+      "y_m": 28.367,
+      "yaw_deg": 263.977116337046
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_636",
+      "scale": 1.2704518085811287,
+      "x_m": 576.901,
+      "y_m": 304.793,
+      "yaw_deg": 66.38576972298324
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_637",
+      "scale": 1.3439602479338646,
+      "x_m": 604.23,
+      "y_m": 306.837,
+      "yaw_deg": 103.12888498418033
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_638",
+      "scale": 1.269686077372171,
+      "x_m": 621.954,
+      "y_m": 47.516,
+      "yaw_deg": 179.21489596366882
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_639",
+      "scale": 1.8345112658571452,
+      "x_m": 61.927,
+      "y_m": 588.706,
+      "yaw_deg": 136.58787578344345
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_640",
+      "scale": 1.2431276158895344,
+      "x_m": 544.739,
+      "y_m": 293.587,
+      "yaw_deg": 110.74453334324062
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_641",
+      "scale": 1.7458239797269925,
+      "x_m": 423.619,
+      "y_m": 644.461,
+      "yaw_deg": 79.75260931067169
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_642",
+      "scale": 2.402594942599535,
+      "x_m": 366.194,
+      "y_m": 464.493,
+      "yaw_deg": 81.72131669707596
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_643",
+      "scale": 1.6274559379089624,
+      "x_m": 180.093,
+      "y_m": 64.998,
+      "yaw_deg": 203.70493269525468
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_644",
+      "scale": 2.324637937010266,
+      "x_m": 27.969,
+      "y_m": 215.696,
+      "yaw_deg": 233.75150830484927
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_645",
+      "scale": 2.265538504347205,
+      "x_m": 665.281,
+      "y_m": 367.871,
+      "yaw_deg": 35.148218125104904
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_646",
+      "scale": 1.2034590231487527,
+      "x_m": 128.904,
+      "y_m": 307.708,
+      "yaw_deg": 270.6942378357053
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_647",
+      "scale": 1.577836737036705,
+      "x_m": 571.481,
+      "y_m": 357.869,
+      "yaw_deg": 274.87637341953814
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_648",
+      "scale": 1.8177512959809974,
+      "x_m": 301.899,
+      "y_m": 502.854,
+      "yaw_deg": 193.76736405305564
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_649",
+      "scale": 1.4137669063638896,
+      "x_m": 682.237,
+      "y_m": 173.643,
+      "yaw_deg": 107.37890811637044
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_650",
+      "scale": 1.9226758208824322,
+      "x_m": 365.241,
+      "y_m": 500.157,
+      "yaw_deg": 187.89899482391775
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_651",
+      "scale": 1.1312949855346233,
+      "x_m": 643.95,
+      "y_m": 460.346,
+      "yaw_deg": 85.32334964722395
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_652",
+      "scale": 2.149955905857496,
+      "x_m": 238.831,
+      "y_m": 414.886,
+      "yaw_deg": 108.8556544482708
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_653",
+      "scale": 1.0080087017267942,
+      "x_m": 162.295,
+      "y_m": 70.109,
+      "yaw_deg": 326.4963059965521
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_654",
+      "scale": 1.2997310333885252,
+      "x_m": 526.802,
+      "y_m": 444.764,
+      "yaw_deg": 49.495948841795325
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_655",
+      "scale": 1.861889450578019,
+      "x_m": 329.55,
+      "y_m": 655.55,
+      "yaw_deg": 95.326680354774
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_656",
+      "scale": 1.2891664910130203,
+      "x_m": 317.664,
+      "y_m": 511.673,
+      "yaw_deg": 145.17478295601904
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_657",
+      "scale": 1.139507436659187,
+      "x_m": 668.4,
+      "y_m": 31.709,
+      "yaw_deg": 42.39340723492205
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_658",
+      "scale": 1.2738292349968106,
+      "x_m": 353.421,
+      "y_m": 667.092,
+      "yaw_deg": 330.96184520982206
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_659",
+      "scale": 2.305638199322857,
+      "x_m": 56.231,
+      "y_m": 575.611,
+      "yaw_deg": 11.2866285815835
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_660",
+      "scale": 1.7656612005084753,
+      "x_m": 120.389,
+      "y_m": 289.011,
+      "yaw_deg": 330.6870523933321
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_661",
+      "scale": 1.9764800305711105,
+      "x_m": 319.009,
+      "y_m": 661.275,
+      "yaw_deg": 335.0065401289612
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_662",
+      "scale": 1.6091842935420573,
+      "x_m": 104.006,
+      "y_m": 78.484,
+      "yaw_deg": 28.39935285039246
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_664",
+      "scale": 1.2668611434055492,
+      "x_m": 86.442,
+      "y_m": 615.819,
+      "yaw_deg": 87.59909662418067
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_665",
+      "scale": 1.1897831986425444,
+      "x_m": 244.686,
+      "y_m": 600.638,
+      "yaw_deg": 297.1540198009461
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_666",
+      "scale": 2.4872424873756245,
+      "x_m": 141.259,
+      "y_m": 428.399,
+      "yaw_deg": 333.7209957372397
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_667",
+      "scale": 2.3832560011651367,
+      "x_m": 139.939,
+      "y_m": 61.19,
+      "yaw_deg": 112.73849909193814
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_668",
+      "scale": 2.0254177526803687,
+      "x_m": 634.471,
+      "y_m": 289.734,
+      "yaw_deg": 213.46963548101485
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_669",
+      "scale": 2.336059860768728,
+      "x_m": 481.943,
+      "y_m": 169.747,
+      "yaw_deg": 102.47481582686305
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_670",
+      "scale": 2.1889331515412778,
+      "x_m": 347.02,
+      "y_m": 645.058,
+      "yaw_deg": 278.21538023650646
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_671",
+      "scale": 2.4654595121974126,
+      "x_m": 566.268,
+      "y_m": 245.655,
+      "yaw_deg": 111.49860958568752
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_672",
+      "scale": 2.330336586222984,
+      "x_m": 356.27,
+      "y_m": 672.136,
+      "yaw_deg": 88.43578582629561
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_673",
+      "scale": 1.372491592541337,
+      "x_m": 619.153,
+      "y_m": 448.134,
+      "yaw_deg": 231.0548878647387
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_674",
+      "scale": 1.4284407728118822,
+      "x_m": 159.147,
+      "y_m": 30.027,
+      "yaw_deg": 92.17397776432335
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_675",
+      "scale": 1.4311293115606532,
+      "x_m": 522.879,
+      "y_m": 278.502,
+      "yaw_deg": 358.5918995272368
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_676",
+      "scale": 1.786691389977932,
+      "x_m": 386.045,
+      "y_m": 401.746,
+      "yaw_deg": 49.07928912900388
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_677",
+      "scale": 2.2077940003946424,
+      "x_m": 143.707,
+      "y_m": 618.885,
+      "yaw_deg": 221.24469607137144
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_678",
+      "scale": 2.3234872019384056,
+      "x_m": 461.73,
+      "y_m": 435.067,
+      "yaw_deg": 51.654670285061
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_679",
+      "scale": 1.046685247682035,
+      "x_m": 587.87,
+      "y_m": 31.497,
+      "yaw_deg": 105.11095060966909
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_680",
+      "scale": 2.47337356233038,
+      "x_m": 40.722,
+      "y_m": 568.989,
+      "yaw_deg": 342.08751727826893
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_681",
+      "scale": 1.3580081940162927,
+      "x_m": 363.105,
+      "y_m": 448.836,
+      "yaw_deg": 125.12978154234588
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_682",
+      "scale": 1.2106666828040034,
+      "x_m": 688.818,
+      "y_m": 448.875,
+      "yaw_deg": 251.9999833870679
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_683",
+      "scale": 2.1413682559505105,
+      "x_m": 182.418,
+      "y_m": 36.423,
+      "yaw_deg": 175.29975224286318
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_684",
+      "scale": 2.386146508855745,
+      "x_m": 597.025,
+      "y_m": 453.44,
+      "yaw_deg": 99.34029794298112
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_685",
+      "scale": 2.485328071867116,
+      "x_m": 295.365,
+      "y_m": 195.421,
+      "yaw_deg": 311.30796301178634
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_686",
+      "scale": 1.3022745337802917,
+      "x_m": 203.222,
+      "y_m": 420.746,
+      "yaw_deg": 6.353207929059863
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_687",
+      "scale": 1.2625998051371425,
+      "x_m": 260.305,
+      "y_m": 506.168,
+      "yaw_deg": 261.9594354182482
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_688",
+      "scale": 2.160277606686577,
+      "x_m": 601.806,
+      "y_m": 27.636,
+      "yaw_deg": 58.553124871104956
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_689",
+      "scale": 1.1977006905945018,
+      "x_m": 228.751,
+      "y_m": 306.342,
+      "yaw_deg": 248.58357137069106
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_690",
+      "scale": 1.7096653581829742,
+      "x_m": 42.868,
+      "y_m": 547.345,
+      "yaw_deg": 337.1591095905751
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_691",
+      "scale": 1.943401362397708,
+      "x_m": 155.828,
+      "y_m": 150.272,
+      "yaw_deg": 138.95660430192947
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_692",
+      "scale": 1.4167983592487872,
+      "x_m": 84.277,
+      "y_m": 267.652,
+      "yaw_deg": 1.0057017300277948
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_693",
+      "scale": 1.0250882100081071,
+      "x_m": 334.756,
+      "y_m": 365.472,
+      "yaw_deg": 94.12982630543411
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_694",
+      "scale": 1.0246738775167614,
+      "x_m": 83.176,
+      "y_m": 104.997,
+      "yaw_deg": 68.97472654469311
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_695",
+      "scale": 2.2758928851690143,
+      "x_m": 627.412,
+      "y_m": 473.636,
+      "yaw_deg": 161.7315112799406
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_696",
+      "scale": 2.1707125316606835,
+      "x_m": 24.884,
+      "y_m": 556.72,
+      "yaw_deg": 105.97873566672206
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_697",
+      "scale": 1.0745128194103017,
+      "x_m": 664.505,
+      "y_m": 545.726,
+      "yaw_deg": 120.39989663287997
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_698",
+      "scale": 2.2515193808358163,
+      "x_m": 603.581,
+      "y_m": 317.908,
+      "yaw_deg": 92.55226654931903
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_699",
+      "scale": 1.937988713849336,
+      "x_m": 315.171,
+      "y_m": 368.23,
+      "yaw_deg": 224.38711599446833
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_700",
+      "scale": 1.0676878509111702,
+      "x_m": 43.792,
+      "y_m": 528.357,
+      "yaw_deg": 252.2098518256098
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_701",
+      "scale": 1.0403082018019632,
+      "x_m": 618.025,
+      "y_m": 453.848,
+      "yaw_deg": 50.77487119473517
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_702",
+      "scale": 2.23033368261531,
+      "x_m": 239.185,
+      "y_m": 229.365,
+      "yaw_deg": 4.581550117582083
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_703",
+      "scale": 2.433115158113651,
+      "x_m": 348.126,
+      "y_m": 653.742,
+      "yaw_deg": 251.39973065815866
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_704",
+      "scale": 1.187649423838593,
+      "x_m": 602.345,
+      "y_m": 381.428,
+      "yaw_deg": 29.294336680322886
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_705",
+      "scale": 1.3295975484652445,
+      "x_m": 139.028,
+      "y_m": 84.584,
+      "yaw_deg": 188.80213575437665
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_706",
+      "scale": 1.8760082150110975,
+      "x_m": 690.07,
+      "y_m": 478.583,
+      "yaw_deg": 116.57324284315109
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_707",
+      "scale": 1.229421125841327,
+      "x_m": 490.191,
+      "y_m": 269.188,
+      "yaw_deg": 229.61590703576803
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_708",
+      "scale": 2.210651683504693,
+      "x_m": 588.982,
+      "y_m": 370.681,
+      "yaw_deg": 237.44694281369448
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_709",
+      "scale": 2.3262056892272085,
+      "x_m": 115.203,
+      "y_m": 331.242,
+      "yaw_deg": 138.68098754435778
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_710",
+      "scale": 2.065131704788655,
+      "x_m": 249.789,
+      "y_m": 330.257,
+      "yaw_deg": 298.1852878443897
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_711",
+      "scale": 2.2889811480417848,
+      "x_m": 62.969,
+      "y_m": 584.178,
+      "yaw_deg": 158.47354204393923
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_712",
+      "scale": 1.7599033457227051,
+      "x_m": 581.179,
+      "y_m": 33.287,
+      "yaw_deg": 260.8885055501014
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_713",
+      "scale": 2.069845059188083,
+      "x_m": 113.885,
+      "y_m": 66.502,
+      "yaw_deg": 107.49589106999338
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_714",
+      "scale": 1.0974928599316627,
+      "x_m": 359.218,
+      "y_m": 508.114,
+      "yaw_deg": 199.0860129520297
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_715",
+      "scale": 1.0233420563163236,
+      "x_m": 67.427,
+      "y_m": 500.66,
+      "yaw_deg": 22.007109643891454
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_716",
+      "scale": 1.0800584325334057,
+      "x_m": 277.959,
+      "y_m": 503.156,
+      "yaw_deg": 105.87908674031496
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_717",
+      "scale": 1.2619588074740022,
+      "x_m": 546.507,
+      "y_m": 246.479,
+      "yaw_deg": 200.4132905881852
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_718",
+      "scale": 1.7332160365767777,
+      "x_m": 440.667,
+      "y_m": 436.589,
+      "yaw_deg": 25.2253501676023
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_719",
+      "scale": 1.0047460434725508,
+      "x_m": 198.468,
+      "y_m": 513.288,
+      "yaw_deg": 34.91285587660968
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_720",
+      "scale": 1.6858157895039767,
+      "x_m": 531.451,
+      "y_m": 278.868,
+      "yaw_deg": 246.51381318457425
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_721",
+      "scale": 1.9385750119108707,
+      "x_m": 100.892,
+      "y_m": 396.611,
+      "yaw_deg": 290.0040301680565
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_722",
+      "scale": 1.7861892119981349,
+      "x_m": 467.961,
+      "y_m": 309.091,
+      "yaw_deg": 195.33935772255063
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_723",
+      "scale": 1.54444603191223,
+      "x_m": 642.419,
+      "y_m": 526.061,
+      "yaw_deg": 193.79011522047222
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_724",
+      "scale": 2.04866086167749,
+      "x_m": 501.721,
+      "y_m": 161.936,
+      "yaw_deg": 239.82097875326872
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_725",
+      "scale": 1.6276998900575563,
+      "x_m": 546.99,
+      "y_m": 342.574,
+      "yaw_deg": 204.72607699222863
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_726",
+      "scale": 1.8753032285021618,
+      "x_m": 599.073,
+      "y_m": 39.483,
+      "yaw_deg": 143.9074355084449
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_727",
+      "scale": 1.3060592260444537,
+      "x_m": 542.567,
+      "y_m": 328.988,
+      "yaw_deg": 295.8708187378943
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_728",
+      "scale": 1.9970324089517817,
+      "x_m": 606.062,
+      "y_m": 319.865,
+      "yaw_deg": 75.26080967858434
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_729",
+      "scale": 1.5797288874164224,
+      "x_m": 490.374,
+      "y_m": 274.037,
+      "yaw_deg": 327.9684570338577
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_730",
+      "scale": 1.5586000275798142,
+      "x_m": 421.946,
+      "y_m": 363.026,
+      "yaw_deg": 319.26099051721394
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_731",
+      "scale": 2.3154457678319886,
+      "x_m": 437.993,
+      "y_m": 363.663,
+      "yaw_deg": 154.40240037627518
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_732",
+      "scale": 1.7605081304209307,
+      "x_m": 388.036,
+      "y_m": 258.124,
+      "yaw_deg": 104.20329267159104
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_733",
+      "scale": 2.3582722834544256,
+      "x_m": 272.696,
+      "y_m": 211.512,
+      "yaw_deg": 182.5699355173856
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_734",
+      "scale": 1.3099768413230777,
+      "x_m": 489.011,
+      "y_m": 308.947,
+      "yaw_deg": 214.07439867965877
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_735",
+      "scale": 1.5464070731541142,
+      "x_m": 116.162,
+      "y_m": 314.776,
+      "yaw_deg": 186.67896514758468
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_736",
+      "scale": 2.304846500279382,
+      "x_m": 153.436,
+      "y_m": 37.689,
+      "yaw_deg": 188.67541763931513
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_737",
+      "scale": 2.1310150880599394,
+      "x_m": 559.92,
+      "y_m": 301.462,
+      "yaw_deg": 31.671916656196117
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_738",
+      "scale": 2.154642122099176,
+      "x_m": 133.797,
+      "y_m": 619.366,
+      "yaw_deg": 311.06080264784396
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_739",
+      "scale": 1.7444967937190086,
+      "x_m": 602.18,
+      "y_m": 311.783,
+      "yaw_deg": 75.51876459270716
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_740",
+      "scale": 1.2112514368491247,
+      "x_m": 309.039,
+      "y_m": 179.114,
+      "yaw_deg": 326.2202055193484
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_741",
+      "scale": 2.4046768232947215,
+      "x_m": 508.068,
+      "y_m": 335.027,
+      "yaw_deg": 311.15845433436334
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_742",
+      "scale": 2.2618430859874934,
+      "x_m": 468.015,
+      "y_m": 248.582,
+      "yaw_deg": 338.2034516427666
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_743",
+      "scale": 1.7753133723745123,
+      "x_m": 78.326,
+      "y_m": 511.615,
+      "yaw_deg": 11.875503128394485
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_744",
+      "scale": 1.830642377724871,
+      "x_m": 84.076,
+      "y_m": 330.239,
+      "yaw_deg": 151.86241046525538
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_745",
+      "scale": 1.1593518623849377,
+      "x_m": 616.412,
+      "y_m": 290.884,
+      "yaw_deg": 276.70870187692344
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_746",
+      "scale": 2.08214731013868,
+      "x_m": 297.975,
+      "y_m": 500.94,
+      "yaw_deg": 291.4500522147864
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_747",
+      "scale": 2.1641956958919764,
+      "x_m": 595.125,
+      "y_m": 303.759,
+      "yaw_deg": 88.523024674505
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_748",
+      "scale": 2.3882111305138096,
+      "x_m": 605.58,
+      "y_m": 49.28,
+      "yaw_deg": 157.3833955731243
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_749",
+      "scale": 1.384554254473187,
+      "x_m": 224.231,
+      "y_m": 511.732,
+      "yaw_deg": 85.26310220360756
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_750",
+      "scale": 1.6388631192967296,
+      "x_m": 333.589,
+      "y_m": 391.576,
+      "yaw_deg": 57.508829925209284
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_751",
+      "scale": 1.5291915416019037,
+      "x_m": 327.104,
+      "y_m": 438.947,
+      "yaw_deg": 141.11592756584287
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_752",
+      "scale": 1.1353157369885594,
+      "x_m": 122.335,
+      "y_m": 635.486,
+      "yaw_deg": 38.063307171687484
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_753",
+      "scale": 1.5448388770455495,
+      "x_m": 655.378,
+      "y_m": 175.33,
+      "yaw_deg": 203.53418536484241
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_754",
+      "scale": 2.0826475106878206,
+      "x_m": 81.567,
+      "y_m": 639.204,
+      "yaw_deg": 353.83173876442015
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_755",
+      "scale": 2.1800024264957756,
+      "x_m": 180.06,
+      "y_m": 525.565,
+      "yaw_deg": 96.34382757358253
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_756",
+      "scale": 1.3608635822311044,
+      "x_m": 289.566,
+      "y_m": 202.922,
+      "yaw_deg": 333.5981747880578
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_757",
+      "scale": 1.3045469906646758,
+      "x_m": 421.652,
+      "y_m": 672.856,
+      "yaw_deg": 225.59310967102647
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_758",
+      "scale": 2.194317619781941,
+      "x_m": 216.151,
+      "y_m": 234.477,
+      "yaw_deg": 158.84125588461757
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_759",
+      "scale": 1.9027565161231905,
+      "x_m": 689.435,
+      "y_m": 453.953,
+      "yaw_deg": 40.87067845277488
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_760",
+      "scale": 1.9970491930143908,
+      "x_m": 75.766,
+      "y_m": 316.012,
+      "yaw_deg": 334.7191726975143
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_761",
+      "scale": 1.8492054786765948,
+      "x_m": 532.223,
+      "y_m": 289.102,
+      "yaw_deg": 95.3428022749722
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_762",
+      "scale": 2.224368496914394,
+      "x_m": 217.983,
+      "y_m": 215.345,
+      "yaw_deg": 89.14565289393067
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_763",
+      "scale": 1.189606947125867,
+      "x_m": 573.286,
+      "y_m": 41.319,
+      "yaw_deg": 48.4710924513638
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_764",
+      "scale": 1.057110026711598,
+      "x_m": 94.304,
+      "y_m": 162.273,
+      "yaw_deg": 308.27922533266246
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_765",
+      "scale": 2.3882050910033286,
+      "x_m": 331.439,
+      "y_m": 496.17,
+      "yaw_deg": 167.35387433320284
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_766",
+      "scale": 1.0807619068073109,
+      "x_m": 631.911,
+      "y_m": 79.552,
+      "yaw_deg": 133.22265582159162
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_767",
+      "scale": 1.0086005060002208,
+      "x_m": 125.398,
+      "y_m": 169.339,
+      "yaw_deg": 259.5686965249479
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_768",
+      "scale": 2.1599018910201266,
+      "x_m": 78.71,
+      "y_m": 520.566,
+      "yaw_deg": 123.15708629786968
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_769",
+      "scale": 2.010013185092248,
+      "x_m": 415.045,
+      "y_m": 355.542,
+      "yaw_deg": 151.57237289473414
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_770",
+      "scale": 1.9951780766714364,
+      "x_m": 236.174,
+      "y_m": 610.239,
+      "yaw_deg": 143.64774009212852
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_771",
+      "scale": 1.2635433088289574,
+      "x_m": 554.132,
+      "y_m": 291.811,
+      "yaw_deg": 105.24058721959591
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_772",
+      "scale": 2.095053455210291,
+      "x_m": 628.68,
+      "y_m": 447.544,
+      "yaw_deg": 305.305071529001
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_773",
+      "scale": 1.918820946593769,
+      "x_m": 63.371,
+      "y_m": 32.585,
+      "yaw_deg": 24.265991561114788
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_774",
+      "scale": 1.5572213634150103,
+      "x_m": 378.238,
+      "y_m": 444.5,
+      "yaw_deg": 75.10654544457793
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_775",
+      "scale": 2.092248555738479,
+      "x_m": 466.617,
+      "y_m": 293.182,
+      "yaw_deg": 358.02339820191264
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_776",
+      "scale": 2.147900374373421,
+      "x_m": 316.444,
+      "y_m": 361.552,
+      "yaw_deg": 319.4890639465302
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_778",
+      "scale": 1.2086223746882752,
+      "x_m": 147.717,
+      "y_m": 330.468,
+      "yaw_deg": 302.11330633610487
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_779",
+      "scale": 1.6255063795251772,
+      "x_m": 67.914,
+      "y_m": 196.91,
+      "yaw_deg": 173.4387856721878
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_780",
+      "scale": 2.4846848980523646,
+      "x_m": 97.872,
+      "y_m": 167.902,
+      "yaw_deg": 130.42427614331245
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_781",
+      "scale": 2.146498986170627,
+      "x_m": 589.976,
+      "y_m": 298.479,
+      "yaw_deg": 307.4498446471989
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_782",
+      "scale": 2.1405380665091798,
+      "x_m": 347.841,
+      "y_m": 666.103,
+      "yaw_deg": 297.93219233863056
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_783",
+      "scale": 1.0359641016693786,
+      "x_m": 573.628,
+      "y_m": 32.743,
+      "yaw_deg": 10.753385564312339
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_784",
+      "scale": 1.2015316240722314,
+      "x_m": 469.899,
+      "y_m": 256.024,
+      "yaw_deg": 341.4107017312199
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_785",
+      "scale": 2.4756657027173787,
+      "x_m": 446.522,
+      "y_m": 281.503,
+      "yaw_deg": 59.88589013926685
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_786",
+      "scale": 1.272723020403646,
+      "x_m": 185.237,
+      "y_m": 517.991,
+      "yaw_deg": 62.52980014309287
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_787",
+      "scale": 1.9631342110224068,
+      "x_m": 454.478,
+      "y_m": 277.989,
+      "yaw_deg": 243.24064227752388
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_788",
+      "scale": 2.480958931148052,
+      "x_m": 422.498,
+      "y_m": 366.851,
+      "yaw_deg": 224.6384913660586
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_789",
+      "scale": 1.292090223170817,
+      "x_m": 377.011,
+      "y_m": 409.257,
+      "yaw_deg": 163.5346256196499
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_790",
+      "scale": 1.1694910580990836,
+      "x_m": 586.6,
+      "y_m": 320.3,
+      "yaw_deg": 224.0350618120283
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_791",
+      "scale": 1.2696552047273144,
+      "x_m": 534.471,
+      "y_m": 283.201,
+      "yaw_deg": 47.79388421215117
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_792",
+      "scale": 1.771896179066971,
+      "x_m": 362.719,
+      "y_m": 658.529,
+      "yaw_deg": 23.048980124294758
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_793",
+      "scale": 1.039163951878436,
+      "x_m": 141.653,
+      "y_m": 634.27,
+      "yaw_deg": 62.745198626071215
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_794",
+      "scale": 1.4156590340426192,
+      "x_m": 458.648,
+      "y_m": 386.044,
+      "yaw_deg": 353.1253462471068
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_795",
+      "scale": 2.436117278179154,
+      "x_m": 431.049,
+      "y_m": 366.441,
+      "yaw_deg": 75.5623899679631
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_796",
+      "scale": 1.791576313902624,
+      "x_m": 308.181,
+      "y_m": 669.677,
+      "yaw_deg": 24.349052868783474
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_797",
+      "scale": 1.9702445972943678,
+      "x_m": 684.642,
+      "y_m": 454.057,
+      "yaw_deg": 143.81649085320532
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_798",
+      "scale": 1.3114863159134984,
+      "x_m": 96.288,
+      "y_m": 30.359,
+      "yaw_deg": 48.387193540111184
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_799",
+      "scale": 2.4281395996222273,
+      "x_m": 217.102,
+      "y_m": 221.73,
+      "yaw_deg": 352.45826535858214
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_800",
+      "scale": 1.850437195156701,
+      "x_m": 695.654,
+      "y_m": 370.874,
+      "yaw_deg": 9.709943728521466
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_801",
+      "scale": 2.110689091961831,
+      "x_m": 136.44,
+      "y_m": 620.263,
+      "yaw_deg": 240.97686172463
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_802",
+      "scale": 1.9108379724202678,
+      "x_m": 234.969,
+      "y_m": 181.392,
+      "yaw_deg": 259.468339914456
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_803",
+      "scale": 2.3112667999230325,
+      "x_m": 115.092,
+      "y_m": 207.307,
+      "yaw_deg": 341.71228017657995
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_805",
+      "scale": 1.0068051515845582,
+      "x_m": 211.582,
+      "y_m": 617.008,
+      "yaw_deg": 66.34616062045097
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_806",
+      "scale": 1.0123616304481402,
+      "x_m": 561.017,
+      "y_m": 352.438,
+      "yaw_deg": 30.49746827222407
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_807",
+      "scale": 1.9608950226102024,
+      "x_m": 304.862,
+      "y_m": 185.595,
+      "yaw_deg": 341.8055552523583
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_808",
+      "scale": 1.1406744291307405,
+      "x_m": 239.274,
+      "y_m": 504.419,
+      "yaw_deg": 230.0617517810315
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_809",
+      "scale": 1.6579584655119106,
+      "x_m": 676.909,
+      "y_m": 397.408,
+      "yaw_deg": 335.7824124209583
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_810",
+      "scale": 2.072874221717939,
+      "x_m": 458.295,
+      "y_m": 291.051,
+      "yaw_deg": 95.0702300760895
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_811",
+      "scale": 2.2443810454569757,
+      "x_m": 592.443,
+      "y_m": 49.762,
+      "yaw_deg": 136.11017075367272
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_812",
+      "scale": 1.133664067601785,
+      "x_m": 240.743,
+      "y_m": 434.836,
+      "yaw_deg": 239.71269076690078
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_813",
+      "scale": 1.8345068038906902,
+      "x_m": 482.644,
+      "y_m": 277.356,
+      "yaw_deg": 11.90647509880364
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_814",
+      "scale": 2.254769026185386,
+      "x_m": 665.903,
+      "y_m": 472.81,
+      "yaw_deg": 142.0903353765607
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_815",
+      "scale": 1.7035670577315614,
+      "x_m": 526.297,
+      "y_m": 454.477,
+      "yaw_deg": 39.842825615778565
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_817",
+      "scale": 1.1497202652972192,
+      "x_m": 367.168,
+      "y_m": 648.875,
+      "yaw_deg": 250.0980215985328
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_818",
+      "scale": 1.331869130488485,
+      "x_m": 285.19,
+      "y_m": 203.347,
+      "yaw_deg": 269.6066086180508
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_819",
+      "scale": 1.1299363090656698,
+      "x_m": 582.378,
+      "y_m": 39.626,
+      "yaw_deg": 134.748987397179
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_820",
+      "scale": 1.5914259729906917,
+      "x_m": 454.451,
+      "y_m": 285.681,
+      "yaw_deg": 284.3935415055603
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_821",
+      "scale": 1.5538374015595764,
+      "x_m": 295.685,
+      "y_m": 471.217,
+      "yaw_deg": 105.67296140827239
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_822",
+      "scale": 1.6688839193666354,
+      "x_m": 131.658,
+      "y_m": 56.328,
+      "yaw_deg": 214.84168455004692
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_823",
+      "scale": 1.9910715210717171,
+      "x_m": 524.171,
+      "y_m": 255.709,
+      "yaw_deg": 43.267289036884904
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_824",
+      "scale": 2.050709657603875,
+      "x_m": 586.774,
+      "y_m": 382.124,
+      "yaw_deg": 209.15372136980295
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_825",
+      "scale": 1.7631457260577008,
+      "x_m": 276.615,
+      "y_m": 511.009,
+      "yaw_deg": 326.4410336315632
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_826",
+      "scale": 1.9836915637133643,
+      "x_m": 301.319,
+      "y_m": 164.904,
+      "yaw_deg": 79.56037119962275
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_827",
+      "scale": 2.4938655686564744,
+      "x_m": 468.933,
+      "y_m": 288.416,
+      "yaw_deg": 47.30623179115355
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_828",
+      "scale": 1.7567813546629623,
+      "x_m": 529.786,
+      "y_m": 336.899,
+      "yaw_deg": 21.234664795920253
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_829",
+      "scale": 1.8227780874585733,
+      "x_m": 359.051,
+      "y_m": 354.228,
+      "yaw_deg": 195.0046546664089
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_830",
+      "scale": 2.228893492487259,
+      "x_m": 184.857,
+      "y_m": 588.514,
+      "yaw_deg": 346.0685427580029
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_831",
+      "scale": 1.3226207389961928,
+      "x_m": 665.506,
+      "y_m": 554.135,
+      "yaw_deg": 275.96759989857674
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_832",
+      "scale": 2.0479665795573965,
+      "x_m": 359.38,
+      "y_m": 357.515,
+      "yaw_deg": 297.8065559081733
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_833",
+      "scale": 1.8121651815017685,
+      "x_m": 674.657,
+      "y_m": 380.597,
+      "yaw_deg": 94.45053870789707
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_834",
+      "scale": 2.099524977733381,
+      "x_m": 162.56,
+      "y_m": 30.479,
+      "yaw_deg": 63.715493101626635
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_835",
+      "scale": 2.0288720952812582,
+      "x_m": 211.94,
+      "y_m": 504.727,
+      "yaw_deg": 321.938322102651
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_836",
+      "scale": 1.894824618822895,
+      "x_m": 629.015,
+      "y_m": 475.651,
+      "yaw_deg": 258.746292013675
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_837",
+      "scale": 1.4335205738898367,
+      "x_m": 566.76,
+      "y_m": 353.128,
+      "yaw_deg": 0.7780945021659136
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_838",
+      "scale": 2.333569735637866,
+      "x_m": 142.689,
+      "y_m": 611.986,
+      "yaw_deg": 269.74235286936164
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_839",
+      "scale": 1.6290235528722405,
+      "x_m": 51.096,
+      "y_m": 627.961,
+      "yaw_deg": 106.4957089908421
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_840",
+      "scale": 1.338635088992305,
+      "x_m": 327.426,
+      "y_m": 661.294,
+      "yaw_deg": 239.3142518028617
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_841",
+      "scale": 2.108995430287905,
+      "x_m": 456.684,
+      "y_m": 283.294,
+      "yaw_deg": 22.058726493269205
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_842",
+      "scale": 1.7696480052545667,
+      "x_m": 257.811,
+      "y_m": 509.988,
+      "yaw_deg": 184.539208766073
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_843",
+      "scale": 1.4037471922347322,
+      "x_m": 79.554,
+      "y_m": 201.609,
+      "yaw_deg": 323.5887299012393
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_844",
+      "scale": 1.6116524388780817,
+      "x_m": 478.331,
+      "y_m": 268.601,
+      "yaw_deg": 46.57122337259352
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_845",
+      "scale": 2.271991317393258,
+      "x_m": 120.719,
+      "y_m": 606.529,
+      "yaw_deg": 72.45903893373907
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_846",
+      "scale": 2.363217534031719,
+      "x_m": 605.327,
+      "y_m": 101.718,
+      "yaw_deg": 197.5404886621982
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_847",
+      "scale": 1.2813177589559928,
+      "x_m": 510.996,
+      "y_m": 289.663,
+      "yaw_deg": 344.303912082687
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_848",
+      "scale": 1.9409016005229205,
+      "x_m": 46.584,
+      "y_m": 389.841,
+      "yaw_deg": 63.04794257506728
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_849",
+      "scale": 2.330066854134202,
+      "x_m": 435.971,
+      "y_m": 255.105,
+      "yaw_deg": 297.5605963356793
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_850",
+      "scale": 1.8660105414455757,
+      "x_m": 40.496,
+      "y_m": 227.684,
+      "yaw_deg": 104.09945832565427
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_851",
+      "scale": 2.2159836342325434,
+      "x_m": 471.046,
+      "y_m": 447.09,
+      "yaw_deg": 117.55063151009381
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_852",
+      "scale": 1.7405661410884932,
+      "x_m": 427.063,
+      "y_m": 361.837,
+      "yaw_deg": 137.97151073813438
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_853",
+      "scale": 2.0418885971885175,
+      "x_m": 309.395,
+      "y_m": 678.368,
+      "yaw_deg": 52.4788264464587
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_854",
+      "scale": 1.8773280263412744,
+      "x_m": 119.084,
+      "y_m": 198.185,
+      "yaw_deg": 105.31619248911738
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_855",
+      "scale": 1.7791469932999462,
+      "x_m": 517.686,
+      "y_m": 338.966,
+      "yaw_deg": 95.77990025281906
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_856",
+      "scale": 1.1744383755140007,
+      "x_m": 114.915,
+      "y_m": 299.54,
+      "yaw_deg": 30.43388600461185
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_857",
+      "scale": 1.6632623242912814,
+      "x_m": 360.081,
+      "y_m": 394.237,
+      "yaw_deg": 110.2625038381666
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_858",
+      "scale": 1.4575195859652013,
+      "x_m": 132.272,
+      "y_m": 43.357,
+      "yaw_deg": 334.4785971567035
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_860",
+      "scale": 1.257464914699085,
+      "x_m": 316.992,
+      "y_m": 177.376,
+      "yaw_deg": 342.18589182011783
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_861",
+      "scale": 1.8491758640157059,
+      "x_m": 53.387,
+      "y_m": 618.796,
+      "yaw_deg": 188.8296506088227
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_862",
+      "scale": 2.2009748849086463,
+      "x_m": 663.516,
+      "y_m": 51.861,
+      "yaw_deg": 216.39766258187592
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_863",
+      "scale": 2.15252615918871,
+      "x_m": 334.932,
+      "y_m": 680.025,
+      "yaw_deg": 27.22931334748864
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_864",
+      "scale": 2.0607915479922667,
+      "x_m": 162.265,
+      "y_m": 26.678,
+      "yaw_deg": 190.94749744981527
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_865",
+      "scale": 2.290829176432453,
+      "x_m": 628.966,
+      "y_m": 456.806,
+      "yaw_deg": 276.61294030956924
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_866",
+      "scale": 1.0563697782345116,
+      "x_m": 494.864,
+      "y_m": 441.699,
+      "yaw_deg": 233.30361351370811
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_867",
+      "scale": 1.2475248653208837,
+      "x_m": 297.735,
+      "y_m": 143.614,
+      "yaw_deg": 124.74453661590815
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_868",
+      "scale": 1.574629326001741,
+      "x_m": 357.576,
+      "y_m": 456.063,
+      "yaw_deg": 236.93598174490035
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_869",
+      "scale": 1.8648040115367621,
+      "x_m": 590.665,
+      "y_m": 32.239,
+      "yaw_deg": 228.65258772857487
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_870",
+      "scale": 1.1197826199932024,
+      "x_m": 671.097,
+      "y_m": 391.86,
+      "yaw_deg": 144.76764667779207
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_871",
+      "scale": 1.8189051054650918,
+      "x_m": 305.271,
+      "y_m": 513.681,
+      "yaw_deg": 162.912337789312
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_872",
+      "scale": 2.456871498026885,
+      "x_m": 560.81,
+      "y_m": 250.161,
+      "yaw_deg": 96.19995824061334
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_873",
+      "scale": 2.1714044308755547,
+      "x_m": 334.634,
+      "y_m": 513.221,
+      "yaw_deg": 14.949937770143151
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_874",
+      "scale": 2.0072932281764224,
+      "x_m": 610.359,
+      "y_m": 280.912,
+      "yaw_deg": 354.47635103948414
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_875",
+      "scale": 2.3842808477347717,
+      "x_m": 294.82,
+      "y_m": 502.488,
+      "yaw_deg": 274.78392706252635
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_876",
+      "scale": 2.437621972290799,
+      "x_m": 589.714,
+      "y_m": 37.823,
+      "yaw_deg": 204.72145319916308
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_877",
+      "scale": 2.281910765101202,
+      "x_m": 228.279,
+      "y_m": 411.101,
+      "yaw_deg": 54.20932567678392
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_878",
+      "scale": 2.4326786450110376,
+      "x_m": 438.567,
+      "y_m": 377.879,
+      "yaw_deg": 247.7775579225272
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_879",
+      "scale": 2.2545051383785903,
+      "x_m": 646.109,
+      "y_m": 44.645,
+      "yaw_deg": 319.5168409869075
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_880",
+      "scale": 1.2847301054280251,
+      "x_m": 445.759,
+      "y_m": 271.327,
+      "yaw_deg": 176.22346521355212
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_881",
+      "scale": 1.0477223615162075,
+      "x_m": 501.828,
+      "y_m": 157.943,
+      "yaw_deg": 341.97758987545967
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_882",
+      "scale": 1.5425601375754923,
+      "x_m": 50.62,
+      "y_m": 120.092,
+      "yaw_deg": 329.5180367399007
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_883",
+      "scale": 1.445089642307721,
+      "x_m": 358.838,
+      "y_m": 387.772,
+      "yaw_deg": 197.55433992482722
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_885",
+      "scale": 2.032557940809056,
+      "x_m": 365.626,
+      "y_m": 503.079,
+      "yaw_deg": 29.073973344638944
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_886",
+      "scale": 2.0938225007848814,
+      "x_m": 35.913,
+      "y_m": 572.475,
+      "yaw_deg": 277.6706524193287
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_887",
+      "scale": 1.4443996248301119,
+      "x_m": 74.615,
+      "y_m": 503.299,
+      "yaw_deg": 318.39924110099673
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_888",
+      "scale": 1.2759703086921945,
+      "x_m": 89.549,
+      "y_m": 620.173,
+      "yaw_deg": 356.70101534575224
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_889",
+      "scale": 2.2936514823231846,
+      "x_m": 82.659,
+      "y_m": 167.986,
+      "yaw_deg": 164.65871050022542
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_890",
+      "scale": 1.704332780558616,
+      "x_m": 148.838,
+      "y_m": 73.124,
+      "yaw_deg": 259.6966033615172
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_891",
+      "scale": 1.1807015822269022,
+      "x_m": 664.393,
+      "y_m": 364.074,
+      "yaw_deg": 93.93567896448076
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_892",
+      "scale": 1.439546619891189,
+      "x_m": 486.737,
+      "y_m": 305.822,
+      "yaw_deg": 329.19179814867675
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_893",
+      "scale": 1.8971363313030452,
+      "x_m": 101.486,
+      "y_m": 70.766,
+      "yaw_deg": 182.43367209099233
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_894",
+      "scale": 2.4248140054987743,
+      "x_m": 488.673,
+      "y_m": 285.109,
+      "yaw_deg": 80.67405162379146
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_895",
+      "scale": 1.1510667122201994,
+      "x_m": 46.209,
+      "y_m": 310.616,
+      "yaw_deg": 278.0748615693301
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_897",
+      "scale": 1.607700118678622,
+      "x_m": 139.666,
+      "y_m": 54.643,
+      "yaw_deg": 138.6935007199645
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_898",
+      "scale": 1.9064453840255737,
+      "x_m": 326.998,
+      "y_m": 673.065,
+      "yaw_deg": 142.16500799171627
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_899",
+      "scale": 1.2632871019886807,
+      "x_m": 253.125,
+      "y_m": 424.767,
+      "yaw_deg": 316.71300971880555
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_900",
+      "scale": 1.5781889121280983,
+      "x_m": 64.665,
+      "y_m": 164.093,
+      "yaw_deg": 297.7285634726286
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_901",
+      "scale": 1.3114400258054957,
+      "x_m": 607.36,
+      "y_m": 448.421,
+      "yaw_deg": 182.98889455385506
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_902",
+      "scale": 1.7747898229863495,
+      "x_m": 336.576,
+      "y_m": 682.348,
+      "yaw_deg": 6.39764710329473
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_903",
+      "scale": 1.4331500368425623,
+      "x_m": 141.445,
+      "y_m": 69.192,
+      "yaw_deg": 65.36562622524798
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_904",
+      "scale": 2.181119488319382,
+      "x_m": 552.036,
+      "y_m": 272.403,
+      "yaw_deg": 345.0194840412587
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_905",
+      "scale": 1.7776323708239943,
+      "x_m": 345.187,
+      "y_m": 506.601,
+      "yaw_deg": 194.51014610007405
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_906",
+      "scale": 1.0717870175139979,
+      "x_m": 537.925,
+      "y_m": 694.442,
+      "yaw_deg": 299.3377454672009
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_907",
+      "scale": 1.4718397106043994,
+      "x_m": 237.266,
+      "y_m": 614.339,
+      "yaw_deg": 351.94016709923744
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_908",
+      "scale": 1.032591709983535,
+      "x_m": 595.637,
+      "y_m": 306.266,
+      "yaw_deg": 323.9913074299693
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_909",
+      "scale": 1.0684672673232853,
+      "x_m": 66.284,
+      "y_m": 277.882,
+      "yaw_deg": 30.657935785129666
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_910",
+      "scale": 1.2969670096645132,
+      "x_m": 49.137,
+      "y_m": 586.021,
+      "yaw_deg": 39.3378119263798
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_911",
+      "scale": 1.8337727918988094,
+      "x_m": 430.628,
+      "y_m": 375.403,
+      "yaw_deg": 156.94567448459566
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_912",
+      "scale": 1.186104935244657,
+      "x_m": 540.372,
+      "y_m": 464.636,
+      "yaw_deg": 183.2095015514642
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_913",
+      "scale": 2.3216463027056307,
+      "x_m": 60.973,
+      "y_m": 537.83,
+      "yaw_deg": 191.89984744414687
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_914",
+      "scale": 1.8205149732530117,
+      "x_m": 31.487,
+      "y_m": 322.846,
+      "yaw_deg": 227.80470189638436
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_915",
+      "scale": 2.387693337746896,
+      "x_m": 113.247,
+      "y_m": 56.047,
+      "yaw_deg": 61.005886076018214
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_916",
+      "scale": 1.9479258784558624,
+      "x_m": 140.144,
+      "y_m": 625.122,
+      "yaw_deg": 142.08225999958813
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_917",
+      "scale": 1.9597427061526105,
+      "x_m": 498.908,
+      "y_m": 437.935,
+      "yaw_deg": 116.41010301187634
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_918",
+      "scale": 1.5682369555579498,
+      "x_m": 362.405,
+      "y_m": 459.932,
+      "yaw_deg": 200.12359843589365
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_919",
+      "scale": 1.2040087149944156,
+      "x_m": 463.368,
+      "y_m": 421.828,
+      "yaw_deg": 194.83844747766852
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_920",
+      "scale": 1.5022080820053816,
+      "x_m": 65.39,
+      "y_m": 568.857,
+      "yaw_deg": 358.616800904274
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_921",
+      "scale": 1.3642893788637593,
+      "x_m": 605.896,
+      "y_m": 444.48,
+      "yaw_deg": 273.5244800616056
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_922",
+      "scale": 2.19402092974633,
+      "x_m": 480.998,
+      "y_m": 306.807,
+      "yaw_deg": 339.92822997272015
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_923",
+      "scale": 2.455507404054515,
+      "x_m": 449.816,
+      "y_m": 466.182,
+      "yaw_deg": 236.48471198044717
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_924",
+      "scale": 1.4821287300437689,
+      "x_m": 103.21,
+      "y_m": 263.142,
+      "yaw_deg": 17.94691759161651
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_925",
+      "scale": 1.1831736237509176,
+      "x_m": 376.964,
+      "y_m": 460.475,
+      "yaw_deg": 223.56366123072803
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_926",
+      "scale": 2.3564706799807027,
+      "x_m": 58.69,
+      "y_m": 182.698,
+      "yaw_deg": 267.9929810296744
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_927",
+      "scale": 2.2505110616330057,
+      "x_m": 325.206,
+      "y_m": 362.399,
+      "yaw_deg": 15.039933174848557
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_928",
+      "scale": 1.235440123360604,
+      "x_m": 549.613,
+      "y_m": 258.298,
+      "yaw_deg": 179.5267274044454
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_930",
+      "scale": 2.327850952045992,
+      "x_m": 75.62,
+      "y_m": 523.481,
+      "yaw_deg": 144.20200852677226
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_931",
+      "scale": 2.4736262005753815,
+      "x_m": 544.5,
+      "y_m": 248.847,
+      "yaw_deg": 68.01298035308719
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_932",
+      "scale": 1.873207144322805,
+      "x_m": 140.171,
+      "y_m": 326.926,
+      "yaw_deg": 46.88680864870548
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_933",
+      "scale": 2.353677333216183,
+      "x_m": 378.129,
+      "y_m": 474.112,
+      "yaw_deg": 197.66988697461784
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_934",
+      "scale": 2.146236420958303,
+      "x_m": 466.256,
+      "y_m": 285.847,
+      "yaw_deg": 353.6584392283112
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_935",
+      "scale": 1.734634398133494,
+      "x_m": 406.245,
+      "y_m": 259.753,
+      "yaw_deg": 315.896068867296
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_936",
+      "scale": 1.2581485472619534,
+      "x_m": 335.157,
+      "y_m": 159.631,
+      "yaw_deg": 25.497028352692723
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_937",
+      "scale": 1.776615145150572,
+      "x_m": 121.544,
+      "y_m": 51.253,
+      "yaw_deg": 239.98019442893565
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_938",
+      "scale": 1.9510281849652529,
+      "x_m": 380.72,
+      "y_m": 466.206,
+      "yaw_deg": 62.935821041464806
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_939",
+      "scale": 2.2040638278704137,
+      "x_m": 644.497,
+      "y_m": 181.573,
+      "yaw_deg": 260.65769316628575
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_940",
+      "scale": 2.142228162381798,
+      "x_m": 644.929,
+      "y_m": 52.607,
+      "yaw_deg": 275.3669761866331
+    },
+    {
+      "asset": "spr_flora_old_bushd",
+      "id": "scatter_941",
+      "scale": 1.1394205861724913,
+      "x_m": 582.995,
+      "y_m": 343.758,
+      "yaw_deg": 244.7142255306244
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_942",
+      "scale": 2.042001227266155,
+      "x_m": 615.904,
+      "y_m": 45.401,
+      "yaw_deg": 125.95267153345048
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_943",
+      "scale": 2.344520116574131,
+      "x_m": 59.728,
+      "y_m": 627.66,
+      "yaw_deg": 298.8948722742498
+    },
+    {
+      "asset": "spr_flora_old_bushb",
+      "id": "scatter_944",
+      "scale": 1.0693186116404831,
+      "x_m": 46.408,
+      "y_m": 580.836,
+      "yaw_deg": 106.57865328714252
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_945",
+      "scale": 1.411185011616908,
+      "x_m": 435.471,
+      "y_m": 371.799,
+      "yaw_deg": 176.56248805113137
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_946",
+      "scale": 1.7279171576956287,
+      "x_m": 672.479,
+      "y_m": 531.066,
+      "yaw_deg": 27.154891099780798
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_947",
+      "scale": 2.36030713992659,
+      "x_m": 551.153,
+      "y_m": 25.829,
+      "yaw_deg": 1.4525170158594847
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_948",
+      "scale": 1.161649085348472,
+      "x_m": 498.94,
+      "y_m": 320.127,
+      "yaw_deg": 297.26720499806106
+    },
+    {
+      "asset": "spr_flora_old_bush1b",
+      "id": "scatter_949",
+      "scale": 1.2748552487464622,
+      "x_m": 565.887,
+      "y_m": 262.151,
+      "yaw_deg": 61.900867223739624
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_950",
+      "scale": 1.1579201634740457,
+      "x_m": 74.245,
+      "y_m": 641.339,
+      "yaw_deg": 63.25438817963004
+    },
+    {
+      "asset": "spr_flora_old_bush1f",
+      "id": "scatter_951",
+      "scale": 2.3549549898598343,
+      "x_m": 446.816,
+      "y_m": 263.84,
+      "yaw_deg": 240.86922911927104
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_952",
+      "scale": 1.8148009243886918,
+      "x_m": 106.226,
+      "y_m": 31.351,
+      "yaw_deg": 81.37618973851204
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_953",
+      "scale": 2.164454100537114,
+      "x_m": 338.285,
+      "y_m": 440.777,
+      "yaw_deg": 60.281823333352804
+    },
+    {
+      "asset": "spr_flora_old_bushf",
+      "id": "scatter_954",
+      "scale": 1.215571206761524,
+      "x_m": 495.906,
+      "y_m": 278.859,
+      "yaw_deg": 254.74621295928955
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_956",
+      "scale": 2.4766017328947783,
+      "x_m": 365.707,
+      "y_m": 451.716,
+      "yaw_deg": 61.857777535915375
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_957",
+      "scale": 1.9825279470533133,
+      "x_m": 303.784,
+      "y_m": 164.443,
+      "yaw_deg": 350.28139784932137
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_958",
+      "scale": 1.2891850743908435,
+      "x_m": 602.206,
+      "y_m": 464.143,
+      "yaw_deg": 150.4753919877112
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_959",
+      "scale": 1.2693691600579768,
+      "x_m": 596.687,
+      "y_m": 42.382,
+      "yaw_deg": 112.999506611377
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_960",
+      "scale": 1.1740995049476624,
+      "x_m": 217.718,
+      "y_m": 615.208,
+      "yaw_deg": 246.43179047852755
+    },
+    {
+      "asset": "spr_flora_old_bush1a",
+      "id": "scatter_961",
+      "scale": 2.1413645651191473,
+      "x_m": 59.919,
+      "y_m": 623.704,
+      "yaw_deg": 138.0310782417655
+    },
+    {
+      "asset": "spr_flora_old_busha",
+      "id": "scatter_962",
+      "scale": 1.6783804197330028,
+      "x_m": 623.479,
+      "y_m": 286.319,
+      "yaw_deg": 60.539524191990495
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_963",
+      "scale": 1.2238434390164912,
+      "x_m": 140.415,
+      "y_m": 185.998,
+      "yaw_deg": 278.4104232676327
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_964",
+      "scale": 1.406824798323214,
+      "x_m": 339.084,
+      "y_m": 471.435,
+      "yaw_deg": 93.13658410683274
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_965",
+      "scale": 2.4301853717770427,
+      "x_m": 640.542,
+      "y_m": 470.925,
+      "yaw_deg": 199.95700534433126
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_966",
+      "scale": 1.065159210236743,
+      "x_m": 344.282,
+      "y_m": 448.622,
+      "yaw_deg": 97.56674171425402
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_967",
+      "scale": 1.4214917944045737,
+      "x_m": 538.401,
+      "y_m": 331.45,
+      "yaw_deg": 104.42503893747926
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_968",
+      "scale": 1.053896313533187,
+      "x_m": 669.459,
+      "y_m": 380.062,
+      "yaw_deg": 19.192063054069877
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_969",
+      "scale": 1.0476055223261937,
+      "x_m": 73.971,
+      "y_m": 109.325,
+      "yaw_deg": 94.04572731815279
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_970",
+      "scale": 1.325197508907877,
+      "x_m": 586.376,
+      "y_m": 50.654,
+      "yaw_deg": 299.5972227025777
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_971",
+      "scale": 1.525393986259587,
+      "x_m": 612.303,
+      "y_m": 51.144,
+      "yaw_deg": 85.7622923143208
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_972",
+      "scale": 1.231368744163774,
+      "x_m": 69.911,
+      "y_m": 37.9,
+      "yaw_deg": 78.28805160708725
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_973",
+      "scale": 1.4384254470933229,
+      "x_m": 84.405,
+      "y_m": 529.294,
+      "yaw_deg": 14.41618848592043
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_974",
+      "scale": 2.451726710307412,
+      "x_m": 424.88,
+      "y_m": 375.762,
+      "yaw_deg": 11.397107178345323
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_975",
+      "scale": 2.2598496249411255,
+      "x_m": 85.594,
+      "y_m": 206.565,
+      "yaw_deg": 135.35620884038508
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_976",
+      "scale": 2.089432322536595,
+      "x_m": 620.329,
+      "y_m": 465.376,
+      "yaw_deg": 347.77935574762523
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_977",
+      "scale": 1.0326643164735287,
+      "x_m": 106.735,
+      "y_m": 315.566,
+      "yaw_deg": 341.2034943792969
+    },
+    {
+      "asset": "spr_flora_old_bush1c",
+      "id": "scatter_978",
+      "scale": 2.1426380943739787,
+      "x_m": 405.931,
+      "y_m": 452.766,
+      "yaw_deg": 197.5753389392048
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_979",
+      "scale": 2.2327100998954847,
+      "x_m": 174.435,
+      "y_m": 27.415,
+      "yaw_deg": 240.73502462357283
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_980",
+      "scale": 2.0214633852010593,
+      "x_m": 510.503,
+      "y_m": 335.372,
+      "yaw_deg": 310.56678492575884
+    },
+    {
+      "asset": "spr_mm_tree_palm2",
+      "id": "scatter_981",
+      "scale": 1.7730462215840816,
+      "x_m": 151.089,
+      "y_m": 74.784,
+      "yaw_deg": 210.14912676997483
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_982",
+      "scale": 1.4108419214608148,
+      "x_m": 275.063,
+      "y_m": 221.848,
+      "yaw_deg": 285.938720041886
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_983",
+      "scale": 1.9527254295535386,
+      "x_m": 49.325,
+      "y_m": 40.834,
+      "yaw_deg": 191.43827891908586
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_984",
+      "scale": 1.020504200598225,
+      "x_m": 479.946,
+      "y_m": 256.918,
+      "yaw_deg": 235.94605945050716
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_985",
+      "scale": 1.5134540755534545,
+      "x_m": 67.028,
+      "y_m": 319.487,
+      "yaw_deg": 337.2354599274695
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_986",
+      "scale": 1.5447735516354442,
+      "x_m": 151.924,
+      "y_m": 66.843,
+      "yaw_deg": 14.201988447457552
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_987",
+      "scale": 1.8149080119328573,
+      "x_m": 93.51,
+      "y_m": 319.806,
+      "yaw_deg": 309.38142833299935
+    },
+    {
+      "asset": "spr_flora_old_bush1d",
+      "id": "scatter_988",
+      "scale": 1.6858421408105642,
+      "x_m": 103.572,
+      "y_m": 49.918,
+      "yaw_deg": 170.68749678321183
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_989",
+      "scale": 1.7962778494693339,
+      "x_m": 486.019,
+      "y_m": 259.047,
+      "yaw_deg": 31.618174072355032
+    },
+    {
+      "asset": "spr_mm_tree_palm4",
+      "id": "scatter_990",
+      "scale": 2.38952184189111,
+      "x_m": 46.107,
+      "y_m": 291.982,
+      "yaw_deg": 51.8610863853246
+    },
+    {
+      "asset": "spr_flora_old_bush1g",
+      "id": "scatter_991",
+      "scale": 1.3018256556242704,
+      "x_m": 339.543,
+      "y_m": 405.497,
+      "yaw_deg": 183.95201261155307
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_992",
+      "scale": 1.8501930139027536,
+      "x_m": 109.143,
+      "y_m": 56.839,
+      "yaw_deg": 238.05865125730634
+    },
+    {
+      "asset": "spr_mm_tree_palm3",
+      "id": "scatter_993",
+      "scale": 1.3224888797849417,
+      "x_m": 379.986,
+      "y_m": 402.646,
+      "yaw_deg": 281.9750928785652
+    },
+    {
+      "asset": "spr_flora_old_bushc",
+      "id": "scatter_994",
+      "scale": 1.4996540497522801,
+      "x_m": 203.425,
+      "y_m": 35.307,
+      "yaw_deg": 212.13731520809233
+    },
+    {
+      "asset": "spr_flora_old_bushe",
+      "id": "scatter_995",
+      "scale": 1.395995725528337,
+      "x_m": 478.089,
+      "y_m": 261.082,
+      "yaw_deg": 161.30472195334733
+    },
+    {
+      "asset": "spr_flora_old_bush1e",
+      "id": "scatter_996",
+      "scale": 1.3435353329405189,
+      "x_m": 426.02,
+      "y_m": 396.409,
+      "yaw_deg": 320.04950632341206
+    },
+    {
+      "asset": "spr_mm_tree_palm6",
+      "id": "scatter_997",
+      "scale": 1.6575837542768568,
+      "x_m": 346.651,
+      "y_m": 651.74,
+      "yaw_deg": 208.83478241041303
+    },
+    {
+      "asset": "spr_mm_tree_palm5",
+      "id": "scatter_998",
+      "scale": 2.3934786572353914,
+      "x_m": 460.655,
+      "y_m": 379.165,
+      "yaw_deg": 243.06601622141898
+    },
+    {
+      "asset": "spr_mm_tree_palm1",
+      "id": "scatter_999",
+      "scale": 2.2809696740005165,
+      "x_m": 671.413,
+      "y_m": 44.36,
+      "yaw_deg": 297.03067355789244
+    },
+    {
+      "asset": "spr_flora_old_bushg",
+      "id": "scatter_1000",
+      "scale": 1.3935679690912366,
+      "x_m": 557.279,
+      "y_m": 281.355,
+      "yaw_deg": 307.5482159201056
+    }
+  ],
+  "settings": {
+    "biome": "source",
+    "fog": "source",
+    "precipitation": "source",
+    "precipitation_intensity": 10,
+    "thunder": "source",
+    "thunder_frequency": 50
+  },
+  "source": {
+    "recipe_file_sha256": "ca5a78637ea420b6648e3c672a13f9a6770c817ea0ede7f970dff435627a6cf3",
+    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/maps/small/test_map_117/source/scn_test_062_plain__03_bottom_left.txt",
+    "recipe_sha256": "ca5a78637ea420b6648e3c672a13f9a6770c817ea0ede7f970dff435627a6cf3",
+    "scene_id": "scn_test_062_plain__03_bottom_left",
+    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/maps/small/test_map_117/source/scn_test_062_plain__03_bottom_left.sco",
+    "sco_sha256": "d8c38821c3a3e05bcf0e9abde71074468fc3f06eadcc9f459c1085a0bbb65bd7",
+    "terrain_code": "0x000000033282088a000b42d00a56e3f6601e6ec25ef63cb1"
+  },
+  "spawn_points": [
+    {
+      "entry": 0,
+      "team": 0,
+      "x_m": 285.688,
+      "y_m": 103.629
+    },
+    {
+      "entry": 32,
+      "team": 1,
+      "x_m": 329.639,
+      "y_m": 581.728
+    }
+  ],
+  "version": 3
+}

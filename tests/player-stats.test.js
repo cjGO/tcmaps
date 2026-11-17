@@ -4,6 +4,8 @@ import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { loadPlayerStats, playerStatsPlugin } from '../scripts/player-stats.mjs';
+import { collectPlayerMatchups } from '../scripts/prepare-player-matchups.mjs';
+import { MATCHUP_SIZE, playerMatchups } from '../src/player-matchups.js';
 import { COUNTERS, emptyTotals, metricValue, periodPlayers, filterPlayers, rankPlayers, median, winInterval, dailyTotals, leaderboardCsv } from '../src/player-stats.js';
 
 const totals = values => ({ ...emptyTotals(), ...values });
@@ -146,4 +148,45 @@ test('excluded alias pair has independent profiles, daily stats, and search with
   assert.equal(periodPlayers(data, '2026-10-02', '2026-10-02').find(p => p.id === medic.id).totals.personal_kills, 2);
   assert.deepEqual(players.find(p => p.name === 'Ordinary alias').aliases, ['MedicmanG']);
   assert.equal(players.reduce((sum, p) => sum + p.totals.personal_kills, 0), 14);
+});
+
+test('replay matchups use the soldier class and owner at the death, with losses oriented from the profile side', async () => {
+  const track = (...changes) => ({ birth: changes[0], meta: changes[0], changes });
+  const replay = {
+    header: { id: 'battle', version: 2, synthetic: false, capture_mode: 'battle', created_utc: '2026-10-01T23:59:59Z', start_ms: 0 },
+    terminal: { dropped_events: 0 },
+    players: new Map([[1, { name: 'Old Name' }], [2, { name: 'Second' }], [3, { name: 'Shared' }]]),
+    tracks: new Map([
+      [1, track({ t: 0, seq: 1, kind: 'bot', team: 0, class: 17, owner: 3 },
+        { t: 2000, seq: 2, kind: 'bot', team: 0, class: 17, owner: 1 },
+        { t: 2000, seq: 4, kind: 'player', team: 0, class: 17, controller: 1 })],
+      [2, track({ t: 0, seq: 1, kind: 'player', team: 1, class: 13, controller: 2 })],
+      [3, track({ t: 0, seq: 1, kind: 'player', team: 0, class: 10, controller: 3 })],
+      [4, track({ t: 0, seq: 1, kind: 'bot', team: 0, class: 12, owner: 3 })],
+    ]),
+    effects: { deaths: [
+      { t: 2000, seq: 3, id: 2, killer: 1 },
+      { t: 2000, seq: 5, id: 3, killer: 1 },
+      { t: 2000, seq: 6, id: 4, killer: false },
+    ] },
+  };
+  const profiles = [
+    { id: 'a', name: 'Current Name', aliases: ['old name'] },
+    { id: 'b', name: 'Second', aliases: [] },
+    { id: 'c', name: 'Shared', aliases: [] },
+    { id: 'd', name: 'Different', aliases: ['Shared'] },
+  ];
+  const data = await collectPlayerMatchups([replay, replay, { ...replay, incomplete: true }, {
+    ...replay, header: { ...replay.header, id: 'ambiguous' },
+    effects: { deaths: [{ t: 1700, seq: 3, id: 2, killer: 4 }] },
+  }], profiles);
+  assert.equal(data.recordings, 2);
+  assert.deepEqual(data.days, ['2026-10-02']);
+  assert.deepEqual(Object.keys(data.players), ['a', 'b']);
+  assert.deepEqual(playerMatchups(data.players.a, '', '', 'squad').cells[1 * MATCHUP_SIZE + 4], { kills: 1, losses: 0 });
+  assert.equal(playerMatchups(data.players.a, '', '', 'personal').kills, 0);
+  const personal = playerMatchups(data.players.b, '2026-10-02', '2026-10-02', 'personal');
+  assert.deepEqual(personal.cells[4 * MATCHUP_SIZE + 1], { kills: 0, losses: 1 });
+  assert.equal(personal.losses, 2);
+  assert.equal(playerMatchups(data.players.b, '', '2026-10-01').losses, 0);
 });

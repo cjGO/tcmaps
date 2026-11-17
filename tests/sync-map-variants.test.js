@@ -39,3 +39,17 @@ test('sync imports direct exports, preserves app-only files and archives replace
     assert.equal(await readFile(path.join(destination, file), 'utf8'), document(218), 'Validate all incoming files before writing');
   } finally { await rm(root, { recursive: true, force: true }); }
 });
+
+test('WMS batch filenames resolve by their containing map family', async () => {
+  const root = await mkdtemp(path.join(tmpdir(), 'wms-batch-sync-'));
+  try {
+    for (const id of ['test_map_111', 'test_map_112']) {
+      const folder=path.join(root, 'small', id, 'variants');
+      await mkdir(folder, { recursive: true });
+      await writeFile(path.join(folder, 'WMS_batch2.placements.json'), document(2));
+    }
+    assert.equal(Object.keys(await readVariantFiles(root)).length, 2);
+    await writeFile(path.join(root, 'small/test_map_111/variants/unknown.placements.json'), document(1));
+    await assert.rejects(readVariantFiles(root), /must identify its map/);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});

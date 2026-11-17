@@ -1,5 +1,7 @@
 import data from 'virtual:player-stats';
+import matchups from '../lib/player-matchups.json';
 import { METRICS, emptyTotals, addTotals, metricValue, formatMetric, periodPlayers, filterPlayers, rankPlayers, median, winInterval, dailyTotals, leaderboardCsv } from './player-stats.js';
+import { MATCHUP_SIZE, MATCHUP_UNITS, playerMatchups } from './player-matchups.js';
 import './player-stats.css';
 
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -14,7 +16,7 @@ const empty = message => `<div class="ps-empty">${esc(message)}</div>`;
 export function setupPlayerStats(root) {
   const meta = data.meta;
   root.innerHTML = `
-    <div class="ps-heading"><div><p class="eyebrow">COMMANDER BATTLE / THE PLAYER REPORT</p><h1>Every round tells a story.</h1><p class="subtitle">Explore the leaderboard. Understand the performance behind the rank.</p></div><div class="ps-edition"><span class="ps-dot"></span> RECORDED DATA<strong>${meta.snapshotDay ? esc(dateLabel(meta.snapshotDay) + ' ' + meta.snapshotDay.slice(0, 4)) : 'Journal export'}</strong><small>Static export · updated with each build</small></div></div>
+    <div class="ps-heading"><div><p class="eyebrow">COMMANDER BATTLE</p><h1>Player stats</h1><p class="subtitle">Explore unit matchups, player profiles, and the leaderboard.</p></div><div class="ps-edition"><span class="ps-dot"></span> STATS SNAPSHOT<strong>${meta.snapshotDay ? esc(dateLabel(meta.snapshotDay) + ' ' + meta.snapshotDay.slice(0, 4)) : 'Journal export'}</strong></div></div>
     <div id="ps-notices"></div>
     <section class="ps-controls" aria-label="Player statistics filters">
       <label class="ps-search">Find a player<input id="ps-search" type="search" placeholder="Search names & past aliases…" autocomplete="off"></label>
@@ -24,32 +26,44 @@ export function setupPlayerStats(root) {
       <div id="ps-dates" class="ps-dates" hidden><label>From<input id="ps-from" type="date"></label><label>Through<input id="ps-through" type="date"></label></div>
       <p id="ps-filter-note" class="ps-note" role="status"></p>
     </section>
+    <section class="ps-card ps-matchups" aria-labelledby="ps-matchups-title">
+      <header class="ps-card-heading">
+        <div><h2 id="ps-matchups-title">Unit matchups</h2><p class="ps-note">Rows show your unit. Columns show the enemy unit.</p></div>
+        <div class="ps-matchup-controls">
+          <label>Player<select id="ps-player"></select></label>
+          <label>Combat<select id="ps-matchup-scope"><option value="all">Personal + squad</option><option value="personal">Personal</option><option value="squad">Squad</option></select></label>
+        </div>
+      </header>
+      <p id="ps-matchup-count" class="ps-matchup-count" role="status"></p>
+      <div id="ps-matchup-grid"></div>
+      <p id="ps-matchup-source" class="ps-note"></p>
+    </section>
     <div id="ps-summary" class="ps-summary"></div>
     <p id="ps-insight" class="ps-insight"></p>
     <div class="ps-chart-grid">
-      <section class="ps-card"><div class="ps-card-heading"><div><p class="eyebrow">01 / PERFORMANCE LANDSCAPE</p><h2>Volume meets efficiency.</h2></div><span class="ps-tag">EXPLORE</span></div>
+      <section class="ps-card"><div class="ps-card-heading"><h2>Player performance</h2></div>
         <div class="ps-chart-controls"><label>Horizontal axis<select id="ps-x">${options('rounds')}</select></label><label>Vertical axis<select id="ps-y">${options('personal_kd')}</select></label></div>
         <div id="ps-scatter" class="ps-chart"></div><p id="ps-scatter-readout" class="ps-readout" aria-live="polite">Hover or focus a point to inspect. Select it to open a player.</p>
         <div class="ps-legend"><span><i class="ps-swatch ps-low"></i>Lower win rate</span><span><i class="ps-swatch ps-high"></i>Higher win rate</span><span>Size = completed rounds</span></div><p id="ps-scatter-note" class="ps-note"></p>
       </section>
-      <section class="ps-card"><div class="ps-card-heading"><div><p class="eyebrow">02 / THE FRONT RUNNERS</p><h2>Leading the field.</h2></div><span class="ps-tag">TOP 8</span></div>
+      <section class="ps-card"><div class="ps-card-heading"><h2>Top 8 players</h2></div>
         <label class="ps-metric-control">Rank by<select id="ps-metric">${options('squad_kills')}</select></label>
         <div id="ps-leaders" class="ps-leaders"></div><p class="ps-note">Highest values in the filtered cohort. Select a bar to inspect that player. Ties use numeric account order.</p>
       </section>
     </div>
     <div class="ps-detail-grid">
-      <section class="ps-card ps-board"><div class="ps-card-heading"><div><p class="eyebrow">03 / LEADERBOARD</p><h2>The full picture.</h2></div><button id="ps-export" class="ps-button">Export CSV ↓</button></div>
+      <section class="ps-card ps-board"><div class="ps-card-heading"><h2>Leaderboard</h2><button id="ps-export" class="ps-button">Export CSV ↓</button></div>
         <p class="ps-note">Click a column to sort; select a name for their profile. Undefined ratios appear last.</p>
         <div id="ps-table" class="ps-table-wrap" tabindex="0" role="region" aria-label="Player leaderboard"></div>
         <div class="ps-pagination"><button id="ps-prev" class="ps-button" aria-label="Previous leaderboard page">← Previous</button><span id="ps-page" role="status"></span><button id="ps-next" class="ps-button" aria-label="Next leaderboard page">Next →</button></div>
       </section>
-      <section class="ps-card ps-profile" aria-labelledby="ps-profile-title"><p class="eyebrow">04 / PLAYER DOSSIER</p>
-        <label>Look up any player<select id="ps-player" aria-label="Look up any player"></select></label>
+      <section class="ps-card ps-profile" aria-labelledby="ps-profile-title"><p class="eyebrow">PLAYER PROFILE</p>
+        <a href="#ps-player">Change player and view unit matchups</a>
         <div id="ps-profile"></div>
         <label class="ps-compare-label">Compare with<select id="ps-compare"><option value="">Choose another player…</option></select></label><div id="ps-comparison"></div>
       </section>
     </div>
-    <section class="ps-card ps-history"><div class="ps-card-heading"><div><p class="eyebrow">05 / ACTIVITY OVER TIME</p><h2>Where the action happened.</h2></div><label>Chart focus<select id="ps-history-focus"><option value="cohort">Filtered cohort</option><option value="player">Selected player</option></select></label></div>
+    <section class="ps-card ps-history"><div class="ps-card-heading"><h2>Activity over time</h2><label>Chart focus<select id="ps-history-focus"><option value="cohort">Filtered cohort</option><option value="player">Selected player</option></select></label></div>
       <div id="ps-history" class="ps-chart"></div><p id="ps-history-readout" class="ps-readout" aria-live="polite">Hover or focus a bar for that UTC day's breakdown.</p>
       <div class="ps-legend"><span><i class="ps-swatch ps-personal"></i>Personal enemy kills</span><span><i class="ps-swatch ps-squad"></i>Squad enemy kills</span></div><p class="ps-note">Actual UTC dates, including gaps. Only dates present in the indexed journals are shown; missing dates are not zero activity. The latest date may be incomplete. On smaller screens, scroll horizontally to explore earlier dates.</p>
     </section>
@@ -67,7 +81,12 @@ export function setupPlayerStats(root) {
   const nameCounts = new Map(); names.forEach(p => nameCounts.set(p.name, (nameCounts.get(p.name) || 0) + 1));
   const playerOptions = names.map(p => `<option value="${p.id}">${esc(p.name)}${nameCounts.get(p.name) > 1 ? ' · ' + p.id.slice(0, 5) : ''}</option>`).join('');
   $('player').innerHTML = playerOptions; $('compare').insertAdjacentHTML('beforeend', playerOptions);
-  selected = rankPlayers(periodPlayers(data), 'squad_kills')[0]?.id || '';
+  const initialRank = rankPlayers(periodPlayers(data), 'squad_kills');
+  selected = (initialRank.find(p => matchups.players[p.id]) ?? initialRank[0])?.id || '';
+  $('player').disabled = !names.length;
+  $('matchup-source').textContent = matchups.days.length
+    ? `Replay sample · ${count(matchups.recordings)} battle recordings · ${matchups.days[0]} to ${matchups.days.at(-1)} UTC. Captures cover parts of rounds. Credits use uniquely matched player names or aliases.`
+    : 'Unit matchups require battle replays with troop classes and kill attribution.';
   $('notices').innerHTML = meta.notes.map(note => `<p class="ps-notice">${esc(note)}</p>`).join('');
   if (!data.players.length) $('notices').insertAdjacentHTML('beforeend', empty('No player statistics are available in this build.'));
   $('period').disabled = !meta.historyValid;
@@ -106,14 +125,41 @@ export function setupPlayerStats(root) {
     const rate = median(cohort.map(p => metricValue(p, 'win_rate')));
     $('filter-note').textContent = `${count(cohort.length)} of ${count(players.length)} players · ${start || end ? `${start || 'Start of history'} → ${end || 'Latest event'} (UTC)` : 'All recorded history'} · Filters apply to cohort cards, plots, and leaderboard.`;
     $('summary').innerHTML = [
-      ['Players in view', count(cohort.length), `${count(players.length)} recorded accounts`, '01'],
-      ['Enemy kills', count(totals.personal_kills + totals.squad_kills), `${count(totals.personal_kills)} personal · ${count(totals.squad_kills)} squad`, '02'],
-      ['Completed player-rounds', count(totals.rounds), 'Participations, not unique server rounds', '03'],
-      ['Median player win rate', formatMetric(rate, 'win_rate'), `${count(cohort.filter(p => p.totals.rounds > 0).length)} players with completed rounds`, '04'],
-    ].map(([label, value, note, n]) => `<div class="ps-stat"><span class="ps-stat-number">${n}</span><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`).join('');
+      ['Players in view', count(cohort.length), `${count(players.length)} recorded accounts`],
+      ['Enemy kills', count(totals.personal_kills + totals.squad_kills), `${count(totals.personal_kills)} personal · ${count(totals.squad_kills)} squad`],
+      ['Completed player-rounds', count(totals.rounds), 'Total player participations'],
+      ['Median player win rate', formatMetric(rate, 'win_rate'), `${count(cohort.filter(p => p.totals.rounds > 0).length)} players with completed rounds`],
+    ].map(([label, value, note]) => `<div class="ps-stat"><span>${label}</span><strong>${value}</strong><small>${note}</small></div>`).join('');
     const squadShare = totals.personal_kills + totals.squad_kills ? totals.squad_kills / (totals.personal_kills + totals.squad_kills) * 100 : null;
     $('insight').innerHTML = cohort.length ? `<span class="ps-insight-label">IN THIS COHORT</span> Squads account for <strong>${formatMetric(squadShare, 'win_rate')}</strong> of enemy kills. The median personal K/D is <strong>${formatMetric(median(cohort.map(p => metricValue(p, 'personal_kd'))), 'personal_kd')}</strong>. <span>Totals reflect activity; ratios add context.</span>` : '<strong>No players match these filters.</strong> Try fewer minimum rounds, a broader period, or another name.';
-    renderScatter(); renderLeaders(); renderTable(); renderProfile(); renderHistory();
+    renderMatchups(); renderScatter(); renderLeaders(); renderTable(); renderProfile(); renderHistory();
+  }
+  function renderMatchups() {
+    const p = players.find(player => player.id === selected);
+    const scope = $('matchup-scope').value;
+    const { cells, kills, losses } = playerMatchups(matchups.players[selected], start, end, scope);
+    const max = Math.max(...cells.map(cell => cell.kills + cell.losses));
+    $('matchup-count').textContent = max ? `${count(kills)} recorded enemy kills · ${count(losses)} recorded losses to enemies` : '';
+    if (!max) {
+      const message = p
+        ? matchups.players[p.id] ? 'No classified matchups in this period and combat selection.' : 'No classified replay matchups are available for this player.'
+        : 'Select a player to view unit matchups.';
+      $('matchup-grid').innerHTML = empty(message);
+      return;
+    }
+    $('matchup-grid').innerHTML = `<div class="ps-table-wrap" tabindex="0" role="region" aria-label="Unit matchup matrix">
+      <table class="ps-matchup-table">
+        <caption>Kills / losses against enemy units</caption>
+        <thead><tr><th scope="col">Your unit</th>${MATCHUP_UNITS.map(([, label]) => `<th scope="col">${label}</th>`).join('')}</tr></thead>
+        <tbody>${MATCHUP_UNITS.map(([, label], row) => `<tr><th scope="row">${label}</th>${MATCHUP_UNITS.map((_, column) => {
+          const cell = cells[row * MATCHUP_SIZE + column];
+          const total = cell.kills + cell.losses;
+          if (!total) return '<td class="ps-matchup-empty"><span aria-label="No observed combat">—</span></td>';
+          const intensity = .07 + .24 * Math.sqrt(total / max);
+          return `<td style="--ps-cell-fill:${intensity}"><strong>${count(cell.kills)}</strong><span class="ps-matchup-divider"> / </span>${count(cell.losses)}</td>`;
+        }).join('')}</tr>`).join('')}</tbody>
+      </table>
+    </div><p class="ps-note">Darker cells show more recorded combat. A dash means no observed matchup. Cav includes dragoons.</p>`;
   }
   function renderScatter() {
     const xKey = $('x').value, yKey = $('y').value;
@@ -219,6 +265,7 @@ export function setupPlayerStats(root) {
   for (const id of ['x', 'y']) $(id).addEventListener('change', renderScatter);
   $('metric').addEventListener('change', () => { sort = $('metric').value; direction = 'desc'; page = 0; render(); });
   $('player').addEventListener('change', () => choose($('player').value));
+  $('matchup-scope').addEventListener('change', renderMatchups);
   $('compare').addEventListener('change', () => { compare = $('compare').value; renderProfile(); });
   $('history-focus').addEventListener('change', renderHistory);
   window.addEventListener('resize', () => { $('history').scrollLeft = $('history').scrollWidth; });
