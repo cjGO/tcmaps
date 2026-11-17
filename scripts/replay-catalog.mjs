@@ -1,7 +1,7 @@
-import { readdir, readFile } from 'node:fs/promises';
+import { copyFile, mkdir, readdir, readFile } from 'node:fs/promises';
 import { Worker } from 'node:worker_threads';
 import { pathToFileURL } from 'node:url';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { parseExperimentalJournal } from '../src/experimental-replay.js';
 import { experimentalStrengthAt } from '../src/experimental-replay-presentation.js';
 import { parseJournal, sourceEqual } from '../src/tactical-replay.js';
@@ -41,7 +41,7 @@ export async function replayCatalog(directory) {
   const registry = JSON.parse(await readFile(new URL('../lib/editor-rotation.json', import.meta.url), 'utf8'));
   const files = await readdir(directory).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
   return catalogRows(files.filter(name => name.endsWith('.replay.json') || name.endsWith('.jsonl')).sort().reverse(), async filename => {
-    const content = await readFile(new URL(filename, directory), 'utf8');
+    const content = await readFile(new URL(encodeURIComponent(filename), directory), 'utf8');
     if (filename.endsWith('.jsonl') && JSON.parse(content.split('\n', 1)[0]).schema === 'warband-experimental-replay') {
       return experimentalCatalogRow(parseExperimentalJournal(content), filename, 'replays');
     }
@@ -67,7 +67,7 @@ export async function replayCatalog(directory) {
 export async function experimentalReplayCatalog(directory) {
   const files = await readdir(directory).catch(error => { if (error.code === 'ENOENT') return []; throw error; });
   return catalogRows(files.filter(name => name.endsWith('.jsonl')), async filename => {
-    const replay = parseExperimentalJournal(await readFile(new URL(filename, directory), 'utf8'));
+    const replay = parseExperimentalJournal(await readFile(new URL(encodeURIComponent(filename), directory), 'utf8'));
     return experimentalCatalogRow(replay, filename, 'experimental_replays');
   });
 }
@@ -122,9 +122,19 @@ export function replaysPlugin() {
       catalog = await loadCatalog();
       return `export default ${JSON.stringify(catalog)}`;
     },
-    async generateBundle() {
+    async writeBundle(output) {
+      const outDir = output.dir ?? dirname(output.file);
+      const directories = new Set();
+      // The replay archive is already static. Copy files directly so Rollup
+      // does not retain the whole archive as buffers during chunk rendering.
       for (const replay of catalog || await loadCatalog()) {
-        this.emitFile({ type: 'asset', fileName: decodeURIComponent(replay.url), source: await readFile(new URL('../' + replay.url, root)) });
+        const destination = resolve(outDir, decodeURIComponent(replay.url));
+        const directory = dirname(destination);
+        if (!directories.has(directory)) {
+          await mkdir(directory, { recursive: true });
+          directories.add(directory);
+        }
+        await copyFile(new URL('../' + replay.url, root), destination);
       }
     },
   };

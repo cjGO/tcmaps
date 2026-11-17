@@ -150,18 +150,20 @@ test('combined catalog interleaves v1 and v2 with shared player filters and link
 });
 
 
-test('JSONL recordings in replays are cataloged and emitted without conversion', async () => {
+test('published replays are copied unchanged to the build output', async () => {
   const { replaysPlugin } = await import('../scripts/replay-catalog.mjs');
   const directory = await mkdtemp(join(tmpdir(), 'replay-jsonl-'));
   try {
     const { mkdir } = await import('node:fs/promises');
     await mkdir(join(directory, 'replays'));
+    await mkdir(join(directory, 'experimental_replays'));
     const bundleText = await readFile(new URL('./fixtures/SYNTHETIC-tactical-demo.replay.json', import.meta.url), 'utf8');
     const bundle = JSON.parse(bundleText);
     const experimental = await readFile(new URL('./fixtures/SYNTHETIC-experimental-artillery.jsonl', import.meta.url), 'utf8');
     await writeFile(join(directory, 'replays/raw.jsonl'), bundle.journal);
     await writeFile(join(directory, 'replays/bundled.replay.json'), bundleText);
     await writeFile(join(directory, 'replays/experimental.jsonl'), experimental);
+    await writeFile(join(directory, 'experimental_replays/experimental #2.jsonl'), experimental);
     const rows = await replayCatalog(pathToFileURL(join(directory, 'replays/')));
     const raw = rows.find(row => row.filename === 'raw.jsonl');
     const bundled = rows.find(row => row.filename === 'bundled.replay.json');
@@ -174,10 +176,13 @@ test('JSONL recordings in replays are cataloged and emitted without conversion',
     plugin.configResolved({ root: directory });
     const module = await plugin.load('\0virtual:replays');
     assert.match(module, /replays\/raw.jsonl/);
-    const assets = [];
-    await plugin.generateBundle.call({ emitFile(asset) { assets.push(asset); } });
-    assert.equal(assets.find(asset => asset.fileName === raw.url).source.toString(), bundle.journal);
-    assert.equal(assets.find(asset => asset.fileName === exp.url).source.toString(), experimental);
+    assert.match(module, /experimental_replays\/experimental%20%232.jsonl/);
+    const outDir = join(directory, 'custom-output');
+    await plugin.writeBundle({ dir: outDir });
+    assert.equal(await readFile(join(outDir, raw.url), 'utf8'), bundle.journal);
+    assert.equal(await readFile(join(outDir, bundled.url), 'utf8'), bundleText);
+    assert.equal(await readFile(join(outDir, exp.url), 'utf8'), experimental);
+    assert.equal(await readFile(join(outDir, 'experimental_replays/experimental #2.jsonl'), 'utf8'), experimental);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
