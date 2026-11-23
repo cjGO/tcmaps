@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {pointAt,exportKept,complete} from '../src/review-pool-state.js';
+import {csvRows} from '../src/map-identity.js';
 const grid={bounds:{x_min_m:24,x_max_m:648,y_min_m:24,y_max_m:648},inset_m:1,grid_size:2,heights:[0,10,20,30]};
 test('engine coordinates use upward Y, real bounds and bilinear heights',()=>{
  assert.deepEqual(pointAt(grid,0,0),{x_m:24,y_m:648,z_m:20});
@@ -8,12 +9,15 @@ test('engine coordinates use upward Y, real bounds and bilinear heights',()=>{
  assert.deepEqual(pointAt(grid,.5,.5),{x_m:336,y_m:336,z_m:15});
 });
 const manifest={pool_id:'highpool',maps:[{candidate_id:'highpool/a',name:'a'},{candidate_id:'highpool/b',name:'b'}]};
-test('export includes only kept maps and rejects missing spawns',()=>{
+test('export includes only kept maps and leaves missing spawn coordinates blank',()=>{
  assert.equal(complete({spawns:[null,null]}),false);
- assert.throws(()=>exportKept(manifest,{'highpool/a':{keep:true,spawns:[null,null]}}),/Place both/);
  const p={x_m:0,y_m:1,z_m:2};
- const csv=exportKept(manifest,{'highpool/a':{keep:true,spawns:[p,p],notes:'hello, "map"',measurements:[123]},'highpool/b':{keep:false,spawns:[p,p]}});
- assert.equal(csv.trim().split('\r\n').length,2);assert.match(csv,/"0.000"/);assert.match(csv,/hello, ""map""/);assert.doesNotMatch(csv,/123|measurements|highpool\/b/);
+ const csv=exportKept(manifest,{'highpool/a':{keep:true,spawns:[p,null],notes:'hello, "map"',measurements:[123]},'highpool/b':{keep:false,spawns:[p,p]}});
+ const [header,row,...remaining]=csvRows(csv);
+ assert.equal(row.length,header.length);
+ assert.deepEqual(row.slice(10),['0.000','1.000','2.000','','','','hello, "map"']);
+ assert.deepEqual(remaining,[]);
+ assert.doesNotMatch(csv,/123|measurements/);
 });
 
 test('review UI loads all candidates, saves spawn/keep edits and excludes measurements', async () => {
@@ -37,15 +41,21 @@ test('review UI loads all candidates, saves spawn/keep edits and excludes measur
  assert.equal(el('map').options.length,500);
  const {terrainColor}=await import('../src/review-heatmap.js');
  assert.deepEqual([...renderedImage.data.slice(0,3)],terrainColor(pointAt(grid,.5/402,.5/402).z_m,real.colour_scale));
- el('keep').checked=true;el('keep').dispatchEvent(new dom.window.Event('change'));
+ const press=(key,target=document.body)=>target.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key,bubbles:true,cancelable:true}));
+ const progress=()=>JSON.parse(localStorage.getItem(localStorage.key(0)));
  assert.equal(['team1','team2','measure'].filter(name=>el(name).getAttribute('aria-pressed')==='true').length,0);
  el('canvas').onpointerdown({button:0,clientX:100,clientY:100,pointerId:1});
  assert.equal(circles.length,0);
- el('team1').click();
+ press('1');
+ assert.equal(el('team1').getAttribute('aria-pressed'),'true');
+ assert.equal(el('keep').checked,false);
  el('canvas').onpointerdown({button:0,clientX:200,clientY:300,pointerId:1});el('canvas').onpointerup();
  assert.equal(el('team1').getAttribute('aria-pressed'),'false');
- el('team2').click();el('canvas').onpointerdown({button:0,clientX:600,clientY:500,pointerId:1});el('canvas').onpointerup();
- el('measure').click();el('canvas').onpointerdown({button:0,clientX:400,clientY:400,pointerId:1});
+ assert.equal(el('keep').checked,true);
+ el('keep').checked=false;el('keep').dispatchEvent(new dom.window.Event('change'));
+ press('2');el('canvas').onpointerdown({button:0,clientX:600,clientY:500,pointerId:1});el('canvas').onpointerup();
+ assert.equal(el('keep').checked,true);
+ press('3');el('canvas').onpointerdown({button:0,clientX:400,clientY:400,pointerId:1});
  assert.equal(el('measure').getAttribute('aria-pressed'),'false');
  const guideCount=()=>circles.filter(p=>p.r===7).length;
  assert.equal(guideCount(),1);
@@ -72,13 +82,25 @@ test('review UI loads all candidates, saves spawn/keep edits and excludes measur
  assert.ok(circles.some(p=>p.r===7&&Math.abs(p.x-500)<.001&&Math.abs(p.y-600)<.001));
  el('team1').click();el('team1').click();
  assert.equal(el('team1').getAttribute('aria-pressed'),'false');
- el('measure').click();root.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Escape'}));
+ el('measure').click();press('Escape');
  assert.equal(el('measure').getAttribute('aria-pressed'),'false');
- const progress=JSON.parse(localStorage.getItem(localStorage.key(0)));const r=progress[real.maps[0].candidate_id];
+ const r=progress()[real.maps[0].candidate_id];
  assert.equal(r.keep,true);assert.equal(complete(r),true);assert.deepEqual(Object.keys(r).sort(),['keep','notes','spawns']);
  assert.match(el('progress').textContent,/1 kept · 0 kept maps need spawns/);
- el('next').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,false);
- el('prev').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(el('keep').checked,true);assert.match(el('coords').textContent,/Team 2: X/);
+ press('ArrowRight',el('notes'));press('3',el('notes'));
+ assert.equal(el('map').selectedIndex,0);
+ assert.equal(el('measure').getAttribute('aria-pressed'),'false');
+ press('ArrowRight');await new Promise(resolve=>setTimeout(resolve,0));
+ assert.equal(el('map').selectedIndex,1);
+ assert.equal(el('keep').checked,false);
+ press('3');el('canvas').onpointerdown(pointer(400,400));
+ assert.equal(el('keep').checked,true);
+ const rows=csvRows(exportKept(real,progress()));
+ assert.equal(rows[2][1],real.maps[1].candidate_id);
+ assert.deepEqual(rows[2].slice(10,16),Array(6).fill(''));
+ press('ArrowLeft');await new Promise(resolve=>setTimeout(resolve,0));
+ assert.equal(el('map').selectedIndex,0);
+ assert.equal(el('keep').checked,true);assert.match(el('coords').textContent,/Team 2: X/);
  el('view3d').click();await new Promise(resolve=>setTimeout(resolve,0));
  assert.equal(built.length,1);assert.equal(built[0].spawns.filter(Boolean).length,2);
  assert.equal(el('heatmap').hidden,true);assert.equal(el('team1').disabled,true);
@@ -91,6 +113,32 @@ test('review UI loads all candidates, saves spawn/keep edits and excludes measur
  assert.match(el('three-status').textContent,/WebGL unavailable/);
  el('view2d').click();assert.equal(el('heatmap').hidden,false);assert.equal(el('team1').disabled,false);
  fail3D=false;el('view3d').click();await new Promise(resolve=>setTimeout(resolve,0));assert.equal(built.length,3);el('view2d').click();
+
+ const secondId=real.maps[1].candidate_id;
+ el('notes').value='Review note';el('notes').dispatchEvent(new dom.window.Event('change'));
+ press('1');el('canvas').onpointerdown(pointer(200,300));
+ press('2');el('canvas').onpointerdown(pointer(600,500));
+ press('3');el('canvas').onpointerdown(pointer(400,400));
+ assert.equal(guideCount(),1);
+ assert.equal(press(' ',el('notes')),true);
+ assert.equal(press(' ',el('next')),true);
+ assert.equal(el('keep').checked,true);
+ el('canvas').onpointerdown(pointer(200,300));
+ assert.equal(press(' ',el('canvas')),false);
+ el('canvas').onpointercancel({...pointer(200,300),type:'pointercancel'});
+ assert.equal(circles.length,0);
+ assert.equal(el('keep').checked,false);
+ assert.match(el('coords').textContent,/Team 1: unplaced · Team 2: unplaced/);
+ assert.deepEqual(progress()[secondId],{keep:false,spawns:[null,null],notes:'Review note'});
+ assert.equal(progress()[real.maps[0].candidate_id].keep,true);
+ assert.deepEqual(csvRows(exportKept(real,progress())).slice(1).map(row=>row[1]),[real.maps[0].candidate_id]);
+
+ press('1');el('canvas').onpointerdown(pointer(200,300));
+ el('view3d').click();await new Promise(resolve=>setTimeout(resolve,0));
+ assert.equal(built.at(-1).spawns.filter(Boolean).length,1);
+ press(' ');await new Promise(resolve=>setTimeout(resolve,0));
+ assert.deepEqual(built.at(-1).spawns,[null,null]);
+ assert.equal(el('keep').checked,false);
  } finally {for(const key of Object.keys(saved))globalThis[key]=saved[key];dom.window.close();}
 });
 

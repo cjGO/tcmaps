@@ -13,8 +13,11 @@ export function exportKept(manifest, records) {
   const rows = [columns];
   for (const m of manifest.maps) {
     const r=records[m.candidate_id]; if (!r?.keep) continue;
-    if (!complete(r)) throw new Error(`Place both team spawns for ${m.name} before exporting.`);
-    rows.push([manifest.pool_id,m.candidate_id,m.name,m.sco_file,m.recipe_file,m.heatmap_file,m.height_data_file,m.sco_sha256,m.recipe_sha256,'keep',...r.spawns.flatMap(p=>[p.x_m,p.y_m,p.z_m].map(v=>v.toFixed(3))),r.notes||'']);
+    const coords = [0,1].flatMap(team => ['x_m','y_m','z_m'].map(axis => {
+      const value = r.spawns?.[team]?.[axis];
+      return Number.isFinite(value) ? value.toFixed(3) : '';
+    }));
+    rows.push([manifest.pool_id,m.candidate_id,m.name,m.sco_file,m.recipe_file,m.heatmap_file,m.height_data_file,m.sco_sha256,m.recipe_sha256,'keep',...coords,r.notes||'']);
   }
   return rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n';
 }

@@ -1,20 +1,20 @@
 import { inject } from '@vercel/analytics';
-import mapNames from '../MAPNAMES.md?raw';
 import identityRegistry from '../lib/editor-rotation.json';
 import legacyRoundIdentities from '../lib/round-stats-legacy-identities.json';
-import { publicMapId, mapLabel, csvRows, parseMapNames, statsMapId } from './map-identity.js';
+import { publicMapId, mapLabel, csvRows, statsMapId } from './map-identity.js';
 
 import maps from '../lib/maps.json';
 import roundStatsCsv from '../map_round_stats.csv?raw';
 import feedbackCsv from '../map_feedback.csv?raw';
 import feedbackIdentities from '../lib/map-feedback-identities.json';
 import { normalizeFeedback, summarizeFeedback, renderFeedback } from './map-feedback.js';
-import { includedVariants, roundVariant, defaultRotationVariant } from './map-variants.js';
+import { includedVariants, roundVariant, variantId } from './map-variants.js';
 import { summarizeRounds, orderMaps } from './map-stats.js';
 import { setupMapAnalytics, renderDurationDistribution } from './map-analytics-view.js';
 import { analyticsRounds } from './map-analytics.js';
 import { setupServerStats } from './server-stats.js';
 import dailyPlayers, { weeklyPlayers } from 'virtual:daily-players';
+import playerMerit from 'virtual:player-merit';
 import { setupEditor } from './editor.js';
 import { loadRecordings } from './replay-recordings.js';
 import { recordingLabel, renderReplayCatalog } from './replay-catalog.js';
@@ -28,15 +28,15 @@ const $ = id => document.getElementById(id);
 const imageEntries = images => Object.entries(images)
   .map(([path, image]) => ({ filename: path.split('/').pop(), image }))
   .sort((a, b) => a.filename.localeCompare(b.filename, undefined, { numeric: true }));
+const rotationPreviews = import.meta.glob('../current_rotation/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' });
+const rotationImages = identityRegistry.map(map => ({
+  ...map, image: rotationPreviews[`../current_rotation/${map.filename}`],
+}));
 const collections = {
-  rotation: { images: imageEntries(import.meta.glob('../current_rotation/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
+  rotation: { images: rotationImages, index: 0 },
   good: { images: imageEntries(import.meta.glob('../goodmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
   bad: { images: imageEntries(import.meta.glob('../badmaps/*.[pP][nN][gG]', { eager: true, query: '?url', import: 'default' })), index: 0 },
 };
-const rotationImages = collections.rotation.images.map(entry => ({
-  ...entry, map_id: publicMapId(identityRegistry, entry.filename),
-}));
-const installedMaps = parseMapNames(mapNames);
 const variantFiles = import.meta.glob(['../maps/*/test_map_*/variants/*.json', '../maps/*/test_map_*/variants/*.placements'], { eager: true, query: '?raw', import: 'default' });
 const variantSelections = new Map();
 const variantLabel = document.createElement('label');
@@ -46,8 +46,12 @@ const variantSelect = document.createElement('select');
 variantSelect.id = 'rotation-variant';
 variantLabel.append(variantSelect);
 $('rotation-panel').querySelector('.viewer').before(variantLabel);
+function rotationSelection(mapId) {
+  return variantSelections.get(mapId) || 'installed';
+}
 function selectedVariant(mapId) {
-  return variantSelections.get(mapId) || defaultRotationVariant(mapVariants(mapId), identityRegistry.find(map => map.map_id === mapId));
+  const selection = rotationSelection(mapId);
+  return selection === 'installed' ? variantId(identityRegistry.find(map => map.map_id === mapId)?.variant_id, mapId) : selection;
 }
 function mapVariants(mapId) { return includedVariants(variantFiles, mapId); }
 variantSelect.addEventListener('change', () => {
@@ -57,7 +61,6 @@ variantSelect.addEventListener('change', () => {
   renderCollection('rotation');
 });
 const feedbackSummaries = summarizeFeedback(normalizeFeedback(feedbackCsv, feedbackIdentities));
-const rotationPools = new Map(installedMaps.map(map => [map.filename, map.pool]));
 let rotationPool = 'all';
 const [roundStatsHeaders, ...recordedRoundStatsRows] = csvRows(roundStatsCsv);
 const mapNameColumn = roundStatsHeaders.indexOf('map_name');
@@ -153,7 +156,7 @@ for (const name of ['rotation', 'good']) {
 function sortRotation(keepCurrent = false) {
   const collection = collections.rotation;
   const filename = collection.images[collection.index]?.filename;
-  const images = rotationImages.filter(entry => rotationPool === 'all' || rotationPools.get(entry.filename) === rotationPool);
+  const images = rotationImages.filter(entry => rotationPool === 'all' || entry.pool === rotationPool);
   const summaries = new Map(images.map(entry => {
     const mapName = publicMapId(identityRegistry, entry.filename);
     return [entry.filename, {
@@ -164,7 +167,7 @@ function sortRotation(keepCurrent = false) {
   collection.images = orderMaps(images, summaries, $('rotation-sort').value, $('rotation-sort-direction').value);
   collection.index = keepCurrent ? Math.max(0, collection.images.findIndex(entry => entry.filename === filename)) : 0;
   renderCollection('rotation');
-  $('collection-summary').textContent = `${collection.images.length} rotation images`;
+  $('collection-summary').textContent = `${collection.images.length} installed maps`;
 }
 for (const id of ['rotation-sort', 'rotation-sort-direction']) {
   $(id).addEventListener('change', () => sortRotation());
@@ -181,7 +184,7 @@ document.querySelectorAll('input[name="rotation-size"]').forEach(input => {
   });
 });
 const serverStats = setupServerStats(roundStatsHeaders, roundStatsRows, dailyPlayers, weeklyPlayers);
-const mapAnalytics = setupMapAnalytics(roundStatsHeaders, roundStatsRows, installedMaps, new Set(rotationImages.map(entry => entry.map_id).filter(Boolean)), mapId => {
+const mapAnalytics = setupMapAnalytics(roundStatsHeaders, roundStatsRows, identityRegistry, new Set(rotationImages.map(entry => entry.map_id)), mapId => {
   const entry = rotationImages.find(image => image.map_id === mapId);
   if (!entry) return;
   rotationPool = 'all';
@@ -202,7 +205,18 @@ function showPlayerStats() {
     });
   }
 }
-const tabs = ['rotation', 'mapstats', 'playerstats', 'replay3', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
+$('merit-table').hidden = !playerMerit.length;
+$('merit-empty').hidden = !!playerMerit.length;
+const meritScore = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
+for (const { name, score } of playerMerit) {
+  const row = $('merit-rows').insertRow();
+  const player = document.createElement('th');
+  player.scope = 'row';
+  player.textContent = name;
+  row.append(player);
+  row.insertCell().textContent = meritScore.format(score);
+}
+const tabs = ['rotation', 'mapstats', 'playerstats', 'merit', 'replay3', 'replays', 'review', 'good', 'bad', 'server', 'editor'];
 let spawnSweep;
 if (import.meta.env.DEV) {
   tabs.push('spawnsweep');
@@ -337,9 +351,9 @@ function renderCollection(name) {
       const id = roundVariant(roundStatsHeaders, recordedRows.get(row), mapId);
       if (id !== 'source' && !ids.has(id)) { variants.push({ id, label: `${id} (stats only)` }); ids.add(id); }
     }
-    variantLabel.hidden = !variants.length;
-    variantSelect.replaceChildren(new Option('All variants', 'all'), new Option('Source / RAW', 'source'), ...variants.map(item => new Option(item.label, item.id)));
-    variantSelect.value = selectedVariant(mapId);
+    variantLabel.hidden = !entry;
+    variantSelect.replaceChildren(new Option('Installed loadout', 'installed'), new Option('All variants', 'all'), new Option('Source / RAW', 'source'), ...variants.map(item => new Option(item.label, item.id)));
+    variantSelect.value = rotationSelection(mapId);
   }
   if (name === 'rotation' || name === 'good') renderRoundStats(name, entry?.filename);
   if (name === 'rotation') {
@@ -361,6 +375,7 @@ function renderCollection(name) {
   if (!entry) {
     el('filename').textContent = 'No map images';
     el('state').textContent = 'No PNG images are available in this collection.';
+    if (name === 'rotation') topology.setMap(null);
     return;
   }
   el('filename').textContent = mapLabel(name === 'rotation' ? identityRegistry : [], entry.filename);
@@ -371,9 +386,9 @@ function renderCollection(name) {
   el('image').src = entry.image;
   if (name === 'rotation') {
     const mapId = publicMapId(identityRegistry, entry.filename);
-    const variantId = selectedVariant(mapId);
+    const selection = rotationSelection(mapId);
     const variants = mapVariants(mapId);
-    topology.setMap({ ...entry, variantId, variants, variant: variants.find(item => item.id === variantId) });
+    topology.setMap({ ...entry, variantId: selection, variants, variant: variants.find(item => item.id === selection) });
   }
 }
 function moveCollection(name, delta) {
@@ -402,7 +417,7 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
     import('./review-pool.js').then(({ setupReviewPool }) => setupReviewPool($('candidate-review')));
   }
   if (name === 'playerstats') showPlayerStats();
-  $('collection-summary').textContent = name === 'spawnsweep' ? 'Local development · spawn sweep' : name === 'replay3' ? 'Replay v3 · existing v2 recordings' : name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? recordingsReady ? `${recordings.length} available replays` : 'Loading available recordings…' : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `500 Highpool candidates to review` : `${collections[name].images.length} ${name === 'rotation' ? 'rotation images' : name + ' maps'}`;
+  $('collection-summary').textContent = name === 'merit' ? `${playerMerit.length.toLocaleString()} players in the merit log` : name === 'spawnsweep' ? 'Local development · spawn sweep' : name === 'replay3' ? 'Replay v3 · existing v2 recordings' : name === 'playerstats' ? 'Commander Battle · player statistics' : name === 'replays' ? recordingsReady ? `${recordings.length} available replays` : 'Loading available recordings…' : name === 'mapstats' ? `${mapAnalytics.count.toLocaleString()} recorded rounds` : name === 'server' ? `${serverStats.count} population samples` : name === 'editor' ? `${editor.count} maps to edit` : name === 'review' ? `500 Highpool candidates to review` : `${collections[name].images.length} ${name === 'rotation' ? 'installed maps' : name + ' maps'}`;
   if (syncUrl) {
     const url = new URL(location.href);
     for (const key of ['replay', 't', 'end', 'follow']) url.searchParams.delete(key);
@@ -422,7 +437,10 @@ function selectTab(name, { autoOpen = true, syncUrl = true } = {}) {
   }
 }
 for (const name of tabs) {
-  $(name + '-tab').addEventListener('click', () => selectTab(name));
+  $(name + '-tab').addEventListener('click', event => {
+    selectTab(name);
+    if (name === 'review' && event.detail > 0) $('candidate-review').focus({ preventScroll: true });
+  });
   $(name + '-tab').addEventListener('keydown', event => {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
@@ -564,6 +582,7 @@ document.addEventListener('keydown', event => {
     return;
   }
   if (activeTab !== 'review' || !$('legacy-review').open || !maps.length) return;
+  if (!event.target.closest('#legacy-review')) return;
   event.preventDefault();
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') moveMap(event.key === 'ArrowLeft' ? -1 : 1);
   else { spawnIndex = (spawnIndex + (event.key === 'ArrowUp' ? -1 : 1) + currentMap().spawns.length) % currentMap().spawns.length; render(); }

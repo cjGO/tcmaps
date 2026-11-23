@@ -67,17 +67,37 @@ export function densityTerrainMatch(header, data, linkedMapId) {
 
 export function accumulateDensity(result, replay, data, experimental = false, linkedMapId) {
   if (!densityTerrainMatch(replay.header, data, linkedMapId)) return false;
-  const { size, bounds: b } = result;
+  visitReplayDensity(replay, result.bounds, result.size, experimental, {
+    movement(index, weight, meta) {
+      const grid = result.units[densityUnit(meta)];
+      result.seconds += weight; grid.seconds += weight;
+      result.movement[index] += weight; grid.movement[index] += weight;
+    },
+    death(index, meta) {
+      const grid = result.units[densityUnit(meta)];
+      if (meta.kind === 'bot') {
+        result.deathCount++; grid.deathCount++;
+        result.deaths[index]++; grid.deaths[index]++;
+      } else {
+        grid.playerDeathCount++; grid.playerDeaths[index]++;
+      }
+    },
+  });
+  result.rounds++;
+  return true;
+}
+
+export function visitReplayDensity(replay, b, size, experimental, { movement, death: recordDeath }) {
   const cell = Math.min(b.x_max_m - b.x_min_m, b.y_max_m - b.y_min_m) / size;
-  function add(field, p, weight) {
-    const x = (p.x - b.x_min_m) / (b.x_max_m - b.x_min_m), y = (p.y - b.y_min_m) / (b.y_max_m - b.y_min_m);
-    if (x < 0 || x > 1 || y < 0 || y > 1) return false;
-    field[Math.min(size - 1, Math.floor(y * size)) * size + Math.min(size - 1, Math.floor(x * size))] += weight;
-    return true;
+  function indexAt(x, y) {
+    const u = (x - b.x_min_m) / (b.x_max_m - b.x_min_m), v = (y - b.y_min_m) / (b.y_max_m - b.y_min_m);
+    if (u < 0 || u > 1 || v < 0 || v > 1) return -1;
+    return Math.min(size - 1, Math.floor(v * size)) * size + Math.min(size - 1, Math.floor(u * size));
   }
   for (const track of replay.tracks.values()) {
     const death = experimental ? track.end.t : track.death;
-    for (let i = 0; i + 1 < track.samples.length; i++) {
+    const player = track.changes.some(meta => meta.kind === 'player');
+    for (let i = 0; player && i + 1 < track.samples.length; i++) {
       const a = track.samples[i], z = track.samples[i + 1], dt = z.t - a.t;
       if (dt <= 0 || (experimental ? !experimentalSamplesJoin(a, z) : dt > replay.maxGap || z.index !== a.index + 1)) continue;
       const stop = Math.min(z.t, death);
@@ -88,15 +108,12 @@ export function accumulateDensity(result, replay, data, experimental = false, li
         const begin = cuts[j], end = cuts[j + 1];
         const meta = track.changes[upperIndex(track.changes, begin)];
         if (meta?.kind !== 'player') continue;
-        const grid = result.units[densityUnit(meta)];
         const steps = Math.max(1, Math.min(2000, Math.ceil(distance * (end - begin) / dt / (cell / 2))));
         const weight = (end - begin) / steps / 1000;
         for (let k = 0; k < steps; k++) {
           const u = (begin - a.t + (k + .5) * (end - begin) / steps) / dt;
-          const point = { x: a.x + (z.x - a.x) * u, y: a.y + (z.y - a.y) * u };
-          if (add(result.movement, point, weight)) {
-            result.seconds += weight; grid.seconds += weight; add(grid.movement, point, weight);
-          }
+          const index = indexAt(a.x + (z.x - a.x) * u, a.y + (z.y - a.y) * u);
+          if (index >= 0) movement(index, weight, meta);
         }
       }
     }
@@ -104,14 +121,10 @@ export function accumulateDensity(result, replay, data, experimental = false, li
     const meta = track.changes[upperIndex(track.changes, death)];
     const pose = track.samples[upperIndex(track.samples, death)];
     if (isDeath && pose && ['bot', 'player'].includes(meta?.kind)) {
-      const grid = result.units[densityUnit(meta)];
-      if (meta.kind === 'bot' && add(result.deaths, pose, 1)) {
-        result.deathCount++; grid.deathCount++; add(grid.deaths, pose, 1);
-      } else if (meta.kind === 'player' && add(grid.playerDeaths, pose, 1)) grid.playerDeathCount++;
+      const index = indexAt(pose.x, pose.y);
+      if (index >= 0) recordDeath(index, meta);
     }
   }
-  result.rounds++;
-  return true;
 }
 
 // Gaussian blur in world metres. Normalize each layer to its nonzero 95th

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { createScatterController } from './editor-scatter-controller.js';
+import { createHeatController } from './editor-heat-controller.js';
 import { createTopologyViewer } from './topology-viewer.js';
 import { checkedBuffer, createModelLibrary } from './editor-model-loader.js';
 import { groundHeight, placementTransform } from './editor-spatial.js';
@@ -8,6 +9,7 @@ import styles from './editor-3d.css?inline';
 import { createLineAssetPicker } from './editor-line-picker.js';
 import { createLinePresets } from './editor-line-presets.js';
 import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
+import { preparedHeatLoader } from './prepared-heatmaps.js';
 
 export function attachEditor3D(frame, project, topology, models, assetURL, densitySettings = densityDefaults()) {
   const doc = frame.contentDocument, win = frame.contentWindow, api = win.MapEditor;
@@ -126,6 +128,9 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   const objects = new THREE.Group(), extras = new THREE.Group();
   const linePreview = new THREE.Group(), lineAssets = new THREE.Group(), pathHover = new THREE.Group(); extras.add(linePreview, lineAssets, pathHover);
   const scatter = createScatterController({doc, project, api, extras, transform,
+    context: () => ({ready, is3D, viewer, data, library, state}),
+  });
+  const heat = createHeatController({doc, project, api, extras, transform, loadHeat: preparedHeatLoader(topology.map_id, project.bounds),
     context: () => ({ready, is3D, viewer, data, library, state}),
   });
   const lineMaterial = new THREE.LineBasicMaterial({ color: '#f5a623', depthTest: false });
@@ -315,10 +320,10 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
       }
       if (record.object) transform(record.object, point);
     }
-    viewer.navigation(state.mode === 'navigate'); navigate.setAttribute('aria-pressed', state.mode === 'navigate');
+    viewer.navigation(['navigate', 'heat'].includes(state.mode)); navigate.setAttribute('aria-pressed', state.mode === 'navigate');
     if (viewer.mode === 'orbit') viewer.canvas.style.cursor = ['place', 'line', 'scatter'].includes(state.mode) ? 'crosshair' : state.mode === 'select' ? 'pointer' : 'grab';
     viewer.updateSpawns(state.document.spawn_points.map(p => ({ ...p, z_m: groundHeight(data, p.x_m, p.y_m) })));
-    selectionBox(); loadGhost(); updateGhost(); refreshLine(); scatter.sync();
+    selectionBox(); loadGhost(); updateGhost(); refreshLine(); scatter.sync(); heat.sync();
     const dimensions = library.dimensions(state.brush.asset, state.brush.scale);
     if (!modelError) {
       info.classList.remove('error');
@@ -342,7 +347,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
     return object?.userData.placementId || null;
   }
   function pointerDown(event) {
-    if (viewer.mode !== 'orbit') return;
+    if (viewer.mode !== 'orbit' || state.mode === 'heat') return;
     pointers.add(event.pointerId);
     if (pointers.size > 1) { cancelGesture(); return; }
     if (event.button !== 0 || (state.mode === 'navigate' && !event.altKey) || !ready) return;
@@ -437,9 +442,9 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
     for (const element of [container, cameraRow, info, help, navigate, lineButton]) element.hidden = !three;
     retry.hidden = !three || !modelError;
     $('editor-view-3d').setAttribute('aria-pressed', three); $('editor-view-2d').setAttribute('aria-pressed', !three);
-    if (!three && ['navigate', 'line', 'scatter'].includes(api.getState().mode)) api.setMode('select');
+    if (!three && ['navigate', 'line', 'scatter', 'heat'].includes(api.getState().mode)) api.setMode('select');
     if (three) { viewer?.resize(); if (!ready) start(); }
-    updateGhost(); refreshLine(); scatter.sync();
+    updateGhost(); refreshLine(); scatter.sync(); heat.sync();
   }
   async function start() {
     if (starting || disposed) return; starting = true;
@@ -459,7 +464,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
       for (const asset of project.assets) if (manifest.assets[asset.name]?.mesh !== asset.mesh || manifest.assets[asset.name]?.ground_offset_m !== asset.ground_offset_m) throw new Error('3D asset definitions have changed.');
       library = createModelLibrary(manifest, assetURL(models.manifest_url));
       viewer = createTopologyViewer(container, data, message => {
-        ready = false; cancelGesture(); scatter.sync(); scatter.retry(); unsubscribe?.(); unsubscribe = null; densityControls?.dispose(); densityControls = null; viewer?.dispose(); library?.dispose();
+        ready = false; cancelGesture(); scatter.sync(); scatter.retry(); heat.sync(); unsubscribe?.(); unsubscribe = null; densityControls?.dispose(); densityControls = null; viewer?.dispose(); library?.dispose();
         $('editor-three-loading').textContent = message; $('editor-three-message').hidden = false; $('editor-three-retry').hidden = false;
       }, { editing: true, onModeChange(mode) {
         cancelGesture(); hover = null; extras.visible = mode === 'orbit';
@@ -492,7 +497,7 @@ export function attachEditor3D(frame, project, topology, models, assetURL, densi
   }
   function blur() { pointers.clear(); cancelGesture(); }
   function dispose() {
-    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.(); densityControls?.dispose(); presets.dispose(); scatter.dispose();
+    if (disposed) return; disposed = true; cancelGesture(); controller.abort(); unsubscribe?.(); densityControls?.dispose(); presets.dispose(); scatter.dispose(); heat.dispose();
     win.cancelAnimationFrame(animation); win.cancelAnimationFrame(modelDraw); doc.removeEventListener('keydown', keys, true); win.removeEventListener('blur', blur);
     clearLinePreview(); lineMaterial.dispose(); markerMaterials.forEach(material => material.dispose()); discardGhost(); selection.dispose(); cursor.geometry.dispose(); cursor.material.dispose(); library?.dispose(); viewer?.dispose();
     doc.body.classList.remove('editing-3d'); $('viewport').hidden = false;

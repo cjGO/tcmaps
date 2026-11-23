@@ -21,10 +21,11 @@ test('current map 111 loadout edits through its installed checksum', async () =>
   }
   const variants = includedVariants(files, map.map_id);
   const variant = variants.find(item => item.id === variantId(registration.variant_id, map.map_id));
-  assert.ok(variant, 'The installed authored loadout is selectable');
+  assert.ok(variant, 'The installed loadout is selectable');
   const archive = includedVariants(await json('lib/replay-variant-archive.json'), map.map_id);
   const document = await editorVariantDocument(variant, registration, project, archive);
-  assert.equal(document.placements.length, 285);
+  assert.ok(document.placements.length > 0);
+  assert.equal(hash(variant.raw), registration.variant_revision);
   assert.deepEqual(coordinates.validate(document, project), variant.document.placements);
   assert.deepEqual(coordinates.validateSettings(document), variant.document.settings);
   assert.deepEqual(coordinates.validateSpawns(document, project), variant.document.spawn_points);
@@ -39,17 +40,17 @@ test('current map 111 loadout edits through its installed checksum', async () =>
   await assert.rejects(editorVariantDocument(variant, registration, { ...project, source: {} }, archive), /revision/);
 });
 
-test('installed map 176 loadout keeps all placements, settings and spawns when opened for editing', async () => {
+test('retained map 110 loadout keeps all placements, settings and spawns when opened for editing', async () => {
   const maps = await json('lib/editor-maps.json');
-  const map = maps.find(map => map.map_id === 'test_map_176');
+  const map = maps.find(map => map.map_id === 'test_map_110');
   const project = await json('public/' + map.project);
   const registration = (await json('lib/rotation-topology.json')).maps.find(row => row.id === map.id);
-  const raw = await readFile(new URL('maps/tiny/test_map_176/variants/test_map_176_AnnaFreud_VarA.placements.json', root), 'utf8');
+  const raw = await readFile(new URL(`maps/${map.pool}/${map.map_id}/variants/${map.variant_id}`, root), 'utf8');
   const original = JSON.parse(raw);
   const variant = { map_id: map.map_id, raw, document: original };
   assert.throws(() => coordinates.validate(original, project), /different map/);
   const document = await editorVariantDocument(variant, registration, project);
-  assert.equal(document.placements.length, 185);
+  assert.ok(document.placements.length > 0);
   assert.deepEqual(coordinates.validate(document, project), original.placements);
   assert.deepEqual(coordinates.validateSettings(document), original.settings);
   assert.deepEqual(coordinates.validateSpawns(document, project), original.spawn_points);

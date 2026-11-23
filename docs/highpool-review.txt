@@ -4,10 +4,11 @@ Review maps loads public/review/highpool/manifest.json in production and develop
 All 500 candidates are separate pool/scene identities, not rotation/public map IDs.
 Earlier review selections remain available under the collapsed earlier-maps section.
 
-Choose a candidate, tag Keep / export, place team 1 and team 2 by clicking the
-terrain, and drag either numbered marker to adjust it. Notes and decisions save
-in browser localStorage. Export kept CSV refuses incomplete kept maps. Unkept
-maps are never exported. Team 1 corresponds to entry 0; team 2 to entry 32.
+Use Left/Right to browse candidates. Press 1 for team 1, 2 for team 2, or 3 for
+a measurement point, then click the terrain to place it. Placing any point
+checks Keep / export automatically. Notes, spawns, and keep decisions save in
+browser localStorage. Export kept CSV includes all kept maps, with blank
+coordinates for unplaced spawns. Team 1 corresponds to entry 0; team 2 to entry 32.
 Measurement spots show horizontal XY distances from both spawns. They are
 session-only, clear when switching maps, and are excluded from storage and CSV.
 

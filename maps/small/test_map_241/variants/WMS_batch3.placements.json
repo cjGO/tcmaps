@@ -1,0 +1,4390 @@
+{
+  "default_spawn_points": [
+    {
+      "entry": 0,
+      "forward": [
+        -0.019516106694936752,
+        0.9998095631599426,
+        0.0
+      ],
+      "team": 0,
+      "x_m": 443.2019958496094,
+      "y_m": 61.84400177001953,
+      "z_m": 15.133000373840332
+    },
+    {
+      "entry": 32,
+      "forward": [
+        0.019516106694936752,
+        -0.9998095631599426,
+        0.0
+      ],
+      "team": 1,
+      "x_m": 432.51800537109375,
+      "y_m": 609.1849975585938,
+      "z_m": 17.961000442504883
+    }
+  ],
+  "placements": [
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_1",
+      "scale": 1.9146913718432188,
+      "x_m": 211.767,
+      "y_m": 577.137,
+      "yaw_deg": 131.01581839844584
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_2",
+      "scale": 1.4131143231643364,
+      "x_m": 183.37,
+      "y_m": 141.19,
+      "yaw_deg": 47.73269237950444
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_3",
+      "scale": 1.2174368364503607,
+      "x_m": 595.556,
+      "y_m": 366.715,
+      "yaw_deg": 255.400248169899
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_4",
+      "scale": 1.985835787607357,
+      "x_m": 579.715,
+      "y_m": 293.383,
+      "yaw_deg": 324.98623539693654
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_5",
+      "scale": 2.42817848327104,
+      "x_m": 612.216,
+      "y_m": 126.115,
+      "yaw_deg": 53.12672627158463
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_6",
+      "scale": 1.4953259524190798,
+      "x_m": 543.391,
+      "y_m": 78.17,
+      "yaw_deg": 16.195800388231874
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_7",
+      "scale": 1.3437857045792043,
+      "x_m": 428.267,
+      "y_m": 218.697,
+      "yaw_deg": 17.984626181423664
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_8",
+      "scale": 1.0292274934472516,
+      "x_m": 266.929,
+      "y_m": 506.793,
+      "yaw_deg": 222.8955119010061
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_9",
+      "scale": 2.323990793316625,
+      "x_m": 24.615,
+      "y_m": 420.447,
+      "yaw_deg": 27.17485419474542
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_10",
+      "scale": 2.1158812982030213,
+      "x_m": 368.95,
+      "y_m": 166.137,
+      "yaw_deg": 74.08173641189933
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_11",
+      "scale": 1.9291950839105994,
+      "x_m": 127.868,
+      "y_m": 143.082,
+      "yaw_deg": 61.17217163555324
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_12",
+      "scale": 1.6265595206059515,
+      "x_m": 613.97,
+      "y_m": 98.386,
+      "yaw_deg": 131.4606940280646
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_13",
+      "scale": 2.008488790364936,
+      "x_m": 215.236,
+      "y_m": 143.602,
+      "yaw_deg": 95.66071344539523
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_14",
+      "scale": 2.043313755071722,
+      "x_m": 525.834,
+      "y_m": 81.871,
+      "yaw_deg": 218.64230674691498
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_15",
+      "scale": 2.209711058996618,
+      "x_m": 73.626,
+      "y_m": 143.177,
+      "yaw_deg": 57.31166853569448
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_16",
+      "scale": 1.9189537718193606,
+      "x_m": 214.269,
+      "y_m": 575.161,
+      "yaw_deg": 336.1268812324852
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_17",
+      "scale": 2.362559280823916,
+      "x_m": 562.602,
+      "y_m": 293.836,
+      "yaw_deg": 100.3305040486157
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_18",
+      "scale": 1.105667475843802,
+      "x_m": 485.883,
+      "y_m": 386.283,
+      "yaw_deg": 285.97155396826565
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_19",
+      "scale": 1.954370116116479,
+      "x_m": 506.265,
+      "y_m": 383.672,
+      "yaw_deg": 97.11572893895209
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_20",
+      "scale": 1.6244258048245683,
+      "x_m": 523.096,
+      "y_m": 418.519,
+      "yaw_deg": 301.5375509764999
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_21",
+      "scale": 2.1697487919591367,
+      "x_m": 25.13,
+      "y_m": 91.942,
+      "yaw_deg": 227.0035973098129
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_22",
+      "scale": 1.2124847032828256,
+      "x_m": 510.21,
+      "y_m": 345.965,
+      "yaw_deg": 23.317360868677497
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_23",
+      "scale": 2.1270893203327432,
+      "x_m": 270.172,
+      "y_m": 157.601,
+      "yaw_deg": 229.61396905593574
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_24",
+      "scale": 1.3948678580345586,
+      "x_m": 571.257,
+      "y_m": 380.797,
+      "yaw_deg": 220.40167082101107
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_25",
+      "scale": 1.9124225307023153,
+      "x_m": 522.455,
+      "y_m": 143.479,
+      "yaw_deg": 265.76078943908215
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_26",
+      "scale": 1.2591856708750129,
+      "x_m": 503.706,
+      "y_m": 390.309,
+      "yaw_deg": 162.86798033863306
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_27",
+      "scale": 1.1176512368256226,
+      "x_m": 308.075,
+      "y_m": 374.163,
+      "yaw_deg": 11.535951476544142
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_28",
+      "scale": 1.7436994389863685,
+      "x_m": 537.837,
+      "y_m": 408.907,
+      "yaw_deg": 305.66473614424467
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_29",
+      "scale": 2.0810562203405425,
+      "x_m": 62.271,
+      "y_m": 114.747,
+      "yaw_deg": 10.154830925166607
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_30",
+      "scale": 2.304901679395698,
+      "x_m": 274.661,
+      "y_m": 504.825,
+      "yaw_deg": 353.4048605058342
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_31",
+      "scale": 2.087746160570532,
+      "x_m": 281.882,
+      "y_m": 369.485,
+      "yaw_deg": 4.349514646455646
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_32",
+      "scale": 2.2466337049845606,
+      "x_m": 243.422,
+      "y_m": 566.733,
+      "yaw_deg": 5.885086264461279
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_33",
+      "scale": 1.2006067355396226,
+      "x_m": 275.602,
+      "y_m": 514.908,
+      "yaw_deg": 299.2975583486259
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_34",
+      "scale": 1.1112328859744594,
+      "x_m": 568.002,
+      "y_m": 27.418,
+      "yaw_deg": 75.13344632461667
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_35",
+      "scale": 1.0331294104689732,
+      "x_m": 540.301,
+      "y_m": 69.751,
+      "yaw_deg": 345.69882589392364
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_36",
+      "scale": 2.0414372585946694,
+      "x_m": 637.579,
+      "y_m": 150.892,
+      "yaw_deg": 112.41427064873278
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_37",
+      "scale": 1.9647934028180316,
+      "x_m": 603.764,
+      "y_m": 139.966,
+      "yaw_deg": 112.39075404591858
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_38",
+      "scale": 1.0040208174614236,
+      "x_m": 572.232,
+      "y_m": 411.656,
+      "yaw_deg": 116.65597365237772
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_39",
+      "scale": 2.387985920300707,
+      "x_m": 339.861,
+      "y_m": 155.803,
+      "yaw_deg": 64.27124312147498
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_40",
+      "scale": 1.410196607466787,
+      "x_m": 567.204,
+      "y_m": 638.358,
+      "yaw_deg": 104.8001815751195
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_41",
+      "scale": 2.369094612658955,
+      "x_m": 433.04,
+      "y_m": 543.459,
+      "yaw_deg": 231.50571456179023
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_42",
+      "scale": 1.589087888598442,
+      "x_m": 85.967,
+      "y_m": 119.735,
+      "yaw_deg": 303.880805298686
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_43",
+      "scale": 2.239933596458286,
+      "x_m": 545.41,
+      "y_m": 414.298,
+      "yaw_deg": 247.33971680514514
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_44",
+      "scale": 1.4371187108336017,
+      "x_m": 191.977,
+      "y_m": 120.656,
+      "yaw_deg": 115.5400374904275
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_45",
+      "scale": 2.40811320731882,
+      "x_m": 290.012,
+      "y_m": 367.477,
+      "yaw_deg": 81.21008296497166
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_46",
+      "scale": 2.278578343219124,
+      "x_m": 240.12,
+      "y_m": 622.588,
+      "yaw_deg": 326.9429460167885
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_47",
+      "scale": 0.9574877178296447,
+      "x_m": 219.229,
+      "y_m": 568.186,
+      "yaw_deg": 81.98358393274248
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_48",
+      "scale": 2.0701284541282803,
+      "x_m": 580.22,
+      "y_m": 419.274,
+      "yaw_deg": 274.44269441999495
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_49",
+      "scale": 2.130495510296896,
+      "x_m": 506.593,
+      "y_m": 391.574,
+      "yaw_deg": 203.48912559449673
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_50",
+      "scale": 1.5269045379245654,
+      "x_m": 578.965,
+      "y_m": 264.175,
+      "yaw_deg": 55.308966748416424
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_51",
+      "scale": 2.140178195433691,
+      "x_m": 36.43,
+      "y_m": 101.855,
+      "yaw_deg": 289.4078669697046
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_52",
+      "scale": 1.4187958003021777,
+      "x_m": 532.179,
+      "y_m": 120.015,
+      "yaw_deg": 346.92553309723735
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_53",
+      "scale": 1.522673963336274,
+      "x_m": 460.449,
+      "y_m": 421.688,
+      "yaw_deg": 23.427678616717458
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_54",
+      "scale": 1.8306721705012023,
+      "x_m": 77.756,
+      "y_m": 133.636,
+      "yaw_deg": 165.0751392915845
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_55",
+      "scale": 2.394958347431384,
+      "x_m": 533,
+      "y_m": 73.691,
+      "yaw_deg": 243.03890629671514
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_56",
+      "scale": 1.1241298448294401,
+      "x_m": 218.693,
+      "y_m": 576.553,
+      "yaw_deg": 63.397512109950185
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_57",
+      "scale": 1.7390926863299683,
+      "x_m": 602.645,
+      "y_m": 98.463,
+      "yaw_deg": 71.46821298636496
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_58",
+      "scale": 2.261444764328189,
+      "x_m": 280.245,
+      "y_m": 633.205,
+      "yaw_deg": 19.317743238061666
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_59",
+      "scale": 2.2507723189191893,
+      "x_m": 544.537,
+      "y_m": 62.644,
+      "yaw_deg": 86.60535645671189
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_60",
+      "scale": 1.8453111776616424,
+      "x_m": 287.083,
+      "y_m": 540.801,
+      "yaw_deg": 347.47796732001007
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_61",
+      "scale": 2.307408467400819,
+      "x_m": 101.854,
+      "y_m": 135.361,
+      "yaw_deg": 93.43146155588329
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_62",
+      "scale": 2.4431587882572785,
+      "x_m": 65.268,
+      "y_m": 120.189,
+      "yaw_deg": 113.44929403625429
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_63",
+      "scale": 2.1416152605088428,
+      "x_m": 538.926,
+      "y_m": 412.605,
+      "yaw_deg": 25.190457478165627
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_64",
+      "scale": 1.581198511295952,
+      "x_m": 317.339,
+      "y_m": 345.377,
+      "yaw_deg": 123.88535667210817
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_65",
+      "scale": 2.432867563678883,
+      "x_m": 632.14,
+      "y_m": 154.186,
+      "yaw_deg": 303.8551586866379
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_66",
+      "scale": 1.3687272445531562,
+      "x_m": 489.727,
+      "y_m": 390.589,
+      "yaw_deg": 106.68864078819752
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_67",
+      "scale": 1.8519015084020793,
+      "x_m": 245.449,
+      "y_m": 618.104,
+      "yaw_deg": 101.95517806336284
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_68",
+      "scale": 2.1524205203168094,
+      "x_m": 537.06,
+      "y_m": 69.056,
+      "yaw_deg": 335.2354717813432
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_69",
+      "scale": 2.1997874618973583,
+      "x_m": 540.102,
+      "y_m": 82.007,
+      "yaw_deg": 47.900931257754564
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_70",
+      "scale": 1.819208758417517,
+      "x_m": 319.858,
+      "y_m": 42.361,
+      "yaw_deg": 231.44993995316327
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_71",
+      "scale": 2.3733489810256287,
+      "x_m": 543.122,
+      "y_m": 399.812,
+      "yaw_deg": 121.478700209409
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_72",
+      "scale": 2.396602036897093,
+      "x_m": 214.846,
+      "y_m": 152.196,
+      "yaw_deg": 2.030671024695039
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_73",
+      "scale": 1.4635378189850599,
+      "x_m": 623.651,
+      "y_m": 138.689,
+      "yaw_deg": 332.8478688094765
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_74",
+      "scale": 2.0026987941237167,
+      "x_m": 541.936,
+      "y_m": 74.166,
+      "yaw_deg": 119.07689301297069
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_75",
+      "scale": 2.3098876227159053,
+      "x_m": 520.936,
+      "y_m": 126.637,
+      "yaw_deg": 312.4646358098835
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_76",
+      "scale": 2.2935300428653136,
+      "x_m": 541.634,
+      "y_m": 412.616,
+      "yaw_deg": 187.6228422112763
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_77",
+      "scale": 1.9499366778181866,
+      "x_m": 197.806,
+      "y_m": 148.733,
+      "yaw_deg": 321.15943257696927
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_78",
+      "scale": 1.6684765459503978,
+      "x_m": 137.378,
+      "y_m": 128.741,
+      "yaw_deg": 229.83210255391896
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_79",
+      "scale": 1.211447478737682,
+      "x_m": 108.115,
+      "y_m": 125.538,
+      "yaw_deg": 269.8942815698683
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_80",
+      "scale": 1.5513349703978747,
+      "x_m": 506.742,
+      "y_m": 374.873,
+      "yaw_deg": 10.77237518504262
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_81",
+      "scale": 1.976553377462551,
+      "x_m": 518.294,
+      "y_m": 93.045,
+      "yaw_deg": 189.67331506311893
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_82",
+      "scale": 1.225995045620948,
+      "x_m": 389.923,
+      "y_m": 210.173,
+      "yaw_deg": 50.80027054063976
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_83",
+      "scale": 1.4813271508319303,
+      "x_m": 544.098,
+      "y_m": 313.14,
+      "yaw_deg": 286.5781978145242
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_84",
+      "scale": 1.3386632504407316,
+      "x_m": 53.702,
+      "y_m": 149.961,
+      "yaw_deg": 329.5528021082282
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_85",
+      "scale": 1.5589627953013405,
+      "x_m": 506.327,
+      "y_m": 378.59,
+      "yaw_deg": 308.15269991755486
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_86",
+      "scale": 2.2743500837823376,
+      "x_m": 252.684,
+      "y_m": 618.253,
+      "yaw_deg": 164.348325105384
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_87",
+      "scale": 1.4959645315539092,
+      "x_m": 269.496,
+      "y_m": 493.634,
+      "yaw_deg": 296.5918982774019
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_88",
+      "scale": 2.4524458510568365,
+      "x_m": 647.729,
+      "y_m": 159.461,
+      "yaw_deg": 233.953310335055
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_89",
+      "scale": 1.1696463105035946,
+      "x_m": 341.557,
+      "y_m": 169.058,
+      "yaw_deg": 86.1775866150856
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_90",
+      "scale": 2.1969464531866834,
+      "x_m": 309.277,
+      "y_m": 367.757,
+      "yaw_deg": 249.76572339423
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_91",
+      "scale": 1.3394517416600138,
+      "x_m": 269.329,
+      "y_m": 502.629,
+      "yaw_deg": 16.703294282779098
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_92",
+      "scale": 1.2330511618638411,
+      "x_m": 264.554,
+      "y_m": 632.576,
+      "yaw_deg": 215.2406200580299
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_93",
+      "scale": 1.038395236711949,
+      "x_m": 521.633,
+      "y_m": 151.45,
+      "yaw_deg": 217.10753409191966
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_94",
+      "scale": 1.0546087850816548,
+      "x_m": 258.776,
+      "y_m": 635.139,
+      "yaw_deg": 159.26710140891373
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_95",
+      "scale": 1.2397599145770073,
+      "x_m": 607.068,
+      "y_m": 63.292,
+      "yaw_deg": 214.6613477356732
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_96",
+      "scale": 2.2938126128865406,
+      "x_m": 263.274,
+      "y_m": 512.669,
+      "yaw_deg": 205.78314939513803
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_97",
+      "scale": 1.7092953292885795,
+      "x_m": 274.452,
+      "y_m": 522.652,
+      "yaw_deg": 66.71731883659959
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_98",
+      "scale": 2.1715203505009413,
+      "x_m": 174.709,
+      "y_m": 130.412,
+      "yaw_deg": 42.95293238013983
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_99",
+      "scale": 1.7285486673936248,
+      "x_m": 166.376,
+      "y_m": 128.979,
+      "yaw_deg": 34.94276124984026
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_100",
+      "scale": 1.7894415262853727,
+      "x_m": 281.243,
+      "y_m": 529.601,
+      "yaw_deg": 183.84978817775846
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_101",
+      "scale": 1.753249287372455,
+      "x_m": 619.513,
+      "y_m": 100.78,
+      "yaw_deg": 276.7045105062425
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_102",
+      "scale": 0.9328368821181356,
+      "x_m": 541.468,
+      "y_m": 279.534,
+      "yaw_deg": 12.708160048350692
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_103",
+      "scale": 2.4974245610646904,
+      "x_m": 208.829,
+      "y_m": 590.689,
+      "yaw_deg": 287.0778331719339
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_104",
+      "scale": 1.182483043638058,
+      "x_m": 520.008,
+      "y_m": 68.116,
+      "yaw_deg": 91.08226446434855
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_105",
+      "scale": 1.091846120543778,
+      "x_m": 369.948,
+      "y_m": 177.923,
+      "yaw_deg": 348.05177581496537
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_106",
+      "scale": 1.9509971614461392,
+      "x_m": 284.669,
+      "y_m": 521.508,
+      "yaw_deg": 258.4705886710435
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_107",
+      "scale": 1.014890295569785,
+      "x_m": 290.912,
+      "y_m": 373.286,
+      "yaw_deg": 308.2803862262517
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_108",
+      "scale": 2.3355949406977743,
+      "x_m": 569.468,
+      "y_m": 425.644,
+      "yaw_deg": 49.994477620348334
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_109",
+      "scale": 1.8995663924142718,
+      "x_m": 199.552,
+      "y_m": 593.488,
+      "yaw_deg": 201.80161379277706
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_110",
+      "scale": 2.18211280007381,
+      "x_m": 69.543,
+      "y_m": 136.378,
+      "yaw_deg": 150.9526749048382
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_111",
+      "scale": 1.2896662225248292,
+      "x_m": 302.234,
+      "y_m": 374.799,
+      "yaw_deg": 308.38853515684605
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_112",
+      "scale": 1.8202907412778586,
+      "x_m": 548.517,
+      "y_m": 284.044,
+      "yaw_deg": 289.90938515402377
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_113",
+      "scale": 1.3252712668618187,
+      "x_m": 305.424,
+      "y_m": 371.858,
+      "yaw_deg": 181.00152092054486
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_114",
+      "scale": 2.2636404464719817,
+      "x_m": 495.353,
+      "y_m": 361.122,
+      "yaw_deg": 292.18192814849317
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_115",
+      "scale": 1.1244242762913927,
+      "x_m": 510.152,
+      "y_m": 381.878,
+      "yaw_deg": 7.100954744964838
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_116",
+      "scale": 1.8291432285914198,
+      "x_m": 96.754,
+      "y_m": 107.812,
+      "yaw_deg": 132.66201269812882
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_117",
+      "scale": 2.4371310194255784,
+      "x_m": 74.738,
+      "y_m": 112.725,
+      "yaw_deg": 329.59507514722645
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_118",
+      "scale": 1.9222362365107983,
+      "x_m": 83.306,
+      "y_m": 112.445,
+      "yaw_deg": 317.3424950055778
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_119",
+      "scale": 1.9703777249669656,
+      "x_m": 549.865,
+      "y_m": 407.147,
+      "yaw_deg": 245.44132528826594
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_120",
+      "scale": 1.6080961112165824,
+      "x_m": 561.678,
+      "y_m": 270.035,
+      "yaw_deg": 133.72892956249416
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_121",
+      "scale": 1.9747576888184994,
+      "x_m": 147.067,
+      "y_m": 130.311,
+      "yaw_deg": 24.39636711962521
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_122",
+      "scale": 1.1251138669904321,
+      "x_m": 197.647,
+      "y_m": 160.7,
+      "yaw_deg": 38.21645141579211
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_123",
+      "scale": 1.5182320711901411,
+      "x_m": 619.262,
+      "y_m": 167.535,
+      "yaw_deg": 133.51174598559737
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_124",
+      "scale": 1.2742526192450896,
+      "x_m": 373.499,
+      "y_m": 179.177,
+      "yaw_deg": 355.7561194617301
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_125",
+      "scale": 1.576679169666022,
+      "x_m": 279.631,
+      "y_m": 352.368,
+      "yaw_deg": 296.29478512331843
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_126",
+      "scale": 1.1177860625321046,
+      "x_m": 381.499,
+      "y_m": 54.609,
+      "yaw_deg": 197.76830585673451
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_127",
+      "scale": 1.925829247920774,
+      "x_m": 168.144,
+      "y_m": 123.1,
+      "yaw_deg": 7.730616554617882
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_128",
+      "scale": 2.486169649520889,
+      "x_m": 527.451,
+      "y_m": 138.862,
+      "yaw_deg": 218.37545486167073
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_129",
+      "scale": 2.325098250526935,
+      "x_m": 78.987,
+      "y_m": 118.148,
+      "yaw_deg": 223.38883115909994
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_130",
+      "scale": 1.9250721808057278,
+      "x_m": 92.56,
+      "y_m": 122.782,
+      "yaw_deg": 331.94028915837407
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_131",
+      "scale": 1.247081152163446,
+      "x_m": 354.878,
+      "y_m": 163.22,
+      "yaw_deg": 81.41815566457808
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_132",
+      "scale": 1.3484809889923781,
+      "x_m": 202.247,
+      "y_m": 594.511,
+      "yaw_deg": 183.95092338323593
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_133",
+      "scale": 2.1905230501433834,
+      "x_m": 609.108,
+      "y_m": 157.069,
+      "yaw_deg": 23.493196181952953
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_134",
+      "scale": 2.2896465869853273,
+      "x_m": 268.823,
+      "y_m": 160.796,
+      "yaw_deg": 161.48046833463013
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_135",
+      "scale": 2.0184543430805206,
+      "x_m": 226.611,
+      "y_m": 162.5,
+      "yaw_deg": 227.42520268075168
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_136",
+      "scale": 2.261710034799762,
+      "x_m": 563.649,
+      "y_m": 35.101,
+      "yaw_deg": 330.9904860891402
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_137",
+      "scale": 1.3317833885084838,
+      "x_m": 552.051,
+      "y_m": 309.546,
+      "yaw_deg": 358.19987766444683
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_138",
+      "scale": 1.479294246295467,
+      "x_m": 264.903,
+      "y_m": 637.952,
+      "yaw_deg": 174.78585968725383
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_139",
+      "scale": 2.0609887518221512,
+      "x_m": 285.939,
+      "y_m": 372.785,
+      "yaw_deg": 336.4458038471639
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_140",
+      "scale": 1.3569797156378627,
+      "x_m": 555.831,
+      "y_m": 415.643,
+      "yaw_deg": 177.84267992712557
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_141",
+      "scale": 1.9713862858479843,
+      "x_m": 268.073,
+      "y_m": 519.419,
+      "yaw_deg": 268.3503784239292
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_142",
+      "scale": 2.1505965347168967,
+      "x_m": 253.589,
+      "y_m": 628.316,
+      "yaw_deg": 187.644623843953
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_143",
+      "scale": 2.026122298790142,
+      "x_m": 505.936,
+      "y_m": 397.829,
+      "yaw_deg": 20.79104410484433
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_144",
+      "scale": 1.4317624892573804,
+      "x_m": 568.935,
+      "y_m": 416.877,
+      "yaw_deg": 335.93928107991815
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_145",
+      "scale": 2.0343118055025116,
+      "x_m": 497.638,
+      "y_m": 372.486,
+      "yaw_deg": 3.392606321722269
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_146",
+      "scale": 1.6155640837969258,
+      "x_m": 175.484,
+      "y_m": 125.944,
+      "yaw_deg": 181.03243404999375
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_147",
+      "scale": 2.0830492172390223,
+      "x_m": 324.471,
+      "y_m": 364.961,
+      "yaw_deg": 211.37409799732268
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_148",
+      "scale": 1.536605468019843,
+      "x_m": 486.42,
+      "y_m": 390.519,
+      "yaw_deg": 152.0806789956987
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_149",
+      "scale": 1.2151404523756355,
+      "x_m": 85.042,
+      "y_m": 107.307,
+      "yaw_deg": 1.7469853442162275
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_150",
+      "scale": 2.269000481814146,
+      "x_m": 533.472,
+      "y_m": 412.725,
+      "yaw_deg": 105.81440057605505
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_151",
+      "scale": 1.4468772211112082,
+      "x_m": 284.11,
+      "y_m": 517.729,
+      "yaw_deg": 333.17320064641535
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_152",
+      "scale": 2.1628037443151698,
+      "x_m": 338.413,
+      "y_m": 365.177,
+      "yaw_deg": 276.0277418140322
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_153",
+      "scale": 1.4586165053769946,
+      "x_m": 473.78,
+      "y_m": 577.802,
+      "yaw_deg": 156.34426295757294
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_154",
+      "scale": 2.2128712736302987,
+      "x_m": 82.823,
+      "y_m": 127.644,
+      "yaw_deg": 23.490794096142054
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_155",
+      "scale": 1.5978858795715496,
+      "x_m": 454.659,
+      "y_m": 219.915,
+      "yaw_deg": 116.18573136627674
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_156",
+      "scale": 1.883092148695141,
+      "x_m": 180.475,
+      "y_m": 152.291,
+      "yaw_deg": 286.63063424639404
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_157",
+      "scale": 1.8061520684277639,
+      "x_m": 37.925,
+      "y_m": 639.745,
+      "yaw_deg": 115.39555862545967
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_158",
+      "scale": 1.9745200985344127,
+      "x_m": 595.344,
+      "y_m": 86.857,
+      "yaw_deg": 101.95467623881996
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_159",
+      "scale": 1.233979853685014,
+      "x_m": 350.334,
+      "y_m": 161.808,
+      "yaw_deg": 170.65850662998855
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_160",
+      "scale": 2.1106995888985693,
+      "x_m": 590.66,
+      "y_m": 147.959,
+      "yaw_deg": 60.28438685461879
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_161",
+      "scale": 1.3187467759707943,
+      "x_m": 42.684,
+      "y_m": 92.252,
+      "yaw_deg": 266.4499931037426
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_162",
+      "scale": 2.4329321064287797,
+      "x_m": 93.321,
+      "y_m": 128.169,
+      "yaw_deg": 267.2094605024904
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_163",
+      "scale": 1.1592208965448663,
+      "x_m": 203.681,
+      "y_m": 574.787,
+      "yaw_deg": 213.7499886006117
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_164",
+      "scale": 1.8863761437823996,
+      "x_m": 148.664,
+      "y_m": 133.063,
+      "yaw_deg": 299.59669657051563
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_165",
+      "scale": 2.1322362824575976,
+      "x_m": 193.556,
+      "y_m": 145.349,
+      "yaw_deg": 149.57156960852444
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_166",
+      "scale": 2.356279424857348,
+      "x_m": 346.951,
+      "y_m": 355.157,
+      "yaw_deg": 52.09405845031142
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_167",
+      "scale": 1.9376527999993414,
+      "x_m": 307.853,
+      "y_m": 376.412,
+      "yaw_deg": 281.6277090087533
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_168",
+      "scale": 2.2030548992333934,
+      "x_m": 116.464,
+      "y_m": 158.243,
+      "yaw_deg": 338.1470395065844
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_169",
+      "scale": 2.0240918225608766,
+      "x_m": 62.759,
+      "y_m": 103.654,
+      "yaw_deg": 10.730397189036012
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_170",
+      "scale": 2.222393969888799,
+      "x_m": 273.169,
+      "y_m": 500.023,
+      "yaw_deg": 299.98545116744936
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_171",
+      "scale": 2.296955561847426,
+      "x_m": 523.899,
+      "y_m": 411.53,
+      "yaw_deg": 228.55646540410817
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_172",
+      "scale": 1.5495427518617362,
+      "x_m": 525.483,
+      "y_m": 116.675,
+      "yaw_deg": 272.8301071934402
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_173",
+      "scale": 1.0592429105890915,
+      "x_m": 556.788,
+      "y_m": 24.33,
+      "yaw_deg": 297.6224606484175
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_174",
+      "scale": 1.3520355473738164,
+      "x_m": 123.773,
+      "y_m": 126.942,
+      "yaw_deg": 122.51201980747283
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_175",
+      "scale": 2.1019805397372693,
+      "x_m": 195.82,
+      "y_m": 122.485,
+      "yaw_deg": 41.248546969145536
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_176",
+      "scale": 2.5730206739157437,
+      "x_m": 206.297,
+      "y_m": 594.644,
+      "yaw_deg": 337.361755091697
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_177",
+      "scale": 1.6768947148229927,
+      "x_m": 69.12,
+      "y_m": 107.218,
+      "yaw_deg": 25.200250558555126
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_178",
+      "scale": 2.3458168448414654,
+      "x_m": 632.351,
+      "y_m": 143.205,
+      "yaw_deg": 190.73200232349336
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_179",
+      "scale": 1.4119000340579078,
+      "x_m": 421.072,
+      "y_m": 211.051,
+      "yaw_deg": 253.8711202237755
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_180",
+      "scale": 1.7430780734866858,
+      "x_m": 286.528,
+      "y_m": 378.723,
+      "yaw_deg": 72.30270688422024
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_181",
+      "scale": 1.4611152436118573,
+      "x_m": 489.132,
+      "y_m": 579.168,
+      "yaw_deg": 256.6774327028543
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_182",
+      "scale": 2.2874749144539237,
+      "x_m": 45.143,
+      "y_m": 109.696,
+      "yaw_deg": 232.7138247527182
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_183",
+      "scale": 1.1223359600408003,
+      "x_m": 218.091,
+      "y_m": 571.916,
+      "yaw_deg": 43.571775583550334
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_184",
+      "scale": 2.281514563364908,
+      "x_m": 570.339,
+      "y_m": 393.911,
+      "yaw_deg": 38.18535631522536
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_185",
+      "scale": 1.5802953538950533,
+      "x_m": 443.795,
+      "y_m": 137.662,
+      "yaw_deg": 295.35076573491096
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_186",
+      "scale": 2.073651217506267,
+      "x_m": 495.854,
+      "y_m": 366.656,
+      "yaw_deg": 191.3784308731556
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_187",
+      "scale": 1.0464845552342013,
+      "x_m": 240.362,
+      "y_m": 624.587,
+      "yaw_deg": 253.98807367309928
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_188",
+      "scale": 1.836612468585372,
+      "x_m": 170.599,
+      "y_m": 135.132,
+      "yaw_deg": 133.13612507656217
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_189",
+      "scale": 2.3263515717117116,
+      "x_m": 294.017,
+      "y_m": 379.169,
+      "yaw_deg": 318.16013163886964
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_190",
+      "scale": 1.238088941317983,
+      "x_m": 126.093,
+      "y_m": 148.234,
+      "yaw_deg": 271.78781133145094
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_191",
+      "scale": 1.9053093361435458,
+      "x_m": 568.175,
+      "y_m": 389.904,
+      "yaw_deg": 20.214609978720546
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_192",
+      "scale": 1.5246246644528583,
+      "x_m": 358.049,
+      "y_m": 166.602,
+      "yaw_deg": 234.36992612667382
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_193",
+      "scale": 1.3988491866039112,
+      "x_m": 113.596,
+      "y_m": 129.394,
+      "yaw_deg": 52.70530982874334
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_194",
+      "scale": 2.42590940638911,
+      "x_m": 626.841,
+      "y_m": 154.785,
+      "yaw_deg": 148.80943609401584
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_195",
+      "scale": 0.9857060198672116,
+      "x_m": 600.238,
+      "y_m": 128.085,
+      "yaw_deg": 164.93865257129073
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_196",
+      "scale": 1.726444137049839,
+      "x_m": 300.433,
+      "y_m": 378.637,
+      "yaw_deg": 234.69516609795392
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_197",
+      "scale": 2.162086079129949,
+      "x_m": 187.351,
+      "y_m": 168.998,
+      "yaw_deg": 151.22058374807239
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_198",
+      "scale": 1.3482234578114003,
+      "x_m": 60.911,
+      "y_m": 154.268,
+      "yaw_deg": 190.68369213491678
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_199",
+      "scale": 1.62008228932973,
+      "x_m": 616.658,
+      "y_m": 137.677,
+      "yaw_deg": 331.85474823229015
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_200",
+      "scale": 1.4309732139809057,
+      "x_m": 584.098,
+      "y_m": 83.13,
+      "yaw_deg": 13.113478878512979
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_201",
+      "scale": 1.5681879207259044,
+      "x_m": 498.894,
+      "y_m": 374.37,
+      "yaw_deg": 325.4509548470378
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_202",
+      "scale": 2.4003804008243605,
+      "x_m": 286.963,
+      "y_m": 509.459,
+      "yaw_deg": 70.99699772894382
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_203",
+      "scale": 0.8613956692628563,
+      "x_m": 594.056,
+      "y_m": 105.282,
+      "yaw_deg": 295.2628656383604
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_204",
+      "scale": 1.164598644245416,
+      "x_m": 308.086,
+      "y_m": 370.624,
+      "yaw_deg": 63.1748300883919
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_205",
+      "scale": 1.933038217248395,
+      "x_m": 613.068,
+      "y_m": 145.309,
+      "yaw_deg": 220.29077463783324
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_206",
+      "scale": 2.403757801745087,
+      "x_m": 590.128,
+      "y_m": 133.481,
+      "yaw_deg": 69.6730840858072
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_207",
+      "scale": 1.3580935853533447,
+      "x_m": 497.903,
+      "y_m": 384.883,
+      "yaw_deg": 131.86028148047626
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_208",
+      "scale": 1.480554779060185,
+      "x_m": 70.471,
+      "y_m": 99.082,
+      "yaw_deg": 262.68930170685053
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_209",
+      "scale": 1.8098926352104172,
+      "x_m": 212.013,
+      "y_m": 565.56,
+      "yaw_deg": 15.60412016697228
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_210",
+      "scale": 1.1009333615656942,
+      "x_m": 343.801,
+      "y_m": 358.591,
+      "yaw_deg": 353.2126303575933
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_211",
+      "scale": 1.9763528414769098,
+      "x_m": 270.831,
+      "y_m": 635.513,
+      "yaw_deg": 24.35583877377212
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_212",
+      "scale": 2.181263763573952,
+      "x_m": 457.757,
+      "y_m": 401.311,
+      "yaw_deg": 204.25149908289313
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_213",
+      "scale": 1.5504762231139466,
+      "x_m": 240.579,
+      "y_m": 149.654,
+      "yaw_deg": 314.19586854055524
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_214",
+      "scale": 1.6058046979596838,
+      "x_m": 82.806,
+      "y_m": 122.151,
+      "yaw_deg": 264.0124315582216
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_215",
+      "scale": 2.467161969980225,
+      "x_m": 115.109,
+      "y_m": 144.624,
+      "yaw_deg": 146.78409872576594
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_216",
+      "scale": 2.49347615102306,
+      "x_m": 542.449,
+      "y_m": 317.676,
+      "yaw_deg": 195.3481773287058
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_217",
+      "scale": 1.8664404855808243,
+      "x_m": 261.41,
+      "y_m": 509.363,
+      "yaw_deg": 112.46086564846337
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_218",
+      "scale": 2.434039367013611,
+      "x_m": 333.105,
+      "y_m": 364.407,
+      "yaw_deg": 243.79039010033011
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_219",
+      "scale": 2.3231702538905665,
+      "x_m": 597.907,
+      "y_m": 107.245,
+      "yaw_deg": 62.99001951701939
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_220",
+      "scale": 2.4555663445498794,
+      "x_m": 270.373,
+      "y_m": 519.947,
+      "yaw_deg": 53.1184265948832
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_221",
+      "scale": 1.6037018425995484,
+      "x_m": 602.48,
+      "y_m": 102.059,
+      "yaw_deg": 162.87093638442457
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_222",
+      "scale": 2.476447129738517,
+      "x_m": 289.982,
+      "y_m": 518.031,
+      "yaw_deg": 3.327150112017989
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_223",
+      "scale": 1.9490929935127497,
+      "x_m": 288.761,
+      "y_m": 531.607,
+      "yaw_deg": 216.61641751416028
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_224",
+      "scale": 2.032285045250319,
+      "x_m": 384.359,
+      "y_m": 180.302,
+      "yaw_deg": 125.26151463389397
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_225",
+      "scale": 1.4782322734827176,
+      "x_m": 526.42,
+      "y_m": 164.266,
+      "yaw_deg": 271.1183461267501
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_226",
+      "scale": 2.2202611163957044,
+      "x_m": 515.239,
+      "y_m": 382.552,
+      "yaw_deg": 227.22362059168518
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_227",
+      "scale": 1.6557463000062853,
+      "x_m": 381.69,
+      "y_m": 178.55,
+      "yaw_deg": 244.7871481720358
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_228",
+      "scale": 2.1699593764496967,
+      "x_m": 643.483,
+      "y_m": 554.671,
+      "yaw_deg": 359.74185657687485
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_229",
+      "scale": 2.2027099448023364,
+      "x_m": 83.665,
+      "y_m": 131.374,
+      "yaw_deg": 297.226320002228
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_230",
+      "scale": 2.2321381820365787,
+      "x_m": 267.79,
+      "y_m": 630.692,
+      "yaw_deg": 138.690388770774
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_231",
+      "scale": 1.8434581396868452,
+      "x_m": 357.771,
+      "y_m": 171.501,
+      "yaw_deg": 126.0334901791066
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_232",
+      "scale": 1.8648111438378692,
+      "x_m": 387.381,
+      "y_m": 39.436,
+      "yaw_deg": 320.78155123628676
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_233",
+      "scale": 1.3682978162541986,
+      "x_m": 314.554,
+      "y_m": 373.547,
+      "yaw_deg": 315.16944989562035
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_234",
+      "scale": 2.120271977619268,
+      "x_m": 574.757,
+      "y_m": 637.855,
+      "yaw_deg": 281.0409046243876
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_235",
+      "scale": 1.4475325347157195,
+      "x_m": 561.678,
+      "y_m": 26.638,
+      "yaw_deg": 79.83745160512626
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_236",
+      "scale": 1.08983066433575,
+      "x_m": 635.613,
+      "y_m": 575.188,
+      "yaw_deg": 303.60956992954016
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_237",
+      "scale": 1.5835990335326642,
+      "x_m": 143.034,
+      "y_m": 119.757,
+      "yaw_deg": 164.62672658264637
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_238",
+      "scale": 1.1334318267181516,
+      "x_m": 302.825,
+      "y_m": 545.318,
+      "yaw_deg": 307.93084502220154
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_239",
+      "scale": 1.7192443689564243,
+      "x_m": 278.906,
+      "y_m": 511.234,
+      "yaw_deg": 318.66434116847813
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_240",
+      "scale": 1.213261861121282,
+      "x_m": 290.594,
+      "y_m": 509.269,
+      "yaw_deg": 349.61637270636857
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_241",
+      "scale": 1.1965631182538345,
+      "x_m": 640.594,
+      "y_m": 148.843,
+      "yaw_deg": 84.83229350298643
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_242",
+      "scale": 1.2051203233422711,
+      "x_m": 634.553,
+      "y_m": 143.702,
+      "yaw_deg": 115.60966336168349
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_243",
+      "scale": 0.8226491390727461,
+      "x_m": 112.537,
+      "y_m": 156.522,
+      "yaw_deg": 175.11645988561213
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_244",
+      "scale": 1.5807429995620623,
+      "x_m": 195.866,
+      "y_m": 170.987,
+      "yaw_deg": 226.57155018299818
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_245",
+      "scale": 1.6636955240974203,
+      "x_m": 193.376,
+      "y_m": 127.208,
+      "yaw_deg": 339.432882796973
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_246",
+      "scale": 2.37588779872749,
+      "x_m": 600.119,
+      "y_m": 371.106,
+      "yaw_deg": 262.3735542409122
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_247",
+      "scale": 1.2389064960880205,
+      "x_m": 520.157,
+      "y_m": 89.549,
+      "yaw_deg": 85.97928687930107
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_248",
+      "scale": 1.145872228196822,
+      "x_m": 578.556,
+      "y_m": 114.792,
+      "yaw_deg": 276.4372873865068
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_249",
+      "scale": 2.0598135908367112,
+      "x_m": 601.259,
+      "y_m": 124.146,
+      "yaw_deg": 314.8606630973518
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_250",
+      "scale": 1.285573932225816,
+      "x_m": 45.64,
+      "y_m": 97.58,
+      "yaw_deg": 248.66664667613804
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_251",
+      "scale": 1.6415117263095453,
+      "x_m": 546.279,
+      "y_m": 318.103,
+      "yaw_deg": 12.569810030981898
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_252",
+      "scale": 1.1393061882117763,
+      "x_m": 307.463,
+      "y_m": 545.804,
+      "yaw_deg": 256.70925778336823
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_253",
+      "scale": 1.080291941179894,
+      "x_m": 336.131,
+      "y_m": 364.626,
+      "yaw_deg": 149.61836870759726
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_254",
+      "scale": 1.8353093564510345,
+      "x_m": 597.161,
+      "y_m": 632.83,
+      "yaw_deg": 86.4967049472034
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_255",
+      "scale": 1.144520538742654,
+      "x_m": 514.866,
+      "y_m": 377.504,
+      "yaw_deg": 146.11031273379922
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_256",
+      "scale": 1.571305595105514,
+      "x_m": 30.544,
+      "y_m": 84.395,
+      "yaw_deg": 104.66796115972102
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_257",
+      "scale": 1.3934739918913692,
+      "x_m": 390.825,
+      "y_m": 203.301,
+      "yaw_deg": 317.39082128740847
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_258",
+      "scale": 2.299722663825378,
+      "x_m": 109.646,
+      "y_m": 120.556,
+      "yaw_deg": 337.81415389850736
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_259",
+      "scale": 1.1735670424532145,
+      "x_m": 501.427,
+      "y_m": 588.808,
+      "yaw_deg": 205.7949536293745
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_260",
+      "scale": 1.5024170274846256,
+      "x_m": 598.428,
+      "y_m": 94.16,
+      "yaw_deg": 47.48971969820559
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_261",
+      "scale": 1.93570704839658,
+      "x_m": 272.618,
+      "y_m": 521.726,
+      "yaw_deg": 193.70919708162546
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_262",
+      "scale": 2.221703676157631,
+      "x_m": 118.838,
+      "y_m": 157.764,
+      "yaw_deg": 263.36493766866624
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_263",
+      "scale": 1.6717201923020184,
+      "x_m": 88.506,
+      "y_m": 108.565,
+      "yaw_deg": 7.661731140688062
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_264",
+      "scale": 2.191869401023723,
+      "x_m": 42.888,
+      "y_m": 86.061,
+      "yaw_deg": 30.898875603452325
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_265",
+      "scale": 2.4297372843138874,
+      "x_m": 636.549,
+      "y_m": 154.078,
+      "yaw_deg": 192.69806086085737
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_266",
+      "scale": 1.6640118113718927,
+      "x_m": 539.902,
+      "y_m": 116.44,
+      "yaw_deg": 267.07827248610556
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_267",
+      "scale": 2.6244117440190164,
+      "x_m": 121.594,
+      "y_m": 127.074,
+      "yaw_deg": 284.6748692728579
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_268",
+      "scale": 1.1512714915443212,
+      "x_m": 523.599,
+      "y_m": 80.02,
+      "yaw_deg": 131.97125025093555
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_269",
+      "scale": 2.2363043333170936,
+      "x_m": 318.221,
+      "y_m": 367.363,
+      "yaw_deg": 304.20682730153203
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_270",
+      "scale": 1.0914852974237874,
+      "x_m": 289.593,
+      "y_m": 514.274,
+      "yaw_deg": 292.1421691775322
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_271",
+      "scale": 1.4764006149489433,
+      "x_m": 282.323,
+      "y_m": 357.555,
+      "yaw_deg": 152.6813541725278
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_272",
+      "scale": 1.2283839079318568,
+      "x_m": 533.112,
+      "y_m": 148.646,
+      "yaw_deg": 275.61376431025565
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_273",
+      "scale": 1.5128165046917275,
+      "x_m": 612.416,
+      "y_m": 84.029,
+      "yaw_deg": 212.16897943988442
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_274",
+      "scale": 1.6025947339367121,
+      "x_m": 216.538,
+      "y_m": 141.464,
+      "yaw_deg": 328.26224114745855
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_275",
+      "scale": 1.2036683468613774,
+      "x_m": 604.694,
+      "y_m": 147.858,
+      "yaw_deg": 165.14840223826468
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_276",
+      "scale": 2.2765335793374106,
+      "x_m": 102.218,
+      "y_m": 102.164,
+      "yaw_deg": 207.57225799374282
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_277",
+      "scale": 1.2934083207510412,
+      "x_m": 644.24,
+      "y_m": 433.356,
+      "yaw_deg": 165.28044856153429
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_278",
+      "scale": 1.7488409986253828,
+      "x_m": 614.929,
+      "y_m": 93.827,
+      "yaw_deg": 123.51227723993361
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_279",
+      "scale": 1.3181389468954876,
+      "x_m": 120.062,
+      "y_m": 146.661,
+      "yaw_deg": 92.68580694682896
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_280",
+      "scale": 2.2088468505535275,
+      "x_m": 532.611,
+      "y_m": 128.231,
+      "yaw_deg": 90.94395224936306
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_281",
+      "scale": 1.9997984499204904,
+      "x_m": 518.651,
+      "y_m": 84.639,
+      "yaw_deg": 3.1685087643563747
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_282",
+      "scale": 1.9666181127540767,
+      "x_m": 119.963,
+      "y_m": 154.271,
+      "yaw_deg": 187.50622973777354
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_283",
+      "scale": 2.1076750674983487,
+      "x_m": 204.393,
+      "y_m": 128.684,
+      "yaw_deg": 273.8683838490397
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_284",
+      "scale": 1.9527976096142083,
+      "x_m": 284.747,
+      "y_m": 533.434,
+      "yaw_deg": 287.93499601073563
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_285",
+      "scale": 1.3661246220581234,
+      "x_m": 160.33,
+      "y_m": 137.991,
+      "yaw_deg": 165.53593441843987
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_286",
+      "scale": 1.640820839209482,
+      "x_m": 264.409,
+      "y_m": 145.175,
+      "yaw_deg": 132.76824141852558
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_287",
+      "scale": 1.1419703911524266,
+      "x_m": 63.991,
+      "y_m": 110.909,
+      "yaw_deg": 27.2640014346689
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_288",
+      "scale": 1.1428367275511846,
+      "x_m": 598.191,
+      "y_m": 363.19,
+      "yaw_deg": 184.88294030539691
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_289",
+      "scale": 1.9310992277460173,
+      "x_m": 352.335,
+      "y_m": 183.837,
+      "yaw_deg": 318.42440399341285
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_290",
+      "scale": 2.3475046730600297,
+      "x_m": 60.015,
+      "y_m": 145.073,
+      "yaw_deg": 126.48416516371071
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_291",
+      "scale": 1.1888922470388934,
+      "x_m": 253.285,
+      "y_m": 144.862,
+      "yaw_deg": 34.14296985603869
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_292",
+      "scale": 1.6291918737115338,
+      "x_m": 600.351,
+      "y_m": 162.185,
+      "yaw_deg": 58.81546385586262
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_293",
+      "scale": 2.0806786257307976,
+      "x_m": 290.83,
+      "y_m": 530.532,
+      "yaw_deg": 301.0880443453789
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_294",
+      "scale": 1.9695160806877539,
+      "x_m": 600.225,
+      "y_m": 144.213,
+      "yaw_deg": 77.02502184547484
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_295",
+      "scale": 1.457225211779587,
+      "x_m": 156.781,
+      "y_m": 140.175,
+      "yaw_deg": 81.8594416603446
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_296",
+      "scale": 2.3187487908871844,
+      "x_m": 536.534,
+      "y_m": 314.483,
+      "yaw_deg": 256.7771871574223
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_297",
+      "scale": 1.124416706035845,
+      "x_m": 332.17,
+      "y_m": 358.847,
+      "yaw_deg": 266.9811919424683
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_298",
+      "scale": 1.699813885614276,
+      "x_m": 545.511,
+      "y_m": 391.268,
+      "yaw_deg": 180.98731242120266
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_299",
+      "scale": 1.3105478591751307,
+      "x_m": 327.653,
+      "y_m": 364.425,
+      "yaw_deg": 323.58060624450445
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_300",
+      "scale": 1.2941203836817294,
+      "x_m": 60.239,
+      "y_m": 171.631,
+      "yaw_deg": 39.53349793329835
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_301",
+      "scale": 1.8156951571581885,
+      "x_m": 248.727,
+      "y_m": 647.176,
+      "yaw_deg": 202.81233343295753
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_302",
+      "scale": 2.3684308151714504,
+      "x_m": 540.418,
+      "y_m": 365.774,
+      "yaw_deg": 163.3727452531457
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_303",
+      "scale": 1.4759691742947325,
+      "x_m": 277.896,
+      "y_m": 508.175,
+      "yaw_deg": 248.49677240476012
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_304",
+      "scale": 2.4996312434086576,
+      "x_m": 573.019,
+      "y_m": 378.187,
+      "yaw_deg": 87.03386759385467
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_305",
+      "scale": 0.9579696814529598,
+      "x_m": 201.859,
+      "y_m": 155.558,
+      "yaw_deg": 303.93056941218674
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_306",
+      "scale": 1.0164603018201888,
+      "x_m": 275.146,
+      "y_m": 531.586,
+      "yaw_deg": 315.7012950628996
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_307",
+      "scale": 2.2743034042650834,
+      "x_m": 531.144,
+      "y_m": 409.184,
+      "yaw_deg": 299.68061710707843
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_308",
+      "scale": 1.322579487459734,
+      "x_m": 271.609,
+      "y_m": 506.51,
+      "yaw_deg": 231.5757402498275
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_309",
+      "scale": 1.9315764220664278,
+      "x_m": 111.033,
+      "y_m": 133.053,
+      "yaw_deg": 165.52668775431812
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_310",
+      "scale": 1.8874702412867919,
+      "x_m": 516.486,
+      "y_m": 379.514,
+      "yaw_deg": 17.457299698144197
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_311",
+      "scale": 1.9514907657867298,
+      "x_m": 215.261,
+      "y_m": 589.497,
+      "yaw_deg": 147.9501024261117
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_312",
+      "scale": 1.9720434200717136,
+      "x_m": 529.456,
+      "y_m": 81.788,
+      "yaw_deg": 339.33480279520154
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_313",
+      "scale": 1.3958650142885745,
+      "x_m": 549.91,
+      "y_m": 411.911,
+      "yaw_deg": 349.79239284060895
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_314",
+      "scale": 1.7146295860875398,
+      "x_m": 340.936,
+      "y_m": 157.5,
+      "yaw_deg": 338.0693661700934
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_315",
+      "scale": 1.1489929071394727,
+      "x_m": 27.647,
+      "y_m": 532.407,
+      "yaw_deg": 41.38036756776273
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_316",
+      "scale": 1.2616786388680339,
+      "x_m": 603.431,
+      "y_m": 94.559,
+      "yaw_deg": 276.348052052781
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_317",
+      "scale": 1.3282317107077688,
+      "x_m": 323.526,
+      "y_m": 362.916,
+      "yaw_deg": 245.01462254673243
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_318",
+      "scale": 2.3622142551466823,
+      "x_m": 60.138,
+      "y_m": 127.206,
+      "yaw_deg": 304.36396141536534
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_319",
+      "scale": 1.2073847954161465,
+      "x_m": 509.843,
+      "y_m": 50.746,
+      "yaw_deg": 84.43660262972116
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_320",
+      "scale": 2.032393006258644,
+      "x_m": 208.589,
+      "y_m": 569.522,
+      "yaw_deg": 276.8544335011393
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_321",
+      "scale": 1.369238814106211,
+      "x_m": 30.961,
+      "y_m": 80.971,
+      "yaw_deg": 0.17066887579858303
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_322",
+      "scale": 2.373993660439737,
+      "x_m": 86.228,
+      "y_m": 132.759,
+      "yaw_deg": 328.2055001053959
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_323",
+      "scale": 1.5463319049449638,
+      "x_m": 537.834,
+      "y_m": 82.544,
+      "yaw_deg": 241.33098321966827
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_324",
+      "scale": 2.1516551540698856,
+      "x_m": 287.351,
+      "y_m": 535.877,
+      "yaw_deg": 8.123583141714334
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_325",
+      "scale": 0.8709271067753435,
+      "x_m": 547.326,
+      "y_m": 301.205,
+      "yaw_deg": 350.08179338648915
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_326",
+      "scale": 1.1263995548943058,
+      "x_m": 279.242,
+      "y_m": 527.545,
+      "yaw_deg": 86.75856004469097
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_327",
+      "scale": 1.935049768886529,
+      "x_m": 489.38,
+      "y_m": 395.192,
+      "yaw_deg": 193.5919558815658
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_328",
+      "scale": 1.420135588152334,
+      "x_m": 315.454,
+      "y_m": 367.533,
+      "yaw_deg": 218.95942180417478
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_329",
+      "scale": 1.0823625590419397,
+      "x_m": 608.174,
+      "y_m": 165.711,
+      "yaw_deg": 130.7137825526297
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_330",
+      "scale": 1.9970594081096351,
+      "x_m": 580.712,
+      "y_m": 643.847,
+      "yaw_deg": 168.13200026750565
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_331",
+      "scale": 2.3865420068614185,
+      "x_m": 457.889,
+      "y_m": 396.549,
+      "yaw_deg": 54.207792123779655
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_332",
+      "scale": 1.6225585752399638,
+      "x_m": 533.585,
+      "y_m": 131.038,
+      "yaw_deg": 128.07199727743864
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_333",
+      "scale": 1.4889739397913218,
+      "x_m": 132.07,
+      "y_m": 135.075,
+      "yaw_deg": 312.4397320859134
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_334",
+      "scale": 1.9434628087328747,
+      "x_m": 558.011,
+      "y_m": 63.451,
+      "yaw_deg": 149.31386606767774
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_335",
+      "scale": 2.019151339191012,
+      "x_m": 601.068,
+      "y_m": 94.537,
+      "yaw_deg": 143.71689691208303
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_336",
+      "scale": 1.2010887840297073,
+      "x_m": 198.651,
+      "y_m": 116.175,
+      "yaw_deg": 224.99244874343276
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_337",
+      "scale": 1.4276218675076962,
+      "x_m": 71.135,
+      "y_m": 113.368,
+      "yaw_deg": 157.69166219048202
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_338",
+      "scale": 1.7711904500611126,
+      "x_m": 552.727,
+      "y_m": 371.361,
+      "yaw_deg": 170.6674472708255
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_339",
+      "scale": 2.1203353399178013,
+      "x_m": 595.663,
+      "y_m": 126.791,
+      "yaw_deg": 21.967672873288393
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_340",
+      "scale": 2.2148082588100806,
+      "x_m": 341.831,
+      "y_m": 361.108,
+      "yaw_deg": 245.5496431980282
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_341",
+      "scale": 1.8996437968453392,
+      "x_m": 538.918,
+      "y_m": 419.155,
+      "yaw_deg": 281.6209099441767
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_342",
+      "scale": 1.4312567374436185,
+      "x_m": 282.861,
+      "y_m": 362.699,
+      "yaw_deg": 62.08120898343623
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_343",
+      "scale": 1.3726753294467926,
+      "x_m": 131.259,
+      "y_m": 136.941,
+      "yaw_deg": 329.24312154762447
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_344",
+      "scale": 2.0786689589731395,
+      "x_m": 110.32,
+      "y_m": 144.158,
+      "yaw_deg": 118.72635872103274
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_345",
+      "scale": 1.1791031913599,
+      "x_m": 271.803,
+      "y_m": 155.275,
+      "yaw_deg": 204.51494045555592
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_346",
+      "scale": 1.5144478944130242,
+      "x_m": 265.347,
+      "y_m": 489.705,
+      "yaw_deg": 70.22920433431864
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_347",
+      "scale": 1.9448865989688784,
+      "x_m": 546.386,
+      "y_m": 31.164,
+      "yaw_deg": 89.85477179288864
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_348",
+      "scale": 1.2265175252687186,
+      "x_m": 499.559,
+      "y_m": 377.484,
+      "yaw_deg": 272.30069001205266
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_349",
+      "scale": 2.4145242606755346,
+      "x_m": 114.412,
+      "y_m": 159.259,
+      "yaw_deg": 295.542951291427
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_350",
+      "scale": 2.0643450991483405,
+      "x_m": 298.144,
+      "y_m": 536.743,
+      "yaw_deg": 254.08824998885393
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_351",
+      "scale": 1.322687300038524,
+      "x_m": 563.692,
+      "y_m": 263.095,
+      "yaw_deg": 173.6406737845391
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_352",
+      "scale": 1.8106944414321333,
+      "x_m": 606.419,
+      "y_m": 100.796,
+      "yaw_deg": 64.61941882967949
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_353",
+      "scale": 1.4385898829204962,
+      "x_m": 612.459,
+      "y_m": 132.979,
+      "yaw_deg": 5.401022220030427
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_354",
+      "scale": 1.9837058765115216,
+      "x_m": 359.999,
+      "y_m": 154.988,
+      "yaw_deg": 296.57183518633246
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_355",
+      "scale": 1.7748297065263614,
+      "x_m": 564.086,
+      "y_m": 24.217,
+      "yaw_deg": 6.9430299662053585
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_356",
+      "scale": 1.8006544392555952,
+      "x_m": 540.681,
+      "y_m": 132.25,
+      "yaw_deg": 146.50107303634286
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_357",
+      "scale": 1.2600508788600564,
+      "x_m": 552.69,
+      "y_m": 281.811,
+      "yaw_deg": 18.59472337178886
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_358",
+      "scale": 1.1649239431135356,
+      "x_m": 492.878,
+      "y_m": 385.998,
+      "yaw_deg": 170.90807209722698
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_359",
+      "scale": 1.6930626729736105,
+      "x_m": 591.836,
+      "y_m": 103.896,
+      "yaw_deg": 228.41805830597878
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_360",
+      "scale": 2.067034958396107,
+      "x_m": 185.628,
+      "y_m": 132.106,
+      "yaw_deg": 47.98379072919488
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_361",
+      "scale": 2.4274796235840768,
+      "x_m": 159.588,
+      "y_m": 131.714,
+      "yaw_deg": 163.89440548606217
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_362",
+      "scale": 0.993274789955467,
+      "x_m": 277.93,
+      "y_m": 519.655,
+      "yaw_deg": 12.978829555213451
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_363",
+      "scale": 2.059946759021841,
+      "x_m": 549.628,
+      "y_m": 286.805,
+      "yaw_deg": 310.7076000608504
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_364",
+      "scale": 1.8166024206439033,
+      "x_m": 265.155,
+      "y_m": 510.764,
+      "yaw_deg": 111.53889192268252
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_365",
+      "scale": 1.2118481536163017,
+      "x_m": 248.058,
+      "y_m": 143.289,
+      "yaw_deg": 299.42942186258733
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_366",
+      "scale": 1.4767634856980294,
+      "x_m": 586.182,
+      "y_m": 382.531,
+      "yaw_deg": 67.45164035819471
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_367",
+      "scale": 1.034364731865935,
+      "x_m": 375.531,
+      "y_m": 176.178,
+      "yaw_deg": 59.04603894799948
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_368",
+      "scale": 2.1230264138430357,
+      "x_m": 598.905,
+      "y_m": 395.292,
+      "yaw_deg": 238.46949828788638
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_369",
+      "scale": 1.1613339945906773,
+      "x_m": 629.34,
+      "y_m": 167.678,
+      "yaw_deg": 41.997545789927244
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_370",
+      "scale": 1.6474576063919812,
+      "x_m": 97.929,
+      "y_m": 126.894,
+      "yaw_deg": 211.51508412323892
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_371",
+      "scale": 2.4652175521478057,
+      "x_m": 237.906,
+      "y_m": 151.696,
+      "yaw_deg": 338.6511185299605
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_372",
+      "scale": 1.4827074498170987,
+      "x_m": 267.089,
+      "y_m": 515.302,
+      "yaw_deg": 82.94009202159941
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_373",
+      "scale": 2.2666461787885055,
+      "x_m": 489.448,
+      "y_m": 565.222,
+      "yaw_deg": 339.27557576447725
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_374",
+      "scale": 1.2406514543108642,
+      "x_m": 297.689,
+      "y_m": 374.915,
+      "yaw_deg": 185.25058516301215
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_375",
+      "scale": 1.900769102270715,
+      "x_m": 599.665,
+      "y_m": 147.067,
+      "yaw_deg": 80.05293969064951
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_376",
+      "scale": 2.4229478009510785,
+      "x_m": 149.462,
+      "y_m": 122.621,
+      "yaw_deg": 145.05622412078083
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_377",
+      "scale": 2.3240423256065696,
+      "x_m": 142.214,
+      "y_m": 147.875,
+      "yaw_deg": 61.16152184084058
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_378",
+      "scale": 2.2034472222439945,
+      "x_m": 538.473,
+      "y_m": 153.561,
+      "yaw_deg": 155.72961380705237
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_379",
+      "scale": 2.0179366250522435,
+      "x_m": 531.005,
+      "y_m": 60.617,
+      "yaw_deg": 235.2291190624237
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_380",
+      "scale": 2.174609612324275,
+      "x_m": 64.844,
+      "y_m": 114.113,
+      "yaw_deg": 204.82390318997204
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_381",
+      "scale": 1.9219416583655402,
+      "x_m": 191.095,
+      "y_m": 147.487,
+      "yaw_deg": 195.59934491291642
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_382",
+      "scale": 2.486979499575682,
+      "x_m": 99.581,
+      "y_m": 105.933,
+      "yaw_deg": 119.89981594495475
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_383",
+      "scale": 2.1225809429306537,
+      "x_m": 596.223,
+      "y_m": 371.959,
+      "yaw_deg": 54.349155351519585
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_384",
+      "scale": 1.0621229199459776,
+      "x_m": 537.108,
+      "y_m": 24.482,
+      "yaw_deg": 51.9904562830925
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_385",
+      "scale": 1.5110280751250684,
+      "x_m": 94.099,
+      "y_m": 125.899,
+      "yaw_deg": 287.332773366943
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_386",
+      "scale": 1.1769120312528685,
+      "x_m": 43.04,
+      "y_m": 107.344,
+      "yaw_deg": 101.55229811556637
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_387",
+      "scale": 1.3965870171086863,
+      "x_m": 449.814,
+      "y_m": 211.483,
+      "yaw_deg": 81.4132368285209
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_388",
+      "scale": 1.3160955042112619,
+      "x_m": 644.268,
+      "y_m": 566.67,
+      "yaw_deg": 271.8324577063322
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_389",
+      "scale": 1.4545971826883033,
+      "x_m": 267.911,
+      "y_m": 525.599,
+      "yaw_deg": 207.73945667780936
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_390",
+      "scale": 1.470490573788993,
+      "x_m": 596.676,
+      "y_m": 98.559,
+      "yaw_deg": 138.14847400411963
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_391",
+      "scale": 1.830502169788815,
+      "x_m": 601.693,
+      "y_m": 139.992,
+      "yaw_deg": 57.52797922119498
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_392",
+      "scale": 1.823450393974781,
+      "x_m": 345.718,
+      "y_m": 153.312,
+      "yaw_deg": 26.512077916413546
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_393",
+      "scale": 1.629491844214499,
+      "x_m": 495.521,
+      "y_m": 581.9,
+      "yaw_deg": 236.18186384439468
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_394",
+      "scale": 2.4033980392850935,
+      "x_m": 641.608,
+      "y_m": 634.088,
+      "yaw_deg": 156.65502922609448
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_395",
+      "scale": 2.3990278183482587,
+      "x_m": 281.069,
+      "y_m": 491.339,
+      "yaw_deg": 107.17211357317865
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_396",
+      "scale": 1.8196790097281337,
+      "x_m": 580.391,
+      "y_m": 108.975,
+      "yaw_deg": 238.75956703908741
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_397",
+      "scale": 1.794779557036236,
+      "x_m": 632.283,
+      "y_m": 149.307,
+      "yaw_deg": 305.21240464411676
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_398",
+      "scale": 1.0598081033676863,
+      "x_m": 643.655,
+      "y_m": 614.894,
+      "yaw_deg": 89.5054529607296
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_399",
+      "scale": 2.0186537384288386,
+      "x_m": 582.523,
+      "y_m": 296.269,
+      "yaw_deg": 155.41257661767304
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_400",
+      "scale": 1.4408100775908679,
+      "x_m": 529.954,
+      "y_m": 70.15,
+      "yaw_deg": 356.75543594174087
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_401",
+      "scale": 2.044617519597523,
+      "x_m": 39.87,
+      "y_m": 61.518,
+      "yaw_deg": 59.23535378649831
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_402",
+      "scale": 1.5446163441520184,
+      "x_m": 89.692,
+      "y_m": 124.661,
+      "yaw_deg": 94.21207859180868
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_403",
+      "scale": 1.9480796011630446,
+      "x_m": 60.521,
+      "y_m": 104.009,
+      "yaw_deg": 88.01971334964037
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_404",
+      "scale": 1.1585410501575097,
+      "x_m": 340.204,
+      "y_m": 356.39,
+      "yaw_deg": 135.692022414878
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_405",
+      "scale": 1.4416450359858572,
+      "x_m": 244.209,
+      "y_m": 37.957,
+      "yaw_deg": 11.6773443762213
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_406",
+      "scale": 2.281644210102968,
+      "x_m": 601.257,
+      "y_m": 100.363,
+      "yaw_deg": 120.24652607738972
+    },
+    {
+      "asset": "spr_mm_tree_winter3",
+      "id": "scatter_407",
+      "scale": 2.060496592661366,
+      "x_m": 219.227,
+      "y_m": 137.771,
+      "yaw_deg": 4.820748679339886
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_408",
+      "scale": 1.7065014604013413,
+      "x_m": 311.36,
+      "y_m": 164.715,
+      "yaw_deg": 239.86766871996224
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_409",
+      "scale": 1.2251062918221578,
+      "x_m": 526.716,
+      "y_m": 414.813,
+      "yaw_deg": 331.89576398581266
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_410",
+      "scale": 1.2096969221020117,
+      "x_m": 277.09,
+      "y_m": 503.123,
+      "yaw_deg": 259.4532870221883
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_411",
+      "scale": 1.6308104178169742,
+      "x_m": 436.405,
+      "y_m": 137.383,
+      "yaw_deg": 142.01505079865456
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_412",
+      "scale": 2.098869518144056,
+      "x_m": 528.751,
+      "y_m": 89.841,
+      "yaw_deg": 156.31944104097784
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_413",
+      "scale": 2.0113398412941024,
+      "x_m": 37.493,
+      "y_m": 93.184,
+      "yaw_deg": 22.018506433814764
+    },
+    {
+      "asset": "spr_mm_tree_winter10",
+      "id": "scatter_414",
+      "scale": 2.4513056590221822,
+      "x_m": 630.197,
+      "y_m": 156.22,
+      "yaw_deg": 138.52175518870354
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_415",
+      "scale": 2.0157044243533164,
+      "x_m": 527.734,
+      "y_m": 86.542,
+      "yaw_deg": 37.155488887801766
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_416",
+      "scale": 2.1922187154414132,
+      "x_m": 335.407,
+      "y_m": 360,
+      "yaw_deg": 337.79961188323796
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_417",
+      "scale": 1.375574358040467,
+      "x_m": 547.116,
+      "y_m": 281.095,
+      "yaw_deg": 160.03767256624997
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_418",
+      "scale": 1.1126381343929097,
+      "x_m": 160.747,
+      "y_m": 147.759,
+      "yaw_deg": 187.664143871516
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_419",
+      "scale": 1.664096774184145,
+      "x_m": 78.503,
+      "y_m": 113.873,
+      "yaw_deg": 74.47600470855832
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_420",
+      "scale": 2.379637261852622,
+      "x_m": 572.533,
+      "y_m": 295.865,
+      "yaw_deg": 133.45062263309956
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_421",
+      "scale": 1.1915683323750272,
+      "x_m": 280.629,
+      "y_m": 505.34,
+      "yaw_deg": 263.57776533812284
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_422",
+      "scale": 1.284513026010245,
+      "x_m": 63.013,
+      "y_m": 446.309,
+      "yaw_deg": 331.10891668125987
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_423",
+      "scale": 2.083282376639545,
+      "x_m": 130.433,
+      "y_m": 154.116,
+      "yaw_deg": 137.8207441046834
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_424",
+      "scale": 1.7150167248910293,
+      "x_m": 537.544,
+      "y_m": 403.841,
+      "yaw_deg": 139.07457363791764
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_425",
+      "scale": 2.4624609781894833,
+      "x_m": 534.698,
+      "y_m": 75.478,
+      "yaw_deg": 128.01984691992402
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_426",
+      "scale": 1.08365532127209,
+      "x_m": 638.138,
+      "y_m": 157.987,
+      "yaw_deg": 12.270773397758603
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_427",
+      "scale": 1.4656062407884747,
+      "x_m": 351.414,
+      "y_m": 164.167,
+      "yaw_deg": 22.937469379976392
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_428",
+      "scale": 1.291762468055822,
+      "x_m": 208.859,
+      "y_m": 143.199,
+      "yaw_deg": 333.58776002191007
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_429",
+      "scale": 1.5301536730257794,
+      "x_m": 358.056,
+      "y_m": 161.343,
+      "yaw_deg": 341.0580644197762
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_430",
+      "scale": 1.6050853783963248,
+      "x_m": 509.954,
+      "y_m": 384.714,
+      "yaw_deg": 97.55022970028222
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_431",
+      "scale": 1.3332329684635624,
+      "x_m": 274.921,
+      "y_m": 502.806,
+      "yaw_deg": 101.09368178062141
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_432",
+      "scale": 2.148990407004021,
+      "x_m": 259.648,
+      "y_m": 498.682,
+      "yaw_deg": 128.05990051478148
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_433",
+      "scale": 1.8428518919972703,
+      "x_m": 599.015,
+      "y_m": 108.947,
+      "yaw_deg": 183.29379583708942
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_434",
+      "scale": 1.3919271029299125,
+      "x_m": 291.693,
+      "y_m": 512.209,
+      "yaw_deg": 222.44611121714115
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_435",
+      "scale": 2.19121898105368,
+      "x_m": 610.685,
+      "y_m": 121.016,
+      "yaw_deg": 125.29466053470969
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_436",
+      "scale": 1.3210042690625414,
+      "x_m": 600.996,
+      "y_m": 89.213,
+      "yaw_deg": 341.99351750314236
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_437",
+      "scale": 1.0421803093049675,
+      "x_m": 296.678,
+      "y_m": 158.358,
+      "yaw_deg": 257.99035456962883
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_438",
+      "scale": 1.6702950892504305,
+      "x_m": 516.807,
+      "y_m": 90.074,
+      "yaw_deg": 173.86820482090116
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_439",
+      "scale": 2.3836532855639234,
+      "x_m": 92.704,
+      "y_m": 114.481,
+      "yaw_deg": 64.69412899576128
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_440",
+      "scale": 1.3439469008008018,
+      "x_m": 500.969,
+      "y_m": 380.474,
+      "yaw_deg": 359.11513321101665
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_441",
+      "scale": 2.1416400017915294,
+      "x_m": 290.8,
+      "y_m": 527.602,
+      "yaw_deg": 246.56569632701576
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_442",
+      "scale": 1.4960343018174171,
+      "x_m": 194.322,
+      "y_m": 129.591,
+      "yaw_deg": 239.80266496539116
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_443",
+      "scale": 1.400323058362119,
+      "x_m": 520.684,
+      "y_m": 353.725,
+      "yaw_deg": 138.9811139088124
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_444",
+      "scale": 1.1117363893426955,
+      "x_m": 259.625,
+      "y_m": 551.439,
+      "yaw_deg": 339.2117090988904
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_445",
+      "scale": 1.4870226536877453,
+      "x_m": 531.38,
+      "y_m": 420.52,
+      "yaw_deg": 232.64661270193756
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy6",
+      "id": "scatter_446",
+      "scale": 2.305934557924047,
+      "x_m": 24.295,
+      "y_m": 76.906,
+      "yaw_deg": 64.89528117701411
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_447",
+      "scale": 1.5813817107118666,
+      "x_m": 553.216,
+      "y_m": 414.574,
+      "yaw_deg": 306.7888593301177
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_448",
+      "scale": 1.523703980492428,
+      "x_m": 559.095,
+      "y_m": 31.492,
+      "yaw_deg": 177.61213920079172
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_449",
+      "scale": 2.048860148410313,
+      "x_m": 97.996,
+      "y_m": 118.057,
+      "yaw_deg": 11.483795586973429
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_450",
+      "scale": 1.9511025816900656,
+      "x_m": 489.917,
+      "y_m": 361.411,
+      "yaw_deg": 67.22965738736093
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_451",
+      "scale": 1.2840931555256248,
+      "x_m": 143.658,
+      "y_m": 125.172,
+      "yaw_deg": 82.64268315397203
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_452",
+      "scale": 1.4941596507560462,
+      "x_m": 539.91,
+      "y_m": 407.623,
+      "yaw_deg": 349.5418245624751
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_453",
+      "scale": 2.1116410257527605,
+      "x_m": 488.88,
+      "y_m": 570.4,
+      "yaw_deg": 253.95232527516782
+    },
+    {
+      "asset": "spr_mm_tree_winter7",
+      "id": "scatter_454",
+      "scale": 1.1892416442278773,
+      "x_m": 198.66,
+      "y_m": 125.378,
+      "yaw_deg": 68.44902011565864
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_455",
+      "scale": 2.4267198777524754,
+      "x_m": 47.627,
+      "y_m": 105.137,
+      "yaw_deg": 85.65732657909393
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_456",
+      "scale": 2.4134107168065384,
+      "x_m": 332.64,
+      "y_m": 355.975,
+      "yaw_deg": 210.05522405728698
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_457",
+      "scale": 1.4810919892042875,
+      "x_m": 122.894,
+      "y_m": 147.355,
+      "yaw_deg": 186.2803033925593
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_458",
+      "scale": 1.233113072696142,
+      "x_m": 258.086,
+      "y_m": 525.242,
+      "yaw_deg": 79.98429735191166
+    },
+    {
+      "asset": "spr_flora_bush_winter2b",
+      "id": "scatter_459",
+      "scale": 1.83812522853259,
+      "x_m": 587.695,
+      "y_m": 105.099,
+      "yaw_deg": 143.19782316684723
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_460",
+      "scale": 1.8406420210376382,
+      "x_m": 263.614,
+      "y_m": 518.589,
+      "yaw_deg": 225.06528547033668
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_461",
+      "scale": 1.6505146122071892,
+      "x_m": 444.452,
+      "y_m": 199.658,
+      "yaw_deg": 96.90228628925979
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_462",
+      "scale": 1.0897103931056336,
+      "x_m": 58.193,
+      "y_m": 97.559,
+      "yaw_deg": 244.10002330318093
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_463",
+      "scale": 2.0320098771480843,
+      "x_m": 154.833,
+      "y_m": 124.823,
+      "yaw_deg": 53.372210171073675
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_464",
+      "scale": 2.371626321109943,
+      "x_m": 548.125,
+      "y_m": 400.685,
+      "yaw_deg": 135.4232995212078
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_465",
+      "scale": 2.0380417831474915,
+      "x_m": 537.621,
+      "y_m": 119.195,
+      "yaw_deg": 104.44825479760766
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_466",
+      "scale": 2.027564855408855,
+      "x_m": 595.598,
+      "y_m": 111.666,
+      "yaw_deg": 61.13194763660431
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_467",
+      "scale": 1.9847682010149583,
+      "x_m": 596.322,
+      "y_m": 155.889,
+      "yaw_deg": 229.4014640059322
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_468",
+      "scale": 1.7029052809812129,
+      "x_m": 625.237,
+      "y_m": 147.128,
+      "yaw_deg": 25.03474091179669
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_469",
+      "scale": 2.0680424383608624,
+      "x_m": 158.682,
+      "y_m": 135.336,
+      "yaw_deg": 337.41104789078236
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_470",
+      "scale": 1.3155619070166722,
+      "x_m": 73.776,
+      "y_m": 108.809,
+      "yaw_deg": 220.32346171326935
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_471",
+      "scale": 1.4226648557232693,
+      "x_m": 536.313,
+      "y_m": 84.719,
+      "yaw_deg": 290.31095274724066
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_472",
+      "scale": 1.320342228282243,
+      "x_m": 115.356,
+      "y_m": 152.317,
+      "yaw_deg": 351.0629737749696
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_473",
+      "scale": 1.4101527156308293,
+      "x_m": 356.851,
+      "y_m": 164.711,
+      "yaw_deg": 267.7201548591256
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_474",
+      "scale": 1.1687144925817847,
+      "x_m": 92.176,
+      "y_m": 102.064,
+      "yaw_deg": 96.34728527627885
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_475",
+      "scale": 1.2940524714067578,
+      "x_m": 280.042,
+      "y_m": 531.956,
+      "yaw_deg": 74.49994065798819
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_476",
+      "scale": 1.6277603385969996,
+      "x_m": 501.68,
+      "y_m": 367.428,
+      "yaw_deg": 140.71699666790664
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_477",
+      "scale": 1.7953571138205007,
+      "x_m": 51.904,
+      "y_m": 107.878,
+      "yaw_deg": 165.11821389198303
+    },
+    {
+      "asset": "spr_flora_bush_winterc",
+      "id": "scatter_478",
+      "scale": 1.061339381732978,
+      "x_m": 293.003,
+      "y_m": 515.117,
+      "yaw_deg": 291.64012578316033
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_479",
+      "scale": 1.1092358165187761,
+      "x_m": 540.04,
+      "y_m": 415.317,
+      "yaw_deg": 352.47060620225966
+    },
+    {
+      "asset": "spr_flora_bush_winterg",
+      "id": "scatter_480",
+      "scale": 1.029488914879039,
+      "x_m": 537.211,
+      "y_m": 77.767,
+      "yaw_deg": 78.97235378623009
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_481",
+      "scale": 1.5501308628590778,
+      "x_m": 619.806,
+      "y_m": 145.631,
+      "yaw_deg": 319.95964385569096
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_482",
+      "scale": 1.0688199718715623,
+      "x_m": 529.117,
+      "y_m": 118.816,
+      "yaw_deg": 60.55371131747961
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_483",
+      "scale": 1.728389295632951,
+      "x_m": 557.283,
+      "y_m": 274.317,
+      "yaw_deg": 309.64563882909715
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_484",
+      "scale": 1.1403807590249926,
+      "x_m": 562.522,
+      "y_m": 364.949,
+      "yaw_deg": 278.5612675175071
+    },
+    {
+      "asset": "spr_flora_bush_winterd",
+      "id": "scatter_485",
+      "scale": 1.840588734135963,
+      "x_m": 377.712,
+      "y_m": 74.964,
+      "yaw_deg": 112.13829263113439
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_486",
+      "scale": 0.8191458521410824,
+      "x_m": 284.137,
+      "y_m": 504.878,
+      "yaw_deg": 29.81411819346249
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy3",
+      "id": "scatter_487",
+      "scale": 1.3154126707231626,
+      "x_m": 627.665,
+      "y_m": 162.239,
+      "yaw_deg": 10.510969776660204
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_488",
+      "scale": 1.0580460694618523,
+      "x_m": 606.966,
+      "y_m": 96.001,
+      "yaw_deg": 128.5293653793633
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_489",
+      "scale": 2.327980162575841,
+      "x_m": 101.807,
+      "y_m": 124.755,
+      "yaw_deg": 47.211504047736526
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_490",
+      "scale": 2.135310805402696,
+      "x_m": 273.127,
+      "y_m": 368.488,
+      "yaw_deg": 222.88752587512136
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_491",
+      "scale": 1.4979563420638442,
+      "x_m": 133.079,
+      "y_m": 151.622,
+      "yaw_deg": 300.7012196816504
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_492",
+      "scale": 1.353173681651242,
+      "x_m": 112.45,
+      "y_m": 122.937,
+      "yaw_deg": 16.282612681388855
+    },
+    {
+      "asset": "spr_mm_tree_winter15",
+      "id": "scatter_493",
+      "scale": 2.7770765800029036,
+      "x_m": 48.699,
+      "y_m": 157.768,
+      "yaw_deg": 70.5671991314739
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_494",
+      "scale": 1.2099711262853816,
+      "x_m": 285.421,
+      "y_m": 537.051,
+      "yaw_deg": 105.98187670111656
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_495",
+      "scale": 2.3971226260764524,
+      "x_m": 69.722,
+      "y_m": 147.573,
+      "yaw_deg": 117.82641322351992
+    },
+    {
+      "asset": "spr_mm_tree_winter8",
+      "id": "scatter_496",
+      "scale": 1.9746274462668225,
+      "x_m": 279.843,
+      "y_m": 521.012,
+      "yaw_deg": 306.44131905399263
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_497",
+      "scale": 1.9352343733189628,
+      "x_m": 598.414,
+      "y_m": 130.288,
+      "yaw_deg": 276.40877516940236
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_498",
+      "scale": 2.2452519946964458,
+      "x_m": 529.776,
+      "y_m": 412.757,
+      "yaw_deg": 181.0134233906865
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_499",
+      "scale": 2.207124866428785,
+      "x_m": 551.159,
+      "y_m": 402.879,
+      "yaw_deg": 290.20178717561066
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_500",
+      "scale": 1.6439091049833223,
+      "x_m": 488.256,
+      "y_m": 397.3,
+      "yaw_deg": 72.6701171323657
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_501",
+      "scale": 2.267136968905106,
+      "x_m": 283.386,
+      "y_m": 628.669,
+      "yaw_deg": 197.00386120006442
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_502",
+      "scale": 1.234711030148901,
+      "x_m": 548.711,
+      "y_m": 414.486,
+      "yaw_deg": 320.63637684099376
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_503",
+      "scale": 1.2487999965669587,
+      "x_m": 201.137,
+      "y_m": 163.335,
+      "yaw_deg": 149.09306779503822
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_504",
+      "scale": 2.2929186567198485,
+      "x_m": 221.087,
+      "y_m": 571.265,
+      "yaw_deg": 168.2550129108131
+    },
+    {
+      "asset": "spr_mm_tree_winter6",
+      "id": "scatter_505",
+      "scale": 2.418635244714096,
+      "x_m": 435.744,
+      "y_m": 213.174,
+      "yaw_deg": 244.99579712748528
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_506",
+      "scale": 2.1194257378811017,
+      "x_m": 619.785,
+      "y_m": 159.206,
+      "yaw_deg": 38.568512722849846
+    },
+    {
+      "asset": "spr_flora_bush_wintere",
+      "id": "scatter_507",
+      "scale": 1.3760000095935538,
+      "x_m": 322.262,
+      "y_m": 360.457,
+      "yaw_deg": 149.64806612581015
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy5",
+      "id": "scatter_508",
+      "scale": 1.1693282881751657,
+      "x_m": 263.404,
+      "y_m": 139.868,
+      "yaw_deg": 318.46953643485904
+    },
+    {
+      "asset": "spr_mm_tree_winter9",
+      "id": "scatter_509",
+      "scale": 1.2252996001625434,
+      "x_m": 616.538,
+      "y_m": 97.648,
+      "yaw_deg": 13.557935329154134
+    },
+    {
+      "asset": "spr_flora_bush_winteri",
+      "id": "scatter_510",
+      "scale": 1.2978275646455586,
+      "x_m": 521.666,
+      "y_m": 81.963,
+      "yaw_deg": 287.3604178894311
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_511",
+      "scale": 2.3592800945043564,
+      "x_m": 31.481,
+      "y_m": 524.81,
+      "yaw_deg": 339.2185757216066
+    },
+    {
+      "asset": "spr_mm_tree_winter1",
+      "id": "scatter_512",
+      "scale": 2.4542987828608602,
+      "x_m": 495.674,
+      "y_m": 379.56,
+      "yaw_deg": 351.8768453411758
+    },
+    {
+      "asset": "spr_mm_tree_winter14",
+      "id": "scatter_513",
+      "scale": 2.4839464680990204,
+      "x_m": 536.52,
+      "y_m": 319.808,
+      "yaw_deg": 295.1945763453841
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_514",
+      "scale": 1.8467569578206167,
+      "x_m": 108.313,
+      "y_m": 128.222,
+      "yaw_deg": 350.34655759111047
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_515",
+      "scale": 2.173052095808089,
+      "x_m": 531.313,
+      "y_m": 417.302,
+      "yaw_deg": 350.64817383885384
+    },
+    {
+      "asset": "spr_flora_bush_winterf",
+      "id": "scatter_516",
+      "scale": 1.5824033903190866,
+      "x_m": 277.107,
+      "y_m": 524.299,
+      "yaw_deg": 106.84298414736986
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy7",
+      "id": "scatter_517",
+      "scale": 1.6647959726396948,
+      "x_m": 257.932,
+      "y_m": 147.994,
+      "yaw_deg": 222.3267866950482
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_518",
+      "scale": 2.47605986346025,
+      "x_m": 515.346,
+      "y_m": 391.548,
+      "yaw_deg": 183.11898722313344
+    },
+    {
+      "asset": "spr_mm_tree_winter13",
+      "id": "scatter_519",
+      "scale": 1.0436794186243787,
+      "x_m": 573.451,
+      "y_m": 258.123,
+      "yaw_deg": 26.880088476464152
+    },
+    {
+      "asset": "spr_flora_bush_winter2d",
+      "id": "scatter_520",
+      "scale": 1.6189019263256341,
+      "x_m": 514.479,
+      "y_m": 96.76,
+      "yaw_deg": 97.28292393498123
+    },
+    {
+      "asset": "spr_mm_tree_winter5",
+      "id": "scatter_521",
+      "scale": 1.3465534533606842,
+      "x_m": 512.581,
+      "y_m": 84.265,
+      "yaw_deg": 338.86880250647664
+    },
+    {
+      "asset": "spr_mm_tree_winter12",
+      "id": "scatter_522",
+      "scale": 1.9855837022187188,
+      "x_m": 62.406,
+      "y_m": 130.758,
+      "yaw_deg": 227.67291323281825
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_523",
+      "scale": 1.1008595299208537,
+      "x_m": 274.39,
+      "y_m": 527.49,
+      "yaw_deg": 216.8949127011001
+    },
+    {
+      "asset": "spr_mm_tree_winter2",
+      "id": "scatter_524",
+      "scale": 1.8742971196770668,
+      "x_m": 277.384,
+      "y_m": 375.91,
+      "yaw_deg": 76.46566400304437
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_525",
+      "scale": 2.3344582844292745,
+      "x_m": 338.265,
+      "y_m": 166.852,
+      "yaw_deg": 289.7631957102567
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_526",
+      "scale": 1.6592492520576343,
+      "x_m": 196.293,
+      "y_m": 163.612,
+      "yaw_deg": 233.43814129941165
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_527",
+      "scale": 1.2814105008728802,
+      "x_m": 557.27,
+      "y_m": 66.465,
+      "yaw_deg": 234.44505429826677
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_528",
+      "scale": 1.52514610090293,
+      "x_m": 54.948,
+      "y_m": 105.279,
+      "yaw_deg": 112.03134248033166
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy2",
+      "id": "scatter_529",
+      "scale": 2.022638163412921,
+      "x_m": 64.858,
+      "y_m": 100.502,
+      "yaw_deg": 20.6485827639699
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy1",
+      "id": "scatter_530",
+      "scale": 2.301237821346149,
+      "x_m": 205.715,
+      "y_m": 161.062,
+      "yaw_deg": 120.55534824728966
+    },
+    {
+      "asset": "spr_flora_bush_winterj",
+      "id": "scatter_531",
+      "scale": 2.2688739660661668,
+      "x_m": 626.935,
+      "y_m": 159.426,
+      "yaw_deg": 70.91833784244955
+    },
+    {
+      "asset": "spr_mm_tree_winter16",
+      "id": "scatter_532",
+      "scale": 2.3761312081478536,
+      "x_m": 633.136,
+      "y_m": 637.421,
+      "yaw_deg": 89.23341661691666
+    },
+    {
+      "asset": "spr_flora_bush_winter2a",
+      "id": "scatter_533",
+      "scale": 1.15962503105402,
+      "x_m": 573.844,
+      "y_m": 269.811,
+      "yaw_deg": 351.30569860339165
+    },
+    {
+      "asset": "spr_flora_bush_winterh",
+      "id": "scatter_534",
+      "scale": 2.3566480218432844,
+      "x_m": 187.029,
+      "y_m": 130.429,
+      "yaw_deg": 344.1008147969842
+    },
+    {
+      "asset": "spr_mm_tree_winter4",
+      "id": "scatter_535",
+      "scale": 1.862515426473692,
+      "x_m": 277.53,
+      "y_m": 122.306,
+      "yaw_deg": 311.9754380173981
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_536",
+      "scale": 1.7950474933022633,
+      "x_m": 300.653,
+      "y_m": 370.192,
+      "yaw_deg": 244.2469849716872
+    },
+    {
+      "asset": "spr_mm_tree_winter11",
+      "id": "scatter_537",
+      "scale": 1.0404608191456646,
+      "x_m": 561.034,
+      "y_m": 272.612,
+      "yaw_deg": 253.09935514815152
+    },
+    {
+      "asset": "spr_mm_tree_pine_snowy4",
+      "id": "scatter_538",
+      "scale": 1.445420210598968,
+      "x_m": 510.862,
+      "y_m": 378.991,
+      "yaw_deg": 255.43714597821236
+    },
+    {
+      "asset": "spr_flora_bush_wintera",
+      "id": "scatter_539",
+      "scale": 1.9461327951867133,
+      "x_m": 113.305,
+      "y_m": 140.585,
+      "yaw_deg": 251.9779028557241
+    },
+    {
+      "asset": "spr_flora_bush_winter2c",
+      "id": "scatter_540",
+      "scale": 2.1296128194080666,
+      "x_m": 639.198,
+      "y_m": 138.08,
+      "yaw_deg": 125.55522062815726
+    },
+    {
+      "asset": "spr_flora_bush_winterb",
+      "id": "scatter_541",
+      "scale": 2.104534570593387,
+      "x_m": 76.047,
+      "y_m": 139.822,
+      "yaw_deg": 273.92796920612454
+    }
+  ],
+  "settings": {
+    "biome": "desert_forest",
+    "fog": "source",
+    "precipitation": "source",
+    "precipitation_intensity": 10,
+    "thunder": "source",
+    "thunder_frequency": 50
+  },
+  "source": {
+    "recipe_file_sha256": "9b90cb60bf9b2c4c9ff537a920947f8133306d489a6e3df8de41bf93468e11fc",
+    "recipe_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/maps/small/test_map_241/source/scn_test_037_plain.txt",
+    "recipe_sha256": "9b90cb60bf9b2c4c9ff537a920947f8133306d489a6e3df8de41bf93468e11fc",
+    "scene_id": "scn_test_037_plain",
+    "sco_path": "/mnt/c/Program Files (x86)/Mount&Blade Warband/Modules/MOD/custom_maps/random_maps/maps/small/test_map_241/source/scn_test_037_plain.sco",
+    "sco_sha256": "54e4021af421f9a0d5221883dc7846a8f28669426f4899a6f8fbd0472806a012",
+    "terrain_code": "0x000000033287c98a000a82a041f7f4443f68a16410533d28"
+  },
+  "spawn_points": [
+    {
+      "entry": 0,
+      "team": 0,
+      "x_m": 443.202,
+      "y_m": 61.844
+    },
+    {
+      "entry": 32,
+      "team": 1,
+      "x_m": 432.518,
+      "y_m": 609.185
+    }
+  ],
+  "version": 3
+}

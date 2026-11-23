@@ -1,12 +1,10 @@
-import { loadRecordings } from './replay-recordings.js';
-import { densityRecordingMatches, DENSITY_UNITS, selectDensity } from './rotation-density.js';
-import { recordedVariantId } from './map-variants.js';
-
-const cache = new Map();
+import { DENSITY_UNITS, selectDensity } from './rotation-density.js';
+import { densityFromPreparedHeat, preparedHeatLoader } from './prepared-heatmaps.js';
 export const densityDefaults = () => ({ units: DENSITY_UNITS.map(([id]) => id), deathKind: 'player', movement: false, deaths: false, comparison: false, compareVariant: '', compareMetric: 'deaths', compareScale: 'per-recording', compareOpacity: .8, movementOpacity: .7, deathOpacity: .8, smoothing: 10, contrast: .7 });
 const variantLabel = id => /^var[a-z]$/i.test(id) ? `Var${id.slice(3).toUpperCase()}` : id;
 
-export function setupDensityControls(container, viewer, data, settings, mapEntry) {
+export function setupDensityControls(container, viewer, data, settings, mapEntry,
+  loadHeat = preparedHeatLoader(mapEntry.map_id, data.bounds)) {
   const document = container.ownerDocument;
   const root = document.createElement('fieldset'); root.className = 'terrain-density';
   root.innerHTML = `<legend>Movement & death heatmaps</legend>
@@ -39,52 +37,48 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
     <p data-explanation></p>
     <p>Time between snapshots is estimated; missing intervals are excluded. Deaths use the last recorded position and may be approximate.</p>`;
   const graphics = container.querySelector('.terrain-graphics');
-  graphics.querySelector('summary').textContent = 'Map settings';
+  graphics.querySelector('summary').textContent = 'Map settings & heatmaps';
   graphics.querySelector('summary').after(root);
   const status = root.querySelector('.density-status');
-  const baseTerrain = { id: data.id, map_id: mapEntry.map_id, source: data.source, bounds: data.bounds };
-  let mapRecordings = [], catalogReady = false, catalogLoading = false;
   root.querySelector('.density-comparison').hidden = true;
-  const variantNote = !mapEntry.selectedVariant || mapEntry.selectedVariant === 'all' ? 'All variants combined.' : `${mapEntry.selectedVariant === 'source' ? 'Source / RAW' : mapEntry.variantLabel || mapEntry.selectedVariant} recordings only.`;
-  let filtered, filterKey, filterSource;
-  let terrain, candidates, key, worker, disposed = false, loaded, loading = false, generation = 0;
+  const variant = mapEntry.selectedVariant || 'all';
+  const variantNote = variant === 'all' ? 'All variants combined.' : `${variant === 'source' ? 'Source / RAW' : mapEntry.variantLabel || variant} recordings only.`;
+  let archive, density, filtered, filterKey, filterSource;
+  let disposed = false, loading = false, failed = false;
   const enabled = () => settings.comparison || settings.movement || settings.deaths;
-  async function discoverRecordings() {
-    if (disposed || catalogReady || catalogLoading) return;
-    catalogLoading = true;
-    status.textContent = 'Loading available recordings… The map remains editable.';
+  function setDensity() {
+    if (archive) density = densityFromPreparedHeat(archive, variant, settings.comparison ? settings.compareVariant : undefined);
+  }
+  async function load() {
+    if (disposed || loading || archive || !loadHeat) return;
+    loading = true; failed = false;
+    update();
     try {
-      const recordings = await loadRecordings();
+      const data = await loadHeat();
       if (disposed) return;
-      mapRecordings = recordings.filter(row => densityRecordingMatches(row, baseTerrain));
-      const variants = [...new Set(mapRecordings.map(row => recordedVariantId(row, baseTerrain.map_id)))].filter(id => id !== 'source').sort();
-      const canCompare = variants.length > 0 && mapRecordings.some(row => recordedVariantId(row, baseTerrain.map_id) === 'source');
+      archive = data;
+      const variants = archive.groups.map(group => group.variant).filter(id => !['source', 'unidentified'].includes(id));
+      const canCompare = variants.length > 0 && archive.groups.some(group => group.variant === 'source');
       root.querySelector('.density-comparison').hidden = !canCompare;
       if (!canCompare) settings.comparison = false;
-      if (!variants.includes(settings.compareVariant)) settings.compareVariant = variants.includes(mapEntry.selectedVariant) ? mapEntry.selectedVariant : variants[0] || '';
+      if (!variants.includes(settings.compareVariant)) settings.compareVariant = variants.includes(variant) ? variant : variants[0] || '';
       root.querySelector('[data-density=compareVariant]').replaceChildren(...variants.map(id => new document.defaultView.Option(variantLabel(id), id)));
-      catalogReady = true; catalogLoading = false;
-      if (!mapRecordings.length) root.querySelectorAll('input').forEach(input => { input.disabled = true; });
-      context(); update(); start();
+      setDensity();
     } catch {
-      if (disposed) return;
-      catalogLoading = false;
-      status.textContent = 'Available recordings could not load. ';
-      const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Retry';
-      retry.addEventListener('click', discoverRecordings); status.append(retry);
+      archive = undefined;
+      density = undefined;
+      failed = true;
+    } finally {
+      loading = false;
+      if (!disposed) update();
     }
   }
-  const onSettingsToggle = () => { if (graphics.open) discoverRecordings(); };
+  const onSettingsToggle = () => { if (graphics.open) load(); };
   graphics.addEventListener('toggle', onSettingsToggle);
-  function context() {
-    terrain = { ...baseTerrain, selectedVariant: settings.comparison ? 'all' : mapEntry.selectedVariant || 'all', comparisonVariant: settings.comparison ? settings.compareVariant : undefined };
-    candidates = mapRecordings.filter(row => densityRecordingMatches(row, terrain));
-    key = JSON.stringify([terrain.map_id, terrain.id, terrain.selectedVariant, terrain.comparisonVariant, terrain.bounds, candidates.map(row => [row.id, row.url])]);
-    loaded = cache.get(key);
+  if (!loadHeat) {
+    root.querySelectorAll('input, select, button').forEach(input => { input.disabled = true; });
   }
-  function cancel() { generation++; worker?.terminate(); worker = null; loading = false; }
   function update() {
-    if (!enabled() && loading) cancel();
     for (const [name, value] of Object.entries(settings)) {
       const input = root.querySelector(`[data-density="${name}"]`);
       if (!input) continue;
@@ -104,78 +98,53 @@ export function setupDensityControls(container, viewer, data, settings, mapEntry
       : 'Relative to this map’s recordings. Each layer uses its own 95th percentile; hotspots saturate. Unvisited areas stay clear. Lower contrast reveals quieter areas.';
     root.querySelectorAll('[data-density-unit]').forEach(input => { input.checked = settings.units.includes(input.dataset.densityUnit); });
     const nextFilterKey = JSON.stringify([settings.units, settings.deathKind]);
-    if (filterSource !== loaded?.result || filterKey !== nextFilterKey) {
-      filterSource = loaded?.result; filterKey = nextFilterKey;
+    if (filterSource !== density || filterKey !== nextFilterKey) {
+      filterSource = density; filterKey = nextFilterKey;
       filtered = selectDensity(filterSource, settings.units, settings.deathKind);
     }
     viewer.density(filtered, settings);
-    if (!catalogReady) {
-      status.textContent = catalogLoading ? 'Loading available recordings… The map remains editable.' : 'Enable a layer to load available recordings.';
-    } else if (loaded) {
-      const { skipped, failed } = loaded;
-      const result = filtered;
-      if (settings.comparison) {
-        const { source, target } = result.comparison;
-        const average = settings.compareScale !== 'totals';
-        const metric = settings.compareMetric === 'movement' ? 'player-minutes' : 'deaths';
-        const amount = group => ((settings.compareMetric === 'movement' ? group.seconds / 60 : group.deathCount) / (average ? Math.max(1, group.rounds) : 1)).toFixed(1);
-        status.textContent = source.rounds && target.rounds
-          ? `RAW: ${source.rounds} recordings · ${amount(source)} ${metric}${average ? ' per recording' : ''}. ${variantLabel(settings.compareVariant)}: ${target.rounds} recordings · ${amount(target)} ${metric}${average ? ' per recording' : ''}.`
-          : 'Comparison needs at least one loaded RAW recording and one variant recording.';
-      } else status.textContent = `${result.rounds} of ${candidates.length} recordings · ${(result.seconds / 60).toFixed(1)} player-minutes · ${result.deathCount} deaths${skipped ? ` · ${skipped} recordings excluded` : ''}. ${variantNote}`;
-      status.append(` Deaths: ${settings.deathKind === 'all' ? 'players and bots' : settings.deathKind === 'player' ? 'players' : 'bots'}.`);
-      if (!settings.units.length) status.append(' No unit types selected.');
-      if (failed) {
-        status.append(` ${failed} recordings could not load. `);
-        const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Retry failed recordings';
-        retry.addEventListener('click', () => { cache.delete(key); loaded = null; start(); }); status.append(retry);
-      }
-    } else if (!candidates.length) status.textContent = `No published replays for this selection. ${variantNote}`;
-    else if (!loading) status.textContent = `${candidates.length} available recordings. ${settings.comparison ? 'Enable comparison to compare both groups.' : variantNote + ' Enable a layer to load density.'}`;
-  }
-  function start() {
-    if (!catalogReady) { if (enabled()) discoverRecordings(); return; }
-    if (disposed || loaded || loading || !candidates.length || !enabled()) return;
-    loading = true;
-    status.textContent = 'Loading replay density…';
-    const token = generation;
-    worker = new Worker(new URL('./rotation-density-worker.js', import.meta.url), { type: 'module' });
-    worker.onmessage = ({ data: message }) => {
-      if (disposed || token !== generation) return;
-      if ('progress' in message) { status.textContent = `Loading replay density… ${message.progress} / ${message.total}`; return; }
-      loaded = message; loading = false; worker.terminate(); worker = null;
-      cache.set(key, loaded);
-      if (cache.size > 8) cache.delete(cache.keys().next().value);
-      update();
-    };
-    worker.onerror = () => {
-      if (disposed || token !== generation) return;
-      cancel(); status.textContent = 'Replay density could not load. Toggle a layer or comparison to retry.';
-    };
-    worker.postMessage({ terrain, recordings: candidates.map(row => ({ ...row, url: new URL(import.meta.env.BASE_URL + row.url, location.href).href })) });
+    if (!loadHeat) status.textContent = 'No prepared heatmap data for this map.';
+    else if (loading) status.textContent = 'Loading prepared heatmap…';
+    else if (failed) {
+      status.textContent = 'The prepared heatmap could not load. ';
+      const retry = document.createElement('button'); retry.type = 'button'; retry.textContent = 'Retry';
+      retry.addEventListener('click', load); status.append(retry);
+    } else if (!filtered) status.textContent = 'Enable a layer to load the prepared heatmap.';
+    else if (settings.comparison) {
+      const { source, target } = filtered.comparison;
+      const average = settings.compareScale !== 'totals';
+      const metric = settings.compareMetric === 'movement' ? 'player-minutes' : 'deaths';
+      const amount = group => ((metric === 'player-minutes' ? group.seconds / 60 : group.deathCount) / (average ? Math.max(group.rounds, 1) : 1)).toFixed(1);
+      status.textContent = `RAW · ${source.rounds} recordings · ${amount(source)} ${metric}${average ? ' per recording' : ''}. ${variantLabel(settings.compareVariant)} · ${target.rounds} recordings · ${amount(target)} ${metric}${average ? ' per recording' : ''}.`;
+    } else if (!filtered.rounds) status.textContent = `No recorded heatmap data for this selection. ${variantNote}`;
+    else {
+      status.textContent = `${filtered.rounds} recordings · ${(filtered.seconds / 60).toFixed(1)} player-minutes · ${filtered.deathCount} deaths. ${variantNote}`;
+      status.append(` Deaths for ${settings.deathKind === 'all' ? 'players and bots' : settings.deathKind === 'player' ? 'players' : 'bots'}.`);
+    }
+    if (filtered && !settings.units.length) status.append(' No unit types selected.');
   }
   root.addEventListener('input', event => {
     const input = event.target, name = input.dataset.density;
     if (input.dataset.densityUnit) {
       settings.units = [...root.querySelectorAll('[data-density-unit]:checked')].map(el => el.dataset.densityUnit);
-      update(); start(); return;
+      update(); return;
     }
     if (!name) return;
     const reload = name === 'comparison' || name === 'compareVariant';
-    if (reload) cancel();
     settings[name] = input.type === 'checkbox' ? input.checked : input.tagName === 'SELECT' ? input.value : Number(input.value);
-    if (reload) context();
-    update(); start();
+    if (reload) setDensity();
+    update();
+    if (enabled() && !failed) load();
   });
   root.addEventListener('click', event => {
     const action = event.target.dataset.unitsAction;
     if (!action) return;
     settings.units = action === 'all' ? DENSITY_UNITS.map(([id]) => id) : [];
-    update(); start();
+    update();
   });
   settings.units ??= DENSITY_UNITS.map(([id]) => id);
   settings.deathKind ??= 'player';
-  context(); update(); start();
-  onSettingsToggle();
-  return { dispose() { disposed = true; cancel(); graphics.removeEventListener('toggle', onSettingsToggle); root.remove(); } };
+  update();
+  if (enabled() || graphics.open) load();
+  return { dispose() { disposed = true; graphics.removeEventListener('toggle', onSettingsToggle); root.remove(); } };
 }

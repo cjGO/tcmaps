@@ -12,7 +12,7 @@ export function rotationSpawns(data, preview, terrain, sourceSelected = false) {
     : data.spawns.map(point => ({ ...point }));
   const origin = sourceSelected ? 'Source / RAW original spawns'
     : edited ? `Variant spawns · ${preview.variant.label}`
-    : `Measured scene spawns · ${terrain.variant_id || 'Source / RAW'}`;
+    : `Measured scene spawns · ${terrain.map_name || terrain.variant_id || 'Source / RAW'}`;
   let note = `Displayed spawns: ${origin}. ${coordinates(spawns)}. Blue = Team 1; red = Team 2. Coordinates are X, Y.`;
   if (edited && document.default_spawn_points?.length === 2) {
     note += ` Original defaults saved with this variant (not displayed): ${coordinates(document.default_spawn_points)}.`;

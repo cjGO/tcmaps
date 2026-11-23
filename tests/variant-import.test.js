@@ -46,7 +46,8 @@ test('archived filename and checksum still select the exact old replay document'
   const { installedVariantPreview } = await import('../src/rotation-variants.js');
   const current = json('lib/rotation-topology.json');
   const installedVariants = current.maps.filter(m => m.variant_revision);
-  assert.equal(installedVariants.length, 7);
+  const rotation = json('lib/editor-rotation.json');
+  assert.deepEqual(installedVariants.map(map => map.id), rotation.filter(map => map.variant_revision).map(map => map.id));
   for (const installed of installedVariants) {
     const id = installed.map_id;
     const path = `maps/${installed.pool}/${id}/variants/${installed.variant_id}`;

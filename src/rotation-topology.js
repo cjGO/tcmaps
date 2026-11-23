@@ -8,6 +8,7 @@ import './rotation-topology.css';
 import { densityDefaults, setupDensityControls } from './rotation-density-controls.js';
 import { installedVariantPreview, resolveVariantPreview, sourceTerrain } from './rotation-variants.js';
 import { rotationSpawns } from './rotation-spawns.js';
+import { variantId } from './map-variants.js';
 // Keep viewer code with the page's initial module graph. An open tab must not
 // fetch an old hashed chunk after a deployment replaces the available assets.
 import { createTopologyViewer } from './topology-viewer.js';
@@ -18,7 +19,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
   const stage = document.querySelector(`#${prefix}-panel .image-stage`);
   const image = document.getElementById(prefix + '-image'), full = document.getElementById(prefix + '-full-image'), state = document.getElementById(prefix + '-state');
   const panel = document.createElement('div'); panel.className = 'topology-panel'; panel.hidden = true;
-  panel.innerHTML = `<div class="topology-heading"><div><span class="topology-badge">3D PREVIEW</span><strong>Map topology</strong></div><div role="group" aria-label="Map display"><button type="button" data-mode="3d" aria-pressed="true">3D topology</button><button type="button" data-mode="heatmap" aria-pressed="false">Heatmap</button></div></div>
+  panel.innerHTML = `<div class="topology-heading"><div><strong>Map topology</strong></div><div role="group" aria-label="Map display"><button type="button" data-mode="3d" aria-pressed="true">3D terrain</button><button type="button" data-mode="heatmap" aria-pressed="false">Installed heatmap</button></div></div>
     <div class="topology-controls"><label>Overview<select id="topology-camera"><option value="aerial">Aerial</option><option value="reverse">Opposite side</option><option value="overhead">Overhead</option><option value="team1">Team 1 · looking in</option><option value="team2">Team 2 · looking in</option></select></label><label>Height<select id="topology-scale"><option value="1">1× · true scale</option><option value="2">2× · exaggerated</option><option value="4">4× · exaggerated</option></select></label><label class="topology-checkbox"><input id="topology-contours" type="checkbox">2 m contours</label><label class="topology-checkbox"><input id="topology-wireframe" type="checkbox">Mesh</label><button type="button" id="topology-reset">Reset view</button></div>`;
   const live = document.createElement('div'); live.className = 'topology-live'; live.hidden = true;
   const info = document.createElement('div'); info.className = 'topology-info'; info.hidden = true;
@@ -64,6 +65,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     selected = mode; destroy();
     spawnInfo.textContent = '';
     const token = generation, is3d = !!current && mode === '3d';
+    const heading = panel.querySelector('.topology-heading strong');
     modes.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
     panel.querySelector('.topology-controls').hidden = !is3d;
     live.hidden = info.hidden = !is3d; image.hidden = full.hidden = is3d;
@@ -71,7 +73,13 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     if (!is3d) {
       if (recordings) { image.hidden = full.hidden = true; state.textContent = 'Select an available replay.'; state.hidden = false; return; }
       state.textContent = 'Loading map…'; state.hidden = false;
-      if (entry) { image.src = entry.image; image.alt = (publicMapId(identityRegistry, entry.filename) || 'Archived map') + ' elevation heatmap'; full.href = entry.image; }
+      if (entry) {
+        const name = current.map_name || current.map_id;
+        heading.textContent = `${name} · elevation heatmap`;
+        image.src = entry.image;
+        image.alt = `${name} elevation heatmap with team spawn points`;
+        full.href = entry.image;
+      }
       if (image.complete && image.naturalWidth) { image.style.opacity = '1'; state.hidden = true; }
       return;
     }
@@ -79,11 +87,15 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     state.textContent = 'Loading measured topology…'; state.hidden = false;
     request = new AbortController();
     try {
-      const preview = !recordings && prefix === 'rotation'
-        ? entry?.variant
-          ? await resolveVariantPreview(entry.variant, current, archived.maps)
-          : entry?.variantId === 'all' ? await installedVariantPreview(entry.variants || [], current) : null
-        : null;
+      const installedSelected = entry?.variantId === 'installed';
+      let preview;
+      if (!recordings && prefix === 'rotation') {
+        if (installedSelected || entry?.variantId === 'all') {
+          preview = await installedVariantPreview(entry.variants || [], current);
+        } else if (entry?.variant) {
+          preview = await resolveVariantPreview(entry.variant, current, archived.maps);
+        }
+      }
       if (generation !== token) return;
       const sourceSelected = !recordings && prefix === 'rotation' && entry?.variantId === 'source';
       const terrain = sourceSelected ? sourceTerrain(current, archived.maps) : preview?.terrain || current;
@@ -93,7 +105,8 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
       let data = replay.terrain() || await response.json();
       if (generation !== token) return;
       if (!recordings && prefix === 'rotation') {
-        const selectedSpawns = rotationSpawns(data, preview, terrain, sourceSelected);
+        const spawnPreview = preview?.registration === current ? null : preview;
+        const selectedSpawns = rotationSpawns(data, spawnPreview, terrain, sourceSelected);
         data = { ...data, spawns: selectedSpawns.spawns };
         spawnInfo.textContent = selectedSpawns.note;
       }
@@ -109,11 +122,17 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
           await variantLayer.ready;
           if (generation !== token) return;
         }
-        densityControls = setupDensityControls(live, viewer, data, densitySettings, { ...terrain, selectedVariant: entry?.variantId || 'all', variantLabel: entry?.variant?.label });
+        densityControls = setupDensityControls(live, viewer, data, densitySettings, {
+          ...terrain,
+          selectedVariant: installedSelected ? variantId(current.variant_id, current.map_id) : entry?.variantId || 'all',
+          variantLabel: installedSelected ? current.map_name || current.variant_id : entry?.variant?.label,
+        });
       }
       await replay.attach(viewer);
       if (generation !== token) return;
-      panel.querySelector('.topology-heading strong').textContent = replay.terrain() ? `Recorded terrain · ${data.id}` : `${current.map_id || 'Unattributed map'}${sourceSelected ? ' · Source / RAW' : displayedVariant ? ' · ' + displayedVariant.label : ''} · topology`;
+      heading.textContent = replay.terrain() ? `Recorded terrain · ${data.id}`
+        : installedSelected ? `${current.map_name || current.map_id} · installed terrain`
+        : `${current.map_id || 'Unattributed map'}${sourceSelected ? ' · Source / RAW' : displayedVariant ? ' · ' + displayedVariant.label : ''} · topology`;
       query(info, '#topology-low').textContent = `${data.min_height_m.toFixed(1)} m`;
       query(info, '#topology-high').textContent = `${data.max_height_m.toFixed(1)} m`;
       const b = data.bounds;
@@ -122,6 +141,8 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
         ? 'Measured terrain with preview lighting and haze. Original trees, structures and game weather are omitted.'
         : sourceSelected
         ? 'Source / RAW measured terrain and original spawn points. Variant placements and spawn edits are not displayed.'
+        : installedSelected
+        ? `Measured terrain and team spawn points from the installed MOD scene.${displayedVariant ? ` ${displayedVariant.document.placements.length} placements displayed.` : ''}`
         : !variantSourceMatches
         ? 'Showing the installed terrain. This loadout was authored on a different terrain revision, so its asset overlay is unavailable. Statistics are filtered to the selected variant.'
         : displayedVariant
@@ -133,7 +154,7 @@ export function setupTopology({ prefix = 'rotation', recordings = false } = {}) 
     } catch (error) {
       if (generation !== token || error.name === 'AbortError') return;
       console.warn('Topology preview unavailable:', error);
-      state.textContent = `3D could not load: ${error.message} Select Heatmap to continue, or click 3D topology to retry.`; state.hidden = false;
+      state.textContent = `3D could not load: ${error.message} Select Installed heatmap to continue, or click 3D terrain to retry.`; state.hidden = false;
     }
   }
   function setMap(next) {

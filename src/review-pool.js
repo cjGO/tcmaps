@@ -12,10 +12,10 @@ export async function setupReviewPool(root, {load3D=()=>import('./review-terrain
     try { records=JSON.parse(localStorage.getItem(key)||'{}'); if(!records||Array.isArray(records)||typeof records!=='object') throw Error('Invalid progress'); }
     catch { storageError='Saved progress could not be read. Changes are session-only; export before leaving.'; records={}; }
     root.innerHTML=`<h1>Highpool map review</h1><p>Keep candidates, place team 1 and 2 spawns, and export your shortlist. Progress saves in this browser.</p>
-    <div class="sweep-toolbar"><button data-r="prev">← Previous</button><label>Candidate <select data-r="map"></select></label><button data-r="next">Next →</button><label><input type="checkbox" data-r="keep"> Keep / export</label><button data-r="export">Export kept CSV</button></div>
-    <p data-r="progress"></p><div class="sweep-toolbar" role="group" aria-label="Review map view"><button data-r="view2d" aria-pressed="true">2D heatmap &amp; editing</button><button data-r="view3d" aria-pressed="false">3D terrain</button></div><div class="sweep-toolbar"><button data-r="team1">Place team 1</button><button data-r="team2">Place team 2</button><button data-r="measure">Measure from spawns</button><button data-r="clear">Clear measurements</button><button data-r="reset">Clear spawns</button><button data-r="retry">Reload map</button><a data-r="original" target="_blank" rel="noopener">Original heatmap ↗</a></div>
-    <p>Select a placement button, then click once to place. With no button selected, drag a team marker or purple measurement spot to adjust it. Measurement spots show horizontal distances from both spawns and never enter the CSV.</p>
-    <p data-r="status" role="status" aria-live="polite"></p><div data-r="heatmap" class="review-canvas-wrap"><div class="review-figure"><canvas data-r="canvas" width="804" height="804" aria-label="Terrain map: click to place spawns or measurements"></canvas><svg data-r="frame" viewBox="0 0 1040 930" aria-label="Metre axes and shared elevation legend"></svg></div></div><section data-r="three" hidden>
+    <div class="sweep-toolbar"><button data-r="prev" aria-keyshortcuts="ArrowLeft">← Previous</button><label>Candidate <select data-r="map"></select></label><button data-r="next" aria-keyshortcuts="ArrowRight">Next →</button><label><input type="checkbox" data-r="keep"> Keep / export</label><button data-r="export">Export kept CSV</button></div>
+    <p data-r="progress"></p><div class="sweep-toolbar" role="group" aria-label="Review map view"><button data-r="view2d" aria-pressed="true">2D heatmap &amp; editing</button><button data-r="view3d" aria-pressed="false">3D terrain</button></div><div class="sweep-toolbar"><button data-r="team1" aria-keyshortcuts="1">Place team 1 (<kbd>1</kbd>)</button><button data-r="team2" aria-keyshortcuts="2">Place team 2 (<kbd>2</kbd>)</button><button data-r="measure" aria-keyshortcuts="3">Measure from spawns (<kbd>3</kbd>)</button><button data-r="clear">Clear measurements</button><button data-r="reset">Clear spawns</button><button data-r="retry">Reload map</button><a data-r="original" target="_blank" rel="noopener">Original heatmap ↗</a></div>
+    <p>Use <kbd>←</kbd> <kbd>→</kbd> to browse candidates. Press <kbd>Space</kbd> on the map to clear its measurements and spawns and uncheck Keep / export. Choose a placement tool, then click the map to place a point and keep the map for CSV export. Drag existing points to adjust them. Measurement coordinates are temporary.</p>
+    <p data-r="status" role="status" aria-live="polite"></p><div data-r="heatmap" class="review-canvas-wrap"><div class="review-figure"><canvas data-r="canvas" width="804" height="804" tabindex="-1" aria-keyshortcuts="Space" aria-label="Terrain map: click to place spawns or measurements"></canvas><svg data-r="frame" viewBox="0 0 1040 930" aria-label="Metre axes and shared elevation legend"></svg></div></div><section data-r="three" hidden>
       <div class="sweep-toolbar"><label>Camera <select data-r="camera"><option value="aerial">Aerial</option><option value="reverse">Opposite side</option><option value="overhead">Overhead</option></select></label><label>Height <select data-r="height"><option value="1">1× · true scale</option><option value="2">2× · exaggerated</option><option value="4">4× · exaggerated</option></select></label><label><input data-r="contours" type="checkbox"> 2 m contours</label><button data-r="reset3d">Reset view</button></div>
       <p data-r="three-status" role="status"></p><div data-r="three-stage" class="review-three-stage"></div>
       <div class="review-three-legend"><span data-r="legend-low"></span><span data-r="legend-ramp"></span><span data-r="legend-high"></span><strong>Elevation (m) · shared across all 500 maps</strong></div>
@@ -89,9 +89,11 @@ export async function setupReviewPool(root, {load3D=()=>import('./review-terrain
       // Existing handles always win over placement, even when a tool is armed.
       if(hit){drag={...hit,pointerId:e.pointerId};mode=null;canvas.setPointerCapture(e.pointerId);update();return;}
       if(!mode)return;
-      const selected=mode;mode=null;
-      if(selected==='measure'){guides.push(p);update();status('Measurement placed. Drag any point to adjust it.');}
-      else {const r=record();r.spawns[selected==='team1'?0:1]=p;save(r);status('Spawn placed. Drag any point to adjust it.');}
+      const selected=mode,r={...record(),keep:true};mode=null;
+      if(selected==='measure')guides.push(p);
+      else r.spawns[selected==='team1'?0:1]=p;
+      save(r);
+      status(`${selected==='measure'?'Measurement':'Spawn'} placed. Map kept for CSV export.`);
     };
     canvas.onpointermove=e=>{
       if(!ready)return;
@@ -112,11 +114,37 @@ export async function setupReviewPool(root, {load3D=()=>import('./review-terrain
       update();status('Drag any point to adjust it, or select a button to place one point.');
     }
     canvas.onpointerup=canvas.onpointercancel=canvas.onlostpointercapture=endDrag;
-    root.addEventListener('keydown',e=>{if(e.key==='Escape'){mode=null;update();status('Placement cancelled. Drag any existing point to adjust it.');}});
+    function clearReview(){
+      const previousDrag=drag;
+      drag=null;mode=null;guides=[];
+      if(previousDrag&&canvas.hasPointerCapture?.(previousDrag.pointerId))canvas.releasePointerCapture(previousDrag.pointerId);
+      const r=record();
+      save({...r,keep:false,spawns:[null,null]});
+      if(viewer3D&&r.spawns.some(Boolean))show3D();
+      status('Measurements and spawns cleared. Keep / export unchecked.');
+    }
     el('map').onchange=()=>open(maps.findIndex(m=>m.candidate_id===el('map').value));el('prev').onclick=()=>open(index-1);el('next').onclick=()=>open(index+1);el('retry').onclick=()=>open(index);
     el('keep').onchange=()=>{save({...record(),keep:el('keep').checked});status('Keep tag updated.');};el('notes').onchange=()=>save({...record(),notes:el('notes').value});
     for(const m of ['team1','team2','measure'])el(m).onclick=()=>{mode=mode===m?null:m;update();status(mode?`Click once to place ${mode==='measure'?'a measurement spot':mode==='team1'?'team 1':'team 2'}. Click the button again or press Esc to cancel.`:'Drag any existing point to adjust it.');};el('clear').onclick=()=>{guides=[];draw();};el('reset').onclick=()=>save({...record(),spawns:[null,null]});
-    el('export').onclick=()=>{try{const csv=exportKept(manifest,records),url=URL.createObjectURL(new Blob([csv],{type:'text/csv'})),a=document.createElement('a');a.href=url;a.download='highpool-kept-maps.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status('Exported kept maps with both team spawns.');}catch(e){status(e.message);}};
+    const placementKeys=new Map([['1','team1'],['2','team2'],['3','measure']]);
+    root.ownerDocument.addEventListener('keydown',e=>{
+      if(!root.isConnected||panel?.hidden||e.defaultPrevented||e.isComposing||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;
+      if(e.target.closest?.('input, textarea, select, [contenteditable], [role="tablist"], #legacy-review'))return;
+      if(e.key===' '){
+        if(e.target.closest?.('button, summary, [role="button"]'))return;
+        e.preventDefault();
+        if(!e.repeat)clearReview();
+      }else if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+        e.preventDefault();
+        open(index+(e.key==='ArrowLeft'?-1:1));
+      }else if(e.key==='Escape'&&mode){
+        e.preventDefault();mode=null;update();status('Placement cancelled. Drag any existing point to adjust it.');
+      }else{
+        const tool=placementKeys.get(e.key);
+        if(tool&&view==='2d'&&!e.repeat&&mode!==tool)el(tool).click();
+      }
+    });
+    el('export').onclick=()=>{try{const csv=exportKept(manifest,records),url=URL.createObjectURL(new Blob([csv],{type:'text/csv'})),a=document.createElement('a');a.href=url;a.download='highpool-kept-maps.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status('Exported kept maps.');}catch(e){status(e.message);}};
     await open(0);
   }catch(e){root.querySelector('[role="status"]').textContent=e.message+' — refresh to retry.';}
 }

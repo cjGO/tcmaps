@@ -6,6 +6,8 @@ import * as THREE from 'three';
 import { readFile, readdir, open } from 'node:fs/promises';
 import { recordedVariantId } from '../src/map-variants.js';
 import { densityFromRecordings } from '../src/rotation-density-recordings.js';
+import { setupDensityControls, densityDefaults } from '../src/rotation-density-controls.js';
+import { densityFromPreparedHeat } from '../src/prepared-heatmaps.js';
 
 const data = { bounds: { x_min_m: 0, y_min_m: 0, x_max_m: 100, y_max_m: 100 }, source: { sco_sha256: 'a', recipe_sha256: 'b', terrain_code: 'c' } };
 const pose = (t, x, index, y = 25) => ({ t, x, y, z: 0, index });
@@ -250,15 +252,12 @@ test('unit filters split role changes, player/bot deaths and empty selections', 
 test('heatmap controls update unit toggles and death selection', async () => {
   const { JSDOM } = await import('jsdom');
   const dom = new JSDOM('<div id="controls"><details class="terrain-graphics"><summary>Settings</summary></details></div>');
-  let source = await readFile(new URL('../src/rotation-density-controls.js', import.meta.url), 'utf8');
-  source = source.replace("import { loadRecordings } from './replay-recordings.js';", 'const loadRecordings = async () => [];')
-    .replaceAll("'./rotation-density.js'", JSON.stringify(new URL('../src/rotation-density.js', import.meta.url).href))
-    .replaceAll("'./map-variants.js'", JSON.stringify(new URL('../src/map-variants.js', import.meta.url).href));
-  const { setupDensityControls, densityDefaults } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
   const settings = densityDefaults();
   const container = dom.window.document.querySelector('#controls');
   let updates = 0;
-  const controls = setupDensityControls(container, { density() { updates++; } }, data, settings, {});
+  const controls = setupDensityControls(container, { density() { updates++; } }, data, settings, {}, async () => {
+    throw new Error('Closed heatmap controls should not load data');
+  });
   container.querySelector('[data-units-action=none]').click();
   assert.deepEqual(settings.units, []);
   container.querySelector('[data-units-action=all]').click();
@@ -274,24 +273,40 @@ test('heatmap controls update unit toggles and death selection', async () => {
   dom.window.close();
 });
 
-test('heatmap controls defer catalogue loading and ignore completion after disposal', async () => {
+test('heatmap controls defer prepared data loading and ignore completion after disposal', async () => {
   const { JSDOM } = await import('jsdom');
   const dom = new JSDOM('<div id="controls"><details class="terrain-graphics"><summary>Settings</summary></details></div>');
-  let source = await readFile(new URL('../src/rotation-density-controls.js', import.meta.url), 'utf8');
-  source = source.replace("import { loadRecordings } from './replay-recordings.js';",
-    'export let calls = 0, release; const loadRecordings = () => { calls++; return new Promise(resolve => { release = resolve; }); };')
-    .replaceAll("'./rotation-density.js'", JSON.stringify(new URL('../src/rotation-density.js', import.meta.url).href))
-    .replaceAll("'./map-variants.js'", JSON.stringify(new URL('../src/map-variants.js', import.meta.url).href));
-  const module = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
   const container = dom.window.document.querySelector('#controls');
   const graphics = container.querySelector('details');
   let updates = 0;
-  const controls = module.setupDensityControls(container, { density() { updates++; } }, data, module.densityDefaults(), {});
-  assert.equal(module.calls, 0);
+  let calls = 0, release;
+  const controls = setupDensityControls(container, { density() { updates++; } }, data, densityDefaults(), {}, () => {
+    calls++;
+    return new Promise(resolve => { release = resolve; });
+  });
+  assert.equal(calls, 0);
   graphics.open = true; graphics.dispatchEvent(new dom.window.Event('toggle'));
-  assert.equal(module.calls, 1);
-  assert.match(container.querySelector('.density-status').textContent, /Loading available recordings/);
-  controls.dispose(); module.release([]); await Promise.resolve();
-  assert.equal(updates, 1); assert.equal(container.querySelector('.terrain-density'), null);
+  assert.equal(calls, 1);
+  assert.match(container.querySelector('.density-status').textContent, /Loading prepared heatmap/);
+  controls.dispose(); release({ groups: [] }); await Promise.resolve();
+  assert.equal(updates, 2); assert.equal(container.querySelector('.terrain-density'), null);
   dom.window.close();
+});
+
+test('prepared grids retain comparison counts and independent movement and death filters', async () => {
+  const { selectDensity } = await import('../src/rotation-density.js');
+  const archive = { ...data, size: 10, groups: [
+    { variant: 'source', rounds: 2, units: { infantry: [[20, 4000, 1, 2]], light: [[21, 2000, 7, 0]] } },
+    { variant: 'vara', rounds: 4, units: { infantry: [[20, 10000, 3, 5]] } },
+  ] };
+  const comparison = selectDensity(densityFromPreparedHeat(archive, 'all', 'vara'), ['infantry'], 'player');
+  assert.equal(comparison.comparison.source.rounds, 2);
+  assert.equal(comparison.comparison.target.rounds, 4);
+  assert.equal(comparison.comparison.source.deathCount, 1);
+  assert.equal(comparison.comparison.target.deathCount, 3);
+  assert.equal(comparison.comparison.target.seconds, 10);
+  assert.equal(comparison.comparison.source.movement[21], 0);
+  const raw = selectDensity(densityFromPreparedHeat(archive, 'source'), ['infantry'], 'bot');
+  assert.equal(raw.deaths[20], 2);
+  assert.equal(raw.seconds, 4);
 });

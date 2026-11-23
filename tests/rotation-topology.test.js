@@ -25,7 +25,11 @@ const bundled = await build({
         globalThis.rotationTestPlacements = document.placements;
         if (options.updateSpawns !== false) throw new Error('Late spawn override must be disabled');
         return { ready: Promise.resolve(), dispose() {} };
-      }` : args.path.endsWith('rotation-density-controls.js') ? 'export const densityDefaults = () => ({}); export function setupDensityControls() { return { dispose() {} }; }'
+      }` : args.path.endsWith('rotation-density-controls.js') ? `export const densityDefaults = () => ({});
+        export function setupDensityControls(root, viewer, data, settings, entry) {
+          globalThis.rotationTestDensity = entry;
+          return { dispose() {} };
+        }`
         : 'export function setupReplay() { throw new Error("Not a replay test"); }',
     }));
   } }],
@@ -49,9 +53,12 @@ test('rotation switches VarA → RAW → VarA with matching viewer spawns and ex
   let topology;
   try {
     const installed = (await json('lib/rotation-topology.json')).maps.find(map => map.map_id === 'test_map_116');
-    const rawTerrain = (await json('lib/replay-topology.json')).maps.find(map => map.map_id === installed.map_id && map.variant_id === 'source');
+    const archive = (await json('lib/replay-topology.json')).maps;
+    const rawTerrain = archive.find(map => map.map_id === installed.map_id && map.variant_id === 'source');
     const path = 'maps/small/test_map_116/variants/test_map_116_VarA.placements.json';
     const [variant] = includedVariants({ [path]: await read(path) }, installed.map_id);
+    const { resolveVariantPreview } = await import('../src/rotation-variants.js');
+    const { terrain: variantTerrain } = await resolveVariantPreview(variant, installed, archive);
     topology = setupTopology();
     const state = document.getElementById('rotation-state');
     for (const selected of ['vara', 'source', 'vara']) {
@@ -67,7 +74,7 @@ test('rotation switches VarA → RAW → VarA with matching viewer spawns and ex
         assert.match(note, /Source \/ RAW original spawns/);
         assert.match(document.querySelector('.topology-heading strong').textContent, /Source \/ RAW/);
       } else {
-        assert.equal(urls.at(-1), installed.url);
+        assert.equal(urls.at(-1), variantTerrain.url);
         assert.equal(data.spawns[0].x_m, 252.352);
         assert.equal(data.spawns[1].x_m, 284.122);
         assert.match(note, /Variant spawns · VarA/);
@@ -78,7 +85,7 @@ test('rotation switches VarA → RAW → VarA with matching viewer spawns and ex
   } finally {
     topology?.setVisible(false);
     Object.assign(globalThis, previous);
-    delete globalThis.rotationTestViews;
+    delete globalThis.rotationTestViews; delete globalThis.rotationTestDensity;
     dom.window.close();
   }
 });
@@ -141,21 +148,27 @@ test('current WMS selection renders its installed revision, placements and spawn
     assert.equal(preview.revision, installed.variant_revision);
     assert.ok(preview.variant.document.placements.length > 0);
     topology = setupTopology();
-    for (const selection of ['all', preview.variant.id]) {
-      topology.setMap({ filename: installed.id + '.png', variantId: selection, variants, variant: selection === 'all' ? undefined : preview.variant });
+    const filename = installed.id + '.png';
+    const image = '/current_rotation/' + filename;
+    const terrain = await json('public' + installed.url);
+    const olderRevision = { ...preview.variant, raw: preview.variant.raw + '\n' };
+    for (const selection of ['installed', 'all', preview.variant.id]) {
+      topology.setMap({ filename, image, variantId: selection, variants: [olderRevision, ...variants], variant: selection === preview.variant.id ? preview.variant : undefined });
       const state = document.getElementById('rotation-state');
       for (let i = 0; !state.hidden && i < 100; i++) await new Promise(resolve => setTimeout(resolve, 10));
       assert.equal(state.hidden, true, state.textContent);
       assert.equal(urls.at(-1), installed.url);
       assert.deepEqual(globalThis.rotationTestPlacements, preview.variant.document.placements);
-      const displayed = globalThis.rotationTestViews.at(-1).spawns;
-      for (let i = 0; i < 2; i++) for (const key of ['x_m', 'y_m']) {
-        assert.ok(Math.abs(displayed[i][key] - preview.variant.document.spawn_points[i][key]) < .002);
-      }
+      assert.deepEqual(globalThis.rotationTestViews.at(-1).spawns, terrain.spawns);
+      assert.equal(globalThis.rotationTestDensity.selectedVariant, selection === 'all' ? 'all' : preview.variant.id);
       assert.match(document.querySelector('.topology-heading strong').textContent, /WMS_/);
     }
+    document.querySelector('[data-mode="heatmap"]').click();
+    assert.equal(document.getElementById('rotation-image').getAttribute('src'), image);
+    assert.match(document.getElementById('rotation-image').alt, /elevation heatmap with team spawn points/);
+    assert.equal(document.getElementById('rotation-full-image').getAttribute('href'), image);
   } finally {
     topology?.setVisible(false); Object.assign(globalThis, previous);
-    delete globalThis.rotationTestViews; delete globalThis.rotationTestPlacements; dom.window.close();
+    delete globalThis.rotationTestViews; delete globalThis.rotationTestPlacements; delete globalThis.rotationTestDensity; dom.window.close();
   }
 });

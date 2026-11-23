@@ -381,3 +381,9 @@ contrast and comparison opacity apply to the difference view. The Map variant
 selector controls which assets are visible; the comparison includes both RAW and
 the chosen variant regardless of that selector. Turn comparison off to restore
 the selected variant's regular heatmaps. Both groups must have loaded recordings.
+
+Map settings and HEAT layouts share a compressed density file for each map.
+Run `npm run prepare:heatmaps` after updating the replay archive or terrain
+registrations, then publish the updated `lib/replay-heat.json` and
+`public/replay-heat/` together. The editor loads these prepared files on
+demand and uses the bundled index to show which maps have data.

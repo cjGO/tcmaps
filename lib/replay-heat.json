@@ -1,0 +1,763 @@
+{
+  "version": 1,
+  "maps": {
+    "test_map_040": {
+      "filename": "test_map_040-cea9e7d3e601dbaa.json.gz",
+      "bounds": {
+        "x_max_m": 856,
+        "x_min_m": 24,
+        "y_max_m": 856,
+        "y_min_m": 24
+      },
+      "variants": [
+        "wms_033_vara"
+      ]
+    },
+    "test_map_041": {
+      "filename": "test_map_041-1735671f35180e95.json.gz",
+      "bounds": {
+        "x_max_m": 856,
+        "x_min_m": 24,
+        "y_max_m": 856,
+        "y_min_m": 24
+      },
+      "variants": [
+        "wms_039_vara"
+      ]
+    },
+    "test_map_107": {
+      "filename": "test_map_107-f4c46a6bdf5bceee.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_078_vara"
+      ]
+    },
+    "test_map_110": {
+      "filename": "test_map_110-78c5d0113ce6690d.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_077_vara"
+      ]
+    },
+    "test_map_111": {
+      "filename": "test_map_111-b30592aff165d06a.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "vara",
+        "varb",
+        "wms_batch2"
+      ]
+    },
+    "test_map_112": {
+      "filename": "test_map_112-5f61dabb253208fe.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_068_vara"
+      ]
+    },
+    "test_map_114": {
+      "filename": "test_map_114-17320b1807a1fab1.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_066_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_115": {
+      "filename": "test_map_115-448f68c92dca2181.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_067_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_116": {
+      "filename": "test_map_116-be802c58764509e4.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "vara",
+        "wms_024_varb"
+      ]
+    },
+    "test_map_120": {
+      "filename": "test_map_120-3903bc717ac185f7.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_072_vara"
+      ]
+    },
+    "test_map_121": {
+      "filename": "test_map_121-1589677e2036b5d4.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_029_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_122": {
+      "filename": "test_map_122-fb18b681e73126a3.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_023_vara"
+      ]
+    },
+    "test_map_124": {
+      "filename": "test_map_124-15aad3cf8c3a4066.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_025_vara"
+      ]
+    },
+    "test_map_125": {
+      "filename": "test_map_125-a2b47106ccb3e6b1.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_069_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_126": {
+      "filename": "test_map_126-dab433739a184aa8.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_076_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_127": {
+      "filename": "test_map_127-72ce6a7468bd9110.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_022_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_128": {
+      "filename": "test_map_128-56333ed014dceb48.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_071_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_129": {
+      "filename": "test_map_129-bc0b7925b925484c.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_026_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_130": {
+      "filename": "test_map_130-5cac43867a9bd397.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_028_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_131": {
+      "filename": "test_map_131-1dd0562230523c62.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_070_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_132": {
+      "filename": "test_map_132-461696e50d254b49.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_074_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_133": {
+      "filename": "test_map_133-e45bc20e9ce75c92.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_094_varb",
+        "wms_batch2"
+      ]
+    },
+    "test_map_134": {
+      "filename": "test_map_134-6caed02a71aae545.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_030_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_136": {
+      "filename": "test_map_136-065608b6e0a755a0.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_075_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_137": {
+      "filename": "test_map_137-fd98f420eb507b5e.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_021_vara"
+      ]
+    },
+    "test_map_138": {
+      "filename": "test_map_138-3d4d0dbd9d2227cc.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_073_vara"
+      ]
+    },
+    "test_map_139": {
+      "filename": "test_map_139-66730a4927f3c6b7.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_031_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_140": {
+      "filename": "test_map_140-4fe7cc9a5c159ac6.json.gz",
+      "bounds": {
+        "x_max_m": 696,
+        "x_min_m": 24,
+        "y_max_m": 696,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_032_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_141": {
+      "filename": "test_map_141-5fdac3d041761dac.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_006_varb"
+      ]
+    },
+    "test_map_142": {
+      "filename": "test_map_142-9e7ee4fd7b1b28f1.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_064_varb",
+        "wms_batch2"
+      ]
+    },
+    "test_map_144": {
+      "filename": "test_map_144-0008752208ff3e4d.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_007_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_145": {
+      "filename": "test_map_145-19c090fd852e9e52.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_010_varb"
+      ]
+    },
+    "test_map_147": {
+      "filename": "test_map_147-9641d1ec5654ff29.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_060_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_148": {
+      "filename": "test_map_148-65288ecddf7caad0.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_052_vara"
+      ]
+    },
+    "test_map_150": {
+      "filename": "test_map_150-5c5b3a9206a57589.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_057_vara"
+      ]
+    },
+    "test_map_151": {
+      "filename": "test_map_151-e6e3dae0a6e27017.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_058_vara"
+      ]
+    },
+    "test_map_152": {
+      "filename": "test_map_152-6a8c17696953bb81.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_062_vard"
+      ]
+    },
+    "test_map_155": {
+      "filename": "test_map_155-b375dd689ddb0190.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_004_vare",
+        "wms_batch2"
+      ]
+    },
+    "test_map_157": {
+      "filename": "test_map_157-e82805c5d4610007.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_005_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_159": {
+      "filename": "test_map_159-6e2820e6de4a5398.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_055_varb",
+        "wms_batch2"
+      ]
+    },
+    "test_map_160": {
+      "filename": "test_map_160-54398acb65cfbd6f.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_001_vard",
+        "wms_batch2"
+      ]
+    },
+    "test_map_162": {
+      "filename": "test_map_162-cc6fe63eb52c6ebb.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_002_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_163": {
+      "filename": "test_map_163-2cdeae6afd5d396e.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_012_varb",
+        "wms_batch2"
+      ]
+    },
+    "test_map_164": {
+      "filename": "test_map_164-ff5c4881a4bc4deb.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_050_vard",
+        "wms_batch2"
+      ]
+    },
+    "test_map_166": {
+      "filename": "test_map_166-090842f60b3d11bd.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_063_vard"
+      ]
+    },
+    "test_map_167": {
+      "filename": "test_map_167-37e7ee6641400cf5.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_053_vara",
+        "wms_batch2"
+      ]
+    },
+    "test_map_168": {
+      "filename": "test_map_168-87c49683cbd6dc24.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_049_vara"
+      ]
+    },
+    "test_map_170": {
+      "filename": "test_map_170-1e1fafbcfcef40a3.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_017_vara"
+      ]
+    },
+    "test_map_171": {
+      "filename": "test_map_171-7e4790e5f0106aff.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_015_vard",
+        "wms_batch2"
+      ]
+    },
+    "test_map_172": {
+      "filename": "test_map_172-bfb7ab8211a630e8.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_003_vara"
+      ]
+    },
+    "test_map_174": {
+      "filename": "test_map_174-6320464200fe1abe.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_047_vara"
+      ]
+    },
+    "test_map_177": {
+      "filename": "test_map_177-529bee57e981417f.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_009_vard",
+        "wms_batch2"
+      ]
+    },
+    "test_map_179": {
+      "filename": "test_map_179-12a047e52d68e0e9.json.gz",
+      "bounds": {
+        "x_max_m": 576,
+        "x_min_m": 24,
+        "y_max_m": 576,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "unidentified",
+        "wms_056_vard",
+        "wms_batch2"
+      ]
+    },
+    "test_map_198": {
+      "filename": "test_map_198-56929ff5c45668cc.json.gz",
+      "bounds": {
+        "x_max_m": 856,
+        "x_min_m": 24,
+        "y_max_m": 856,
+        "y_min_m": 24
+      },
+      "variants": [
+        "source",
+        "wms_095_varb"
+      ]
+    }
+  }
+}

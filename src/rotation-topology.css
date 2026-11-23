@@ -2,7 +2,6 @@
 .topology-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:0 0 14px}
 .topology-heading>div:first-child{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .topology-heading strong{font-family:'Space Grotesk',sans-serif;font-size:14px}
-.topology-badge{font-size:9px;font-weight:700;letter-spacing:1px;color:#426842;background:#eaf1e3;padding:5px 7px;border-radius:4px}
 .topology-heading [role=group]{display:flex;gap:4px;background:#f1f4ec;padding:3px;border-radius:6px}
 .topology-panel button{min-height:36px;border:1px solid #ccd7c8;background:#fff;color:#426842;border-radius:5px;padding:7px 10px;font-size:11px;font-weight:600}
 .topology-panel button[aria-pressed=true]{color:white;background:#426842;border-color:#426842}

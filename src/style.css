@@ -8,6 +8,13 @@
 .page-tabs button{border:1px solid transparent;border-radius:7px;background:transparent;padding:12px 18px;color:#536356;font-weight:600;font-size:13px}
 .page-tabs button:hover{background:#e7ecdf}
 .page-tabs button[aria-selected="true"]{background:#426842;color:#fff;border-color:#426842}
+#merit-panel .population-card{max-width:680px;padding:8px 20px}
+#merit-table{width:100%;border-collapse:collapse;text-align:left}
+#merit-table th,#merit-table td{padding:12px 8px;border-bottom:1px solid #e1e6dd}
+#merit-table tbody th{font-weight:500;overflow-wrap:anywhere}
+#merit-table th:last-child,#merit-table td{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+#merit-table tbody tr:last-child>*{border-bottom:0}
+#merit-empty{margin:12px 0}
 .collection-panel .map-heading h2{overflow-wrap:anywhere;font-size:clamp(14px,2vw,22px);letter-spacing:0}
 .collection-panel .map-heading{min-width:0}
 .collection-panel .map-controls{flex-shrink:0}

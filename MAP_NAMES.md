@@ -1,105 +1,104 @@
-# WMS_batch2: AnnaFreud targeted replacements
+# Refreshed installed rotation
 
-Retain test_map_199_VarC unchanged. Replace test_map_111_VarC and test_map_176_VarA with fresh WMS_batch2 layouts from immutable sources, retaining biome, weather and spawns. The other 97 installed maps remain unchanged.
-
-| Slot | Loadout | Size |
-|---|---|---|
-| mp_custom_map_73 | test_map_158_WMS_batch2 | tiny |
-| mp_custom_map_20 | test_map_115_WMS_batch2 | small |
-| mp_custom_map_6 | test_map_194_WMS_batch2 | medium |
-| mp_custom_map_64 | test_map_149_WMS_batch2 | tiny |
-| mp_custom_map_51 | test_map_129_WMS_batch2 | small |
-| mp_custom_map_17 | test_map_040_WMS_batch2 | medium |
-| mp_custom_map_89 | test_map_172_WMS_batch2 | tiny |
-| mp_custom_map_49 | test_map_127_WMS_batch2 | small |
-| mp_custom_map_37 | test_map_055_WMS_batch2 | medium |
-| mp_custom_map_84 | test_map_168_WMS_batch2 | tiny |
-| mp_custom_map_32 | test_map_117_WMS_batch2 | small |
-| mp_custom_map_91 | test_map_061_WMS_batch2 | medium |
-| mp_custom_map_85 | test_map_169_WMS_batch2 | tiny |
-| mp_custom_map_2 | test_map_108_WMS_batch2 | small |
-| mp_custom_map_28 | test_map_049_WMS_batch2 | medium |
-| mp_custom_map_63 | test_map_148_WMS_batch2 | tiny |
-| mp_custom_map_56 | test_map_134_WMS_batch2 | small |
-| mp_custom_map_18 | test_map_041_WMS_batch2 | medium |
-| mp_custom_map_76 | test_map_161_WMS_batch2 | tiny |
-| mp_custom_map_58 | test_map_136_WMS_batch2 | small |
-| mp_custom_map_19 | test_map_199_VarC | medium |
-| mp_custom_map_82 | test_map_166_WMS_batch2 | tiny |
-| mp_custom_map_48 | test_map_126_WMS_batch2 | small |
-| mp_custom_map_12 | test_map_198_WMS_batch2 | medium |
-| mp_custom_map_92 | test_map_174_WMS_batch2 | tiny |
-| mp_custom_map_55 | test_map_133_WMS_batch2 | small |
-| mp_custom_map_33 | test_map_052_WMS_batch2 | medium |
-| mp_custom_map_34 | test_map_144_WMS_batch2 | tiny |
-| mp_custom_map_41 | test_map_121_WMS_batch2 | small |
-| mp_custom_map_30 | test_map_050_WMS_batch2 | medium |
-| mp_custom_map_90 | test_map_173_WMS_batch2 | tiny |
-| mp_custom_map_52 | test_map_130_WMS_batch2 | small |
-| mp_custom_map_16 | test_map_039_WMS_batch2 | medium |
-| mp_custom_map_74 | test_map_159_WMS_batch2 | tiny |
-| mp_custom_map_50 | test_map_128_WMS_batch2 | small |
-| mp_custom_map_46 | test_map_057_WMS_batch2 | medium |
-| mp_custom_map_65 | test_map_150_WMS_batch2 | tiny |
-| mp_custom_map_61 | test_map_139_WMS_batch2 | small |
-| mp_custom_map_77 | test_map_059_WMS_batch2 | medium |
-| mp_custom_map_86 | test_map_170_WMS_batch2 | tiny |
-| mp_custom_map_53 | test_map_131_WMS_batch2 | small |
-| mp_custom_map_24 | test_map_045_WMS_batch2 | medium |
-| mp_custom_map_67 | test_map_152_WMS_batch2 | tiny |
-| mp_custom_map_9 | test_map_113_WMS_batch2 | small |
-| mp_custom_map_38 | test_map_056_WMS_batch2 | medium |
-| mp_custom_map_83 | test_map_167_WMS_batch2 | tiny |
-| mp_custom_map_54 | test_map_132_WMS_batch2 | small |
-| mp_custom_map_10 | test_map_195_WMS_batch2 | medium |
-| mp_custom_map_43 | test_map_146_WMS_batch2 | tiny |
-| mp_custom_map_62 | test_map_140_WMS_batch2 | small |
-| mp_custom_map_36 | test_map_054_WMS_batch2 | medium |
-| mp_custom_map_57 | test_map_147_WMS_batch2 | tiny |
-| mp_custom_map_13 | test_map_114_WMS_batch2 | small |
-| mp_custom_map_23 | test_map_044_WMS_batch2 | medium |
-| mp_custom_map_79 | test_map_163_WMS_batch2 | tiny |
-| mp_custom_map_5 | test_map_111_WMS_batch2 | small |
-| mp_custom_map_35 | test_map_053_WMS_batch2 | medium |
-| mp_custom_map_94 | test_map_176_WMS_batch2 | tiny |
-| mp_custom_map_45 | test_map_125_WMS_batch2 | small |
-| mp_custom_map_87 | test_map_060_WMS_batch2 | medium |
-| mp_custom_map_72 | test_map_157_WMS_batch2 | tiny |
-| mp_custom_map_59 | test_map_137_WMS_batch2 | small |
-| mp_custom_map_47 | test_map_058_WMS_batch2 | medium |
-| mp_custom_map_39 | test_map_145_WMS_batch2 | tiny |
-| mp_custom_map_42 | test_map_122_WMS_batch2 | small |
-| mp_custom_map_14 | test_map_037_WMS_batch2 | medium |
-| mp_custom_map_71 | test_map_156_WMS_batch2 | tiny |
-| mp_custom_map_44 | test_map_124_WMS_batch2 | small |
-| mp_custom_map_15 | test_map_038_WMS_batch2 | medium |
-| mp_custom_map_81 | test_map_165_WMS_batch2 | tiny |
-| mp_custom_map_60 | test_map_138_WMS_batch2 | small |
-| mp_custom_map_11 | test_map_196_WMS_batch2 | medium |
-| mp_custom_map_98 | test_map_179_WMS_batch2 | tiny |
-| mp_custom_map_4 | test_map_110_WMS_batch2 | small |
-| mp_custom_map_31 | test_map_051_WMS_batch2 | medium |
-| mp_custom_map_88 | test_map_171_WMS_batch2 | tiny |
-| mp_custom_map_40 | test_map_120_WMS_batch2 | small |
-| mp_custom_map_27 | test_map_048_WMS_batch2 | medium |
-| mp_custom_map_80 | test_map_164_WMS_batch2 | tiny |
-| mp_custom_map_1 | test_map_107_WMS_batch2 | small |
-| mp_custom_map_97 | test_map_062_WMS_batch2 | medium |
-| mp_custom_map_29 | test_map_143_WMS_batch2 | tiny |
-| mp_custom_map_21 | test_map_116_WMS_batch2 | small |
-| mp_custom_map_25 | test_map_046_WMS_batch2 | medium |
-| mp_custom_map_96 | test_map_178_WMS_batch2 | tiny |
-| mp_custom_map_8 | test_map_112_WMS_batch2 | small |
-| mp_custom_map_26 | test_map_047_WMS_batch2 | medium |
-| mp_custom_map_95 | test_map_177_WMS_batch2 | tiny |
-| mp_custom_map_99 | test_map_063_WMS_batch2 | medium |
-| mp_custom_map_68 | test_map_153_WMS_batch2 | tiny |
-| mp_custom_map_22 | test_map_043_WMS_batch2 | medium |
-| mp_custom_map_93 | test_map_175_WMS_batch2 | tiny |
-| mp_custom_map_75 | test_map_160_WMS_batch2 | tiny |
-| mp_custom_map_78 | test_map_162_WMS_batch2 | tiny |
-| mp_custom_map_7 | test_map_142_WMS_batch2 | tiny |
-| mp_custom_map_69 | test_map_154_WMS_batch2 | tiny |
-| mp_custom_map_70 | test_map_155_WMS_batch2 | tiny |
-| mp_custom_map_3 | test_map_141_WMS_batch2 | tiny |
-| mp_custom_map_66 | test_map_151_WMS_batch2 | tiny |
+| Size | Position | Slot | Loadout | Biome | Fog |
+|---|---|---|---|---|---|
+| tiny | 1 | mp_custom_map_39 | test_map_145_WMS_batch3 | snow | 0 |
+| tiny | 2 | mp_custom_map_83 | test_map_167_WMS_batch3 | plains_forest | 675 |
+| tiny | 3 | mp_custom_map_75 | test_map_160_WMS_batch3 | desert_forest | 0 |
+| tiny | 4 | mp_custom_map_78 | test_map_162_WMS_batch3 | snow | 435 |
+| tiny | 5 | mp_custom_map_70 | test_map_155_WMS_batch3 | snow | 0 |
+| tiny | 6 | mp_custom_map_82 | test_map_166_WMS_batch3 | snow | 638 |
+| tiny | 7 | mp_custom_map_67 | test_map_152_WMS_batch3 | snow_forest | 0 |
+| tiny | 8 | mp_custom_map_86 | test_map_170_WMS_batch3 | desert_forest | 699 |
+| tiny | 9 | mp_custom_map_92 | test_map_174_WMS_batch3 | plains_forest | 0 |
+| tiny | 10 | mp_custom_map_34 | test_map_144_WMS_batch3 | steppe_forest | 680 |
+| tiny | 11 | mp_custom_map_3 | test_map_141_WMS_batch3 | plains | 0 |
+| tiny | 12 | mp_custom_map_89 | test_map_172_WMS_batch3 | snow_forest | 455 |
+| tiny | 13 | mp_custom_map_63 | test_map_148_WMS_batch3 | snow | 0 |
+| tiny | 14 | mp_custom_map_66 | test_map_151_WMS_batch3 | snow | 468 |
+| tiny | 15 | mp_custom_map_80 | test_map_164_WMS_batch3 | plains_forest | 0 |
+| tiny | 16 | mp_custom_map_95 | test_map_177_WMS_batch3 | desert_forest | 438 |
+| tiny | 17 | mp_custom_map_79 | test_map_163_WMS_batch3 | desert_forest | 0 |
+| tiny | 18 | mp_custom_map_65 | test_map_150_WMS_batch3 | snow | 586 |
+| tiny | 19 | mp_custom_map_88 | test_map_171_WMS_batch3 | snow | 0 |
+| tiny | 20 | mp_custom_map_7 | test_map_142_WMS_batch3 | steppe_forest | 655 |
+| tiny | 21 | mp_custom_map_84 | test_map_168_WMS_batch3 | plains | 0 |
+| tiny | 22 | mp_custom_map_98 | test_map_179_WMS_batch3 | plains_forest | 589 |
+| tiny | 23 | mp_custom_map_72 | test_map_157_WMS_batch3 | plains_forest | 0 |
+| tiny | 24 | mp_custom_map_74 | test_map_159_WMS_batch2 | snow_forest | 0 |
+| tiny | 25 | mp_custom_map_57 | test_map_147_WMS_batch2 | snow | 644 |
+| small | 1 | mp_custom_map_99 | test_map_245_WMS_batch3 | snow | 0 |
+| small | 2 | mp_custom_map_85 | test_map_239_WMS_batch3 | snow_forest | 680 |
+| small | 3 | mp_custom_map_45 | test_map_125_WMS_batch3 | desert_forest | 0 |
+| small | 4 | mp_custom_map_59 | test_map_137_WMS_batch3 | snow_forest | 684 |
+| small | 5 | mp_custom_map_62 | test_map_140_WMS_batch3 | snow_forest | 0 |
+| small | 6 | mp_custom_map_23 | test_map_221_WMS_batch3 | plains | 553 |
+| small | 7 | mp_custom_map_71 | test_map_234_WMS_batch3 | steppe_forest | 0 |
+| small | 8 | mp_custom_map_26 | test_map_222_WMS_batch3 | desert_forest | 627 |
+| small | 9 | mp_custom_map_32 | test_map_227_WMS_batch3 | snow | 0 |
+| small | 10 | mp_custom_map_51 | test_map_129_WMS_batch3 | plains | 670 |
+| small | 11 | mp_custom_map_9 | test_map_216_WMS_batch3 | plains_forest | 0 |
+| small | 12 | mp_custom_map_64 | test_map_231_WMS_batch3 | steppe_forest | 546 |
+| small | 13 | mp_custom_map_81 | test_map_238_WMS_batch3 | snow_forest | 0 |
+| small | 14 | mp_custom_map_49 | test_map_127_WMS_batch3 | desert_forest | 662 |
+| small | 15 | mp_custom_map_52 | test_map_130_WMS_batch3 | desert_forest | 0 |
+| small | 16 | mp_custom_map_6 | test_map_215_WMS_batch3 | snow_forest | 589 |
+| small | 17 | mp_custom_map_15 | test_map_219_WMS_batch3 | plains_forest | 0 |
+| small | 18 | mp_custom_map_69 | test_map_233_WMS_batch3 | snow_forest | 561 |
+| small | 19 | mp_custom_map_100 | test_map_246_WMS_batch3 | plains_forest | 0 |
+| small | 20 | mp_custom_map_30 | test_map_225_WMS_batch3 | snow | 537 |
+| small | 21 | mp_custom_map_87 | test_map_111_WMS_batch3 | plains | 0 |
+| small | 22 | mp_custom_map_94 | test_map_242_WMS_batch3 | plains | 668 |
+| small | 23 | mp_custom_map_47 | test_map_230_WMS_batch3 | desert_forest | 0 |
+| small | 24 | mp_custom_map_1 | test_map_107_WMS_batch3 | desert_forest | 576 |
+| small | 25 | mp_custom_map_11 | test_map_218_WMS_batch3 | plains | 0 |
+| small | 26 | mp_custom_map_21 | test_map_116_WMS_batch3 | desert_forest | 537 |
+| small | 27 | mp_custom_map_53 | test_map_131_WMS_batch3 | desert_forest | 0 |
+| small | 28 | mp_custom_map_77 | test_map_237_WMS_batch3 | snow | 696 |
+| small | 29 | mp_custom_map_60 | test_map_138_WMS_batch3 | snow | 0 |
+| small | 30 | mp_custom_map_2 | test_map_213_WMS_batch3 | plains_forest | 503 |
+| small | 31 | mp_custom_map_73 | test_map_235_WMS_batch3 | snow_forest | 0 |
+| small | 32 | mp_custom_map_37 | test_map_228_WMS_batch3 | plains | 499 |
+| small | 33 | mp_custom_map_44 | test_map_124_WMS_batch3 | plains_forest | 0 |
+| small | 34 | mp_custom_map_19 | test_map_220_WMS_batch3 | steppe_forest | 458 |
+| small | 35 | mp_custom_map_5 | test_map_214_WMS_batch3 | desert_forest | 0 |
+| small | 36 | mp_custom_map_56 | test_map_134_WMS_batch3 | steppe_forest | 409 |
+| small | 37 | mp_custom_map_76 | test_map_236_WMS_batch3 | snow_forest | 0 |
+| small | 38 | mp_custom_map_29 | test_map_224_WMS_batch3 | plains_forest | 570 |
+| small | 39 | mp_custom_map_13 | test_map_114_WMS_batch3 | steppe_forest | 0 |
+| small | 40 | mp_custom_map_10 | test_map_217_WMS_batch3 | plains_forest | 485 |
+| small | 41 | mp_custom_map_54 | test_map_132_WMS_batch3 | plains | 0 |
+| small | 42 | mp_custom_map_28 | test_map_223_WMS_batch3 | plains_forest | 695 |
+| small | 43 | mp_custom_map_43 | test_map_229_WMS_batch3 | plains_forest | 0 |
+| small | 44 | mp_custom_map_97 | test_map_244_WMS_batch3 | snow_forest | 504 |
+| small | 45 | mp_custom_map_48 | test_map_126_WMS_batch3 | snow_forest | 0 |
+| small | 46 | mp_custom_map_20 | test_map_115_WMS_batch3 | steppe_forest | 539 |
+| small | 47 | mp_custom_map_68 | test_map_232_WMS_batch3 | plains_forest | 0 |
+| small | 48 | mp_custom_map_61 | test_map_139_WMS_batch3 | steppe_forest | 579 |
+| small | 49 | mp_custom_map_31 | test_map_226_WMS_batch3 | snow_forest | 0 |
+| small | 50 | mp_custom_map_93 | test_map_241_WMS_batch3 | desert_forest | 417 |
+| small | 51 | mp_custom_map_90 | test_map_240_WMS_batch3 | plains | 0 |
+| small | 52 | mp_custom_map_58 | test_map_136_WMS_batch3 | plains | 495 |
+| small | 53 | mp_custom_map_96 | test_map_243_WMS_batch3 | snow_forest | 0 |
+| small | 54 | mp_custom_map_41 | test_map_121_WMS_batch3 | snow_forest | 413 |
+| small | 55 | mp_custom_map_42 | test_map_122_WMS_batch3 | plains_forest | 0 |
+| small | 56 | mp_custom_map_50 | test_map_128_WMS_batch2 | steppe_forest | 401 |
+| small | 57 | mp_custom_map_40 | test_map_120_WMS_batch2 | plains | 0 |
+| small | 58 | mp_custom_map_55 | test_map_133_WMS_batch2 | plains | 0 |
+| small | 59 | mp_custom_map_4 | test_map_110_WMS_batch2 | snow | 532 |
+| small | 60 | mp_custom_map_8 | test_map_112_WMS_batch2 | desert_forest | 560 |
+| medium | 1 | mp_custom_map_12 | test_map_198_WMS_batch3 | steppe_forest | 0 |
+| medium | 2 | mp_custom_map_46 | test_map_057_WMS_batch3 | plains | 612 |
+| medium | 3 | mp_custom_map_24 | test_map_045_WMS_batch3 | snow_forest | 0 |
+| medium | 4 | mp_custom_map_14 | test_map_037_WMS_batch3 | steppe_forest | 554 |
+| medium | 5 | mp_custom_map_36 | test_map_054_WMS_batch3 | desert_forest | 0 |
+| medium | 6 | mp_custom_map_16 | test_map_039_WMS_batch3 | desert_forest | 435 |
+| medium | 7 | mp_custom_map_27 | test_map_048_WMS_batch3 | snow | 0 |
+| medium | 8 | mp_custom_map_38 | test_map_056_WMS_batch3 | snow | 638 |
+| medium | 9 | mp_custom_map_25 | test_map_046_WMS_batch3 | steppe_forest | 0 |
+| medium | 10 | mp_custom_map_17 | test_map_040_WMS_batch3 | steppe_forest | 699 |
+| medium | 11 | mp_custom_map_35 | test_map_053_WMS_batch3 | desert_forest | 0 |
+| medium | 12 | mp_custom_map_18 | test_map_041_WMS_batch3 | plains_forest | 680 |
+| medium | 13 | mp_custom_map_33 | test_map_052_WMS_batch3 | steppe_forest | 0 |
+| medium | 14 | mp_custom_map_91 | test_map_061_WMS_batch3 | snow_forest | 455 |
+| medium | 15 | mp_custom_map_22 | test_map_043_WMS_batch3 | steppe_forest | 0 |

@@ -9,6 +9,7 @@
       <button id="rotation-tab" role="tab" aria-selected="true" aria-controls="rotation-panel">Current rotation</button>
       <button id="mapstats-tab" role="tab" aria-selected="false" aria-controls="mapstats-panel" tabindex="-1">Map stats</button>
       <button id="playerstats-tab" role="tab" aria-selected="false" aria-controls="playerstats-panel" tabindex="-1">PLAYER STATS</button>
+      <button id="merit-tab" role="tab" aria-selected="false" aria-controls="merit-panel" tabindex="-1">Merit</button>
       <button id="replay3-tab" role="tab" aria-selected="false" aria-controls="replay3-panel" tabindex="-1">Replays</button>
       <button id="replays-tab" role="tab" aria-selected="false" aria-controls="replays-panel" tabindex="-1">Legacy replays</button>
       <button id="review-tab" role="tab" aria-selected="false" aria-controls="review-panel" tabindex="-1">Review maps</button>
@@ -19,7 +20,7 @@
     </div>
     <section id="rotation-panel" class="collection-panel" role="tabpanel" aria-labelledby="rotation-tab">
       <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>
-      <div class="intro"><div><p class="eyebrow">CURRENT ROTATION</p><h1>Maps in rotation.</h1><p class="subtitle">Use the filename shown below to identify each map. Names inside the images may differ.</p></div></div>
+      <div class="intro"><div><p class="eyebrow">CURRENT ROTATION</p><h1>Maps in rotation.</h1><p class="subtitle">Browse the installed MOD maps with 3D terrain, team spawn points, and elevation heatmaps.</p></div></div>
       <p class="keyboard-guide"><span><kbd>←</kbd> <kbd>→</kbd></span> <strong>Use the left and right arrow keys to cycle through maps.</strong> <span>Or click the arrow buttons below.</span></p>
       <section class="rotation-order" aria-label="Order rotation maps">
         <div id="rotation-sort-controls" class="rotation-sort-controls">
@@ -36,7 +37,7 @@
         <p>Player count filters the statistics and their ordering for all rotation maps. Variant counts include bundled named variants, excluding Source / RAW, and are independent of player count. Use the arrows to browse the selected map size in the selected order. Maps without an average or win percentage appear last.</p>
       </section>
       <section class="viewer" aria-label="Current rotation viewer">
-        <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">PNG FILENAME</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><a id="rotation-replays" class="keep-button" href="#replays" hidden>View replays</a><button id="rotation-edit" class="keep-button">Edit this map</button><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation image">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation image">→</button></div></div>
+        <div class="map-toolbar"><div class="map-heading"><p class="eyebrow">INSTALLED MAP</p><h2 id="rotation-filename" aria-live="polite"></h2></div><div class="map-controls"><a id="rotation-replays" class="keep-button" href="#replays" hidden>View replays</a><button id="rotation-edit" class="keep-button">Edit this map</button><span id="rotation-count"></span><button id="rotation-previous" class="arrow" aria-label="Previous rotation map">←</button><button id="rotation-next" class="arrow" aria-label="Next rotation map">→</button></div></div>
         <div class="image-stage rotation-stage"><img id="rotation-image" alt=""/><span id="rotation-state" role="status">Loading map…</span><a id="rotation-full-image" target="_blank" rel="noopener" aria-label="Open original rotation PNG in a new tab">↗ Full size</a></div>
       </section>
       <section id="rotation-round-stats" class="round-stats" aria-label="Round statistics">
@@ -132,6 +133,16 @@
       <div class="intro"><div><p class="eyebrow">COMMANDER BATTLE · PLAYER INTELLIGENCE</p><h1>Every round tells a story.</h1><p class="subtitle">Explore the leaderboard. Understand the performance behind the rank.</p></div></div>
       <p id="playerstats-loading" role="status">Open this tab to load player statistics.</p>
     </section>
+    <section id="merit-panel" role="tabpanel" aria-labelledby="merit-tab" tabindex="0" hidden>
+      <div class="intro"><div><h1 id="merit-title">Player merit</h1><p class="subtitle">Net points received in the merit log, shown under each player’s latest recorded name.</p></div></div>
+      <div class="population-card">
+        <p id="merit-empty" hidden>No merit has been recorded yet.</p>
+        <table id="merit-table" aria-labelledby="merit-title" hidden>
+          <thead><tr><th scope="col">Player</th><th scope="col">Merit score</th></tr></thead>
+          <tbody id="merit-rows"></tbody>
+        </table>
+      </div>
+    </section>
     <section id="replays-panel" class="collection-panel" role="tabpanel" aria-labelledby="replays-tab" hidden>
       <div class="intro"><div><p class="eyebrow">ROUND RECORDINGS</p><h1>Replays.</h1><p class="subtitle">Browse recorded rounds, select a replay to load its 3D map, then press Play.</p></div></div>
       <details id="replay-browser" class="replay-browser" open>
@@ -158,7 +169,7 @@
     </section>
     <section id="replay3-panel" class="collection-panel" role="tabpanel" aria-labelledby="replay3-tab" hidden></section>
     <section id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden>
-      <section id="candidate-review"></section>
+      <section id="candidate-review" tabindex="-1"></section>
       <details id="legacy-review"><summary>Earlier review maps and saved selections</summary>
       <div class="discord-banner">Join to discuss at Discord: <a href="https://discord.com/invite/YPBx5bD" target="_blank" rel="noopener noreferrer">https://discord.com/invite/YPBx5bD</a></div>
     <section class="intro"><div><p class="eyebrow">A BETTER MAP STARTS WITH YOUR TAKE</p><h1>Explore. Compare. Keep.</h1><p class="subtitle">Pick the maps and spawn setups you want to keep. Copy your list and send it.</p></div></section>
@@ -260,6 +271,7 @@
           <li><strong>MAP SETTINGS BUTTON :</strong> Important, on the 3D terrain viewer, there is map settings button on the top left; this can preview the fog, the heatmaps of player movements/deaths based on the stored replays, and elevation. Use this to get an idea of fog strength roughly.</li>
           <li><strong>PLACE ON LINE :</strong> Most important tool in this editor; it allows you to rapidly place many assets on the line procedurally meaning you can choose the ratios, scales, assets included, along this line. Increase density/jitter to create visual blocking treelines for example. or forests, or meadows.</li>
           <li><strong>ALIGN TO LINE DIRECTION :</strong> useful for placing long walls on the map to act as blockers on the map.</li>
+          <li><strong>HEAT layouts</strong> appears in 3D when the map has usable replay data. Combine RAW and variant recordings or choose one, then preview and place assets in areas with recorded player movement or deaths.</li>
           <li><strong>PLAY LOCALLY:</strong> Click Download files for a finished map and step-by-step installation instructions. Keep Biome set to Keep source; downloaded object heights are approximate.</li>
           <li><strong>SEND TO ADMIN :</strong> Save the map loadout JSON and send it to the admin on discord link on front page.</li>
         </ol>

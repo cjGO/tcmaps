@@ -156,7 +156,7 @@
     return p.id;
   }
   function setMode(value) {
-    if(!['place','select','navigate','line','scatter'].includes(value)) throw new Error('Unknown editor mode');
+    if(!['place','select','navigate','line','scatter','heat'].includes(value)) throw new Error('Unknown editor mode');
     if(project.spawn_sweep) value='select';
     mode=value;
     $('place').setAttribute('aria-pressed',value==='place'); $('select').setAttribute('aria-pressed',value==='select');

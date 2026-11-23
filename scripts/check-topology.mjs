@@ -30,6 +30,7 @@ for (const map of manifest.maps) {
   const mapName = current.map_name;
   assert.match(mapName, new RegExp(`^${publicId}_(RAW|Var[a-z0-9]+|WMS_(?:[0-9]{3}|batch[0-9]+))$`, 'i'));
   assert.equal(map.map_name, mapName, 'Topology must use the installed loadout name');
+  assert.equal(map.variant_revision, current.variant_revision, 'Topology must use the installed loadout revision');
   if (map.url !== `/topology/${mapName}/${map.sha256.slice(0,20)}/${mapName}.json`) throw new Error('Invalid topology path');
   const bytes = await readFile(path.join(root, 'public', map.url));
   if (createHash('sha256').update(bytes).digest('hex') !== map.sha256) throw new Error('Topology checksum changed');
@@ -41,5 +42,6 @@ for (const map of manifest.maps) {
   for (const key of ['sco_sha256', 'recipe_sha256', 'terrain_code']) if (data.source[key] !== map.source[key]) throw new Error('Topology model source differs');
   terrainGeometry(data);
   if (data.spawns.length !== 2 || data.spawns[0].entry !== 0 || data.spawns[1].entry !== 32) throw new Error('Missing original spawns');
+  assert.deepEqual(data.spawns, [...project.default_spawn_points].sort((a, b) => a.team - b.team));
 }
 console.log(`Verified ${manifest.maps.length} measured topology model(s) against the registered rotation.`);
